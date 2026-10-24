@@ -1488,6 +1488,16 @@ impl DesignGraph {
                     r.stale_check_ids.join(", ")
                 ));
             }
+            // WHAT AWAITS THE OWNER'S WORD (dec:a-premise-says-whether-it-
+            // rests-on-intent-or-delivery): a need a design choice rests on as
+            // intent that nobody accepted. Accepting it is the owner's word.
+            if r.awaiting_the_owners_word > 0 {
+                next.push(format!(
+                    "WHAT AWAITS THE OWNER'S WORD: {} requirement(s), capabilit(ies) or                      interface(s) a design choice rests on as its owner's intent, which nobody                      has accepted ({}). What rests on them does not hold until the owner accepts                      them; reasoning_report reads each choice.",
+                    r.awaiting_the_owners_word,
+                    r.awaiting_the_owners_word_ids.join(", ")
+                ));
+            }
         }
 
         Ok(LoopStatus {

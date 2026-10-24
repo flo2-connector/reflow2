@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9d3364ff50476adfe33b157ab27d56e11b296b2e074279b753876458a3de3ec1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-premise-says-whether-it-rests-on-intent-or-delivery",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

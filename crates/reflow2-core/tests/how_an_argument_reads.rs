@@ -539,6 +539,8 @@ fn a_step_can_say_it_is_not_an_inference() {
         rule_node: None,
         establishes: None,
         conclusion_form: None,
+        as_intent: Vec::new(),
+        as_delivery: Vec::new(),
     })
     .expect("an immediate step may name no premise");
     let r = reading(&g, "inf:grasped");
@@ -580,6 +582,8 @@ fn a_step_can_say_it_is_not_an_inference() {
         rule_node: None,
         establishes: None,
         conclusion_form: None,
+        as_intent: Vec::new(),
+        as_delivery: Vec::new(),
     });
     assert!(refused.is_err());
 }

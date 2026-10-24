@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a8a5baf2d2bd00761e05331a3e85b7e0448dc3012fff34acef9eeae2e427584d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:1fafca7982d37633fa1d42db5218d4cc98b13132d8d213165351ab5ffa71f3b9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:how-an-argument-reads-test"
+}

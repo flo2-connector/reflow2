@@ -17,6 +17,19 @@
 //!
 //! - a **Requirement** holds when the existing roll-up delivers it or its status
 //!   is `met`, and fails when it is `dropped`;
+//!
+//!   ⭐ BUT A PREMISE SAYS WHAT IT RESTS ON
+//!   (`dec:a-premise-says-whether-it-rests-on-intent-or-delivery`, Anthony
+//!   2026-10-24): a requirement record carries two propositions, "X is
+//!   required" and "X holds in the system". Read as its owner's INTENT
+//!   ([`ReadsAs::Intent`], `intent_truth`) a Requirement,
+//!   Capability or Interface holds on its owner's acceptance; read by its
+//!   DELIVERY it reads as this list says. The premise's link says which
+//!   (PREMISE_OF `reads_as`); unmarked, a step that concludes a DECISION
+//!   reads it as intent and every other step by delivery. These per-type
+//!   values were first taken from what reflow2 already computed, which is
+//!   why a design choice could never read supported before it was built
+//!   (`fact:root-cause-a-design-choice-read-its-requirements-by-delivery-because-the-premise-truth-reused-the-delivery-line-2026-10-24`);
 //! - a **Verification** holds when `passing` and fails when `failing` — and a
 //!   check made by COMPUTATION holds only through its kept record
 //!   ([`crate::kept_record`]): with no record it reads `asserted`, so it is
@@ -139,6 +152,40 @@ pub const EQUIVALENCES: &str = "A closed chain of equivalences (A ⇒ B ⇒ C �
 
 /// The rules a step may state, as `Inference.rule` spells them.
 pub const INFERENCE_RULES: [&str; 4] = ["all", "any", "k_of_n", "immediate"];
+
+/// The values a premise's `reads_as` may take (PREMISE_OF `reads_as`).
+pub const READS_AS: [&str; 2] = ["intent", "delivery"];
+
+/// WHAT A STEP READS ONE OF ITS PREMISES AS
+/// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery, Anthony
+/// 2026-10-24). A requirement record carries two propositions: "X is
+/// required", true once its owner accepts it, and "X holds in the system",
+/// true once it is delivered. A design choice rests on the first; an
+/// assurance argument or a go/no-go decision on the second. Only a
+/// Requirement that is a NEED (no `statement_kind`, not taken as given), a
+/// Capability and an Interface carry the two; every other premise reads as
+/// itself.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ReadsAs {
+    /// By its owner's acceptance: accepted holds, proposed is unknown,
+    /// dropped or rejected fails.
+    Intent,
+    /// By whether it is delivered — the reading every premise had before.
+    /// `marked` when the premise says so on its link.
+    Delivery { marked: bool },
+}
+
+impl ReadsAs {
+    /// What a read-back shows: `intent`, `delivery` when the premise is
+    /// marked so, and nothing for a premise read as it always was.
+    pub fn served(self) -> Option<&'static str> {
+        match self {
+            ReadsAs::Intent => Some("intent"),
+            ReadsAs::Delivery { marked: true } => Some("delivery"),
+            ReadsAs::Delivery { marked: false } => None,
+        }
+    }
+}
 
 /// A premise's truth, or a step's verdict: three values, never two.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
@@ -271,6 +318,15 @@ pub struct PremiseReading {
     /// Read once by the step's rule. Absent for once.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub uses: Option<i64>,
+    /// WHAT THE STEP READS THIS PREMISE AS
+    /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery, Anthony
+    /// 2026-10-24): `intent` — a requirement, capability or interface read by
+    /// its owner's acceptance ("X is required"); `delivery` — read by whether
+    /// it is delivered ("X holds in the system"), when the premise is marked
+    /// so. Absent for a premise read as it always was: an unmarked one the
+    /// step reads by delivery, and every type the marker does not apply to.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reads_as: Option<&'static str>,
 }
 
 /// Who confirmed a step: a person, a checker, or nobody.
@@ -896,10 +952,15 @@ pub struct Foundation {
     pub id: String,
     /// Its type, or `None` when no node holds it.
     pub node_type: Option<String>,
-    /// Its computed truth (same as `premise_truth`).
+    /// Its computed truth, as the step that takes it up reads it: its
+    /// `premise_truth`, or its owner's intent when that step reads it so.
     pub truth: Truth,
     /// Why, in a sentence.
     pub why: String,
+    /// `intent` or `delivery`, as [`PremiseReading::reads_as`]: absent when
+    /// it is read as it always was.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reads_as: Option<&'static str>,
 }
 
 /// A node's foundations: the axioms it rests on, the honest limit, and whether
@@ -1867,6 +1928,99 @@ impl DesignGraph {
         Ok(steps)
     }
 
+    /// Each premise of one step whose link says what it is read as
+    /// (PREMISE_OF `reads_as`), by id.
+    fn premise_marks(&self, inference_id: &str) -> Result<BTreeMap<String, String>, DynoError> {
+        Ok(self
+            .incoming(inference_id, Some(edge::PREMISE_OF))?
+            .into_iter()
+            .filter_map(|e| {
+                let mark = e.properties.get("reads_as").and_then(Value::as_str)?;
+                READS_AS
+                    .contains(&mark)
+                    .then(|| (e.from_id.clone(), mark.to_string()))
+            })
+            .collect())
+    }
+
+    /// Whether `id` carries the two propositions a premise can rest on — its
+    /// owner's intent and its delivery: a Requirement that is a NEED (no
+    /// `statement_kind`, not taken as given), a Capability or an Interface.
+    /// A statement of a proof or an argument reads as itself, always.
+    pub fn intent_applies_to(&self, id: &str) -> Result<bool, DynoError> {
+        Ok(match self.type_holding(id)?.as_deref() {
+            Some(node::REQUIREMENT) => self.node_props(id)?.is_some_and(|props| {
+                statement_kind(&props).is_none_or(|k| k.trim().is_empty())
+                    && !is_taken_as_given(&props)
+            }),
+            Some(node::CAPABILITY | node::INTERFACE) => true,
+            _ => false,
+        })
+    }
+
+    /// What the step `inference_id` reads its ordinary premise `premise` as:
+    /// the premise's own `reads_as` when it says, and otherwise INTENT when
+    /// the step concludes a Decision and DELIVERY for every other step.
+    /// `None` for a premise the marker does not apply to: it reads as itself.
+    pub fn premise_reads_as(
+        &self,
+        inference_id: &str,
+        premise: &str,
+    ) -> Result<Option<ReadsAs>, DynoError> {
+        let marks = self.premise_marks(inference_id)?;
+        let concludes_a_decision = self.concludes_a_decision(inference_id)?;
+        self.reads_as_with(
+            premise,
+            marks.get(premise).map(String::as_str),
+            concludes_a_decision,
+        )
+    }
+
+    fn concludes_a_decision(&self, inference_id: &str) -> Result<bool, DynoError> {
+        Ok(match self.conclusion_of(inference_id)? {
+            Some(c) => self.type_holding(&c)?.as_deref() == Some(node::DECISION),
+            None => false,
+        })
+    }
+
+    fn reads_as_with(
+        &self,
+        premise: &str,
+        mark: Option<&str>,
+        concludes_a_decision: bool,
+    ) -> Result<Option<ReadsAs>, DynoError> {
+        if !self.intent_applies_to(premise)? {
+            return Ok(None);
+        }
+        Ok(Some(match mark {
+            Some("intent") => ReadsAs::Intent,
+            Some("delivery") => ReadsAs::Delivery { marked: true },
+            _ if concludes_a_decision => ReadsAs::Intent,
+            _ => ReadsAs::Delivery { marked: false },
+        }))
+    }
+
+    /// A premise's truth AS THE STEP THAT TAKES IT UP READS IT: its owner's
+    /// intent, or [`Self::premise_truth`]; with what it was read as.
+    pub fn premise_truth_in_step(
+        &self,
+        inference_id: &str,
+        premise: &str,
+    ) -> Result<(Truth, String, Option<ReadsAs>), DynoError> {
+        let reads_as = self.premise_reads_as(inference_id, premise)?;
+        if reads_as == Some(ReadsAs::Intent) {
+            let lost = BTreeSet::new();
+            let mut ev = Eval::new(&lost);
+            let conclusion = self.conclusion_of(inference_id)?;
+            let (t, why) = self
+                .intent_full(premise, conclusion.as_deref(), &mut ev, INFERENCE_DEPTH)?
+                .pair();
+            return Ok((t, why, reads_as));
+        }
+        let (t, why) = self.premise_truth(premise)?;
+        Ok((t, why, reads_as))
+    }
+
     fn step_record(&self, inference_id: &str) -> Result<Option<StepRecord>, DynoError> {
         let Some(n) = self.get_node(node::INFERENCE, inference_id)? else {
             return Ok(None);
@@ -2209,6 +2363,55 @@ impl DesignGraph {
                 .contested(contested)
                 .under_refuted(refuted));
         }
+        self.node_reading(id, &node_type, ev, depth, None)
+    }
+
+    /// A premise read as its OWNER'S INTENT
+    /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery): a
+    /// requirement, capability or interface by its acceptance, never by
+    /// whether it is delivered. Everything else about the reading is the
+    /// ordinary one — a node a what-if takes away is lost, a discontinued,
+    /// withdrawn or replaced one is read so, and an objection counts against
+    /// it as far as it holds. `conclusion` is what the step taking it up
+    /// concludes: a Decision never lends acceptance to a premise of its own
+    /// step. Read per step, so never memoized.
+    fn intent_full(
+        &self,
+        id: &str,
+        conclusion: Option<&str>,
+        ev: &mut Eval<'_>,
+        depth: usize,
+    ) -> Result<Read, DynoError> {
+        if ev.lost.contains(id) {
+            let (t, why) = self.lost_truth(id)?;
+            return Ok(Read::plain(t, why));
+        }
+        if depth == 0 {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                format!("the chain of steps is deeper than {INFERENCE_DEPTH}"),
+            ));
+        }
+        let Some(node_type) = self.type_holding(id)? else {
+            return Ok(Read::plain(
+                Truth::Unknown,
+                "no single node of the design holds this id".to_string(),
+            ));
+        };
+        self.node_reading(id, &node_type, ev, depth, Some(conclusion))
+    }
+
+    /// One node's reading, objections counted: by its own predicate
+    /// (`intent: None`), or, read as its owner's intent, by its acceptance
+    /// (`intent: Some(conclusion of the step taking it up)`).
+    fn node_reading(
+        &self,
+        id: &str,
+        node_type: &str,
+        ev: &mut Eval<'_>,
+        depth: usize,
+        intent: Option<Option<&str>>,
+    ) -> Result<Read, DynoError> {
         if self.is_discontinued(id)? {
             return Ok(Read::plain(
                 Truth::Fails,
@@ -2271,7 +2474,13 @@ impl DesignGraph {
         // claim that holds under the same assumptions (inside the scope) it
         // refutes, as it does inside any hypothetical argument. The node's own
         // reading is computed first, because it is the scope.
-        let own = self.own_truth(id, &node_type, ev, depth)?;
+        let own = match intent {
+            None => self.own_truth(id, node_type, ev, depth)?,
+            Some(conclusion) => {
+                let (truth, why) = self.intent_truth(id, node_type, conclusion)?;
+                Read::plain(truth, why)
+            }
+        };
         let objections = self.objections_within(id, ev, depth, &own)?;
         let refuting: Vec<String> = objections
             .iter()
@@ -3168,6 +3377,194 @@ impl DesignGraph {
                 Truth::Unknown,
                 format!("its basis `{other}` is neither measured nor forecast"),
             )),
+        }
+    }
+
+    /// What a requirement, capability or interface says AS ITS OWNER'S
+    /// INTENT, before any objection is counted
+    /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery):
+    ///
+    /// - a **Requirement** by its status: accepted or met holds, proposed or
+    ///   deferred is unknown, dropped fails;
+    /// - a **Capability**, whose status says only how far it is BUILT, by the
+    ///   needs it SATISFIES: it holds when one is accepted (or met), fails
+    ///   when every one is dropped, and is unknown otherwise;
+    /// - an **Interface**, which has no status, by the Decisions that govern
+    ///   it: it holds when one is accepted, fails when every one was rejected
+    ///   or superseded, and is unknown otherwise.
+    ///
+    /// The Decision the step concludes (`conclusion`) lends nothing: a
+    /// requirement or an interface that exists because of it is no reason
+    /// for it, and reads unknown, saying the support would be circular.
+    fn intent_truth(
+        &self,
+        id: &str,
+        node_type: &str,
+        conclusion: Option<&str>,
+    ) -> Result<(Truth, String), DynoError> {
+        const AS_INTENT: &str = "read as its owner's intent";
+        let governed_by_the_conclusion = |g: &Self| -> Result<bool, DynoError> {
+            Ok(match conclusion {
+                Some(c) => g
+                    .outgoing(id, Some(edge::GOVERNED_BY))?
+                    .iter()
+                    .any(|e| e.to_id == c),
+                None => false,
+            })
+        };
+        let status_of = |g: &Self, ty: &str, of: &str| -> Result<String, DynoError> {
+            Ok(g.get_node(ty, of)?
+                .and_then(|n| prop(&n.properties, "status").map(str::to_string))
+                .unwrap_or_else(|| "proposed".to_string()))
+        };
+        match node_type {
+            node::REQUIREMENT => {
+                if governed_by_the_conclusion(self)? {
+                    return Ok((
+                        Truth::Unknown,
+                        format!(
+                            "{AS_INTENT}, but it exists because of {}, the decision this step                              concludes, so it cannot be a reason for that decision: the                              support would be circular",
+                            conclusion.unwrap_or_default()
+                        ),
+                    ));
+                }
+                let status = status_of(self, node::REQUIREMENT, id)?;
+                Ok(match status.as_str() {
+                    "accepted" => (
+                        Truth::Holds,
+                        format!(
+                            "{AS_INTENT}: accepted by its owner, so it is required (whether it is                              delivered is read apart)"
+                        ),
+                    ),
+                    "met" => (
+                        Truth::Holds,
+                        format!("{AS_INTENT}: accepted by its owner, and met"),
+                    ),
+                    "dropped" => (
+                        Truth::Fails,
+                        format!("{AS_INTENT}: dropped by its owner, so it is no longer required"),
+                    ),
+                    "deferred" => (
+                        Truth::Unknown,
+                        format!(
+                            "{AS_INTENT}: deferred by its owner, so it is set aside, not                              required now"
+                        ),
+                    ),
+                    other => (
+                        Truth::Unknown,
+                        format!(
+                            "{AS_INTENT}: its status is {other}, so its owner has not accepted it"
+                        ),
+                    ),
+                })
+            }
+            node::CAPABILITY => {
+                let mut needs: Vec<(String, String)> = Vec::new();
+                for e in self.outgoing(id, Some(edge::SATISFIES))? {
+                    if self.type_holding(&e.to_id)?.as_deref() != Some(node::REQUIREMENT) {
+                        continue;
+                    }
+                    let status = if self.is_discontinued(&e.to_id)? {
+                        "dropped".to_string()
+                    } else {
+                        status_of(self, node::REQUIREMENT, &e.to_id)?
+                    };
+                    needs.push((e.to_id, status));
+                }
+                needs.sort();
+                needs.dedup();
+                if let Some((need, status)) = needs
+                    .iter()
+                    .find(|(_, s)| matches!(s.as_str(), "accepted" | "met"))
+                {
+                    return Ok((
+                        Truth::Holds,
+                        format!(
+                            "{AS_INTENT}: it serves {need}, a need its owner accepted ({status});                              whether it is built is read apart"
+                        ),
+                    ));
+                }
+                if needs.is_empty() {
+                    return Ok((
+                        Truth::Unknown,
+                        format!(
+                            "{AS_INTENT}: it satisfies no requirement, so no owner has accepted a                              need for it"
+                        ),
+                    ));
+                }
+                let said = needs
+                    .iter()
+                    .map(|(n, s)| format!("{n} ({s})"))
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                if needs.iter().all(|(_, s)| s == "dropped") {
+                    return Ok((
+                        Truth::Fails,
+                        format!("{AS_INTENT}: every need it serves was dropped: {said}"),
+                    ));
+                }
+                Ok((
+                    Truth::Unknown,
+                    format!("{AS_INTENT}: no need it serves is accepted by its owner: {said}"),
+                ))
+            }
+            node::INTERFACE => {
+                let mut governors: Vec<(String, String)> = Vec::new();
+                let mut by_the_conclusion = false;
+                for e in self.outgoing(id, Some(edge::GOVERNED_BY))? {
+                    if self.type_holding(&e.to_id)?.as_deref() != Some(node::DECISION) {
+                        continue;
+                    }
+                    if Some(e.to_id.as_str()) == conclusion {
+                        by_the_conclusion = true;
+                        continue;
+                    }
+                    let status = status_of(self, node::DECISION, &e.to_id)?;
+                    governors.push((e.to_id, status));
+                }
+                governors.sort();
+                governors.dedup();
+                if let Some((d, _)) = governors.iter().find(|(_, s)| s == "accepted") {
+                    return Ok((
+                        Truth::Holds,
+                        format!("{AS_INTENT}: governed by {d}, a decision its owner accepted"),
+                    ));
+                }
+                if governors.is_empty() {
+                    return Ok((
+                        Truth::Unknown,
+                        if by_the_conclusion {
+                            format!(
+                                "{AS_INTENT}, but it is governed only by {}, the decision this                                  step concludes, so it cannot be a reason for that decision: the                                  support would be circular",
+                                conclusion.unwrap_or_default()
+                            )
+                        } else {
+                            format!(
+                                "{AS_INTENT}: no decision governs it, so its owner has not                                  accepted it"
+                            )
+                        },
+                    ));
+                }
+                let said = governors
+                    .iter()
+                    .map(|(d, s)| format!("{d} ({s})"))
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                if governors
+                    .iter()
+                    .all(|(_, s)| matches!(s.as_str(), "rejected" | "superseded"))
+                {
+                    return Ok((
+                        Truth::Fails,
+                        format!("{AS_INTENT}: every decision governing it was let go: {said}"),
+                    ));
+                }
+                Ok((
+                    Truth::Unknown,
+                    format!("{AS_INTENT}: no decision governing it is accepted: {said}"),
+                ))
+            }
+            other => Ok((Truth::Unknown, format!("a {other} is not read as intent"))),
         }
     }
 
@@ -4466,6 +4863,15 @@ impl DesignGraph {
         let mut refuted_sup: BTreeSet<String> = BTreeSet::new();
         // Per premise, what holds it up when only a dispute does.
         let mut disputed: Vec<BTreeSet<String>> = Vec::new();
+        // A PREMISE SAYS WHAT IT RESTS ON (dec:a-premise-says-whether-it-
+        // rests-on-intent-or-delivery, Anthony 2026-10-24): its owner's
+        // INTENT or its DELIVERY, on its link; unmarked, intent when this
+        // step concludes a Decision and delivery for every other step.
+        let marks = self.premise_marks(inference_id)?;
+        let concludes_a_decision = match reading.conclusion.as_deref() {
+            Some(c) => self.type_holding(c)?.as_deref() == Some(node::DECISION),
+            None => false,
+        };
         for (p, assumed) in self.premise_links(inference_id)? {
             if assumed {
                 // AN OPEN SUPPOSITION — one no step anywhere discharges, a
@@ -4495,6 +4901,7 @@ impl DesignGraph {
                         role: Some("assumed"),
                         name: None,
                         uses: None,
+                        reads_as: None,
                     });
                     continue;
                 }
@@ -4517,13 +4924,19 @@ impl DesignGraph {
                     role: Some("assumed"),
                     name: None,
                     uses: None,
+                    reads_as: None,
                 });
                 continue;
             }
+            let reads_as =
+                self.reads_as_with(&p, marks.get(&p).map(String::as_str), concludes_a_decision)?;
             // A FALSUM is read as a premise by whether it is DERIVED: a
             // reductio rests on "⊥ follows", never on "⊥ is true".
             let r = if self.node_props(&p)?.is_some_and(|props| is_falsum(&props)) {
                 self.falsum_derivation(&p, ev, depth - 1)?
+            } else if reads_as == Some(ReadsAs::Intent) {
+                let conclusion = reading.conclusion.clone();
+                self.intent_full(&p, conclusion.as_deref(), ev, depth - 1)?
             } else {
                 self.truth_full(&p, ev, depth - 1)?
             };
@@ -4546,6 +4959,7 @@ impl DesignGraph {
                 role: None,
                 name: None,
                 uses: None,
+                reads_as: reads_as.and_then(ReadsAs::served),
             });
         }
         for (p, n) in self.premise_uses(inference_id)? {
@@ -6104,8 +6518,12 @@ impl DesignGraph {
                 let concluding = self.inferences_concluding(&premise_id)?;
                 if concluding.is_empty() {
                     // TERMINAL PREMISE — an axiom.
+                    // READ AS THE STEP TAKING IT UP READS IT: its owner's
+                    // intent there, or its own truth
+                    // (dec:a-premise-says-whether-it-rests-on-intent-or-delivery).
                     if !axioms.contains_key(&premise_id) {
-                        let (truth, why) = self.premise_truth(&premise_id)?;
+                        let (truth, why, reads_as) =
+                            self.premise_truth_in_step(step_id, &premise_id)?;
                         let node_type = self.type_holding(&premise_id)?;
                         axioms.insert(
                             premise_id.clone(),
@@ -6114,6 +6532,7 @@ impl DesignGraph {
                                 node_type,
                                 truth,
                                 why,
+                                reads_as: reads_as.and_then(ReadsAs::served),
                             },
                         );
                     }
@@ -6685,6 +7104,62 @@ impl DesignGraph {
         }
         let all_premises: BTreeSet<&String> = stored.iter().chain(given.iter()).collect();
         let n = all_premises.len() as i64;
+        // WHAT A PREMISE IS READ AS (dec:a-premise-says-whether-it-rests-on-
+        // intent-or-delivery): each marked id must be an ordinary premise of
+        // this step, of a type that carries the two propositions, and marked
+        // one way only.
+        let stored_assumed: BTreeSet<String> = if existing.is_some() {
+            self.premise_links(&spec.id)?
+                .into_iter()
+                .filter(|(_, a)| *a)
+                .map(|(p, _)| p)
+                .collect()
+        } else {
+            BTreeSet::new()
+        };
+        let mut marked: BTreeMap<String, &'static str> = BTreeMap::new();
+        for (field, list, mark) in [
+            ("as_intent", &spec.as_intent, "intent"),
+            ("as_delivery", &spec.as_delivery, "delivery"),
+        ] {
+            for p in list {
+                if !all_premises.contains(p) {
+                    return Err(invalid(
+                        field,
+                        format!(
+                            "'{p}' is not a premise of this step: name it in `premises` too, or                              link it first, then say what it is read as"
+                        ),
+                    ));
+                }
+                if assumed_given.contains(p) || stored_assumed.contains(p) {
+                    return Err(invalid(
+                        field,
+                        format!(
+                            "'{p}' is assumed by this step: a hypothesis holds inside the                              argument whatever its own truth, so it is read as neither intent                              nor delivery"
+                        ),
+                    ));
+                }
+                if !self.intent_applies_to(p)? {
+                    let ty = self.type_holding(p)?.unwrap_or_else(|| "node".to_string());
+                    return Err(invalid(
+                        field,
+                        format!(
+                            "'{p}' is a {ty} that reads as itself: only a requirement that is a                              need (no `statement_kind`, not taken as given), a capability or an                              interface carries both its owner's intent and its delivery"
+                        ),
+                    ));
+                }
+                if let Some(other) = marked.insert(p.clone(), mark)
+                    && other != mark
+                {
+                    return Err(invalid(
+                        field,
+                        format!(
+                            "'{p}' is named in both `as_intent` and `as_delivery`: a premise is                              read one way in a step"
+                        ),
+                    ));
+                }
+            }
+        }
         match (spec.rule.as_str(), spec.k) {
             ("k_of_n", None) => {
                 return Err(invalid(
@@ -7024,8 +7499,33 @@ impl DesignGraph {
             if let Some(n) = uses.get(p).copied().filter(|n| *n > 1) {
                 props = props.set("uses", Value::Int(n));
             }
+            if let Some(mark) = marked.get(p) {
+                props = props.set("reads_as", *mark);
+            }
             self.create_edge(edge::PREMISE_OF, ty, p, node::INFERENCE, &spec.id, props)?;
             drawn.push(format!("{p} PREMISE_OF {}", spec.id));
+        }
+        // A PREMISE ALREADY LINKED, NEWLY MARKED: its link is re-drawn with
+        // what it is read as, keeping everything else the link carried.
+        for (p, mark) in &marked {
+            let Some(link) = self
+                .incoming(&spec.id, Some(edge::PREMISE_OF))?
+                .into_iter()
+                .find(|e| &e.from_id == p)
+            else {
+                continue;
+            };
+            if link.properties.get("reads_as").and_then(Value::as_str) == Some(*mark) {
+                continue;
+            }
+            let mut props = Props::new();
+            for (k, v) in link.properties.iter() {
+                props = props.set(k, v.clone());
+            }
+            props = props.set("reads_as", *mark);
+            let ty = self.one_type_for(p, "premise")?;
+            self.create_edge(edge::PREMISE_OF, &ty, p, node::INFERENCE, &spec.id, props)?;
+            drawn.push(format!("{p} PREMISE_OF {} (reads_as: {mark})", spec.id));
         }
         // The exhaustiveness record is a premise of the split: losing it
         // reaches the step in a change walk.
@@ -7186,6 +7686,17 @@ pub struct InferenceSpec {
     /// `conjunction` or `biconditional`: the conclusion is made of the
     /// premises as parts. Overwrites.
     pub conclusion_form: Option<String>,
+    /// Premises this step reads as their OWNER'S INTENT (PREMISE_OF
+    /// `reads_as: intent`): a requirement, capability or interface read by
+    /// its acceptance (dec:a-premise-says-whether-it-rests-on-intent-or-
+    /// delivery). Each must be an ordinary premise of the step, given here
+    /// or already linked. Unmarked, a premise of a step concluding a
+    /// Decision reads as intent anyway; marking says so on the record.
+    pub as_intent: Vec<String>,
+    /// Premises this step reads by their DELIVERY (`reads_as: delivery`):
+    /// today's reading, said on a step that concludes a Decision resting on
+    /// delivery — a release, a go/no-go.
+    pub as_delivery: Vec<String>,
 }
 
 /// What [`DesignGraph::add_inference`] wrote.

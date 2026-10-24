@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b618fb06c14cb7d16def05e252d4494c342b49baf95d01795e1d22423d021c8a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 11,
+    "action": "modified",
+    "checksum_after": "sha256:35ca4535e10a774cd4556aad82bca9ad366c124319727f4fc3d2c9591c71f23a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skills-and-tools"
+}

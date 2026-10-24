@@ -59,7 +59,7 @@ use crate::foundation::core::{DynoError, Value};
 use crate::graph::DesignGraph;
 use crate::inference::{
     AssumptionReading, IndependenceReading, InferenceReading, ObjectionReading, ProofStatus,
-    StatementReading, Truth,
+    ReadsAs, StatementReading, Truth,
 };
 use crate::nodes::{edge, node};
 
@@ -127,6 +127,24 @@ pub struct ReasoningDebt {
     pub shown_not_proven: usize,
     /// Premises marked taken as given: stated foundations.
     pub stated_foundations: usize,
+    /// PREMISES HELD ON THEIR OWNER'S WORD
+    /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery): a
+    /// requirement, capability or interface a step reads as its owner's
+    /// intent, which holds (its owner accepted it). Its support is that
+    /// acceptance, not a source, so it is never counted uncited. Absent when
+    /// there are none.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub held_on_the_owners_word: usize,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub held_on_the_owners_word_ids: Vec<String>,
+    /// PREMISES AWAITING THEIR OWNER'S WORD: read as intent, and not
+    /// accepted (proposed, deferred, dropped, or a reason that would be
+    /// circular). What rests on them does not hold until the owner accepts
+    /// them. Absent when there are none.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub awaiting_the_owners_word: usize,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub awaiting_the_owners_word_ids: Vec<String>,
     /// The first [`REASONING_DEBT_LIST_CAP`] of each, by id.
     pub unconfirmed_step_ids: Vec<String>,
     pub uncited_premise_ids: Vec<String>,
@@ -177,6 +195,10 @@ pub struct ReasoningDebt {
     pub list_cap: usize,
     /// What these counts mean.
     pub note: &'static str,
+}
+
+fn is_zero(n: &usize) -> bool {
+    *n == 0
 }
 
 impl ReasoningDebt {
@@ -660,6 +682,17 @@ pub struct ReasoningReport {
     /// Premises marked TAKEN AS GIVEN: definitions and axioms the reasoning
     /// states as its starting point.
     pub stated_foundations: Vec<String>,
+    /// PREMISES HELD ON THEIR OWNER'S WORD
+    /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery): a
+    /// requirement, capability or interface a step reads as its owner's
+    /// intent, and holds there — its owner accepted it. Its support is that
+    /// acceptance, not a source, so it is never in `uncited_premises`. One
+    /// read as intent that does not hold (nobody accepted it) is in
+    /// `awaiting_the_owners_word`. Both absent when there are none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub held_on_the_owners_word: Vec<String>,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub awaiting_the_owners_word: Vec<String>,
     /// Points still contested.
     pub still_contested: Vec<StillContested>,
     /// STEPS AN OBJECTION IS AIMED AT that it defeats or contests
@@ -950,6 +983,10 @@ impl DesignGraph {
         };
         let mut rests_on: BTreeSet<String> = BTreeSet::new();
         let mut against: BTreeSet<String> = BTreeSet::new();
+        // Each premise a step reads as its owner's intent, with whether it
+        // holds in any of them, and those read otherwise somewhere.
+        let mut as_intent: BTreeMap<String, bool> = BTreeMap::new();
+        let mut not_as_intent: BTreeSet<String> = BTreeSet::new();
         for c in &claims {
             let own = support_closure
                 .as_ref()
@@ -964,6 +1001,12 @@ impl DesignGraph {
                     }
                     if own {
                         rests_on.insert(p.id.clone());
+                        if p.reads_as == ReadsAs::Intent.served() {
+                            let held = as_intent.entry(p.id.clone()).or_insert(false);
+                            *held |= p.truth == Truth::Holds;
+                        } else {
+                            not_as_intent.insert(p.id.clone());
+                        }
                     } else {
                         against.insert(p.id.clone());
                     }
@@ -983,8 +1026,23 @@ impl DesignGraph {
             .filter(|p| by_id.get(p.as_str()).is_some_and(|c| is_bridge(c)))
             .cloned()
             .collect();
+        // HELD ON THE OWNER'S WORD, OR AWAITING IT: a premise read as intent
+        // everywhere it is taken up rests on its owner's acceptance, never on
+        // a source, so it is not uncited.
+        let intent_only = |p: &str| as_intent.contains_key(p) && !not_as_intent.contains(p);
+        let held_on_the_owners_word: Vec<String> = as_intent
+            .iter()
+            .filter(|(_, held)| **held)
+            .map(|(p, _)| p.clone())
+            .collect();
+        let awaiting_the_owners_word: Vec<String> = as_intent
+            .iter()
+            .filter(|(_, held)| !**held)
+            .map(|(p, _)| p.clone())
+            .collect();
         let uncited_premises: Vec<String> = rests_on
             .iter()
+            .filter(|p| !intent_only(p))
             .filter(|p| match by_id.get(p.as_str()) {
                 Some(c) => {
                     c.node_type != node::ARTIFACT
@@ -1109,12 +1167,18 @@ impl DesignGraph {
             // is listed under `stated_foundations`; if it reads unknown, an
             // objection is what holds it there. The cogito trial listed such a
             // claim in both, as "no step concludes it".
+            // HELD ON ITS OWNER'S WORD, a need a choice rests on is not
+            // unsupported where the choice reads it: its owner accepted it
+            // (dec:a-premise-says-whether-it-rests-on-intent-or-delivery).
+            // Whether it is delivered is its own claim's reading, unchanged.
+            let held_as_intent = intent_only(&c.id) && as_intent.get(&c.id) == Some(&true);
             if c.truth == ClaimTruth::Unknown
                 && c.support.is_empty()
                 && c.sources.is_empty()
                 && c.node_type != node::ARTIFACT
                 && !has_a_reason
                 && !c.taken_as_given
+                && !held_as_intent
             {
                 unsupported.push(Unsupported {
                     id: c.id.clone(),
@@ -1244,6 +1308,8 @@ impl DesignGraph {
             against_rests_on,
             uncited_premises,
             stated_foundations,
+            held_on_the_owners_word,
+            awaiting_the_owners_word,
             still_contested,
             steps_objected,
             contested_by_design,
@@ -1677,6 +1743,10 @@ impl DesignGraph {
         let mut unconfirmed: Vec<String> = Vec::new();
         let mut conclusions: BTreeSet<String> = BTreeSet::new();
         let mut terminal: BTreeSet<String> = BTreeSet::new();
+        // Each terminal premise some step reads as its owner's intent, with
+        // whether it holds there in any of them, and those read otherwise.
+        let mut as_intent: BTreeMap<String, bool> = BTreeMap::new();
+        let mut not_as_intent: BTreeSet<String> = BTreeSet::new();
         for s in &steps {
             let how = s
                 .properties
@@ -1691,6 +1761,16 @@ impl DesignGraph {
             }
             for (p, assumed) in self.premise_links(&s.node_id)? {
                 if !assumed && self.inferences_concluding(&p)?.is_empty() {
+                    // READ AS ITS OWNER'S INTENT HERE, its support is that
+                    // acceptance, never a source (dec:a-premise-says-whether-
+                    // it-rests-on-intent-or-delivery).
+                    if self.premise_reads_as(&s.node_id, &p)? == Some(ReadsAs::Intent) {
+                        let (truth, _, _) = self.premise_truth_in_step(&s.node_id, &p)?;
+                        let held = as_intent.entry(p.clone()).or_insert(false);
+                        *held |= truth == Truth::Holds;
+                    } else {
+                        not_as_intent.insert(p.clone());
+                    }
                     terminal.insert(p);
                 }
             }
@@ -1699,7 +1779,19 @@ impl DesignGraph {
         let mut uncited: Vec<String> = Vec::new();
         let mut given: Vec<String> = Vec::new();
         let mut unverified: Vec<String> = Vec::new();
+        let mut held_on_word: Vec<String> = Vec::new();
+        let mut awaiting_word: Vec<String> = Vec::new();
+        for (p, held) in &as_intent {
+            if *held {
+                held_on_word.push(p.clone());
+            } else {
+                awaiting_word.push(p.clone());
+            }
+        }
         for p in &terminal {
+            if as_intent.contains_key(p) && !not_as_intent.contains(p) {
+                continue;
+            }
             let Some(ty) = self.type_holding(p)? else {
                 continue;
             };
@@ -1737,6 +1829,8 @@ impl DesignGraph {
         };
         let (unconfirmed_steps, unconfirmed_ids) = cap(unconfirmed);
         let (uncited_premises, uncited_ids) = cap(uncited);
+        let (held_on_the_owners_word, held_on_word_ids) = cap(held_on_word);
+        let (awaiting_the_owners_word, awaiting_word_ids) = cap(awaiting_word);
         let (shown_not_proven, shown_ids) = cap(shown);
         let undischarged: Vec<String> = self
             .assumptions()?
@@ -1876,6 +1970,10 @@ impl DesignGraph {
             uncited_premises,
             shown_not_proven,
             stated_foundations: given.len(),
+            held_on_the_owners_word,
+            held_on_the_owners_word_ids: held_on_word_ids,
+            awaiting_the_owners_word,
+            awaiting_the_owners_word_ids: awaiting_word_ids,
             unconfirmed_step_ids: unconfirmed_ids,
             uncited_premise_ids: uncited_ids,
             shown_not_proven_ids: shown_ids,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ea4e18d329d4faeca1fa6e7166487fee2727ade75bf1395f816c72d86450f0ef",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-premise-says-whether-it-rests-on-intent-or-delivery-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain"
+}
