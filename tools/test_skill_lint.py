@@ -15,6 +15,7 @@ it, since a lint that cannot fail reads as a guarantee.
 from __future__ import annotations
 
 import pathlib
+import re
 import sys
 import unittest
 
@@ -283,6 +284,103 @@ class TestSessionReasoning(unittest.TestCase):
                 desc = skill_lint.frontmatter(md.read_text()).get("description", "")
                 found += [f"{d.name}: {x}" for x in skill_lint.asks_for_session_reasoning(desc)]
         self.assertEqual(found, [])
+
+
+class TestThinCommands(unittest.TestCase):
+    """`thick_command_lines`: a command that fronts a skill is a pointer and
+    nothing more, because a command is a copied file nothing refreshes on an
+    upgrade (measured 2026-10-24: the v0.83.3 /capture-session rewording had
+    reached neither installed copy on the owner's machine). Observed failing
+    first on all 36 skill-fronting commands before they were thinned."""
+
+    FM = "---\ndescription: Find the real cause\nargument-hint: <what failed>\n---\n"
+    THIN = FM + "Use the **root-cause** skill on the failure I've described below.\n\nWhat failed:\n$ARGUMENTS\n"
+
+    def thick(self, text, name="root-cause"):
+        return skill_lint.thick_command_lines(name, text)
+
+    def test_a_pointer_with_its_label_and_arguments_is_thin(self):
+        self.assertEqual(self.thick(self.THIN), [])
+
+    def test_label_and_arguments_are_each_optional(self):
+        self.assertEqual(self.thick(self.FM + "Use the **root-cause** skill.\n"), [])
+        self.assertEqual(self.thick(self.FM + "Use the **root-cause** skill.\n\nThe question:\n"), [])
+        self.assertEqual(self.thick(self.FM + "Use the **root-cause** skill.\n\n$ARGUMENTS\n"), [])
+        self.assertEqual(
+            self.thick(self.FM + "Use the **onboarding** skill to tell me where this belongs: $ARGUMENTS\n"),
+            [])
+
+    def test_a_bullet_is_thick(self):
+        """The shape every command had grown before 2026-10-24."""
+        text = self.THIN.replace("\n\nWhat failed:", "\n\n- Work the steps IN ORDER.\n\nWhat failed:")
+        self.assertEqual(self.thick(text), ["- Work the steps IN ORDER."])
+
+    def test_a_second_paragraph_is_thick(self):
+        text = self.FM + "Use the **where-am-i** skill.\n\nWrite it for a person reading for under a minute.\n"
+        self.assertEqual(len(self.thick(text, "where")), 1)
+
+    def test_a_second_sentence_on_the_pointer_line_is_thick(self):
+        """One sentence names the skill; an instruction appended to that line
+        is still an instruction."""
+        text = self.FM + "Use the **optimize** skill. If I have not named one, measure first.\n"
+        self.assertEqual(self.thick(text, "optimize"), ["If I have not named one, measure first."])
+
+    def test_the_tag_sentence_is_allowed_for_its_own_word_only(self):
+        """/note and /log-issue reach one skill; the word carries the tag."""
+        line = "Use the **jot** skill on what I've written below. I typed /note, so tag it as an IDEA.\n"
+        self.assertEqual(self.thick(self.FM + line, "note"), [])
+        self.assertEqual(len(self.thick(self.FM + line, "jot")), 1, "a tag for another word")
+
+    def test_an_instruction_ending_in_a_colon_is_not_a_label(self):
+        text = self.FM + "Use the **check-health** skill.\n\nReport every finding in plain language, and wait for me first:\n"
+        self.assertEqual(len(self.thick(text, "health")), 1)
+
+    def test_a_label_closes_the_command_or_it_is_not_one(self):
+        text = self.FM + "Use the **root-cause** skill.\n\nWhat failed:\n\nShow me each step.\n"
+        self.assertEqual(len(self.thick(text)), 2)
+
+    def test_the_start_design_paragraph_is_allowed_in_adopt_and_genesis_only(self):
+        """Typed where no design exists yet, the server serves one tool and no
+        get_skill, so that one paragraph cannot live in the skill."""
+        text = self.FM + "Use the **adopt** skill.\n\n" + skill_lint.START_DESIGN_PARAGRAPH + "\n"
+        self.assertEqual(self.thick(text, "adopt"), [])
+        self.assertEqual(self.thick(text.replace("**adopt**", "**genesis**"), "genesis"), [])
+        self.assertEqual(len(self.thick(text.replace("**adopt**", "**why**"), "why")), 1)
+        grown = text.replace("looks like.", "looks like. Then ask me what to cover.")
+        self.assertEqual(len(self.thick(grown, "adopt")), 1, "the paragraph is pinned word for word")
+
+    def test_a_command_that_names_no_skill_is_not_a_pointer(self):
+        """Outside the listed exceptions, every line of it is reported."""
+        text = self.FM + "Call reflow2's `loop_status` tool and tell me what is owed.\n"
+        self.assertEqual(len(self.thick(text, "owed")), 1)
+
+    def test_an_unknown_frontmatter_key_is_thick(self):
+        text = self.THIN.replace("argument-hint:", "allowed-tools: Bash\nargument-hint:")
+        self.assertEqual(self.thick(text), ["frontmatter: allowed-tools: Bash"])
+
+    def test_the_exceptions_are_exactly_the_commands_the_server_serves_no_skill_for(self):
+        """Three records name the tool-backed commands: this lint, the alias
+        table that answers them with an Err, and check_command_surface.py. A
+        fourth entry in one of them would let a command grow unchecked."""
+        rust = (skill_lint.REPO / "crates/reflow2-mcp/src/skills.rs").read_text(encoding="utf-8")
+        err = set(re.findall(r'\(\s*"([a-z0-9-]+)"\s*,\s*Err\(', rust))
+        surface = (skill_lint.REPO / "tools/check_command_surface.py").read_text(encoding="utf-8")
+        listed = re.search(r"TOOL_BACKED = \{([^}]*)\}", surface).group(1)
+        tool_backed = set(re.findall(r'"([a-z0-9-]+)"', listed))
+        self.assertEqual(set(skill_lint.TOOL_BACKED_COMMANDS), err)
+        self.assertEqual(set(skill_lint.TOOL_BACKED_COMMANDS), tool_backed)
+        for name, reason in skill_lint.TOOL_BACKED_COMMANDS.items():
+            self.assertIn("no skill", reason, f"{name}: say why it is an exception")
+
+    def test_the_real_tree_is_thin(self):
+        commands = sorted(skill_lint.REPO.joinpath("getting-started/commands").glob("*.md"))
+        self.assertGreaterEqual(len(commands), 30, "the parse found too few commands to mean anything")
+        thick = {
+            c.name: skill_lint.thick_command_lines(c.stem, c.read_text(encoding="utf-8"))
+            for c in commands
+            if c.stem not in skill_lint.TOOL_BACKED_COMMANDS
+        }
+        self.assertEqual({n: x for n, x in thick.items() if x}, {})
 
 
 if __name__ == "__main__":
