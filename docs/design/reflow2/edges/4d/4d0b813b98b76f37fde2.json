@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9221081c1b38999729d4886fac8ba252821a6dc6714eace187ddc3fca09c2af0",
+  "edge_type": "REALIZES",
+  "from_id": "art:detect",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:every-recorded-breach-still-standing-reaches-the-loop"
+}

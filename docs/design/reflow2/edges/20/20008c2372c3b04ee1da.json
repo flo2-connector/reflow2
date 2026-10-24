@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9a3425dab5430d4b9947eb6681ffaaa5364f6644ca205bee0d4d4732cc9f4447",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-limit-each-part-meets-on-its-own-was-forced-into-a-budget-2026-10-24",
+  "properties": {
+    "basis": "observed",
+    "evidence": "The change builds composition: each and an empty minimum reading incomplete, the fix this root cause names.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24"
+}

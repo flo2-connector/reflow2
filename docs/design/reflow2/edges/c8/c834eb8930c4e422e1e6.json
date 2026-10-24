@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7736643e93df062245d7ab6aa61d02b99e817f101ade1b82e2c0be4fcfc1058d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-limit-each-part-meets-on-its-own",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

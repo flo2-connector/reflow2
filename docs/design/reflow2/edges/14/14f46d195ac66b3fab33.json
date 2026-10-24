@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cedd1c2896902b7549ee734a91856634e38a516064c2bcb224305a72c57b114d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part-tests"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7eac641340094ea89758c03c89e7d2826d10ea74cbb2213a372d96bf59aa1e15",
+  "node_id": "cap:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part",
+  "node_type": "Capability",
+  "properties": {
+    "description": "dec:a-limit-each-part-meets-on-its-own-is-composition-each and dec:a-minimum-nothing-has-measured-reads-incomplete (Anthony 2026-10-24). budget_report with `composition: each` judges every stated contribution alone and reads the worst one, the smallest against a minimum and the largest against a maximum, named in `judged_part` and the composition note. A stated part already short of a minimum breaks it whatever the unstated parts read; otherwise an unstated part leaves it incomplete, and a limit with no stated part reads incomplete. A summed minimum with nothing stated also reads incomplete, never exceeded. Every reader of the judged rollup follows: the reasoning truth of a Constraint, closure_report's margin and the KPP breach. The schema's composition enum, the add_constraint/constrains/budget_report descriptions and capture-intent's \"a number with a unit\" row offer `each` for a setback, a clearance or a separation distance. Code: crates/reflow2-core/src/budget.rs.",
+    "name": "A limit each part meets on its own (`composition: each`) is judged on its worst part, which it names, and reads incomplete until a part is measured",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

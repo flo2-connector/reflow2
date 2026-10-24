@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dc4e2ca2834b1c79b709328a2401b161f4b7be70cb53871e8b82532927da9472",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-limit-each-part-meets-on-its-own-was-forced-into-a-budget-2026-10-24",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

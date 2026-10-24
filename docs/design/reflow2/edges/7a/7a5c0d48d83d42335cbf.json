@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:68012e1d1e83b0a441b19899b318aa01cf8d7907a7386ead89e84d5959fe50ee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:null-unsets-on-every-typed-constructor",
+  "properties": {
+    "approved_at": "2026-10-24",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

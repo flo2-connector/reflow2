@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:8a2e31f1f821f10ad3582d83d03cdf8fdca65d25bbce3663964cd6fc68707a63",
+  "node_id": "dec:null-unsets-on-every-typed-constructor",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-24: \"null unsets everywhere\": extend the 09-07 rule to every typed constructor, as its OWN later PR.\n\nTHE CASE. The Shop sample trial (2026-10-24): `limit: null` on add_constraint was ignored, so a numeric limit could not be cleared once set. Measured on main 61c05ad74: the typed request takes the limit as an optional number, so null and absent are the same, and the write merges. The 2026-09-07 rule (chg:eight-field-feedback-fixes-land-for-v0510: \"A null UNSETS rather than being refused\") was built into create_node's props bag only. The class: a rule settled at one door and never reached the others. Not built on PR #795; it is its own later PR.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-24: null unsets everywhere — the 2026-09-07 rule extends to every typed constructor, as its own later PR (not built yet)",
+    "rationale": "Root-caused with the limits finding on 2026-10-24. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

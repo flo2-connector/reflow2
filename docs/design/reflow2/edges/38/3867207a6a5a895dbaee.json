@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f3f98dce695b6b01beb37cf4db9e29952a1adb50cbc6076d2567913ec55e9cbe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:root-cause-a-limit-each-part-meets-on-its-own-was-forced-into-a-budget-2026-10-24"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:910faeecf0a59ecdca18fdbaf19166cd26314166a32508a518b7d17018b257f5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-an-open-breach-reaches-the-loop",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

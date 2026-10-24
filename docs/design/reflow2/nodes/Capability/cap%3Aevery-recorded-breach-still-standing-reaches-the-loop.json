@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:00700d01932e7f26308075795540edc7718450e0f6dcb8ca30b0d4a0f44a9e88",
+  "node_id": "cap:every-recorded-breach-still-standing-reaches-the-loop",
+  "node_type": "Capability",
+  "properties": {
+    "description": "dec:every-recorded-breach-still-standing-is-one-open-breach (Anthony 2026-10-24). Four kinds, each one gap: an open defect finding (fact_type defect, no valid_to, no INVALIDATES, not parked; not raised beside defect_overtaken_by_change for the same finding); an exceeded budget on a Constraint that is not a KPP (a KPP keeps kpp_breached); a VIOLATES edge into a Constraint; a VIOLATES_RULE ruled rejected (must fix) with no resolved_at (an untriaged one keeps open_violation). loop_status counts the unruled ones in a next line before the gap line (`breaches_open`) and lists the newest 20 in `breaches`, each with its kind and gap id; the read-side debt summary names them. Each gap says how its kind closes; a ruling (acknowledging the gap with a reason) takes any of them out of the loop. Code: crates/reflow2-core/src/detect.rs (breaches_not_closed, open_breaches, detect_open_breaches), report.rs.",
+    "name": "Every recorded breach still standing is one open breach: an `open_breach` gap and a line of loop_status's next until something closes it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

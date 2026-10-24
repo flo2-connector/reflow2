@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5b65b9ddff1a3a051b776b85fca341209095534bd15ee82ce1b7b06284fd61eb",
+  "node_id": "dec:a-limit-each-part-meets-on-its-own-is-composition-each",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-24, choosing the recommendation: \"composition: each\" on the existing Constraint (each stated part judged alone; the verdict reads the worst part and names it; an empty or unstated set reads incomplete).\n\nTHE QUESTION. reflow2's only numeric limit was a budget its parts spend together (`composition` sum or path). A setback, a clearance or a separation distance is a limit EACH part meets on its own, and its parts do not add. Measured on main 61c05ad74 (the Shop sample trial, design 671a764fa790c030): two parts 6 ft from a line against a 10 ft minimum read within (12); the barn lean-to's 12 ft from the well, recorded against the 100 ft limit, rolled up with the farm loop's 102.36 ft to 114.36 and read within.\n\nOPTIONS WEIGHED, ranked by correctness: (a) `composition: each` on the existing Constraint, reusing CONSTRAINS edges and every reader of the judged rollup [CHOSEN]; (b) a bound per pair of named nodes (the well as a node), more exact when both ends move, more vocabulary; (c) codes as EnvironmentRule + VIOLATES_RULE, which matches the schema's wording for codes but judges no number; (d) one Constraint per part, which works today and multiplies 23 limits by every part, the workaround shape refused.\n\nWHAT IT MEANS. The verdict reads the smallest stated reading against a minimum and the largest against a maximum, named in `judged_part`. A stated part already short of a minimum breaks it whatever the unstated parts read; otherwise an unstated part, or no stated part at all, reads incomplete. Declared by the author, never inferred from the unit (the 2026-09-29 rule of dec:idea-a-constraint-says-how-its-quantity-composes stands).",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-24: a limit each part meets on its own is `composition: each` on the existing Constraint; each stated part is judged alone, the verdict reads the worst part and names it, and an empty or unstated set reads incomplete",
+    "rationale": "Root cause walked 2026-10-24 (root-cause skill, fetched fresh): the class is that a limit each part meets on its own was forced into the budget model. Built on PR #795 (tests failing first in 930a6c489, fix 05ac6178f). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}
