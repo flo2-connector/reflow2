@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:960c1d4c1dfc19bb98ca45681cc9256a7c4f8ef498f99a3e9e39678b37eee98a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f1fa081f6d8aea04098da870c01f2f66c1baca81cc51d6cafe80f98ab25e6dfe",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:triage-feedback-skill"
+}

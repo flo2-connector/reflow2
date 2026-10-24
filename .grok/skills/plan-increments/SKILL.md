@@ -122,3 +122,12 @@ increment usually surfaces requirements nobody has satisfied yet, which is the p
 exist from an earlier planning pass — `search_design` for its name and its
 scope first. Two Releases covering the same work make "what ships in v2"
 unanswerable, which is the one question this skill exists to answer.
+
+## When it is run as /plan-increments
+
+By typing /plan-increments the person asked for the following, in their own words:
+
+- The plan belongs in the graph, not in this conversation. If you are keeping a to-do list in your head, that is the thing to write down.
+- Order by what actually blocks what, and say which orderings are forced and which are preference.
+- Do not invent dates I have not given you, and do not promise a version number the increment has not earned.
+- Tell me the sequence in plain language, with the reason for anything that surprised you.

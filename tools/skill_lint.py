@@ -1440,8 +1440,17 @@ def served_descriptions() -> dict[str, str]:
 # chat on its very first model call. The command, sent as the user's turn,
 # said "what dies with the session is the reasoning". With that one phrase
 # changed to "the rationale for the work", it completed in two fresh chats.
-# The same wording ran fine in Claude Code, so whether it is refused depends on
-# the route the host takes to the model, which reflow2 cannot see.
+#
+# CLAUDE CODE REFUSED IT TOO, LESS OFTEN. Until 2026-10-24 this comment said
+# the same wording "ran fine in Claude Code"; it did not. Measured 2026-10-24
+# from the owner's Claude Code session transcripts: the old text ran 32 times
+# between 2026-09-20 and 2026-10-24, and the reasoning_extraction classifier
+# stopped the first reply 3 times (09-22, 10-01, 10-24) and one more run
+# partway (10-03), 4 of 32. It was still running there in October, after the
+# rewording shipped in v0.83.3, because the installed copies of the command
+# were never refreshed (THIN COMMANDS, below). So how often it is refused
+# depends on the route the host takes to the model, which reflow2 cannot see,
+# and on the classifier's own variation; never is not one of the outcomes.
 #
 # So the text a host sends AS A REQUEST (a slash command) or lists to the model
 # for every request (a skill's description) must not put "reasoning" beside
@@ -1465,6 +1474,100 @@ def asks_for_session_reasoning(text: str) -> list[str]:
         if REASONING_WORD.search(sentence) and SESSION_WORDS.search(sentence):
             out.append(" ".join(sentence.split()))
     return out
+
+
+# THIN COMMANDS: A COMMAND THAT FRONTS A SKILL IS A POINTER, AND NOTHING MORE.
+#
+# A slash command is a COPIED file. reflow2_init.py puts it into a project's
+# .claude/commands/ and reflow2_install.py (run by install.sh) into
+# ~/.claude/commands/, and a new binary re-copies neither: a project's copies
+# are refreshed only when someone runs init or update there, and the user-scope
+# ones only when the installer is run again. The skill it names is served
+# fresh by the binary, so a command stays current only by holding nothing but
+# the skill's name.
+#
+# That was the premise when commands started shipping (2026-07-28: "four lines
+# that name a skill ... nothing that goes stale"), and nothing held it. From
+# 2026-08-14 to 2026-10-23, 22 commits on main changed getting-started/commands/,
+# and the commands grew to 6 to 17 lines with instruction bullets. MEASURED
+# 2026-10-24 on the owner's machine: the v0.83.3 rewording of /capture-session
+# (#731, 2026-10-12), made because the old sentence was refused as reasoning
+# extraction, had reached neither installed copy (user scope, dated 2026-08-23;
+# one project's, dated 2026-08-14) with reflow2 at 0.84.0 and later releases
+# out, and the two newest commands (/design-a-proof, /design-an-argument) had
+# reached neither at all.
+#
+# So a command that names a skill may hold only: its frontmatter (description,
+# argument-hint); ONE line naming the skill, whose only other sentence may be
+# the word's tag ("I typed /note, so tag it as an IDEA."); and the closing input
+# label and `$ARGUMENTS`. Everything else it asks for lives in the skill, under
+# "## When it is run as /<command>", and reaches the agent fresh with the skill.
+# A stale copy then holds nothing that can go out of date but the skill's name,
+# and "every command names a skill that exists" (main) fails on that.
+#
+# TWO LISTED EXCEPTIONS, each because its text cannot live in a served skill.
+TOOL_BACKED_COMMANDS = {
+    # No skill is served for these: COMMAND_ALIASES in
+    # crates/reflow2-mcp/src/skills.rs answers each with an Err naming its tool,
+    # and check_command_surface.py lists them as TOOL_BACKED. Each calls one tool
+    # directly, so there is no served text to move its instructions into.
+    "debt": "calls the loop_status tool directly; no skill is served for it",
+    "decisions": "calls scan_nodes for the Decision type directly; no skill is served for it",
+    "next": "calls the what_next tool directly; no skill is served for it",
+}
+# /adopt and /genesis are typed in directories with NO design yet, where the
+# server serves one tool, reflow2_start_design, and no get_skill. The paragraph
+# that says what to do there cannot be in the skill, because the agent cannot
+# read the skill until it has followed that paragraph. It is pinned here word
+# for word, so it cannot grow either.
+START_DESIGN_COMMANDS = {"adopt", "genesis"}
+START_DESIGN_PARAGRAPH = (
+    "If the reflow2 design tools are not served in this session and "
+    "`reflow2_start_design` is, this directory has not opted into a design yet — "
+    "call that tool first and follow the one step it returns. Do not report "
+    "reflow2 as missing or broken; it is installed, and this is what a directory "
+    "with no design looks like."
+)
+COMMAND_FRONTMATTER = {"description", "argument-hint"}
+NAMED_SKILL = re.compile(r"\*\*([a-z0-9]+(?:-[a-z0-9]+)*)\*\*\s+skill")
+
+
+def thick_command_lines(name: str, text: str) -> list[str]:
+    """What the command `name` (its file stem) holds beyond a thin pointer, as
+    the offending lines, whitespace-collapsed. Empty when it is thin.
+
+    A thin pointer is frontmatter with only COMMAND_FRONTMATTER keys; then, as
+    its first line, one sentence naming a `**skill** skill`, optionally followed
+    on that line by sentences starting "I typed /<name>," (the tag a word
+    carries into a shared skill); then at most a closing label line ending in
+    ":" and a `$ARGUMENTS` line, in that order, both optional. /adopt and
+    /genesis may also hold START_DESIGN_PARAGRAPH exactly. Blank lines are
+    ignored. The caller skips TOOL_BACKED_COMMANDS."""
+    m = re.match(r"\A---\n(.*?)\n---\n", text, re.DOTALL)
+    if not m:
+        return ["(no frontmatter)"]
+    out = [
+        f"frontmatter: {line.strip()}"
+        for line in m.group(1).splitlines()
+        if line.strip() and line.split(":", 1)[0].strip() not in COMMAND_FRONTMATTER
+    ]
+    lines = [" ".join(ln.split()) for ln in text[m.end():].splitlines() if ln.strip()]
+    if not lines:
+        return out + ["(no line naming a skill)"]
+    pointer, rest = lines[0], lines[1:]
+    sentences = re.split(r"(?<=[.!?])\s+", pointer)
+    if not NAMED_SKILL.search(sentences[0]):
+        return out + lines
+    out += [s for s in sentences[1:] if not s.startswith(f"I typed /{name},")]
+    if rest and rest[-1] == "$ARGUMENTS":
+        rest = rest[:-1]
+    # The label names the input ("The question:", "What failed:"): a few words,
+    # not an instruction that happens to end in a colon.
+    if rest and re.fullmatch(r"[A-Z][^.!?*`\-]{0,40}:", rest[-1]) and len(rest[-1].split()) <= 6:
+        rest = rest[:-1]
+    if name in START_DESIGN_COMMANDS:
+        rest = [ln for ln in rest if ln != START_DESIGN_PARAGRAPH]
+    return out + rest
 
 
 def frontmatter(text: str) -> dict[str, str]:
@@ -1554,15 +1657,39 @@ def main() -> int:
 
     # Slash commands ship with the kit since 2026-07-28 — the one narrow
     # exception to dec:skills-served, allowed because a command carries no
-    # version-coupled content. The single way a command CAN rot is by naming a
-    # skill that no longer exists, so that is checked here rather than
-    # discovered in a consumer's repo, where the symptom is an agent saying it
-    # cannot find a skill the user was told to use.
+    # version-coupled content. That was assumed until 2026-10-24 and is checked
+    # now ("every command that names a skill is a thin pointer", THIN COMMANDS
+    # above). What is left that can rot is the skill's name: a command naming a
+    # skill that no longer exists fails here rather than in a consumer's repo,
+    # where the symptom is an agent saying it cannot find a skill the user was
+    # told to use.
     print("== commands ==")
     command_src = REPO / "getting-started/commands"
     command_mirror = REPO / ".claude/commands"
     skill_names = {d.name for d in SKILLS.iterdir() if d.is_dir()}
-    named = re.compile(r"\*\*([a-z0-9]+(?:-[a-z0-9]+)*)\*\*\s+skill")
+    named = NAMED_SKILL
+    thick = {}
+    for cmd in sorted(command_src.glob("*.md")):
+        if cmd.stem not in TOOL_BACKED_COMMANDS:
+            extra = thick_command_lines(cmd.stem, cmd.read_text(encoding="utf-8"))
+            if extra:
+                thick[cmd.name] = extra
+    check("every command that names a skill is a thin pointer",
+          not thick,
+          f"{len(thick)} command(s) carry more than the pointer: "
+          + ", ".join(f"{n} (+{len(x)}: {x[0][:50]!r})" for n, x in thick.items())
+          + " — move each extra line VERBATIM into the skill's SKILL.md under "
+            "'## When it is run as /<command>', where it is served fresh; a copied "
+            "command never is (see THIN COMMANDS)")
+    misfiled = sorted(
+        n for n in TOOL_BACKED_COMMANDS
+        if not (command_src / f"{n}.md").exists()
+        or named.search((command_src / f"{n}.md").read_text(encoding="utf-8"))
+    )
+    check("the tool-backed exceptions are commands that exist and name no skill",
+          not misfiled,
+          f"{misfiled} — a command that names a skill is a pointer like the rest; "
+          f"take it out of TOOL_BACKED_COMMANDS")
     dangling = []
     for cmd in sorted(command_src.glob("*.md")):
         for skill in named.findall(cmd.read_text()):

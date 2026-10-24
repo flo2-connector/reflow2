@@ -72,3 +72,12 @@ modelled downstream" — and only one of those is safe to act on.
 on the other side: open that design and run `propagate_from` seeded at the same Interface id, which
 a design that ran `mirror_surface` holds as its own node. Say which designs you continued into; one
 that never mirrored the surface cannot be reached this way.
+
+## When it is run as /impact-check
+
+By typing /impact-check the person asked for the following, in their own words:
+
+- Do this BEFORE editing anything. Record the change, then propagate it — the point is to see what it touches while it is still cheap to reconsider.
+- Tell me what is actually affected and what is not. A blast radius that names half the design tells me nothing; if it is genuinely wide, say why.
+- Flag anything downstream that would quietly rot — a check that would go stale, a claim that would stop being true.
+- Do not make the change in the same breath. Show me first.

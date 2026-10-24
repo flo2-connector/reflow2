@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f9260fde758ffd1fe0e707177236dad7f5ea4b7c008412491518511e81d131fc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:0a4534d54e0b719b8f37a7d3a6c1a624708097fa004fc0519196e3ee8167df06",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:genesis-skill"
+}

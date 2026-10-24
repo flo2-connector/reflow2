@@ -155,12 +155,33 @@ def foreign_owner(src: Path, dst: Path) -> str | None:
 # are long, they change with almost every release, and a stale one is wrong in
 # ways nobody notices.
 #
-# A command is a different animal. Each is four lines that name a skill and say
-# how to report it — no version-coupled content, nothing that goes stale when the
-# skill behind it changes, because the skill is still fetched fresh at use time.
-# What a command CAN go stale about is naming a skill that no longer exists, and
-# `skill_lint` now fails on exactly that, so the one real failure mode is caught
-# in this repo rather than discovered in someone else's.
+# A command is a different animal ONLY WHILE IT IS A POINTER: a line naming a
+# skill, fetched fresh at use time, and nothing else. This comment used to state
+# that as a fact ("four lines that name a skill ... nothing that goes stale"), and
+# nothing held it. From 2026-08-14 to 2026-10-23, 22 commits on main changed
+# getting-started/commands/, and the commands grew to 6 to 17 lines of
+# instruction bullets, which a copy freezes exactly as it froze a skill. MEASURED
+# 2026-10-24 on the owner's machine: /capture-session's v0.83.3 rewording (#731,
+# 2026-10-12, made because the old sentence was refused as reasoning extraction)
+# had reached neither installed copy (user scope, dated 2026-08-23; one
+# project's, dated 2026-08-14), with reflow2 at 0.84.0 and later releases out,
+# and /design-a-proof and /design-an-argument had reached neither at all.
+# A new binary re-copies no installed command: this installer refreshes a
+# project's copies only when someone runs init or update there, and
+# reflow2_install.py the user-scope ones only when it is run again.
+#
+# So since 2026-10-24 the premise is ENFORCED rather than assumed: `skill_lint`
+# (`thick_command_lines`) fails any command that names a skill and holds more
+# than its frontmatter, the one line naming the skill (with the word's tag, as
+# /note and /log-issue carry), and the closing input label and `$ARGUMENTS`.
+# What a command asks for beyond that lives in the skill, under "## When it is
+# run as /<command>", and reaches the agent fresh from the server. The listed
+# exceptions are the three tool-backed commands (/debt, /decisions, /next),
+# which have no served skill to hold their text, and the pinned paragraph /adopt
+# and /genesis carry for a directory with no design yet, where no skill can be
+# read. What a stale copy can still get wrong is the skill's name, and
+# `skill_lint` fails on a name that no longer exists, so that is caught in this
+# repo rather than discovered in someone else's.
 #
 # Without them a consumer install is experienced as broken rather than thin: the
 # skills are reachable but nothing tells you they are, which is the same

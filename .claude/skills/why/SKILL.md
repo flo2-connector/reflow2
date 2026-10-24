@@ -151,3 +151,15 @@ record, so write it back to the same event. Then the progress line from the scri
   feature's reasons at the moment it is about to change a file there. Until it does, the
   **topic** skill and `search_design` read them back. Say so rather than implying protection.
 - **Some reasons are gone.** "Nobody knows" is an honest answer, and it ends the question.
+
+## When it is run as /why
+
+By typing /why the person asked for the following, in their own words:
+
+I designed this system; ask me why it is the way it is.
+
+- If this project has not been set up for it yet, run the setup first: what it's for, the two decisions on my word, the history summary from `why_history.py`, and a feature list I can prune in one reply.
+- Otherwise pick up where the last session stopped: one feature, "why does it exist?" first, then its changes as numbered pages I can answer in one message.
+- The git history only sets the questions. Every reason is mine: record it as recalled, never fill one in from a commit message.
+- Keep the record small: reasons, needs, choices, never-undo rules and questions for other people. No structure.
+- End with a three-line read-back for me to correct and the progress line.

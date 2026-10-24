@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:afb7254ae114f094d83d412a89a6700f45bd93850fbfd5eb4b9f97cf5ccb60e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:4c0a8c29c5a3b42525adba80552aecc9c6f46be790898ef1a9d6453fea4fa7cd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:feedback-command"
+}

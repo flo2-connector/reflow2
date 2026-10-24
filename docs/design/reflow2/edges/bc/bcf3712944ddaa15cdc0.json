@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:92313971bb7e108566bbb53cba55464aeaf81dd841805113aeac6cc9bac3302d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:6136fbd27476660a4be3acbcdd748f95e9a6b3524b272de0dcca902feced91df",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:why-skill"
+}

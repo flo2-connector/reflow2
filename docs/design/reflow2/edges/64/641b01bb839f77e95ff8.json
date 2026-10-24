@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c30bee534cdc8b1115a875ce91c7802d782741262f84331d8343ef5f5a5a7c11",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:genesis-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

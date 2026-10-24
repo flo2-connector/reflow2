@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e7bd861c98fdc513a9da6e1e788eca6bc5cc1bbc70446c0408c7cc120bdc0e52",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:triage-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

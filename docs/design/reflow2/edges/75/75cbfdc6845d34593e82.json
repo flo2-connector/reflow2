@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:253b9afc8778c57c099deaf40aa520a254f8c374f56534c4f18729ff647dc431",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:1c7e00fa52684138e0da74144a849f495711e4d64d58b33361d7139c6ae2f042",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:root-cause-skill"
+}

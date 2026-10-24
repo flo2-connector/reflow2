@@ -149,3 +149,11 @@ question.
 `loop_status`. This skill reads and does not write, so it usually owes the loop nothing — which is
 the point of answering a question rather than recording one. If the conversation turned into a
 decision, that is capture-intent's work and it owes a gap pass like any other capture.
+
+## When it is run as /where-does-it-go
+
+By typing /where-does-it-go the person asked for the following, in their own words:
+
+Answer from the design, not from a search of the code. Give me ONE recommendation first, then the runner-up and what would make it win — a list of balanced candidates hands me my own question back.
+
+I need four things with it: what touching that part would reach, which decisions already govern there so I don't casually contradict one, WHO made those calls so I can go and ask them, and — plainly — which parts of the real system the design cannot see, so I know where none of this applies.

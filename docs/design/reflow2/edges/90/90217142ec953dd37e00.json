@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b8222d2e8ec32558b862f8b6fe0a4411cf4b9760b923a2f3e71c22658a635b36",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:b1b7524701fe1001a91079099deb1548b6115bab014475458818a1d5175802e3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:capture-session-command"
+}

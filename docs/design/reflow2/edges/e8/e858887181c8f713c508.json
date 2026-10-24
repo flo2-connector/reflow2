@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7ed722c1b5d14a7b5226ef90d7c2d0ceb95d423055d4c194b1fb316ff9f63233",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:why-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

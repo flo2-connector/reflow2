@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3813792918857acead3a96002c9097400fb11080efdcce7030fc15d713c2bf21",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:plan-increments-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

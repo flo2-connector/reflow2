@@ -175,3 +175,12 @@ owes a refresh. And a new `incompatible` is a finding for two owners, not one.
 other side — `search_design` for the interface's name and both designs' terms
 before adding one. Two Interfaces describing one contract is the failure this
 skill exists to prevent, arriving through the skill itself.
+
+## When it is run as /link-projects
+
+By typing /link-projects the person asked for the following, in their own words:
+
+- The correspondence is MINE to assert, not yours to compute. Take what I tell you as the input; your job is to drive it to a specified contract, boundary by boundary.
+- Report what both sides left unstated, not just where they conflict. Two silent sides are not agreement.
+- Never draft the contract for me. You can see that two things meet; you cannot know what crosses.
+- This is pairwise. If I named more than two projects, say so plainly rather than implying it handled them all at once.

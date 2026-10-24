@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ab567e22f95c38eaf1e981adad7ba923678578445e634ef2bbb55bed2181722d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:revise-design-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

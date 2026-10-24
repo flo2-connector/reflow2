@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cc2bad2c9aefb52edac21de8700801f1dbea160258a8d7fee639c87bf8c9ab56",
+  "edge_type": "DECOMPOSES",
+  "from_id": "req:a-change-to-a-physical-designs-part-returns-its-redo-list-by-trade",
+  "properties": {},
+  "to_id": "req:design-anything"
+}

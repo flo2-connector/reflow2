@@ -151,3 +151,11 @@ carries the full working instructions for their project.
 Nothing. This skill reads no graph and writes none — it is the one case where the loop is owed
 nothing, because explaining a tool is not a design act. If the conversation turns into a design,
 that is the **genesis** or **adopt** skill, and those owe the loop what they always do.
+
+## When it is run as /what-is-this
+
+By typing /what-is-this the person asked for the following, in their own words:
+
+Start with what it physically is and what it can actually answer — not with the philosophy behind it. I want to know what runs where, what I have to install in my project, and what happens to my data.
+
+Then tell me the ONE thing to do first given where I am, and be straight about what it will not do for me, so I don't find that out in week two.

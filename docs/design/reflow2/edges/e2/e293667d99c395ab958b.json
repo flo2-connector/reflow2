@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fc0ae1bc8d4fbbd1d7caf6aab36cfd2bd3ddf4d29afa4d1cde643766a78bbcc4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:optimize-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

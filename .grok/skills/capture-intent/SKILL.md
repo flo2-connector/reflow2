@@ -241,3 +241,11 @@ a calculator exposed a seat assumed at 7.5 mm that is really 7.6 mm.)*
 Extraction happens in your context (you read the brief and decide the nodes) — reflow2 stores
 and validates them against its schema. Unknown types or missing required fields fail loud; fix
 the node rather than working around the error.
+
+## When it is run as /req
+
+By typing /req the person asked for the following, in their own words:
+
+- Capture requirements at `proposed`/`accepted` honestly; don't over-model or invent scope I didn't state.
+- If what I wrote is ambiguous or could be two requirements, ask me before creating anything.
+- When done, tell me in plain language what you captured and what it connects to — no raw ids.

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ed08c1124742d4fb48aaf3a5551cd3b55f0f8b0dc19e7f9fef13d85ef2ce0e83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:95889d9747f4c3a818dccdf219e887d0f2b4781aec496b794828412c402dcaaf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-capture-intent-skill-mirror"
+}

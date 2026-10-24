@@ -263,3 +263,9 @@ dump. Aim for something they could read in under a minute:
 
 If the graph is empty or has no Project, this is a new design — use the **genesis** skill
 instead, and ask the user for a short overview of what they want to build.
+
+## When it is run as /where
+
+By typing /where the person asked for the following, in their own words:
+
+Write it for a person reading for under a minute: what we're building, what's settled and the reasoning behind it, the shape so far, and what's still open. Plain language, no node ids. If nothing has changed since the last time, say so plainly rather than padding.

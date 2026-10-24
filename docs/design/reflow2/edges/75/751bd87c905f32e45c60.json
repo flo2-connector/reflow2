@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f7d6f8dbef7a110e0a0cbb1ad3692a54555e6fcb6b27d6958b7f13688456d0b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:a8a0775d99888047e836e99aa2e6675611b326b614140fbcc41cf3a6b5ef605a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

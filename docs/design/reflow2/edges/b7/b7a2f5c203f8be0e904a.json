@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dbc947b5e0267c90f14035631715ec5373d697df05a3fef9873a1d9bf01ae661",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:1a97fc1f1de4d5d2:dec:idea-a-chat-answers-a-what-if-redesign-question-from-the-design",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -20,9 +20,12 @@ footprint was never per-project in nature.
      never opted into a design gets the LATENT surface and nothing is created
      in it — which is what makes a machine-wide registration safe to make.
   2. THE SLASH COMMANDS, into `~/.claude/commands/`. They are pure pointers at
-     served skills (`dec:commands-are-the-exception`), so a global copy carries
-     nothing that can go stale, and `/genesis` is then available in a directory
-     that has never heard of reflow2 — which is exactly where it is needed.
+     served skills (`dec:commands-are-the-exception`; since 2026-10-24
+     skill_lint fails one that holds more, see THIN COMMANDS there), so a
+     global copy carries nothing that can go stale, and `/genesis` is then
+     available in a directory that has never heard of reflow2 — which is
+     exactly where it is needed. The copies are refreshed only when this runs
+     again, never by a new binary on its own.
   3. THE LOOP-NUDGE HOOKS, into `~/.claude/settings.json`. Safe globally
      because `loop_nudge.py` is a no-op wherever `.reflow2/` does not exist.
   4. A `reflow2` COMMAND on PATH, so setting up a shared repo later is

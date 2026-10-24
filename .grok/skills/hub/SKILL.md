@@ -211,3 +211,13 @@ capture in the destination.
   it also reads the far node there: `link_far_end_stale` when the export no longer holds it,
   `link_far_end_unreachable` when the export cannot be read; and a link to a node that export does
   not hold is refused when you draw it.
+
+## When it is run as /hub
+
+By typing /hub the person asked for the following, in their own words:
+
+- Name the designs the hub coordinates, and what moved since I last looked, in one line.
+- Write each fact to the lowest design that owns all of it, and say which design before writing.
+- An idea from a collaborator stays in the hub as brainstorming until someone who works on the right design routes it.
+- When routing, propose a destination for each idea and wait for my yes; leave a pointer in the hub, never a copy.
+- End with where each thing was written, then loop_status.

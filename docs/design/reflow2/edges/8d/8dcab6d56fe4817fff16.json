@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:66082e12240c7b24c748640b84cd2b5b55a20560a90f79142e623fc1337aee4b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:commands-are-thin-pointers-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:95889d9747f4c3a818dccdf219e887d0f2b4781aec496b794828412c402dcaaf",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:grok-capture-intent-skill-mirror"
+}

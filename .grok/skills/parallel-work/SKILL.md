@@ -163,3 +163,11 @@ was recorded; and edges dropped by an `accept_divergence` nobody read first.
 Read the dropped edges BEFORE accepting, and record a change on anything you
 edited in the worktree. A design merged cleanly and silently wrong is worse than
 a conflict, because nothing marks the place to look.
+
+## When it is run as /parallel-work
+
+By typing /parallel-work the person asked for the following, in their own words:
+
+- Claim the region I am taking so a colleague can see it is held. A claim is advisory — it coordinates, it does not lock.
+- Merge back through reflow2's own three-way merge, never through git's line merge on the export.
+- Tell me if someone else already holds ground I am about to touch, and what they said they were doing.

@@ -96,3 +96,12 @@ choose, and a public issue in a repository they do not control is never opened f
   them.
 - The server's refusal-class table is a dependency on its own wording; when the wording moves, the
   class lands in `other`. Saying so in the report is how that gets fixed.
+
+## When it is run as /feedback
+
+By typing /feedback the person asked for the following, in their own words:
+
+- Render the tally the server kept — tools used, refusals by class, skills fetched, harnesses, versions — from `usage_report`; do not write feedback from memory.
+- Add the model you are, marked self-reported. Disposition every refusal row: guard working, real defect, or unexplained.
+- Keep my design out of it: shapes and counts, never ids, statements or arguments.
+- Append it to `reflow2_feedback.md` in this project and show me the section. Send it nowhere.

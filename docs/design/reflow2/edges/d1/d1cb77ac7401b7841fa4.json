@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6852545b0ec5be35cd0134aa83f9602234dce778b9b6d701a664a4832660d5cb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:root-cause-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

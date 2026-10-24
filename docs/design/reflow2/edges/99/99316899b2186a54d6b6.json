@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:df84dc0992407d136ea9aa3d9ed082a6027c33afba5d8d25a3a1640b6f628bf8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:taxonomy-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
