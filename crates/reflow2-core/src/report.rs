@@ -31,6 +31,9 @@ const TOP_N: usize = 5;
 /// that bounds replies.
 pub const BREACHES_LISTED: usize = 20;
 
+/// How many owed outputs, and records resting on them, loop_status lists.
+pub const OWED_LISTED: usize = 20;
+
 /// Word budget for a gap TITLE in the markdown roll-up.
 ///
 /// Matches `loop_status`'s 25-word Verification cut in spirit; a title is the
@@ -493,6 +496,23 @@ pub struct LoopStatus {
     /// The newest of them, at most [`BREACHES_LISTED`]; the count above is the
     /// whole. Each names its kind and the gap that asks about it.
     pub breaches: Vec<crate::detect::OpenBreach>,
+    /// KEPT OUTPUTS OWED A RE-RUN (req:a-changed-quantity-names-every-kept-
+    /// computation-that-used-it, @ajs 2026-10-24): every Artifact registered
+    /// with its inputs (add_artifact `inputs`) whose input moved since — a
+    /// design quantity now holding another value than the record used, another
+    /// output re-run since — or that used an output owed itself. Counted in
+    /// `clean`: a number the design rests on is out of date. A design that
+    /// registers no inputs reads 0 here, as it always did ([`crate::owed`]).
+    pub computations_owed: usize,
+    /// The owed outputs, nearest first, at most [`OWED_LISTED`]; the count
+    /// above is the whole. Each says why, input by input, and how far it is
+    /// from the change.
+    pub owed_computations: Vec<crate::owed::OwedComputation>,
+    /// Decisions, limits and checks resting on an owed output: they rest on a
+    /// stale number until it is re-run. Counted with it, not apart.
+    pub stale_number_dependents: usize,
+    /// Those records, nearest first, at most [`OWED_LISTED`].
+    pub resting_on_stale_numbers: Vec<crate::owed::RestingOnStale>,
     /// FIXES THAT NAME NO FINDING THEY ANSWERED: live ChangeEvents of a
     /// repair type with no INVALIDATES and no `answered_none`
     /// ([`crate::repair::fixes_answering_nothing`],
@@ -1170,6 +1190,13 @@ impl DesignGraph {
         let mut breaches = self.open_breaches()?;
         let breaches_open = breaches.len();
         breaches.truncate(BREACHES_LISTED);
+        let owed = self.owed_computations()?;
+        let computations_owed = owed.computations.len();
+        let stale_number_dependents = owed.resting_on_stale_numbers.len();
+        let mut owed_computations = owed.computations;
+        owed_computations.truncate(OWED_LISTED);
+        let mut resting_on_stale_numbers = owed.resting_on_stale_numbers;
+        resting_on_stale_numbers.truncate(OWED_LISTED);
 
         let mut next = Vec::new();
         if unanswered_questions > 0 {
@@ -1210,6 +1237,17 @@ impl DesignGraph {
                  a VIOLATES edge into a limit, or a rule violation ruled must-fix (listed in \
                  `breaches`, newest first; each is an `open_breach` gap that says how it \
                  closes). Close each one, or rule on its gap if it stands on purpose"
+            ));
+        }
+        if computations_owed > 0 {
+            next.push(format!(
+                "{computations_owed} kept output(s) owed a re-run or a redraw: an input they used \
+                 moved since they were made, and {stale_number_dependents} decision(s), limit(s) \
+                 or check(s) rest on a stale number until they are re-run (listed in \
+                 `owed_computations` and `resting_on_stale_numbers`, nearest first). Re-run each \
+                 in its calculator, then register its new version with what it used \
+                 (set_artifact_checksum, then add_artifact `inputs`); propagate_from on the \
+                 changed input gives the whole redo list"
             ));
         }
         if unsurfaced_gaps > 0 {
@@ -1335,6 +1373,7 @@ impl DesignGraph {
                 (follow_ups_open, "follow-up(s) captured and never revisited"),
                 (deferrals_open, "part(s) with intent deliberately deferred"),
                 (breaches_open, "open breach(es)"),
+                (computations_owed, "kept output(s) owed a re-run"),
             ] {
                 if n > 0 {
                     not_attributable.push(format!("{n} {what}"));
@@ -1550,6 +1589,10 @@ impl DesignGraph {
             deferrals,
             breaches_open,
             breaches,
+            computations_owed,
+            owed_computations,
+            stale_number_dependents,
+            resting_on_stale_numbers,
             fixes_answering_nothing,
             repairs,
             verifications: self.verification_recency()?,

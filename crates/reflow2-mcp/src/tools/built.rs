@@ -653,6 +653,8 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
+                       Pass `inputs` for a calculator's record, a drawing or a render: the design quantities \
+                       and kept outputs it took, with what it used, so a changed quantity marks it owed a re-run. \
                        Ask for this when you want to register a file, drawing or document in the design.",
         title = "Add an Artifact",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -715,13 +717,44 @@ impl ReflowService {
             Some(c) => g.set_artifact_baseline(&req.id, c).map_err(dyno_err)?,
             None => stored,
         };
-        ok_json(crate::nulls::node_after_unset(
+        // A KEPT OUTPUT'S INPUTS, after its checksum: an input another
+        // output's version is compared with is the version just recorded.
+        let recorded = match req.inputs {
+            Some(inputs) => {
+                let inputs: Vec<reflow2_core::owed::ArtifactInput> = inputs
+                    .into_iter()
+                    .map(|i| reflow2_core::owed::ArtifactInput {
+                        node_id: i.node_id,
+                        input: i.input.filter(|s| !s.trim().is_empty()),
+                        value: i.value,
+                        unit: i.unit.filter(|s| !s.trim().is_empty()),
+                        checksum: i.checksum.filter(|s| !s.trim().is_empty()),
+                    })
+                    .collect();
+                Some(
+                    g.set_artifact_inputs(&req.id, &inputs)
+                        .map_err(|e| McpError::invalid_params(e.to_string(), None))?,
+                )
+            }
+            None => None,
+        };
+        let out = crate::nulls::node_after_unset(
             &mut g,
             reflow2_core::nodes::node::ARTIFACT,
             &req.id,
             &nulled,
             stored,
-        )?)
+        )?;
+        match recorded {
+            None => ok_json(out),
+            Some(inputs) => {
+                let mut v = serde_json::to_value(out).map_err(ser_err)?;
+                if let Some(o) = v.as_object_mut() {
+                    o.insert("inputs".into(), json!(inputs));
+                }
+                ok_json(v)
+            }
+        }
     }
 
     #[tool(

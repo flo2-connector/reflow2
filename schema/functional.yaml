@@ -103,7 +103,7 @@ schema:
         polarity: "+"
         modality: "necessary"
         inverse: true
-        modifiers: { argued_by: "evidence", data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", optional: "modality", weight: "strength", weight_basis: "provenance" }
+        modifiers: { argued_by: "evidence", checksum_used: "provenance", data_volume: "quantity", dependency_type: "subtype", frequency: "quantity", input: "other", optional: "modality", unit_used: "quantity", used_basis: "provenance", value_used: "quantity", weight: "strength", weight_basis: "provenance" }
         splits:
           - property: "dependency_type"
             note: "Unset keeps the reading above: the source needs the target to function. `optional` is a modality modifier, not a split — a split REPLACES the reading, so it could not soften a data flow without erasing it."
@@ -126,6 +126,18 @@ schema:
         frequency: { type: float, description: "Interactions per unit time, if known (raw signal behind weight)." }
         data_volume: { type: float, description: "Bytes/records per interaction, if known (raw signal behind weight)." }
         weight_basis: { type: enum, values: [estimated, evidence, measured], default: estimated, description: "How the weight was set: an LLM estimate, grounded in evidence, or measured from telemetry." }
+        # A KEPT OUTPUT'S INPUTS (req:a-changed-quantity-names-every-kept-computation-that-used-it,
+        # @ajs 2026-10-24, option (c) of dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model).
+        # An Artifact registered with `inputs` (add_artifact) DEPENDS_ON each design quantity
+        # and each other kept output it took, `dependency_type: data_flow`, and the edge keeps
+        # what the record USED, so a later change can be compared with it. reflow2 never reads
+        # the record: whoever registers it says. Computed values stay in the record
+        # (the 2026-10-13 dividing line); the design holds which numbers depend on which.
+        used_basis: { type: enum, values: [stated, current], indexed: true, description: "MARKS THIS EDGE AS A KEPT OUTPUT'S INPUT, and says how what it used is known: `stated` — the registrant said what the record used; `current` — nobody said, so the design's value (or the input's checksum) when the record was registered was taken. Written by add_artifact `inputs`, which replaces an output's whole input set. ABSENT: an ordinary dependency, not an input." }
+        input: { type: string, description: "The record's own name for this input (`persons`), when the registrant gave one." }
+        value_used: { type: float, description: "For an input that is a design quantity (a Constraint with a `limit`): the value the record used, in `unit_used`. When the quantity's `limit` no longer equals it, the output is OWED a re-run (loop_status `owed_computations`)." }
+        unit_used: { type: string, description: "The unit of `value_used`: the unit the design holds the quantity in." }
+        checksum_used: { type: string, description: "For an input that is another kept output (a calc record, the model a drawing was drawn from): the checksum of the version the record used. When that output's `checksum` moves (it was re-run), this output is OWED." }
         argued_by: { type: string, node_ref: true, description: "THE CLAIM THAT ARGUES FOR THIS EDGE, by id (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist, Anthony 2026-10-18): a statement of its own (\"X satisfies Y\", usually a Requirement with `statement_kind`) that an Inference concludes. A typed link, not prose: it must name a node of this design when written, and the claim's computed truth is read BESIDE the edge (get_node's edges listing, `argument`; reasoning_report's `argues_for`), so breaking the claim in a change walk names this edge (propagate_from `arguments_lost`). It changes nothing the edge itself counts for: delivery along a SATISFIES is computed as it always was. A claim whose premise is the target's delivery computed along this same edge reads `circular`. Written by `satisfies` / `depends_on` `argued_by`, or create_edge. ABSENT MEANS NO ARGUMENT IS RECORDED for the edge." }
 
     PART_OF_FLOW:

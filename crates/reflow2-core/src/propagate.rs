@@ -202,6 +202,16 @@ pub struct BlastRadius {
     /// neither side's own reading moves until then. Absent when none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub equivalents_reached: Vec<EquivalentReached>,
+    /// THE REDO LIST (req:a-change-to-a-physical-designs-part-returns-its-
+    /// redo-list-by-trade, req:a-changed-quantity-names-every-kept-computation-
+    /// that-used-it): what the change asks to be re-run, re-decided, rebuilt
+    /// and redrawn, grouped by kind — the kept computations that took a seed
+    /// (or one of them) as an input, the decisions and limits resting on those,
+    /// the parts those govern or bound and the parts depending on a changed
+    /// part, the model files realizing those parts, and the drawings made from
+    /// them ([`crate::owed`]). Absent when the change reaches none of these.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub redo_list: Option<crate::owed::RedoList>,
 }
 
 /// A statement a what-if touches, and one it is proven equivalent to.
@@ -289,6 +299,7 @@ impl BlastRadius {
             objections_returning: self.objections_returning.clone(),
             checks_gone_stale: self.checks_gone_stale.clone(),
             equivalents_reached: self.equivalents_reached.clone(),
+            redo_list: self.redo_list.clone(),
         }
     }
 }
@@ -376,6 +387,10 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::equivalents_reached`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub equivalents_reached: Vec<EquivalentReached>,
+    /// See [`BlastRadius::redo_list`]. Carried whole: it is the list a
+    /// session works down.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub redo_list: Option<crate::owed::RedoList>,
 }
 
 /// Options for a propagation run.
@@ -848,6 +863,7 @@ impl DesignGraph {
             objections_returning: walk.objections_returning,
             checks_gone_stale: walk.checks_gone_stale,
             equivalents_reached,
+            redo_list: self.redo_list(seed_ids)?,
         })
     }
 
