@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f150a61a913f3f382d918136105285ba088f3b6d4edd9bb17ad3d935b8f9a8f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:find-tools-finds-relations",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

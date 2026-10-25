@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0c1057a2794a853851de5bcd054a1dcb67cee318278982cbd39f2d5f5d8af6ff",
+  "node_id": "dec:a-dated-occurrence-records-an-event-in-the-designs-world",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-25, choosing option b of fact:root-cause-a-dated-real-world-event-has-no-typed-date-2026-10-25: \"b. A dated-occurrence record for events in the design's world.\" Not chosen: (a) a typed date on DesignEpoch, which keeps world events on the design's own timeline; (c) dates left in prose with only the search fixed. Evidence: Alex's wrestling schedule, kept as 20 milestone epochs with each date only in prose (plan_epoch has no date field), and flo2's open dec:idea-a-schedule-in-a-design-is-a-calendar-people-add-to-their-phone, which needs dates something can compute on. Answers part of the open dec:plan-time-axis: a dated point in the design's world. Durations, H-hour and the critical path stay open there. The record's shape is still to be set out and put to Anthony before it is built: its name, its date fields (a day, a time and zone, a span), how it links to what it concerns, how it reads back (past or upcoming), and whether it needs a typed tool or rides on an existing constructor.",
+    "kind": "choice",
+    "name": "A design records an event in its own world (a tournament, a launch window, an inspection) as a dated occurrence with a typed date, separate from the design's own epochs (not built yet)",
+    "rationale": "Root cause above: nothing in reflow2 carries a typed date for an event in the design's domain. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

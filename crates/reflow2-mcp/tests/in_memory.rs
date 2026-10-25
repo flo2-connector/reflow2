@@ -83,6 +83,7 @@ mod a_redrawn_edge_keeps_what_the_call_leaves_out;
 mod a_refused_host_is_told_which_flag_admits_it;
 mod a_refused_write_stores_nothing;
 mod a_registered_artifact_asserts_nothing_it_was_not_told;
+mod a_relation_is_found_by_a_query_in_a_persons_words;
 mod a_relation_reaches_into_another_design;
 mod a_relation_tool_accepts_the_other_familys_names;
 mod a_replaced_value_is_kept_when_it_would_be_lost;

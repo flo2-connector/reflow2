@@ -1,0 +1,36 @@
+{
+  "_what": "The relation half of find_tools' corpus (dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y, Anthony 2026-10-25): questions whose answer is a RELATION (a schema edge type), not a tool, phrased as a person asks them. A query passes when one of its accepted relations is among the `relations` find_tools returns (at most 3). `source` says where the words came from: `alex-grok-2026-10-10` is a query Alex's Grok chat sent to find_tools on flo2.io before it found INTERACTS_WITH through describe_schema (fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25; four of its six are known, the other two are not recorded); `written-2026-10-25` was written by the agent that built this, which had read the schema's hints, so informed rather than blind. `known_misses` are the queries no word-matching can answer, each with the measured reason; the test holds that they still miss, so a pass is noticed and moved here.",
+  "queries": [
+    { "query": "link actor to capability performed by operated by uses", "relations": ["INTERACTS_WITH"], "source": "alex-grok-2026-10-10" },
+    { "query": "actor uses capability interacts performs", "relations": ["INTERACTS_WITH"], "source": "alex-grok-2026-10-10" },
+    { "query": "interacts_with actor capability uses", "relations": ["INTERACTS_WITH"], "source": "alex-grok-2026-10-10" },
+    { "query": "edge from actor to node involves participates_in", "relations": ["INTERACTS_WITH"], "source": "alex-grok-2026-10-10" },
+    { "query": "INTERACTS_WITH edge from an actor", "relations": ["INTERACTS_WITH"], "source": "the root-cause measurement on 0.91.0, 2026-10-25" },
+    { "query": "which edge links an actor to a capability", "relations": ["INTERACTS_WITH"], "source": "written-2026-10-25" },
+    { "query": "which capabilities does this user role work with", "relations": ["INTERACTS_WITH"], "source": "written-2026-10-25" },
+    { "query": "record that the operator triggers this flow", "relations": ["TRIGGERS", "INTERACTS_WITH"], "source": "written-2026-10-25" },
+    { "query": "say that this decision reduces that risk", "relations": ["MITIGATES"], "source": "written-2026-10-25" },
+    { "query": "this choice puts that requirement at risk", "relations": ["RISKS"], "source": "written-2026-10-25" },
+    { "query": "an idea that later grew into a requirement", "relations": ["EVOLVES_INTO"], "source": "written-2026-10-25" },
+    { "query": "two requirements that conflict with each other", "relations": ["CONTRADICTS"], "source": "written-2026-10-25" },
+    { "query": "a workaround that hides a defect", "relations": ["MASKS"], "source": "written-2026-10-25" },
+    { "query": "this event is what brings about that outcome", "relations": ["CAUSES"], "source": "written-2026-10-25" },
+    { "query": "relation for a document that explains a component", "relations": ["DOCUMENTS"], "source": "written-2026-10-25" },
+    { "query": "the test script a check is run by", "relations": ["IMPLEMENTS"], "source": "written-2026-10-25" },
+    { "query": "the decision that shapes this capability", "relations": ["GOVERNED_BY"], "source": "written-2026-10-25" },
+    { "query": "a rule that limits what a component may do", "relations": ["CONSTRAINS"], "source": "written-2026-10-25" },
+    { "query": "which capability is a step in this process", "relations": ["PART_OF_FLOW"], "source": "written-2026-10-25" },
+    { "query": "a component that needs power or memory", "relations": ["REQUIRES_RESOURCE"], "source": "written-2026-10-25" },
+    { "query": "one epoch comes before another", "relations": ["PRECEDES"], "source": "written-2026-10-25" },
+    { "query": "a fact about a node at a point in time", "relations": ["HAS_TEMPORAL_FACT"], "source": "written-2026-10-25" },
+    { "query": "the release that ships this component", "relations": ["INCLUDES"], "source": "written-2026-10-25" },
+    { "query": "record who approved this decision", "relations": ["AUTHORED_BY"], "source": "written-2026-10-25" }
+  ],
+  "known_misses": [
+    { "query": "one thing is stopping another from going ahead", "relations": ["BLOCKS"], "why": "No shared word: BLOCKS says \"prevents or stalls\", the person says \"stopping\" and \"going ahead\"." },
+    { "query": "these two records say the same thing twice", "relations": ["DUPLICATES"], "why": "No discriminating shared word: DUPLICATES says \"cover the same ground\", and \"same\" is common across the surface." },
+    { "query": "the part of the system that offers this API", "relations": ["PROVIDES"], "why": "No shared word: PROVIDES says \"exposes/provides an Interface\"; \"part\" pulls PART_OF_FLOW instead." },
+    { "query": "draw a link from a person to the interface they operate", "relations": ["INTERACTS_WITH", "CONSUMES"], "why": "\"person\" is nowhere in either relation's words, and \"operate\" is OPERATES_IN's name, which outranks both." },
+    { "query": "connect a user role to the feature they use", "relations": ["INTERACTS_WITH"], "why": "\"user\", \"role\" and \"feature\" are the Actor and Capability types' own words, not the relation's; counting an endpoint type's hint was measured and did not lift it." }
+  ]
+}

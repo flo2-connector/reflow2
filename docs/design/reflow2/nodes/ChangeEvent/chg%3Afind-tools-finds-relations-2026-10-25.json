@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2636f9b30154019a369d7898321de95673b5cf8119cc886ffe1f9692fd7b64b1",
+  "node_id": "chg:find-tools-finds-relations-2026-10-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "09c2630fa",
+    "detected_at": "2026-10-25",
+    "name": "find_tools finds the schema's relations beside the tools, and every reply points to describe_schema from/to",
+    "rationale": "Built on Anthony's options a and b of fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25: reflow2's vocabulary has two halves and find_tools reached only the tools, so a relation with no typed tool (INTERACTS_WITH) could not be found by describing the job. Relations are kept in their own list so no tool's place moves, and the tool corpus tests hold that. Measured: the first description wording made describe_schema and find_tools mutually confusable (no_new_mutually_confusable_pair caught it), so the added sentence was cut to words neither job's query uses. Known limit, stated: five relation questions share no word with their relation (BLOCKS, DUPLICATES, PROVIDES, and person-words for an Actor such as \"person\", \"user role\"); counting an endpoint type's own hint was measured and did not help, so they are recorded as known misses rather than tuned to. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "find_tools now scores every edge type in the design's schema against the query and returns up to three under `relations`, apart from the tools: each marked as a relation, with the types it joins, what it means, and the call that draws it (its typed tool where one exists, create_edge with that edge_type always). Every reply carries `what_joins`: \"what may join an X to a Y?\" is describe_schema with from and to. No tool added (200 served); the tools' ranking is unchanged; only find_tools' own description changed. New relation corpus (24 pass, 5 known misses) with four of Alex's recorded queries."
+  }
+}

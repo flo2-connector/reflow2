@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a4475fbd72eb044cfa85012254980637f215e523294f6776d2ee92502305c82c",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-tools-relation-corpus-fixture",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:find-tools-finds-relations"
+}

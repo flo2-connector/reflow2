@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd88a763f38708b14c96798846fc2af7a2edf5cc5b65ebe93bd4f78a52bf6830",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 29,
+    "action": "modified",
+    "checksum_after": "sha256:e59a17aa216547555c693b8b04e6a321860bc852653cd55ea0e16a59fa68d074",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-query"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3acd584cff986cc8f6067f00b2142418ec7b15c30110ab563ff6ed59ca9f748d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:find-tools-relation-corpus-fixture",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:find-tools-finds-relations-from-a-persons-words"
+}

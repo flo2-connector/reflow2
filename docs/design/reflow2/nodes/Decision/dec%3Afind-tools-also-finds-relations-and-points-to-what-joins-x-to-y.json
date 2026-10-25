@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:25c6e0de38ae8a8409903058b4b87c00e05c2d3c87f027e82846fc7ea74f3135",
+  "node_id": "dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-25, choosing options a and b of fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25, in his words: \"a. find_tools also searches relation types and answers \\\"use create_edge with INTERACTS_WITH\\\". Adds no tools. b. find_tools' reply points to describe_schema with from/to for \\\"what joins X to Y?\\\"\". Not chosen: c, a typed interacts_with tool, which would add a tool and fix only this one relation. So: (a) find_tools ranks each schema edge type (its name, its endpoints and its reading) beside the tools, and a relation hit names the call that draws it (create_edge with that edge_type, or the typed tool where one exists) and the types it may join. (b) every find_tools reply says that \"what joins an X to a Y?\" is answered by describe_schema with from and to. The find_tools query corpus gains relation questions in a person's words (Alex's six among them), so the class cannot slip past it again. The tool count does not change.",
+    "kind": "choice",
+    "name": "find_tools also searches the schema's relation types and answers \"use create_edge with <EDGE>\", and its reply points to describe_schema with from/to for \"what joins an X to a Y?\" (no new tool) (built 2026-10-25: cap:find-tools-finds-relations)",
+    "rationale": "Root cause above: reflow2's vocabulary has two halves, and find_tools reached only the tools. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

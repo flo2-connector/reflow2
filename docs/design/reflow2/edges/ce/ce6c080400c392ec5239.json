@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8bf610439d6bfae2e948fbae90fd26885d2c75c98c179e7b821aded76de7176f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:find-tools-finds-relations-from-a-persons-words"
+}

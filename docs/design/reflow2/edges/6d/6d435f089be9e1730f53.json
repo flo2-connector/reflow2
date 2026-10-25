@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ca8f88eda7c41b28727982eef6d65e26a41f344bf5d08f56a9c9a25571163d05",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:find-tools-finds-relations-from-a-persons-words",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

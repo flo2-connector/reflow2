@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2cddf02e8f889e2fd91456ef06d6afcd9b7cc412b3f6f34196086a750d0806ae",
+  "node_id": "art:find-relations",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "find_tools' relation half: scores each schema edge type (name words, hint and field words, property names, named endpoint types; spelling-family word match; weights over tools and relations together) and returns up to three, each marked as a relation with the types it joins, what it means and the call that draws it; WHAT_JOINS is the from/to pointer every reply carries (dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y).",
+    "location": "crates/reflow2-mcp/src/find_relations.rs",
+    "name": "crates/reflow2-mcp/src/find_relations.rs",
+    "status": "realized"
+  }
+}

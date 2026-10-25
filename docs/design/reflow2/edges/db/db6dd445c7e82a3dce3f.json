@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:db8d55a362ef86336b36a235f22039a7d502966be1856c56aa99da4f5bd942ea",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:find-relations"
+}

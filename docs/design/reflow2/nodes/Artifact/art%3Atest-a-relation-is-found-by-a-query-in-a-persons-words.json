@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:a03a52add07ab86af457528967dad2de0484067235b33a18fc3c35394ce3c536",
+  "node_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Holds find_tools to the relation corpus: every relation question finds its relation among `relations`; every known miss still misses; a relation hit is marked as a relation, not a tool, and names its typed tool or create_edge with its edge_type; every reply carries the describe_schema from/to pointer. Observed failing on main 68df7252d (3 of 4 tests, 24 of 24 queries).",
+    "location": "crates/reflow2-mcp/tests/a_relation_is_found_by_a_query_in_a_persons_words.rs",
+    "name": "a_relation_is_found_by_a_query_in_a_persons_words.rs",
+    "status": "realized"
+  }
+}

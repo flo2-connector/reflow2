@@ -1159,7 +1159,9 @@ impl ReflowService {
                        once; this is its catalogue. Descriptions come back trimmed; once you \
                        know the name, `describe_schema` with `tool` reads its whole input schema \
                        and the lessons this design holds for it (the reply's `describe` says \
-                       how, through any door).",
+                       how, through any door). The schema's relations are ranked beside the \
+                       tools, under `relations`, each with the call that draws it; 'what may \
+                       join an X to a Y?' is `describe_schema` with `from` and `to`.",
         title = "Find a Tool",
         annotations(read_only_hint = true)
     )]
@@ -1337,13 +1339,27 @@ impl ReflowService {
         let limit = req.limit.unwrap_or(DEFAULT_TOOL_SEARCH_RESULTS).max(1);
         let items: Vec<JsonValue> = scored.into_iter().take(limit).map(|(_, v)| v).collect();
 
+        // THE SCHEMA'S RELATIONS, ranked beside the tools and kept apart from
+        // them (`crate::find_relations`): a relation with no typed tool, such
+        // as INTERACTS_WITH, was unreachable by describing the job
+        // (fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25).
+        // Read from this design's schema, so a domain's own edge types count.
+        let relations = {
+            let g = self.graph.read().await;
+            crate::find_relations::rank(&g.describe_vocabulary().edge_types, &terms, &corpus)
+        };
+
         ok_json(json!({
             "count": items.len(),
             "items": items,
+            "relations": relations,
             "matched": matched,
             "omitted": matched.saturating_sub(items.len()),
             "searched": searched,
             "query": req.query,
+            // "What joins an X to a Y?" is not a job any tool's words carry,
+            // and describe_schema answers it exactly.
+            "what_joins": crate::find_relations::WHAT_JOINS,
             // A summary and parameter NAMES are not enough to call a tool:
             // the shapes, allowed values and lessons were learned one refusal
             // at a time through the door

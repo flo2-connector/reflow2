@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d44a33acea60a4f04c19d946d994f9fe915a2bd41dc7a276f0767f2c91bdfc06",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "at": "2026-10-25",
+    "note": "find_tools now ranks the schema's relations (INTERACTS_WITH for all four of Alex's recorded queries) and every reply points to describe_schema from/to, the two causes C2 and C3 the finding left standing. ver:find-tools-finds-relations-from-a-persons-words re-ran and passes."
+  },
+  "to_id": "fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25"
+}

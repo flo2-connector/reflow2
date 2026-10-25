@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:74f1cb68b9512af2a42506b2769f6c8e72e96f8720ff4c2f5035107227e4458a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-manual-work-reports-stopped-when-end-of-session-capture-stopped-2026-10-25",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:97863ff071928a024160c6b794d81d055025344120c9a61748364db11b1089c9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y"
+}
