@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6f9766e9cdf337d1f5031d57c0dfb19e9acc8099d91ef0bf769aa54cc175f9e8",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-c4d1b6d3c7046b3b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:343fdd94d4dee8a82bdbcb69ba71f8e1c476ffc75a7ae686ec619b4ed5079372",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-composed-prompt-serves-its-pieces-test"
+}

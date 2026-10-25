@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:51aa764b6d11a71f9ebc7e413fa96c77395816ee0bdb34b3d18796cf44899d11",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-prose-field-that-swallowed-a-parameter-says-so",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

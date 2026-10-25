@@ -91,7 +91,7 @@ async fn a_swallowed_parameter_is_named_in_the_reply() {
                 is worth more than elegance here.";
 
     let out = s
-        .add_decision(Parameters(decision("dec:swallowed", body, None)))
+        .add_decision(Parameters(decision("dec:swallowed", body, None).into()))
         .await
         .expect("the write must still LAND — this warns, it never refuses");
     let v = out.structured_content.expect("structured content");
@@ -117,7 +117,7 @@ async fn the_abbreviated_tag_form_is_caught_too() {
                 reversible.</rationale></invoke>";
 
     let out = s
-        .add_decision(Parameters(decision("dec:abbrev", body, None)))
+        .add_decision(Parameters(decision("dec:abbrev", body, None).into()))
         .await
         .expect("still lands");
     let v = out.structured_content.expect("structured content");
@@ -138,11 +138,14 @@ async fn quoting_the_markup_while_supplying_the_field_is_not_a_finding() {
                 `</decision><parameter name=\"rationale\">` with no rationale at all.";
 
     let out = s
-        .add_decision(Parameters(decision(
-            "dec:documents-the-bug",
-            body,
-            Some("Recorded so the shape is on the record."),
-        )))
+        .add_decision(Parameters(
+            decision(
+                "dec:documents-the-bug",
+                body,
+                Some("Recorded so the shape is on the record."),
+            )
+            .into(),
+        ))
         .await
         .expect("ok");
     let v = out.structured_content.expect("structured content");
@@ -158,25 +161,28 @@ async fn quoting_the_markup_while_supplying_the_field_is_not_a_finding() {
 async fn add_change_event_reports_it_too() {
     let s = svc().await;
     let out = s
-        .add_change_event(Parameters(AddChangeEventReq {
-            description: None,
-            id: "chg:swallowed".into(),
-            name: Some("Something moved".into()),
-            change_type: Some("defect_fix".into()),
-            subject: Some("system".into()),
-            summary: Some(
-                "The guard now warns.</summary><parameter name=\"rationale\">And \
+        .add_change_event(Parameters(
+            AddChangeEventReq {
+                description: None,
+                id: "chg:swallowed".into(),
+                name: Some("Something moved".into()),
+                change_type: Some("defect_fix".into()),
+                subject: Some("system".into()),
+                summary: Some(
+                    "The guard now warns.</summary><parameter name=\"rationale\">And \
                  here is why."
-                    .into(),
-            ),
-            rationale: None,
-            affected: None,
-            detected_at: None,
-            rationale_basis: None,
-            commits: None,
-            repair: None,
-            stands_in_for: None,
-        }))
+                        .into(),
+                ),
+                rationale: None,
+                affected: None,
+                detected_at: None,
+                rationale_basis: None,
+                commits: None,
+                repair: None,
+                stands_in_for: None,
+            }
+            .into(),
+        ))
         .await
         .expect("still lands");
     let v = out.structured_content.expect("structured content");
@@ -192,11 +198,14 @@ async fn add_change_event_reports_it_too() {
 async fn an_ordinary_write_carries_no_block() {
     let s = svc().await;
     let out = s
-        .add_decision(Parameters(decision(
-            "dec:ordinary",
-            "Take the reversible option.",
-            Some("It costs less to undo."),
-        )))
+        .add_decision(Parameters(
+            decision(
+                "dec:ordinary",
+                "Take the reversible option.",
+                Some("It costs less to undo."),
+            )
+            .into(),
+        ))
         .await
         .expect("ok");
     let v = out.structured_content.expect("structured content");

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6072361bb4650ba701993b3ca4e1b451bdff481e8cec095df9135ea075a2db15",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-923dd844858c4558",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:5ebb5cfdec76adc623ad7c1ed026cd7ddc4481dc54878642abe9052a2357168c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:loop-status-lens-test"
+}

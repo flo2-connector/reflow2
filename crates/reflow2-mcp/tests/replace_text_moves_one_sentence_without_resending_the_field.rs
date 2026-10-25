@@ -18,7 +18,9 @@ async fn seeded() -> ReflowService {
         "id": "dec:store", "name": "Which store", "decision": BODY, "rationale": "r"
     }))
     .unwrap();
-    s.add_decision(Parameters(req)).await.expect("decision");
+    s.add_decision(Parameters(req.into()))
+        .await
+        .expect("decision");
     s
 }
 

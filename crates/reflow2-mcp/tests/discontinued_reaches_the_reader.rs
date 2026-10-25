@@ -65,49 +65,61 @@ macro_rules! j {
 /// the `cap:content-store` shape, reduced.
 async fn withdrawn() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:x".into(),
-        name: Some("X".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:store".into(),
-        name: Some("Store bytes beside the design".into()),
-        description: Some("Built, shipped, and later withdrawn.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:live".into(),
-        name: Some("Something still in use".into()),
-        description: Some("Never withdrawn.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    j!(s.add_decision(Parameters(DecisionReq {
-        id: "dec:discontinue".into(),
-        name: Some("The store is discontinued".into()),
-        decision: Some("Built, shipped, correct, and used zero times.".into()),
-        rationale: None,
-        distinct_from: None,
-        replaces: None,
-        kind: None,
-        related_to: None,
-        no_relation_note: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:x".into(),
+            name: Some("X".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:store".into(),
+            name: Some("Store bytes beside the design".into()),
+            description: Some("Built, shipped, and later withdrawn.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:live".into(),
+            name: Some("Something still in use".into()),
+            description: Some("Never withdrawn.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    j!(s.add_decision(Parameters(
+        DecisionReq {
+            id: "dec:discontinue".into(),
+            name: Some("The store is discontinued".into()),
+            decision: Some("Built, shipped, correct, and used zero times.".into()),
+            rationale: None,
+            distinct_from: None,
+            replaces: None,
+            kind: None,
+            related_to: None,
+            no_relation_note: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+        }
+        .into()
+    )));
     j!(s.set_decision_status(Parameters(SetDecisionStatusReq {
         decision_id: "dec:discontinue".into(),
         status: "accepted".into(),
@@ -220,31 +232,37 @@ async fn a_live_node_reports_false_rather_than_omitting_the_field() {
 #[tokio::test]
 async fn a_proposed_decision_discontinues_nothing() {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:maybe".into(),
-        name: Some("Argued about".into()),
-        description: Some("An agent proposed withdrawing this.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    j!(s.add_decision(Parameters(DecisionReq {
-        id: "dec:proposed".into(),
-        name: Some("Should we withdraw it?".into()),
-        decision: Some("Not settled.".into()),
-        rationale: None,
-        distinct_from: None,
-        replaces: None,
-        kind: None,
-        related_to: None,
-        no_relation_note: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:maybe".into(),
+            name: Some("Argued about".into()),
+            description: Some("An agent proposed withdrawing this.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    j!(s.add_decision(Parameters(
+        DecisionReq {
+            id: "dec:proposed".into(),
+            name: Some("Should we withdraw it?".into()),
+            decision: Some("Not settled.".into()),
+            rationale: None,
+            distinct_from: None,
+            replaces: None,
+            kind: None,
+            related_to: None,
+            no_relation_note: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+        }
+        .into()
+    )));
     j!(s.create_edge(Parameters(CreateEdgeReq {
         edge_type: "OBSOLETES".into(),
         from_type: Some("Decision".into()),
@@ -271,28 +289,34 @@ async fn a_proposed_decision_discontinues_nothing() {
 #[tokio::test]
 async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:old".into(),
-        name: Some("Superseded by a newer capability".into()),
-        description: Some("Replaced, not withdrawn.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:new".into(),
-        name: Some("The replacement".into()),
-        description: Some("Took over.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:old".into(),
+            name: Some("Superseded by a newer capability".into()),
+            description: Some("Replaced, not withdrawn.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:new".into(),
+            name: Some("The replacement".into()),
+            description: Some("Took over.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     j!(s.create_edge(Parameters(CreateEdgeReq {
         edge_type: "OBSOLETES".into(),
         from_type: Some("Capability".into()),
@@ -319,46 +343,52 @@ async fn obsoleted_by_a_non_decision_is_not_a_discontinuation() {
 #[tokio::test]
 async fn it_is_not_a_capability_only_field() {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:gone".into(),
-        name: Some("A need we stopped having".into()),
-        statement: Some("Withdrawn by decision.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
-    j!(s.add_decision(Parameters(DecisionReq {
-        id: "dec:drop".into(),
-        name: Some("We no longer need it".into()),
-        decision: Some("Withdrawn.".into()),
-        rationale: None,
-        distinct_from: None,
-        replaces: None,
-        kind: None,
-        related_to: None,
-        no_relation_note: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:gone".into(),
+            name: Some("A need we stopped having".into()),
+            statement: Some("Withdrawn by decision.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
+    j!(s.add_decision(Parameters(
+        DecisionReq {
+            id: "dec:drop".into(),
+            name: Some("We no longer need it".into()),
+            decision: Some("Withdrawn.".into()),
+            rationale: None,
+            distinct_from: None,
+            replaces: None,
+            kind: None,
+            related_to: None,
+            no_relation_note: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+        }
+        .into()
+    )));
     j!(s.set_decision_status(Parameters(SetDecisionStatusReq {
         decision_id: "dec:drop".into(),
         status: "accepted".into(),

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2468c80dd7de540000fc21b0683c81f46baa3a595ea03fcc6e9a6c90745bdc06",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-null-unsets-at-every-typed-constructor-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 10,
+    "action": "modified",
+    "checksum_after": "sha256:111578b325038c09e9ce61dee5cfd3ecb382c1319163e4bab3416ae54275f1fb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-assure"
+}

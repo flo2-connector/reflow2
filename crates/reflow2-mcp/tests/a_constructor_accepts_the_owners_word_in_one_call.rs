@@ -30,13 +30,16 @@ macro_rules! j {
 
 async fn svc() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     s
 }
 
@@ -137,11 +140,9 @@ fn requirement(id: &str, status: Option<&str>, approver: Option<&str>) -> Requir
 #[tokio::test]
 async fn a_decision_lands_accepted_with_its_signature_in_one_call() {
     let s = svc().await;
-    let out = j!(s.add_decision(Parameters(decision(
-        "dec:totals",
-        Some("accepted"),
-        Some("who:ann")
-    ))));
+    let out = j!(s.add_decision(Parameters(
+        decision("dec:totals", Some("accepted"), Some("who:ann")).into()
+    )));
     assert_eq!(out["properties"]["status"], "accepted");
     assert_eq!(
         approver_edges(&s, "dec:totals").await,
@@ -158,7 +159,9 @@ async fn a_decision_lands_accepted_with_its_signature_in_one_call() {
 async fn a_settling_status_with_nobodys_name_is_refused_and_nothing_is_written() {
     let s = svc().await;
     let err = s
-        .add_decision(Parameters(decision("dec:totals", Some("accepted"), None)))
+        .add_decision(Parameters(
+            decision("dec:totals", Some("accepted"), None).into(),
+        ))
         .await
         .expect_err("accepted with no approver is the forgery the rule forbids");
     assert!(err.to_string().contains("approver"), "{err}");
@@ -168,11 +171,9 @@ async fn a_settling_status_with_nobodys_name_is_refused_and_nothing_is_written()
     );
 
     let err = s
-        .add_requirement(Parameters(requirement(
-            "req:totals",
-            Some("accepted"),
-            None,
-        )))
+        .add_requirement(Parameters(
+            requirement("req:totals", Some("accepted"), None).into(),
+        ))
         .await
         .expect_err("a requirement past proposed is settled intent too");
     assert!(err.to_string().contains("approver"), "{err}");
@@ -183,11 +184,9 @@ async fn a_settling_status_with_nobodys_name_is_refused_and_nothing_is_written()
 async fn an_approver_naming_no_contributor_is_refused_before_anything_is_written() {
     let s = svc().await;
     let err = s
-        .add_decision(Parameters(decision(
-            "dec:totals",
-            Some("accepted"),
-            Some("who:nobody"),
-        )))
+        .add_decision(Parameters(
+            decision("dec:totals", Some("accepted"), Some("who:nobody")).into(),
+        ))
         .await
         .expect_err("a typo must not attach the owner's authority to a name nobody can check");
     assert!(err.to_string().contains("who:nobody"), "{err}");
@@ -197,12 +196,14 @@ async fn an_approver_naming_no_contributor_is_refused_before_anything_is_written
 #[tokio::test]
 async fn the_landing_status_still_needs_no_signature() {
     let s = svc().await;
-    let out = j!(s.add_decision(Parameters(decision("dec:totals", None, None))));
+    let out = j!(s.add_decision(Parameters(decision("dec:totals", None, None).into())));
     assert_eq!(out["properties"]["status"], "proposed");
     // A fresh design: the second decision would otherwise be refused as a
     // near-duplicate of the first, which is the guard working, not this rule.
     let s = svc().await;
-    let out = j!(s.add_decision(Parameters(decision("dec:totals-2", Some("proposed"), None))));
+    let out = j!(s.add_decision(Parameters(
+        decision("dec:totals-2", Some("proposed"), None).into()
+    )));
     assert_eq!(out["properties"]["status"], "proposed");
     assert!(approver_edges(&s, "dec:totals-2").await.is_empty());
 }
@@ -210,11 +211,9 @@ async fn the_landing_status_still_needs_no_signature() {
 #[tokio::test]
 async fn a_requirement_lands_accepted_with_its_signature_in_one_call() {
     let s = svc().await;
-    let out = j!(s.add_requirement(Parameters(requirement(
-        "req:totals",
-        Some("accepted"),
-        Some("who:ann")
-    ))));
+    let out = j!(s.add_requirement(Parameters(
+        requirement("req:totals", Some("accepted"), Some("who:ann")).into()
+    )));
     assert_eq!(out["properties"]["status"], "accepted");
     assert_eq!(approver_edges(&s, "req:totals").await.len(), 1);
 }
@@ -237,18 +236,18 @@ async fn a_rules_power_is_settled_intent_and_needs_the_owners_name() {
         steps: None,
     };
     let err = s
-        .add_design_rule(Parameters(rule(Some(true), None)))
+        .add_design_rule(Parameters(rule(Some(true), None).into()))
         .await
         .expect_err("stating a rule's power is the owner's act");
     assert!(err.to_string().contains("approver"), "{err}");
     assert!(!node_exists(&s, "rule:branch-first").await);
 
     // Unstated power is the landing state and needs nobody's name.
-    j!(s.add_design_rule(Parameters(rule(None, None))));
+    j!(s.add_design_rule(Parameters(rule(None, None).into())));
     assert!(approver_edges(&s, "rule:branch-first").await.is_empty());
 
     // Advisory is a stated power too — `false` is an answer, not an absence.
-    let out = j!(s.add_design_rule(Parameters(rule(Some(false), Some("who:ann")))));
+    let out = j!(s.add_design_rule(Parameters(rule(Some(false), Some("who:ann")).into())));
     assert_eq!(out["properties"]["enforced"], false);
     assert_eq!(approver_edges(&s, "rule:branch-first").await.len(), 1);
 }
@@ -258,7 +257,7 @@ async fn a_rules_power_is_settled_intent_and_needs_the_owners_name() {
 #[tokio::test]
 async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_when_not() {
     let s = svc().await;
-    j!(s.add_decision(Parameters(decision("dec:totals", None, None))));
+    j!(s.add_decision(Parameters(decision("dec:totals", None, None).into())));
 
     let out = j!(s.set_decision_status(Parameters(SetDecisionStatusReq {
         decision_id: "dec:totals".into(),
@@ -301,7 +300,7 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
     })));
     assert!(out.get("carries_nobodys_name").is_none(), "{out}");
 
-    j!(s.add_requirement(Parameters(requirement("req:totals", None, None))));
+    j!(s.add_requirement(Parameters(requirement("req:totals", None, None).into())));
     let out = j!(s.set_requirement_status(Parameters(RequirementStatusReq {
         requirement_id: "req:totals".into(),
         status: "accepted".into(),
@@ -326,36 +325,42 @@ async fn a_setter_draws_the_signature_when_given_one_and_reports_its_absence_whe
 #[tokio::test]
 async fn a_check_records_its_targets_and_the_run_it_just_had_in_one_call() {
     let s = svc().await;
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:totals".into(),
-        name: Some("Running totals".into()),
-        description: Some("sends cumulative totals".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    let out = j!(s.add_verification(Parameters(VerificationReq {
-        id: "ver:totals-heal".into(),
-        name: Some("a dropped packet heals on the next reading".into()),
-        method: Some("test".into()),
-        level: None,
-        description: None,
-        verifies: Some(vec![VerifyTargetReq {
-            target_type: None,
-            target_id: "cap:totals".into(),
-        }]),
-        status: Some("passing".into()),
-        findings: Some("12 of 12 passed".into()),
-        last_run_at: Some("2026-09-06".into()),
-        location: None,
-        computed: None,
-        variables: None,
-        fixes: None,
-        hypothesis_block: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:totals".into(),
+            name: Some("Running totals".into()),
+            description: Some("sends cumulative totals".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    let out = j!(s.add_verification(Parameters(
+        VerificationReq {
+            id: "ver:totals-heal".into(),
+            name: Some("a dropped packet heals on the next reading".into()),
+            method: Some("test".into()),
+            level: None,
+            description: None,
+            verifies: Some(vec![VerifyTargetReq {
+                target_type: None,
+                target_id: "cap:totals".into(),
+            }]),
+            status: Some("passing".into()),
+            findings: Some("12 of 12 passed".into()),
+            last_run_at: Some("2026-09-06".into()),
+            location: None,
+            computed: None,
+            variables: None,
+            fixes: None,
+            hypothesis_block: None,
+        }
+        .into()
+    )));
     assert_eq!(out["properties"]["status"], "passing");
     assert_eq!(out["properties"]["findings"], "12 of 12 passed");
     assert_eq!(out["properties"]["last_run_at"], "2026-09-06");
@@ -395,7 +400,7 @@ async fn a_finding_without_a_run_is_refused_and_an_unknown_target_refuses_the_wh
     let mut r = base();
     r.findings = Some("12 of 12".into());
     let err = s
-        .add_verification(Parameters(r))
+        .add_verification(Parameters(r.into()))
         .await
         .expect_err("a finding belongs to a run, and a run has an outcome");
     assert!(err.to_string().contains("status"), "{err}");
@@ -407,7 +412,7 @@ async fn a_finding_without_a_run_is_refused_and_an_unknown_target_refuses_the_wh
         target_id: "cap:does-not-exist".into(),
     }]);
     let err = s
-        .add_verification(Parameters(r))
+        .add_verification(Parameters(r.into()))
         .await
         .expect_err("an unresolvable target refuses the create, not just the edge");
     assert!(err.to_string().contains("cap:does-not-exist"), "{err}");

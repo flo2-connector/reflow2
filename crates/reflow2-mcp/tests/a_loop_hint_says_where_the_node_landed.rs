@@ -37,13 +37,16 @@ macro_rules! j {
 
 async fn svc() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     s
 }
 

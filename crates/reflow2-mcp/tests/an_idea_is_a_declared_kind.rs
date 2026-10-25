@@ -55,7 +55,7 @@ fn dec(id: &str, kind: Option<&str>) -> DecisionReq {
 async fn an_idea_records_that_it_is_exploratory() {
     let s = svc().await;
     let out = s
-        .add_decision(Parameters(dec("dec:an-idea", Some("exploratory"))))
+        .add_decision(Parameters(dec("dec:an-idea", Some("exploratory")).into()))
         .await
         .expect("tool ok")
         .structured_content
@@ -73,7 +73,7 @@ async fn an_idea_records_that_it_is_exploratory() {
 async fn omitting_the_kind_leaves_it_absent_rather_than_defaulting() {
     let s = svc().await;
     let out = s
-        .add_decision(Parameters(dec("dec:unsaid", None)))
+        .add_decision(Parameters(dec("dec:unsaid", None).into()))
         .await
         .expect("tool ok")
         .structured_content
@@ -91,7 +91,7 @@ async fn omitting_the_kind_leaves_it_absent_rather_than_defaulting() {
 async fn an_unknown_kind_is_refused_and_says_omitting_is_allowed() {
     let s = svc().await;
     let err = s
-        .add_decision(Parameters(dec("dec:bad", Some("brainstorm"))))
+        .add_decision(Parameters(dec("dec:bad", Some("brainstorm")).into()))
         .await
         .expect_err("an undeclared value must not be stored");
     let msg = format!("{err:?}");
@@ -109,7 +109,7 @@ async fn an_unknown_kind_is_refused_and_says_omitting_is_allowed() {
 async fn the_kind_needs_no_second_call() {
     let s = svc().await;
     let out = s
-        .add_decision(Parameters(dec("dec:one-call", Some("choice"))))
+        .add_decision(Parameters(dec("dec:one-call", Some("choice")).into()))
         .await
         .expect("tool ok")
         .structured_content

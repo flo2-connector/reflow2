@@ -744,6 +744,10 @@ pub(crate) struct RequiredFields {
     /// The node as it stands, fetched ONCE however many fields are resolved.
     existing: Option<reflow2_core::StoredNode>,
     missing: Vec<String>,
+    /// Every field this constructor needs to CREATE the node — what `str` and
+    /// `i64` were asked for — so a `null` on one is refused by name
+    /// ([`Self::refuse_nulled`]).
+    required: Vec<String>,
 }
 
 impl RequiredFields {
@@ -753,6 +757,7 @@ impl RequiredFields {
             id: id.to_string(),
             existing: g.get_node(node_type, id).map_err(dyno_err)?,
             missing: Vec::new(),
+            required: Vec::new(),
         })
     }
 
@@ -764,6 +769,7 @@ impl RequiredFields {
     /// placeholder never reaches the store: `finish` is what lets the write
     /// proceed, and it refuses when anything was missing.
     pub(crate) fn str(&mut self, field: &str, passed: Option<String>) -> String {
+        self.required.push(field.to_string());
         if let Some(v) = passed {
             return v;
         }
@@ -821,6 +827,7 @@ impl RequiredFields {
     /// The numeric sibling, for the two fields that are not strings:
     /// `DesignEpoch.sequence` and `ReadinessAssessment.level`.
     pub(crate) fn i64(&mut self, field: &str, passed: Option<i64>) -> i64 {
+        self.required.push(field.to_string());
         if let Some(v) = passed {
             return v;
         }
@@ -836,6 +843,35 @@ impl RequiredFields {
                 0
             }
         }
+    }
+
+    /// Refuse a `null` on a field this constructor needs to create the node,
+    /// naming it, before anything is written
+    /// (`dec:null-unsets-on-every-typed-constructor`). The schema does not
+    /// mark every such field `required` (`DesignEpoch.sequence`,
+    /// `TemporalFact.statement`), and unsetting one would leave a node its
+    /// own constructor can no longer revise without re-sending it.
+    pub(crate) fn refuse_nulled(&self, nulled: &[String]) -> Result<(), McpError> {
+        let named: Vec<String> = self
+            .required
+            .iter()
+            .filter(|f| nulled.contains(f))
+            .map(|f| format!("`{f}`"))
+            .collect();
+        if named.is_empty() {
+            return Ok(());
+        }
+        Err(McpError::invalid_params(
+            format!(
+                "{} {} REQUIRED on {} and cannot be unset: a null unsets an optional field, \
+                 and this one is what the node is made from. Omit the field to keep the \
+                 stored value, or pass a value. Nothing was written.",
+                named.join(", "),
+                if named.len() == 1 { "is" } else { "are" },
+                self.node_type,
+            ),
+            None,
+        ))
     }
 
     /// Refuse if anything could not be resolved, naming every such field.

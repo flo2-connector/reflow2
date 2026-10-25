@@ -108,11 +108,9 @@ async fn a_crowded_near_match_band_is_not_cut_at_three() {
     // rather than universal.
     for (i, text) in FILLER.iter().enumerate() {
         let id = format!("dec:filler-{i}");
-        j!(svc.add_decision(Parameters(decision(
-            &id,
-            &format!("Unrelated matter {i}"),
-            text
-        ))));
+        j!(svc.add_decision(Parameters(
+            decision(&id, &format!("Unrelated matter {i}"), text).into()
+        )));
     }
 
     // The band. Each is created against a design that already holds the
@@ -129,7 +127,7 @@ async fn a_crowded_near_match_band_is_not_cut_at_three() {
             &format!("{TOPIC} {clause}"),
         );
         req.distinct_from = Some(band.clone());
-        j!(svc.add_decision(Parameters(req)));
+        j!(svc.add_decision(Parameters(req.into())));
         band.push(id);
     }
 
@@ -150,7 +148,7 @@ async fn a_crowded_near_match_band_is_not_cut_at_three() {
         TOPIC,
     );
     req.distinct_from = Some(band.clone());
-    let out = j!(svc.add_decision(Parameters(req)));
+    let out = j!(svc.add_decision(Parameters(req.into())));
 
     let near = out["search_first"]["near_matches"]
         .as_array()

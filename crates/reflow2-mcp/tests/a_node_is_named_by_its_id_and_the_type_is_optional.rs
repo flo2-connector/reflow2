@@ -30,32 +30,35 @@ macro_rules! j {
 
 async fn seeded() -> ReflowService {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:fast".into(),
-        name: Some("Fast".into()),
-        statement: Some("Answer in under a second.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:fast".into(),
+            name: Some("Fast".into()),
+            statement: Some("Answer in under a second.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
     j!(s.add_verification(Parameters(
         serde_json::from_value(serde_json::json!({
             "id": "ver:fast", "name": "Fast check", "description": "Times the answer."

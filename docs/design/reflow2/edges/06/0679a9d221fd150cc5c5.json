@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7bbf7451eb0c0f2459b99d8fc109947c6c4b9656aea3e21cb98c59d0888b8421",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-d07c4549a140c216",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:b524b0460d31f93b68ec5e4e027df4b2e033accbbd68bef23469d23748a5802d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-cross-design-read-takes-the-other-design-by-graph-id-test"
+}

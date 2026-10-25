@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a2be17bca4da14daeb6f45da383a85f8ac2af928b5fee8f404cbe802fabeed58",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:a-null-unsets-at-every-typed-constructor",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:a-null-unsets-at-every-typed-constructor"
+}

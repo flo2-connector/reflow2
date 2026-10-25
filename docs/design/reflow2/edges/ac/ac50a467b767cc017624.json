@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1c8f6f2d0456ca44174b26439130428c0132cb63f823d7cc6c579f87b2b30c58",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-null-unsets-at-every-typed-constructor",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

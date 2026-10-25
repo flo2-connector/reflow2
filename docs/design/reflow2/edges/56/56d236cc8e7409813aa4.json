@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e2bcf8dfc7003e4f7a3a286881f979f44d3fd1a8bfdc793ffc8f71b327ab1f83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-10ef32a716224ae4",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5d01cd275084898d09a31cc9c8a9a36c13c86a82de3fb6bca017179ccba91b7a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-capture-that-replaces-a-node-says-so"
+}

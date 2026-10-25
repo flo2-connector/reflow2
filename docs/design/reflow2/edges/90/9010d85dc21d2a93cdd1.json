@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2d71374662c0d99abafa0d5b59a14e801abe823b5fbed3f7fec3fb1f4048a252",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-d50689eef35e75fa",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:264c6b1286bd0669bad60283214056cc180521916d8d5a1797c41205e3b0d414",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-revising-write-says-what-it-removed-test"
+}

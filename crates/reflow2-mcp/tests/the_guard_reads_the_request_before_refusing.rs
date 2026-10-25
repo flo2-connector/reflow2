@@ -70,15 +70,17 @@ fn capability(id: &str, name: &str, allocated_to: Option<&str>) -> CapabilityReq
 #[tokio::test]
 async fn a_capability_is_not_refused_against_the_part_it_names_as_its_own_allocation() {
     let s = svc().await;
-    j!(s.add_component(Parameters(component(
-        "cmp:focusing-mirror",
-        "Toroidal focusing mirror"
-    ))));
-    let out = j!(s.add_capability(Parameters(capability(
-        "cap:focus-at-sample",
-        "Focus the beam at the sample",
-        Some("cmp:focusing-mirror"),
-    ))));
+    j!(s.add_component(Parameters(
+        component("cmp:focusing-mirror", "Toroidal focusing mirror").into()
+    )));
+    let out = j!(s.add_capability(Parameters(
+        capability(
+            "cap:focus-at-sample",
+            "Focus the beam at the sample",
+            Some("cmp:focusing-mirror"),
+        )
+        .into()
+    )));
     // Reported, never hidden: the match is still in the reply.
     let near = out["search_first"]["near_matches"].to_string();
     assert!(
@@ -90,36 +92,38 @@ async fn a_capability_is_not_refused_against_the_part_it_names_as_its_own_alloca
 #[tokio::test]
 async fn a_part_that_meets_a_requirement_reads_like_it_and_is_not_refused() {
     let s = svc().await;
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:spot-at-sample".into(),
-        name: Some("Spot at the sample under 30 by 5 microns".into()),
-        statement: Some(WORDS.into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
-    let out = j!(s.add_component(Parameters(component(
-        "cmp:focusing-mirror",
-        "Toroidal focusing mirror"
-    ))));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:spot-at-sample".into(),
+            name: Some("Spot at the sample under 30 by 5 microns".into()),
+            statement: Some(WORDS.into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
+    let out = j!(s.add_component(Parameters(
+        component("cmp:focusing-mirror", "Toroidal focusing mirror").into()
+    )));
     assert!(
         out["search_first"]["near_matches"]
             .to_string()
@@ -133,15 +137,13 @@ async fn a_second_part_with_the_same_words_is_still_refused() {
     // The counterweight: same type, same words, nothing declared — the case
     // the guard exists for. Unchanged by this repair.
     let s = svc().await;
-    j!(s.add_component(Parameters(component(
-        "cmp:focusing-mirror",
-        "Toroidal focusing mirror"
-    ))));
+    j!(s.add_component(Parameters(
+        component("cmp:focusing-mirror", "Toroidal focusing mirror").into()
+    )));
     let err = s
-        .add_component(Parameters(component(
-            "cmp:focusing-mirror-2",
-            "Toroidal focusing mirror (again)",
-        )))
+        .add_component(Parameters(
+            component("cmp:focusing-mirror-2", "Toroidal focusing mirror (again)").into(),
+        ))
         .await
         .expect_err("a same-type near duplicate is refused");
     assert!(

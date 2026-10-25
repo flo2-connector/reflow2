@@ -29,24 +29,30 @@ macro_rules! j {
 
 async fn service() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:x".into(),
-        name: Some("X".to_string()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:x".into(),
+            name: Some("X".to_string()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
     s
 }
 
 async fn person(s: &ReflowService, id: &str, name: &str, description: Option<&str>) {
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: id.into(),
-        name: Some(name.to_string()),
-        kind: Some("person".into()),
-        handle: None,
-        description: description.map(str::to_string),
-    })));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: id.into(),
+            name: Some(name.to_string()),
+            kind: Some("person".into()),
+            handle: None,
+            description: description.map(str::to_string),
+        }
+        .into()
+    )));
 }
 
 /// ⭐ THE CASE IT EXISTS FOR: two recorded readers, and the line carries both

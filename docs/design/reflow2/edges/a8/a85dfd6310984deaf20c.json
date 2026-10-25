@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:205e07ade4409ad15595049bfae552bbfb1646d9241c0abb13e07cc107e24d78",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-25fd02da0b52c59b",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:5b08c39d0525d6656aaabe0f6bb594af208f023f537e35ae1e331d2ee23c33be",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-near-match-report-is-not-cut-at-three"
+}

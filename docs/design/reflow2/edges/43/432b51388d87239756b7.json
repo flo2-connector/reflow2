@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9767407640f838d14c6172d47cabd30bab506de49fe8f0e44cdebf47af0ac9aa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-1234a7fd088d14e7",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:bdaeb03167f64edd28c6abc0d108d0d1e7def1b0cc20c367d06587dbd81cac57",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-node-is-named-by-the-key-the-last-tool-used-test"
+}

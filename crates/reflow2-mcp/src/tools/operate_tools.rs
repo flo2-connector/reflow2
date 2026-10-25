@@ -63,7 +63,9 @@ impl ReflowService {
     )]
     pub async fn add_release(
         &self,
-        Parameters(req): Parameters<ReleaseReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<ReleaseReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf =
@@ -74,6 +76,7 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_release(
@@ -99,7 +102,13 @@ impl ReflowService {
             &[("status", req.status.as_deref())],
         )?
         .unwrap_or(stored);
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::RELEASE,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(
@@ -120,13 +129,16 @@ impl ReflowService {
     )]
     pub async fn add_environment_rule(
         &self,
-        Parameters(req): Parameters<crate::service::EnvironmentRuleReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<crate::service::EnvironmentRuleReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::ENVIRONMENT_RULE;
         let mut __rf = crate::service::RequiredFields::new(&g, ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let node = g
             .add_environment_rule(
@@ -141,7 +153,9 @@ impl ReflowService {
                 req.mandatory,
             )
             .map_err(dyno_err)?;
-        ok_json(NodeDto::from(node))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g, ty, &req.id, &nulled, node,
+        )?)
     }
 
     #[tool(
@@ -256,7 +270,9 @@ impl ReflowService {
     )]
     pub async fn add_environment(
         &self,
-        Parameters(req): Parameters<EnvironmentReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<EnvironmentReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf = crate::service::RequiredFields::new(
@@ -270,6 +286,7 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_environment(
@@ -286,7 +303,13 @@ impl ReflowService {
             req.description.as_deref(),
         )?
         .unwrap_or(stored);
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::ENVIRONMENT,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(
@@ -301,7 +324,9 @@ impl ReflowService {
     )]
     pub async fn add_resource(
         &self,
-        Parameters(req): Parameters<ResourceReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<ResourceReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf =
@@ -312,6 +337,7 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_resource(&req.id, &name, req.provider.as_deref())
@@ -323,7 +349,13 @@ impl ReflowService {
             req.description.as_deref(),
         )?
         .unwrap_or(stored);
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::RESOURCE,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(
@@ -423,7 +455,9 @@ impl ReflowService {
     )]
     pub async fn add_readiness(
         &self,
-        Parameters(req): Parameters<AddReadinessReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddReadinessReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::READINESS_ASSESSMENT;
@@ -434,10 +468,11 @@ impl ReflowService {
         let level = __rf.i64("level", req.level);
         // Every field first, THEN the refusal — so a caller missing three of
         // them learns all three, rather than one per round trip.
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let kind = parse_readiness_kind(&kind_s)?;
-        ok_json(NodeDto::from(
-            g.add_readiness(&ReadinessObservation {
+        let stored = g
+            .add_readiness(&ReadinessObservation {
                 id: &req.id,
                 target_type: &target_type,
                 target_id: &target_id,
@@ -446,8 +481,10 @@ impl ReflowService {
                 evidence: req.evidence.as_deref(),
                 assessed_at: req.assessed_at.as_deref(),
             })
-            .map_err(dyno_err)?,
-        ))
+            .map_err(dyno_err)?;
+        ok_json(crate::nulls::node_after_unset(
+            &mut g, ty, &req.id, &nulled, stored,
+        )?)
     }
 
     #[tool(

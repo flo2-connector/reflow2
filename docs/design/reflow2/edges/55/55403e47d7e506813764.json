@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8944647ba56b5cf909b6fa8cf5b628bd4e0cdec0d8882369531eeec1c5b7dc73",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-c0a39c89d29b9fc1",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:1506dbf55ccc6302a6b9d45768f8dff6432e54115d1791a8fd7744a1fe5daa9f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-guard-reads-the-request-before-refusing"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ae2737b9263b35683c96b292378cc4ed6360c12a92e844ea413a2751a904847b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-null-unsets-at-every-typed-constructor-2026-10-24",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

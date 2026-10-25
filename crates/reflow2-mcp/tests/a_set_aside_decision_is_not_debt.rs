@@ -41,13 +41,16 @@ macro_rules! j {
 }
 
 async fn owner(s: &ReflowService) -> Value {
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:owner".into(),
-        name: Some("The owner".into()),
-        kind: Some("person".into()),
-        handle: None,
-        description: None,
-    })))
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:owner".into(),
+            name: Some("The owner".into()),
+            kind: Some("person".into()),
+            handle: None,
+            description: None,
+        }
+        .into()
+    )))
 }
 
 /// Each decision gets its OWN subject, because the search-first guard refuses
@@ -96,7 +99,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
     owner(&s).await;
     // Proposed AND carrying the owner's approver edge: the shape loop_status
     // counts as "somebody was asked to decide".
-    j!(s.add_decision(Parameters(decision("dec:the-one", None, None))));
+    j!(s.add_decision(Parameters(decision("dec:the-one", None, None).into())));
     j!(s.authored_by(Parameters(AuthoredByReq {
         from_id: "dec:the-one".into(),
         from_type: Some("Decision".into()),
@@ -150,7 +153,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
 async fn no_gap_detector_raises_a_deferred_decision() {
     let s = ReflowService::in_memory().expect("service");
     owner(&s).await;
-    j!(s.add_decision(Parameters(decision("dec:parked", None, None))));
+    j!(s.add_decision(Parameters(decision("dec:parked", None, None).into())));
     // An exploratory idea, which unreviewed_ideas would otherwise ask about.
     let mut idea = decision("dec:idea-parked", None, None);
     idea.kind = Some("exploratory".into());
@@ -164,7 +167,7 @@ async fn no_gap_detector_raises_a_deferred_decision() {
          raise."
             .into(),
     );
-    j!(s.add_decision(Parameters(idea)));
+    j!(s.add_decision(Parameters(idea.into())));
 
     let before = j!(s.detect_gaps(Parameters(GapScopeReq {
         scope: None,
@@ -229,7 +232,9 @@ async fn deferring_wants_the_owners_name() {
 
     // Landing straight at `deferred` with nobody's name: REFUSED.
     let err = s
-        .add_decision(Parameters(decision("dec:nameless", Some("deferred"), None)))
+        .add_decision(Parameters(
+            decision("dec:nameless", Some("deferred"), None).into(),
+        ))
         .await
         .expect_err("a decision past proposed with no approver must be refused");
     assert!(
@@ -240,7 +245,7 @@ async fn deferring_wants_the_owners_name() {
     // With the name: accepted, and it lands deferred.
     let mut named = decision("dec:named", Some("deferred"), Some("who:owner"));
     named.distinct_from = Some(vec!["dec:nameless".into()]);
-    let ok = j!(s.add_decision(Parameters(named)));
+    let ok = j!(s.add_decision(Parameters(named.into())));
     assert_eq!(
         ok["properties"]["status"].as_str(),
         Some("deferred"),
@@ -252,7 +257,7 @@ async fn deferring_wants_the_owners_name() {
     // reply must carry the note the intent gate would otherwise raise later.
     let mut moved_req = decision("dec:moved", None, None);
     moved_req.distinct_from = Some(vec!["dec:named".into()]);
-    j!(s.add_decision(Parameters(moved_req)));
+    j!(s.add_decision(Parameters(moved_req.into())));
     let moved = j!(s.set_decision_status(Parameters(SetDecisionStatusReq {
         decision_id: "dec:moved".into(),
         status: "deferred".into(),
@@ -273,11 +278,9 @@ async fn deferring_wants_the_owners_name() {
 async fn a_deferred_decision_cannot_have_alternatives_registered() {
     let s = ReflowService::in_memory().expect("service");
     owner(&s).await;
-    j!(s.add_decision(Parameters(decision(
-        "dec:shelved",
-        Some("deferred"),
-        Some("who:owner")
-    ))));
+    j!(s.add_decision(Parameters(
+        decision("dec:shelved", Some("deferred"), Some("who:owner")).into()
+    )));
     let err = s
         .register_alternative(Parameters(RegisterAlternativeReq {
             decision_id: "dec:shelved".into(),

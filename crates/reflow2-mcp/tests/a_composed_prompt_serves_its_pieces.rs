@@ -38,6 +38,7 @@ async fn design_with_a_gap() -> ReflowService {
     j!(s.add_project(Parameters(
         serde_json::from_value::<ProjectReq>(json!({"id": "proj:g", "name": "Greenhouse"}))
             .unwrap()
+            .into()
     )));
     j!(s.add_capability(Parameters(
         serde_json::from_value::<CapabilityReq>(json!({
@@ -46,6 +47,7 @@ async fn design_with_a_gap() -> ReflowService {
             "description": "Ultraviolet clarifier on the return line."
         }))
         .unwrap()
+        .into()
     )));
     s
 }

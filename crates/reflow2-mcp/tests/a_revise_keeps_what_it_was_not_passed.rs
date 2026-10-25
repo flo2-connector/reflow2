@@ -151,7 +151,7 @@ const NOT_A_PROPERTY: &[(&str, &str, &str)] = &[
     ),
 ];
 
-struct TestClient;
+pub(crate) struct TestClient;
 
 impl rmcp::ClientHandler for TestClient {
     fn get_info(&self) -> rmcp::model::ClientConfig {
@@ -162,12 +162,12 @@ impl rmcp::ClientHandler for TestClient {
     }
 }
 
-type Client = rmcp::service::RunningService<rmcp::RoleClient, TestClient>;
+pub(crate) type Client = rmcp::service::RunningService<rmcp::RoleClient, TestClient>;
 
 /// One in-memory server, reached the way a session reaches it — through
 /// `call_tool`, so the refusal hints and the per-client content policy are the
 /// ones a caller meets.
-async fn connect() -> Client {
+pub(crate) async fn connect() -> Client {
     let service = ReflowService::in_memory().expect("in-memory service");
     let (server_rx, client_tx) = tokio::io::duplex(1 << 22);
     let (client_rx, server_tx) = tokio::io::duplex(1 << 22);
@@ -183,7 +183,7 @@ async fn connect() -> Client {
 }
 
 /// Call a tool by NAME. `Ok(structured reply)` or `Err(refusal text)`.
-async fn call(c: &Client, tool: &str, args: Value) -> Result<Value, String> {
+pub(crate) async fn call(c: &Client, tool: &str, args: Value) -> Result<Value, String> {
     let Value::Object(arguments) = args else {
         panic!("arguments for {tool} must be an object");
     };
@@ -197,7 +197,7 @@ async fn call(c: &Client, tool: &str, args: Value) -> Result<Value, String> {
     }
 }
 
-async fn stored(c: &Client, id: &str) -> Map<String, Value> {
+pub(crate) async fn stored(c: &Client, id: &str) -> Map<String, Value> {
     let v = call(c, "get_node", json!({ "id": id }))
         .await
         .unwrap_or_else(|e| panic!("get_node {id}: {e}"));
@@ -208,7 +208,7 @@ async fn stored(c: &Client, id: &str) -> Map<String, Value> {
 }
 
 /// The nodes a CONTEXT value may name, made before any case runs.
-async fn seed(c: &Client) {
+pub(crate) async fn seed(c: &Client) {
     call(
         c,
         "add_requirement",
@@ -366,7 +366,7 @@ fn synthesise(tool: &str, name: &str, prop: &Value, pass: usize) -> Option<Value
 
 /// Build the create call for one tool: every synthesisable property, the
 /// CONTEXT values, and an approver wherever the schema takes one.
-fn create_args(tool: &str, schema: &Value, pass: usize) -> Map<String, Value> {
+pub(crate) fn create_args(tool: &str, schema: &Value, pass: usize) -> Map<String, Value> {
     let mut args = Map::new();
     args.insert(
         "id".into(),

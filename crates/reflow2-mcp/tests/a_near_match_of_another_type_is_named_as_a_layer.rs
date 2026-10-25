@@ -114,21 +114,24 @@ fn requirement(id: &str, name: &str, statement: &str) -> RequirementReq {
 }
 
 async fn seed_change_event(s: &ReflowService) {
-    s.add_change_event(Parameters(AddChangeEventReq {
-        description: None,
-        id: "chg:client-elects-its-own-build".into(),
-        name: Some("A client elects a server of its own build".into()),
-        change_type: Some("defect_fix".into()),
-        subject: Some("system".into()),
-        summary: Some(SHIPPED.into()),
-        rationale: None,
-        affected: None,
-        detected_at: None,
-        rationale_basis: None,
-        commits: None,
-        repair: None,
-        stands_in_for: None,
-    }))
+    s.add_change_event(Parameters(
+        AddChangeEventReq {
+            description: None,
+            id: "chg:client-elects-its-own-build".into(),
+            name: Some("A client elects a server of its own build".into()),
+            change_type: Some("defect_fix".into()),
+            subject: Some("system".into()),
+            summary: Some(SHIPPED.into()),
+            rationale: None,
+            affected: None,
+            detected_at: None,
+            rationale_basis: None,
+            commits: None,
+            repair: None,
+            stands_in_for: None,
+        }
+        .into(),
+    ))
     .await
     .expect("the change event records what shipped");
 }
@@ -145,17 +148,20 @@ async fn a_cross_type_near_match_is_written_and_named_with_its_type() {
     seed_change_event(&s).await;
 
     let reply = s
-        .add_component(Parameters(ComponentReq {
-            id: "cmp:client-elector".into(),
-            name: Some("Client elector".into()),
-            description: Some(SHIPPED.into()),
-            kind: None,
-            level: None,
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-            status: None,
-        }))
+        .add_component(Parameters(
+            ComponentReq {
+                id: "cmp:client-elector".into(),
+                name: Some("Client elector".into()),
+                description: Some(SHIPPED.into()),
+                kind: None,
+                level: None,
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+                status: None,
+            }
+            .into(),
+        ))
         .await
         .expect("a cross-type near-match is a note, never a refusal")
         .structured_content
@@ -181,20 +187,26 @@ async fn a_cross_type_near_match_is_written_and_named_with_its_type() {
 #[tokio::test]
 async fn a_same_type_near_match_is_still_a_duplicate_and_still_offers_sharpening() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(
-        "req:a-session-serves-its-own-build",
-        "A session talks only to a server of its own build",
-        SHIPPED,
-    )))
+    s.add_requirement(Parameters(
+        requirement(
+            "req:a-session-serves-its-own-build",
+            "A session talks only to a server of its own build",
+            SHIPPED,
+        )
+        .into(),
+    ))
     .await
     .expect("the first requirement lands");
 
     let err = s
-        .add_requirement(Parameters(requirement(
-            "req:no-stale-daemon",
-            "An upgrade never leaves the old daemon serving",
-            SHIPPED,
-        )))
+        .add_requirement(Parameters(
+            requirement(
+                "req:no-stale-daemon",
+                "An upgrade never leaves the old daemon serving",
+                SHIPPED,
+            )
+            .into(),
+        ))
         .await
         .expect_err("a same-type near duplicate is still refused");
 

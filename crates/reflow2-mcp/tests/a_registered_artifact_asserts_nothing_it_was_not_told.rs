@@ -48,7 +48,7 @@ fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
 #[tokio::test]
 async fn an_artifact_registered_with_no_status_carries_none() {
     let s = svc().await;
-    let out = j!(s.add_artifact(Parameters(artifact("art:beamline-json", None))));
+    let out = j!(s.add_artifact(Parameters(artifact("art:beamline-json", None).into())));
     assert!(
         out["properties"].get("status").is_none(),
         "absent means nobody said — never `realized` on a file nobody has produced: {out:?}"
@@ -58,24 +58,29 @@ async fn an_artifact_registered_with_no_status_carries_none() {
 #[tokio::test]
 async fn the_status_it_is_told_is_the_status_it_stores() {
     let s = svc().await;
-    let out = j!(s.add_artifact(Parameters(artifact("art:verify-py", Some("planned")))));
+    let out = j!(s.add_artifact(Parameters(
+        artifact("art:verify-py", Some("planned")).into()
+    )));
     assert_eq!(out["properties"]["status"], "planned", "{out:?}");
 }
 
 #[tokio::test]
 async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_keeps_verified() {
     let s = svc().await;
-    s.add_capability(Parameters(CapabilityReq {
-        id: "cap:trace".into(),
-        name: Some("Trace the beamline".into()),
-        description: Some("Runs the ray trace.".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        satisfies: None,
-        allocated_to: None,
-    }))
+    s.add_capability(Parameters(
+        CapabilityReq {
+            id: "cap:trace".into(),
+            name: Some("Trace the beamline".into()),
+            description: Some("Runs the ray trace.".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            satisfies: None,
+            allocated_to: None,
+        }
+        .into(),
+    ))
     .await
     .expect("capability");
     let link = |checksum: &str| LinkArtifactReq {
@@ -106,9 +111,11 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
     );
 
     // Somebody verified it. A re-link must not quietly take that back.
-    s.add_artifact(Parameters(artifact("art:trace-script", Some("verified"))))
-        .await
-        .expect("revise status");
+    s.add_artifact(Parameters(
+        artifact("art:trace-script", Some("verified")).into(),
+    ))
+    .await
+    .expect("revise status");
     j!(s.link_artifact(Parameters(link("sha256:aaaa"))));
     let node = j!(s.get_node(Parameters(GetNodeReq {
         id: "art:trace-script".into(),

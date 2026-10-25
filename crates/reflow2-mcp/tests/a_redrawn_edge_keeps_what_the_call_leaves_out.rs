@@ -58,13 +58,16 @@ async fn node(s: &ReflowService, t: &str, id: &str, props: Value) {
 
 async fn seed() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    }))
+    s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into(),
+    ))
     .await
     .expect("contributor");
     node(&s, "Project", "proj:a", json!({"description": "p"})).await;

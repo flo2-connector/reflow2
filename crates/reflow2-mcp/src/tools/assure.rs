@@ -72,7 +72,9 @@ impl ReflowService {
     )]
     pub async fn add_verification(
         &self,
-        Parameters(req): Parameters<VerificationReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<VerificationReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf = crate::service::RequiredFields::new(
@@ -119,6 +121,7 @@ impl ReflowService {
         }
         // Refuse a create with no name BEFORE writing: `str` above leaves a
         // placeholder and relies on this call to refuse (see add_artifact).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         // A hypothesis test's block is read BEFORE anything is written, so a
         // block the reading cannot use refuses the whole call.
@@ -210,13 +213,20 @@ impl ReflowService {
             ),
             None => None,
         };
-        let node = g
+        let unset = crate::nulls::unset_nulled(
+            &mut g,
+            reflow2_core::nodes::node::VERIFICATION,
+            &req.id,
+            &nulled,
+        )?;
+        let mut node = g
             .get_node(reflow2_core::nodes::node::VERIFICATION, &req.id)
             .map_err(dyno_err)?
             .map(NodeDto::from)
             .ok_or_else(|| {
                 McpError::internal_error("verification vanished after its own create", None)
             })?;
+        node.unset = unset;
         let mut v = serde_json::to_value(node).map_err(ser_err)?;
         if let Some(obj) = v.as_object_mut()
             && !targets.is_empty()

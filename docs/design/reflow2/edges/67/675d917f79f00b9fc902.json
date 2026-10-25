@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fd4095a6fe92d419a094d02d52bae492b71187783079ce589c0cd885036e0120",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-loop-hint-says-where-the-node-landed-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -29,20 +29,26 @@ async fn shared_service() -> ReflowService {
     // siblings are answered.
     reflow2_core::identity::declare_serving_many_sessions();
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:seat".into(),
-        name: Some("Seat".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:seat".into(),
+            name: Some("Seat".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     s
 }
 

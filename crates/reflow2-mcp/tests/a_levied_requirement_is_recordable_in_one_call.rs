@@ -43,32 +43,35 @@ macro_rules! j {
 async fn the_documented_path_for_a_levied_requirement_needs_no_escape_hatch() {
     let s = ReflowService::in_memory().expect("in-memory service");
 
-    let out = j!(s.add_requirement(Parameters(RequirementReq {
-        id: "req:they-need-this".into(),
-        name: Some("Ordering is preserved across the seam".into()),
-        statement: Some("it is preserved".into()),
-        source: Some("their-design (graph 1a97fc1f) — ifc:the-boundary".into()),
-        provenance: Some("imported".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    let out = j!(s.add_requirement(Parameters(
+        RequirementReq {
+            id: "req:they-need-this".into(),
+            name: Some("Ordering is preserved across the seam".into()),
+            statement: Some("it is preserved".into()),
+            source: Some("their-design (graph 1a97fc1f) — ifc:the-boundary".into()),
+            provenance: Some("imported".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
 
     let props = &out["properties"];
     assert_eq!(
@@ -97,32 +100,35 @@ async fn the_documented_path_for_a_levied_requirement_needs_no_escape_hatch() {
 #[tokio::test]
 async fn omitting_them_leaves_the_default_exactly_as_it_was() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    let out = j!(s.add_requirement(Parameters(RequirementReq {
-        id: "req:our-own".into(),
-        name: Some("Something we want".into()),
-        statement: Some("we want it".into()),
-        source: None,
-        provenance: None,
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    let out = j!(s.add_requirement(Parameters(
+        RequirementReq {
+            id: "req:our-own".into(),
+            name: Some("Something we want".into()),
+            statement: Some("we want it".into()),
+            source: None,
+            provenance: None,
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
     assert_eq!(out["properties"]["provenance"], "authored");
     assert!(out["properties"].get("source").is_none_or(|v| v.is_null()));
 }

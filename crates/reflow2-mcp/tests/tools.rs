@@ -71,61 +71,73 @@ fn obj(v: &serde_json::Value) -> serde_json::Map<String, serde_json::Value> {
 
 async fn seeded() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:sb".into(),
-        name: Some("Softball".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:physics".into(),
-        name: Some("Realistic physics".into()),
-        statement: Some("Ball flight must be plausible.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:flight".into(),
-        name: Some("Ball flight".into()),
-        description: Some("Simulate ball trajectory.".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
-    j!(s.add_component(Parameters(ComponentReq {
-        id: "cmp:physics".into(),
-        name: Some("Physics engine".into()),
-        description: Some("Runs the sim.".into()),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:sb".into(),
+            name: Some("Softball".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:physics".into(),
+            name: Some("Realistic physics".into()),
+            statement: Some("Ball flight must be plausible.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:flight".into(),
+            name: Some("Ball flight".into()),
+            description: Some("Simulate ball trajectory.".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
+    j!(s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:physics".into(),
+            name: Some("Physics engine".into()),
+            description: Some("Runs the sim.".into()),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into()
+    )));
     j!(s.contains(Parameters(ContainsReq {
         project_id: "proj:sb".into(),
         child_type: Some("Requirement".into()),
@@ -235,43 +247,49 @@ async fn genesis_bootstraps_then_detect_hands_off() {
     assert_eq!(again["created"], false);
 
     // The skill's job: seed P0/P1 only (no Components), then DETECT hands off.
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:physics".into(),
-        name: Some("Realistic physics".into()),
-        statement: Some("Ball flight must be plausible.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:flight".into(),
-        name: Some("Ball flight".into()),
-        description: Some("Simulate ball trajectory.".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:physics".into(),
+            name: Some("Realistic physics".into()),
+            statement: Some("Ball flight must be plausible.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:flight".into(),
+            name: Some("Ball flight".into()),
+            description: Some("Simulate ball trajectory.".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     j!(s.satisfies(Parameters(SatisfiesReq {
         from_id: "cap:flight".into(),
         to_id: "req:physics".into(),
@@ -299,17 +317,20 @@ async fn link_artifact_closes_the_unrealized_capability_gap() {
     let s = ReflowService::in_memory().expect("in-memory service");
     // Two capabilities, neither realized yet.
     for (id, name) in [("cap:flight", "Ball flight"), ("cap:score", "Scoring")] {
-        j!(s.add_capability(Parameters(CapabilityReq {
-            satisfies: None,
-            allocated_to: None,
-            id: id.into(),
-            name: Some(name.into()),
-            description: Some("…".into()),
-            status: None,
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-        })));
+        j!(s.add_capability(Parameters(
+            CapabilityReq {
+                satisfies: None,
+                allocated_to: None,
+                id: id.into(),
+                name: Some(name.into()),
+                description: Some("…".into()),
+                status: None,
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+            }
+            .into()
+        )));
     }
 
     // Realize only cap:flight. Now artifacts>0, so DETECT can flag the other.
@@ -533,23 +554,29 @@ async fn gap_to_prompt_collect_then_serve() {
 #[tokio::test]
 async fn interface_tools_pair_both_sides_of_a_contract() {
     let s = seeded().await;
-    j!(s.add_component(Parameters(ComponentReq {
-        id: "cmp:ui".into(),
-        name: Some("Scoreboard UI".into()),
-        description: Some("Shows the score.".into()),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    })));
-    j!(s.add_interface(Parameters(IdName {
-        id: "ifc:state".into(),
-        name: Some("Game state feed".into()),
-        description: None,
-        spec: None,
-    })));
+    j!(s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:ui".into(),
+            name: Some("Scoreboard UI".into()),
+            description: Some("Shows the score.".into()),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_interface(Parameters(
+        IdName {
+            id: "ifc:state".into(),
+            name: Some("Game state feed".into()),
+            description: None,
+            spec: None,
+        }
+        .into()
+    )));
     j!(s.provides(Parameters(ProvidesReq {
         from_id: "cmp:physics".into(),
         to_id: "ifc:state".into()
@@ -593,12 +620,15 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
 #[tokio::test]
 async fn a_contract_with_no_provider_surfaces_as_a_gap_over_the_surface() {
     let s = seeded().await;
-    j!(s.add_interface(Parameters(IdName {
-        id: "ifc:state".into(),
-        name: Some("Game state feed".into()),
-        description: None,
-        spec: None,
-    })));
+    j!(s.add_interface(Parameters(
+        IdName {
+            id: "ifc:state".into(),
+            name: Some("Game state feed".into()),
+            description: None,
+            spec: None,
+        }
+        .into()
+    )));
     j!(s.consumes(Parameters(ConsumesReq {
         from_id: "cmp:physics".into(),
         to_id: "ifc:state".into(),
@@ -825,21 +855,24 @@ async fn the_surface_can_say_that_nothing_moved() {
     // And the label cannot be applied by hand through the generic change path,
     // or the ledger's count of first baselines would measure nothing.
     assert!(
-        s.add_change_event(Parameters(AddChangeEventReq {
-            description: None,
-            detected_at: None,
-            rationale_basis: None,
-            commits: None,
-            repair: None,
-            stands_in_for: None,
-            summary: None,
-            rationale: None,
-            id: "chg:fake".into(),
-            name: Some("not really a baseline".into()),
-            change_type: Some("baseline_established".into()),
-            subject: None,
-            affected: None,
-        }),)
+        s.add_change_event(Parameters(
+            AddChangeEventReq {
+                description: None,
+                detected_at: None,
+                rationale_basis: None,
+                commits: None,
+                repair: None,
+                stands_in_for: None,
+                summary: None,
+                rationale: None,
+                id: "chg:fake".into(),
+                name: Some("not really a baseline".into()),
+                change_type: Some("baseline_established".into()),
+                subject: None,
+                affected: None,
+            }
+            .into()
+        ),)
             .await
             .is_err(),
         "`baseline_established` is reserved for set_artifact_checksum"
@@ -888,42 +921,51 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
     );
 
     // Answer both, using the typed tools.
-    j!(s.add_verification(Parameters(VerificationReq {
-        id: "ver:flight".into(),
-        name: Some("Ball flight tests".into()),
-        method: Some("test".into()),
-        level: Some("unit".into()),
-        description: None,
-        verifies: None,
-        status: None,
-        findings: None,
-        last_run_at: None,
-        location: None,
-        computed: None,
-        variables: None,
-        fixes: None,
-        hypothesis_block: None,
-    })));
+    j!(s.add_verification(Parameters(
+        VerificationReq {
+            id: "ver:flight".into(),
+            name: Some("Ball flight tests".into()),
+            method: Some("test".into()),
+            level: Some("unit".into()),
+            description: None,
+            verifies: None,
+            status: None,
+            findings: None,
+            last_run_at: None,
+            location: None,
+            computed: None,
+            variables: None,
+            fixes: None,
+            hypothesis_block: None,
+        }
+        .into()
+    )));
     j!(s.verifies(Parameters(VerifiesReq {
         verification_id: "ver:flight".into(),
         target_type: Some("Capability".into()),
         target_id: "cap:flight".into(),
     })));
-    j!(s.add_release(Parameters(ReleaseReq {
-        id: "rel:v1".into(),
-        name: Some("Softball v1".into()),
-        version: Some("1.0.0".into()),
-        unit_type: Some("bundle".into()),
-        description: None,
-        status: None,
-    })));
-    j!(s.add_environment(Parameters(EnvironmentReq {
-        id: "env:itch".into(),
-        name: Some("itch.io".into()),
-        env_type: Some("production".into()),
-        location: None,
-        description: None,
-    })));
+    j!(s.add_release(Parameters(
+        ReleaseReq {
+            id: "rel:v1".into(),
+            name: Some("Softball v1".into()),
+            version: Some("1.0.0".into()),
+            unit_type: Some("bundle".into()),
+            description: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_environment(Parameters(
+        EnvironmentReq {
+            id: "env:itch".into(),
+            name: Some("itch.io".into()),
+            env_type: Some("production".into()),
+            location: None,
+            description: None,
+        }
+        .into()
+    )));
     j!(s.deploy_to(Parameters(DeployToReq {
         release_id: "rel:v1".into(),
         environment_id: "env:itch".into(),
@@ -1238,13 +1280,16 @@ async fn describe_schema_rejects_a_half_given_pair() {
 #[tokio::test]
 async fn a_rejected_edge_names_the_alternatives() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:x".into(),
-        name: Some("X".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:x".into(),
+            name: Some("X".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
     let err = s
         .create_edge(Parameters(CreateEdgeReq {
             edge_type: "PACKAGES".into(), // the trial's first guess
@@ -1307,17 +1352,20 @@ async fn a_well_formed_hierarchy_reports_no_issues() {
         ("cmp:sub", "Sensor suite", "subsystem"),
         ("cmp:leaf", "Thermometer", "component"),
     ] {
-        j!(s.add_component(Parameters(ComponentReq {
-            id: id.into(),
-            name: Some(name.into()),
-            description: Some("part".into()),
-            kind: None,
-            level: Some(level.into()),
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-            status: None,
-        })));
+        j!(s.add_component(Parameters(
+            ComponentReq {
+                id: id.into(),
+                name: Some(name.into()),
+                description: Some("part".into()),
+                kind: None,
+                level: Some(level.into()),
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+                status: None,
+            }
+            .into()
+        )));
     }
     j!(s.contain_component(Parameters(ContainComponentReq {
         from_id: "cmp:sys".into(),
@@ -1340,17 +1388,20 @@ async fn a_well_formed_hierarchy_reports_no_issues() {
 async fn skipping_a_level_is_reported() {
     let s = ReflowService::in_memory().expect("in-memory service");
     for (id, level) in [("cmp:sys", "system"), ("cmp:leaf", "component")] {
-        j!(s.add_component(Parameters(ComponentReq {
-            id: id.into(),
-            name: Some(id.into()),
-            description: Some("part".into()),
-            kind: None,
-            level: Some(level.into()),
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-            status: None,
-        })));
+        j!(s.add_component(Parameters(
+            ComponentReq {
+                id: id.into(),
+                name: Some(id.into()),
+                description: Some("part".into()),
+                kind: None,
+                level: Some(level.into()),
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+                status: None,
+            }
+            .into()
+        )));
     }
     j!(s.contain_component(Parameters(ContainComponentReq {
         from_id: "cmp:sys".into(),
@@ -1374,17 +1425,20 @@ async fn skipping_a_level_is_reported() {
 async fn nesting_two_defaulted_components_is_a_mismatch_not_silence() {
     let s = ReflowService::in_memory().expect("in-memory service");
     for id in ["cmp:a", "cmp:b"] {
-        j!(s.add_component(Parameters(ComponentReq {
-            id: id.into(),
-            name: Some(id.into()),
-            description: Some("part".into()),
-            kind: None,
-            level: None,
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-            status: None,
-        })));
+        j!(s.add_component(Parameters(
+            ComponentReq {
+                id: id.into(),
+                name: Some(id.into()),
+                description: Some("part".into()),
+                kind: None,
+                level: None,
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+                status: None,
+            }
+            .into()
+        )));
     }
     j!(s.contain_component(Parameters(ContainComponentReq {
         from_id: "cmp:a".into(),
@@ -1404,39 +1458,45 @@ async fn nesting_two_defaulted_components_is_a_mismatch_not_silence() {
 #[tokio::test]
 async fn marking_a_requirement_dropped_stops_the_nagging() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:p".into(),
-        name: Some("P".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:maybe".into(),
-        name: Some("Maybe".into()),
-        statement: Some("We might not do this.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:p".into(),
+            name: Some("P".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:maybe".into(),
+            name: Some("Maybe".into()),
+            statement: Some("We might not do this.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
 
     let flagged = |v: &serde_json::Value| {
         v.as_array().unwrap().iter().any(|c| {
@@ -1452,17 +1512,20 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
     // in two lists, 20 of 31 defects on the storyflow trial). Per-node
     // traceability is gated on the relevant phase existing, so a capability
     // has to exist for the question to be meaningful at all.
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:other".into(),
-        name: Some("Other".into()),
-        description: Some("does something else".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:other".into(),
+            name: Some("Other".into()),
+            description: Some("does something else".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     assert!(
         flagged(&jl!(s.detect_gaps(Parameters(GapScopeReq::default())))),
         "an unsatisfied requirement is asked about — once, by DETECT"
@@ -1797,18 +1860,21 @@ async fn documents_links_a_doc_over_the_surface_and_refuses_a_ghost() {
     // instruction files disagreeing about the build — uncatchable while no
     // graph knows the files exist.
     let s = seeded().await;
-    j!(s.add_artifact(Parameters(AddArtifactReq {
-        id: "art:readme".into(),
-        name: Some("README.md".into()),
-        artifact_type: Some("document".into()),
-        location: Some("README.md".into()),
-        status: None,
-        description: None,
-        checksum: None,
-        not_read: None,
-        source_reliability: None,
-        information_credibility: None,
-    })));
+    j!(s.add_artifact(Parameters(
+        AddArtifactReq {
+            id: "art:readme".into(),
+            name: Some("README.md".into()),
+            artifact_type: Some("document".into()),
+            location: Some("README.md".into()),
+            status: None,
+            description: None,
+            checksum: None,
+            not_read: None,
+            source_reliability: None,
+            information_credibility: None,
+        }
+        .into()
+    )));
 
     let edge = j!(s.documents(Parameters(DocumentsReq {
         artifact_id: "art:readme".into(),
@@ -2048,17 +2114,20 @@ async fn compare_designs_reports_divergence_from_a_base_export() {
     assert_eq!(same["other"], "live graph");
 
     // Diverge the live graph: a new design node relative to the base.
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:catch".into(),
-        name: Some("Catching".into()),
-        description: Some("Field the ball.".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:catch".into(),
+            name: Some("Catching".into()),
+            description: Some("Field the ball.".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
 
     let diff = j!(s.compare_designs(Parameters(CompareDesignsReq {
         budget_chars: None,
@@ -2121,17 +2190,20 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
 
     // A capability claiming realized with no passing check is the classic
     // raw-tools-only residue; the hint rides the write result itself.
-    let cap = j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:shipped".into(),
-        name: Some("Shipped".into()),
-        description: Some("Claims to be built.".into()),
-        status: Some("realized".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    let cap = j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:shipped".into(),
+            name: Some("Shipped".into()),
+            description: Some("Claims to be built.".into()),
+            status: Some("realized".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     assert!(
         cap["loop_hint"]
             .as_str()
@@ -2158,17 +2230,20 @@ async fn loop_status_reports_debt_and_the_write_tools_point_at_the_loop() {
     );
 
     // Structural writes point at check-health instead.
-    let cmp = j!(s.add_component(Parameters(ComponentReq {
-        id: "cmp:new".into(),
-        name: Some("New part".into()),
-        description: Some("Just added.".into()),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    })));
+    let cmp = j!(s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:new".into(),
+            name: Some("New part".into()),
+            description: Some("Just added.".into()),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into()
+    )));
     assert!(
         cmp["loop_hint"].as_str().unwrap().contains("check-health"),
         "{cmp}"
@@ -2192,28 +2267,31 @@ async fn loop_status_digests_the_verification_roll_instead_of_rolling_it() {
     // mature design, and the shape that made the payload unreadable.
     for i in 0..40 {
         let id = format!("ver:bulk-{i}");
-        j!(s.add_verification(Parameters(VerificationReq {
-            id: id.clone(),
-            // Long names are the actual bulk: these are test descriptions in
-            // the real graph, hundreds of characters each.
-            name: Some(format!(
-                "Check {i} — {}",
-                "a description long enough to matter when it is repeated once per check. "
-                    .repeat(4)
-            )),
-            method: Some("test".into()),
-            level: Some("unit".into()),
-            description: None,
-            verifies: None,
-            status: None,
-            findings: None,
-            last_run_at: None,
-            location: None,
-            computed: None,
-            variables: None,
-            fixes: None,
-            hypothesis_block: None,
-        })));
+        j!(s.add_verification(Parameters(
+            VerificationReq {
+                id: id.clone(),
+                // Long names are the actual bulk: these are test descriptions in
+                // the real graph, hundreds of characters each.
+                name: Some(format!(
+                    "Check {i} — {}",
+                    "a description long enough to matter when it is repeated once per check. "
+                        .repeat(4)
+                )),
+                method: Some("test".into()),
+                level: Some("unit".into()),
+                description: None,
+                verifies: None,
+                status: None,
+                findings: None,
+                last_run_at: None,
+                location: None,
+                computed: None,
+                variables: None,
+                fixes: None,
+                hypothesis_block: None,
+            }
+            .into()
+        )));
         j!(s.set_verification_status(Parameters(VerificationStatusReq {
             verification_id: id,
             status: if i == 7 { "failing" } else { "passing" }.into(),
@@ -2305,17 +2383,20 @@ async fn export_files_chain_by_content_hash() {
     );
 
     // Changed design: the new file names its predecessor.
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:chain".into(),
-        name: Some("Chained".into()),
-        description: Some("Content moved.".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:chain".into(),
+            name: Some("Chained".into()),
+            description: Some("Content moved.".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     let second = j!(s.export_graph(Parameters(ExportGraphToReq {
         path: Some(path_str.clone()),
         overwrite: Some(true),
@@ -2354,25 +2435,28 @@ async fn change_event_declares_what_it_changed_atomically() {
     // A missing affected node refuses the whole call before anything is
     // written — no event, no partial edge set.
     let refused = s
-        .add_change_event(Parameters(AddChangeEventReq {
-            description: None,
-            detected_at: None,
-            rationale_basis: None,
-            commits: None,
-            repair: None,
-            stands_in_for: None,
-            summary: None,
-            rationale: None,
-            id: "chg:wind".into(),
-            name: Some("Add wind".into()),
-            change_type: Some("new_feature".into()),
-            subject: None,
-            affected: Some(vec![AffectedNodeReq {
-                node_type: Some("Capability".into()),
-                node_id: "cap:nope".into(),
-                action: None,
-            }]),
-        }))
+        .add_change_event(Parameters(
+            AddChangeEventReq {
+                description: None,
+                detected_at: None,
+                rationale_basis: None,
+                commits: None,
+                repair: None,
+                stands_in_for: None,
+                summary: None,
+                rationale: None,
+                id: "chg:wind".into(),
+                name: Some("Add wind".into()),
+                change_type: Some("new_feature".into()),
+                subject: None,
+                affected: Some(vec![AffectedNodeReq {
+                    node_type: Some("Capability".into()),
+                    node_id: "cap:nope".into(),
+                    action: None,
+                }]),
+            }
+            .into(),
+        ))
         .await;
     assert!(refused.is_err(), "a missing affected node refuses the call");
     let events = jl!(s.scan_nodes(Parameters(ScanReq {
@@ -2387,7 +2471,34 @@ async fn change_event_declares_what_it_changed_atomically() {
 
     // A bogus action is refused the same way.
     let bad_action = s
-        .add_change_event(Parameters(AddChangeEventReq {
+        .add_change_event(Parameters(
+            AddChangeEventReq {
+                description: None,
+                detected_at: None,
+                rationale_basis: None,
+                commits: None,
+                repair: None,
+                stands_in_for: None,
+                summary: None,
+                rationale: None,
+                id: "chg:wind".into(),
+                name: Some("Add wind".into()),
+                change_type: Some("new_feature".into()),
+                subject: None,
+                affected: Some(vec![AffectedNodeReq {
+                    node_type: Some("Requirement".into()),
+                    node_id: "req:physics".into(),
+                    action: Some("tweaked".into()),
+                }]),
+            }
+            .into(),
+        ))
+        .await;
+    assert!(bad_action.is_err(), "an unknown action refuses the call");
+
+    // The valid call draws the CHANGED edges in the same write.
+    let res = j!(s.add_change_event(Parameters(
+        AddChangeEventReq {
             description: None,
             detected_at: None,
             rationale_basis: None,
@@ -2400,42 +2511,21 @@ async fn change_event_declares_what_it_changed_atomically() {
             name: Some("Add wind".into()),
             change_type: Some("new_feature".into()),
             subject: None,
-            affected: Some(vec![AffectedNodeReq {
-                node_type: Some("Requirement".into()),
-                node_id: "req:physics".into(),
-                action: Some("tweaked".into()),
-            }]),
-        }))
-        .await;
-    assert!(bad_action.is_err(), "an unknown action refuses the call");
-
-    // The valid call draws the CHANGED edges in the same write.
-    let res = j!(s.add_change_event(Parameters(AddChangeEventReq {
-        description: None,
-        detected_at: None,
-        rationale_basis: None,
-        commits: None,
-        repair: None,
-        stands_in_for: None,
-        summary: None,
-        rationale: None,
-        id: "chg:wind".into(),
-        name: Some("Add wind".into()),
-        change_type: Some("new_feature".into()),
-        subject: None,
-        affected: Some(vec![
-            AffectedNodeReq {
-                node_type: Some("Requirement".into()),
-                node_id: "req:physics".into(),
-                action: Some("modified".into()),
-            },
-            AffectedNodeReq {
-                node_type: Some("Capability".into()),
-                node_id: "cap:flight".into(),
-                action: None,
-            },
-        ]),
-    }),));
+            affected: Some(vec![
+                AffectedNodeReq {
+                    node_type: Some("Requirement".into()),
+                    node_id: "req:physics".into(),
+                    action: Some("modified".into()),
+                },
+                AffectedNodeReq {
+                    node_type: Some("Capability".into()),
+                    node_id: "cap:flight".into(),
+                    action: None,
+                },
+            ]),
+        }
+        .into()
+    ),));
     assert_eq!(res["event"]["node_id"], "chg:wind");
     let changed = res["changed"].as_array().expect("changed list");
     assert_eq!(changed.len(), 2);
@@ -2469,24 +2559,30 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     let s = seeded().await;
 
     // --- temporal: epochs, ordering, pinning, recorded change ---
-    j!(s.add_epoch(Parameters(AddEpochReq {
-        id: "epoch:v1".into(),
-        name: Some("First cut".into()),
-        epoch_type: Some("baseline".into()),
-        sequence: Some(0),
-        checksum: None,
-        description: None,
-        status: None,
-    })));
-    j!(s.add_epoch(Parameters(AddEpochReq {
-        id: "epoch:v2".into(),
-        name: Some("Second cut".into()),
-        epoch_type: Some("revision".into()),
-        sequence: Some(1),
-        checksum: None,
-        description: None,
-        status: None,
-    })));
+    j!(s.add_epoch(Parameters(
+        AddEpochReq {
+            id: "epoch:v1".into(),
+            name: Some("First cut".into()),
+            epoch_type: Some("baseline".into()),
+            sequence: Some(0),
+            checksum: None,
+            description: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_epoch(Parameters(
+        AddEpochReq {
+            id: "epoch:v2".into(),
+            name: Some("Second cut".into()),
+            epoch_type: Some("revision".into()),
+            sequence: Some(1),
+            checksum: None,
+            description: None,
+            status: None,
+        }
+        .into()
+    )));
     j!(s.precedes(Parameters(PrecedesReq {
         earlier_epoch: "epoch:v1".into(),
         later_epoch: "epoch:v2".into(),
@@ -2501,21 +2597,24 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         "pin reports what it pinned: {pinned}"
     );
 
-    j!(s.add_change_event(Parameters(AddChangeEventReq {
-        description: None,
-        detected_at: None,
-        rationale_basis: None,
-        commits: None,
-        repair: None,
-        stands_in_for: None,
-        summary: None,
-        rationale: None,
-        id: "chg:tune".into(),
-        name: Some("Tune the model".into()),
-        change_type: Some("refactor".into()),
-        subject: None,
-        affected: None,
-    }),));
+    j!(s.add_change_event(Parameters(
+        AddChangeEventReq {
+            description: None,
+            detected_at: None,
+            rationale_basis: None,
+            commits: None,
+            repair: None,
+            stands_in_for: None,
+            summary: None,
+            rationale: None,
+            id: "chg:tune".into(),
+            name: Some("Tune the model".into()),
+            change_type: Some("refactor".into()),
+            subject: None,
+            affected: None,
+        }
+        .into()
+    ),));
     // record_change snapshots the prior state before applying — the axis-Z write.
     let rec = j!(s.snapshot_before_change(Parameters(RecordChangeReq {
         epoch_id: "epoch:v2".into(),
@@ -2535,12 +2634,15 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     );
 
     // --- resources ---
-    j!(s.add_resource(Parameters(ResourceReq {
-        id: "res:gpu".into(),
-        name: Some("GPU pool".into()),
-        provider: Some("cloud".into()),
-        description: None,
-    })));
+    j!(s.add_resource(Parameters(
+        ResourceReq {
+            id: "res:gpu".into(),
+            name: Some("GPU pool".into()),
+            provider: Some("cloud".into()),
+            description: None,
+        }
+        .into()
+    )));
     j!(s.require_resource(Parameters(RequireResourceReq {
         from_type: Some("Component".into()),
         from_id: "cmp:physics".into(),
@@ -2555,18 +2657,21 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     assert_eq!(requires["node"]["node_id"], "res:gpu");
 
     // --- realization ---
-    j!(s.add_artifact(Parameters(AddArtifactReq {
-        id: "art:flight-rs".into(),
-        name: Some("flight.rs".into()),
-        artifact_type: Some("code".into()),
-        location: Some("src/flight.rs".into()),
-        status: None,
-        description: None,
-        checksum: None,
-        not_read: None,
-        source_reliability: None,
-        information_credibility: None,
-    })));
+    j!(s.add_artifact(Parameters(
+        AddArtifactReq {
+            id: "art:flight-rs".into(),
+            name: Some("flight.rs".into()),
+            artifact_type: Some("code".into()),
+            location: Some("src/flight.rs".into()),
+            status: None,
+            description: None,
+            checksum: None,
+            not_read: None,
+            source_reliability: None,
+            information_credibility: None,
+        }
+        .into()
+    )));
     j!(s.realizes(Parameters(RealizesReq {
         artifact_id: "art:flight-rs".into(),
         target_type: Some("Capability".into()),
@@ -2609,17 +2714,20 @@ async fn temporal_resource_and_realization_tools_round_trip() {
     );
 
     // --- delete_node: the survivor of a mistake, removed; result names it. ---
-    j!(s.add_component(Parameters(ComponentReq {
-        id: "cmp:typo".into(),
-        name: Some("Typo".into()),
-        description: Some("created by mistake".into()),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    })));
+    j!(s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:typo".into(),
+            name: Some("Typo".into()),
+            description: Some("created by mistake".into()),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into()
+    )));
     let deleted = j!(s.delete_node(Parameters(TypedIdReq {
         node_type: Some("Component".into()),
         id: "cmp:typo".into(),
@@ -2781,32 +2889,35 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
     // A write that moves the owed-set, then a read: still no debt summary on
     // the read - this is exactly the write->read boundary that used to cost a
     // full loop_status.
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:latency".into(),
-        name: Some("Low latency".into()),
-        statement: Some("Input to render under 50ms.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:latency".into(),
+            name: Some("Low latency".into()),
+            statement: Some("Input to render under 50ms.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
     let after_write = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Capability".into()),
         id: "cap:flight".into(),
@@ -2822,32 +2933,35 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
 
     // COUNTERWEIGHT: the WRITE-side hint is untouched - it is a static
     // sentence and costs nothing.
-    let write = j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:throughput".into(),
-        name: Some("Throughput".into()),
-        statement: Some("Sustain 60 frames.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    let write = j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:throughput".into(),
+            name: Some("Throughput".into()),
+            statement: Some("Sustain 60 frames.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
     assert!(
         write.get("loop_hint").is_some(),
         "the write-side static loop_hint stays: {write}"
@@ -2885,17 +2999,20 @@ async fn a_read_too_large_to_return_says_what_it_left_out() {
     let s = ReflowService::in_memory().expect("in-memory service");
     let prose = "x".repeat(3_000);
     for i in 0..30 {
-        j!(s.add_capability(Parameters(CapabilityReq {
-            satisfies: None,
-            allocated_to: None,
-            id: format!("cap:{i}"),
-            name: Some(format!("Capability {i}")),
-            description: Some(prose.clone()),
-            status: None,
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-        })));
+        j!(s.add_capability(Parameters(
+            CapabilityReq {
+                satisfies: None,
+                allocated_to: None,
+                id: format!("cap:{i}"),
+                name: Some(format!("Capability {i}")),
+                description: Some(prose.clone()),
+                status: None,
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+            }
+            .into()
+        )));
     }
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -2938,17 +3055,20 @@ async fn a_single_node_larger_than_the_budget_is_still_returned() {
     // Otherwise a big node becomes unreachable rather than merely expensive,
     // and an unreachable node is a silent drop by another name.
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:huge".into(),
-        name: Some("Huge".into()),
-        description: Some("y".repeat(60_000)),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:huge".into(),
+            name: Some("Huge".into()),
+            description: Some("y".repeat(60_000)),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
         level: None,
@@ -2962,17 +3082,20 @@ async fn a_single_node_larger_than_the_budget_is_still_returned() {
 #[tokio::test]
 async fn brief_gives_the_shape_without_the_prose() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:one".into(),
-        name: Some("The one".into()),
-        description: Some("z".repeat(5_000)),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:one".into(),
+            name: Some("The one".into()),
+            description: Some("z".repeat(5_000)),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
         level: None,
@@ -3001,17 +3124,20 @@ async fn an_explicit_limit_is_reported_as_the_reason_it_stopped() {
     // agent deciding whether to page needs to know which one it hit.
     let s = ReflowService::in_memory().expect("in-memory service");
     for i in 0..5 {
-        j!(s.add_capability(Parameters(CapabilityReq {
-            satisfies: None,
-            allocated_to: None,
-            id: format!("cap:{i}"),
-            name: Some(format!("Cap {i}")),
-            description: Some("small".into()),
-            status: None,
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-        })));
+        j!(s.add_capability(Parameters(
+            CapabilityReq {
+                satisfies: None,
+                allocated_to: None,
+                id: format!("cap:{i}"),
+                name: Some(format!("Cap {i}")),
+                description: Some("small".into()),
+                status: None,
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+            }
+            .into()
+        )));
     }
 
     let page = j!(s.scan_nodes(Parameters(ScanReq {
@@ -3142,20 +3268,26 @@ async fn the_tool_catalogue_finds_a_tool_by_the_job_it_does() {
 /// A seat to claim with, and something to claim.
 async fn claimable() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:seat".into(),
-        name: Some("Seat".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:seat".into(),
+            name: Some("Seat".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     s
 }
 
@@ -3219,13 +3351,16 @@ async fn in_a_session_a_claim_still_needs_no_seat() {
 #[tokio::test]
 async fn two_claims_from_one_session_report_one_seat() {
     let s = claimable().await;
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:bob".into(),
-        name: Some("Bob".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:bob".into(),
+            name: Some("Bob".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     let first = j!(s.claim_region_inner(claim_of(None), false));
     let mut second = claim_of(None);
     second.contributor_id = "who:bob".into();
@@ -3292,13 +3427,16 @@ async fn minting_a_seat_writes_nothing() {
 #[tokio::test]
 async fn a_project_mode_can_be_chosen_after_genesis() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:m".into(),
-        name: Some("Modey".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:m".into(),
+            name: Some("Modey".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
 
     let set = j!(s.set_project_mode(Parameters(ProjectModeReq {
         project_id: "proj:m".into(),
@@ -3314,13 +3452,16 @@ async fn a_project_mode_can_be_chosen_after_genesis() {
 #[tokio::test]
 async fn choosing_a_mode_preserves_everything_else_about_the_project() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:m".into(),
-        name: Some("Modey".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:m".into(),
+            name: Some("Modey".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
     j!(s.set_project_mode(Parameters(ProjectModeReq {
         project_id: "proj:m".into(),
         mode: "rigid".into(),
@@ -3341,13 +3482,16 @@ async fn choosing_a_mode_preserves_everything_else_about_the_project() {
 #[tokio::test]
 async fn an_unknown_mode_fails_loud_rather_than_leaving_the_old_one() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:m".into(),
-        name: Some("Modey".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:m".into(),
+            name: Some("Modey".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
     j!(s.set_project_mode(Parameters(ProjectModeReq {
         project_id: "proj:m".into(),
         mode: "rigid".into(),
@@ -3617,15 +3761,18 @@ fn add_contributor_accepts_contributor_id_as_an_alias_for_id() {
 #[tokio::test]
 async fn an_unknown_node_type_is_refused_rather_than_answered_null() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_epoch(Parameters(AddEpochReq {
-        id: "epoch:real".into(),
-        name: Some("a real epoch".into()),
-        epoch_type: Some("revision".into()),
-        sequence: Some(1),
-        checksum: None,
-        description: None,
-        status: None,
-    })));
+    j!(s.add_epoch(Parameters(
+        AddEpochReq {
+            id: "epoch:real".into(),
+            name: Some("a real epoch".into()),
+            epoch_type: Some("revision".into()),
+            sequence: Some(1),
+            checksum: None,
+            description: None,
+            status: None,
+        }
+        .into()
+    )));
 
     // THE REPRODUCTION: the type name they used.
     let err = s
@@ -3686,17 +3833,20 @@ async fn scan_nodes_filters_by_decomposition_level() {
         // still answer to that filter rather than vanishing from both answers.
         ("cmp:unset", None),
     ] {
-        j!(s.add_component(Parameters(ComponentReq {
-            id: id.into(),
-            name: Some(id.into()),
-            description: Some("x".into()),
-            kind: None,
-            level: level.map(str::to_string),
-            distinct_from: None,
-            replaces: None,
-            tier: None,
-            status: None,
-        })));
+        j!(s.add_component(Parameters(
+            ComponentReq {
+                id: id.into(),
+                name: Some(id.into()),
+                description: Some("x".into()),
+                kind: None,
+                level: level.map(str::to_string),
+                distinct_from: None,
+                replaces: None,
+                tier: None,
+                status: None,
+            }
+            .into()
+        )));
     }
 
     let subs = j!(s.scan_nodes(Parameters(ScanReq {
@@ -3743,17 +3893,20 @@ async fn scan_nodes_filters_by_decomposition_level() {
 #[tokio::test]
 async fn a_bad_level_is_refused_rather_than_answered_empty() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_component(Parameters(ComponentReq {
-        id: "cmp:x".into(),
-        name: Some("x".into()),
-        description: Some("x".into()),
-        kind: None,
-        level: Some("subsystem".into()),
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    })));
+    j!(s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:x".into(),
+            name: Some("x".into()),
+            description: Some("x".into()),
+            kind: None,
+            level: Some("subsystem".into()),
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into()
+    )));
 
     let bad_level = s
         .scan_nodes(Parameters(ScanReq {
@@ -3799,27 +3952,33 @@ async fn add_design_rule_is_a_typed_constructor() {
     // typed constructor takes name+statement, optional category, and leaves
     // `enforced` UNSET unless stated.
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "prj:p".into(),
-        name: Some("P".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    let node = j!(s.add_design_rule(Parameters(DesignRuleReq {
-        id: "rule:branch-then-pr".into(),
-        name: Some("Branch, then PR".into()),
-        statement: Some("Nothing lands on main directly; open a PR from a branch.".into()),
-        category: Some("convention".into()),
-        enforced: None,
-        units: None,
-        distinct_from: None,
-        replaces: None,
-        approver: None,
-        acted_at: None,
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "prj:p".into(),
+            name: Some("P".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    let node = j!(s.add_design_rule(Parameters(
+        DesignRuleReq {
+            id: "rule:branch-then-pr".into(),
+            name: Some("Branch, then PR".into()),
+            statement: Some("Nothing lands on main directly; open a PR from a branch.".into()),
+            category: Some("convention".into()),
+            enforced: None,
+            units: None,
+            distinct_from: None,
+            replaces: None,
+            approver: None,
+            acted_at: None,
 
-        steps: None,
-    })));
+            steps: None,
+        }
+        .into()
+    )));
     assert_eq!(node["node_type"], "DesignRule");
     assert_eq!(
         node["properties"]["statement"].as_str().unwrap(),
@@ -3838,27 +3997,33 @@ async fn add_design_rule_records_a_stated_enforcement() {
     // A rule's power is settled intent (the intent gate's third case), so
     // stating it carries the owner's name since 2026-09-06 — see
     // a_constructor_accepts_the_owners_word_in_one_call.rs for the refusal.
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
-    let node = j!(s.add_design_rule(Parameters(DesignRuleReq {
-        id: "rule:gate".into(),
-        name: Some("Gate".into()),
-        statement: Some("The design gate must pass.".into()),
-        category: None,
-        enforced: Some(true),
-        units: None,
-        distinct_from: None,
-        replaces: None,
-        approver: Some("who:ann".into()),
-        acted_at: None,
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
+    let node = j!(s.add_design_rule(Parameters(
+        DesignRuleReq {
+            id: "rule:gate".into(),
+            name: Some("Gate".into()),
+            statement: Some("The design gate must pass.".into()),
+            category: None,
+            enforced: Some(true),
+            units: None,
+            distinct_from: None,
+            replaces: None,
+            approver: Some("who:ann".into()),
+            acted_at: None,
 
-        steps: None,
-    })));
+            steps: None,
+        }
+        .into()
+    )));
     assert_eq!(node["properties"]["enforced"], true);
 }
 
@@ -3985,32 +4150,35 @@ async fn add_epoch_without_a_sequence_names_where_you_are() {
 async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
     // dec:idea-get-node-by-id-alone-since-the-prefix-names-the-type
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:solo".into(),
-        name: Some("Solo".into()),
-        statement: Some("A lone requirement.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:solo".into(),
+            name: Some("Solo".into()),
+            statement: Some("A lone requirement.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
     let got = j!(s.get_node(Parameters(GetNodeReq {
         id: "req:solo".into(),
         node_type: None,
@@ -4055,12 +4223,15 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
 async fn interface_auth_refusal_says_it_is_authentication_not_authorization() {
     // fact:defect-interface-auth-names-a-mechanism-and-authorization-roles-have-no-home-...
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_interface(Parameters(IdName {
-        id: "ifc:x".into(),
-        name: Some("X".into()),
-        description: None,
-        spec: None,
-    })));
+    j!(s.add_interface(Parameters(
+        IdName {
+            id: "ifc:x".into(),
+            name: Some("X".into()),
+            description: None,
+            spec: None,
+        }
+        .into()
+    )));
     let e = s
         .set_interface_spec(Parameters(
             serde_json::from_value(

@@ -84,12 +84,15 @@ fn req(
 }
 
 async fn seed_first(s: &ReflowService) {
-    j!(s.add_requirement(Parameters(req(
-        "req:offline-sync",
-        "The reading store heals a lost reading",
-        IDEA_A,
-        None
-    ))));
+    j!(s.add_requirement(Parameters(
+        req(
+            "req:offline-sync",
+            "The reading store heals a lost reading",
+            IDEA_A,
+            None
+        )
+        .into()
+    )));
 }
 
 // THE DEFECT CASE. Two requirements saying one thing in different words is what
@@ -99,12 +102,15 @@ async fn a_near_duplicate_is_refused_and_both_routes_are_named() {
     let s = svc().await;
     seed_first(&s).await;
     let err = s
-        .add_requirement(Parameters(req(
-            "req:cumulative-totals",
-            "Lost readings heal themselves",
-            IDEA_B,
-            None,
-        )))
+        .add_requirement(Parameters(
+            req(
+                "req:cumulative-totals",
+                "Lost readings heal themselves",
+                IDEA_B,
+                None,
+            )
+            .into(),
+        ))
         .await
         .expect_err("a near duplicate must not be created silently");
     let msg = err.message.to_string();
@@ -126,12 +132,15 @@ async fn a_refused_create_leaves_no_node_behind() {
     let s = svc().await;
     seed_first(&s).await;
     let _ = s
-        .add_requirement(Parameters(req(
-            "req:cumulative-totals",
-            "Lost readings heal themselves",
-            IDEA_B,
-            None,
-        )))
+        .add_requirement(Parameters(
+            req(
+                "req:cumulative-totals",
+                "Lost readings heal themselves",
+                IDEA_B,
+                None,
+            )
+            .into(),
+        ))
         .await;
     let stored = j!(s.get_node(Parameters(GetNodeReq {
         node_type: Some("Requirement".into()),
@@ -152,12 +161,15 @@ async fn a_refused_create_leaves_no_node_behind() {
 async fn naming_what_was_rejected_lets_the_new_node_through() {
     let s = svc().await;
     seed_first(&s).await;
-    let made = j!(s.add_requirement(Parameters(req(
-        "req:cumulative-totals",
-        "Lost readings heal themselves",
-        IDEA_B,
-        Some(vec!["req:offline-sync".into()]),
-    ))));
+    let made = j!(s.add_requirement(Parameters(
+        req(
+            "req:cumulative-totals",
+            "Lost readings heal themselves",
+            IDEA_B,
+            Some(vec!["req:offline-sync".into()]),
+        )
+        .into()
+    )));
     assert_eq!(made["node_id"], "req:cumulative-totals");
 }
 
@@ -170,19 +182,23 @@ async fn sharpening_the_existing_node_is_never_refused() {
     seed_first(&s).await;
     // A neighbour, so the graph genuinely holds something near — without this
     // the assertion would hold whether the revision guard existed or not.
-    j!(s.add_requirement(Parameters(req(
-        "req:cumulative-totals",
-        "Lost readings heal themselves",
-        IDEA_B,
-        Some(vec!["req:offline-sync".into()]),
-    ))));
-    let sharpened = j!(s.add_requirement(Parameters(req(
+    j!(s.add_requirement(Parameters(
+        req(
+            "req:cumulative-totals",
+            "Lost readings heal themselves",
+            IDEA_B,
+            Some(vec!["req:offline-sync".into()]),
+        )
+        .into()
+    )));
+    let sharpened =
+        j!(s.add_requirement(Parameters(req(
         "req:offline-sync",
         "The reading store heals a lost reading",
         "A lost reading heals itself because the outdoor unit sends cumulative totals rather \
          than deltas, so a dropped packet costs nothing. Sharpened: the window is 24 hours.",
         None,
-    ))));
+    ).into())));
     assert!(
         sharpened["properties"]["statement"]
             .as_str()
@@ -199,13 +215,14 @@ async fn sharpening_the_existing_node_is_never_refused() {
 async fn an_unrelated_node_is_created_without_friction() {
     let s = svc().await;
     seed_first(&s).await;
-    let made = j!(s.add_requirement(Parameters(req(
+    let made =
+        j!(s.add_requirement(Parameters(req(
         "req:paint-colour",
         "The enclosure is powder-coated",
         "The outdoor enclosure is powder-coated in a light colour to reduce solar gain on the \
          housing.",
         None,
-    ))));
+    ).into())));
     assert_eq!(made["node_id"], "req:paint-colour");
     assert!(
         made.get("search_first").is_none(),
@@ -232,17 +249,20 @@ async fn an_unrelated_node_is_created_without_friction() {
 async fn a_capability_restating_a_requirement_is_reported_but_not_refused() {
     let s = svc().await;
     seed_first(&s).await;
-    let made = j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:cumulative".into(),
-        name: Some("Send cumulative totals".into()),
-        description: Some(IDEA_B.into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    let made = j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:cumulative".into(),
+            name: Some("Send cumulative totals".into()),
+            description: Some(IDEA_B.into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     assert_eq!(made["node_id"], "cap:cumulative");
     let advisory = made
         .get("search_first")
@@ -268,18 +288,12 @@ async fn a_capability_restating_a_requirement_is_reported_but_not_refused() {
 #[tokio::test]
 async fn text_too_short_to_carry_a_judgement_is_not_judged() {
     let s = svc().await;
-    j!(s.add_requirement(Parameters(req(
-        "req:from-a",
-        "From A",
-        "Session A wrote this.",
-        None
-    ))));
-    let b = j!(s.add_requirement(Parameters(req(
-        "req:from-b",
-        "From B",
-        "Session B wrote this.",
-        None
-    ))));
+    j!(s.add_requirement(Parameters(
+        req("req:from-a", "From A", "Session A wrote this.", None).into()
+    )));
+    let b = j!(s.add_requirement(Parameters(
+        req("req:from-b", "From B", "Session B wrote this.", None).into()
+    )));
     assert_eq!(
         b["node_id"], "req:from-b",
         "a short statement must never be refused — there is no signal to judge on, got {b}"

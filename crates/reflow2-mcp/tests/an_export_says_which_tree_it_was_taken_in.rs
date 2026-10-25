@@ -116,7 +116,7 @@ async fn the_export_names_the_branch_and_commit_it_was_taken_at() {
     let head = git(&dir, &["rev-parse", "HEAD"]);
 
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(req("req:a"))));
+    j!(s.add_requirement(Parameters(req("req:a").into())));
     let receipt = j!(s.export_graph(Parameters(export(&file))));
 
     let t = &receipt["taken_at"];
@@ -141,7 +141,7 @@ async fn uncommitted_work_other_than_the_export_reads_as_dirty() {
     std::fs::write(dir.join("README.md"), "changed and not committed\n").unwrap();
 
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(req("req:a"))));
+    j!(s.add_requirement(Parameters(req("req:a").into())));
     let receipt = j!(s.export_graph(Parameters(export(&file))));
     assert_eq!(
         receipt["taken_at"]["dirty"].as_bool(),
@@ -156,7 +156,7 @@ async fn an_unchanged_design_keeps_the_coordinate_it_was_taken_at() {
     let file = dir.join("docs").join("design.json");
 
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(req("req:a"))));
+    j!(s.add_requirement(Parameters(req("req:a").into())));
     let first = j!(s.export_graph(Parameters(export(&file))));
     let first_commit = first["taken_at"]["commit"].as_str().unwrap().to_string();
     git(&dir, &["add", "-A"]);
@@ -179,7 +179,7 @@ async fn an_unchanged_design_keeps_the_coordinate_it_was_taken_at() {
     );
 
     // The design moves: the coordinate moves with it.
-    j!(s.add_requirement(Parameters(req("req:b"))));
+    j!(s.add_requirement(Parameters(req("req:b").into())));
     let third = j!(s.export_graph(Parameters(export(&file))));
     assert_eq!(third["wrote"].as_str(), Some("changed"));
     assert_eq!(
@@ -194,7 +194,7 @@ async fn outside_git_there_is_no_coordinate_rather_than_a_made_up_one() {
     let dir = scratch("no-git");
     let file = dir.join("design.json");
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(req("req:a"))));
+    j!(s.add_requirement(Parameters(req("req:a").into())));
     let receipt = j!(s.export_graph(Parameters(export(&file))));
     assert!(
         receipt["taken_at"].is_null(),

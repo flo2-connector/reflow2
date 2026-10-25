@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9c5ae6acea49ab37ebde9ae94f5f96a8d669d8448765fdb1f1d0edd216c9edee",
+  "edge_type": "CHANGED",
+  "from_id": "chg:null-unsets-ruling-history-and-status-refused-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:null-unsets-on-every-typed-constructor"
+}

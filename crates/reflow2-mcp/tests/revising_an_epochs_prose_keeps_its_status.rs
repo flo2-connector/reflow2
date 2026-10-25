@@ -55,10 +55,9 @@ async fn status_of(s: &ReflowService, id: &str) -> String {
 #[tokio::test]
 async fn revising_an_arrived_epochs_prose_keeps_it_arrived() {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.plan_epoch(Parameters(plan(
-        "epoch:planned-nine-hundred",
-        "IN: the plan."
-    ))));
+    j!(s.plan_epoch(Parameters(
+        plan("epoch:planned-nine-hundred", "IN: the plan.").into()
+    )));
     assert_eq!(status_of(&s, "epoch:planned-nine-hundred").await, "planned");
     j!(s.set_epoch_status(Parameters(EpochStatusReq {
         epoch_id: "epoch:planned-nine-hundred".into(),
@@ -67,10 +66,13 @@ async fn revising_an_arrived_epochs_prose_keeps_it_arrived() {
     assert_eq!(status_of(&s, "epoch:planned-nine-hundred").await, "arrived");
 
     // The revise: same id, new prose, nothing said about status.
-    let r = j!(s.plan_epoch(Parameters(plan(
-        "epoch:planned-nine-hundred",
-        "IN: the plan, and what it turned out to mean."
-    ))));
+    let r = j!(s.plan_epoch(Parameters(
+        plan(
+            "epoch:planned-nine-hundred",
+            "IN: the plan, and what it turned out to mean."
+        )
+        .into()
+    )));
     assert_eq!(
         r["properties"]["description"].as_str(),
         Some("IN: the plan, and what it turned out to mean."),
@@ -88,11 +90,12 @@ async fn revising_an_arrived_epochs_prose_keeps_it_arrived() {
 #[tokio::test]
 async fn a_new_epoch_lands_planned_and_a_planned_one_stays_planned_when_revised() {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.plan_epoch(Parameters(plan("epoch:planned-nine-oh-one", "first prose"))));
+    j!(s.plan_epoch(Parameters(
+        plan("epoch:planned-nine-oh-one", "first prose").into()
+    )));
     assert_eq!(status_of(&s, "epoch:planned-nine-oh-one").await, "planned");
-    j!(s.plan_epoch(Parameters(plan(
-        "epoch:planned-nine-oh-one",
-        "second prose"
-    ))));
+    j!(s.plan_epoch(Parameters(
+        plan("epoch:planned-nine-oh-one", "second prose").into()
+    )));
     assert_eq!(status_of(&s, "epoch:planned-nine-oh-one").await, "planned");
 }

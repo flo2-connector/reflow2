@@ -32,13 +32,16 @@ use serde_json::{Value, json};
 
 async fn svc() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    }))
+    s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into(),
+    ))
     .await
     .expect("contributor");
     s

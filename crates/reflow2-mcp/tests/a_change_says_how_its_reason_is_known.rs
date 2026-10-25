@@ -40,11 +40,14 @@ async fn stored(s: &ReflowService, id: &str) -> serde_json::Value {
 #[tokio::test]
 async fn a_recalled_change_is_stored_with_its_basis_and_its_commits() {
     let s = ReflowService::in_memory().expect("service");
-    s.add_change_event(Parameters(AddChangeEventReq {
-        rationale_basis: Some("recalled".into()),
-        commits: Some("3f2a9c1d, 77b01e2 ".into()),
-        ..event("chg:recalled")
-    }))
+    s.add_change_event(Parameters(
+        AddChangeEventReq {
+            rationale_basis: Some("recalled".into()),
+            commits: Some("3f2a9c1d, 77b01e2 ".into()),
+            ..event("chg:recalled")
+        }
+        .into(),
+    ))
     .await
     .expect("written");
     let p = stored(&s, "chg:recalled").await;
@@ -58,12 +61,15 @@ async fn a_recalled_change_is_stored_with_its_basis_and_its_commits() {
 #[tokio::test]
 async fn a_repair_disposition_rides_the_same_call() {
     let s = ReflowService::in_memory().expect("service");
-    s.add_change_event(Parameters(AddChangeEventReq {
-        change_type: Some("defect_fix".into()),
-        repair: Some("contained_symptom".into()),
-        stands_in_for: Some("store every timestamp in UTC end to end".into()),
-        ..event("chg:patch")
-    }))
+    s.add_change_event(Parameters(
+        AddChangeEventReq {
+            change_type: Some("defect_fix".into()),
+            repair: Some("contained_symptom".into()),
+            stands_in_for: Some("store every timestamp in UTC end to end".into()),
+            ..event("chg:patch")
+        }
+        .into(),
+    ))
     .await
     .expect("written");
     let p = stored(&s, "chg:patch").await;
@@ -79,10 +85,13 @@ async fn what_is_not_a_commit_is_refused_and_nothing_is_written() {
     let s = ReflowService::in_memory().expect("service");
     for bad in ["main", "#123", "3f2a9c", "", "3f2a9c1d, feature/x"] {
         let err = s
-            .add_change_event(Parameters(AddChangeEventReq {
-                commits: Some(bad.into()),
-                ..event("chg:bad")
-            }))
+            .add_change_event(Parameters(
+                AddChangeEventReq {
+                    commits: Some(bad.into()),
+                    ..event("chg:bad")
+                }
+                .into(),
+            ))
             .await
             .expect_err("refused");
         assert!(
@@ -106,10 +115,13 @@ async fn what_is_not_a_commit_is_refused_and_nothing_is_written() {
 async fn a_workaround_must_name_the_fix_it_stands_in_for() {
     let s = ReflowService::in_memory().expect("service");
     let err = s
-        .add_change_event(Parameters(AddChangeEventReq {
-            repair: Some("contained_symptom".into()),
-            ..event("chg:unnamed-patch")
-        }))
+        .add_change_event(Parameters(
+            AddChangeEventReq {
+                repair: Some("contained_symptom".into()),
+                ..event("chg:unnamed-patch")
+            }
+            .into(),
+        ))
         .await
         .expect_err("refused");
     assert!(format!("{err:?}").contains("stands_in_for"), "{err:?}");
@@ -119,10 +131,13 @@ async fn a_workaround_must_name_the_fix_it_stands_in_for() {
 async fn an_undeclared_basis_is_refused_naming_the_legal_ones() {
     let s = ReflowService::in_memory().expect("service");
     let err = s
-        .add_change_event(Parameters(AddChangeEventReq {
-            rationale_basis: Some("remembered".into()),
-            ..event("chg:odd-basis")
-        }))
+        .add_change_event(Parameters(
+            AddChangeEventReq {
+                rationale_basis: Some("remembered".into()),
+                ..event("chg:odd-basis")
+            }
+            .into(),
+        ))
         .await
         .expect_err("refused");
     let msg = format!("{err:?}");

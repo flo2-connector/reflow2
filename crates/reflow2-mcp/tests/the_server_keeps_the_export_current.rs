@@ -116,7 +116,7 @@ async fn a_write_reaches_the_file_with_nobody_asking() {
         .expect("write-through starts");
 
     assert!(!file.exists(), "nothing on disk before the first write");
-    j!(s.add_requirement(Parameters(req("req:written-through"))));
+    j!(s.add_requirement(Parameters(req("req:written-through").into())));
 
     let took = within(Duration::from_secs(20), || file.exists()).await;
     assert!(
@@ -152,7 +152,7 @@ async fn writes_spread_over_time_still_cost_one_export() {
         .expect("write-through starts");
 
     for i in 0..10 {
-        j!(s.add_requirement(Parameters(req(&format!("req:burst-{i}")))));
+        j!(s.add_requirement(Parameters(req(&format!("req:burst-{i}")).into())));
         tokio::time::sleep(Duration::from_millis(300)).await;
     }
 
@@ -181,7 +181,7 @@ async fn a_hand_edit_is_left_alone_and_loop_status_says_so() {
     s.start_auto_export(file.display().to_string())
         .expect("write-through starts");
 
-    j!(s.add_requirement(Parameters(req("req:before-the-edit"))));
+    j!(s.add_requirement(Parameters(req("req:before-the-edit").into())));
     assert!(
         within(Duration::from_secs(20), || file.exists())
             .await
@@ -193,7 +193,7 @@ async fn a_hand_edit_is_left_alone_and_loop_status_says_so() {
     let hand_edited = "{\"nodes\": [], \"edges\": [], \"graph_id\": \"hand-edited-by-a-person\"}\n";
     std::fs::write(&file, hand_edited).expect("hand edit");
 
-    j!(s.add_requirement(Parameters(req("req:after-the-edit"))));
+    j!(s.add_requirement(Parameters(req("req:after-the-edit").into())));
     // Long enough that a write-through WOULD have happened.
     tokio::time::sleep(Duration::from_secs(5)).await;
 

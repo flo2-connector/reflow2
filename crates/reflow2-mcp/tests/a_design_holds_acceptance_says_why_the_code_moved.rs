@@ -35,24 +35,30 @@ macro_rules! j {
 
 async fn seeded(checksum: Option<&str>) -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:x".into(),
-        name: Some("X".to_string()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        id: "cap:flight".into(),
-        name: Some("Flight".into()),
-        description: Some("ball flight".into()),
-        status: None,
-        tier: None,
-        satisfies: None,
-        allocated_to: None,
-        distinct_from: None,
-        replaces: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:x".into(),
+            name: Some("X".to_string()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            id: "cap:flight".into(),
+            name: Some("Flight".into()),
+            description: Some("ball flight".into()),
+            status: None,
+            tier: None,
+            satisfies: None,
+            allocated_to: None,
+            distinct_from: None,
+            replaces: None,
+        }
+        .into()
+    )));
     j!(s.link_artifact(Parameters(LinkArtifactReq {
         artifact_id: "art:flight".into(),
         name: Some("BallFlight.cs".into()),

@@ -72,17 +72,20 @@ fn names_tool(tool: &str) -> ReportManualWorkReq {
 }
 
 async fn component(s: &ReflowService, id: &str, name: &str) {
-    s.add_component(Parameters(ComponentReq {
-        id: id.into(),
-        name: Some(name.into()),
-        description: Some(format!("The {name} part, for a coupling fixture.")),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    }))
+    s.add_component(Parameters(
+        ComponentReq {
+            id: id.into(),
+            name: Some(name.into()),
+            description: Some(format!("The {name} part, for a coupling fixture.")),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into(),
+    ))
     .await
     .expect("component lands");
 }

@@ -259,43 +259,49 @@ fn an_alias_is_not_a_loophole() {
 #[tokio::test]
 async fn the_handoff_lands_end_to_end() {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(RequirementReq {
-        source: None,
-        provenance: None,
-        id: "req:dry".into(),
-        name: Some("Stay dry".into()),
-        statement: Some("The unit survives rain.".into()),
-        distinct_from: None,
-        replaces: None,
-        status: None,
-        approver: None,
-        acted_at: None,
-        priority: None,
-        concern: None,
-        kind: None,
-        taken_as_given: None,
-        statement_kind: None,
-        source_reliability: None,
-        information_credibility: None,
-        reported_at: None,
-        confidence: None,
-        silent_on: None,
-        same_formula_as: None,
-        claimed_by: None,
-        variables: None,
-        fixes: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:seal".into(),
-        name: Some("Sealed housing".into()),
-        description: Some("keeps water out".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_requirement(Parameters(
+        RequirementReq {
+            source: None,
+            provenance: None,
+            id: "req:dry".into(),
+            name: Some("Stay dry".into()),
+            statement: Some("The unit survives rain.".into()),
+            distinct_from: None,
+            replaces: None,
+            status: None,
+            approver: None,
+            acted_at: None,
+            priority: None,
+            concern: None,
+            kind: None,
+            taken_as_given: None,
+            statement_kind: None,
+            source_reliability: None,
+            information_credibility: None,
+            reported_at: None,
+            confidence: None,
+            silent_on: None,
+            same_formula_as: None,
+            claimed_by: None,
+            variables: None,
+            fixes: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:seal".into(),
+            name: Some("Sealed housing".into()),
+            description: Some("keeps water out".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     j!(s.add_component(Parameters(
         serde_json::from_value(
             json!({"id": "cmp:housing", "name": "Housing", "description": "the box"})

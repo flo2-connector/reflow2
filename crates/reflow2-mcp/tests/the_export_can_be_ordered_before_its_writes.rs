@@ -122,7 +122,8 @@ async fn probe_a_node_creating_write() {
         let id = format!("chg:probe-{i}");
         let (sw, se) = (s.clone(), s.clone());
         let idw = id.clone();
-        let hw = tokio::spawn(async move { sw.add_change_event(Parameters(event(&idw))).await });
+        let hw =
+            tokio::spawn(async move { sw.add_change_event(Parameters(event(&idw).into())).await });
         let he = tokio::spawn(async move { export_text(&se).await });
         let (wrote, text) = (hw.await.expect("join"), he.await.expect("join"));
         wrote.expect("the write must always land");
@@ -148,7 +149,7 @@ async fn probe_b_property_only_write() {
     for i in 0..TRIALS {
         let s = ReflowService::in_memory().expect("service");
         let id = format!("req:probe-{i}");
-        s.add_requirement(Parameters(requirement(&id)))
+        s.add_requirement(Parameters(requirement(&id).into()))
             .await
             .expect("seed the node first, sequenced");
 

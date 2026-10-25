@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8403d8b03151ce5931ec77196f82087f04b36aab912412c97ccf3b0a7e6a9793",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:settling-a-decision-records-which-option-won-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

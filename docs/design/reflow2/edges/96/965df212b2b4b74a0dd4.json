@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aea08a8522b1d9a993229fae7c724d4bbf10c997ff66b86f4f1ae7fd3a0ebedf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-3e23101508ef8916",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:90c4720172f68cd40152ee53cd19a0c3b5ddccd9763c30399c0aeb2b0cf9872f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-settled-decisions-name-stops-asking-test"
+}

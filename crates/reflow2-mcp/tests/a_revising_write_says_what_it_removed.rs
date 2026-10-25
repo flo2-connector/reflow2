@@ -37,7 +37,9 @@ const LONG: &str = "The outdoor unit sends cumulative totals rather than deltas,
 async fn svc() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
     j!(s.add_project(Parameters(
-        serde_json::from_value::<ProjectReq>(json!({"id": "proj:p", "name": "P"})).unwrap()
+        serde_json::from_value::<ProjectReq>(json!({"id": "proj:p", "name": "P"}))
+            .unwrap()
+            .into()
     )));
     s
 }
@@ -50,6 +52,7 @@ async fn write_statement(s: &ReflowService, text: &str) -> Value {
             "statement": text
         }))
         .unwrap()
+        .into()
     )))
 }
 

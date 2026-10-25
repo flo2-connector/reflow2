@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3b34d7a6c80f02a6b4e1a46c50275687e23ce2a982ad4286f7a0cf3f8493959d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:null-unsets-ruling-history-and-status-refused-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:75edf14a7edcd6eb1926d1d7c24ab4c0567ac1bfb3e0a6712626ba7fbdf49b22",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-null-unsets-at-every-typed-constructor"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8b8e32e46f0ba029acf0136ea1c38b80baf2465926b39263ec4004ffefe30366",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-efcc04aad03837cf",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:b4a200921401820bbe9e9b5624aa790ea0ec169ea1e9bf1a3915ead2de325462",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}
