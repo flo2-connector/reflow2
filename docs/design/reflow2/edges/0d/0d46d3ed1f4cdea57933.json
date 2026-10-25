@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:89bf16bffc844b50323113909f556fd0fdcf498dc4fee77b7bed185f9ea6e5e9",
+  "content_hash": "sha256:f1f6d7333d9e128aad0517518d45f855fccb3099fc7accee0b3f13adef3dc7b1",
   "edge_type": "CHANGED",
   "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 3,
     "action": "modified",
-    "checksum_after": "sha256:12f249d2809cd1da6b5b694029fb739ff3d93ddad52680554ec742ee0f9f4ab6",
+    "checksum_after": "sha256:19d8dd04be6031c7ef9c786271a71328df4869f0cf835256f17fd6af9c25200b",
     "checksum_basis": "asserted"
   },
   "to_id": "art:schema-functional"
