@@ -659,7 +659,9 @@ impl ReflowService {
     )]
     pub async fn add_artifact(
         &self,
-        Parameters(req): Parameters<AddArtifactReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddArtifactReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf =
@@ -670,6 +672,7 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_artifact(
@@ -712,7 +715,13 @@ impl ReflowService {
             Some(c) => g.set_artifact_baseline(&req.id, c).map_err(dyno_err)?,
             None => stored,
         };
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::ARTIFACT,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(

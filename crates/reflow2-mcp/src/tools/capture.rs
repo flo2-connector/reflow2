@@ -1708,12 +1708,15 @@ impl ReflowService {
     )]
     pub async fn add_project(
         &self,
-        Parameters(req): Parameters<ProjectReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<ProjectReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf =
             crate::service::RequiredFields::new(&g, reflow2_core::nodes::node::PROJECT, &req.id)?;
         let name = __rf.str("name", req.name);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g.add_project(&req.id, &name).map_err(dyno_err)?;
         let stored = set_description(
@@ -1753,7 +1756,13 @@ impl ReflowService {
                 .map_err(dyno_err)?,
             _ => stored,
         };
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::PROJECT,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(
@@ -1773,12 +1782,15 @@ impl ReflowService {
     )]
     pub async fn add_actor(
         &self,
-        Parameters(req): Parameters<crate::service::ActorReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<crate::service::ActorReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::ACTOR;
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .upsert_node(
@@ -1797,7 +1809,9 @@ impl ReflowService {
             ],
         )?
         .unwrap_or(stored);
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g, node_ty, &req.id, &nulled, stored,
+        )?)
     }
 
     #[tool(
@@ -1817,7 +1831,9 @@ impl ReflowService {
     )]
     pub async fn add_requirement(
         &self,
-        Parameters(req): Parameters<RequirementReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<RequirementReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
@@ -1843,6 +1859,7 @@ impl ReflowService {
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         check_replaces(
             &g,
@@ -1962,10 +1979,12 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
-        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+        let unset = crate::nulls::unset_nulled(&mut g, node_ty, &req.id, &nulled)?;
+        let mut node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(n) => NodeDto::from(n),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
@@ -2007,7 +2026,9 @@ impl ReflowService {
     )]
     pub async fn add_design_rule(
         &self,
-        Parameters(req): Parameters<DesignRuleReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<DesignRuleReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::DESIGN_RULE;
@@ -2029,6 +2050,7 @@ impl ReflowService {
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         check_replaces(
             &g,
@@ -2114,10 +2136,12 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
-        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+        let unset = crate::nulls::unset_nulled(&mut g, node_ty, &req.id, &nulled)?;
+        let mut node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(n) => NodeDto::from(n),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         // The hint asks for `enforced` only when the rule does not already
@@ -2198,7 +2222,9 @@ impl ReflowService {
     )]
     pub async fn add_capability(
         &self,
-        Parameters(req): Parameters<CapabilityReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<CapabilityReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::CAPABILITY;
@@ -2207,6 +2233,7 @@ impl ReflowService {
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let description = __rf.str("description", req.description);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         check_replaces(
             &g,
@@ -2309,10 +2336,12 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
-        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+        let unset = crate::nulls::unset_nulled(&mut g, node_ty, &req.id, &nulled)?;
+        let mut node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(n) => NodeDto::from(n),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         // The hint used to tell every caller to "wire satisfies", including the
@@ -2543,7 +2572,9 @@ impl ReflowService {
     )]
     pub async fn add_component(
         &self,
-        Parameters(req): Parameters<ComponentReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<ComponentReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::COMPONENT;
@@ -2561,6 +2592,7 @@ impl ReflowService {
         // cmp:rocksdb-backend. Capability is unaffected: it really does store
         // `description`, which is why this survived.
         let description = __rf.str("purpose", req.description);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         check_replaces(
             &g,
@@ -2613,10 +2645,12 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
-        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+        let unset = crate::nulls::unset_nulled(&mut g, node_ty, &req.id, &nulled)?;
+        let mut node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(n) => NodeDto::from(n),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
@@ -2796,7 +2830,9 @@ impl ReflowService {
     )]
     pub async fn add_interface(
         &self,
-        Parameters(req): Parameters<IdName>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<IdName>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::INTERFACE;
@@ -2804,6 +2840,7 @@ impl ReflowService {
         let existed = prior.is_some();
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g.add_interface(&req.id, &name).map_err(dyno_err)?;
         let stored = set_optional_props(
@@ -2816,7 +2853,7 @@ impl ReflowService {
             ],
         )?
         .unwrap_or(stored);
-        let node = NodeDto::from(stored);
+        let node = crate::nulls::node_after_unset(&mut g, node_ty, &req.id, &nulled, stored)?;
         let found = search_first(&g, &req.id, existed, &name);
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
@@ -2852,7 +2889,9 @@ impl ReflowService {
     )]
     pub async fn add_flow(
         &self,
-        Parameters(req): Parameters<AddFlowReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddFlowReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf =
@@ -2863,6 +2902,7 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_flow(
@@ -2879,7 +2919,13 @@ impl ReflowService {
             &[("tier", req.tier.as_deref())],
         )?
         .unwrap_or(stored);
-        ok_json(NodeDto::from(stored))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::FLOW,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(
@@ -2988,7 +3034,9 @@ impl ReflowService {
     )]
     pub async fn add_constraint(
         &self,
-        Parameters(req): Parameters<AddConstraintReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddConstraintReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
@@ -2998,6 +3046,7 @@ impl ReflowService {
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let stored = g
             .add_constraint(
@@ -3086,13 +3135,20 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
-        let node = match g
+        let unset = crate::nulls::unset_nulled(
+            &mut g,
+            reflow2_core::nodes::node::CONSTRAINT,
+            &req.id,
+            &nulled,
+        )?;
+        let mut node = match g
             .get_node(reflow2_core::nodes::node::CONSTRAINT, &req.id)
             .map_err(dyno_err)?
         {
             Some(n) => NodeDto::from(n),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
@@ -3140,7 +3196,9 @@ impl ReflowService {
     )]
     pub async fn add_inference(
         &self,
-        Parameters(req): Parameters<AddInferenceReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddInferenceReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let spec = reflow2_core::InferenceSpec {
@@ -3189,6 +3247,23 @@ impl ReflowService {
             &req.conclusion,
         )
         .map_err(dyno_err)?;
+        // A null `name` puts back the name a step is given when it has none,
+        // computed from its rule: that is this property's default, as a null
+        // elsewhere puts back a schema default. Unset BEFORE the write, or the
+        // step keeps the stored name (dec:null-unsets-on-every-typed-constructor).
+        let name_nulled = nulled.iter().any(|k| k == "name");
+        if name_nulled
+            && g.get_node(reflow2_core::nodes::node::INFERENCE, &req.id)
+                .map_err(dyno_err)?
+                .is_some_and(|n| n.properties.contains_key("name"))
+        {
+            g.remove_properties(
+                reflow2_core::nodes::node::INFERENCE,
+                &req.id,
+                &["name".to_string()],
+            )
+            .map_err(dyno_err)?;
+        }
         let mut written = g.add_inference(&spec).map_err(dyno_err)?;
         if let Some(stored) = set_optional_props(
             &mut g,
@@ -3208,8 +3283,20 @@ impl ReflowService {
             &req.conclusion,
             concluded_before,
         );
+        let rest: Vec<String> = nulled.iter().filter(|k| *k != "name").cloned().collect();
+        let mut node = crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::INFERENCE,
+            &req.id,
+            &rest,
+            written.node,
+        )?;
+        if name_nulled {
+            node.unset.push("name".to_string());
+            node.unset.sort();
+        }
         let reading = g.inference_reading(&req.id).map_err(dyno_err)?;
-        let mut reply = serde_json::to_value(NodeDto::from(written.node)).map_err(ser_err)?;
+        let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         if let Some(obj) = reply.as_object_mut() {
             obj.insert("revised".into(), json!(written.revised));
@@ -3638,7 +3725,9 @@ impl ReflowService {
     )]
     pub async fn add_decision(
         &self,
-        Parameters(req): Parameters<DecisionReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<DecisionReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let node_ty = reflow2_core::nodes::node::DECISION;
@@ -3663,6 +3752,7 @@ impl ReflowService {
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let decision = __rf.str("decision", req.decision);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         check_replaces(
             &g,
@@ -3903,10 +3993,12 @@ impl ReflowService {
         // told the judgement was not recorded when it was, which is the same
         // unreadable-success problem a consumer's field report is about.
         // Caught by the test, not by review.
-        let node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
+        let unset = crate::nulls::unset_nulled(&mut g, node_ty, &req.id, &nulled)?;
+        let mut node = match g.get_node(node_ty, &req.id).map_err(dyno_err)? {
             Some(fresh) => NodeDto::from(fresh),
             None => node,
         };
+        node.unset = unset;
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
         // THE HINT SAYS WHERE THE NODE LANDED, read from the node, not assumed.
@@ -4020,7 +4112,9 @@ impl ReflowService {
     )]
     pub async fn add_contributor(
         &self,
-        Parameters(req): Parameters<ContributorReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<ContributorReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let mut __rf = crate::service::RequiredFields::new(
@@ -4034,17 +4128,24 @@ impl ReflowService {
         // handler that skips `finish` STORES the placeholder. Seven did, until
         // 2026-09-29, and an id-only create landed `name: ""` in each
         // (a_revise_keeps_what_it_was_not_passed.rs).
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
-        ok_json(NodeDto::from(
-            g.add_contributor(
+        let stored = g
+            .add_contributor(
                 &req.id,
                 &name,
                 req.kind.as_deref(),
                 req.handle.as_deref(),
                 req.description.as_deref(),
             )
-            .map_err(dyno_err)?,
-        ))
+            .map_err(dyno_err)?;
+        ok_json(crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::CONTRIBUTOR,
+            &req.id,
+            &nulled,
+            stored,
+        )?)
     }
 
     #[tool(

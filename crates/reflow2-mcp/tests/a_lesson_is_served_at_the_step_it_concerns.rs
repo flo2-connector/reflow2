@@ -60,13 +60,16 @@ fn finding(id: &str, name: &str, steps: Option<Vec<&str>>, valid_from: &str) -> 
 
 async fn seeded() -> ReflowService {
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_project(Parameters(ProjectReq {
-        id: "proj:the-design".into(),
-        name: Some("The design".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    })));
+    j!(s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:the-design".into(),
+            name: Some("The design".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into()
+    )));
     s
 }
 
@@ -89,12 +92,15 @@ async fn skill_lessons(s: &ReflowService, skill: &str) -> Vec<String> {
 #[tokio::test]
 async fn get_skill_carries_the_lessons_naming_that_skill_and_no_others() {
     let s = seeded().await;
-    j!(s.record_finding(Parameters(finding(
-        "fact:orient-before-you-touch-code",
-        "Orient before you touch code",
-        Some(vec!["where-am-i"]),
-        "2026-09-12",
-    ))));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:orient-before-you-touch-code",
+            "Orient before you touch code",
+            Some(vec!["where-am-i"]),
+            "2026-09-12",
+        )
+        .into()
+    )));
     let r = j!(s.get_skill(Parameters(GetSkillReq {
         name: "where-am-i".into(),
         budget_chars: None,
@@ -144,12 +150,15 @@ async fn the_tool_list_carries_a_lesson_on_its_tool_and_nowhere_else() {
         "an empty design lists the surface unchanged"
     );
 
-    j!(s.record_finding(Parameters(finding(
-        "fact:format-first",
-        "Format before the export",
-        Some(vec!["export_graph"]),
-        "2026-09-12",
-    ))));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:format-first",
+            "Format before the export",
+            Some(vec!["export_graph"]),
+            "2026-09-12",
+        )
+        .into()
+    )));
     let after = s.tools_with_lessons_for_test().await;
     let desc = |name: &str| {
         after
@@ -185,12 +194,15 @@ async fn the_tool_list_carries_a_lesson_on_its_tool_and_nowhere_else() {
 #[tokio::test]
 async fn a_lesson_naming_no_step_is_kept_and_delivered_nowhere() {
     let s = seeded().await;
-    j!(s.record_finding(Parameters(finding(
-        "fact:a-thing-we-noticed",
-        "A thing we noticed",
-        None,
-        "2026-09-12",
-    ))));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:a-thing-we-noticed",
+            "A thing we noticed",
+            None,
+            "2026-09-12",
+        )
+        .into()
+    )));
     let n = j!(s.get_node(Parameters(GetNodeReq {
         id: "fact:a-thing-we-noticed".into(),
         node_type: None,
@@ -212,12 +224,15 @@ async fn a_lesson_naming_no_step_is_kept_and_delivered_nowhere() {
 async fn an_unserved_step_is_refused_with_the_nearest_names() {
     let s = seeded().await;
     let err = s
-        .record_finding(Parameters(finding(
-            "fact:typo",
-            "A typo'd step",
-            Some(vec!["export-graph"]),
-            "2026-09-12",
-        )))
+        .record_finding(Parameters(
+            finding(
+                "fact:typo",
+                "A typo'd step",
+                Some(vec!["export-graph"]),
+                "2026-09-12",
+            )
+            .into(),
+        ))
         .await
         .expect_err("a step nothing serves must be refused");
     let msg = err.to_string();
@@ -237,31 +252,40 @@ async fn an_unserved_step_is_refused_with_the_nearest_names() {
 #[tokio::test]
 async fn rules_take_steps_and_the_newest_lesson_comes_first() {
     let s = seeded().await;
-    j!(s.add_design_rule(Parameters(DesignRuleReq {
-        id: "rule:never-export-twice".into(),
-        name: Some("Never export twice on one branch".into()),
-        statement: Some("The lineage lives inside the file; export once, last.".into()),
-        category: Some("convention".into()),
-        enforced: None,
-        units: None,
-        approver: None,
-        acted_at: None,
-        distinct_from: None,
-        replaces: None,
-        steps: Some(vec!["export_graph".into(), "ci-gate".into()]),
-    })));
-    j!(s.record_finding(Parameters(finding(
-        "fact:older",
-        "An older lesson on exporting",
-        Some(vec!["export_graph"]),
-        "2026-06-01",
-    ))));
-    j!(s.record_finding(Parameters(finding(
-        "fact:newer",
-        "A newer lesson on exporting",
-        Some(vec!["export_graph"]),
-        "2026-09-10",
-    ))));
+    j!(s.add_design_rule(Parameters(
+        DesignRuleReq {
+            id: "rule:never-export-twice".into(),
+            name: Some("Never export twice on one branch".into()),
+            statement: Some("The lineage lives inside the file; export once, last.".into()),
+            category: Some("convention".into()),
+            enforced: None,
+            units: None,
+            approver: None,
+            acted_at: None,
+            distinct_from: None,
+            replaces: None,
+            steps: Some(vec!["export_graph".into(), "ci-gate".into()]),
+        }
+        .into()
+    )));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:older",
+            "An older lesson on exporting",
+            Some(vec!["export_graph"]),
+            "2026-06-01",
+        )
+        .into()
+    )));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:newer",
+            "A newer lesson on exporting",
+            Some(vec!["export_graph"]),
+            "2026-09-10",
+        )
+        .into()
+    )));
     assert_eq!(
         skill_lessons(&s, "ci-gate").await,
         vec!["rule:never-export-twice".to_string()]
@@ -285,12 +309,15 @@ async fn rules_take_steps_and_the_newest_lesson_comes_first() {
 #[tokio::test]
 async fn a_finding_that_stopped_being_true_is_no_longer_served() {
     let s = seeded().await;
-    j!(s.record_finding(Parameters(finding(
-        "fact:a-defect-since-fixed",
-        "A defect, since fixed",
-        Some(vec!["plan_epoch"]),
-        "2026-09-11",
-    ))));
+    j!(s.record_finding(Parameters(
+        finding(
+            "fact:a-defect-since-fixed",
+            "A defect, since fixed",
+            Some(vec!["plan_epoch"]),
+            "2026-09-11",
+        )
+        .into()
+    )));
     let tools = s.tools_with_lessons_for_test().await;
     let carries = |tools: &[rmcp::model::Tool]| {
         tools
@@ -310,7 +337,7 @@ async fn a_finding_that_stopped_being_true_is_no_longer_served() {
         "2026-09-11",
     );
     closed.valid_to = Some("2026-09-12".into());
-    j!(s.record_finding(Parameters(closed)));
+    j!(s.record_finding(Parameters(closed.into())));
     let tools = s.tools_with_lessons_for_test().await;
     assert!(!carries(&tools), "once closed it is history, not a lesson");
 }

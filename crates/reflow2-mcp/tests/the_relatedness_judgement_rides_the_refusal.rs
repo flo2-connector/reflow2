@@ -60,7 +60,7 @@ fn idea(id: &str) -> DecisionReq {
 /// duplicate question so only the relatedness one can be left.
 async fn with_a_near_match() -> (ReflowService, DecisionReq) {
     let s = svc().await;
-    s.add_decision(Parameters(idea("dec:first")))
+    s.add_decision(Parameters(idea("dec:first").into()))
         .await
         .expect("the first idea has nothing to resemble");
     let mut second = idea("dec:second");
@@ -71,17 +71,19 @@ async fn with_a_near_match() -> (ReflowService, DecisionReq) {
 #[tokio::test]
 async fn an_idea_with_no_near_match_is_never_asked() {
     let s = svc().await;
-    s.add_decision(Parameters(idea("dec:alone"))).await.expect(
-        "no near matches, so no ceremony — this is the case that keeps the guard off \
+    s.add_decision(Parameters(idea("dec:alone").into()))
+        .await
+        .expect(
+            "no near matches, so no ceremony — this is the case that keeps the guard off \
                  everyday capture",
-    );
+        );
 }
 
 #[tokio::test]
 async fn acknowledging_the_duplicate_question_does_not_answer_the_related_one() {
     let (s, second) = with_a_near_match().await;
     let err = s
-        .add_decision(Parameters(second))
+        .add_decision(Parameters(second.into()))
         .await
         .expect_err("distinct_from settles SAMENESS; relatedness is a separate judgement");
     let msg = format!("{err:?}");
@@ -103,7 +105,7 @@ async fn an_honest_note_is_a_complete_answer() {
     second.no_relation_note =
         Some("Read dec:first; it is about retransmit cost, this is about clock drift.".into());
     let out = s
-        .add_decision(Parameters(second))
+        .add_decision(Parameters(second.into()))
         .await
         .expect("a note is a full answer, never a weaker one")
         .structured_content
@@ -135,7 +137,7 @@ async fn a_drawn_relation_is_a_complete_answer_and_lands_in_the_same_call() {
         optional: None,
         weight_basis: None,
     }]);
-    s.add_decision(Parameters(second))
+    s.add_decision(Parameters(second.into()))
         .await
         .expect("drawing the relation is the other complete answer");
 
@@ -168,13 +170,13 @@ async fn a_drawn_relation_is_a_complete_answer_and_lands_in_the_same_call() {
 #[tokio::test]
 async fn a_choice_is_not_asked_even_when_it_has_near_matches() {
     let s = svc().await;
-    s.add_decision(Parameters(idea("dec:first")))
+    s.add_decision(Parameters(idea("dec:first").into()))
         .await
         .expect("seed");
     let mut choice = idea("dec:a-choice");
     choice.kind = Some("choice".into());
     choice.distinct_from = Some(vec!["dec:first".into()]);
-    s.add_decision(Parameters(choice))
+    s.add_decision(Parameters(choice.into()))
         .await
         .expect("a choice carries no linking discipline — that is what scoping buys");
 }

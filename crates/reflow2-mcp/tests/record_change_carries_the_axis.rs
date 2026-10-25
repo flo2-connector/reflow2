@@ -32,26 +32,32 @@ macro_rules! j {
 /// into an epoch that has not happened.
 async fn svc_with_an_epoch_and_a_target() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_epoch(Parameters(AddEpochReq {
-        id: "epoch:e".into(),
-        name: Some("e".into()),
-        epoch_type: Some("revision".into()),
-        sequence: Some(1),
-        checksum: None,
-        description: None,
-        status: None,
-    })));
-    j!(s.add_capability(Parameters(CapabilityReq {
-        satisfies: None,
-        allocated_to: None,
-        id: "cap:thing".into(),
-        name: Some("A thing".into()),
-        description: Some("as it stands today".into()),
-        status: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-    })));
+    j!(s.add_epoch(Parameters(
+        AddEpochReq {
+            id: "epoch:e".into(),
+            name: Some("e".into()),
+            epoch_type: Some("revision".into()),
+            sequence: Some(1),
+            checksum: None,
+            description: None,
+            status: None,
+        }
+        .into()
+    )));
+    j!(s.add_capability(Parameters(
+        CapabilityReq {
+            satisfies: None,
+            allocated_to: None,
+            id: "cap:thing".into(),
+            name: Some("A thing".into()),
+            description: Some("as it stands today".into()),
+            status: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+        }
+        .into()
+    )));
     s
 }
 

@@ -25,7 +25,7 @@ fn fresh() -> ReflowService {
 
 async fn add(s: &ReflowService, body: serde_json::Value) -> Result<serde_json::Value, String> {
     let req: AddArtifactReq = serde_json::from_value(body).expect("request shape");
-    s.add_artifact(Parameters(req))
+    s.add_artifact(Parameters(req.into()))
         .await
         .map(|r| r.structured_content.expect("structured content"))
         .map_err(|e| e.message.to_string())

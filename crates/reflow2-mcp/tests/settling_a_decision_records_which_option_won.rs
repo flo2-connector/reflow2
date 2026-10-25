@@ -37,13 +37,16 @@ const DELIBERATION: &str = "OPEN — recorded as brainstorming. (a) Host it ours
 
 async fn svc() -> ReflowService {
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_contributor(Parameters(ContributorReq {
-        id: "who:ann".into(),
-        name: Some("Ann".into()),
-        kind: None,
-        handle: None,
-        description: None,
-    })));
+    j!(s.add_contributor(Parameters(
+        ContributorReq {
+            id: "who:ann".into(),
+            name: Some("Ann".into()),
+            kind: None,
+            handle: None,
+            description: None,
+        }
+        .into()
+    )));
     j!(s.add_decision(Parameters(
         serde_json::from_value::<DecisionReq>(json!({
             "id": "dec:hosting",
@@ -52,6 +55,7 @@ async fn svc() -> ReflowService {
             "kind": "exploratory"
         }))
         .unwrap()
+        .into()
     )));
     s
 }

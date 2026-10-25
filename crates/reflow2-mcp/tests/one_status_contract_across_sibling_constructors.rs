@@ -179,6 +179,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "status": "realized"
         }))
         .expect("status is a served field")
+        .into()
     )));
     assert_eq!(status_of(&built).as_deref(), Some("realized"));
     let fresh = j!(s.add_component(Parameters(
@@ -188,6 +189,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "description": "Stops the water."
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&fresh).as_deref(), Some("planned"));
 
@@ -199,6 +201,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "status": "deployed"
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&shipped).as_deref(), Some("deployed"));
 
@@ -210,6 +213,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "status": "paused"
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&paused).as_deref(), Some("paused"));
 
@@ -224,6 +228,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "status": "planned"
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&next_cut).as_deref(), Some("planned"));
     let past = j!(s.add_epoch(Parameters(
@@ -234,6 +239,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "sequence": 0
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&past).as_deref(), Some("arrived"));
 
@@ -244,6 +250,7 @@ async fn a_status_passed_to_the_constructor_is_stored_and_an_omitted_one_lands_a
             "description": "The next cut, not yet made."
         }))
         .unwrap()
+        .into()
     )));
     assert_eq!(status_of(&revised).as_deref(), Some("planned"));
 }
@@ -259,7 +266,8 @@ async fn a_status_the_schema_does_not_declare_is_refused_by_name() {
                 "description": "x",
                 "status": "shipped"
             }))
-            .unwrap(),
+            .unwrap()
+            .into(),
         ))
         .await
         .expect_err("an undeclared status is refused");

@@ -119,7 +119,7 @@ async fn two_exports_on_a_branch_both_chain_from_main() {
     let file = dir.join("docs").join("design.json");
 
     let s = ReflowService::in_memory().expect("in-memory service");
-    j!(s.add_requirement(Parameters(req("req:on-main"))));
+    j!(s.add_requirement(Parameters(req("req:on-main").into())));
 
     // The state of main: one committed export.
     let first = j!(s.export_graph(Parameters(export(&file))));
@@ -131,12 +131,12 @@ async fn two_exports_on_a_branch_both_chain_from_main() {
     // could not survive while the chain came from the file.
     git(&dir, &["checkout", "-q", "-b", "feature"]);
 
-    j!(s.add_requirement(Parameters(req("req:first-on-the-branch"))));
+    j!(s.add_requirement(Parameters(req("req:first-on-the-branch").into())));
     let second = j!(s.export_graph(Parameters(export(&file))));
     git(&dir, &["add", "-A"]);
     git(&dir, &["commit", "-qm", "first commit on the branch"]);
 
-    j!(s.add_requirement(Parameters(req("req:second-on-the-branch"))));
+    j!(s.add_requirement(Parameters(req("req:second-on-the-branch").into())));
     let third = j!(s.export_graph(Parameters(export(&file))));
 
     assert_eq!(
@@ -171,7 +171,7 @@ async fn outside_a_repository_the_disk_chain_still_forms_and_says_why() {
     let file = scratch("plain").join("design.json");
     let s = ReflowService::in_memory().expect("in-memory service");
 
-    j!(s.add_requirement(Parameters(req("req:one"))));
+    j!(s.add_requirement(Parameters(req("req:one").into())));
     let first = j!(s.export_graph(Parameters(export(&file))));
     assert_eq!(
         first["chained_from"].as_str(),
@@ -179,7 +179,7 @@ async fn outside_a_repository_the_disk_chain_still_forms_and_says_why() {
         "a first export outside git has no ancestor to name: {first:?}"
     );
 
-    j!(s.add_requirement(Parameters(req("req:two"))));
+    j!(s.add_requirement(Parameters(req("req:two").into())));
     let second = j!(s.export_graph(Parameters(export(&file))));
 
     assert_eq!(

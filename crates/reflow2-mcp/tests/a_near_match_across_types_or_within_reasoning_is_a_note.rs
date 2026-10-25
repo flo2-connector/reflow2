@@ -338,7 +338,7 @@ async fn every_statement_of_the_proof_trial_is_written_with_no_distinct_from() {
             "statement_kind": p["statement_kind"],
         }))
         .unwrap();
-        match s.add_requirement(Parameters(req)).await {
+        match s.add_requirement(Parameters(req.into())).await {
             Err(e) => refused.push(format!("{id}: {}", e.message.lines().next().unwrap_or(""))),
             Ok(r) => {
                 if !near_match_types(&structured(r)).is_empty() {

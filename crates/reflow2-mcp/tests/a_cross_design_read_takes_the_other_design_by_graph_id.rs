@@ -703,7 +703,8 @@ async fn a_diff_over_budget_fits_names_every_shortened_list_and_pages_one() {
                 "id": format!("req:r{i:02}"), "name": format!("R{i}"),
                 "statement": "One of many."
             }))
-            .unwrap(),
+            .unwrap()
+            .into(),
         ))
         .await
         .expect("a requirement");
@@ -712,7 +713,8 @@ async fn a_diff_over_budget_fits_names_every_shortened_list_and_pages_one() {
                 "id": format!("cap:c{i:02}"), "name": format!("C{i}"),
                 "description": "Does one thing.", "satisfies": format!("req:r{i:02}")
             }))
-            .unwrap(),
+            .unwrap()
+            .into(),
         ))
         .await
         .expect("a capability");

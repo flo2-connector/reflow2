@@ -150,7 +150,7 @@ fn new_capability(extra: Value) -> CapabilityReq {
 async fn the_second_capture_is_stopped_at_the_near_match_check() {
     let s = with_old_capability().await;
     let err = s
-        .add_capability(Parameters(new_capability(json!({}))))
+        .add_capability(Parameters(new_capability(json!({})).into()))
         .await
         .expect_err("a same-type near-match must stop the capture");
     assert!(format!("{err:?}").contains("cap:old"), "{err:?}");
@@ -162,7 +162,7 @@ async fn the_second_capture_is_stopped_at_the_near_match_check() {
 async fn the_refusal_names_sharpen_distinct_and_replaces() {
     let s = with_old_capability().await;
     let err = s
-        .add_capability(Parameters(new_capability(json!({}))))
+        .add_capability(Parameters(new_capability(json!({})).into()))
         .await
         .expect_err("stopped");
     let msg = format!("{err:?}");
@@ -180,9 +180,9 @@ async fn the_refusal_names_sharpen_distinct_and_replaces() {
 #[tokio::test]
 async fn distinct_from_is_recorded_on_the_node_it_created() {
     let s = with_old_capability().await;
-    s.add_capability(Parameters(new_capability(
-        json!({ "distinct_from": ["cap:old"] }),
-    )))
+    s.add_capability(Parameters(
+        new_capability(json!({ "distinct_from": ["cap:old"] })).into(),
+    ))
     .await
     .expect("distinct_from is the deliberate route past the guard");
     let n = get(&s, "cap:new").await;
@@ -204,9 +204,9 @@ async fn distinct_from_is_recorded_on_the_node_it_created() {
 #[tokio::test]
 async fn a_later_distinct_from_adds_to_the_recorded_judgement() {
     let s = with_old_capability().await;
-    s.add_capability(Parameters(new_capability(
-        json!({ "distinct_from": ["cap:old"] }),
-    )))
+    s.add_capability(Parameters(
+        new_capability(json!({ "distinct_from": ["cap:old"] })).into(),
+    ))
     .await
     .expect("created");
     s.add_capability(Parameters(
@@ -235,9 +235,9 @@ async fn a_later_distinct_from_adds_to_the_recorded_judgement() {
 async fn a_replacing_capture_moves_the_thread_and_retires_the_old_node() {
     let s = with_old_capability().await;
     let reply = s
-        .add_capability(Parameters(new_capability(
-            json!({ "replaces": ["cap:old"] }),
-        )))
+        .add_capability(Parameters(
+            new_capability(json!({ "replaces": ["cap:old"] })).into(),
+        ))
         .await
         .expect("replaces is the third route past the guard")
         .structured_content
@@ -331,9 +331,9 @@ async fn a_replacing_capture_moves_the_thread_and_retires_the_old_node() {
 #[tokio::test]
 async fn an_existing_node_can_be_said_to_replace_an_older_one() {
     let s = with_old_capability().await;
-    s.add_capability(Parameters(new_capability(
-        json!({ "distinct_from": ["cap:old"], "status": "realized" }),
-    )))
+    s.add_capability(Parameters(
+        new_capability(json!({ "distinct_from": ["cap:old"], "status": "realized" })).into(),
+    ))
     .await
     .expect("created as distinct first, the way flo2's were");
     s.add_capability(Parameters(
@@ -355,9 +355,12 @@ async fn an_existing_node_can_be_said_to_replace_an_older_one() {
 async fn replacing_a_node_of_another_type_is_refused_and_writes_nothing() {
     let s = with_old_capability().await;
     let err = s
-        .add_capability(Parameters(new_capability(
-            json!({ "replaces": ["req:see-designs"], "distinct_from": ["cap:old"] }),
-        )))
+        .add_capability(Parameters(
+            new_capability(
+                json!({ "replaces": ["req:see-designs"], "distinct_from": ["cap:old"] }),
+            )
+            .into(),
+        ))
         .await
         .expect_err("a capability cannot replace a requirement");
     let msg = format!("{err:?}");
@@ -373,9 +376,10 @@ async fn replacing_a_node_of_another_type_is_refused_and_writes_nothing() {
 async fn replacing_an_id_that_names_nothing_is_refused_and_writes_nothing() {
     let s = with_old_capability().await;
     let err = s
-        .add_capability(Parameters(new_capability(
-            json!({ "replaces": ["cap:no-such"], "distinct_from": ["cap:old"] }),
-        )))
+        .add_capability(Parameters(
+            new_capability(json!({ "replaces": ["cap:no-such"], "distinct_from": ["cap:old"] }))
+                .into(),
+        ))
         .await
         .expect_err("an unknown predecessor is a typo, not a judgement");
     assert!(format!("{err:?}").contains("cap:no-such"), "{err:?}");
@@ -388,9 +392,9 @@ async fn replacing_an_id_that_names_nothing_is_refused_and_writes_nothing() {
 async fn distinct_and_replaces_on_the_same_id_is_refused() {
     let s = with_old_capability().await;
     let err = s
-        .add_capability(Parameters(new_capability(
-            json!({ "replaces": ["cap:old"], "distinct_from": ["cap:old"] }),
-        )))
+        .add_capability(Parameters(
+            new_capability(json!({ "replaces": ["cap:old"], "distinct_from": ["cap:old"] })).into(),
+        ))
         .await
         .expect_err("contradiction");
     assert!(format!("{err:?}").contains("cap:old"), "{err:?}");

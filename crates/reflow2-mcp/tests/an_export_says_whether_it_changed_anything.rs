@@ -113,7 +113,7 @@ async fn a_no_op_export_says_unchanged_where_the_hashes_cannot() {
         "req:running-total",
         "A dropped packet costs nothing",
         "Every reading carries the running total, so a gap in the series closes without a retransmit."
-    ))));
+    ).into())));
     let changed = j!(s.export_graph(Parameters(export(&f))));
     let unchanged = j!(s.export_graph(Parameters(export(&f))));
 

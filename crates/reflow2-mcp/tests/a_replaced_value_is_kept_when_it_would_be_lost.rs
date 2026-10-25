@@ -97,11 +97,11 @@ fn requirement(statement: &str) -> RequirementReq {
 #[tokio::test]
 async fn a_field_nothing_else_holds_is_preserved_before_it_is_replaced() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(FIRST)))
+    s.add_requirement(Parameters(requirement(FIRST).into()))
         .await
         .expect("the requirement lands");
 
-    let out = j!(s.add_requirement(Parameters(requirement(SECOND))));
+    let out = j!(s.add_requirement(Parameters(requirement(SECOND).into())));
     let body = serde_json::to_string(&out).expect("serialisable");
 
     assert!(
@@ -126,12 +126,12 @@ async fn a_field_nothing_else_holds_is_preserved_before_it_is_replaced() {
 #[tokio::test]
 async fn a_write_that_replaces_nothing_preserves_nothing() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(FIRST)))
+    s.add_requirement(Parameters(requirement(FIRST).into()))
         .await
         .expect("the requirement lands");
 
     // Same content, second time: nothing moves.
-    let out = j!(s.add_requirement(Parameters(requirement(FIRST))));
+    let out = j!(s.add_requirement(Parameters(requirement(FIRST).into())));
     let body = serde_json::to_string(&out).expect("serialisable");
 
     assert!(
@@ -152,15 +152,15 @@ async fn a_write_that_replaces_nothing_preserves_nothing() {
 #[tokio::test]
 async fn a_field_already_preserved_is_not_preserved_twice() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(FIRST)))
+    s.add_requirement(Parameters(requirement(FIRST).into()))
         .await
         .expect("the requirement lands");
-    s.add_requirement(Parameters(requirement(SECOND)))
+    s.add_requirement(Parameters(requirement(SECOND).into()))
         .await
         .expect("first revision preserves FIRST");
 
     // Third write, same content as the second: replaces nothing.
-    let out = j!(s.add_requirement(Parameters(requirement(SECOND))));
+    let out = j!(s.add_requirement(Parameters(requirement(SECOND).into())));
     let body = serde_json::to_string(&out).expect("serialisable");
     assert!(
         body.contains("nothing moved"),

@@ -82,7 +82,7 @@ fn pin(node_id: &str, epoch_id: &str) -> PinAtEpochReq {
 #[tokio::test]
 async fn a_reference_to_an_absent_node_names_the_ordering_hazard() {
     let s = svc().await;
-    s.add_epoch(Parameters(epoch("epoch:e")))
+    s.add_epoch(Parameters(epoch("epoch:e").into()))
         .await
         .expect("epoch");
 
@@ -112,10 +112,10 @@ async fn a_reference_to_an_absent_node_names_the_ordering_hazard() {
 #[tokio::test]
 async fn sequenced_the_same_pair_always_succeeds() {
     let s = svc().await;
-    s.add_epoch(Parameters(epoch("epoch:e")))
+    s.add_epoch(Parameters(epoch("epoch:e").into()))
         .await
         .expect("epoch");
-    s.add_change_event(Parameters(event("chg:x")))
+    s.add_change_event(Parameters(event("chg:x").into()))
         .await
         .expect("create first");
     s.pin_at_epoch(Parameters(pin("chg:x", "epoch:e")))
@@ -127,12 +127,12 @@ async fn sequenced_the_same_pair_always_succeeds() {
 #[tokio::test]
 async fn concurrent_the_caller_can_always_tell_which_world_it_is_in() {
     let s = svc().await;
-    s.add_epoch(Parameters(epoch("epoch:e")))
+    s.add_epoch(Parameters(epoch("epoch:e").into()))
         .await
         .expect("epoch");
 
     let (created, pinned) = tokio::join!(
-        s.add_change_event(Parameters(event("chg:x"))),
+        s.add_change_event(Parameters(event("chg:x").into())),
         s.pin_at_epoch(Parameters(pin("chg:x", "epoch:e"))),
     );
 

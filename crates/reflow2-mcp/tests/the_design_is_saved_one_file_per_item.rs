@@ -109,8 +109,8 @@ async fn a_directory_path_is_written_one_file_per_item_and_reads_back_whole() {
     let path = format!("{}/", layout.display());
 
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(req("req:a", "the first need"))));
-    j!(s.add_requirement(Parameters(req("req:b", "the second need"))));
+    j!(s.add_requirement(Parameters(req("req:a", "the first need").into())));
+    j!(s.add_requirement(Parameters(req("req:b", "the second need").into())));
     let receipt = j!(s.export_graph(Parameters(export_to(&path))));
     assert_eq!(receipt["layout"], "items", "{receipt:?}");
     assert_eq!(receipt["wrote"], "created");
@@ -169,8 +169,8 @@ async fn a_changed_item_names_its_committed_hash_and_nothing_else_is_rewritten()
     let path = format!("{}/", layout.display());
 
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(req("req:a", "as on main"))));
-    j!(s.add_requirement(Parameters(req("req:b", "untouched"))));
+    j!(s.add_requirement(Parameters(req("req:a", "as on main").into())));
+    j!(s.add_requirement(Parameters(req("req:b", "untouched").into())));
     j!(s.export_graph(Parameters(export_to(&path))));
     git(&dir, &["add", "-A"]);
     git(&dir, &["commit", "-qm", "main"]);
@@ -221,7 +221,7 @@ async fn a_directory_holding_something_else_is_refused_and_a_tampered_item_is_na
     std::fs::create_dir_all(&foreign).unwrap();
     std::fs::write(foreign.join("notes.txt"), "mine").unwrap();
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(req("req:a", "a need"))));
+    j!(s.add_requirement(Parameters(req("req:a", "a need").into())));
     let err = s
         .export_graph(Parameters(export_to(&format!("{}/", foreign.display()))))
         .await
@@ -268,11 +268,10 @@ async fn a_single_file_design_still_imports_and_converts_to_the_layout_beside_it
 
     // The project as it is today: a single-file export.
     let s = ReflowService::in_memory().expect("service");
-    j!(s.add_requirement(Parameters(req("req:a", "the first need"))));
-    j!(s.add_requirement(Parameters(req(
-        "req:b",
-        "the second need, with an Upper-Case id"
-    ))));
+    j!(s.add_requirement(Parameters(req("req:a", "the first need").into())));
+    j!(s.add_requirement(Parameters(
+        req("req:b", "the second need, with an Upper-Case id").into()
+    )));
     let receipt = j!(s.export_graph(Parameters(export_to(&single_path))));
     assert_eq!(
         receipt["layout"], "file",

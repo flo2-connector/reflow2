@@ -139,17 +139,19 @@ fn decision(id: &str, name: &str, kind: Option<&str>) -> DecisionReq {
 #[tokio::test]
 async fn a_capability_and_the_requirement_it_satisfies_is_not_refused() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(
-        "req:a-lost-reading-heals-itself",
-        "A lost reading heals itself",
-    )))
+    s.add_requirement(Parameters(
+        requirement(
+            "req:a-lost-reading-heals-itself",
+            "A lost reading heals itself",
+        )
+        .into(),
+    ))
     .await
     .expect("the requirement lands");
 
-    let out = j!(s.add_capability(Parameters(capability(
-        "cap:cumulative-totals",
-        "Send cumulative totals",
-    ))));
+    let out = j!(s.add_capability(Parameters(
+        capability("cap:cumulative-totals", "Send cumulative totals",).into()
+    )));
 
     // 🛑 AND THE MATCH IS STILL REPORTED. Suppressing the refusal must not
     // suppress the evidence — without this assertion, narrowing the guard and
@@ -169,19 +171,25 @@ async fn a_capability_and_the_requirement_it_satisfies_is_not_refused() {
 #[tokio::test]
 async fn an_idea_and_the_decision_that_settles_it_is_not_refused() {
     let s = svc().await;
-    s.add_decision(Parameters(decision(
-        "dec:idea-cumulative-or-deltas",
-        "OPEN — cumulative totals or deltas?",
-        Some("exploratory"),
-    )))
+    s.add_decision(Parameters(
+        decision(
+            "dec:idea-cumulative-or-deltas",
+            "OPEN — cumulative totals or deltas?",
+            Some("exploratory"),
+        )
+        .into(),
+    ))
     .await
     .expect("the idea lands");
 
-    s.add_decision(Parameters(decision(
-        "dec:cumulative-totals",
-        "DECIDED — cumulative totals",
-        Some("choice"),
-    )))
+    s.add_decision(Parameters(
+        decision(
+            "dec:cumulative-totals",
+            "DECIDED — cumulative totals",
+            Some("choice"),
+        )
+        .into(),
+    ))
     .await
     .expect("the decision that settles an idea is not a duplicate of the idea");
 }
@@ -220,11 +228,14 @@ async fn a_decision_and_the_measurement_it_acts_on_is_not_refused() {
     .await
     .expect("the measurement lands");
 
-    s.add_decision(Parameters(decision(
-        "dec:send-cumulative-totals",
-        "DECIDED — send cumulative totals",
-        Some("choice"),
-    )))
+    s.add_decision(Parameters(
+        decision(
+            "dec:send-cumulative-totals",
+            "DECIDED — send cumulative totals",
+            Some("choice"),
+        )
+        .into(),
+    ))
     .await
     .expect("a decision is not a duplicate of the measurement that motivates it");
 }
@@ -236,18 +247,20 @@ async fn a_decision_and_the_measurement_it_acts_on_is_not_refused() {
 #[tokio::test]
 async fn a_same_type_duplicate_is_still_refused() {
     let s = svc().await;
-    s.add_requirement(Parameters(requirement(
-        "req:a-lost-reading-heals-itself",
-        "A lost reading heals itself",
-    )))
+    s.add_requirement(Parameters(
+        requirement(
+            "req:a-lost-reading-heals-itself",
+            "A lost reading heals itself",
+        )
+        .into(),
+    ))
     .await
     .expect("the first requirement lands");
 
     let err = s
-        .add_requirement(Parameters(requirement(
-            "req:cumulative-not-deltas",
-            "Cumulative totals, not deltas",
-        )))
+        .add_requirement(Parameters(
+            requirement("req:cumulative-not-deltas", "Cumulative totals, not deltas").into(),
+        ))
         .await
         .expect_err("a same-type near duplicate is still refused");
 
@@ -268,33 +281,39 @@ async fn a_same_type_duplicate_is_still_refused() {
 #[tokio::test]
 async fn a_once_unmeasured_cross_type_pair_is_written_with_the_match_reported() {
     let s = svc().await;
-    s.add_component(Parameters(ComponentReq {
-        id: "cmp:outdoor-unit".into(),
-        name: Some("Outdoor unit".into()),
-        description: Some(IDEA.into()),
-        kind: None,
-        level: None,
-        distinct_from: None,
-        replaces: None,
-        tier: None,
-        status: None,
-    }))
+    s.add_component(Parameters(
+        ComponentReq {
+            id: "cmp:outdoor-unit".into(),
+            name: Some("Outdoor unit".into()),
+            description: Some(IDEA.into()),
+            kind: None,
+            level: None,
+            distinct_from: None,
+            replaces: None,
+            tier: None,
+            status: None,
+        }
+        .into(),
+    ))
     .await
     .expect("the component lands");
 
-    let reply = j!(s.add_design_rule(Parameters(DesignRuleReq {
-        id: "rule:cumulative-totals".into(),
-        name: Some("Cumulative totals, not deltas".into()),
-        statement: Some(IDEA.into()),
-        category: None,
-        enforced: None,
-        units: None,
-        distinct_from: None,
-        replaces: None,
-        approver: None,
-        acted_at: None,
-        steps: None,
-    })));
+    let reply = j!(s.add_design_rule(Parameters(
+        DesignRuleReq {
+            id: "rule:cumulative-totals".into(),
+            name: Some("Cumulative totals, not deltas".into()),
+            statement: Some(IDEA.into()),
+            category: None,
+            enforced: None,
+            units: None,
+            distinct_from: None,
+            replaces: None,
+            approver: None,
+            acted_at: None,
+            steps: None,
+        }
+        .into()
+    )));
     let named = reply["search_first"]["near_matches"]
         .as_array()
         .expect("the match is still reported on the write")
@@ -362,7 +381,7 @@ async fn a_requirement_promoted_from_the_idea_that_spawned_it_is_not_refused() {
         claimed_by: None,
         variables: None,
         fixes: None,
-    })));
+    }.into())));
     let reported = serde_json::to_string(&out).expect("serialisable");
     assert!(
         reported.contains("dec:idea-a-campaign-is-a-story"),

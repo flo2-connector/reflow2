@@ -290,7 +290,7 @@ async fn a_decision_captured_with_a_supporting_relation_stores_it_supporting() {
                         "evidence": "the idea is the requirement, argued again"}]
     }))
     .unwrap_or_else(|e| panic!("add_decision's related_to takes the link fields: {e}"));
-    j!(s.add_decision(Parameters(args)));
+    j!(s.add_decision(Parameters(args.into())));
     assert_eq!(
         stored(&s, "CONTRADICTS", "dec:idea-x", "req:a").await["alignment"],
         json!("supporting")

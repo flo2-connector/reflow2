@@ -149,6 +149,7 @@ async fn the_key_search_design_hands_back_moves_a_capability_end_to_end() {
             "description": "Moves water uphill."
         }))
         .unwrap()
+        .into()
     )));
     // `node_id` is the key search_design's reply carries.
     let moved = j!(s.set_capability_status(Parameters(

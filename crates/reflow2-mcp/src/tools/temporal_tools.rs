@@ -479,7 +479,9 @@ impl ReflowService {
     )]
     pub async fn add_epoch(
         &self,
-        Parameters(req): Parameters<AddEpochReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddEpochReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::DESIGN_EPOCH;
@@ -491,6 +493,7 @@ impl ReflowService {
         // Collect every field before refusing, so a caller learns all of them
         // at once. Parsing the enum comes AFTER, or a missing name would be
         // masked by an unparseable type.
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let epoch_type: EpochType = parse_enum(&epoch_type_s, "epoch type")?;
         let node = g
@@ -512,7 +515,9 @@ impl ReflowService {
             &[("status", req.status.as_deref())],
         )?
         .unwrap_or(node);
-        ok_json(NodeDto::from(node))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g, ty, &req.id, &nulled, node,
+        )?)
     }
 
     #[tool(
@@ -534,7 +539,9 @@ impl ReflowService {
     )]
     pub async fn plan_epoch(
         &self,
-        Parameters(req): Parameters<AddEpochReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddEpochReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::DESIGN_EPOCH;
@@ -546,6 +553,7 @@ impl ReflowService {
         // Collect every field before refusing, so a caller learns all of them
         // at once. Parsing the enum comes AFTER, or a missing name would be
         // masked by an unparseable type.
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         let epoch_type: EpochType = parse_enum(&epoch_type_s, "epoch type")?;
         let node = g
@@ -558,7 +566,9 @@ impl ReflowService {
             req.checksum.as_deref(),
         )?
         .unwrap_or(node);
-        ok_json(NodeDto::from(node))
+        ok_json(crate::nulls::node_after_unset(
+            &mut g, ty, &req.id, &nulled, node,
+        )?)
     }
 
     #[tool(
@@ -617,7 +627,9 @@ impl ReflowService {
     )]
     pub async fn record_finding(
         &self,
-        Parameters(req): Parameters<crate::service::RecordFindingReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<crate::service::RecordFindingReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         // The evidence requirement is checked BEFORE anything is written, so a
         // caller who names a cause without saying why gets a refusal rather
@@ -662,6 +674,7 @@ impl ReflowService {
         let basis = __rf
             .default_on_create(req.basis.as_deref(), "measured")
             .map(str::to_string);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         drop(g0);
 
@@ -799,8 +812,15 @@ impl ReflowService {
             .map_err(dyno_err)?;
             caused_by = json!({ "node_id": cause_id, "node_type": cause_type });
         }
+        let node = crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::TEMPORAL_FACT,
+            &req.id,
+            &nulled,
+            node,
+        )?;
         let mut out = json!({
-            "finding": NodeDto::from(node),
+            "finding": node,
             "subject": { "node_id": subject_id, "node_type": subject_type },
             "caused_by": caused_by,
         });
@@ -833,7 +853,9 @@ impl ReflowService {
     )]
     pub async fn add_change_event(
         &self,
-        Parameters(req): Parameters<AddChangeEventReq>,
+        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
+            crate::nulls::Nullable<AddChangeEventReq>,
+        >,
     ) -> Result<CallToolResult, McpError> {
         // The commonest mistake, caught where it is made. `description` is not a
         // ChangeEvent field; accepting it (rather than letting serde refuse with
@@ -855,6 +877,7 @@ impl ReflowService {
         )?;
         let ct_s = __rf.str("change_type", req.change_type);
         let name = __rf.str("name", req.name);
+        __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
         drop(g0);
         let change_type: ChangeType = parse_enum(&ct_s, "change type")?;
@@ -976,9 +999,16 @@ impl ReflowService {
         // already written.
         // Read BEFORE the node moves into the reply: the `undated` note below
         // describes the EVENT AS STORED, not the call (see there).
+        let event = crate::nulls::node_after_unset(
+            &mut g,
+            reflow2_core::nodes::node::CHANGE_EVENT,
+            &req.id,
+            &nulled,
+            event,
+        )?;
         let dated = event.properties.contains_key("detected_at");
         let mut out = json!({
-            "event": NodeDto::from(event),
+            "event": event,
             "changed": changed,
         });
         edges.attach(&mut out);

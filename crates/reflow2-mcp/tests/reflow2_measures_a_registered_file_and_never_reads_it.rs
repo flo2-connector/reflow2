@@ -42,7 +42,9 @@ async fn served(root: Option<&Path>) -> ReflowService {
     let cap: CapabilityReq =
         serde_json::from_value(json!({"id": "cap:read-the-gauge", "name": "Read the gauge", "description": "Read the gauge once a second"}))
             .unwrap();
-    s.add_capability(Parameters(cap)).await.expect("capability");
+    s.add_capability(Parameters(cap.into()))
+        .await
+        .expect("capability");
     s
 }
 

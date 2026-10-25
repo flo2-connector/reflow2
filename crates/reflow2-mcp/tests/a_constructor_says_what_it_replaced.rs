@@ -105,11 +105,9 @@ fn decision(id: &str, name: &str, text: &str, rationale: Option<&str>) -> Decisi
 #[tokio::test]
 async fn a_create_says_nothing_about_revision() {
     let s = svc().await;
-    let out = j!(s.add_requirement(Parameters(req(
-        "req:heals-itself",
-        "A lost reading heals itself",
-        FIRST
-    ))));
+    let out = j!(s.add_requirement(Parameters(
+        req("req:heals-itself", "A lost reading heals itself", FIRST).into()
+    )));
     assert!(
         out.get("revision").is_none(),
         "a create must not carry a revision block: {out:?}"
@@ -120,16 +118,12 @@ async fn a_create_says_nothing_about_revision() {
 #[tokio::test]
 async fn a_replaced_statement_is_named_and_its_prior_value_returned() {
     let s = svc().await;
-    j!(s.add_requirement(Parameters(req(
-        "req:heals-itself",
-        "A lost reading heals itself",
-        FIRST
-    ))));
-    let out = j!(s.add_requirement(Parameters(req(
-        "req:heals-itself",
-        "A lost reading heals itself",
-        SECOND
-    ))));
+    j!(s.add_requirement(Parameters(
+        req("req:heals-itself", "A lost reading heals itself", FIRST).into()
+    )));
+    let out = j!(s.add_requirement(Parameters(
+        req("req:heals-itself", "A lost reading heals itself", SECOND).into()
+    )));
 
     let rev = out.get("revision").expect("a revision must be reported");
     assert_eq!(rev.get("changed"), Some(&JsonValue::Bool(true)));
@@ -159,8 +153,8 @@ async fn a_replaced_statement_is_named_and_its_prior_value_returned() {
 #[tokio::test]
 async fn the_prior_value_is_the_old_text_not_the_new_one() {
     let s = svc().await;
-    j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", FIRST))));
-    let out = j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", SECOND))));
+    j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", FIRST).into())));
+    let out = j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", SECOND).into())));
     let prior = &out["revision"]["replaced"][0]["prior"];
     assert_eq!(prior, FIRST, "prior must be the OLD statement");
     assert_ne!(
@@ -176,18 +170,24 @@ async fn the_prior_value_is_the_old_text_not_the_new_one() {
 #[tokio::test]
 async fn adding_a_property_is_reported_as_added_not_replaced() {
     let s = svc().await;
-    j!(s.add_decision(Parameters(decision(
-        "dec:cumulative-totals",
-        "Send cumulative totals",
-        FIRST,
-        None
-    ))));
-    let out = j!(s.add_decision(Parameters(decision(
-        "dec:cumulative-totals",
-        "Send cumulative totals",
-        FIRST,
-        Some("Deltas would need a retransmit path nobody wants to own.")
-    ))));
+    j!(s.add_decision(Parameters(
+        decision(
+            "dec:cumulative-totals",
+            "Send cumulative totals",
+            FIRST,
+            None
+        )
+        .into()
+    )));
+    let out = j!(s.add_decision(Parameters(
+        decision(
+            "dec:cumulative-totals",
+            "Send cumulative totals",
+            FIRST,
+            Some("Deltas would need a retransmit path nobody wants to own.")
+        )
+        .into()
+    )));
 
     let rev = out.get("revision").expect("still a revision");
     assert_eq!(rev.get("changed"), Some(&JsonValue::Bool(true)));
@@ -210,8 +210,8 @@ async fn adding_a_property_is_reported_as_added_not_replaced() {
 async fn a_revision_that_changed_nothing_says_so() {
     let s = svc().await;
     let call = || req("req:heals-itself", "A lost reading heals itself", FIRST);
-    j!(s.add_requirement(Parameters(call())));
-    let out = j!(s.add_requirement(Parameters(call())));
+    j!(s.add_requirement(Parameters(call().into())));
+    let out = j!(s.add_requirement(Parameters(call().into())));
 
     let rev = out
         .get("revision")
@@ -247,8 +247,8 @@ async fn a_revision_that_changed_nothing_says_so() {
 #[tokio::test]
 async fn the_note_reports_the_replaced_state_was_kept() {
     let s = svc().await;
-    j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", FIRST))));
-    let out = j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", SECOND))));
+    j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", FIRST).into())));
+    let out = j!(s.add_requirement(Parameters(req("req:heals-itself", "Heals", SECOND).into())));
     let note = out["revision"]["note"].as_str().expect("a note");
 
     assert!(

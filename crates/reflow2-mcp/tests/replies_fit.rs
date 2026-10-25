@@ -168,34 +168,40 @@ async fn the_whole_walk_costs_less_and_a_page_holds_more_claims() {
 async fn get_skill_keeps_its_body_whole_and_names_the_lessons_it_withheld() {
     use reflow2_mcp::tools::skills_tools::GetSkillReq;
     let s = ReflowService::in_memory().expect("service");
-    s.add_project(Parameters(ProjectReq {
-        id: "proj:p".into(),
-        name: Some("P".into()),
-        description: None,
-        decomposition_levels: None,
-        status: None,
-    }))
+    s.add_project(Parameters(
+        ProjectReq {
+            id: "proj:p".into(),
+            name: Some("P".into()),
+            description: None,
+            decomposition_levels: None,
+            status: None,
+        }
+        .into(),
+    ))
     .await
     .expect("project");
     for i in 0..40 {
-        s.record_finding(Parameters(RecordFindingReq {
-            id: format!("fact:lesson-{i:02}"),
-            subject_id: "proj:p".into(),
-            node_type: None,
-            name: Some(format!("lesson {i}")),
-            statement: Some("what bit us, and what to do instead. ".repeat(14)),
-            fact_type: Some("finding".into()),
-            basis: None,
-            confidence: None,
-            source: None,
-            value: None,
-            valid_from: Some(format!("2026-09-{:02}", 1 + i % 28)),
-            valid_to: None,
-            caused_by: None,
-            caused_by_type: None,
-            cause_evidence: None,
-            steps: Some(vec!["root-cause".into()]),
-        }))
+        s.record_finding(Parameters(
+            RecordFindingReq {
+                id: format!("fact:lesson-{i:02}"),
+                subject_id: "proj:p".into(),
+                node_type: None,
+                name: Some(format!("lesson {i}")),
+                statement: Some("what bit us, and what to do instead. ".repeat(14)),
+                fact_type: Some("finding".into()),
+                basis: None,
+                confidence: None,
+                source: None,
+                value: None,
+                valid_from: Some(format!("2026-09-{:02}", 1 + i % 28)),
+                valid_to: None,
+                caused_by: None,
+                caused_by_type: None,
+                cause_evidence: None,
+                steps: Some(vec!["root-cause".into()]),
+            }
+            .into(),
+        ))
         .await
         .expect("a lesson");
     }
