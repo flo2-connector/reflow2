@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:037eeae0d96c9c5a837d0263a00c2d78158b52ab17e9d2bf15a0507f7594f3c5",
+  "node_id": "ver:reasoning-is-evaluated-once-per-report",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/reasoning_is_evaluated_once_per_report.rs. (1) every_reading_is_as_it_was_before_the_evaluation_was_shared: 17 proof, argument and verification fixtures plus a Shop-shaped design at 18 steps, each read by every reasoning reader over every node (premise_truth, statement, objections, chain, foundations, proof, lines, check conditions, step, the report under each conclusion, the what-if from each premise) and by the whole-design readers (reasoning_report, reasoning_debt, what follows and does not, assumptions, independence, generalizations, single points, foundations, loop_status, detect_gaps, detect_defects), plus the whole-design readers over the same shape at 44 steps, equal a golden of digests taken on main 367cd86d8 (tests/fixtures/readings_before_the_shared_evaluation.json). (2) a_shop_sized_design_with_circles_reads_within_its_budget: on the 56-step Shop-shaped design with objection circles, reasoning_report, loop_status and detect_gaps each under 10 s in a debug build (measured 1.1 / 1.0 / 0.9 s on an 8-core desktop; minutes before). Also crates/reflow2-mcp/tests/a_reasoning_report_keeps_to_a_small_budget.rs: budget_chars 4,000 is kept, with the summary lists shortened and named.",
+    "findings": "Passing on branch fix/reasoning-memo-shared (ajs77, debug and release): the golden matched for all 19 designs; budget test 1.1 s worst; the small-budget wire test passes. On main the same golden run took past an hour at 56 steps, which is why the whole-design golden uses 44.",
+    "kind": "verification",
+    "last_run_at": "2026-10-25",
+    "level": "integration",
+    "location": "crates/reflow2-core/tests/reasoning_is_evaluated_once_per_report.rs",
+    "method": "test",
+    "name": "Reasoning is evaluated once per report: every reading as before, the Shop-sized cost within budget",
+    "status": "passing"
+  }
+}

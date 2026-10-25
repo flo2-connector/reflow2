@@ -135,6 +135,11 @@ use crate::foundation::core::{DynoError, Value};
 use crate::graph::DesignGraph;
 use crate::nodes::{Props, edge, node};
 
+mod memo;
+use memo::{Kept, Stack, Stacks, Tracker};
+pub(crate) use memo::{debt_held, note_truncation};
+use std::rc::Rc;
+
 /// How far a chain of steps is followed before the answer is `unknown`. A
 /// chain this deep is far past any design written by hand; the bound exists
 /// for a graph imported from somewhere that never refused a cycle.
@@ -1032,7 +1037,13 @@ pub struct UnfollowedConclusion {
 /// circle, read as unknown).
 struct Eval<'l> {
     lost: &'l BTreeSet<String>,
-    memo: HashMap<String, Read>,
+    /// What this evaluation computed with no circle cut beneath it, handed
+    /// back whenever it is asked again, exactly as before readings were
+    /// shared. Each with what it depends on, for the readings above it.
+    memo: HashMap<String, Rc<Kept>>,
+    /// The memo shared across the evaluations of one report, and what the
+    /// computation under way has consulted ([`memo`]).
+    track: Tracker,
     path: BTreeSet<String>,
     /// Nodes whose truth is being computed. Objections may form circles (A
     /// objects to B, B to A), which the write never refuses.
@@ -1047,10 +1058,11 @@ struct Eval<'l> {
 }
 
 impl<'l> Eval<'l> {
-    fn new(lost: &'l BTreeSet<String>) -> Self {
+    fn new(graph: &DesignGraph, lost: &'l BTreeSet<String>) -> Self {
         Eval {
             lost,
             memo: HashMap::new(),
+            track: Tracker::new(graph, lost),
             path: BTreeSet::new(),
             nodes: BTreeSet::new(),
             cuts: 0,
@@ -2010,7 +2022,7 @@ impl DesignGraph {
         let reads_as = self.premise_reads_as(inference_id, premise)?;
         if reads_as == Some(ReadsAs::Intent) {
             let lost = BTreeSet::new();
-            let mut ev = Eval::new(&lost);
+            let mut ev = Eval::new(self, &lost);
             let conclusion = self.conclusion_of(inference_id)?;
             let (t, why) = self
                 .intent_full(premise, conclusion.as_deref(), &mut ev, INFERENCE_DEPTH)?
@@ -2071,11 +2083,13 @@ impl DesignGraph {
 
     /// The one type holding `id`, when exactly one does.
     pub(crate) fn type_holding(&self, id: &str) -> Result<Option<String>, DynoError> {
-        let held = self.node_types_holding(id)?;
-        Ok(if held.len() == 1 {
-            held.into_iter().next()
-        } else {
-            None
+        memo::type_held(self, id, || {
+            let held = self.node_types_holding(id)?;
+            Ok(if held.len() == 1 {
+                held.into_iter().next()
+            } else {
+                None
+            })
         })
     }
 
@@ -2090,7 +2104,7 @@ impl DesignGraph {
     /// [`Self::premise_truth`] with the assumptions it holds under.
     fn premise_reading(&self, id: &str) -> Result<Read, DynoError> {
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         self.truth_full(id, &mut ev, INFERENCE_DEPTH)
     }
 
@@ -2305,11 +2319,13 @@ impl DesignGraph {
             let (t, why) = self.lost_truth(id)?;
             return Ok(Read::plain(t, why));
         }
-        if let Some(hit) = ev.memo.get(id) {
-            return Ok(hit.clone());
+        if let Some(hit) = ev.memo.get(id).cloned() {
+            ev.track.took(id, &hit);
+            return Ok(hit.read.clone());
         }
         if ev.nodes.contains(id) {
             ev.cuts += 1;
+            ev.track.found_on(id, Stack::Node);
             return Ok(Read::plain(
                 Truth::Unknown,
                 "it comes back to itself, through its support or a circle of objections, and a \
@@ -2317,19 +2333,52 @@ impl DesignGraph {
                     .to_string(),
             ));
         }
+        // ASKED BEFORE, ON A STACK THAT AGREES: computing it again would take
+        // the same path and read the same (memo.rs). A cut beneath it is
+        // counted as computing it again would count it, so what rests on it
+        // is kept in this evaluation's own memo exactly as before.
+        let stacks = Stacks {
+            nodes: &ev.nodes,
+            path: &ev.path,
+        };
+        if let Some(hit) = ev.track.recall(id, &stacks) {
+            ev.track.took(id, &hit);
+            if hit.had_cuts {
+                ev.cuts += 1;
+            } else {
+                ev.memo.insert(id.to_string(), hit.clone());
+            }
+            return Ok(hit.read.clone());
+        }
         ev.nodes.insert(id.to_string());
+        ev.track.frames.push(memo::Frame::default());
         let cuts_before = ev.cuts;
+        let truncations_before = memo::truncations();
         let answer = self.truth_uncached(id, ev, depth);
         ev.nodes.remove(id);
+        let frame = ev.track.frames.pop().unwrap_or_default();
         let answer = answer?;
+        let stacks = Stacks {
+            nodes: &ev.nodes,
+            path: &ev.path,
+        };
+        let kept = ev.track.keep(
+            id,
+            answer.clone(),
+            frame,
+            ev.cuts != cuts_before,
+            memo::truncations() != truncations_before,
+            &stacks,
+        );
         if ev.cuts == cuts_before {
-            ev.memo.insert(id.to_string(), answer.clone());
+            ev.memo.insert(id.to_string(), kept);
         }
         Ok(answer)
     }
 
     fn truth_uncached(&self, id: &str, ev: &mut Eval<'_>, depth: usize) -> Result<Read, DynoError> {
         if depth == 0 {
+            note_truncation();
             return Ok(Read::plain(
                 Truth::Unknown,
                 format!("the chain of steps is deeper than {INFERENCE_DEPTH}"),
@@ -2387,6 +2436,7 @@ impl DesignGraph {
             return Ok(Read::plain(t, why));
         }
         if depth == 0 {
+            note_truncation();
             return Ok(Read::plain(
                 Truth::Unknown,
                 format!("the chain of steps is deeper than {INFERENCE_DEPTH}"),
@@ -2559,7 +2609,7 @@ impl DesignGraph {
     /// the objection's id; empty when nothing objects.
     pub fn objections_to(&self, id: &str) -> Result<Vec<ObjectionReading>, DynoError> {
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         // `id` is on the path, so an objection that comes back to it reads
         // the way its truth reads it: unknown.
         ev.nodes.insert(id.to_string());
@@ -2745,7 +2795,7 @@ impl DesignGraph {
             return Ok(None);
         }
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let conditions = self.condition_readings(id, &mut ev, INFERENCE_DEPTH)?;
         if conditions.is_empty() {
             return Ok(None);
@@ -3298,7 +3348,7 @@ impl DesignGraph {
             return Ok(None);
         };
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         ev.nodes.insert(id.to_string());
         Ok(self
             .concluded_by_steps(id, &node_type, &mut ev, INFERENCE_DEPTH)?
@@ -4050,12 +4100,14 @@ impl DesignGraph {
     ) -> Result<Read, DynoError> {
         if ev.nodes.contains(id) {
             ev.cuts += 1;
+            ev.track.found_on(id, Stack::Node);
             return Ok(Read::plain(
                 Truth::Unknown,
                 "it comes back to itself through its support, and a circle has no verdict"
                     .to_string(),
             ));
         }
+        ev.track.found_off(id, Stack::Node);
         let Some(node_type) = self.type_holding(id)? else {
             return Ok(Read::plain(
                 Truth::Unknown,
@@ -4223,7 +4275,7 @@ impl DesignGraph {
             return Ok(None);
         }
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let mut reading = self.step_reading(inference_id, &mut ev, INFERENCE_DEPTH)?;
         reading.independence = self.independence_of(inference_id)?;
         // CIRCULAR (dec:idea-speculate-the-bridge-that-would-close-a-gap-then-
@@ -4432,7 +4484,7 @@ impl DesignGraph {
                 // A supposition some step discharges (a reductio's ¬P, a
                 // theorem's hypothesis closed above both lines) costs nothing
                 // when lost, as the what-if reads it: never shared.
-                let mut ev = Eval::new(&no_loss);
+                let mut ev = Eval::new(self, &no_loss);
                 if allowed_premises.contains(f)
                     || !self.inferences_concluding(f)?.is_empty()
                     || self.get_node(node::INFERENCE, f)?.is_some()
@@ -4556,6 +4608,8 @@ impl DesignGraph {
     /// What a statement says it is (`statement_kind`) and how it reads now;
     /// `None` when it says nothing.
     pub fn statement_reading(&self, id: &str) -> Result<Option<StatementReading>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let Some(ty) = self.type_holding(id)? else {
             return Ok(None);
         };
@@ -4572,7 +4626,7 @@ impl DesignGraph {
             // none, `stated` while nothing derives it — never holds, and never
             // "refuted", which is what an objection does to a claim.
             let lost = BTreeSet::new();
-            let mut ev = Eval::new(&lost);
+            let mut ev = Eval::new(self, &lost);
             let d = self.falsum_derivation(id, &mut ev, INFERENCE_DEPTH)?;
             let reads = if d.truth != Truth::Holds {
                 "stated"
@@ -4824,6 +4878,7 @@ impl DesignGraph {
         }
         if ev.path.contains(inference_id) {
             ev.cuts += 1;
+            ev.track.found_on(inference_id, Stack::Step);
             reading.note = Some(
                 "it rests, through its premises, on its own conclusion: circular reasoning has \
                  no verdict"
@@ -4831,7 +4886,9 @@ impl DesignGraph {
             );
             return Ok(reading);
         }
+        ev.track.found_off(inference_id, Stack::Step);
         if depth == 0 {
+            note_truncation();
             reading.note = Some(format!(
                 "the chain of steps under it is deeper than {INFERENCE_DEPTH}"
             ));
@@ -5612,7 +5669,7 @@ impl DesignGraph {
         depth: usize,
     ) -> Result<Vec<String>, DynoError> {
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let mut holding = Vec::new();
         for s in self.inferences_concluding(id)? {
             let r = self.step_reading(&s, &mut ev, depth)?;
@@ -5665,6 +5722,8 @@ impl DesignGraph {
     /// takes away (reinstatement in reverse), and every check whose
     /// conditions it leaves without support.
     pub fn inference_walk_full(&self, seeds: &[&str]) -> Result<InferenceWalk, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let seed_set: BTreeSet<&str> = seeds.iter().copied().collect();
         let mut lost: BTreeSet<String> = seeds.iter().map(|s| s.to_string()).collect();
         let mut lost_at: BTreeMap<String, usize> =
@@ -5676,7 +5735,7 @@ impl DesignGraph {
         // every step that takes it up (req:a-what-if-on-an-assumed-principle-
         // shows-what-holds-only-under-it).
         let before_set = BTreeSet::new();
-        let mut before_ev = Eval::new(&before_set);
+        let mut before_ev = Eval::new(self, &before_set);
         let mut returning: Vec<ObjectionReturning> = Vec::new();
         let mut returned: BTreeSet<String> = BTreeSet::new();
         // Claims that hold only under a dropped assumption: reached, not lost.
@@ -5727,7 +5786,7 @@ impl DesignGraph {
             // conclusion-and-objections-that-return: "route B loses its last
             // unobjected premise"). Losses only grow, so a conclusion that
             // stood a round ago may fall now: re-read until nothing new is lost.
-            let mut ev = Eval::new(&lost);
+            let mut ev = Eval::new(self, &lost);
             let mut newly: Vec<(String, usize)> = Vec::new();
             for (s, distance) in &reached {
                 let Some(c) = self.conclusion_of(s)? else {
@@ -5830,7 +5889,7 @@ impl DesignGraph {
             frontier.extend(came_back);
         }
 
-        let mut after_ev = Eval::new(&lost);
+        let mut after_ev = Eval::new(self, &lost);
         let mut rows = Vec::new();
         for (s, distance) in &reached {
             let before = self.step_reading(s, &mut before_ev, INFERENCE_DEPTH)?;
@@ -5839,7 +5898,7 @@ impl DesignGraph {
             let after = if lost.contains(s) {
                 let without_itself: BTreeSet<String> =
                     lost.iter().filter(|x| *x != s).cloned().collect();
-                let mut ev = Eval::new(&without_itself);
+                let mut ev = Eval::new(self, &without_itself);
                 let mut r = self.step_reading(s, &mut ev, INFERENCE_DEPTH)?;
                 let (truth, why) = self.lost_truth(s)?;
                 r.verdict = truth;
@@ -5862,7 +5921,7 @@ impl DesignGraph {
                     let now = if lost.contains(c) && !seed_set.contains(c.as_str()) {
                         let without_it: BTreeSet<String> =
                             lost.iter().filter(|x| *x != c).cloned().collect();
-                        let mut ev = Eval::new(&without_it);
+                        let mut ev = Eval::new(self, &without_it);
                         self.walk_read(c, &mut ev)?
                     } else {
                         self.walk_read(c, &mut after_ev)?
@@ -6172,6 +6231,8 @@ impl DesignGraph {
     /// that: their verdict, ANY across them, is `fails` or `unknown`. Reported,
     /// never repaired (dec:report-dont-judge) — the status is left as claimed.
     pub fn conclusions_that_do_not_follow(&self) -> Result<Vec<UnfollowedConclusion>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let mut conclusions: BTreeSet<String> = BTreeSet::new();
         for i in self.scan_nodes(node::INFERENCE)? {
             if let Some(c) = self.conclusion_of(&i.node_id)? {
@@ -6179,7 +6240,7 @@ impl DesignGraph {
             }
         }
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let mut out = Vec::new();
         for c in conclusions {
             let Some(node_type) = self.type_holding(&c)? else {
@@ -6244,6 +6305,8 @@ impl DesignGraph {
     /// Every conclusion that follows — at least one of its steps holds — for
     /// the served read of derived relations.
     pub fn conclusions_that_follow(&self) -> Result<Vec<String>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let mut conclusions: BTreeSet<String> = BTreeSet::new();
         for i in self.scan_nodes(node::INFERENCE)? {
             if let Some(c) = self.conclusion_of(&i.node_id)? {
@@ -6251,7 +6314,7 @@ impl DesignGraph {
             }
         }
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let mut out = Vec::new();
         for c in conclusions {
             for s in self.inferences_concluding(&c)? {
@@ -6368,6 +6431,8 @@ impl DesignGraph {
     /// it falls with it. Checked, not inferred: each candidate is counted lost
     /// and the claim read again.
     pub fn reasoning_single_points(&self) -> Result<Vec<ReasoningSinglePoint>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let mut conclusions: BTreeSet<String> = BTreeSet::new();
         for i in self.scan_nodes(node::INFERENCE)? {
             if let Some(c) = self.conclusion_of(&i.node_id)? {
@@ -6381,7 +6446,7 @@ impl DesignGraph {
                 continue;
             }
             let none = BTreeSet::new();
-            let mut ev = Eval::new(&none);
+            let mut ev = Eval::new(self, &none);
             let mut lines: Vec<String> = Vec::new();
             for st in &steps {
                 if self.step_reading(st, &mut ev, INFERENCE_DEPTH)?.verdict == Truth::Holds {
@@ -6406,7 +6471,7 @@ impl DesignGraph {
                     continue;
                 }
                 let lost = BTreeSet::from([x.clone()]);
-                let mut ev = Eval::new(&lost);
+                let mut ev = Eval::new(self, &lost);
                 if self.truth_of(&c, &mut ev, INFERENCE_DEPTH)?.0 != Truth::Holds {
                     points.push(x);
                 }
@@ -6549,6 +6614,8 @@ impl DesignGraph {
     /// and whether the list was capped. `None` when the node is not concluded
     /// by any Inference (no foundations to show — it IS terminal).
     pub fn foundations_reading(&self, id: &str) -> Result<Option<FoundationsReading>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let steps = self.inferences_concluding(id)?;
         if steps.is_empty() {
             return Ok(None);
@@ -6583,6 +6650,8 @@ impl DesignGraph {
     /// - **Unproven**: no derivation holds, or an objection that holds
     ///   refutes the conclusion.
     pub fn proof_reading(&self, id: &str) -> Result<Option<ProofReading>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let top_steps = self.inferences_concluding(id)?;
         if top_steps.is_empty() {
             return Ok(None);
@@ -6642,7 +6711,7 @@ impl DesignGraph {
         // steps are under the claim is the size of the UNION of those lines:
         // a step two lines share is one step.
         let lost = BTreeSet::new();
-        let mut ev = Eval::new(&lost);
+        let mut ev = Eval::new(self, &lost);
         let mut any_holds = false;
         let mut any_proven_chain = false;
         let mut under: BTreeSet<String> = BTreeSet::new();
@@ -6886,6 +6955,8 @@ impl DesignGraph {
     /// at least one conclusion. The design-wide view: "which nodes are axioms
     /// that something rests on?"
     pub fn design_foundations(&self) -> Result<Vec<String>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let mut conclusions: BTreeSet<String> = BTreeSet::new();
         for i in self.scan_nodes(node::INFERENCE)? {
             if let Some(c) = self.conclusion_of(&i.node_id)? {

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:016f3fb764e1fa312932607c25824f25384890dbd59afb72c2edd2880f048bfc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-readings-before-the-shared-evaluation",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

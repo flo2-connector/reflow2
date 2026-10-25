@@ -635,7 +635,7 @@ fn dropping_the_accepted_need_or_a_what_if_on_it_reaches_the_choice() {
 
 // ─── 8: proofs, arguments and verification arguments read as before ───────
 
-const FIXTURES: [(&str, &str); 17] = [
+pub(crate) const FIXTURES: [(&str, &str); 17] = [
     (
         "capstone",
         include_str!("fixtures/argument_trial_capstone.json"),

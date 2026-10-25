@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:18b91f75d761d1213ccfae2715759d0e466a4751983ac6e3b57d0492e020cdbc",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:inference"
+}

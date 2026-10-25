@@ -1726,6 +1726,8 @@ impl DesignGraph {
     /// findings take `.defects`; the scoped sibling has always answered this
     /// way, and the two now agree.
     pub fn detect_defects(&self) -> Result<DefectSweep, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         // ONE SWEEP FEEDS BOTH HALVES. The suppression counts are accumulated by
         // the detectors as they skip, never recomputed here — a second copy of
         // the skip rule would drift from the first, which is the exact disease

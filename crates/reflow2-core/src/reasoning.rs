@@ -846,6 +846,8 @@ impl DesignGraph {
         offset: Option<usize>,
         walk_cap: usize,
     ) -> Result<ReasoningReport, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let limit = limit
             .unwrap_or(REASONING_DEFAULT_LIMIT)
             .clamp(1, REASONING_MAX_LIMIT);
@@ -1736,6 +1738,13 @@ impl DesignGraph {
     /// Inference, so nothing is said where there is no reasoning
     /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
     pub fn reasoning_debt(&self) -> Result<Option<ReasoningDebt>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs), and
+        // the debt itself worked out once while it is open.
+        let _shared = self.reasoning_scope();
+        crate::inference::debt_held(self, || self.reasoning_debt_computed())
+    }
+
+    fn reasoning_debt_computed(&self) -> Result<Option<ReasoningDebt>, DynoError> {
         let steps = self.scan_nodes(node::INFERENCE)?;
         if steps.is_empty() {
             return Ok(None);

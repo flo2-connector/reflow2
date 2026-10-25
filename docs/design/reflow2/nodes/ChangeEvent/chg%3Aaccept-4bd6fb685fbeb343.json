@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:098a4f7ee8c3b4e01add60c1cb8f8fbb96faea3cfd87643fac808b677b480654",
+  "node_id": "chg:accept-4bd6fb685fbeb343",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "detected_at": "2026-10-25",
+    "name": "one module line for the new test file",
+    "subject": "system"
+  }
+}

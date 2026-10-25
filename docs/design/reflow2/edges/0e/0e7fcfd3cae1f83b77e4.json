@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:25ec9dd75018153719348de66670900957311029c5cf0c71a41a3c5a17f7f1a3",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fcd2cf225d2cc1194518003249247dc47dd5f4eaae0beba53d79c7249f199e14",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:reasoning-evaluation-is-memoized-across-cycles-and-shared-across-a-report"
+}

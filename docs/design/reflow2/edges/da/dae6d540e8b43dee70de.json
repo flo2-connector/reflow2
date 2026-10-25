@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ab7d906af7523c5c0b0d00773763558e5771e103622767da07bbb75e89a178e3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 34,
+    "action": "modified",
+    "checksum_after": "sha256:92492ba094475086515acb67de0c5e640636b82e652fc99fb9d165e1f1c9a7e8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

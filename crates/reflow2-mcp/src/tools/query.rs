@@ -2117,13 +2117,44 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     let summary = JsonValue::Object(std::mem::take(o));
     let hint = "The claims are whole; what was cut is outside them. Read one claim with \
                 reasoning_report on its id, or pass a larger budget_chars.";
+    // The reply as the client receives it, its budget block labelled with
+    // the caller's budget, so what is measured is what is sent: until
+    // 2026-10-25 the labels were added after the fitting and pushed a fitted
+    // reply past its budget.
     let whole = |room: usize| -> JsonValue {
-        let mut rest = crate::reply_budget::bound_reply(summary.clone(), room, hint);
+        let mut rest = crate::reply_budget::bound_reply_sampling(summary.clone(), room, hint);
         if let Some(r) = rest.as_object_mut() {
             r.insert("claims".into(), claims.clone());
             r.insert("page".into(), page.clone());
             for (k, v) in &with_claims {
                 r.insert((*k).into(), v.clone());
+            }
+        }
+        if let Some(b) = rest.get_mut("budget").and_then(|b| b.as_object_mut()) {
+            let inner = b
+                .get("budget_chars")
+                .and_then(|v| v.as_u64())
+                .unwrap_or(room as u64);
+            b.insert("budget_chars".into(), json!(budget));
+            b.insert("summary_room".into(), json!(inner));
+            b.insert("reply_chars".into(), json!(0));
+            if let Some(note) = b.get("note").and_then(|n| n.as_str()) {
+                let note = note.replacen(
+                    &format!("against a budget of {inner},"),
+                    &format!(
+                        "outside its whole claims, against the {inner} characters the claims \
+                         leave of budget_chars {budget},"
+                    ),
+                    1,
+                );
+                b.insert("note".into(), json!(note));
+            }
+        }
+        // The count counts itself: two passes settle its own digits.
+        for _ in 0..2 {
+            let reply_chars = chars_of(&rest);
+            if let Some(b) = rest.get_mut("budget").and_then(|b| b.as_object_mut()) {
+                b.insert("reply_chars".into(), json!(reply_chars));
             }
         }
         rest
@@ -2157,27 +2188,6 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     while room > 0 && chars_of(&out) > budget {
         room = room.saturating_sub((chars_of(&out) - budget).max(64));
         out = whole(room);
-    }
-    let reply_chars = chars_of(&out);
-    if let Some(b) = out.get_mut("budget").and_then(|b| b.as_object_mut()) {
-        let inner = b
-            .get("budget_chars")
-            .and_then(|v| v.as_u64())
-            .unwrap_or(room as u64);
-        b.insert("budget_chars".into(), json!(budget));
-        b.insert("summary_room".into(), json!(inner));
-        b.insert("reply_chars".into(), json!(reply_chars));
-        if let Some(note) = b.get("note").and_then(|n| n.as_str()) {
-            let note = note.replacen(
-                &format!("against a budget of {inner},"),
-                &format!(
-                    "outside its whole claims, against the {inner} characters the claims leave of \
-                     budget_chars {budget},"
-                ),
-                1,
-            );
-            b.insert("note".into(), json!(note));
-        }
     }
     out
 }

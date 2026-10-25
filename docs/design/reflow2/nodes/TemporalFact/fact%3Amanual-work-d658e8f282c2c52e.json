@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0a1518e185fc4c52e6dfc3bc111ed3eb6a14686d309a26ab559f494f439e9dfa",
+  "node_id": "fact:manual-work-d658e8f282c2c52e",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "To time a hosted design locally, exported it from flo2.io's engine by importing reflow2_design_copy.fetch_live in a one-off Python call for a design that is not reflow2's own, then imported the export into an in-memory graph in an ignored test. There is no served way to fetch a hosted design's export to a file for local measurement.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-25",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c5bff5d2140e70f2aec260fae2818cc1800fb65c1e4ff4ca55459f4aff577d04",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:manual-work-30be7f7ef11a2592",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

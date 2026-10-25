@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:56257a0ab17af66c594dd5ca447b088dfb1636c259bf5047235f2fbcd2dfc551",
+  "node_id": "dec:web-of-rules-five-choices-ruled-2026-10-25",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-25: \"Go with your recommendations on the five choices\", on the choices named in reflow2 #800 (merged 367cd86) and flo2-calc #14 (merged 0960da2):\n1. TRADE GROUPING: a Component carries an optional `trade` property, and the redo list (propagate_from's `redo_list`) groups its parts by it, finishing req:a-change-to-a-physical-designs-part-returns-its-redo-list-by-trade. NOT BUILT YET.\n2. An owed re-run (loop_status `owed_computations`, `resting_on_stale_numbers`) counts against `clean`, not only in `next`. As built.\n3. When a registered computation does not say which value it used for an input, the design's current value is taken and marked `current`, so a later change still marks it owed. Requiring it would refuse older records. As built.\n4. flo2-calc writes record schema 11 only when a record binds a design quantity; other records stay at 10. Additive. As built.\n5. flo2-calc's 0bee0c00b35845f6:req:an-input-names-the-design-quantity-it-holds is accepted.",
+    "kind": "choice",
+    "name": "The web-of-rules build's five open choices, ruled: parts carry a `trade` for the redo list; owed re-runs count against clean; an unstated input is taken as the current value and marked so; calc records use schema 11 only when they bind a quantity; flo2-calc's input-names-its-quantity requirement is accepted",
+    "rationale": "The agent's provisional choices, confirmed on the owner's word; only (1) is new work. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

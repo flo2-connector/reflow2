@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ba15eff9691b747b3bb259898cb5bd735e538fe5299206b3b62f32279657bdfc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

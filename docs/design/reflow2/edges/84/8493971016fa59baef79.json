@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a376094123b363cde071e25de212059699f3c6d48b0d0f7294e5a0f12c337580",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 31,
+    "action": "modified",
+    "checksum_after": "sha256:0e5f7c326d5dffbd9404b64472e22e1b3fa49da646ab392630a0359d915f9e76",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-query"
+}

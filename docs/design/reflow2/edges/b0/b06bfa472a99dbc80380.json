@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2d82615724f8591859dac2858a0348d7bd2b377b3c816a3e16cbbdc0bbd0cf02",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-reasoning-report-keeps-to-a-small-budget",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

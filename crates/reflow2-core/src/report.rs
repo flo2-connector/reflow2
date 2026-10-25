@@ -1013,6 +1013,8 @@ impl DesignGraph {
     /// [`LoopScope`] for why that restraint is the design rather than a
     /// shortcut.
     pub fn loop_status_for(&self, contributor: Option<&str>) -> Result<LoopStatus, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         // A contributor we cannot find is an ERROR, not an empty answer. The
         // failure mode being avoided is specific: a mistyped or renamed id
         // silently produces "nothing is owed to you", which is both the most
@@ -1706,6 +1708,7 @@ impl DesignGraph {
         depth: usize,
     ) -> Result<Option<Vec<String>>, DynoError> {
         if depth == 0 {
+            crate::inference::note_truncation();
             return Ok(None);
         }
         let by = self.requirement_directly_delivered_by(requirement_id)?;
