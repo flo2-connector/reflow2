@@ -2967,12 +2967,11 @@ impl ReflowService {
                        the device\") or a closed set of permitted values (\"status is one of \
                        draft/submitted/paid\") belongs here too. Reading this type as \
                        budgets-only once cost a design 11 prohibitions left as Requirements \
-                       that report unsatisfied forever. For a numeric budget (BL-11) set `quantity` \
+                       that report unsatisfied forever. For a numeric budget set `quantity` \
                        (unit-bearing, e.g. mass_kg, latency_ms), `limit`, and \
                        `direction` (maximum = stay at or under, the default). Then attach the \
                        spenders with `constrains` and read the rollup with `budget_report`; \
-                       `composition` (sum/path/each) says which rollup its verdict reads — `each` for a \
-                       limit every part meets on its own (a setback, a clearance). \
+                       `composition` (sum/path/each) says which rollup its verdict reads. \
                        `category: kpp` marks a KEY PERFORMANCE PARAMETER — inviolable intent, a \
                        threshold that if missed fails the whole effort — and its violations are \
                        computed and ranked above ordinary gaps. On a kpp, `limit` is the \
