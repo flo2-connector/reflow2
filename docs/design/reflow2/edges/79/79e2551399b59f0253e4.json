@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fe16f276e5a7b2852ff0d2bc40ef306202a29abb37fce1472e4145102e422cc1",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-two-renamed-stubs-are-removed",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

@@ -138,6 +138,10 @@ ALIASED = {
     # argument named `hypothesis_test` made add_verification and
     # reconcile_verification a mutually confusable pair in find_tools (2026-10-19).
     ("Verification", "hypothesis_test"): "add_verification's `hypothesis_block` parameter",
+    # `answers: []` is the change's word that it answered no finding; a list
+    # naming one draws INVALIDATES instead (2026-10-25,
+    # dec:a-fix-names-the-findings-it-answers-in-the-same-call).
+    ("ChangeEvent", "answered_none"): "add_change_event's `answers` parameter, as an empty list",
 }
 
 
@@ -274,6 +278,12 @@ EDGE_ONLY = {
     # it cannot be what makes a property reachable, and counting it would make every
     # string property on every type read as writable.
     "replace_text",
+    # A PROCESS TOOL (dec:record-what-was-built-in-one-call): it writes nothing
+    # itself and runs the tools it composes (add_verification, add_change_event,
+    # add_artifact, set_artifact_checksums, set_capability_status, replace_text),
+    # each placed here or in writers.json already. Its own parameters are the
+    # steps (`verification`, `change`, `files`, `built`), never a property.
+    "record_the_build",
 }
 
 # A tool that writes ONE NAMED PROPERTY on a type the CALLER chooses. It reaches

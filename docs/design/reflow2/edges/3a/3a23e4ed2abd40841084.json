@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ab12255a761ae97e51ac48fca391e84adf55f4c3b47495574d49bd6ea8ea173c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:083ee0e4a2533cf340ee3cb0f9c751b9f0036a85a007f1f2a0f604e502bd1f47",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-process"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fb3ac7bc4342fc7cdb6fff8fc90b1ca2bb8c23079d2d933892de245220671f0c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:the-argument-check-agrees-with-the-deserialiser-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

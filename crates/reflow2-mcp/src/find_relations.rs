@@ -53,6 +53,38 @@ pub(crate) const RELATIONS_SHOWN: usize = 3;
 /// that merely share a word with it.
 const SHARE_OF_BEST: f64 = 1.0 / 3.0;
 
+/// A relation comes back only when it scores at least this share of the top
+/// TOOL's score (`dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y`,
+/// the follow-up to #798): a plain tool search then does not carry relations
+/// every time.
+///
+/// MEASURED 2026-10-25 on the two corpora, as the best relation's score over
+/// the top tool's. Every question in the relation corpus scored its relation
+/// at 0.85 of the top tool or more (the lowest, "the release that ships this
+/// component", 0.848). Over the tool corpus, the share of replies carrying
+/// relations fell from 100% (198 of 198) to 47.7% (95 of 199). The two halves
+/// are not cleanly apart: a relation's prose is short, so its score runs high
+/// beside a tool's, and a tool question that names two kinds of thing reads
+/// like a relation question. 0.8 keeps a margin under the lowest relation
+/// question rather than sitting on it.
+pub(crate) const CLOSE_TO_THE_TOP_TOOL: f64 = 0.8;
+
+/// The relations close enough to the top tool to be worth showing beside it.
+/// With no tool hit at all, every ranked relation stays.
+pub(crate) fn close_to_the_top_tool(relations: Vec<JsonValue>, top_tool: f64) -> Vec<JsonValue> {
+    if top_tool <= 0.0 {
+        return relations;
+    }
+    relations
+        .into_iter()
+        .filter(|r| {
+            r["score"]
+                .as_f64()
+                .is_some_and(|s| s >= top_tool * CLOSE_TO_THE_TOP_TOOL)
+        })
+        .collect()
+}
+
 /// The weight of a query word that names a type the relation may join.
 const ENDPOINT_HIT: f64 = 2.0;
 

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:db24ff56c1a7c9d73be552e0d42c8a5e3895fae329d19f134b65e9ba6fa4c730",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:loop-status-carries-one-repair-line",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

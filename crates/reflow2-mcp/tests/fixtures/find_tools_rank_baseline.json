@@ -53,10 +53,6 @@
       "invalidated_findings"
     ],
     [
-      "add_change_event",
-      "snapshot_before_change"
-    ],
-    [
       "add_design_rule",
       "violates_rule"
     ],
@@ -129,10 +125,6 @@
       "recall_resolutions"
     ],
     [
-      "complies_with",
-      "imposes"
-    ],
-    [
       "contain_component",
       "move_component"
     ],
@@ -199,10 +191,6 @@
     [
       "invalidated_findings",
       "reconcile_verification"
-    ],
-    [
-      "invalidates",
-      "unclaimed_findings"
     ],
     [
       "link_artifact",

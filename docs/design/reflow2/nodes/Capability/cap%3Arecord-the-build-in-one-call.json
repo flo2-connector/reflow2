@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:12c5e273ae39f53c5c82c35c19dc6a91c8e3444f5e89bc695b14af5648333c64",
+  "node_id": "cap:record-the-build-in-one-call",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-10-25 under dec:record-what-was-built-in-one-call, the first process tool under 83d2b0775fe79af6:dec:idea-a-few-core-tools-each-running-a-process-of-subtools (b + c). It serves job 4 of the five (dec:idea-reflow2-does-fewer-things-and-does-them-really-well): whether what was built meets what was asked. One call runs, in order, through the composed tools' own handlers: (1) `verification`, add_verification recorded passing; (2) `change`, add_change_event, whose `answers` draws INVALIDATES; (3) `files`, add_artifact for a file not yet registered (its acceptance is its first baseline, and the change draws CHANGED `added` to it), set_artifact_checksums accepting each on the change (design_updated), and IMPLEMENTS from a test file to the check it `runs`; (4) `built`, set_capability_status realized (or verified) for a capability, GOVERNED_BY from the capabilities in the same list to a choice (EVOLVES_INTO from an exploratory idea), never moving a decision's status, and `replace` through replace_text. Each step returns its own receipt; a refusal names its step number, name and tool, and NOTHING is written: the steps are the call's one write unit, and driven directly the tool opens the unit a served call gets. The composed tools stay served. Named record_the_build after an offline sweep with tools/tool_confusability.py: record_what_was_built ranked first for \"record what I built\" but its name words (\"what\", \"was\") entered two mutual pairs and pushed confirmation_ledger off first for its own job; record_the_build ranks first and adds no pair. Code: crates/reflow2-mcp/src/tools/process.rs. Tests: crates/reflow2-mcp/tests/what_was_built_is_recorded_in_one_call.rs.",
+    "name": "record_the_build records what was built in one call: the passing check, the change with the findings it answered, the files' checksums, and the work marked built, a receipt per step, all or nothing",
+    "provenance": "authored",
+    "status": "realized",
+    "tier": "operational"
+  }
+}

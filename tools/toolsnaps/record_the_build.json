@@ -1,0 +1,419 @@
+{
+  "annotations": {
+    "destructiveHint": false,
+    "readOnlyHint": false
+  },
+  "description": "Record what you built in one call, at the end of a piece of work: its passing verification, its change event and the findings it answered, its files' checksums, and the work marked built. It serves job 4 of reflow2's five, whether what was built meets what was asked. Steps, in order, each with its own receipt: `verification` (recorded as passing); `change` (with `answers`, which draws INVALIDATES); `files` (each file registered if it is not yet, its checksum accepted against the change, and a test file joined to the verification it `runs`); `built` (each one's status set to realized, or a dec: joined to them; `replace` revises its words). ALL OR NOTHING: a refused step names itself, and nothing is written. The tools it runs (add_verification, add_change_event, set_artifact_checksums, set_capability_status, replace_text) stay served. Ask for it to record what you built.",
+  "inputSchema": {
+    "$defs": {
+      "AffectedNodeReq": {
+        "additionalProperties": false,
+        "description": "One node an event changed, for `add_change_event`'s `affected` list.",
+        "properties": {
+          "action": {
+            "default": null,
+            "description": "`added` / `modified` (default) / `removed`.",
+            "enum": [
+              "added",
+              "modified",
+              "removed",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "node_id": {
+            "description": "The changed node's id.",
+            "type": "string"
+          },
+          "node_type": {
+            "default": null,
+            "description": "The changed node's type (e.g. `Requirement`, `Artifact`).\nOptional since 2026-09-06: resolved from the id when omitted (the id\nprefix names the type); an id held by more than one type is REFUSED, never\nguessed — pass it then.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "node_id"
+        ],
+        "type": "object"
+      },
+      "AnswerReq": {
+        "additionalProperties": false,
+        "description": "One finding a change answered, for `add_change_event`'s `answers` list.",
+        "properties": {
+          "finding_id": {
+            "description": "The finding's id: a Verification or a TemporalFact.",
+            "type": "string"
+          },
+          "finding_type": {
+            "default": null,
+            "description": "Its type, resolved from the id when omitted.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "note": {
+            "default": null,
+            "description": "How it answers it, when that needs saying: \"partly: the cold path is\nstill slow\".",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "finding_id"
+        ],
+        "type": "object"
+      },
+      "BuiltChangeReq": {
+        "additionalProperties": false,
+        "description": "Step 2: the change, as add_change_event takes it.",
+        "properties": {
+          "affected": {
+            "description": "The nodes it changed (a CHANGED edge to each). The files in step 3\nare joined to it by their acceptance and need not be listed here.",
+            "items": {
+              "$ref": "#/$defs/AffectedNodeReq"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "answers": {
+            "description": "The findings it answered (INVALIDATES to each), or `[]` for none.",
+            "items": {
+              "$ref": "#/$defs/AnswerReq"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "change_type": {
+            "description": "WHY it changed: `new_feature`, `defect_fix` and the rest\nadd_change_event takes.",
+            "enum": [
+              "requirement_creep",
+              "new_feature",
+              "test_failure_fix",
+              "defect_fix",
+              "performance_optimization",
+              "refactor",
+              "documentation",
+              "scope_change",
+              "constraint_change",
+              "environment_change",
+              "deprecation",
+              "resync",
+              "baseline_established",
+              "decision_settled",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "commits": {
+            "description": "The commits it was made in, comma-separated.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "detected_at": {
+            "description": "When it landed, as a plain date. Dates each answer and acceptance too.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "description": "The ChangeEvent's id (`chg:…`).",
+            "type": "string"
+          },
+          "name": {
+            "description": "A short name, for a new change.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rationale": {
+            "description": "Why, and the lesson.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "repair": {
+            "description": "For a repair: `corrected_cause` or `contained_symptom`.",
+            "enum": [
+              "corrected_cause",
+              "contained_symptom",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stands_in_for": {
+            "description": "What the proper fix would be; required with `contained_symptom`.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "subject": {
+            "description": "`system` (the thing changed) or `record` (only the design's knowledge\nof it did). Absent means nobody said.",
+            "enum": [
+              "system",
+              "record",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "description": "What changed.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "BuiltFileReq": {
+        "additionalProperties": false,
+        "description": "Step 3: one file the work changed.",
+        "properties": {
+          "artifact_id": {
+            "description": "The Artifact's id (`art:…`). One not yet registered is registered\nfirst, and then needs `name`.",
+            "type": "string"
+          },
+          "artifact_type": {
+            "description": "What kind of file, to register a new one.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "checksum": {
+            "description": "Its new checksum, accepted on this call's change. Omitted, a server\nthat can read the file measures it.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "location": {
+            "description": "Where it lives, to register a new file.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "description": "A name, to register a new file.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "runs": {
+            "description": "The Verification this file RUNS (IMPLEMENTS): a test file names the\ncheck it is.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "artifact_id"
+        ],
+        "type": "object"
+      },
+      "BuiltItemReq": {
+        "additionalProperties": false,
+        "description": "Step 4: one thing now built.",
+        "properties": {
+          "id": {
+            "description": "A Capability (`cap:…`), or a Decision (`dec:…`) the work carried out.",
+            "type": "string"
+          },
+          "replace": {
+            "additionalProperties": false,
+            "description": "Revise its words to say it is built, as replace_text does.",
+            "properties": {
+              "field": {
+                "description": "The field to revise (`name`, `description` ...).",
+                "type": "string"
+              },
+              "new": {
+                "description": "What it becomes.",
+                "type": "string"
+              },
+              "old": {
+                "description": "The exact text to replace; omitted, `new` is appended.",
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "new"
+            ],
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "status": {
+            "description": "For a Capability: `realized` (the default) or `verified`.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "built": {
+        "default": null,
+        "description": "Step 4: the capabilities and decisions now built.",
+        "items": {
+          "$ref": "#/$defs/BuiltItemReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "change": {
+        "$ref": "#/$defs/BuiltChangeReq",
+        "description": "Step 2: the change, with `answers` naming the findings it closed."
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "files": {
+        "default": null,
+        "description": "Step 3: the files the work changed, each registered if new and its\nchecksum accepted on the change.",
+        "items": {
+          "$ref": "#/$defs/BuiltFileReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "verification": {
+        "additionalProperties": false,
+        "default": null,
+        "description": "Step 1: the check that passed. Omit it for work no check covers.",
+        "properties": {
+          "description": {
+            "description": "What the check IS.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "findings": {
+            "description": "What the passing run found.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "description": "The Verification's id (`ver:…`). An existing check is revised; a new\none needs `name`.",
+            "type": "string"
+          },
+          "last_run_at": {
+            "description": "When it ran and passed, as a plain date.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "method": {
+            "description": "HOW it was checked, as add_verification takes it.",
+            "enum": [
+              "test",
+              "review",
+              "simulation",
+              "inspection",
+              "measurement",
+              "analysis",
+              "demonstration",
+              "observation",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "description": "A short name, for a new check.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verifies": {
+            "description": "What it checks: the ids of the Capabilities, Components, Requirements\nor Artifacts it VERIFIES.",
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": [
+          "object",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "change"
+    ],
+    "type": "object"
+  },
+  "name": "record_the_build",
+  "title": "Record the Build"
+}

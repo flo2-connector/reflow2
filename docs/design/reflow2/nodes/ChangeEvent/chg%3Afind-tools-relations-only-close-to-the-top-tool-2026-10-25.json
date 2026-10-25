@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1b89eece9a66339630cc0e5c78524b795a2ac7bff4fdf601bdb89303f861253f",
+  "node_id": "chg:find-tools-relations-only-close-to-the-top-tool-2026-10-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "performance_optimization",
+    "detected_at": "2026-10-25",
+    "name": "find_tools returns relations only when one scores close to its top tool, and the relation corpus holds all six of Alex's queries",
+    "rationale": "The follow-up Anthony asked for to #798 (dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y): a plain tool search should not carry relations every time, since each one costs tokens in every reply. Measured before choosing the threshold: the best relation's score as a share of the top tool's was 0.848 or more for every relation question and spread widely over the tool questions (a relation's prose is short, so its score runs high beside a tool's), so the halves do not separate cleanly; 0.8 keeps a margin under the lowest relation question. Alex's two added queries already passed on main. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system",
+    "summary": "find_tools now returns `relations` only when one scores at least 0.8 of its top tool's score, and leaves the key out otherwise. Over the tool corpus the replies carrying relations fell from 198 of 198 (main at 614487215) to 95 of 199; every question in the relation corpus still finds its relation, and the corpus gains Alex's two missing queries (\"assign actor responsibility revise capability\", \"actor capability edge interacts_with operates\"), 26 of 26. A ratchet test holds the share at or under 48%."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7d140eeb3b10ee739ea3e9629e822be55e4606b06b355b175ee48a64e74b939d",
+  "node_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "f50669c3b",
+    "detected_at": "2026-10-25",
+    "name": "record_the_build records what was built in one call; add_change_event takes `answers`; loop_status carries the fix and repair lines; the two renamed stubs are removed",
+    "rationale": "What a tool does in the same call gets done, and a separate step mostly does not: INVALIDATES was drawn about 4 times in 10 because it was a second call (fact:root-cause-a-fix-rarely-records-what-it-answered-because-it-is-a-separate-call-2026-10-25), and agents ran add_change_event then set_artifact_checksums 129 times in a month (83d2b0775fe79af6:fact:the-processes-people-and-agents-repeat-most-2026-10-25). The jobs group the listing and are not a call layer (83d2b0775fe79af6:dec:idea-a-few-core-tools-each-running-a-process-of-subtools, chose), so the process tool is reached directly. Its name was measured, not picked: record_what_was_built entered two mutual pairs and pushed confirmation_ledger off first for its own job in the offline replica; record_the_build ranks first for \"record what I built\" and adds no pair or not-first tool. The new loop lines are never counted against `clean`, because every design written before `answers` holds fixes that name nothing. Failing first on main 614487215: 9 of the 10 new tests failed. This record was written with the separate tools, not record_the_build: flo2.io serves 0.91.0, which has neither the tool nor `answers`. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system",
+    "summary": "Four decisions Anthony accepted on 2026-10-25, built in one PR (feat/record-what-was-built-in-one-call). (1) record_the_build, the first process tool, serving job 4 (whether what was built meets what was asked): the passing check, the change with `answers`, the changed files registered and their checksums accepted on the change, IMPLEMENTS from a test file, and the capability realized or the decision shown built, in one call and one write unit, a receipt per step, a refusal naming its step and writing nothing. (2) add_change_event `answers` draws INVALIDATES in the same call, `answers: []` says none (ChangeEvent.answered_none), and loop_status counts `fixes_answering_nothing` in one line. (3) loop_status carries `repairs` {standing_patches, unlabelled} in one line naming repair_report. (4) record_change and manual_work_report are no longer served; deprecation::REGISTRY refuses their names with their replacements for one release. Served tools: 200 + 1 - 2 = 199."
+  }
+}

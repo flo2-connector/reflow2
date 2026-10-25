@@ -98,7 +98,8 @@ EXTRA_WRITE_OPS = {
     "allocate", "consumes", "contain_component", "contains", "deploy_to",
     "genesis", "import_graph", "link_artifact", "part_of_flow", "pin_at_epoch",
     "precedes", "provides", "snapshot_before_change", "receive_from_design", "record_change",
-    "release_includes", "require_resource", "satisfies", "send_to_design", "set_capability_status",
+    "record_the_build", "release_includes", "require_resource", "satisfies", "send_to_design",
+    "set_capability_status",
     "set_provenance", "set_requirement_status", "set_verification_status",
     "verifies",
 }

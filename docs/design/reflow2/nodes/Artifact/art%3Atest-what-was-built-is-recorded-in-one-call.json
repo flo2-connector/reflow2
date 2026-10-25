@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c34a4029b091b487f670dbd17edcec876b85f7e0c2f6c9b0b4aa501de26a9da2",
+  "node_id": "art:test-what-was-built-is-recorded-in-one-call",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The test file that IS ver:what-was-built-is-recorded-in-one-call: ten tests over an in-process MCP session.",
+    "location": "crates/reflow2-mcp/tests/what_was_built_is_recorded_in_one_call.rs",
+    "name": "what_was_built_is_recorded_in_one_call.rs",
+    "status": "realized"
+  }
+}

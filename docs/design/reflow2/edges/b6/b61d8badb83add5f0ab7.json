@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6c235c6b973214469bc60e4336972e778d6ffaedb950ae1dcd0980f239c4d770",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:four-decisions-of-2026-10-25-marked-built",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -49,6 +49,9 @@ FAMILY = {
     "query": "### Query — read the design back",
     "assure": "### Assurance — checks, evidence and confirmation",
     "built": "### Build — what exists on disk, and whether it still matches",
+    # The process tools (dec:idea-a-few-core-tools-each-running-a-process-of-subtools):
+    # the first, record_the_build, serves job 4, what was built meets what was asked.
+    "process": "### Build — what exists on disk, and whether it still matches",
     "temporal_tools": "### Time — epochs, change, and what a claim was true of",
     "operate_tools": "### Operate — releases, environments, resources, readiness",
     "exchange": "### Exchange — comparing, merging and linking whole designs",

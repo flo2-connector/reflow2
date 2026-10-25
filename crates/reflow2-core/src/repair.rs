@@ -211,3 +211,99 @@ impl DesignGraph {
         repair_report(self)
     }
 }
+
+/// THE STORED WORD for "this fix answered no finding": `answered_none: true`
+/// on the ChangeEvent, written by `add_change_event` with `answers: []`.
+///
+/// `dec:a-fix-names-the-findings-it-answers-in-the-same-call` (Anthony,
+/// 2026-10-25): a defect_fix or test_failure_fix that answers nothing is one
+/// loop line "until it names what it answered or says it answered none". An
+/// INVALIDATES edge from the change is the first; this property is the
+/// second. Absent means nobody said, and is never read as either.
+pub const ANSWERED_NONE: &str = "answered_none";
+
+/// The repairs no finding is named as answered by: a live ChangeEvent of a
+/// repair type ([`REPAIR_CHANGE_TYPES`]) with no outgoing INVALIDATES and no
+/// [`ANSWERED_NONE`]. An event minted by a checksum ACCEPTANCE is left out,
+/// as `fix_without_recorded_cause` leaves it out: it wears a fix label and is
+/// not a repair (a CHANGED edge marked `accepted_baseline`).
+///
+/// Why it is read here, at loop_status, and not as a gap: the cause was
+/// measured as "a separate optional step mostly does not get done"
+/// (`fact:root-cause-a-fix-rarely-records-what-it-answered-because-it-is-a-separate-call-2026-10-25`),
+/// so the cure is the step joining the call (`answers`) and one line where
+/// every session already looks, not a question per event.
+pub(crate) fn fixes_answering_nothing(g: &DesignGraph) -> Result<Vec<String>, DynoError> {
+    use crate::foundation::core::Value;
+    use crate::nodes::edge;
+    let mut out = Vec::new();
+    for ev in g.scan_live_nodes(node::CHANGE_EVENT)? {
+        let change_type = ev
+            .properties
+            .get("change_type")
+            .and_then(Value::as_str)
+            .unwrap_or("");
+        if !REPAIR_CHANGE_TYPES.contains(&change_type) {
+            continue;
+        }
+        if ev
+            .properties
+            .get(ANSWERED_NONE)
+            .and_then(Value::as_bool)
+            .unwrap_or(false)
+        {
+            continue;
+        }
+        let out_edges = g.outgoing(&ev.node_id, None)?;
+        let accepted = out_edges.iter().any(|e| {
+            e.edge_type == edge::CHANGED
+                && e.properties
+                    .get("accepted_baseline")
+                    .and_then(Value::as_bool)
+                    .unwrap_or(false)
+        });
+        let answers = out_edges.iter().any(|e| e.edge_type == edge::INVALIDATES);
+        if !accepted && !answers {
+            out.push(ev.node_id);
+        }
+    }
+    out.sort();
+    Ok(out)
+}
+
+/// The two counts loop_status carries from [`repair_report`] in one line
+/// (`dec:loop-status-carries-one-repair-line`, Anthony 2026-10-25): the
+/// standing patches, and the repairs nobody labelled. The detail stays in
+/// repair_report, which the usage baseline found never called through
+/// flo2.io in a month — so its two numbers ride the call every session makes.
+#[derive(Debug, Clone, Copy, Default, serde::Serialize, serde::Deserialize, PartialEq, Eq)]
+pub struct RepairLine {
+    /// Repairs recorded as `contained_symptom`: each a patch still standing in
+    /// for a proper fix.
+    pub standing_patches: usize,
+    /// Repairs that say neither `corrected_cause` nor `contained_symptom`.
+    pub unlabelled: usize,
+}
+
+impl RepairLine {
+    pub(crate) fn of(r: &RepairReport) -> Self {
+        Self {
+            standing_patches: r.contained_symptom,
+            unlabelled: r.unstated,
+        }
+    }
+
+    /// The line, or nothing on a design that records no repair at all.
+    pub fn line(&self) -> Option<String> {
+        if self.standing_patches == 0 && self.unlabelled == 0 {
+            return None;
+        }
+        Some(format!(
+            "{} standing patch(es), {} repair(s) nobody labelled — repair_report lists each \
+             patch with the proper fix it stands in for; label a repair with add_change_event's \
+             `repair` (corrected_cause or contained_symptom). Not counted against `clean`: it \
+             reports what authors said and never judges it.",
+            self.standing_patches, self.unlabelled
+        ))
+    }
+}

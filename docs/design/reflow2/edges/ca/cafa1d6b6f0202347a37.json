@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e2ed6576941bbc0e2f0b33e461e5f482017964dbc1f9939c9c7ba4dc1853330",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-what-was-built-is-recorded-in-one-call",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-what-was-built-is-recorded-in-one-call"
+}

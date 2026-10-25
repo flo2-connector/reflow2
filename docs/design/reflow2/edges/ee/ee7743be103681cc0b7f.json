@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:02ab9c3df00b0e2f09924bc8f9fe5e9029d7180d544d5234b5353154976a4d86",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 35,
+    "action": "modified",
+    "checksum_after": "sha256:e9ca3f0be3aebbda3ee45dead60c2e2cac67d8eaaaa4bdc8b6f1b8794c137a83",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

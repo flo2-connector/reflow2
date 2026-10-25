@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:68f0e2197f359d4419b2d3a9e982e7b0c4ff8497515b9605f5f1bfee7e5c1a8e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:every-required-parameter-is-described-gate",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

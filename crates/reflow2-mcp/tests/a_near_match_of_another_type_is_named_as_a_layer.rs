@@ -129,6 +129,7 @@ async fn seed_change_event(s: &ReflowService) {
             commits: None,
             repair: None,
             stands_in_for: None,
+            answers: None,
         }
         .into(),
     ))

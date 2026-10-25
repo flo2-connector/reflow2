@@ -1228,13 +1228,6 @@ pub(crate) const SCAN_REPLY_RESERVE_CHARS: usize = 2_000;
 /// surface the search exists to avoid loading.
 pub(crate) const DEFAULT_TOOL_SEARCH_RESULTS: usize = 5;
 
-/// Served names that are refusing STUBS for a renamed tool (2026-09-18).
-/// Still callable — each refuses and names its replacement — but never
-/// offered by find_tools: a stub that ranks for a job it refuses to do is
-/// exactly the door-versus-door confusion the rename exists to end. Removed
-/// next release, with the stubs.
-pub(crate) const DEPRECATED_TOOLS: &[&str] = &["record_change", "manual_work_report"];
-
 /// The `brief: true` shape — what a node IS, without its prose. `name` and
 /// `status` are the two properties every orientation read actually uses.
 pub(crate) fn brief_node(node: &StoredNode) -> JsonValue {
@@ -6306,7 +6299,7 @@ pub struct SetChecksumReq {
     /// (BL-33). `design_holds`: the change carries no design meaning (a
     /// refactor, a fix restoring intended behaviour) — recorded as a dated
     /// claim. `design_updated`: behaviour moved and the design moved with it —
-    /// pass `design_change_event_id` from the `record_change` that updated it.
+    /// pass `design_change_event_id` from the `snapshot_before_change` that updated it.
     /// `baseline_established`: this artifact had no checksum and is getting its
     /// FIRST one, so nothing moved and there is nothing to take a position on
     /// (BL-157) — takes neither of the other two fields.
@@ -6632,10 +6625,34 @@ pub struct AddChangeEventReq {
     /// `repair: contained_symptom` and refused without it.
     #[serde(default)]
     pub stands_in_for: Option<String>,
+    /// THE FINDINGS THIS CHANGE ANSWERED, named in the same call: an
+    /// INVALIDATES edge is drawn from the change to each (a Verification whose
+    /// last run found it, or a TemporalFact that recorded it), carrying its
+    /// `note` and the change's `detected_at`. Pass `[]` to say it answered
+    /// none. A defect_fix or test_failure_fix that does neither is counted in
+    /// one loop_status line. Every entry must name an existing finding, or
+    /// nothing is written. `invalidates` still answers one after the fact.
+    #[serde(default)]
+    pub answers: Option<Vec<AnswerReq>>,
+}
+
+/// One finding a change answered, for `add_change_event`'s `answers` list.
+#[derive(Debug, Deserialize, serde::Serialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct AnswerReq {
+    /// The finding's id: a Verification or a TemporalFact.
+    pub finding_id: String,
+    /// Its type, resolved from the id when omitted.
+    #[serde(default)]
+    pub finding_type: Option<String>,
+    /// How it answers it, when that needs saying: "partly: the cold path is
+    /// still slow".
+    #[serde(default)]
+    pub note: Option<String>,
 }
 
 /// One node an event changed, for `add_change_event`'s `affected` list.
-#[derive(Debug, Deserialize, JsonSchema)]
+#[derive(Debug, Deserialize, serde::Serialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct AffectedNodeReq {
     /// The changed node's type (e.g. `Requirement`, `Artifact`).
@@ -7495,7 +7512,8 @@ impl ReflowService {
             + Self::built_router()
             + Self::exchange_router()
             + Self::query_router()
-            + Self::claims_tools_router();
+            + Self::claims_tools_router()
+            + Self::process_router();
         // Main's step (#656): an empty input schema is closed, so the served
         // surface refuses an argument no tool takes.
         crate::arguments::close_empty_schemas(router)

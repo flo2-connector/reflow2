@@ -180,6 +180,7 @@ async fn add_change_event_reports_it_too() {
                 commits: None,
                 repair: None,
                 stands_in_for: None,
+                answers: None,
             }
             .into(),
         ))

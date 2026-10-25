@@ -132,9 +132,6 @@
       "Interface",
       "Flow"
     ],
-    "record_change": [
-      "ChangeEvent"
-    ],
     "record_finding": [
       "TemporalFact"
     ],

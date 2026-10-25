@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c064b3265ffb6a5478d29e96cc91759f698899200de2d63175f545c7f6fb70e5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:3234ea4e569b87c3228f8a8d558aed5498485d2c213bf9985c5cc603c8fe466f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:every-declared-enum-is-wired-or-exempt-test"
+}

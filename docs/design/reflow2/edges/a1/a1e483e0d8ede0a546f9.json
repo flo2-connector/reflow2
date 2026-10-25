@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f6d9650e44389503d478b9493c4a6a2902c81a89cb2f94af14cddc0f7d6d6511",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:7093e255117d99bf63531cc6cbe602d204caa576006c68a50333ebf950794fd9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-write-replies-with-a-receipt"
+}

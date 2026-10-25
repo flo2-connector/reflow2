@@ -137,8 +137,10 @@ fn names_anchor(text: &str) -> bool {
 /// 1. THE VOCABULARY NO LONGER HOLDS IT, and nothing is listed as going.
 #[tokio::test]
 async fn describe_schema_no_longer_holds_anchor_and_lists_nothing_going() {
+    // The registry may hold later retirements (the two renamed tool stubs,
+    // 2026-10-25); what this holds is that Anchor's entry left with it.
     assert!(
-        REGISTRY.is_empty(),
+        !REGISTRY.iter().any(|d| d.item.names().contains(&"Anchor")),
         "a node type's registry entry leaves with the item: {REGISTRY:?}"
     );
     let c = connect().await;
@@ -152,8 +154,8 @@ async fn describe_schema_no_longer_holds_anchor_and_lists_nothing_going() {
     assert_eq!(types.len(), 28, "29 node types less Anchor: {types:?}");
     assert!(!types.contains(&"Anchor"), "Anchor is gone: {types:?}");
     assert!(
-        all.get("deprecations").is_none(),
-        "nothing is going, so nothing is listed: {}",
+        !all["deprecations"].to_string().contains("Anchor"),
+        "Anchor is not listed as going: {}",
         all["deprecations"]
     );
     // Asked about it alone, it is a type this build does not know — the
@@ -176,7 +178,20 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
     let c = connect().await;
     let tools = c.list_all_tools().await.expect("tools/list");
     let listed = serde_json::to_string(&tools).expect("tools serialize");
-    let all = ok(&c, "describe_schema", json!({"budget_chars": 10_000_000})).await;
+    let mut all = ok(&c, "describe_schema", json!({"budget_chars": 10_000_000})).await;
+    // The registry may list TOOLS already removed (their stub release, the two
+    // renamed stubs since 2026-10-25): those entries say "removed in the next
+    // release" of a tool nothing serves. Every entry must be such a tool, and
+    // the rest of the served text holds to the rule below.
+    if let Some(going) = all.as_object_mut().and_then(|o| o.remove("deprecations")) {
+        for d in going.as_array().into_iter().flatten() {
+            let tool = d["item"]["tool"].as_str().unwrap_or_default();
+            assert!(
+                !tool.is_empty() && !tools.iter().any(|t| t.name == tool),
+                "a deprecation listed beside the Anchor removal names a tool that is gone: {d}"
+            );
+        }
+    }
     for (what, text) in [("tools/list", listed), ("describe_schema", all.to_string())] {
         assert!(
             !text.contains("removed in the next release"),

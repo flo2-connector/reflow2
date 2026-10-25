@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7fe9cf467727fc2db6282d55206293b8162df6814b89d32df88a8a40deb6c9ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:record-the-build-in-one-call"
+}

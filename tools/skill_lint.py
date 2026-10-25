@@ -1050,9 +1050,6 @@ def served_tools() -> set[str]:
 # either unrouted work or a tool that should not exist, and this forces the
 # author to say which.
 UNROUTED_REPORTS: dict[str, str] = {
-    # Renamed 2026-09-18 to `manual_work_ledger` (which capture-session names);
-    # this name is a refusing stub kept for one release and needs no skill.
-    "manual_work_report": "needs no skill — a refusing stub for the renamed manual_work_ledger",
     # TWO KINDS OF ENTRY LIVE HERE AND THEY ARE NOT THE SAME, so each reason
     # says which: "needs no skill" is settled, "no skill owns this yet" is a
     # routing gap recorded rather than papered over by naming the tool in a

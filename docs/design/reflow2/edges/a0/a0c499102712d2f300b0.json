@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2371e2c6aa0fe602697bf41a40d1c36d661a256ae4eaec3917a8b19d4c31a876",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-changed-requirement-does-not-flow-because-the-accepted-web-of-rules-was-never-built-2026-10-25",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

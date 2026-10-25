@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:81b40b95ae5819f9210090259777a25d84851565239eb374d3533843de704d8e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-what-was-built-is-recorded-in-one-call",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
