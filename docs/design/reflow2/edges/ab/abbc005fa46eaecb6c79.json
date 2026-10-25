@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5faef9738310ee012268e425693a51e8a991c2037998925d599bee16ba468c17",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-process",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:record-the-build-in-one-call"
+}

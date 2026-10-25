@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4fa9b55f051338019d51b9bcd148237f1186c2c1677efea4759711c5c75d51ca",
+  "node_id": "chg:four-decisions-of-2026-10-25-marked-built",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "detected_at": "2026-10-25",
+    "name": "Four decisions of 2026-10-25 marked built: a fix names its findings, record the build in one call, loop_status's repair line, the two stubs removed",
+    "rationale": "Marking built is a record of what exists, never a settlement: the four were already accepted. The stubs decision's rationale says the count drops to 198; with record_the_build added in the same PR the served count is 199 (200 + 1 - 2). Recorded with snapshot_before_change and replace_text because flo2.io serves 0.91.0, which has neither record_the_build nor add_change_event's `answers`; the next release can record this in one call. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "record",
+    "summary": "Each of the four decisions Anthony accepted on 2026-10-25 and built in feat/record-what-was-built-in-one-call now names the capability that built it in place of \"(not built yet)\": dec:record-what-was-built-in-one-call (as record_the_build), dec:a-fix-names-the-findings-it-answers-in-the-same-call, dec:loop-status-carries-one-repair-line, dec:the-two-renamed-stubs-are-removed-in-the-next-release. Each capability is GOVERNED_BY its decision. No status moved."
+  }
+}

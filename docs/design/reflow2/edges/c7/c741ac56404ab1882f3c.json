@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:32c25de2c3aa0bf85bf9a6a391e920d25c8e9bd2c31f45df59051055d4c18726",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-relations-only-close-to-the-top-tool-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:find-tools-finds-relations"
+}

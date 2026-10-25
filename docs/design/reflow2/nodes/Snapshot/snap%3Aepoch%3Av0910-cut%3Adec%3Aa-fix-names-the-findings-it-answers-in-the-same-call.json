@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6e62585c81602e55bce6486aeac426730efa19fa5215904e031c76b3223aa2da",
+  "node_id": "snap:epoch:v0910-cut:dec:a-fix-names-the-findings-it-answers-in-the-same-call",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"DEPENDS_ON\",\"other_type\":\"Decision\",\"other_id\":\"dec:the-open-defect-findings-are-triaged-once\",\"properties\":{\"optional\":false,\"weight_basis\":\"estimated\"}},{\"direction\":\"in\",\"edge_type\":\"GOVERNED_BY\",\"other_type\":\"Capability\",\"other_id\":\"cap:a-fix-names-the-findings-it-answers-in-the-same-call\",\"properties\":{\"note\":\"Option a, as chosen: `answers` on add_change_event and one loop line.\"}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"approved_via\":[\"who:agent-8d84cd1476\"],\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\",\"approver\"]}}]",
+    "state": "{\"decision\":\"Anthony, 2026-10-25: \\\"Go with a + b, then c\\\". This is option a of fact:root-cause-a-fix-rarely-records-what-it-answered-because-it-is-a-separate-call-2026-10-25: add_change_event takes `answers`, a list of finding ids (each with an optional note for a partial answer, as `invalidates` already allows), and draws INVALIDATES from the change to each in the same call. A change of type defect_fix or test_failure_fix that answers nothing reads as one line in loop_status, until it names what it answered or says it answered none. `invalidates` stays for answering a finding after the fact. Additive: no tool is removed.\",\"kind\":\"choice\",\"name\":\"A fix's change record names the findings it answers in the same call (add_change_event `answers`), and a defect fix that answers nothing is a loop line (not built yet)\",\"rationale\":\"What a tool does in the same call gets done: CAUSES rides record_finding and is drawn (353), while INVALIDATES is a second call and is drawn about 4 times in 10 (233). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P\",\"status\":\"accepted\"}",
+    "target_id": "dec:a-fix-names-the-findings-it-answers-in-the-same-call",
+    "target_type": "Decision"
+  }
+}

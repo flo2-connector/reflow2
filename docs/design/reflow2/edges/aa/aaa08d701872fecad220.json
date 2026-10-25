@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:38950dc69ce69867bbda92d8ba3273dfb567b91e0da46df7ab5aed5b7fcda27c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:26012f140e71e78d7275a72cfa54cc28ffd033ae6ea00f03db4906153cdcefb6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-argument-check-agrees-with-the-deserialiser-test"
+}

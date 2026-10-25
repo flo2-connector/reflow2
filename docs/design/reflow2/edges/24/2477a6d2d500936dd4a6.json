@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d173e4b80ae56d22076861c3c7a9bae645b72899afb46de8860956e261b4c3db",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:what-was-built-is-recorded-in-one-call",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

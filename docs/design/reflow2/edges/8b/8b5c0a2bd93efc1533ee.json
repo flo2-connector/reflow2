@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a5dd4722510736bcf08554a6ebb4d51417c154038c3dd9fb2ccbcc4dfef6b4c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:loop-status-carries-one-repair-line",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

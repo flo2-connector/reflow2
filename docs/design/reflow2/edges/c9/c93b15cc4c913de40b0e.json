@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:da48daad737e731382daa9d3e9962c83cefb4e772e02e0a986856576b1233cfc",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:record-the-build-in-one-call",
+  "properties": {
+    "note": "This capability is what the decision chose: the first process tool, a receipt per step, all or nothing."
+  },
+  "to_id": "dec:record-what-was-built-in-one-call"
+}

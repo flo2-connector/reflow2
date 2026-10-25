@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7ed8ec0b5275de18f4107830e7ea9b71ad9bfbe6276d53e138f1bf36b21ecc92",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 29,
+    "action": "modified",
+    "checksum_after": "sha256:d9e6f199aff6934dc3624e90b8f57504f9556bfb9a8f5f395260fa86ce67d6b6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

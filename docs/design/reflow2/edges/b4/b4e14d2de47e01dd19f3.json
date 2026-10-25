@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3b0e972973d0bd9d3c29946be669c090eacedb1c9bedefc8c334151d876926aa",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:loop-status-carries-one-repair-line",
+  "properties": {
+    "note": "The one line, no new tool."
+  },
+  "to_id": "dec:loop-status-carries-one-repair-line"
+}

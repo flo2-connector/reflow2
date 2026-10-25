@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:37ed2b504fbaf4e17673d86bb534b579c087c130bca514088bd45566cb2b4c85",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-two-renamed-stubs-are-removed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

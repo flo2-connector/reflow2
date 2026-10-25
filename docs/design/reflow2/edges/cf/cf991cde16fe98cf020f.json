@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ddfc16363adf8379e09615309c9f6b237988b956f33b2ee543fdc2aa5acdb3d8",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-what-was-built-is-recorded-in-one-call",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:what-was-built-is-recorded-in-one-call"
+}

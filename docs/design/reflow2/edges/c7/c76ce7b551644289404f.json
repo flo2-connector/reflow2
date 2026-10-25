@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5c214c280f60531a5746ddb5d213611f7e698c746e15577f8f92302caf78a8fb",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-fix-names-the-findings-it-answers-in-the-same-call",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

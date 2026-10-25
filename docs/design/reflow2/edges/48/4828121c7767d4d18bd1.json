@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4ad290f6cc9068146d9c60fd602e09670d4e206b100c932c62d77d8cf7cf11b3",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-fix-names-the-findings-it-answers-in-the-same-call",
+  "properties": {
+    "note": "Option a, as chosen: `answers` on add_change_event and one loop line."
+  },
+  "to_id": "dec:a-fix-names-the-findings-it-answers-in-the-same-call"
+}

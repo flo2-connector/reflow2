@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5ff7b26b9f8577f44b5948f28e14cd2c37893063d654b39558d9159e1c8ceda0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:every-tool-is-found-by-a-query-in-the-users-words-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

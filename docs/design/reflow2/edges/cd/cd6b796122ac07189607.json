@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:d5789380becc40d15bea195fe0e1d684efade1c54366ec3fdc125701aaba1781",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:an-occurrence-is-a-dated-point-in-the-designs-world",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

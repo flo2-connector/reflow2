@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:76d4466c27b2b9f7d64ff1d507ad7d34e423501c7df6877894e9e09c231e6d25",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-design-does-not-drive-itself-to-complete-2026-10-25",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

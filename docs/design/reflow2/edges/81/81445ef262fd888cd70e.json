@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:481b5623b63f42f54811d6ec4282c4bae96bc2a72ce9163533476d10f9fd1000",
+  "edge_type": "CHANGED",
+  "from_id": "chg:record-the-build-and-a-fix-names-its-findings-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:93df9257175251927fc60a601f9702d782f4e6d2f7240a4bbbeac93cfcd568a3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test"
+}
