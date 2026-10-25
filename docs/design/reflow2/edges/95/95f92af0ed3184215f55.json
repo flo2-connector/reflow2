@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c1ccb03f4403c61f42e07b8df4298b57d91d4c20d9b15ff2549d360d21e922ff",
+  "edge_type": "REALIZES",
+  "from_id": "art:owed",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cmp:report"
+}

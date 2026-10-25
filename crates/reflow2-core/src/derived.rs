@@ -49,7 +49,7 @@ const DECLARATIONS: &str = include_str!("../../../schema/derived/relations.yaml"
 /// The test holds this list and the declaration file to each other in both
 /// directions: a declaration nobody evaluates, or an evaluator nobody declared,
 /// fails it.
-pub const DERIVED_EVALUATORS: [&str; 26] = [
+pub const DERIVED_EVALUATORS: [&str; 28] = [
     "delivered",
     "follows",
     "foundations",
@@ -76,6 +76,8 @@ pub const DERIVED_EVALUATORS: [&str; 26] = [
     "readiness_gate",
     "arrival_delta",
     "closure",
+    "computation_owed",
+    "redo_list",
 ];
 
 /// Where the code computes a relation.
@@ -428,6 +430,25 @@ impl DesignGraph {
                 let sample = issues.iter().flat_map(|i| i.components.clone());
                 Evaluated::of(issues.len(), take(sample, n))
             }
+            "computation_owed" => {
+                let r = self.owed_computations()?;
+                let count = r.computations.len() + r.resting_on_stale_numbers.len();
+                let sample = r
+                    .computations
+                    .iter()
+                    .map(|c| c.artifact_id.clone())
+                    .chain(r.resting_on_stale_numbers.iter().map(|x| x.node_id.clone()));
+                Evaluated::of(count, take(sample, n))
+            }
+            "redo_list" => Evaluated {
+                count: None,
+                not_counted: Some(
+                    "a walk from a seed (cost `closure`): answered per change by propagate_from's \
+                     `redo_list`. Counting it for every node would cost one walk per node."
+                        .to_string(),
+                ),
+                sample: Vec::new(),
+            },
             "rerun_owed" => {
                 let found = self.invalidated_findings()?;
                 let sample = found.iter().map(|f| f.finding_id.clone());

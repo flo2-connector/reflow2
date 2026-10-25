@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6409412d7e4aeaaf0696fcaf56907efa6313aaefd3262068d2c1019569887237",
+  "edge_type": "CAUSES",
+  "from_id": "fact:observed-the-shop-design-stalled-the-engine-and-a-timed-out-write-landed-2026-10-25",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The observation is the symptom this finding explains; the call-log timings and the code read above are the evidence.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-shop-stall-was-reasoning-evaluation-that-grew-past-the-gateways-30-s-and-nothing-stops-or-reports-it-honestly-2026-10-25"
+}

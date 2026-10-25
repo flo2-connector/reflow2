@@ -180,6 +180,16 @@ const WIRED_NESTED: &[(&str, &str, &str, &str, &str)] = &[
 /// Each of these shares a NAME with a declared enum and means something else.
 const EXEMPT: &[(&str, &str, &str)] = &[
     (
+        "DEPENDS_ON",
+        "used_basis",
+        "WRITTEN BY WHETHER THE CALLER SAID WHAT A KEPT OUTPUT USED, never by a value a caller \
+         types: add_artifact `inputs` writes `stated` for an input given its `value` or \
+         `checksum` and `current` for one given neither \
+         (req:a-changed-quantity-names-every-kept-computation-that-used-it). A `used_basis` \
+         parameter would be a second way to say the same thing, and one that could disagree \
+         with what was passed.",
+    ),
+    (
         "PREMISE_OF",
         "role",
         "WRITTEN BY WHICH LIST A PREMISE IS IN, never by a value a caller types: \

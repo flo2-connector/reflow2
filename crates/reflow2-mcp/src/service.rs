@@ -3059,6 +3059,38 @@ pub struct AddArtifactReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::artifact_information_credibility_opt")]
     pub information_credibility: Option<String>,
+    /// A KEPT OUTPUT'S INPUTS: for a calculator's record, a drawing or a render, every design
+    /// quantity (a Constraint with a `limit`) and every other kept output (an Artifact) it took,
+    /// with what it USED, so a later change names it owed a re-run (loop_status
+    /// `owed_computations`; propagate_from `redo_list`). One DEPENDS_ON edge per input. Passing
+    /// it REPLACES the artifact's whole input set (`[]` clears it); omitted, the inputs stay as
+    /// they are. Register a re-run's new version with what IT used. reflow2 never reads the file.
+    #[serde(default)]
+    pub inputs: Option<Vec<ArtifactInputArg>>,
+}
+
+/// One input a kept output took (add_artifact `inputs`).
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ArtifactInputArg {
+    /// The design quantity (a Constraint holding a `limit`) or the kept output (an Artifact) the
+    /// record took. Anything else is refused: a number written only in prose is first recorded
+    /// as a quantity.
+    pub node_id: String,
+    /// The record's own name for this input (`persons`).
+    #[serde(default)]
+    pub input: Option<String>,
+    /// For a quantity: the value the record used. Omitted: the quantity's value now is taken,
+    /// and the edge says so (`used_basis: current`).
+    #[serde(default)]
+    pub value: Option<f64>,
+    /// For a quantity: the unit of `value`, which must be the unit the design holds it in.
+    #[serde(default)]
+    pub unit: Option<String>,
+    /// For a kept output: the checksum of the version the record used. Omitted: the version
+    /// the design holds now.
+    #[serde(default)]
+    pub checksum: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

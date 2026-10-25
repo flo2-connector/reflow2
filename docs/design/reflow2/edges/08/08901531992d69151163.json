@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d376d26d85218a718a129bc67e2dd72881eeda030a571de2f1e3bf2d9186fea7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-redo-list-is-built-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-change-returns-its-redo-list"
+}

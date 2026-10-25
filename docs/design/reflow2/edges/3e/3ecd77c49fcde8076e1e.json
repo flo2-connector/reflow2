@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ed51c2fc42b1a7e63b1fffff1cb5bfbffe76e16e0f60814aa3fe1d3566d0c03",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-changed-quantity-names-every-kept-computation-that-used-it"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d99516666590dd965af9924bce78ea66360f37d478c87fd443f67dfdfa15ee1e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

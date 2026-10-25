@@ -1873,6 +1873,7 @@ async fn documents_links_a_doc_over_the_surface_and_refuses_a_ghost() {
             not_read: None,
             source_reliability: None,
             information_credibility: None,
+            inputs: None,
         }
         .into()
     )));
@@ -2674,6 +2675,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
             not_read: None,
             source_reliability: None,
             information_credibility: None,
+            inputs: None,
         }
         .into()
     )));

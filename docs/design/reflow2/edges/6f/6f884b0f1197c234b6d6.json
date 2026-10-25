@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c5a6f159cf6d6316d23776b3af59fbb1dbe51ecc546fc2ca24bbc19a62c2cad7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 17,
+    "action": "modified",
+    "checksum_after": "sha256:51c1c2665867079e6caeed8de1278e870346323aa5fe2e9527c5b4c047d4f98e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

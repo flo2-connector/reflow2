@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6f6c93746c4bc83d60253b65b31da5e96ea9597831a822d8f011b82c435ac8ab",
+  "node_id": "ver:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-mcp/tests/a_changed_quantity_names_every_kept_computation_that_used_it.rs, 7 tests over a real in-process MCP session. The fixture has the Shop sample's shape and none of its data: a household of 4 people (a setpoint Constraint), a food calc with input `persons`, an electricity calc taking the food calc, a decision each, a limit computed by the electricity calc, the parts the decisions govern, a model realizing one part, and a plan drawn from the model. The tests: registration draws one edge per input with what it used. Nothing is owed while every record used what the design holds. At 4→5 the food calc is owed at distance 1 (was 4 people, now 5 people) and the electricity calc at distance 2, three records rest on stale numbers, and `clean` is false. A re-run clears the food calc and owes the electricity calc (input_re_run), and its re-run clears all. The household's redo list is the two calcs, the two decisions and the limit, both parts, the model and the drawing. A changed part returns the parts depending on it, its model and its drawing. A non-quantity input, a wrong unit, and an id naming nothing are refused by name. Failed 7 of 7 on main 7e9209515.",
+    "findings": "7 passed (cargo test -p reflow2-mcp --no-default-features --test in_memory a_changed_quantity_names). The full no-RocksDB run had core at 2110 passed and MCP in_memory at 906 passed. Its 2 failures were the toolsnap golden and the used_basis enum exemption; both were fixed and re-run green. smoke_mcp, toolsnap, tool_confusability --validate and vocabulary_reach --check all passed.",
+    "kind": "verification",
+    "last_run_at": "2026-10-25",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_changed_quantity_names_every_kept_computation_that_used_it.rs",
+    "method": "test",
+    "name": "A changed quantity names every kept computation that used it (MCP wire tests)",
+    "status": "passing"
+  }
+}

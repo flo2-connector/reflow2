@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:7b6bdfdf7709b46c9c5c356f087f279fcfb01b93cfffab66fb18aff43566f46d",
+  "node_id": "dec:reasoning-evaluation-is-memoized-across-cycles-and-shared-across-a-report",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-25: \"Yes, go with A and B first\". This is option A of fact:root-cause-the-shop-stall-was-reasoning-evaluation-that-grew-past-the-gateways-30-s-and-nothing-stops-or-reports-it-honestly-2026-10-25. In reflow2-core's inference evaluation:\n- a truth computed beneath a cut circle is no longer recomputed every time it is asked. Each strongly connected group of the support graph is evaluated once, with its circular members read as they are today (\"comes back to itself ... no verdict\"), and the result is memoized;\n- a report, loop_status, detect_gaps or what-if that reads many nodes uses ONE evaluation (one memo) across them, not a fresh one per node.\nEvery reading stays as it is today (a golden over the proof, argument and verification fixtures, and over a synthetic design shaped like the Shop's, must match before and after). A timed synthetic repro is pinned so the cost cannot regress: reasoning chains with cycles, sized like the Shop (about 600 nodes, 56 steps), well under a second. It also settles which memo limit dominated. Ships in a reflow2 release and is deployed to flo2.io.",
+    "kind": "choice",
+    "name": "Reasoning evaluation is memoized across cycles (each cycle worked out once) and one memo is shared across a whole report, so its cost grows with the design, not explosively (not built yet)",
+    "rationale": "The cause of the 2026-10-25 Shop stall; removes the cost, not the symptom. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

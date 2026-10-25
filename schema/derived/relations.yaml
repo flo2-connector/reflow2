@@ -238,7 +238,7 @@ relations:
     not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the inference edges are chosen by their schema MODULE, not their reading; the closure needs transitivity, which no reading declares as algebra yet."
     inference: deduced
     edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS, EQUIVALENT_TO, HAS_TEMPORAL_FACT]
-    over: [follows]
+    over: [follows, redo_list]
     code:
       - { file: nodes.rs, function: structural_rule, dedicated: true }
       - { file: propagate.rs, function: propagate_from, dedicated: true }
@@ -469,3 +469,33 @@ relations:
       - { file: heal.rs, function: is_parked, dedicated: false }
     counts: "one leg read, per phase"
     cost: report
+
+  computation_owed:
+    name: "computation owed (a kept output owed a re-run), and what rests on a stale number"
+    reading: { form: composite, composition: "owed(a) := ∃q: flows-to(q, a) ∧ used(a, q) ≠ now(q) ∨ ∃b: flows-to(b, a) ∧ owed(b); stale(x) := ∃a: owed(a) ∧ (about(a, x) ∨ causes(a, x) ∨ source-of(x, a) ∨ part-of(a, x) ∨ x.limit_source = a)", components: [flows-to, about, causes, source-of, part-of] }
+    rule: "A kept output (an Artifact registered with its inputs: DEPENDS_ON edges carrying `used_basis`, read as data flowing from the input to the output) is OWED when an input that is a design quantity now holds another `limit` or `unit` than the `value_used` and `unit_used` the edge keeps, when an input that is another kept output now carries another `checksum` than the `checksum_used` the edge keeps (it was re-run), or when an input is itself owed; its distance is 1 for a moved input and one more than the nearest owed input otherwise. A record RESTS ON A STALE NUMBER when an owed output DOCUMENTS it, it DEPENDS_ON the output (not as an input), a check PRODUCES the output as its record, the output is a PREMISE_OF it, or its `limit_source` names the output (req:a-changed-quantity-names-every-kept-computation-that-used-it)."
+    stated_over_readings: partial
+    not_yet_stated: "what an input used and what the design holds now are compared as properties (value_used, unit_used and checksum_used on the edge; limit, unit and checksum on the node) no reading declares, and `limit_source` is a node property, not an edge."
+    inference: deduced
+    edges: [DEPENDS_ON, DOCUMENTS, PRODUCES, PREMISE_OF]
+    code:
+      - { file: owed.rs, function: owed_computations, dedicated: true }
+      - { file: owed.rs, function: input_edges_by_output, dedicated: true }
+      - { file: owed.rs, function: input_moved, dedicated: true }
+      - { file: owed.rs, function: resting_on, dedicated: true }
+    counts: "one owed output, and one record resting on an owed output"
+    cost: bounded
+
+  redo_list:
+    name: "redo list (what a change to a part, a quantity or a kept output asks to be redone)"
+    reading: { form: composite, composition: "redo(s, x) := closure from s over { flows-to (an output's inputs, to the outputs that used them), about (DOCUMENTS), source-of (PRODUCES), part-of (PREMISE_OF), causes (DEPENDS_ON from a part or a record onto what changed), norm (GOVERNED_BY from a part to a decision, CONSTRAINS from a reached limit to a part, and from a quantity describing a changed part), instance-of (REALIZES from a model or drawing to a part) }, grouped by the kind of x", components: [flows-to, about, source-of, part-of, causes, norm, instance-of] }
+    rule: "From the seeds, walk breadth first: from anything a kept output took as an input, to the outputs that took it; from a kept output, to what it DOCUMENTS, what it is a PREMISE_OF, what DEPENDS_ON it (not as an input), the check that PRODUCES it and the limit whose `limit_source` it is; from a decision, to the parts GOVERNED_BY it; from a reached limit, to the parts it CONSTRAINS; from a part, to the parts that DEPEND_ON it, the quantities that CONSTRAIN it and were taken as an input, and the model and drawing files that REALIZE it. Each node reached is listed once, at its nearest distance, in its group: computations, decisions and limits, parts, quantities, models, drawings (req:a-change-to-a-physical-designs-part-returns-its-redo-list-by-trade)."
+    stated_over_readings: partial
+    not_yet_stated: "the grouping is by node type and Artifact.artifact_type, node properties no reading declares; `limit_source` is a node property; and the walk turns at a node by its type, which no reading declares."
+    inference: deduced
+    edges: [DEPENDS_ON, DOCUMENTS, PRODUCES, PREMISE_OF, GOVERNED_BY, CONSTRAINS, REALIZES]
+    over: [computation_owed]
+    code:
+      - { file: owed.rs, function: redo_list, dedicated: true }
+    counts: "one (seed, node to redo) pair — not counted by default"
+    cost: closure

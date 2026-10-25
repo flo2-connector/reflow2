@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4e6537244d7f261f7a36ffa763b28a69d3c51206c5e7478888332da6c9e29c39",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:report"
+}

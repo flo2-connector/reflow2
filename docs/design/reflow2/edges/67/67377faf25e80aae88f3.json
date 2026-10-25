@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce8faa91b6a82b51b4f4229fbf88230c89e73c4d0ea306d0aef16ffdda36ca14",
+  "edge_type": "REALIZES",
+  "from_id": "art:owed",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-changed-quantity-names-every-kept-computation-that-used-it"
+}

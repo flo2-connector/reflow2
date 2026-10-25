@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:2cec87907a9128c43e8a8d63203cd1a866ef34a26f89d43abbccecbee1f59113",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:reasoning-evaluation-is-memoized-across-cycles-and-shared-across-a-report",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3d1ea971520751b546ee44eb8a4c302a3af1282b372748e9dca92d0cb2af8d33",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-change-returns-its-redo-list",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:propagate"
+}

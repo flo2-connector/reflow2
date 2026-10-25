@@ -5,6 +5,55 @@
   },
   "description": "Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. Lands with no status unless you pass one: absent means nobody said. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to register a file, drawing or document in the design.",
   "inputSchema": {
+    "$defs": {
+      "ArtifactInputArg": {
+        "additionalProperties": false,
+        "description": "One input a kept output took (add_artifact `inputs`).",
+        "properties": {
+          "checksum": {
+            "default": null,
+            "description": "For a kept output: the checksum of the version the record used. Omitted: the version\nthe design holds now.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "input": {
+            "default": null,
+            "description": "The record's own name for this input (`persons`).",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "node_id": {
+            "description": "The design quantity (a Constraint holding a `limit`) or the kept output (an Artifact) the\nrecord took. Anything else is refused: a number written only in prose is first recorded\nas a quantity.",
+            "type": "string"
+          },
+          "unit": {
+            "default": null,
+            "description": "For a quantity: the unit of `value`, which must be the unit the design holds it in.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "value": {
+            "default": null,
+            "description": "For a quantity: the value the record used. Omitted: the quantity's value now is taken,\nand the edge says so (`used_basis: current`).",
+            "format": "double",
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "node_id"
+        ],
+        "type": "object"
+      }
+    },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
@@ -73,6 +122,16 @@
         ],
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "inputs": {
+        "description": "A KEPT OUTPUT'S INPUTS: for a calculator's record, a drawing or a render, every design\nquantity (a Constraint with a `limit`) and every other kept output (an Artifact) it took,\nwith what it USED, so a later change names it owed a re-run (loop_status\n`owed_computations`; propagate_from `redo_list`). One DEPENDS_ON edge per input. Passing\nit REPLACES the artifact's whole input set (`[]` clears it); omitted, the inputs stay as\nthey are. Register a re-run's new version with what IT used. reflow2 never reads the file.",
+        "items": {
+          "$ref": "#/$defs/ArtifactInputArg"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

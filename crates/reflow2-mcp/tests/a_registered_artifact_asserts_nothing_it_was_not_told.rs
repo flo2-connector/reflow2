@@ -42,6 +42,7 @@ fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
         not_read: None,
         source_reliability: None,
         information_credibility: None,
+        inputs: None,
     }
 }
 
