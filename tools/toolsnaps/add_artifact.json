@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. Lands with no status unless you pass one: absent means nobody said. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Pass `inputs` for a calculator's record, a drawing or a render: the design quantities and kept outputs it took, with what it used, so a changed quantity marks it owed a re-run. Ask for this when you want to register a file, drawing or document in the design.",
+  "description": "Create or revise an Artifact node — a real deliverable (file/spec/doc) that lives outside the graph, pointed to by `location`. Lands with no status unless you pass one: absent means nobody said. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to register a file, drawing or document in the design.",
   "inputSchema": {
     "$defs": {
       "ArtifactInputArg": {

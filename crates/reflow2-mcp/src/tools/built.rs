@@ -653,8 +653,6 @@ impl ReflowService {
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
                        a 2 KB field you did not touch. \
-                       Pass `inputs` for a calculator's record, a drawing or a render: the design quantities \
-                       and kept outputs it took, with what it used, so a changed quantity marks it owed a re-run. \
                        Ask for this when you want to register a file, drawing or document in the design.",
         title = "Add an Artifact",
         annotations(read_only_hint = false, destructive_hint = false)
