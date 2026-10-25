@@ -1,10 +1,9 @@
 {
-  "content_hash": "sha256:baab5102b17702ca24307d18fe64336ea270201e832a4a878a0ccaa5953ab50f",
+  "content_hash": "sha256:f9e8719bd7cd983d060f7d798dfe25059c01b993c0b720e61f564602d40f419d",
   "node_id": "art:test-readings-before-the-shared-evaluation",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "data",
-    "checksum": "sha256:b4e6bd717c2a0739ab9f6ec316850fe86c24a4e7a06decc083f5970894fc3b47",
     "description": "The golden: a digest of every reasoning reader's whole reading, per design, taken on main 367cd86d8 before the evaluation was shared.",
     "location": "crates/reflow2-core/tests/fixtures/readings_before_the_shared_evaluation.json",
     "name": "crates/reflow2-core/tests/fixtures/readings_before_the_shared_evaluation.json",

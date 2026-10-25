@@ -1,11 +1,9 @@
 {
-  "content_hash": "sha256:5b56b2586adaa2982baf84687e7300fda3cac3b508e0a8d05e37c6f8ba7a7394",
+  "content_hash": "sha256:8c17ffc18d93eb2b25b5c6f8147f0e0a8fcd360eb8df5fbb51567990ce3ef720",
   "node_id": "art:inference-memo",
   "node_type": "Artifact",
   "properties": {
     "artifact_type": "code",
-    "checksum": "sha256:1dd16051bfc4c08d87faf31e5aaa355d4c257b56e0ec8927b586e225650687a7",
-    "checksum_basis": "asserted",
     "description": "The reasoning evaluation's shared memo: the per-call scope (reasoning_scope), readings kept with the stack state they depend on, the depth-limit taint, and the per-scope type_holding and reasoning_debt answers.",
     "location": "crates/reflow2-core/src/inference/memo.rs",
     "name": "crates/reflow2-core/src/inference/memo.rs",
