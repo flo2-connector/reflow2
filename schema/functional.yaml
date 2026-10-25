@@ -127,7 +127,7 @@ schema:
         data_volume: { type: float, description: "Bytes/records per interaction, if known (raw signal behind weight)." }
         weight_basis: { type: enum, values: [estimated, evidence, measured], default: estimated, description: "How the weight was set: an LLM estimate, grounded in evidence, or measured from telemetry." }
         # A KEPT OUTPUT'S INPUTS (req:a-changed-quantity-names-every-kept-computation-that-used-it,
-        # @ajs 2026-10-24, option (c) of dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model).
+        # 2026-10-24, option (c) of dec:idea-reflow2-becomes-the-web-of-rules-for-a-buildings-ifc-model).
         # An Artifact registered with `inputs` (add_artifact) DEPENDS_ON each design quantity
         # and each other kept output it took, `dependency_type: data_flow`, and the edge keeps
         # what the record USED, so a later change can be compared with it. reflow2 never reads
