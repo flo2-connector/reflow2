@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9dbc89660f7cb756bc6355fd48d18354ed45b5f16c529623e19cea9a7f010b10",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-ae4f0ac159cb59e8",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:bbdc79b0d119245fe08768512abf0a4d0dd67b8f9d1b32864147149c4c0115fd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:owed"
+}

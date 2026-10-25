@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:51dee56b9afdbd97f3c001e70b28e2bf290598f9f847ab40f93f6a6da313d4c7",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:owed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4c1fed974c91acad10d88af9c4c65abffc5575fd0907f043fbdfa4e0eff20026",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "at": "2026-10-25",
+    "note": "C1 is answered: both accepted requirements now have a capability, and they are built on branch feat/web-of-rules (merge pending). C2 is answered in reflow2: a number is held as a quantity (a Constraint with a limit), and flo2-calc 0.13.0 binds an input to it. C3 is answered: whoever registers a record passes its inputs, and an edge per input keeps what was used. C5 is answered in part: a drawing registered with its model as an input reads owed when the model's checksum moves, and the redo list reaches models and drawings. NOT closed in practice: on flo2.io nothing is registered with its inputs until flo2's door passes them, and until a reflow2 release carrying this reaches flo2.io. Grouping by trade is also still open. The class (C6, an accepted requirement nobody schedules) is not answered by this change."
+  },
+  "to_id": "fact:root-cause-a-changed-requirement-does-not-flow-because-the-accepted-web-of-rules-was-never-built-2026-10-25"
+}

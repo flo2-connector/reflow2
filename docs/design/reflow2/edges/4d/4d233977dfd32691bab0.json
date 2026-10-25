@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:325e00a8631fb24447e679ddb7466243dc1c781c7f76cd93637a98d033363c0f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 30,
+    "action": "modified",
+    "checksum_after": "sha256:daeba766f987231bdb9abd4e068ba390b54f37f8d78c81ba282e45ccf36ac2f5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

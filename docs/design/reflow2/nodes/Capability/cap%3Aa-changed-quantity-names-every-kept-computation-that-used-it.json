@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4b01723db3057fa2cece22c682611dcb41e6ea02b3a9c5b2d038463cb63bf6cb",
+  "node_id": "cap:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "node_type": "Capability",
+  "properties": {
+    "description": "add_artifact `inputs` registers a kept output's inputs: each design quantity (a Constraint holding a `limit`) and each other kept output (an Artifact), one DEPENDS_ON (data_flow) per input. Each edge keeps what the record used: value_used and unit_used, or checksum_used, with used_basis stated or current. Passing `inputs` replaces the set. A non-quantity input, an id naming nothing, and a unit other than the one the design holds are each refused by name. loop_status reports computations_owed and owed_computations, nearest first; the reasons are quantity_changed (was, now), input_re_run (was, now) and input_owed, transitive with distances. It also lists resting_on_stale_numbers: what an owed output documents, what depends on it, the limit whose limit_source it is, the check that produces it, and the step it is a premise of. Both count against `clean` and are said in `next`. reflow2 never reads the record (the 2026-10-13 dividing line). Code: crates/reflow2-core/src/owed.rs.",
+    "name": "A kept computation names its inputs, and a changed quantity or re-run marks every output that used it owed, with what rests on it",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

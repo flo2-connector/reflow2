@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:35d246f3e41bf0e6303b7ac2ea1449775e6ad13af8286b62e244a1f67bf35634",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-0cc5600d3b638e6e",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:918da0fbec24e3b3fe71a0e938a267f5caa8b04d8b7dd4641b49f3506f7414f4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it"
+}

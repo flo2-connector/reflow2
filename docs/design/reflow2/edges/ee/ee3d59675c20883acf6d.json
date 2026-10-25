@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:69ead92b6ef6fcd3d4314a5c7acbac58d6d2e0e119f64cd5f4a52cb50af197e6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-changed-quantity-names-every-kept-computation-that-used-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

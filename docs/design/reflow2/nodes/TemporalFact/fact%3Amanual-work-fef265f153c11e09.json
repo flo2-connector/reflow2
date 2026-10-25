@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:05661c3105802e5075900d22b599acb5fc532846652f95417117b68bd8fa6d37",
+  "node_id": "fact:manual-work-fef265f153c11e09",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "Found which registered Artifacts a branch's diff touches by reading every Artifact node in the committed export (docs/design/reflow2/nodes/Artifact) and matching `location` against `git diff --name-only` in a Python script, then sha256sum'd each file to pass as asserted checksums, because flo2.io cannot measure the files. 18 artifacts for one PR.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-25",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":null}"
+  }
+}

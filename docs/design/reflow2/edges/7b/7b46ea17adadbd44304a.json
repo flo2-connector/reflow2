@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:80b1981f07e5ccb9876fa877d1dea1015fdca9b8f5307e071e35f2f6fc1dd5bb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 51,
+    "action": "modified",
+    "checksum_after": "sha256:7e5e7c2514f3a6f070dd463fc9bfb0c57ad9aad9be69b27c5e5b62ed3e97bea1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

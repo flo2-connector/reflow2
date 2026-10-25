@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5e6017e144ead0031a3220b9d7a6d1980cc5da9f1df16829fd067a01d5733762",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-change-returns-its-redo-list",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

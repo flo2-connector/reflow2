@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c5371f846364e9d79a6e30e8b9fb9c5c09da58cadb68525c6534103ada0d82ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1cdb06b11e42a933c74fb2bd7dd41ccad16edf5abec7f52fb303a06582a76d2c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 33,
+    "action": "modified",
+    "checksum_after": "sha256:26e6ce41897f9bd279eb6754bcc45f08cc99f19d428dcd1ced731855f394dc23",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}
