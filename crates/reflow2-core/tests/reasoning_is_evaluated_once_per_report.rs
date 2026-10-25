@@ -21,7 +21,7 @@
 //!    stated budget ([`BUDGET`]), so the cost cannot grow back.
 //! 3. EVERY READING IS AS IT WAS: the readings of every proof, argument and
 //!    verification fixture, and of the generated design, equal a golden taken
-//!    on the code before the change (main 7e9209515).
+//!    on the code before the change (main 367cd86d8).
 //!
 //! `cargo test -p reflow2-core --no-default-features --release --test in_memory
 //! reasoning_is_evaluated_once_per_report::time_ -- --ignored --nocapture`
@@ -289,13 +289,21 @@ fn time_it() {
     }
 }
 
-/// WHAT EACH READER MAY SPEND on the Shop-sized design, in a DEBUG build on
-/// CI's hardware. Measured on 7e9209515 (before the change, a release build on
-/// an 8-core desktop): reasoning_report took longer than the gateway's 30 s.
-/// After it, see the pull request; the budget leaves a margin of about ten
-/// times the debug-build time measured, so a slow CI runner passes and a
-/// return of the explosive cost (seconds to minutes) fails.
-const BUDGET: Duration = Duration::from_secs(2);
+/// WHAT EACH READER MAY SPEND on the Shop-sized design (56 steps), in the
+/// DEBUG build CI runs. How it was chosen, from measurements on an 8-core
+/// desktop (ajs77) on 2026-10-25:
+///
+/// - BEFORE the change (main 367cd86d8, release build, so faster than CI's):
+///   reasoning_report 7.4 s at 34 steps and 18.6 s at 44, loop_status 13.5 s
+///   and 32.3 s; at 56 steps each runs for minutes.
+/// - AFTER it, debug build: reasoning_report 1.1 s, loop_status 1.0 s,
+///   detect_gaps 0.9 s (release: 0.24 s, 0.23 s, 0.21 s).
+///
+/// Ten seconds is about nine times the slowest reader's debug time here, room
+/// for a CI runner a few times slower than this desktop, and still a small
+/// fraction of what the code before the change spends, so a return of the
+/// explosive cost fails it and an ordinary slow runner does not.
+const BUDGET: Duration = Duration::from_secs(10);
 
 #[test]
 fn a_shop_sized_design_with_circles_reads_within_its_budget() {
@@ -498,7 +506,7 @@ const GOLDEN: &str = "tests/fixtures/readings_before_the_shared_evaluation.json"
 
 /// EVERY READING IS AS IT WAS: each fixture of the proof, argument and
 /// verification trials, and the Shop-shaped design, read by every reader in
-/// [`readings`], equals the golden taken on main 7e9209515, before the
+/// [`readings`], equals the golden taken on main 367cd86d8, before the
 /// evaluation was shared or a circle memoized. A difference is a bug in the
 /// change. `REFLOW2_BLESS_READINGS_GOLDEN=1` rewrites the golden, which is
 /// only ever right on the code before the change.
@@ -515,14 +523,15 @@ fn every_reading_as_it_was() {
         g.import_graph(&doc).expect("fixture imports");
         designs.push((name.to_string(), g, doc));
     }
-    // The Shop's shape at two sizes: small enough that the code before the
-    // change reads every node of it in seconds, and the Shop's own size,
-    // read by the whole-design readers (the code before the change took
-    // minutes over it; every node of it would take hours).
+    // The Shop's shape at two sizes: 18 steps, small enough that the code
+    // before the change reads every node of it in seconds, and 44 steps, read
+    // by the whole-design readers (72 s on the code before the change; at
+    // the Shop's own 56 those readers ran past an hour, and every node of it
+    // would take far longer).
     let g = shop_shaped(8, 10);
     let doc = g.export_graph().unwrap();
     designs.push(("shop-shaped-small".to_string(), g, doc));
-    let g = shop_shaped(24, 32);
+    let g = shop_shaped(18, 26);
     let doc = g.export_graph().unwrap();
     designs.push(("shop-shaped".to_string(), g, doc));
 

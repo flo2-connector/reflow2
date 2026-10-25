@@ -189,6 +189,34 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          who may not read the far design.",
     ),
     (
+        "reflow2-core/src/inference/memo.rs",
+        "thread_local!",
+        "The declaration of TRUNCATIONS and SCOPE, below: the reasoning evaluation's \
+         per-call memo (dec:reasoning-evaluation-is-memoized-across-cycles-and-shared-\
+         across-a-report).",
+    ),
+    (
+        "reflow2-core/src/inference/memo.rs",
+        "TRUNCATIONS",
+        "A THREAD-LOCAL COUNTER, never read for its value: an evaluation compares it before \
+         and after a computation to learn whether that computation met the depth limit, \
+         and so whether its reading may be shared. It holds no design's state; a second \
+         design open in the process moves the same counter and is only ever more \
+         cautious for it.",
+    ),
+    (
+        "reflow2-core/src/inference/memo.rs",
+        "SCOPE",
+        "A THREAD-LOCAL holding the ONE reasoning evaluation that the synchronous call \
+         running on this thread shares across the nodes it reads: `reasoning_scope` opens \
+         it for one graph (named by the address of the handle borrowed for the call) and \
+         its guard empties it when the call returns, even on a panic, so it never outlives \
+         the call and is never seen by another. An evaluation of any other design finds \
+         it is not theirs and keeps its own memo. It is a thread-local rather than a field \
+         on the design handle because the handle is shared between concurrent readers, and \
+         one reader's half-built memo must never reach another.",
+    ),
+    (
         "reflow2-mcp/src/service/unit.rs",
         "CALL",
         "A tokio TASK-LOCAL beside WRITES_FOR, ACTING and SIGNER, and the same shape: \
