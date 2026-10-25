@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3424075baceba9cebf3c5d11c6a03b7728935df26a1f8d0ee065b8aa072b1238",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words"
+}

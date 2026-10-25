@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:17dd8e75d3ba6c3051da33a3df22996aee05268bb88489b3ac388da681e33fa3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:find-tools-relation-corpus-fixture"
+}

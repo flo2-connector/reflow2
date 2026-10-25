@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65d7c894bb8fa9f3954cc374d7daecd35af9e72312b947e625406c7b334f4a6b",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:find-relations",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:find-relations"
+}

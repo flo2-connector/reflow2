@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:827a128b16d036c09226ba28d5a98d90d3847f450bff3fe941409520a3bf1b50",
+  "edge_type": "CHANGED",
+  "from_id": "chg:find-tools-finds-relations-2026-10-25",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 28,
+    "action": "modified",
+    "checksum_after": "sha256:fcf55c3134032b6d0ac632f0dcab253d4635b6ebec7c7c5c9c09dfd1b0b18139",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:fad207756a7a14b7391e8ddb61f2832dcb2f7f350f8e41000ffa487e1b5ee63e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-fix-names-the-findings-it-answers-in-the-same-call",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

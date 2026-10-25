@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:428524d40219dedb729788405a41f401855054e81370bf308ca32165e2d3df1c",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:find-tools-finds-relations"
+}

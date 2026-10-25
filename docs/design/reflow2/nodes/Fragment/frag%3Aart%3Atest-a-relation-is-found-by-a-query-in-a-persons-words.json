@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ba2dc3c933bd76c5f8028026386ce04c2d9d5ab0ba1730067300bce0b169d7bd",
+  "node_id": "frag:art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_relation_is_found_by_a_query_in_a_persons_words.rs"
+  }
+}

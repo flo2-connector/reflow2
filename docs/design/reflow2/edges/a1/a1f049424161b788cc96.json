@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a44917c94f5551f81ee7b54bbb01a377e1d86cef434de6ed913dc687f1939872",
+  "edge_type": "REALIZES",
+  "from_id": "art:find-relations",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:find-tools-finds-relations"
+}

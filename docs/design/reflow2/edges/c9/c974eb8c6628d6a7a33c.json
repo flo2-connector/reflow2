@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:378baf67acad4da9b9e56a10f0343670c6aa7a012c3bf1e7ae2ffab148299b65",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:find-tools-relation-corpus-fixture",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

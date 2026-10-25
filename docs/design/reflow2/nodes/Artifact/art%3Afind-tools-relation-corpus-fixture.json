@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:0ed172c3ac917ed84edb6d96b134ed0e93ad2aedd970dc4e12700beafd2af921",
+  "node_id": "art:find-tools-relation-corpus-fixture",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "The relation half of find_tools' corpus: 24 relation questions in a person's words (four of Alex's recorded Grok queries word for word, one from the root-cause measurement, the rest written by the building agent, informed by the schema's hints), each with its accepted relations; and 5 known misses, each a vocabulary gap with its measured reason.",
+    "location": "crates/reflow2-mcp/tests/fixtures/find_tools_relation_corpus.json",
+    "name": "find_tools_relation_corpus.json",
+    "status": "realized"
+  }
+}

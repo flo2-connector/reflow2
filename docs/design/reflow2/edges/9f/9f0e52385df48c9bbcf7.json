@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a7e84afcb6931a382cd005d3381da50a1dce48112ebc8636859fef8b6f0a97c3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-a-relation-is-found-by-a-query-in-a-persons-words",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:e156931e685dd627f6b8b436955ea9700698ec3be80add1a721f11178f629160",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-dated-occurrence-records-an-event-in-the-designs-world",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

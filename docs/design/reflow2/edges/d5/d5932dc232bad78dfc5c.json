@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:656a907cced2e48dbdf0ddb13335528c45704d7a6e2422cc7612ff8cc85ab469",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-2976dc66af30c958",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:78185efce29fb8dcca586467dd211d1e45bc7119e4bea1d351c65c16a546173d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words"
+}

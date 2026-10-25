@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:ef28ad723185aee4d27beb82eabe45fae21abc082e4fca84b1d15ed2e3306c17",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:record-what-was-built-in-one-call",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

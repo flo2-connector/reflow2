@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:f6368e4c18a93fd99c0e325c26c6102b74643d11fce017f3b491bd40536cb9aa",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e2fdaf6aa7efa8db9d7d9b81b0b1290be79aa35d776424280d34a9079dc44458",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:find-tools-finds-relations",
+  "properties": {},
+  "to_id": "req:agent-native"
+}
