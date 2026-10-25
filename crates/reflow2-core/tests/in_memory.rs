@@ -222,6 +222,7 @@ mod proposed_asserts_nothing;
 mod provenance;
 mod publishable_promise;
 mod readiness;
+mod reasoning_is_evaluated_once_per_report;
 mod record_change_can_state_its_axis;
 mod record_to_record_relations;
 mod registering_the_file_that_is_a_check_gives_it_an_executable_form;

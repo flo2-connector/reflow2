@@ -2960,6 +2960,8 @@ impl DesignGraph {
     /// you to skim it, and a skimmed list is the failure this whole layer
     /// exists to prevent.
     pub fn detect_gaps(&self) -> Result<Vec<GapCandidate>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         // MEMOISED PER WRITE GENERATION — see `open_defects_counting` and
         // `dec:derived-scans-are-memoised-per-write-generation`. An
         // acknowledgement is a write, so acknowledging a gap invalidates this.

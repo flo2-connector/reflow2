@@ -449,6 +449,8 @@ impl DesignGraph {
         seed_id: &str,
         depth: usize,
     ) -> Result<Scoped<HealIssue>, DynoError> {
+        // One evaluation for everything this reads (inference/memo.rs).
+        let _shared = self.reasoning_scope();
         let region = self.require_scope(seed_id, depth)?;
         let all = self.open_defects()?;
         let total = all.len();
