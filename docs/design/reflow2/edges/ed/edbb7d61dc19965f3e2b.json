@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:f900ef736cea5ee3f11a13a203f2c20ea2c7c53276e487cf9151fc739c7dafc0",
+  "content_hash": "sha256:130c2408c9eb1b509dbc43eecefc770cceaf937788c6ec6995f93c5937f50c69",
   "edge_type": "CHANGED",
   "from_id": "chg:the-web-of-rules-is-built-2026-10-25",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 19,
     "action": "modified",
-    "checksum_after": "sha256:2cd984ac177c5eaf81faddb7416f311ad551ac05013062e2df8ca257af854c0a",
+    "checksum_after": "sha256:78c6571e998bbdff378182a860cf61755e82598707bf8c1711b4dcbe5a7badf6",
     "checksum_basis": "asserted"
   },
   "to_id": "art:tools-coherence"
