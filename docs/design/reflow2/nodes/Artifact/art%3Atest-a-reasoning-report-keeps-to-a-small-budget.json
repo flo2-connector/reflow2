@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:402c36a64041f1c79d12c95689f880cb961f1b1d2dca932503dd38065be09bf5",
+  "node_id": "art:test-a-reasoning-report-keeps-to-a-small-budget",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:fef294adf396a99bbb36870643522674941c6af4b5f5f1613c42a4d5ccfad463",
+    "description": "On the wire: forty steps of three uncited premises each; reasoning_report at budget_chars 4,000 answers within it, names rests_on in budget.lists_shortened with its total of 120, and keeps every claim on the page whole.",
+    "location": "crates/reflow2-mcp/tests/a_reasoning_report_keeps_to_a_small_budget.rs",
+    "name": "crates/reflow2-mcp/tests/a_reasoning_report_keeps_to_a_small_budget.rs",
+    "status": "realized"
+  }
+}

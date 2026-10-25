@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fe58072b32baf5523ff065c17e873ea9750ff8c96de1969730fd4ff0b143e67c",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-memo",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in"
+}

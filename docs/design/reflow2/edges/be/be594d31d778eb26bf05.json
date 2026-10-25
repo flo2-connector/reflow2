@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d248c29bdb71a57f1fe74abe9efec137e951c3b9bcb80a4cdb60274900a8cbc6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-cadadf736f3cada9",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:25d5727ce67b97af355b29a6cb1232751fcffc8848519c32b485c4fb0b9d384c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-premise-says-whether-it-rests-on-intent-or-delivery-test"
+}

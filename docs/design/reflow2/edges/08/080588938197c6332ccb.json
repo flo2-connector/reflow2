@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:64eacc69e315a1ff5d2e4ff16117775c41fc7a2afdd52780fc89ce952f145d8f",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:inference-memo",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:inference-memo"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bbd91d10dfe3e115f7d4b7c5f30e9cc46ab968d460bf8eed8e3385691ea5e2aa",
+  "node_id": "chg:the-shared-reasoning-evaluation-is-built-2026-10-25",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "decision_settled",
+    "name": "The shared reasoning evaluation is built: the decision's name says built, not \"not built yet\"",
+    "subject": "record"
+  }
+}

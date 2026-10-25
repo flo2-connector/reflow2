@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:754e0b82eae4b8fa9b93a92dde5cef1e8bf9b847bc2d3bd4cb49ab89af2ca522",
+  "node_id": "fact:manual-work-30be7f7ef11a2592",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "The golden for the shared evaluation was blessed from readings dumped on main and digested later (REFLOW2_DUMP_READINGS then REFLOW2_BLESS_READINGS_FROM), because the code before the change took past an hour over a 56-step design; each golden test in the repo carries its own hand-written bless switch and projection.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-25",
+    "value": "{\"diagnosis\":\"unknown\",\"reflow2_tool\":null}"
+  }
+}

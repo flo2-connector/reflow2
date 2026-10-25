@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a2207b45cbed8356c38658ce7c170531537c426f933ea215d4be2754c649d3d1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:reasoning-is-evaluated-once-per-report",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

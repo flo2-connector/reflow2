@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f1a872650104dbfa6ee9069b8b2481db7e1021b3b645d3028833130a04a06d55",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:reasoning-is-evaluated-once-per-report"
+}

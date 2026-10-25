@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:986a7b3dbfa8a02e7ba805e0e749d82fe4680fa685a5abbd8200d88a773d7a07",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in",
+  "properties": {
+    "note": "The capability is what the accepted decision called for: one memo shared across a report, and each circle worked out once (kept per stack state, so every reading stays as it was)."
+  },
+  "to_id": "dec:reasoning-evaluation-is-memoized-across-cycles-and-shared-across-a-report"
+}

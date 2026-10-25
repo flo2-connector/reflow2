@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:570c4e3cb05e6a1d5c0db1034de763d77a17fd46e36f515911530abc0323f198",
+  "node_id": "fact:manual-work-0b9fe323dd7505b1",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "manual_work",
+    "statement": "To find where a reasoning read spent its time, wrote temporary per-function wall-clock spans and evaluation counters into reflow2-core by hand (evaluations made, truths computed, readings not kept because a circle was cut, cuts), printed them from a test, then removed them. Nothing in reflow2 says what a read cost or how often it recomputed, so the stall's cause (per-call memo versus unkept readings under cuts) could only be told apart with hand instrumentation.",
+    "subject_id": "proj:reflow2",
+    "valid_from": "2026-10-25",
+    "value": "{\"diagnosis\":\"tool_missing\",\"reflow2_tool\":null}"
+  }
+}

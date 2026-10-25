@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0732ba367b1a206727c118dae8b98dd6169c0c7b8ab09406dc05b8892bb97298",
+  "node_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in",
+  "node_type": "Capability",
+  "properties": {
+    "description": "While a report, loop_status, detect_gaps or a what-if runs, every evaluation of that design on the call's thread shares ONE memo per set of premises counted as lost (DesignGraph::reasoning_scope, crates/reflow2-core/src/inference/memo.rs), so each claim's reasoning is worked out once for all the nodes the call reads. A reading computed while a circle was cut beneath it is kept with exactly what it depends on: the stack entries it was cut on and every node and step it consulted and found off the stack; it is handed back only when the stack agrees on all of them, which is when computing it again would take the same path. Each evaluation's own memo still behaves as before, and a reading that met the depth limit is never shared. While the scope is open, type_holding and reasoning_debt are also worked out once. Every reading is unchanged: a golden of every proof, argument and verification fixture and of two Shop-shaped designs, taken on main 367cd86d8, matches. Measured on the Shop's export (release, 8-core desktop): reasoning_report 2.6 s to 0.25 s, loop_status 4.5 s to 0.30 s, detect_gaps 2.9 s to 0.22 s; on a generated 56-step design with objection circles, from minutes to about 0.24 s each.",
+    "name": "Reasoning is evaluated once per report, and a reading under a circle is kept with the stack state it depends on",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

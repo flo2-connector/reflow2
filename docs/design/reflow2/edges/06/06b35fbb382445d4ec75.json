@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5b4d2bc6f5d895f245e14903a5b7074e3f94872e45bc297f32211d5a3ff4a5e7",
+  "edge_type": "MITIGATES",
+  "from_id": "cap:reasoning-is-evaluated-once-per-report-and-a-circle-once-per-way-in",
+  "properties": {
+    "evidence": "Removes C1, the cost: on the Shop's export loop_status 4.5 s to 0.30 s and reasoning_report 2.6 s to 0.25 s (release, ajs77). C2 (no deadline), C3 (the fair lock) and C4 (the gateway's wording) are untouched. Also the reasoning_report budget_chars overshoot the fact names (34,450 chars at 1000): now 5,045 on the Shop export."
+  },
+  "to_id": "fact:root-cause-the-shop-stall-was-reasoning-evaluation-that-grew-past-the-gateways-30-s-and-nothing-stops-or-reports-it-honestly-2026-10-25"
+}

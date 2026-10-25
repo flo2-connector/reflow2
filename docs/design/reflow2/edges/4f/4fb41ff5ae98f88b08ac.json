@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a9fb8c6d5e55438288b7e26e7eabc981e41b8da8c605093cd8a49ca1af2ec45d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:reasoning-is-evaluated-once-per-report-2026-10-25",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-reasoning-report-keeps-to-a-small-budget"
+}
