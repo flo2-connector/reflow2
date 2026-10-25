@@ -1160,7 +1160,8 @@ impl ReflowService {
                        know the name, `describe_schema` with `tool` reads its whole input schema \
                        and the lessons this design holds for it (the reply's `describe` says \
                        how, through any door). The schema's relations are ranked beside the \
-                       tools, under `relations`, each with the call that draws it; 'what may \
+                       tools, under `relations` when one scores close to the top tool, each with \
+                       the call that draws it; 'what may \
                        join an X to a Y?' is `describe_schema` with `from` and `to`.",
         title = "Find a Tool",
         annotations(read_only_hint = true)
@@ -1182,7 +1183,6 @@ impl ReflowService {
             .tool_router
             .list_all()
             .into_iter()
-            .filter(|t| !crate::service::DEPRECATED_TOOLS.contains(&t.name.as_ref()))
             .map(crate::arguments::published)
             .collect();
         let searched = all.len();
@@ -1336,6 +1336,7 @@ impl ReflowService {
                 .then_with(|| a.1["tool"].as_str().cmp(&b.1["tool"].as_str()))
         });
         let matched = scored.len();
+        let top_tool = scored.first().map(|(s, _)| *s).unwrap_or(0.0);
         let limit = req.limit.unwrap_or(DEFAULT_TOOL_SEARCH_RESULTS).max(1);
         let items: Vec<JsonValue> = scored.into_iter().take(limit).map(|(_, v)| v).collect();
 
@@ -1344,15 +1345,19 @@ impl ReflowService {
         // as INTERACTS_WITH, was unreachable by describing the job
         // (fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25).
         // Read from this design's schema, so a domain's own edge types count.
+        // Shown only when one scores close to the top tool, so a plain tool
+        // search does not carry them every time; then the key is left out.
         let relations = {
             let g = self.graph.read().await;
-            crate::find_relations::rank(&g.describe_vocabulary().edge_types, &terms, &corpus)
+            crate::find_relations::close_to_the_top_tool(
+                crate::find_relations::rank(&g.describe_vocabulary().edge_types, &terms, &corpus),
+                top_tool,
+            )
         };
 
-        ok_json(json!({
+        let mut reply = json!({
             "count": items.len(),
             "items": items,
-            "relations": relations,
             "matched": matched,
             "omitted": matched.saturating_sub(items.len()),
             "searched": searched,
@@ -1367,7 +1372,11 @@ impl ReflowService {
             // So the reply names the route to the rest, in the words every
             // door can act on.
             "describe": crate::describe_tool::ROUTE_FROM_FIND_TOOLS,
-        }))
+        });
+        if !relations.is_empty() {
+            reply["relations"] = json!(relations);
+        }
+        ok_json(reply)
     }
 
     #[tool(
@@ -1512,7 +1521,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Delete a node by id, returning whether it existed. `node_type` is optional: omitted, the id's prefix is taken as the type you mean (`req:` → Requirement), and the node is deleted only when the one type holding the id is that type — otherwise nothing is deleted and the refusal names what the id holds. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, record_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
+        description = "Delete a node by id, returning whether it existed. `node_type` is optional: omitted, the id's prefix is taken as the type you mean (`req:` → Requirement), and the node is deleted only when the one type holding the id is that type — otherwise nothing is deleted and the refusal names what the id holds. THIS REMOVES EVERY EDGE ATTACHED TO IT AND THERE IS NO UNDO — which is why it is for MISTAKES, not for history. A requirement the user dropped, a capability something replaced, a component that shipped and was decommissioned are retired on the record instead (set_requirement_status, OBSOLETES, snapshot_before_change with deprecation) so the design can still say why its survivors are shaped as they are; the retire-from-design skill forces that question first. Run `propagate_from` on the id before deleting: if the blast radius is not close to empty, this is the wrong tool. Ask for this when you want to remove an item from the design entirely — get rid of a thing that should no longer be in the model — and only for one that never should have existed.",
         title = "Delete a Node",
         annotations(read_only_hint = false, destructive_hint = true)
     )]
@@ -1542,7 +1551,7 @@ impl ReflowService {
         description = "Delete one edge by type and endpoint ids (true if it existed). For \
                        retracting a link that was drawn in error — a wrongly-asserted SATISFIES, \
                        an allocation that never happened. A link that WAS true and stopped being \
-                       true is design history, not an error: record it (record_change) rather \
+                       true is design history, not an error: record it (snapshot_before_change) rather \
                        than erasing it. Until this tool existed the only way to remove a wrong \
                        edge over MCP was to delete one of its endpoints. \
                        Ask for this to remove one link between two items.",

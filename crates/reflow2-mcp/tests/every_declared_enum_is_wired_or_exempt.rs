@@ -454,6 +454,7 @@ fn tools() -> Vec<rmcp::model::Tool> {
         ReflowService::operate_tools_router(),
         ReflowService::query_router(),
         ReflowService::claims_tools_router(),
+        ReflowService::process_router(),
         ReflowService::skills_router(),
     ] {
         all.extend(r.list_all());

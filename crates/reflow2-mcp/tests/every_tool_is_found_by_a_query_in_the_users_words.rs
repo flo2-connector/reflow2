@@ -50,9 +50,10 @@ const CORPUS: &str = include_str!("fixtures/find_tools_corpus.json");
 /// corpora — a 4-char floor on the name-prefix rule (neutral: 177/36) and a
 /// gentler length normalisation (worse: 174/34) — and both were reverted,
 /// because a change the corpus does not reward is noise.
-/// Served names that are refusing STUBS for a renamed tool (2026-09-18):
-/// they carry no query, rank for nothing, and go away next release.
-const DEPRECATED: &[&str] = &["record_change", "manual_work_report"];
+/// Served names that are refusing STUBS for a renamed tool: they carry no
+/// query and rank for nothing. None since the two renamed on 2026-09-18 were
+/// removed (dec:the-two-renamed-stubs-are-removed-in-the-next-release).
+const DEPRECATED: &[&str] = &[];
 
 const RANK_BASELINE: &str = include_str!("fixtures/find_tools_rank_baseline.json");
 
@@ -102,6 +103,7 @@ fn served() -> Vec<String> {
         ReflowService::operate_tools_router(),
         ReflowService::query_router(),
         ReflowService::claims_tools_router(),
+        ReflowService::process_router(),
         ReflowService::skills_router(),
     ] {
         all.extend(r.list_all());

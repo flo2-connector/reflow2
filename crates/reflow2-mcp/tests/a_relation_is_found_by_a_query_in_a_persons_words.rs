@@ -181,3 +181,48 @@ async fn every_reply_points_to_describe_schema_for_what_joins_x_to_y() {
         );
     }
 }
+
+/// THE FOLLOW-UP TO #798: relations come back only when one scores close to
+/// the top tool (`find_relations::CLOSE_TO_THE_TOP_TOOL`), so a plain tool
+/// search does not carry them every time. Held over the tool corpus (one query
+/// per served tool, each a TOOL job in a person's words): the share of
+/// replies carrying any relation. The relation corpus above stays whole.
+#[tokio::test]
+async fn a_plain_tool_search_rarely_carries_relations() {
+    const TOOL_CORPUS: &str = include_str!("fixtures/find_tools_corpus.json");
+    let corpus: Value = serde_json::from_str(TOOL_CORPUS).expect("tool corpus parses");
+    let queries = corpus["queries"].as_object().expect("queries");
+    let s = ReflowService::in_memory().expect("service");
+    let mut carrying = Vec::new();
+    for (tool, query) in queries {
+        let reply = find(&s, query.as_str().expect("query")).await;
+        if !relations_of(&reply).is_empty() {
+            carrying.push(tool.clone());
+        }
+    }
+    let share = carrying.len() as f64 / queries.len() as f64;
+    eprintln!(
+        "relation share over the tool corpus: {} of {} ({:.1}%)",
+        carrying.len(),
+        queries.len(),
+        share * 100.0
+    );
+    assert!(
+        share <= RELATION_SHARE_CEILING,
+        "{} of {} plain tool searches carry relations ({:.1}%, ceiling {:.1}%): {carrying:?}",
+        carrying.len(),
+        queries.len(),
+        share * 100.0,
+        RELATION_SHARE_CEILING * 100.0
+    );
+}
+
+/// The most a plain tool search may carry relations, as a share of the tool
+/// corpus — a ratchet: lower it when the share falls, never raise it.
+///
+/// MEASURED 2026-10-25. On main at 614487215, before this: 198 of 198 (100%),
+/// every reply carried relations. With relations only close to the top tool:
+/// 95 of 199 (47.7%), the corpus by then holding record_the_build's query too.
+/// Every question in the relation corpus still finds its relation (26 of 26,
+/// Alex's six among them).
+const RELATION_SHARE_CEILING: f64 = 0.48;

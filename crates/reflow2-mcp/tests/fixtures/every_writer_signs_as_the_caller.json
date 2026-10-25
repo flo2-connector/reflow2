@@ -841,6 +841,40 @@
       "fact_type": "finding",
       "source": "who:alice"
     },
+    "record_the_build": {
+      "verification": {
+        "id": "ver:built",
+        "name": "Built check",
+        "verifies": [
+          "cap:c"
+        ],
+        "last_run_at": "2026-10-25"
+      },
+      "change": {
+        "id": "chg:built",
+        "name": "Built it",
+        "change_type": "new_feature",
+        "answers": [
+          {
+            "finding_id": "fact:t"
+          }
+        ]
+      },
+      "files": [
+        {
+          "artifact_id": "art:built",
+          "name": "built.rs",
+          "location": "src/built.rs",
+          "checksum": "sha256:abc",
+          "runs": "ver:built"
+        }
+      ],
+      "built": [
+        {
+          "id": "cap:c"
+        }
+      ]
+    },
     "register_alternative": {
       "decision_id": "dec:d",
       "artifact_id": "art:opt",

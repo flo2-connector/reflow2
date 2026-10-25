@@ -477,6 +477,9 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "realizes",
         "record_alias",
         "record_finding",
+        // A process tool: each step's receipt is the composed tool's reply,
+        // nested under `steps`, and the choke point shapes every record in it.
+        "record_the_build",
         "release_includes",
         "replace_text",
         "require_resource",

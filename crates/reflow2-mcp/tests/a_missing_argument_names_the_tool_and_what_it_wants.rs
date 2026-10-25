@@ -96,6 +96,7 @@ fn schema_for(tool: &str) -> Value {
         ReflowService::operate_tools_router(),
         ReflowService::query_router(),
         ReflowService::claims_tools_router(),
+        ReflowService::process_router(),
         ReflowService::skills_router(),
     ] {
         all.extend(r.list_all());
@@ -140,21 +141,21 @@ fn the_reported_call_is_answered_with_the_field_and_its_purpose() {
 /// EVERY required field, not just the one serde would have noticed first.
 #[test]
 fn a_caller_learns_the_whole_obligation_from_one_refusal() {
-    // `record_change` declares five required parameters; serde named one.
-    let schema = schema_for("record_change");
+    // `snapshot_before_change` declares five required parameters; serde named one.
+    let schema = schema_for("snapshot_before_change");
     let required: Vec<String> = schema["required"]
         .as_array()
-        .expect("record_change has required fields")
+        .expect("snapshot_before_change has required fields")
         .iter()
         .filter_map(|v| v.as_str().map(String::from))
         .collect();
     assert!(
         required.len() >= 3,
-        "this test needs a tool with several required fields; record_change has {}",
+        "this test needs a tool with several required fields; snapshot_before_change has {}",
         required.len()
     );
 
-    let hint = refused("record_change", Map::new());
+    let hint = refused("snapshot_before_change", Map::new());
 
     let unnamed: Vec<&String> = required
         .iter()
@@ -186,10 +187,10 @@ fn an_unrelated_refusal_is_left_alone() {
 /// call lacked, and never a field it passed.
 #[test]
 fn with_the_arguments_in_hand_the_refusal_names_what_this_call_lacked() {
-    let schema = schema_for("record_change");
+    let schema = schema_for("snapshot_before_change");
     let required: Vec<String> = schema["required"]
         .as_array()
-        .expect("record_change has required fields")
+        .expect("snapshot_before_change has required fields")
         .iter()
         .filter_map(|v| v.as_str().map(String::from))
         .collect();
@@ -197,11 +198,11 @@ fn with_the_arguments_in_hand_the_refusal_names_what_this_call_lacked() {
     let passed = required
         .iter()
         .find(|f| schema["properties"][f.as_str()]["type"] == "string")
-        .expect("record_change has a required string field")
+        .expect("snapshot_before_change has a required string field")
         .clone();
     let mut given = Map::new();
     given.insert(passed.clone(), Value::String("x".into()));
-    let hint = refused("record_change", given);
+    let hint = refused("snapshot_before_change", given);
     for f in required.iter().filter(|f| **f != passed) {
         assert!(
             hint.contains(&format!("`{f}` is required")),

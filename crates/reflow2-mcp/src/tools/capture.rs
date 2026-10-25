@@ -721,7 +721,7 @@ pub(crate) fn revision_of(
             "This call REPLACED {} propert{} on a node that already existed. No single snapshot \
              holds the whole prior state — but EVERY replaced field's prior value IS preserved, \
              field by field, in `fields_preserved_in` above. Nothing is lost. This is the \
-             ordinary shape after a second write following one `record_change`, and it needs no \
+             ordinary shape after a second write following one `snapshot_before_change`, and it needs no \
              undo: read the named snapshot if you want a value back.",
             replaced.len(),
             if replaced.len() == 1 { "y" } else { "ies" },
@@ -734,9 +734,9 @@ pub(crate) fn revision_of(
             "This call REPLACED {} propert{} on a node that already existed, AND NO SNAPSHOT \
              HOLDS THE PRIOR VALUE OF {} — checked, not assumed. For {}, the value in \
              `replaced` above is the only copy in existence and this reply is the only place it \
-             appears. `record_change` BEFORE the merge is what puts the old state in the \
+             appears. `snapshot_before_change` BEFORE the merge is what puts the old state in the \
              design's own timeline; called now it would snapshot the REPLACEMENT and the \
-             history would be wrong. To undo: write {} prior value{} back, then record_change, \
+             history would be wrong. To undo: write {} prior value{} back, then snapshot_before_change, \
              then re-apply.{}",
             replaced.len(),
             if replaced.len() == 1 { "y" } else { "ies" },
@@ -2703,7 +2703,7 @@ impl ReflowService {
                        had no parent and was PLACED rather than moved, which is a different \
                        fact worth knowing. The level relation is reported in `level_note`, not \
                        enforced — hierarchy_issues is the authority. It does not snapshot for \
-                       you: `history_note` names the record_change that preserves the previous \
+                       you: `history_note` names the snapshot_before_change that preserves the previous \
                        parent, because the old containment is design history.",
         title = "Move a Component",
         annotations(read_only_hint = false, destructive_hint = true)

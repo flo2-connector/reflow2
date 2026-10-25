@@ -140,6 +140,7 @@
     "reconcile_verification": "here are the latest test results — update the design's checks to match",
     "record_alias": "the user calls this thing by a different name — record their word",
     "record_finding": "write down something I observed or measured, dated, about an item",
+    "record_the_build": "record what I built",
     "register_alternative": "register a candidate design branch under this open decision",
     "relation_candidates": "what existing ideas might this new idea be related to",
     "relation_coverage": "what fraction of my decisions link to another decision",

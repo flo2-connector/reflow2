@@ -1,4 +1,4 @@
-# What reflow2 offers: 34 skills and 200 tools
+# What reflow2 offers: 34 skills and 199 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 200 tools
+## The 199 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -291,6 +291,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `reconcile_dependencies` | **read** | Check the declared dependencies against what the build ACTUALLY resolves, and return the reflow2.toml manifest. |
 | `upstream_status` | **read** | Has the design this one DEPENDS ON moved since the declaration was made? |
 | `wall_check` | **read** | DOES THE DECOMPOSITION I DECLARED MATCH THE COUPLING THE CODE ACTUALLY HAS? |
+| `record_the_build` | **write** | Record what you built in one call, at the end of a piece of work: its passing verification, its change event and the findings it answered, its files' checksums, and the work marked built. |
 
 ### Time — epochs, change, and what a claim was true of
 
@@ -303,12 +304,10 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `pin_at_epoch` | **write** | Pin any node to a DesignEpoch (AT_EPOCH) — e.g. |
 | `plan_epoch` | **write** | Create or revise an Epoch that has NOT happened yet — a claim about the future rather than a record of the past, and the forward half of the time axis (req:epochs-can-be-planned). |
 | `precedes` | **write** | Order one DesignEpoch after another (earlier PRECEDES later) — the chain axis Z exists to record. |
-| `record_change` | **read** | RENAMED to `snapshot_before_change` on 2026-09-18 — same parameters, same behaviour: snapshot a node's prior state in an epoch before you change it. |
 | `schedule_for` | **write** | Schedule a Requirement, Capability, QUESTION, Verification or Decision against the moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable (req:epochs-can-be-planned). |
 | `set_epoch_status` | **write** | Move an Epoch between `planned` and `arrived`. |
 | `arrival_delta` | **read** | What was PLANNED for an epoch or release against what was actually DELIVERED — the planned-versus-delivered delta (dec:arrival-delta). |
 | `changelog_view` | **read** | Derive a Keep a Changelog-shaped DRAFT between two moments of THIS design — compare_designs' sibling: that one compares two as-designed records, this one compares two moments of one design and renders the difference in the format the industry already reads. |
-| `manual_work_report` | **read** | RENAMED to `manual_work_ledger` on 2026-09-18 — the READ of everything sessions reported doing by hand. |
 | `record_finding` | **write** | Create or revise a dated finding or defect as a TemporalFact — what was observed, about which node, on what date. |
 | `report_manual_work` | **write** | Record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
 | `manual_work_ledger` | **read** | Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |

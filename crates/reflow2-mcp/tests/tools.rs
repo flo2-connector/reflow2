@@ -870,6 +870,7 @@ async fn the_surface_can_say_that_nothing_moved() {
                 change_type: Some("baseline_established".into()),
                 subject: None,
                 affected: None,
+                answers: None,
             }
             .into()
         ),)
@@ -2454,6 +2455,7 @@ async fn change_event_declares_what_it_changed_atomically() {
                     node_id: "cap:nope".into(),
                     action: None,
                 }]),
+                answers: None,
             }
             .into(),
         ))
@@ -2490,6 +2492,7 @@ async fn change_event_declares_what_it_changed_atomically() {
                     node_id: "req:physics".into(),
                     action: Some("tweaked".into()),
                 }]),
+                answers: None,
             }
             .into(),
         ))
@@ -2523,6 +2526,7 @@ async fn change_event_declares_what_it_changed_atomically() {
                     action: None,
                 },
             ]),
+            answers: None,
         }
         .into()
     ),));
@@ -2612,6 +2616,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
             change_type: Some("refactor".into()),
             subject: None,
             affected: None,
+            answers: None,
         }
         .into()
     ),));

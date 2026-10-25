@@ -24,6 +24,7 @@ fn event(id: &str) -> AddChangeEventReq {
         commits: None,
         repair: None,
         stands_in_for: None,
+        answers: None,
     }
 }
 

@@ -54,9 +54,10 @@ exist for and on those they must not take.
 """
 import functools, json, glob, math, os, re, sys
 
-# Refusing stubs for renamed tools (service.rs DEPRECATED_TOOLS): find_tools
-# never offers them, so the replica leaves them out too.
-DEPRECATED = {"record_change", "manual_work_report"}
+# Refusing stubs for renamed tools: find_tools never offers them, so the
+# replica leaves them out too. None since the two renamed on 2026-09-18 were
+# removed (dec:the-two-renamed-stubs-are-removed-in-the-next-release).
+DEPRECATED = set()
 
 # What tools/list adds to a router tool's description at list time, and
 # find_tools therefore never scores. Each pattern names where it is added.

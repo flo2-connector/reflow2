@@ -41,15 +41,57 @@
           "node_id"
         ],
         "type": "object"
+      },
+      "AnswerReq": {
+        "additionalProperties": false,
+        "description": "One finding a change answered, for `add_change_event`'s `answers` list.",
+        "properties": {
+          "finding_id": {
+            "description": "The finding's id: a Verification or a TemporalFact.",
+            "type": "string"
+          },
+          "finding_type": {
+            "default": null,
+            "description": "Its type, resolved from the id when omitted.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "note": {
+            "default": null,
+            "description": "How it answers it, when that needs saying: \"partly: the cold path is\nstill slow\".",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "finding_id"
+        ],
+        "type": "object"
       }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "affected": {
+        "default": null,
         "description": "What the change touched: a CHANGED edge is drawn from the event to each\nentry. Every entry must name an existing node — the whole call is\nrefused before anything is written if one does not.",
         "items": {
           "$ref": "#/$defs/AffectedNodeReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "answers": {
+        "default": null,
+        "description": "THE FINDINGS THIS CHANGE ANSWERED, named in the same call: an\nINVALIDATES edge is drawn from the change to each (a Verification whose\nlast run found it, or a TemporalFact that recorded it), carrying its\n`note` and the change's `detected_at`. Pass `[]` to say it answered\nnone. A defect_fix or test_failure_fix that does neither is counted in\none loop_status line. Every entry must name an existing finding, or\nnothing is written. `invalidates` still answers one after the fact.",
+        "items": {
+          "$ref": "#/$defs/AnswerReq"
         },
         "type": [
           "array",

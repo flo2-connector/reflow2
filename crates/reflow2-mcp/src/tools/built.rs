@@ -491,7 +491,7 @@ impl ReflowService {
                        two-sided decision. `disposition` is required: `design_holds` (the change \
                        carries no design meaning; recorded as a dated claim) or `design_updated` \
                        (behaviour moved and the design moved with it; pass \
-                       `design_change_event_id` from the record_change that updated it, so code \
+                       `design_change_event_id` from the snapshot_before_change that updated it, so code \
                        and design are one change). Silent accept does not exist: it is how a \
                        design erodes into fiction over N fix cycles while reporting zero gaps. \
                        Until you accept, the same checksum_change is reported on every reconcile. \

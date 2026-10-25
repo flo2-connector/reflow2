@@ -336,13 +336,33 @@ impl Deprecation {
 /// its old name is refused with what to do, and take the entry out in the
 /// release after; for anything else, take the entry out with the item.
 pub const REGISTRY: &[Deprecation] = &[
-    // EMPTY SINCE 0.86.0. Its first real entry, the `Anchor` node type
+    // EMPTY FROM 0.86.0 TO 0.91.0. Its first real entry, the `Anchor` node type
     // (dec:anchor-retire-or-implement, Anthony 2026-10-13: "Remove the unused
     // Anchor type, but only after a rule for retiring things exists"), was
     // announced in 0.85.0 and removed in 0.86.0. A node type is not a tool, so
     // its entry left with it, as the rule above says; the removal itself is
     // `reflow2_core::narrowing::NARROWINGS` (`Retired`), and what a store or an
     // export still holding one does is in docs/upgrading-to-v0.86.0.md.
+    //
+    // THE TWO RENAMED STUBS, removed in the release after 0.91.0
+    // (dec:the-two-renamed-stubs-are-removed-in-the-next-release, Anthony
+    // 2026-10-25). Each was renamed on 2026-09-18 and served until 0.91.0 as a
+    // stub that refused, named its replacement and said it would go: that was
+    // the release of notice, from before this registry existed. Their entries
+    // stay for the one release that removes them, so the old names are refused
+    // with what to do; take them out in the release after.
+    Deprecation::tool(
+        "record_change",
+        "0.91.0",
+        "call `snapshot_before_change`, which takes the same arguments",
+        "dec:the-two-renamed-stubs-are-removed-in-the-next-release",
+    ),
+    Deprecation::tool(
+        "manual_work_report",
+        "0.91.0",
+        "call `manual_work_ledger`, which takes the same arguments",
+        "dec:the-two-renamed-stubs-are-removed-in-the-next-release",
+    ),
 ];
 
 // ---- the mark ------------------------------------------------------------------------

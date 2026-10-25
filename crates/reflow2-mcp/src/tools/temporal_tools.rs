@@ -416,23 +416,6 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "RENAMED to `manual_work_ledger` on 2026-09-18 — the READ of everything \
-                       sessions reported doing by hand. The old name differed from the WRITE \
-                       (report_manual_work) only by word order, and the two were mistaken for \
-                       each other. This name refuses and points at the new one; it is removed \
-                       next release.",
-        title = "Manual Work Ledger (Old Name)",
-        annotations(read_only_hint = true)
-    )]
-    pub async fn manual_work_report(&self) -> Result<CallToolResult, McpError> {
-        Err(McpError::invalid_params(
-            "`manual_work_report` was renamed `manual_work_ledger` (2026-09-18): same \
-             behaviour, no parameters. Call `manual_work_ledger`.",
-            None,
-        ))
-    }
-
-    #[tool(
         description = "Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
         title = "Manual Work Ledger",
         annotations(read_only_hint = true)
@@ -526,7 +509,7 @@ impl ReflowService {
                        (req:epochs-can-be-planned). `epoch_type` still applies: KIND and TENSE are \
                        orthogonal, so a planned MILESTONE and a planned RELEASE CUT are both \
                        sayable — which is why `planned` is its own property rather than a value \
-                       folded into the type enum. A planned epoch REFUSES record_change: a \
+                       folded into the type enum. A planned epoch REFUSES snapshot_before_change: a \
                        snapshot captures the present, so it cannot belong to a point that has not \
                        happened. Call set_epoch_status when it arrives. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
@@ -895,6 +878,7 @@ impl ReflowService {
         let commits = parse_commits(req.commits.as_deref())?;
         let repair = parse_repair(req.repair.as_deref(), req.stands_in_for)?;
         let affected = req.affected.unwrap_or_default();
+        let answers = req.answers;
         let mut g = self.write_lock().await?;
         // Validate the whole list before writing anything: storage accepts
         // dangling edges (this check is the only one there is), and a partial
@@ -930,6 +914,45 @@ impl ReflowService {
                     None,
                 ));
             }
+        }
+        // THE FINDINGS IT ANSWERED, resolved before anything is written, for
+        // the same reason as `affected` (dec:a-fix-names-the-findings-it-
+        // answers-in-the-same-call).
+        let mut answered: Vec<(String, String, Option<String>)> = Vec::new();
+        for a in answers.iter().flatten() {
+            let f_type = crate::service::resolve_node_type(
+                &g,
+                a.finding_type.as_deref(),
+                &a.finding_id,
+                "answers[].finding_type",
+            )?;
+            if f_type != reflow2_core::nodes::node::VERIFICATION
+                && f_type != reflow2_core::nodes::node::TEMPORAL_FACT
+            {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "answers: {} is a {f_type}; a change answers a FINDING — a \
+                         Verification whose last run found it, or a TemporalFact that \
+                         recorded it. Nothing was written.",
+                        a.finding_id
+                    ),
+                    None,
+                ));
+            }
+            if g.get_node(&f_type, &a.finding_id)
+                .map_err(dyno_err)?
+                .is_none()
+            {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "answers: finding not found: {f_type} {:?}. Nothing was written — \
+                         every finding a change answers must already exist.",
+                        a.finding_id
+                    ),
+                    None,
+                ));
+            }
+            answered.push((f_type, a.finding_id.clone(), a.note.clone()));
         }
         let event = g
             .add_change_event_record(&ChangeEventRecord {
@@ -992,6 +1015,48 @@ impl ReflowService {
             .map_err(dyno_err)?;
             changed.push(json!({ "node_id": a.node_id, "action": action }));
         }
+        // INVALIDATES to each finding it answered, dated by the change.
+        let at = event
+            .properties
+            .get("detected_at")
+            .and_then(|v| v.as_str())
+            .map(str::to_string);
+        let mut answered_out = Vec::new();
+        for (f_type, f_id, note) in &answered {
+            edges
+                .classify(&g, &req.id, reflow2_core::nodes::edge::INVALIDATES, f_id)
+                .map_err(dyno_err)?;
+            g.invalidates(
+                reflow2_core::nodes::node::CHANGE_EVENT,
+                &req.id,
+                f_type,
+                f_id,
+                note.as_deref(),
+                at.as_deref(),
+            )
+            .map_err(dyno_err)?;
+            answered_out.push(json!({ "finding_id": f_id, "note": note }));
+        }
+        // `answers: []` is the word "it answered none"; a list naming one
+        // takes that word back. Absent leaves whatever was said.
+        let said_none = event
+            .properties
+            .get(reflow2_core::repair::ANSWERED_NONE)
+            .and_then(|v| v.as_bool())
+            .unwrap_or(false);
+        let answered_none = match &answers {
+            Some(list) if list.is_empty() => Some(true),
+            Some(_) if said_none => Some(false),
+            _ => None,
+        };
+        let event = crate::tools::capture::set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::CHANGE_EVENT,
+            &req.id,
+            reflow2_core::repair::ANSWERED_NONE,
+            answered_none,
+        )?
+        .unwrap_or(event);
         // The second of the two tools with observed instances. `summary`
         // swallowing `rationale` is how `chg:the-relatedness-judgement-rides-
         // the-refusal` lost its reasoning, and how bhome's ChangeEvent lost
@@ -1011,6 +1076,9 @@ impl ReflowService {
             "event": event,
             "changed": changed,
         });
+        if answers.is_some() {
+            out["answers"] = json!(answered_out);
+        }
         edges.attach(&mut out);
         if let Some(am) = crate::tools::capture::absorbed_markup(&[
             ("name", Some(&name)),
@@ -1051,26 +1119,6 @@ impl ReflowService {
             );
         }
         ok_json(out)
-    }
-
-    #[tool(
-        description = "RENAMED to `snapshot_before_change` on 2026-09-18 — same parameters, same \
-                       behaviour: snapshot a node's prior state in an epoch before you change it. \
-                       The old name shared its words with add_change_event and the two were \
-                       mistaken for each other, measured on the agent building reflow2 itself. \
-                       This name refuses and points at the new one; it is removed next release.",
-        title = "Snapshot Before a Change (Old Name)",
-        annotations(read_only_hint = true)
-    )]
-    pub async fn record_change(
-        &self,
-        Parameters(_req): Parameters<RecordChangeReq>,
-    ) -> Result<CallToolResult, McpError> {
-        Err(McpError::invalid_params(
-            "`record_change` was renamed `snapshot_before_change` (2026-09-18): same parameters, \
-             same behaviour. Call `snapshot_before_change`.",
-            None,
-        ))
     }
 
     #[tool(

@@ -493,6 +493,19 @@ pub struct LoopStatus {
     /// The newest of them, at most [`BREACHES_LISTED`]; the count above is the
     /// whole. Each names its kind and the gap that asks about it.
     pub breaches: Vec<crate::detect::OpenBreach>,
+    /// FIXES THAT NAME NO FINDING THEY ANSWERED: live ChangeEvents of a
+    /// repair type with no INVALIDATES and no `answered_none`
+    /// ([`crate::repair::fixes_answering_nothing`],
+    /// `dec:a-fix-names-the-findings-it-answers-in-the-same-call`). Said in
+    /// `next` as ONE line; never counted in `clean`, because every design
+    /// written before `answers` existed holds such fixes and reading that
+    /// absence as debt would make `clean` unreachable on all of them (the
+    /// mixed-vintage hazard).
+    pub fixes_answering_nothing: usize,
+    /// The standing patches and the repairs nobody labelled, from
+    /// `repair_report` (`dec:loop-status-carries-one-repair-line`). One line
+    /// in `next`; never counted in `clean`.
+    pub repairs: crate::repair::RepairLine,
     /// The debt as ordered to-do lines, most blocking first. Empty when the
     /// loop is clean — and emptiness is asserted, not implied.
     pub next: Vec<String>,
@@ -1423,6 +1436,26 @@ impl DesignGraph {
             None => next.is_empty(),
         };
 
+        // AFTER `clean`, like `loop_closure`: two lines about how repairs are
+        // RECORDED, each one line however many events it counts. Never
+        // counted in `clean` (see the fields' notes). Unscoped answers only:
+        // they are facts about the design, not about a person.
+        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
+        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+        if scope.is_none() {
+            if fixes_answering_nothing > 0 {
+                next.push(format!(
+                    "{fixes_answering_nothing} fix(es) (defect_fix or test_failure_fix) name no \
+                     finding they answered — revise each with add_change_event's `answers`: the \
+                     findings it closed (INVALIDATES is drawn in the same call), or `answers: \
+                     []` if it answered none. Not counted against `clean`."
+                ));
+            }
+            if let Some(line) = repairs.line() {
+                next.push(line);
+            }
+        }
+
         // AFTER `clean`, deliberately: see `LoopStatus::loop_closure`. Only an
         // unscoped answer says it — it is a fact about the design, and the
         // scoped `next` already names what it leaves out.
@@ -1517,6 +1550,8 @@ impl DesignGraph {
             deferrals,
             breaches_open,
             breaches,
+            fixes_answering_nothing,
+            repairs,
             verifications: self.verification_recency()?,
             loop_closure,
             assigned_decisions,
