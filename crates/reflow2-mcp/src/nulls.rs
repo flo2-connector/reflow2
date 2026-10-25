@@ -31,6 +31,11 @@
 //!   (`RequiredFields::refuse_nulled`, before anything is written): unsetting
 //!   `DesignEpoch.sequence` would leave a node its own constructor could not
 //!   revise;
+//! - a `null` on a property the schema calls ADDITIVE history
+//!   (`distinct_from`) or on a `status` is refused by name and writes
+//!   nothing; a status refusal names the `set_*_status` tool that moves it
+//!   (Anthony's ruling, 2026-10-25: "Go with your recommendation on null
+//!   unsets");
 //! - a `null` on a field that is not a property (an edge to draw, `echo`,
 //!   `approver`) means what leaving it out means — there is no stored value
 //!   to unset.
@@ -138,6 +143,7 @@ pub(crate) fn unset_nulled(
     if declared.is_empty() {
         return Ok(declared);
     }
+    refuse_history_and_status(g, node_type, &declared)?;
     let required: Vec<&String> = declared
         .iter()
         .filter(|k| {
@@ -158,6 +164,64 @@ pub(crate) fn unset_nulled(
             .map_err(dyno_err)?;
     }
     Ok(declared)
+}
+
+/// The tool that moves a status on `node_type`, where one is served.
+fn status_setter(node_type: &str) -> Option<&'static str> {
+    match node_type {
+        "Requirement" => Some("set_requirement_status"),
+        "Capability" => Some("set_capability_status"),
+        "Decision" => Some("set_decision_status"),
+        "Verification" => Some("set_verification_status"),
+        "DesignEpoch" => Some("set_epoch_status"),
+        _ => None,
+    }
+}
+
+/// Anthony's ruling, 2026-10-25 ("Go with your recommendation on null
+/// unsets"): a null never ERASES HISTORY and never silently RESETS A STATUS.
+/// A property the schema calls ADDITIVE (`distinct_from`: a judgement is
+/// history) and a `status` are refused by name; nothing is written, because
+/// the call's unit discards it. A status refusal names the tool that moves it.
+fn refuse_history_and_status(
+    g: &DesignGraph,
+    node_type: &str,
+    declared: &[String],
+) -> Result<(), McpError> {
+    let Some(def) = g.schema().node_types.get(node_type) else {
+        return Ok(());
+    };
+    for k in declared {
+        let additive = def
+            .properties
+            .get(k.as_str())
+            .and_then(|p| p.description.as_deref())
+            .is_some_and(|d| d.contains("ADDITIVE"));
+        if additive {
+            return Err(McpError::invalid_params(
+                format!(
+                    "`{k}` on {node_type} is history and a null cannot erase it: the schema \
+                     keeps it ADDITIVE. Omit the field to keep it. Nothing was written."
+                ),
+                None,
+            ));
+        }
+        if k == "status" {
+            let how = match status_setter(node_type) {
+                Some(set) => format!("move it with `{set}`"),
+                None => "re-send this call with the status you mean".to_string(),
+            };
+            return Err(McpError::invalid_params(
+                format!(
+                    "`status` on {node_type} cannot be unset: a null never resets a status to \
+                     its default. To change it, {how}; omit the field to keep it. Nothing was \
+                     written."
+                ),
+                None,
+            ));
+        }
+    }
+    Ok(())
 }
 
 /// [`unset_nulled`], then the node as it now stands with `unset` filled in —

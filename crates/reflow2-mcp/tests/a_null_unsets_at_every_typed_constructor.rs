@@ -42,6 +42,10 @@
 //!    refused for — a `null` is refused naming the field, and nothing is
 //!    written.
 //! 4. After each null, the node can still be revised by its id alone.
+//! 5. Anthony's ruling, 2026-10-25 ("Go with your recommendation on null
+//!    unsets"): a null on a property the schema calls ADDITIVE history
+//!    (`distinct_from`) or on a `status` is REFUSED by name and writes
+//!    nothing; a status refusal names the `set_*_status` tool that moves it.
 
 use crate::a_revise_keeps_what_it_was_not_passed as harness;
 use serde_json::{Map, Value, json};
@@ -121,6 +125,21 @@ const COMPUTED_DEFAULT: &[(&str, &str, &str)] = &[(
     "a step with no name is named from its rule and conclusion",
 )];
 
+/// The served tool that moves a status on `node_type`, when there is one:
+/// `set_<type>_status` (`set_epoch_status` for a DesignEpoch).
+fn status_setter(node_type: &str, served: &[String]) -> Option<String> {
+    let mut snake = String::new();
+    for (i, ch) in node_type.chars().enumerate() {
+        if ch.is_ascii_uppercase() && i > 0 {
+            snake.push('_');
+        }
+        snake.push(ch.to_ascii_lowercase());
+    }
+    let snake = snake.strip_prefix("design_").unwrap_or(&snake).to_string();
+    let name = format!("set_{snake}_status");
+    served.contains(&name).then_some(name)
+}
+
 /// The served constructors, with their input schemas.
 async fn constructors(c: &harness::Client) -> Vec<(String, Value)> {
     let tools = c.list_all_tools().await.expect("tools/list");
@@ -190,6 +209,13 @@ async fn every_typed_constructor_unsets_a_property_sent_as_null_and_keeps_one_le
         .clone();
 
     let tools = constructors(&c).await;
+    let served: Vec<String> = c
+        .list_all_tools()
+        .await
+        .expect("tools/list")
+        .into_iter()
+        .map(|t| t.name.to_string())
+        .collect();
     assert!(
         tools.len() >= 23,
         "only {} constructors served — the membership moved and this test would go vacuous: \
@@ -311,6 +337,52 @@ async fn every_typed_constructor_unsets_a_property_sent_as_null_and_keeps_one_le
                 continue; // the create did not store it, so there is nothing to unset
             }
             asked += 1;
+            // Anthony's ruling, 2026-10-25: a null never erases history and
+            // never silently resets a status. Both are refused by name and
+            // write nothing; a status refusal names the setter that moves it.
+            let additive = p
+                .description
+                .as_deref()
+                .is_some_and(|d| d.contains("ADDITIVE"));
+            if additive || k == "status" {
+                let setter = status_setter(&node_type, &served);
+                match harness::call(&c, tool, base((k, Value::Null))).await {
+                    Ok(v) => broken.push(format!(
+                        "{tool}: `{k}: null` was accepted; a null on {} is refused: {v}",
+                        if additive {
+                            "additive history"
+                        } else {
+                            "a status"
+                        }
+                    )),
+                    Err(e) => {
+                        if !e.contains(&format!("`{k}`")) {
+                            broken.push(format!(
+                                "{tool}: `{k}: null` refused without naming it: {e}"
+                            ));
+                        }
+                        if additive && !e.contains("history") {
+                            broken.push(format!(
+                                "{tool}: `{k}: null` refused without saying it is history: {e}"
+                            ));
+                        }
+                        if k == "status"
+                            && let Some(set) = &setter
+                            && !e.contains(set.as_str())
+                        {
+                            broken.push(format!(
+                                "{tool}: `status: null` refused without naming `{set}`: {e}"
+                            ));
+                        }
+                    }
+                }
+                if harness::stored(&c, &id).await != before {
+                    broken.push(format!(
+                        "{tool}: the refused `{k}: null` still wrote to the node"
+                    ));
+                }
+                continue;
+            }
             let reply = match harness::call(&c, tool, base((k, Value::Null))).await {
                 Ok(v) => v,
                 // A field the CONSTRUCTOR needs to create the node, though the
