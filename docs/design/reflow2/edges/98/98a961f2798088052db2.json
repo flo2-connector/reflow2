@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6ce104ed126ebd25a833c7d4d0450292638c12047e75acf462cd18f49657c72c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-6f3dc01550a723c8",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:4e7eb4af51b979bc4da24887b9da7c06e4a811431c3ed740d7f05e4f52985af7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-constructor-stores-the-status-it-was-given"
+}

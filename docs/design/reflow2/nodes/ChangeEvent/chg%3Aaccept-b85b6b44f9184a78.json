@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4cf54c53de87d8c1da99c39fea317233052e00ab8b650b4e014e61b8fda150ef",
+  "node_id": "chg:accept-b85b6b44f9184a78",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "refactor",
+    "name": "Mechanical .into() for the Nullable request (chg:a-null-unsets-at-every-typed-constructor-2026-10-24).",
+    "subject": "system"
+  }
+}

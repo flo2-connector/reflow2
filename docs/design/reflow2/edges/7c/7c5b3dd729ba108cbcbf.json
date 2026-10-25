@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:79ac002b5663ec491330dad5522c82f9d97b8ac86c091fec4698edb86d2d0a3e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-node-is-named-by-the-key-the-last-tool-used-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:47c390089fe0cbae2b25868b2f1e56907e2f7044ef57014cd19877acb0d012cb",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-null-unsets-at-every-typed-constructor-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-null-unsets-at-every-typed-constructor-tests"
+}

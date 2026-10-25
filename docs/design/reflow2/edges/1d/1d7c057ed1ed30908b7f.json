@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e822e2d96b85f4aee279f311a195699b03cc311824e9eaa82348cc49537edb56",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-null-unsets-decision-reads-built-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "dec:null-unsets-on-every-typed-constructor"
+}

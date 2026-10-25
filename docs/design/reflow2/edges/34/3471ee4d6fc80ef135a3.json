@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f685e9ba2105673db64f21315256d2c6dcf7ba6a1c170d161f2bbf7e5ce5d526",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-3a4689086e8c53c7",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:07844dc69b3f292fb5f7ccdafee777d7c83229e219a77e15d3e6cb89717b6a72",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-null-unsets-at-every-typed-constructor"
+}

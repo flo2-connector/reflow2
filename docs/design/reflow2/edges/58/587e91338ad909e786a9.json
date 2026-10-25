@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1c2b4e680834ec5c8e7a4d0f43d1b51ca0afc8c3f6f8a46fce5a99ad884ea2e6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-the-near-match-report-is-not-cut-at-three",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
