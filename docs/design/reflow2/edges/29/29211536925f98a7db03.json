@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:024a898d9ef43f6ea5c3902c7cc334d13687c688de018c9ee7a37366d13ef04f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:57ac06274e27e71bd63ddb6274738116f3d3559cf23034ac3ba005372e4b1bb0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:detect-and-ask-skill"
+}

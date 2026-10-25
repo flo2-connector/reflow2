@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3ed1124fc71dbb9c7f2ca3a6fc45ff5fbf17ae41386d125abd288058acc03c54",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-an-open-breach-reaches-the-loop",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:every-recorded-breach-still-standing-reaches-the-loop-tests"
+}

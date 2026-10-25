@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:f3d6bad80660ac77ea478498a6fe6b888156e875b0ee854ff2956a19d15c9e6b",
+  "node_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "4c22a149a,a7c7c3f55,66a8ea279,930a6c489,05ac6178f,a00319a74,2162a2806",
+    "detected_at": "2026-10-24",
+    "name": "A limit each part meets on its own is judged on its worst part, and every recorded breach still standing reaches the loop as one open breach",
+    "rationale": "The Shop sample trial (2026-10-24, design 671a764fa790c030) hit two causes, both walked with the root-cause skill: fact:root-cause-a-limit-each-part-meets-on-its-own-was-forced-into-a-budget-2026-10-24 (B3) and fact:root-cause-a-recorded-breach-reached-the-loop-only-in-two-narrow-forms-and-the-defect-reader-was-never-built-2026-10-24 (B7, a recurrence: the reader dec:defects-are-temporal-facts deferred on 2026-08-06, re-found on 2026-09-28 with no code changed). Anthony ruled 2026-10-24: dec:a-limit-each-part-meets-on-its-own-is-composition-each, dec:every-recorded-breach-still-standing-is-one-open-breach, dec:a-minimum-nothing-has-measured-reads-incomplete; dec:null-unsets-on-every-typed-constructor is accepted and left to its own PR. The class is pinned, not the barn: tests observed failing first (4c22a149a: 4 of 6 on main 61c05ad74; 930a6c489: 16 of 21), all passing after the fix and after merging main 9cb658c4b. Expect a large first count: reflow2's own design held 316 open defect findings on 2026-10-24, most fixes that never drew INVALIDATES. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "PR #795. (1) `composition: each` (budget.rs, schema core.yaml): every stated part judged alone, the worst one read and named in `judged_part`; a stated part already short of a minimum breaks it; an unstated part or no stated part reads incomplete; a summed minimum with nothing stated reads incomplete, not exceeded. capture-intent's \"a number with a unit\" row and the add_constraint/constrains/budget_report descriptions offer `each` (three toolsnap goldens; budget_report's sentence reworded so constrains still ranks first for its own job). (2) One `open_breach` gap source (detect.rs breaches_not_closed / open_breaches / detect_open_breaches) for an open defect finding, an exceeded non-KPP limit, a VIOLATES edge into a Constraint and a must-fix rule violation with no resolved_at; loop_status gains `breaches_open`, `breaches` (newest 20) and a next line (report.rs), the read-side debt summary names them (service.rs). Declared as an edge reader (schema/derived/edge_readers.yaml) and a parking reader; gap-surfacing doc, detect-and-ask skill (three copies), skill_lint terms and a changelog fragment."
+  }
+}

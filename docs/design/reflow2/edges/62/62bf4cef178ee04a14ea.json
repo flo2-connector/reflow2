@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:705b5dab7a684da64c36d88b7cc8b69988e7bc8bc72cfef9513048e428275c26",
+  "edge_type": "CAUSES",
+  "from_id": "dec:defects-are-temporal-facts",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "It made defects TemporalFacts and deferred their loop reader in prose (\"That reader is the next increment and it is a Rust change\"); no requirement or capability carried it, and on main 61c05ad74 an open defect finding produced no line of next and no gap.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-recorded-breach-reached-the-loop-only-in-two-narrow-forms-and-the-defect-reader-was-never-built-2026-10-24"
+}

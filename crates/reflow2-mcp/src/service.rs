@@ -1383,6 +1383,7 @@ pub(crate) fn read_debt_summary(s: &LoopStatus) -> String {
     );
     add(s.undispositioned_drift, "drift(s) awaiting disposition");
     add(s.unexamined_claims, "built capability(ies) never checked");
+    add(s.breaches_open, "open breach(es)");
     format!(
         "loop owes: {} — run loop_status for the ordered to-do list",
         parts.join(", ")
@@ -4348,7 +4349,9 @@ pub struct AddConstraintReq {
     pub direction: Option<String>,
     /// HOW THE QUANTITY COMPOSES, which is what budget_report's verdict reads: `sum` (every
     /// contribution adds — mass, cost) or `path` (the heaviest DEPENDS_ON chain among the
-    /// contributors — end-to-end latency, where parallel branches overlap). Declared, never
+    /// contributors — end-to-end latency, where parallel branches overlap) or `each` (every part
+    /// meets the limit on its own — a setback, a clearance — and the worst part is judged and
+    /// named; nothing adds). Declared, never
     /// inferred from the unit. Leave it unset when nobody has said: the verdict then reads the
     /// sum and the report names any path total it did not read.
     #[serde(default)]

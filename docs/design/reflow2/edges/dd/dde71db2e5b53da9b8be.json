@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a2f3a4106d2f4e0d1c66095ea27b70e0e9972d567eaa12c8ee1bfda2d0889806",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-an-incident-on-an-unmodelled-asset-has-one-legal-home-and-no-loop-read-surfaces-it-2026-09-28",
+  "properties": {
+    "basis": "observed",
+    "evidence": "Part D of this cause (a defect finding, once recorded, is read by no part of the loop) is answered by the open_breach reader. The design-first recording paths (an unmodelled subject) are not addressed.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24"
+}

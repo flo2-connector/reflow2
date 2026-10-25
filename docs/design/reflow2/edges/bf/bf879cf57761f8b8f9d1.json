@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a61f380a9a2ce0a36fddac0419f5a7d6bd8c3345a999e24efae2db253308c4e5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:every-recorded-breach-still-standing-reaches-the-loop",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

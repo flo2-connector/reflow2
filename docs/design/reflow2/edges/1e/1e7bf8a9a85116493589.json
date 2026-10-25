@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:8ed725eba5ecde24a100543e074a504574c27ce912587bcc006a3309af2b9ccf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 13,
+    "action": "modified",
+    "checksum_after": "sha256:f2919682cdd2a13ab557c29ffa881467dafa644d96484bfa7a7164e03abe08ce",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:capture-intent-skill"
+}

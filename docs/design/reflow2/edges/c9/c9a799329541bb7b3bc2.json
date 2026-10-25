@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d1d75fbe9fb887c7bd5d13e543863cabe73934e048c23ff76e2faf986a2e6fb3",
+  "edge_type": "REALIZES",
+  "from_id": "art:budget",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part"
+}

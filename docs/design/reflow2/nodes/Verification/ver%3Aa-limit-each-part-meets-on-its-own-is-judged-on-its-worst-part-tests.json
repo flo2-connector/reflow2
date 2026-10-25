@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:bb55e25f014c634b241f59fd153d536076de2024d0a15a3ca811f966c1d2d418",
+  "node_id": "ver:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "crates/reflow2-core/tests/a_limit_each_part_meets_on_its_own.rs. Pins: the barn's 12 ft breaks the 100 ft well clearance and is named; two 6 ft parts never make a 10 ft setback; all parts clear reads within on the nearest; an unstated part leaves it open unless a stated one already breaks it; an empty `each` limit reads incomplete; a maximum reads the tallest part; a KPP judged on each is breached by its worst part; DEPENDS_ON among parts changes nothing; a summed minimum nothing has measured reads incomplete, not exceeded.",
+    "findings": "Observed failing first on 66a8ea279 (commit 930a6c489 adds the tests alone): all 10 failed, 9 refused at set_constraint_composition(\"each\") and the summed-minimum one read exceeded. After 05ac6178f all pass, inside a full reflow2-core run (2,085 + 231 + 4) and again after merging main 9cb658c4b; clippy -D warnings clean.",
+    "kind": "verification",
+    "last_run_at": "2026-10-24",
+    "level": "unit",
+    "location": "crates/reflow2-core/tests/a_limit_each_part_meets_on_its_own.rs",
+    "method": "test",
+    "name": "A limit each part meets on its own is judged on its worst part (10 tests)",
+    "status": "passing"
+  }
+}

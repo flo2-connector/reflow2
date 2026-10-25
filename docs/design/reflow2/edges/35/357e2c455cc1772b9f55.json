@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7fc4ce5b0d1cb2e7c3fc83fe7321bfb8e05e0666421b345212be91796a135297",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:76eaf8e181777cab3b2218e2b2d548ebe1796eb2e4ec5b0d9d2f42ab8380deba",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}

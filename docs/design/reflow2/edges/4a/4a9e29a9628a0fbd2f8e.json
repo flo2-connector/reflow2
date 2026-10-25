@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:86f63d36aa292c728dbb2609934b6a9b68fffe8ece277afb606b2622e41773cd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "fact:root-cause-a-recorded-breach-reached-the-loop-only-in-two-narrow-forms-and-the-defect-reader-was-never-built-2026-10-24"
+}

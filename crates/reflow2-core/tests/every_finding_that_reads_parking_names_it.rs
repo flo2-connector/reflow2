@@ -44,6 +44,9 @@ const READING_FUNCTIONS: &[(&str, Option<&str>)] = &[
         "detect_defect_overtaken_by_change",
         Some("defect_overtaken_by_change"),
     ),
+    // The open-breach population, shared by the gap pass and loop_status's
+    // `breaches`; the gap it feeds is `open_breach`.
+    ("breaches_not_closed", Some("open_breach")),
     // The promotion detector's population since 2026-10-13, shared with the
     // owner's `awaiting_word` list (awaiting.rs), which lists, never asks.
     (

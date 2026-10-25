@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:842bdd6d15ee8cddaad1c9755a3a3867bdb5228319a901cc703c062752e6d90a",
+  "node_id": "dec:every-recorded-breach-still-standing-is-one-open-breach",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-24, choosing the recommendation: \"Yes, one 'open breach'\": every recorded breach still standing (an open defect finding, an exceeded budget on a non-KPP limit, a VIOLATES edge into a Constraint, an environment-rule violation ruled must-fix) is one reading: a gap and a line of the open-work report until something closes it.\n\nTHE QUESTION. Measured on main 61c05ad74, a recorded breach reached the loop only in two narrow forms: a KPP's exceeded budget (kpp_breached) and an untriaged environment-rule violation (open_violation). An open defect finding, an exceeded budget on an ordinary limit, a VIOLATES edge into a Constraint and a violation ruled `rejected` (must fix) reached no gap and no line of `next`, so the Shop sample's barn 12 ft from the well (100 ft limit) and SeattleArch's roof 3 7/16\" over its height maximum both read \"nothing open\".\n\nWHAT IT MEANS. One `open_breach` gap per breach, and loop_status counts the unruled ones in a `next` line of their own (`breaches_open`, the newest 20 listed in `breaches` with their kind). Each closes its own way: a defect finding by INVALIDATES from the change or decision that fixed it, or valid_to (a decision that only rests on it does not close it); an exceeded limit when its readings fit; a VIOLATES edge when removed; a must-fix violation by `resolved_at` on its edge, or a waiver. Any of them stands on purpose by a ruling: acknowledging its gap with the reason. A KPP keeps kpp_breached and an untriaged violation keeps open_violation, so nothing is asked twice.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-24: every recorded breach still standing is one reading, an open breach: a gap and a line of the open-work report until something closes it",
+    "rationale": "Delivers req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop, and the reader dec:defects-are-temporal-facts owed since 2026-08-06. Built on PR #795. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

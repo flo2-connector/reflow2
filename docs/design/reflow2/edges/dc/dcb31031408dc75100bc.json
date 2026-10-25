@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:028f987cc91e5ebfdad8dcb8efa2eb6c2a0c6645625b8c6ca30d01edac69e41a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 31,
+    "action": "modified",
+    "checksum_after": "sha256:da0683f2476d7bca65e1df7347cb96034152b31f98e951e81944ec50b9120b8e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:derived-edge-readers"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:595ffd0be75ad04d0d5543ae698aa64c03768ffdaa47c315019034aed4436e96",
+  "edge_type": "CAUSES",
+  "from_id": "fact:root-cause-a-recorded-breach-reached-the-loop-only-in-two-narrow-forms-and-the-defect-reader-was-never-built-2026-10-24",
+  "properties": {
+    "basis": "observed",
+    "evidence": "The change builds the open_breach reading this root cause names.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24"
+}

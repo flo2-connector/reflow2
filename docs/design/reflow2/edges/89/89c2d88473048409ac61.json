@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:382a7df0719e57efd539c58402fab184f4be81de7d68bf5e87ef2ff727645b3a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:f2919682cdd2a13ab557c29ffa881467dafa644d96484bfa7a7164e03abe08ce",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:claude-capture-intent-skill-mirror"
+}

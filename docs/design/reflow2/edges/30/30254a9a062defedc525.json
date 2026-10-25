@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b8444dfefb8e845943b030ecf33acb97a78eaf546c00a67e7d14e93df32fda93",
+  "edge_type": "CHANGED",
+  "from_id": "chg:limits-each-part-meets-and-open-breaches-2026-10-24",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:f2919682cdd2a13ab557c29ffa881467dafa644d96484bfa7a7164e03abe08ce",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:grok-capture-intent-skill-mirror"
+}

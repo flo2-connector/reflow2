@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1f013c79b147d178b47ebcd2a0c8b28b3bff88723b81eaa774721c896115be75",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part",
+  "properties": {},
+  "to_id": "req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop"
+}
