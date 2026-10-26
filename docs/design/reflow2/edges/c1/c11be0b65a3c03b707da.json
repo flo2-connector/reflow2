@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:a5c7c44c421278e405f0693ae2b2460dc8513f5716d44d142570b3177ed9fca5",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag",
+  "properties": {
+    "evidence": "This choice is the fix for that finding: announced_in tells the check where the announcement is, and the tag boundary makes the failure show at merge time."
+  },
+  "to_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26"
+}

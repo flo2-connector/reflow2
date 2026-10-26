@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:22fe05dbeb3c12a03780706bacd4bffd65ad1534a3a185a4914ca0e010868e29",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

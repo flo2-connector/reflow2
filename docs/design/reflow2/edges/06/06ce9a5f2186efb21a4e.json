@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:70246e1628c4464e76e8b65b865760cf3f172382d45aca2566f5062e8e2e06d0",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:d8838438a3b72de49098357392004289ef252dc289cc6844391f410fdd034afb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:deprecation"
+}
