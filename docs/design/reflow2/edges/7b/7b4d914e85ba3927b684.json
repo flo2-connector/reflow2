@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ef64697a8dfe949710d5fc22104295b83b7324b8bd5273ed3f2a7ff8916ed5e2",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:e9934711b413731a575dfbd1dfb45ef72c4f7e36af04e234cdc206b9c49dea13"
+  },
+  "to_id": "art:design-a-proof-command"
+}

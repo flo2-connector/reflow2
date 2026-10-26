@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:21f8c8ef124560196934f6caa4e284d3e982331b732c428ef6e8afaf414f283c",
+  "node_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "At the 0.92.0 cut, every_registry_entry_is_announced_with_what_to_do fails: the two removed stubs name 0.91.0, whose notes never announced them",
+    "statement": "OBSERVED 2026-10-26 on release/v0.92.0 (8475ff98a, the cut commit: versions at 0.92.0, the nine fragments assembled into CHANGELOG [0.92.0]): `cargo test -p reflow2-mcp --test in_memory every_deprecation` fails, in both feature sets (--no-default-features, and the workspace default with RocksDB and full text), on every_registry_entry_is_announced_with_what_to_do: \"the tool `record_change` is deprecated in 0.91.0, a release already cut, and CHANGELOG.md's [0.91.0] section names it (`record_change`) in no `### Deprecated` entry with a What to do line\", and the same for `manual_work_report`. EXPECTED a pass: on main 5d34529f0 (versions at 0.91.0) the same test passed in #802's CI.\n\nMECHANISM, read from crates/reflow2-mcp/src/deprecation.rs: #799 registered both stubs with deprecated_in \"0.91.0\" (lines 353-364), meaning the release of notice was their own refusing stubs, served until 0.91.0, from before the registry existed. Their changelog announcement (### Deprecated with What to do, and ### Removed) was written as #799's fragment, so it ships in [0.92.0]. changelog_problems (line 868) looks for the announcement in deprecated_in's own section, and treats deprecated_in as not yet cut while it is not below the crate version (line 901, `version < c`). Between cuts the crate version is the LAST release's, so on main 0.91.0 was read as uncut and the fragment satisfied the check; the cut's bump to 0.92.0 makes 0.91.0 \"already cut\", and its section (which said \"Nothing is deprecated or removed\") does not announce them. The data, the published 0.91.0 notes and the check cannot all be satisfied as they stand.\n\nNOT FIXED in the release PR: which one moves is the owner's choice (options in the PR). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
+    "valid_from": "2026-10-26"
+  }
+}

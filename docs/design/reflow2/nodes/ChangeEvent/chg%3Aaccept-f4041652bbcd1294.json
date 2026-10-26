@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:282b92bf3d137f3ff8b76981150a14df9f864c626bf4694488d61f2db5877649",
+  "node_id": "chg:accept-f4041652bbcd1294",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-26",
+    "name": "v0.92.0 cut, step 2: the release line moves to v0.92.0, and the 'Does this conclusion follow' bullet now says a design choice is read by what its owner has accepted, not by what is built yet (#796). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

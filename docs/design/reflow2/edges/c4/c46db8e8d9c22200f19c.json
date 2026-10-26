@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:42fdc5e1e0f8c95a6e7e19c29dbe54e17c9c877c373a228c651bd17f1e3e1300",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:44e2422b296b62f22ae3e80a1b6ea452459d07b5f621aa7ac705e07d7be26517"
+  },
+  "to_id": "art:foundation"
+}

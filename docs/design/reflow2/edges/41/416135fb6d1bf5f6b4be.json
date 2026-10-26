@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c8c11b72edfd035bf00b5daccef7eda863a8d5746f0dcce0b398ac4f39e33d23",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
+  "properties": {},
+  "to_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26"
+}

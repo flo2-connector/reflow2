@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:09bde34f9bf0e8746f081bbe25bad9a9cf0a1e0b90c01df5b072325fe1c5dc0d",
+  "node_id": "chg:accept-524a664c1d160af3",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-26",
+    "name": "v0.92.0 cut, step 2: the release line moves to v0.92.0, and 'Updating' on your own computer adds running reflow2 update in each repository where reflow2 init ran, so its slash commands match the release (#794 made them pointers). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

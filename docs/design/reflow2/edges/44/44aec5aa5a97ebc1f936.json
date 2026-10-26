@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7257cbd41ecda93fe94229696da5f282ab5be07240d57d46180e5f7a7702db60",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

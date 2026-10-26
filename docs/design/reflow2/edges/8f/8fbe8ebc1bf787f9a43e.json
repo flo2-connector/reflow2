@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c2b0e9cbdde0d8256cb36ac0f01a8e524210d814421c164c9543845625458f63",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:f4e2212820bb31e81a656c4a9a6f59e8cd5cab90c824b40946c20c2dc12c438a"
+  },
+  "to_id": "art:a-stdio-session-answers-a-message-of-any-length-test"
+}
