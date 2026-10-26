@@ -7782,6 +7782,9 @@ pub struct InferenceWritten {
 }
 
 #[cfg(test)]
+mod deep_walks;
+
+#[cfg(test)]
 mod kleene {
     use super::*;
     use Truth::{Fails as F, Holds as H, Unknown as U};
