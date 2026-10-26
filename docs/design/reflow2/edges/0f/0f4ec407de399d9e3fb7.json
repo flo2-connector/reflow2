@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1ef6fe3d4f4c4df3721635b1cc8b893bfa00d83c9e98b7054a98f6f788f72ac0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:what-worked-in-the-public-legal-case-trial-2026-10-25",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

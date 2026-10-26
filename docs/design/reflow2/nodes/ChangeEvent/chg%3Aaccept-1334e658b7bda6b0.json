@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00d7f9da195d7dcb1ad801e94e4ca6f76da5cd8576391bea9dba084c1d5d7d73",
+  "node_id": "chg:accept-1334e658b7bda6b0",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "name": "The deep test chain is now written in one write unit, as a served call writes. Unbatched, in the workspace build (fulltext on through reflow2-mcp) every node write committed the full-text index: building 1,000 steps took 118.5 s vs 0.59 s with fulltext off (4,000: 534.8 s vs 1.96 s; walk time unchanged), so the 100,000-step tests kept #802's workspace CI job past its 60-minute limit (run 40267048719, cancelled). After the change, the four deep_walks tests pass with fulltext on (250 s, of which the unbatched 200 generated designs are most) and off (74 s), debug, this laptop. What the tests check is unchanged. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

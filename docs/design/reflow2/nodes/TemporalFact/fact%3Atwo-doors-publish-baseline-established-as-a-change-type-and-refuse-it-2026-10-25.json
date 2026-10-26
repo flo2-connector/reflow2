@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:fd97a92a3fa5234b00bd8c3b57e638abe404ed65d8fea3d119c115fa1b84d86f",
+  "node_id": "fact:two-doors-publish-baseline-established-as-a-change-type-and-refuse-it-2026-10-25",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (measured on main 0c567349c): add_change_event and snapshot_before_change publish `baseline_established` among change_type's legal values and then refuse it, because the published enum is the set a ChangeEvent can STORE, while each door accepts a smaller set",
+    "source": "Public legal-case trial friction file F7 (flo2 design dbf39096640c196e, reflow2-friction-2026-10-25.md); code read at reflow2 main 0c567349c",
+    "statement": "OBSERVED (public legal-case trial, reflow2 0.91.0 via flo2.io, F7): describe listed baseline_established for add_change_event's change_type, and the call was refused: \"`baseline_established` is not a change and cannot be recorded as one. It is written only by set_artifact_checksum ...\". One wasted round trip.\n\nMEASURED at main 0c567349c:\n- enum_schema.rs `change_event_change_type_opt` publishes reflow2_core::schema::enum_values(\"ChangeEvent\", \"change_type\"), which is every value a ChangeEvent may hold.\n- service.rs:1723 `reject_reserved_change_type` refuses BaselineEstablished at runtime.\n- It is called from add_change_event (temporal_tools.rs:867) and snapshot_before_change (:1148).\nSo two doors publish a value they refuse.\n\nCANDIDATES:\n(1) The schema publishes the storable set while the door accepts a subset. Confirmed by the code read.\n(2) flo2's short describe adds or keeps values reflow2 does not publish. Refuted: flo2 renders reflow2's enum as given.\n(3) The reporter misread. Refuted: their quoted refusal is the exact text at service.rs:1726.\n\nCLASS: enum_schema's \"one source of truth\" is the node schema's storable set, and a door that accepts only part of it has nothing that publishes its own narrower set. The 2026-10-05 finding (fact:a-value-set-published-without-an-enum-escapes-the-argument-check...) is the mirror case: an accepted set published with no enum. Both mean the published set is not the accepted set for that door. A fix at the class: each door publishes what it ACCEPTS (storable minus reserved), from the same const the refusal reads, plus a test that every published value is accepted by its door. Not built; awaits the owner.",
+    "steps": [
+      "add_change_event",
+      "snapshot_before_change"
+    ],
+    "subject_id": "art:enum-schema",
+    "valid_from": "2026-10-25"
+  }
+}

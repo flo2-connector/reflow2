@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:788ea26925365f856c1563ff7a88c1ec740c9f0023cdbef8d67527a555784822",
+  "edge_type": "CAUSES",
+  "from_id": "art:reply-budget",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "truncate_prose keeps strings of at most 80 characters whole and cuts longer ones to `limit` (0 at the last rung), so every name over 80 characters becomes \"…\"; the survivors measured are all at most 80.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-zero-rung-blanks-every-name-over-80-characters-so-a-reasoning-summary-reads-as-dots-2026-10-25"
+}

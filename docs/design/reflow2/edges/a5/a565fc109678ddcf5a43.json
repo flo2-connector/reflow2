@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7aa32b0ce154f6e6a1dbd616ae5813dd5c526cc42aedc3b3af2b182a568f6c20",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-accepted-means-on-an-evidence-record",
+  "properties": {
+    "evidence": "That requirement already says evidence is not intent awaiting acceptance; this question is what its status field then means.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent"
+}

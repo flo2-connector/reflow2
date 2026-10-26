@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:4cb9cd561aca8e3b553884d8753a5b198b0c75376dcd7b828a0954bf5e37f765",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-lawyers-case-work-as-a-trial-of-a-line-of-reasoning",
+  "properties": {
+    "evidence": "The brainstormed idea was promoted on 2026-10-25: its option (b) became this accepted requirement."
+  },
+  "to_id": "req:a-trial-designs-a-public-legal-case-as-a-line-of-reasoning"
+}

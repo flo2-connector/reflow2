@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:74c786c316cc662fa620bb6b61251cb236916c9aadabc778f14fbb9052d09753",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-second-hand-evidence-reads-apart-from-the-original",
+  "properties": {
+    "evidence": "The accepted source grade and its named-not-read marking are the two existing mechanisms a second-hand reading could reuse.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-source-says-what-kind-of-support-it-gives"
+}

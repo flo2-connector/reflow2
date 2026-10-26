@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:2c0f0c2a156d99ac2f0961b2102e8d64376cebe120e0605f193efeecb4ffd081",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack"
+}

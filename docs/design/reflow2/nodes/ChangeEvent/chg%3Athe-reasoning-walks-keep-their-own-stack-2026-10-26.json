@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:d56b2c2c7c95f81f7d6b978aad0b53be2d596cfa66172a9b31b0c16d5cb51550",
+  "node_id": "chg:the-reasoning-walks-keep-their-own-stack-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "9103ae0a8,297e6453b,523c5f77c,6ecd65fda,421d65126",
+    "detected_at": "2026-10-26",
+    "name": "The reasoning walks keep their own work stack, and the server's threads get a chosen 16 MiB stack",
+    "rationale": "Answers fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25, as Anthony chose (\"Go with 1 + 3\", dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom). The cause was two walks over links a person writes that recursed with no bound, on a stack nobody chose; a stack overflow aborts the process, so on flo2.io one deep design took the engine down for everyone. Fixing the walks removes the class (corrected_cause): the depth of a chain no longer touches the stack. The 16 MiB is headroom, chosen because the recursion that remains is bounded but deep, the truth evaluation at INFERENCE_DEPTH 64, which needs 4 to 6 MiB on a debug build (measured: a chain past 64 steps overflowed at 4 MiB and answered at 6 MiB); it reserves address space and costs memory only where a call goes deep. The audit of reflow2-core and reflow2-mcp found no third unbounded recursion over design data: the truth evaluation, design_trace_gap_within and requirement_delivered_by_within are bounded at 64; graphalg and every other graph walk use work queues; the remaining recursive functions walk JSON values (nesting capped at 128 by serde_json on every way in), the schema, or a directory. Watched failing first on ajs77 with main's walks (debug and release) and passing after; release before/after: get_node at 4,000 and 5,000 steps and loop_status/detect_gaps on holding chains of 2,000 and 3,000 steps aborted with exit 134 on main 0c567349c and answer on the branch, and also with the walks fixed and the runtime held at 2 MiB, so the walks are what fixed it. Replies on designs main could read are byte-identical apart from per-process fields. Lesson: a walk over a person's links is iterative from the start, the way graphalg is. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "foundations_walk and proof_chain_walk (crates/reflow2-core/src/inference.rs) no longer recurse once per step of a reasoning chain: each keeps an explicit stack of levels, one per level of the recursion it replaced, visiting steps and premises and making every read in the same order, so axioms (with how each was read), visited, counted and confirmed steps are what they were. The server's runtime is built by reflow2_mcp::runtime::server_runtime with SERVER_THREAD_STACK = 16 MiB for every mode (HTTP, stdio, the shared daemon, --call and the verbs), where #[tokio::main] had left each worker std's 2 MiB. Pinned by tests that failed first: each walk at 100,000 steps on an explicit 2 MiB stack, and get_node and loop_status through the request path on a 2 MiB worker."
+  }
+}

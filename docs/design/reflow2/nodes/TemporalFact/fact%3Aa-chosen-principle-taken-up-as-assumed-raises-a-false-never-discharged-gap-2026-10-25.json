@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:fd10e0e7a5d1b322abf82b291a606c097064a3ee7c11a153ce7ae362191eb97b",
+  "node_id": "fact:a-chosen-principle-taken-up-as-assumed-raises-a-false-never-discharged-gap-2026-10-25",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (measured on main): following the argument skill (a chosen principle goes in each step's `assumed`) raises reasoning_not_as_stated \"assumed and never discharged\" (0.5) on correct work, because the 10-17 detector reads every undischarged assumption as a proof's supposition and the 10-20 decision gave `assumed` a second meaning it never learned",
+    "source": "Public legal-case trial friction file F5 (flo2 design dbf39096640c196e); reflow2 main 0c567349c detect.rs, inference.rs, design-an-argument SKILL.md; git log -S",
+    "statement": "OBSERVED (public legal-case trial, F5): the governing legal standards were recorded as the skill says, in each applying step's `assumed`. detect_gaps then raised reasoning_not_as_stated, \"'<id>' is assumed and never discharged\" (severity 0.5), twice. Nothing discharges a governing law.\n\nMEASURED at main 0c567349c:\n- getting-started/skills/design-an-argument/SKILL.md lines 31-36, 65 and 196 say a chosen principle goes in `assumed`, so positions read conditional. That is the intended result.\n- detect.rs `detect_reasoning_not_as_stated` (about line 4677) pushes a gap for every assumption in inference.rs `assumptions()` (line 4303) whose discharged_by is empty. assumptions() reads only the premise link's `assumed` flag and the discharging steps. It never reads what the assumed node IS: a principle (Constraint, statement_kind proposition) or a supposition (statement_kind hypothesis).\n- The detector text came in 4879171c5 on 2026-10-17 (primes-trial phase 2, proofs). The skill's use of `assumed` was settled on 2026-10-20 (this decision, option a). Nothing changed the detector after that.\n\nCANDIDATES:\n(1) The detector does not tell a chosen principle from a supposition. Confirmed: no kind is read.\n(2) The trial misapplied the skill, since a legal standard is not a \"principle\". Partly true, because the skill has no row for law. It does not separate the two, though: a trolley-style principle in `assumed` takes the same path through the same code.\n(3) The gap is right, and a principle should be discharged. Refuted by the accepted decision: conditional on a chosen principle is what an argument for and against says.\n\nCLASS: one property carries two meanings, settled three days apart, and only one reader was written. Fix options for the owner: the detector skips assumed nodes that are not `hypothesis` (or that carry a `chosen` mark), and the skill gives a governing rule of law its own row. Not built.",
+    "steps": [
+      "detect_gaps",
+      "design-an-argument"
+    ],
+    "subject_id": "dec:idea-a-principle-in-an-argument-is-assumed-or-taken-as-given",
+    "valid_from": "2026-10-25"
+  }
+}

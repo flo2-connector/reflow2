@@ -6557,55 +6557,118 @@ impl DesignGraph {
         Ok(axioms.into_values().collect())
     }
 
-    /// Recursive walk: for each step, read its premises; terminal premises
-    /// are axioms, concluded premises are walked further.
+    /// The walk, depth-first: for each step, read its premises; terminal
+    /// premises are axioms, concluded premises are walked further.
+    ///
+    /// IT KEEPS ITS OWN WORK STACK instead of recursing once per step
+    /// (dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom).
+    /// Recursing, a chain about 3,900 steps deep overflowed a server's 2 MiB
+    /// worker stack in release and aborted the whole process
+    /// (fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25).
+    /// Each frame below is exactly one level of the recursion it replaced:
+    /// the steps it was handed, the next of them to take, and the premises
+    /// of the step being read with the next of those. Visiting order is the
+    /// recursion's, step for step and premise for premise, so `visited`
+    /// fills in the same order and the step that first reaches an axiom,
+    /// the one that reads it, is the same step.
     fn foundations_walk(
         &self,
         steps: &[String],
         axioms: &mut BTreeMap<String, Foundation>,
         visited: &mut BTreeSet<String>,
     ) -> Result<(), DynoError> {
-        for step_id in steps {
+        /// The step being read: its premises (each with whether it is
+        /// assumed), and the next of them to take.
+        struct Reading {
+            step_id: String,
+            premises: Vec<(String, bool)>,
+            next: usize,
+        }
+        /// One level: the steps being walked, and the one being read.
+        struct Level {
+            steps: Vec<String>,
+            next_step: usize,
+            reading: Option<Reading>,
+        }
+        let level = |steps: Vec<String>| Level {
+            steps,
+            next_step: 0,
+            reading: None,
+        };
+        let mut stack: Vec<Level> = vec![level(steps.to_vec())];
+        while let Some(top) = stack.last_mut() {
+            // The next premise of the step being read.
+            let mut deeper: Option<Vec<String>> = None;
+            if let Some(Reading {
+                step_id,
+                premises,
+                next,
+            }) = top.reading.as_mut()
+            {
+                if let Some((premise_id, assumed)) = premises.get(*next).cloned() {
+                    *next += 1;
+                    // AN ASSUMPTION IS NEVER A FOUNDATION: it is taken up for
+                    // the sake of argument, and either discharged on the way
+                    // (the conclusion does not rest on it) or listed apart as
+                    // what the conclusion holds under
+                    // (`FoundationsReading.assumes`).
+                    if assumed {
+                        continue;
+                    }
+                    if !visited.insert(premise_id.clone()) {
+                        continue; // cycle guard on premises too
+                    }
+                    let concluding = self.inferences_concluding(&premise_id)?;
+                    if concluding.is_empty() {
+                        // TERMINAL PREMISE — an axiom.
+                        // READ AS THE STEP TAKING IT UP READS IT: its owner's
+                        // intent there, or its own truth
+                        // (dec:a-premise-says-whether-it-rests-on-intent-or-delivery).
+                        if !axioms.contains_key(&premise_id) {
+                            let (truth, why, reads_as) =
+                                self.premise_truth_in_step(step_id, &premise_id)?;
+                            let node_type = self.type_holding(&premise_id)?;
+                            axioms.insert(
+                                premise_id.clone(),
+                                Foundation {
+                                    id: premise_id,
+                                    node_type,
+                                    truth,
+                                    why,
+                                    reads_as: reads_as.and_then(ReadsAs::served),
+                                },
+                            );
+                        }
+                        continue;
+                    }
+                    // Intermediate — walk its concluding steps, one level down.
+                    deeper = Some(concluding);
+                } else {
+                    top.reading = None;
+                }
+            }
+            if let Some(concluding) = deeper {
+                stack.push(level(concluding));
+                continue;
+            }
+            if top.reading.is_some() {
+                continue;
+            }
+            // The next step of this level, or this level is done.
+            let Some(step_id) = top.steps.get(top.next_step).cloned() else {
+                stack.pop();
+                continue;
+            };
+            top.next_step += 1;
             if !visited.insert(step_id.clone()) {
                 continue; // cycle guard
             }
-            for (premise_id, assumed) in self.premise_links(step_id)? {
-                // AN ASSUMPTION IS NEVER A FOUNDATION: it is taken up for the
-                // sake of argument, and either discharged on the way (the
-                // conclusion does not rest on it) or listed apart as what the
-                // conclusion holds under (`FoundationsReading.assumes`).
-                if assumed {
-                    continue;
-                }
-                if !visited.insert(premise_id.clone()) {
-                    continue; // cycle guard on premises too
-                }
-                let concluding = self.inferences_concluding(&premise_id)?;
-                if concluding.is_empty() {
-                    // TERMINAL PREMISE — an axiom.
-                    // READ AS THE STEP TAKING IT UP READS IT: its owner's
-                    // intent there, or its own truth
-                    // (dec:a-premise-says-whether-it-rests-on-intent-or-delivery).
-                    if !axioms.contains_key(&premise_id) {
-                        let (truth, why, reads_as) =
-                            self.premise_truth_in_step(step_id, &premise_id)?;
-                        let node_type = self.type_holding(&premise_id)?;
-                        axioms.insert(
-                            premise_id.clone(),
-                            Foundation {
-                                id: premise_id,
-                                node_type,
-                                truth,
-                                why,
-                                reads_as: reads_as.and_then(ReadsAs::served),
-                            },
-                        );
-                    }
-                } else {
-                    // Intermediate — recurse through its concluding steps.
-                    self.foundations_walk(&concluding, axioms, visited)?;
-                }
-            }
+            let premises = self.premise_links(&step_id)?;
+            top.reading = Some(Reading {
+                step_id,
+                premises,
+                next: 0,
+            });
         }
         Ok(())
     }
@@ -6911,6 +6974,17 @@ impl DesignGraph {
     /// all of a claim's lines, and `chain_confirmed` turns false at the
     /// line's first unconfirmed step. `visited` is THIS line's, so a step an
     /// earlier line already counted is still judged on this one.
+    ///
+    /// IT KEEPS ITS OWN WORK STACK instead of recursing once per step
+    /// (dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom):
+    /// recursing, a holding chain about 2,000 steps deep, read by loop_status
+    /// or detect_gaps, overflowed a server's 2 MiB worker stack in release and
+    /// aborted the whole process
+    /// (fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25).
+    /// Each frame is one level of the recursion it replaced: the step's
+    /// premises with the next of them to read, and the steps concluding the
+    /// premise being read with the next of those. Every step is entered in
+    /// the recursion's order, and every read is made in it.
     fn proof_chain_walk(
         &self,
         step_id: &str,
@@ -6919,18 +6993,64 @@ impl DesignGraph {
         confirmed_under: &mut BTreeSet<String>,
         visited: &mut BTreeSet<String>,
     ) -> Result<(), DynoError> {
-        if !visited.insert(step_id.to_string()) {
-            return Ok(());
+        /// One level: a step's premises, and the steps concluding the one
+        /// being read.
+        struct Level {
+            premises: Vec<String>,
+            next_premise: usize,
+            concluding: Vec<String>,
+            next_step: usize,
         }
-        if let Some(rec) = self.step_record(step_id)? {
-            under.insert(step_id.to_string());
-            if rec.confirmation.is_confirmed() {
-                confirmed_under.insert(step_id.to_string());
-            } else {
-                *chain_confirmed = false;
+        /// The line's tallies, which entering a step writes.
+        struct Line<'a> {
+            chain_confirmed: &'a mut bool,
+            under: &'a mut BTreeSet<String>,
+            confirmed_under: &'a mut BTreeSet<String>,
+            visited: &'a mut BTreeSet<String>,
+        }
+        // Enter a step: mark it, count it, and hand back its level — or
+        // nothing, when this line has already been through it.
+        let enter = |line: &mut Line, step_id: &str| -> Result<Option<Level>, DynoError> {
+            if !line.visited.insert(step_id.to_string()) {
+                return Ok(None);
             }
-        }
-        for premise_id in self.premises_of(step_id)? {
+            if let Some(rec) = self.step_record(step_id)? {
+                line.under.insert(step_id.to_string());
+                if rec.confirmation.is_confirmed() {
+                    line.confirmed_under.insert(step_id.to_string());
+                } else {
+                    *line.chain_confirmed = false;
+                }
+            }
+            Ok(Some(Level {
+                premises: self.premises_of(step_id)?,
+                next_premise: 0,
+                concluding: Vec::new(),
+                next_step: 0,
+            }))
+        };
+        let mut line = Line {
+            chain_confirmed,
+            under,
+            confirmed_under,
+            visited,
+        };
+        let mut stack: Vec<Level> = enter(&mut line, step_id)?.into_iter().collect();
+        while let Some(top) = stack.last_mut() {
+            // The next step concluding the premise being read: one level down.
+            if let Some(sub_step) = top.concluding.get(top.next_step).cloned() {
+                top.next_step += 1;
+                if let Some(level) = enter(&mut line, &sub_step)? {
+                    stack.push(level);
+                }
+                continue;
+            }
+            // The next premise of this step, or this step is done.
+            let Some(premise_id) = top.premises.get(top.next_premise).cloned() else {
+                stack.pop();
+                continue;
+            };
+            top.next_premise += 1;
             // A premise in another design is proven only as far as it is
             // proven THERE: a far result that is shown, conditional or worse
             // leaves this line unconfirmed (req:reasoning-crosses-designs-
@@ -6941,12 +7061,10 @@ impl DesignGraph {
                     .as_deref()
                     .is_some_and(|status| status != "proven")
             {
-                *chain_confirmed = false;
+                *line.chain_confirmed = false;
             }
-            let concluding = self.inferences_concluding(&premise_id)?;
-            for sub_step in &concluding {
-                self.proof_chain_walk(sub_step, chain_confirmed, under, confirmed_under, visited)?;
-            }
+            top.concluding = self.inferences_concluding(&premise_id)?;
+            top.next_step = 0;
         }
         Ok(())
     }
@@ -7780,6 +7898,9 @@ pub struct InferenceWritten {
     /// True when the id was already a step and this call revised it.
     pub revised: bool,
 }
+
+#[cfg(test)]
+mod deep_walks;
 
 #[cfg(test)]
 mod kleene {

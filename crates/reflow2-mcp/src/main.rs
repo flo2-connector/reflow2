@@ -1514,8 +1514,19 @@ const DEFAULT_LOG_FILTER: &str = "warn,reflow2_mcp=info,reflow2_core=info";
 /// "keep logging quiet"). RUST_LOG still overrides it.
 const VERB_LOG_FILTER: &str = "error";
 
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
+/// The server's runtime is built here rather than by `#[tokio::main]`, so its
+/// threads get a stack somebody chose: [`reflow2_mcp::runtime::SERVER_THREAD_STACK`]
+/// (dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom).
+/// Every mode runs on it — a served session over HTTP or stdio, the shared
+/// daemon, and `--call` and the verbs, whose in-process server is spawned onto
+/// it — so this is the one place a runtime is built for serving.
+fn main() -> anyhow::Result<()> {
+    reflow2_mcp::runtime::server_runtime(reflow2_mcp::runtime::SERVER_THREAD_STACK)
+        .context("the server's runtime could not be built")?
+        .block_on(run())
+}
+
+async fn run() -> anyhow::Result<()> {
     // FIRST, before anything can replace the binary under us: remember what
     // this executable looked like at start, so currency has an answer on
     // platforms with no /proc (see shared::startup_fingerprint).

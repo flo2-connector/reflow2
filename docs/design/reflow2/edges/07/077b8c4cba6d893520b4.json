@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a150dcf5af6bb6d6ede1994e1e6319572e31e6e6d2af0f134cc2e29a6b08792b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:the-reasoning-walks-keep-their-own-stack-2026-10-26",
+  "properties": {
+    "at": "2026-10-26",
+    "note": "The two unbounded walks the finding measured now keep their own work stack, and the runtime's thread stack is chosen. Re-measured on release builds on ajs77: get_node at 4,000 and 5,000 steps and loop_status/detect_gaps on holding chains of 2,000 and 3,000 steps, which aborted on main 0c567349c, now answer, also with the runtime held at 2 MiB."
+  },
+  "to_id": "fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25"
+}

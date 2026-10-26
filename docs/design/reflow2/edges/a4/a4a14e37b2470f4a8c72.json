@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8f8d044c9900f862ed65c2f8670b23eef5474de527dddd02fc52767e123aa48e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

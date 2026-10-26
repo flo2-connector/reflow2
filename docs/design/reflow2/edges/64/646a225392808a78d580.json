@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a47798f62c28e800ce242596d2563715299da9c2cbd9036abb6d92ba2969be14",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-testimony-has-a-witness-and-its-own-dates",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

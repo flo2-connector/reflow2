@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc14c1b8ecf31f387715f3c4a11304f017bd7ec9c94ced3e13f6fd69e7254f08",
+  "edge_type": "CAUSES",
+  "from_id": "cmp:text-index",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "Measured: with fulltext on, building a 1,000-step chain took 118.5 s against 0.59 s with it off, and the walk time was unchanged. Code: the node write path commits the text index and reloads its reader whenever no write buffer is open. cargo test --workspace turns fulltext on for reflow2-core through reflow2-mcp's dependency features.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-test-writing-a-large-design-outside-a-write-unit-runs-200x-slower-where-full-text-is-on-2026-10-26"
+}

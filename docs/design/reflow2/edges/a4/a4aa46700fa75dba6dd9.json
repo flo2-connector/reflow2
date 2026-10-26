@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c78df1e214090835d535da0ddfdf2ad47f22ec28472cf59270e71bbe9f28c6bc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-reasoning-walks-keep-their-own-stack-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
