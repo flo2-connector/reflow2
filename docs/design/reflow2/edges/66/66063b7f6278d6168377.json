@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e5d04e6c4703beaf64984f1585ba0b523b8284e65fad84d8d2b347cc40124cdf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:a-test-writing-a-large-design-outside-a-write-unit-runs-200x-slower-where-full-text-is-on-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
