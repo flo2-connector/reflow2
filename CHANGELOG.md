@@ -31,6 +31,333 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.92.0] — 2026-10-26
+
+**Minor. A design choice reads by what its owner accepted, anything recorded broken stays open
+until something closes it, a finished piece of work is recorded in one call, a kept calculation
+knows the numbers it used, and a long chain of reasoning no longer takes the server down.**
+It contains:
+- #794: every slash command that fronts a skill is a pointer, and what it asked for moved into the
+  skill, so an installed copy can no longer go stale;
+- #795: one reading, `open_breach`, for an open defect finding, a limit its own readings exceed, a
+  `VIOLATES` edge into a limit and a must-fix rule violation, counted by `loop_status`
+  (`breaches_open`, `breaches`) until something closes it; a limit each part meets on its own
+  (`composition: each`);
+- #796: a premise says whether it rests on its owner's intent or on its delivery; a step
+  concluding a Decision reads its requirement, capability and interface premises as intent
+  (`add_inference` `as_intent`, `as_delivery`);
+- #797: a `null` unsets a field at every typed constructor, not only at `create_node`;
+- #798: `find_tools` finds the schema's relations beside the tools, and says how to ask what
+  joins an X to a Y;
+- #799: `record_the_build` (the passing check, the change, its files and the work marked built,
+  in one all-or-nothing call); `add_change_event` takes `answers`; `loop_status` counts the fixes
+  that name no finding (`fixes_answering_nothing`) and the standing patches (`repairs`); the two
+  renamed stubs are removed;
+- #800: `add_artifact` takes `inputs`, so a changed quantity marks every kept computation that
+  used it owed (`loop_status` `owed_computations`, `resting_on_stale_numbers`), and
+  `propagate_from` returns a `redo_list`;
+- #801: reasoning is evaluated once per report, and a reading under a circle is kept with the
+  state it depends on: `reasoning_report`, `loop_status` and `detect_gaps` went from seconds to a
+  quarter of a second on the design that stalled flo2.io;
+- #802: the two walks that went one level deeper for every step of a chain keep their own stack,
+  and the server's threads get 16 MiB, chosen, where they had 2 MiB nobody chose.
+
+**Behaviour you will notice:**
+- a design choice resting on **accepted requirements reads as supported** (`shown`) before
+  anything is built, where it read `unproven` and was listed as having lost its reason; a step
+  that really rests on delivery marks its premises `as_delivery`;
+- `loop_status` and `detect_gaps` **list what is recorded broken** (`breaches`, one
+  `open_breach` gap each) until a change answers it, its readings fit, or someone acknowledges it
+  with a reason. A design with many old defect findings sees a large count the first time;
+- a **minimum with no reading reads `incomplete`**, not `exceeded`;
+- a **`null` clears a field** on a revise through any `add_*`, `plan_epoch` or `record_finding`,
+  where it was the same as leaving the field out; a `null` on a `status` or on `distinct_from` is
+  refused by name;
+- `record_change` and `manual_work_report` **are no longer served**; calling either names its
+  replacement (`snapshot_before_change`, `manual_work_ledger`);
+- a design whose reasoning chain is thousands of steps deep is **read, not crashed on**. Measured
+  at this cut on the 0.92.0 release build, over HTTP as the hosted server runs: `get_node` at the
+  end of chains 4,000 and 5,000 steps deep answered in 0.4–0.5 s (0.91.0's code aborted the whole
+  process), and `loop_status` and `detect_gaps` on chains 2,000 and 3,000 steps deep whose steps
+  hold answered in 52–125 s (0.91.0's code aborted at about 2,000). Reading such a design is still
+  slow, which this release does not change.
+
+**The MCP surface goes from 200 tools to 199**, measured against the published 0.91.0 binary
+(sha256 `8f2b0aec…` for its linux-x86_64 archive): `record_the_build` is added, and
+`record_change` and `manual_work_report`, deprecated in 0.91.0, are removed. Twelve served tools
+differ: `add_artifact` (`inputs`), `add_change_event` (`answers`), `add_inference` (`as_intent`,
+`as_delivery`; description), `add_constraint` (`composition: each`; description),
+`set_artifact_checksum` (an argument's description), and in their descriptions only
+`budget_report`, `constrains`, `delete_edge`, `delete_node`, `find_tools`, `move_component`,
+`plan_epoch`, `repair_report` and `unclaimed_findings`. Skills stay at 34, with the same names and
+metadata; every body gains a "When it is run as /<command>" section (#794), and `capture-intent`
+and `detect-and-ask` also changed in their own words (`composition: each`, `as_intent`,
+`open_breach`). `get_instructions` gains one paragraph: when you write down why a design choice
+was made, name the choice and its justification, not an agent's "own reasoning".
+- **The schema stamp moves by vocabulary**: `Constraint.composition` gains `each`. No node or
+  edge type is added (28 and 69, as in 0.91.0). A 0.91.0 seat still opens a store this release
+  has opened, with its "behind" warning, and refuses one holding `composition: each`; it refuses
+  this release's exports without `--accept-newer`, measured at this cut
+  ([docs/upgrading-to-v0.92.0.md](docs/upgrading-to-v0.92.0.md)). Upgrade every seat together.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of it with the binary. Each line below was checked by running
+`reflow2 read` / `reflow2 write` on the 0.92.0 release build, against a design on disk:
+- **a design choice reads by intent**: a step concluding a proposed Decision from two accepted
+  requirements read `shown`, each premise `reads_as: intent`, `holds`, and `reasoning_report`
+  listed both under `held_on_the_owners_word`;
+- **`composition: each`**: a 100 ft minimum setback with parts at 12 ft and 102 ft read
+  `exceeded`, `judged_part: comp:barn`;
+- **breaches and `record_the_build`**: a defect finding showed in `loop_status` `breaches`; one
+  `reflow2 write record_the_build` (a passing check, a `defect_fix` change answering the finding,
+  the capability built) ran its steps in order, the capability read `realized`, the finding left
+  `breaches`, and `fixes_answering_nothing` read 0;
+- **kept computations**: a calc record registered with `inputs` on a quantity of 4 people, the
+  quantity changed to 5, `loop_status` listed it under `owed_computations` ("4 people" → "5
+  people") and `propagate_from` returned it in `redo_list.computations`;
+- **`find_tools`** answered "link an actor to a capability" with `INTERACTS_WITH` and the
+  `create_edge` call that draws it; **a `null`** on `add_constraint`'s `limit` came back under
+  `unset`; **`record_change`** answered with its replacement's name;
+- **deep chains**: `reflow2 read get_node` on the end of a 4,000-step chain in an on-disk store
+  answered in 1.3 s, where 0.91.0 aborted with "stack overflow";
+- **the VS Code prompt files** that `reflow2 init . --harness vscode-cli` writes are pointers to
+  the served skills; run `reflow2 update` in each repository to replace the old ones.
+
+**Still needs a hosted gateway such as flo2.io:** nothing new in this release. As before, the
+hosted hub view (a hub's address answering from every member live, `member` on a hosted member)
+and cross-design reads by graph id without your own `--registry-root` server. On your own machine
+a hub reaches its members only through the exports it pins. These lines get checked again on the
+published binary once the release is out.
+
+### Added
+
+- **`add_inference` takes `as_intent` and `as_delivery`**, each a list of the
+  step's premises, written as `reads_as` on the premise's link. A step's
+  read-back shows `reads_as` on each premise read as intent or marked
+  delivery. `reasoning_report` and `loop_status` list a premise held on its
+  owner's word (`held_on_the_owners_word`) apart from the uncited ones, and
+  one nobody has accepted (`awaiting_the_owners_word`), which `loop_status`
+  names under "WHAT AWAITS THE OWNER'S WORD".
+- **The served text says how a computed result enters a chain**: as a passing
+  check marked `computed` whose `location` names its kept calculator record,
+  never the record (a file) itself as a premise.
+
+- **`find_tools` finds relations as well as tools.** Ask it "link an actor to a
+  capability" and its reply now carries `relations` beside the tools: the schema's
+  edge types that answer, best first (at most three), each marked as a relation,
+  with the types it joins, what it means, and the call that draws it — its typed
+  tool where one exists (`constrains`, `governed_by` …), and `create_edge` with
+  that `edge_type` always. A relation with no typed tool, such as
+  `INTERACTS_WITH`, used to be unreachable by describing the job: a chat searched
+  six times and found it only through `describe_schema`. The tools' own ranking
+  is unchanged, and no tool is added.
+- **Every `find_tools` reply says how to ask what joins an X to a Y** (`what_joins`):
+  `describe_schema` with `from` and `to` set to the two node types.
+
+- **A limit can be one each part meets on its own: `composition: each`.** A
+  setback, a clearance, a separation distance or a height each part stays
+  under is not a budget, and its parts do not add. With `composition: each`,
+  `budget_report` judges every stated part alone, reads the worst one (the
+  nearest against a minimum, the largest against a maximum), names it in
+  `judged_part`, and says `incomplete` while no part has a reading. **What to
+  do:** for a clearance or setback recorded as a sum, set `composition: each`
+  on it with `add_constraint`. Before this, a barn 12 ft from a well and a
+  farm loop 102 ft from it summed to 114 ft and read "within" a 100 ft
+  minimum.
+
+- **`record_the_build`: record a finished piece of work in one call.** It
+  runs, in order, the steps an agent used to make one call at a time: the check
+  that passed (`add_verification`, recorded `passing`), the change
+  (`add_change_event`, with `answers`), the changed files (`add_artifact` for a
+  file not yet registered, `set_artifact_checksums` accepting each on the
+  change, and IMPLEMENTS from a test file to the check it `runs`), and the work
+  marked built (`set_capability_status` for a capability; a decision is shown
+  built by the capabilities in the same list, and `replace` revises its words
+  through `replace_text`). Each step returns its own receipt. **All or nothing:**
+  a refused step names itself (its number, its name and the tool that refused)
+  and nothing is written. It serves job 4 of reflow2's five, "show whether what
+  was built meets what was asked". The tools it runs stay served for the
+  unusual case. Measured before it was built: agents called `add_change_event`
+  then `set_artifact_checksums` 129 times in a month, and the whole sequence 16
+  times.
+- **`add_change_event` takes `answers`: the findings a change answered, in the
+  same call.** Each is a Verification or TemporalFact; an INVALIDATES edge is
+  drawn from the change to it, carrying its `note` and the change's
+  `detected_at`. `answers: []` says the change answered none. Every finding
+  must exist, or nothing is written. `invalidates` still answers a finding
+  after the fact. Why: closing a finding was a separate, optional call, and on
+  reflow2's own design 316 of 502 defect findings still read open.
+- **`loop_status` carries two new lines.** One counts the fixes
+  (`defect_fix`, `test_failure_fix`) that name no finding they answered, until
+  each names one or says it answered none (`fixes_answering_nothing`). The
+  other gives `repair_report`'s two numbers: the standing patches and the
+  repairs nobody labelled (`repairs`). Neither is counted against `clean`.
+
+- **A kept computation names its inputs, and a changed quantity marks it owed.**
+  `add_artifact` takes `inputs`: for a calculator's record, a drawing or a
+  render, each design quantity (a Constraint holding a `limit`, such as
+  "household = 4 people" as a setpoint) and each other kept output it took,
+  with the value or the version it used. One `DEPENDS_ON` edge is drawn per
+  input. Passing `inputs` replaces the whole set; omitted, it stays. reflow2
+  never reads the file. When a quantity changes, or an upstream output is
+  re-run, `loop_status` lists every output that used it under
+  `owed_computations` (transitive, with distances), and every decision, limit
+  or check resting on one under `resting_on_stale_numbers`. Both count against
+  `clean`. A design that registers no inputs reads exactly as before.
+  **What to do:** record a number the math uses as a quantity. Register each
+  calc record, drawing or render with its `inputs`. After a re-run, register the
+  new version (`set_artifact_checksum`) with what it used (`add_artifact`
+  `inputs`). (`req:a-changed-quantity-names-every-kept-computation-that-used-it`.)
+- **A change returns its redo list.** `propagate_from` now carries
+  `redo_list`, grouped by kind:
+  - the computations to re-run;
+  - the decisions and limits resting on them;
+  - the parts those govern or bound, and the parts depending on a changed part;
+  - the quantities describing a changed part;
+  - the model files realizing those parts;
+  - the drawings made from them.
+
+  It also reaches the decisions a calc record documents, which the radius
+  itself does not walk.
+  (`req:a-change-to-a-physical-designs-part-returns-its-redo-list-by-trade`;
+  grouping by trade is not built yet.)
+- `derived_report` declares the two new relations, `computation_owed` and
+  `redo_list`.
+
+### Changed
+
+- **A design choice can read as supported before anything is built.** A premise
+  of a reasoning step now says what it rests on: its owner's **intent** ("X is
+  required") or its **delivery** ("X holds in the system"). In a step that
+  concludes a Decision, a requirement, capability or interface premise is read
+  as intent by default: an accepted requirement holds, a proposed one is
+  unknown, a dropped one fails; a capability reads by the needs it satisfies,
+  an interface by the decisions that govern it. Every other step keeps reading
+  delivery, so proofs, arguments and verification arguments read as before.
+  Until now a requirement premise read only its delivery, so a choice made at
+  design time on accepted requirements read "unproven", was listed as having
+  lost its reason, and raised a `conclusion_does_not_follow` gap (19 of 19
+  choices in a trial design). **What to do:** nothing for a design choice. A
+  decision that really rests on delivery (a release, a go/no-go) marks those
+  premises with `add_inference`'s new `as_delivery`; `as_intent` marks the
+  other way on any step.
+
+- **Every slash command that fronts a skill is now a pointer, so an installed copy can no longer go stale.** A command is a file copied into your project (or `~/.claude/commands/`), and a new reflow2 binary does not re-copy it. The commands had grown instruction bullets (6 to 17 lines each), so a copy kept the bullets it was installed with: measured 2026-10-24 on one machine, the 0.83.3 rewording of `/capture-session` had reached neither installed copy twelve days and several releases later, and `/design-a-proof` and `/design-an-argument` had never been installed at all. Each command now holds its description, the one sentence naming its skill (with the word's tag, for `/note` and `/log-issue`), and its input line. Everything else it asked for moved word for word into the skill it names, under "When it is run as /<command>", and so reaches the agent fresh from the server. `/debt`, `/decisions` and `/next` call one tool and have no skill to hold their text, so they stay as they were; `/adopt` and `/genesis` keep the one paragraph for a directory with no design yet, where no skill can be read. `tools/skill_lint.py` now fails any other command that holds more than the pointer. **What to do:** run `reflow2 update` in each project, and re-run the installer for the copies in `~/.claude/commands/`. This is the last time a command's own wording needs that: from here on a change to what a command asks for is a change to its skill, which the server serves.
+- **When an agent writes down why a design choice was made, the served instructions now ask for the choice and its justification, not an agent's "own reasoning".** A record or a brief to another agent names the records the choice rests on, the rule and the warrant. This is a mitigation, not a measured cure: on 2026-10-24 an agent briefed to record "its reasoning" for its own choices was stopped by the model provider's classifier on its first reply, a single sample.
+
+- **`find_tools` returns relations only when one scores close to its top
+  tool.** A plain tool search no longer carries relations every time: over the
+  tool corpus, the share of replies carrying relations went from every one
+  (198 of 198) to fewer than half (95 of 199, the corpus now holding the new
+  tool's query). Every relation question in the relation corpus still finds
+  its relation; the corpus now holds 26 questions, among them all six a user
+  reported. When no relation is close enough, the reply leaves `relations` out.
+
+### Deprecated
+
+- **`record_change` is removed in this release; its name answers with what to
+  use for this one release more.** It was renamed `snapshot_before_change` on
+  2026-09-18 and has refused every call since. **What to do:** call
+  `snapshot_before_change`, which takes the same arguments.
+- **`manual_work_report` is removed in this release; its name answers with what
+  to use for this one release more.** It was renamed `manual_work_ledger` on
+  2026-09-18 and has refused every call since. **What to do:** call
+  `manual_work_ledger`, which takes the same arguments.
+
+### Removed
+
+- **The two renamed stubs, `record_change` and `manual_work_report`.** Use
+  `snapshot_before_change` in place of `record_change`, and
+  `manual_work_ledger` in place of `manual_work_report`. Neither stub was
+  called through flo2.io from 2026-09-24 to 2026-10-25. The served tool count
+  goes from 200 to 199: one tool added (`record_the_build`) and two
+  removed.
+
+### Fixed
+
+- **A comment and the 0.83.3 notes said the old `/capture-session` wording ran fine in Claude Code; it did not.** Measured 2026-10-24 from one machine's Claude Code transcripts: the old text ran 32 times between 2026-09-20 and 2026-10-24, and the reasoning-extraction classifier stopped 4 of those runs (the first reply 3 times, one run partway). It was still running there because the installed command had never been refreshed, which is what the change above stops.
+
+- **Anything the design records as broken now shows in `loop_status` and
+  `detect_gaps` until something closes it.** One reading, `open_breach`,
+  covers an open defect finding (`fact_type: defect`), a limit that is not a
+  KPP whose own readings exceed it, a `VIOLATES` edge into a limit, and an
+  environment-rule violation ruled `rejected` (must fix) with no
+  `resolved_at`. Before, a defect finding was read by nothing in the loop, so
+  "the roof is 3 7/16 in over its height limit" left `loop_status` saying
+  nothing was open. `loop_status` counts them in a `next` line of their own
+  (`breaches_open`) and lists the newest 20 in `breaches`; each is an
+  `open_breach` gap saying how its kind closes. **What to do:** close each one
+  (`invalidates` from the change or decision that fixed a finding, new
+  readings that fit a limit, removing a `VIOLATES` edge, `resolved_at` on a
+  must-fix violation), or acknowledge its gap with your reason if it stands on
+  purpose. A design with many old defect records will see a large count the
+  first time; most are fixes that never drew `invalidates`.
+- **A minimum with no reading yet reads `incomplete`, not `exceeded`.**
+  Nothing stated is nothing measured, so it is no longer reported as a breach.
+
+- **A `null` now unsets a field at every typed constructor, not only at
+  `create_node`.** A sample design's trial sent `limit: null` to `add_constraint`
+  to clear a numeric limit, and the limit stayed: the typed request read an
+  explicit `null` and a missing field as the same thing, so the merge kept the
+  stored value. The 2026-09-07 rule ("a null unsets", v0.51.0) had been built
+  into `create_node`'s props only. Now every `add_*` constructor, `plan_epoch`
+  and `record_finding` follow it on a revise: a `null` on an optional property
+  removes it (a property with a schema default reads its default again, as at
+  `create_node`) and the reply names it under `unset`; a `null` on a required
+  property is refused by name and nothing is written; a field left out keeps
+  its stored value, as before. Two kinds of field are never unset by a null,
+  and the call is refused by name with nothing written: a `status` (the
+  refusal names the `set_*_status` tool that moves it), and a field the schema
+  keeps as additive history (`distinct_from`). A `null` on a parameter that is
+  not a stored property (an edge to draw, `approver`) still means the same as
+  leaving it out.
+- **Behaviour change for MCP clients: a `null` is no longer the same as
+  leaving a field out.** A client that sends `null` for every field it leaves
+  empty will now CLEAR those fields when it revises a node, or be refused on a
+  `status` or history field. **What to do:** send only the fields you mean to
+  change; send `null` only to clear one.
+
+- **reasoning_report, loop_status and detect_gaps no longer grow explosively
+  with a design's reasoning.** On flo2.io a design of about 600 nodes and 56
+  reasoning steps took reasoning_report 13.3 s and loop_status past the
+  gateway's 30 s, and the engine stalled. Two things caused it: every claim a
+  report read got its own evaluation, so the reasoning beneath was worked out
+  again for each one; and a truth read beneath a circle (objections answering
+  each other, a claim that comes back to itself) was never kept, so everything
+  above the circle was worked out again every time it was asked. Now one
+  evaluation is shared across everything a report, loop_status, detect_gaps or
+  a what-if reads, and a reading under a circle is kept with the state it
+  depends on and handed back only when that state is the same, so every
+  reading is exactly what it was. Measured on that design's export (release
+  build): reasoning_report 2.6 s → 0.25 s, loop_status 4.5 s → 0.30 s,
+  detect_gaps 2.9 s → 0.22 s; on a generated design of the same shape with
+  objection circles, from minutes to under a quarter of a second each.
+  **Nothing to do.**
+- **reasoning_report keeps to a small `budget_chars`.** Asked with
+  `budget_chars: 1000` it could answer 34,450 characters: the claims were
+  whole and small, and the summary lists (what the reasoning rests on, the
+  uncited premises, the unsupported claims, the assumptions) were trimmed of
+  prose but never shortened. Over the budget they are now shortened by the
+  characters each costs, each named in `budget.lists_shortened` with what it
+  shows of its total. The claims on a page stay whole, so one whole claim, one
+  entry of each list and the note saying so are the least a reply can be.
+  **What to do:** read a shortened list whole with a larger `budget_chars`.
+
+- **A design with a long chain of reasoning no longer crashes the server.**
+  get_node on the last claim of a chain about 3,900 steps deep, and loop_status
+  or detect_gaps on a chain about 2,000 steps deep whose steps hold, ran out of
+  stack and aborted the whole process, taking down every design it served (on
+  flo2.io, one process serves them all). Two walks, the one that finds what a
+  claim rests on and the one that counts the steps under a proof, went one
+  level deeper for every step of the chain. They now keep their own list of
+  where they are, so a chain of any depth is walked in the same small stack,
+  and every answer is exactly what it was. The server's threads also get a
+  stack chosen on purpose, 16 MiB, where they had the 2 MiB nobody chose: it
+  reserves address space, and memory is used only by a call that goes deep.
+  **Nothing to do.** Reading a whole design whose chains are thousands of
+  steps deep is still slow (loop_status took 22 s on a chain 1,000 steps
+  deep); that is a separate problem, which this does not change.
+
 ## [0.91.0] — 2026-10-23
 
 **Minor. A hub works on one machine, proofs and arguments read what they actually rest on, and
