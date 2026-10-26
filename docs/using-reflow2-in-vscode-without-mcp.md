@@ -267,6 +267,30 @@ Each was root-caused on 2026-10-02, and its finding is in reflow2's design under
     not included; `full: true` puts them under `served.inputSchema.$defs`. `reflow2-mcp --describe
     review_relations` prints the fields (`relation`, `other_id`, `evidence`, `incoming`) and is the one to
     use until the brief form inlines or includes its `$defs`.
+25. **A shared server started by another agent on the same machine blocks every door write, and nothing
+    says who started it** (0.90.0, field run 2026-10-26; not yet recorded in reflow2's design). The person
+    used only Copilot through the door, yet door writes were refused for over two hours ("another process
+    already has the design graph … open … Stop that server (or close the editor session using it)"). The
+    holder was a `--serve-shared` server whose parent was `systemd --user`. Its environment carried the
+    Claude Code extension's variables (`CLAUDE_CODE_ENTRYPOINT=claude-vscode`). That extension's MCP
+    registrations in `~/.claude.json` (user scope and per project) all run `reflow2-mcp … --shared`; the
+    user-scope one is what the installer's machine-wide registration writes. A Claude session opened in the
+    same VS Code
+    workspace started the server; the session ended, and the server stayed, as `--shared` intends (no
+    session owns it; it exits after `--idle-timeout`, 120 minutes with no client). Two VS Code agents on one
+    workspace therefore share one lock, and the door cannot see the other one. Today's remedy is
+    `reflow2-mcp --graph-path <store> --stop-shared`. Possible fixes: (a) record the launching client (its
+    MCP client name, or the entrypoint variable) in the rendezvous and print it in the refusal, so "close the
+    editor session using it" can name the session; (b) let the door join the running server instead of
+    being refused (idea 2); (c) have the installer ask before registering `--shared` for every MCP client it
+    finds, since on a machine where MCP is blocked for Copilot the other registrations are the only ones that
+    start servers.
+26. **A node's stored property names are not always the tool's argument names** (0.90.0, 2026-10-26). A
+    `design-dependency` node read with `get_node` holds `provider`, `resource_type`, `dependency_graph_id` and
+    `design_export_hash`. `external_dependency`, which wrote them, takes `source` and `graph_id`, computes the
+    hash itself, and refuses the others. Re-declaring a pin by copying what `get_node` showed fails; the
+    refusal listed all six problems at once, so one retry fixed it. Echoing the argument name beside each
+    stored property, or accepting the stored names as aliases, would remove the trap.
 
 ## Fixed since the report
 
