@@ -49,8 +49,17 @@ fn claim(k: usize) -> String {
 /// it, and every step but the deepest, `inf:s000000`, is confirmed by a
 /// person. Built in chain order, so the circle check each link write makes
 /// looks only one link ahead.
+///
+/// WRITTEN IN ONE WRITE UNIT, the way a served call writes. Outside a unit
+/// every node write commits the full-text index and reloads its reader, and
+/// `cargo test --workspace` builds this crate with `fulltext` on (reflow2-mcp
+/// asks for it). Measured 2026-10-26 on a debug build: 1,000 steps took 0.59 s
+/// to build with the feature off and 118.5 s with it on (4,000: 1.96 s and
+/// 534.8 s), while the walk itself took the same either way. Unbatched, this
+/// chain kept PR #802's workspace job past its 60-minute limit.
 fn chain(steps: usize) -> DesignGraph {
     let mut g = DesignGraph::open_in_memory().expect("an in-memory graph");
+    g.begin_unit();
     g.upsert_node(
         node::CONSTRAINT,
         "con:ground",
@@ -101,6 +110,7 @@ fn chain(steps: usize) -> DesignGraph {
         )
         .expect("a conclusion");
     }
+    g.commit_unit().expect("the chain is written");
     g
 }
 
