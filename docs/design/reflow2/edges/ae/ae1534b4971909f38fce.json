@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:771c29f3d4ec2dc6763a933fee284f0afdcc4126a31854bb3817f80db0170eb3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-lawyers-case-work-as-a-trial-of-a-line-of-reasoning",
+  "properties": {
+    "approved_at": "2026-10-25",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

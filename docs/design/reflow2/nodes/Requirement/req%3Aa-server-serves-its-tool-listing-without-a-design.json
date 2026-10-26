@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:1364c3949ad200e3c83b9ecdfdc260ad3a18c1f6bff93eef62ca70775196dc15",
+  "node_id": "req:a-server-serves-its-tool-listing-without-a-design",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A reflow2 server answers a request for its tool listing without naming a design, with no design's lessons in it",
+    "priority": "medium",
+    "provenance": "imported",
+    "source": "flo2 design 1a97fc1f1de4d5d2, dec:a-tool-listing-needs-no-design, accepted by who:ajs 2026-10-25 (\"Go with A\")",
+    "statement": "A server that holds several designs answers a tool listing that names no design: every served tool with its schema and its base description, and no design's lessons appended. A listing that names a design keeps today's behaviour, with that design's lessons. A gateway in front of the server (flo2.io) can then describe its tools to a chat that has not yet chosen a design.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f59005f4cdeedb6a6bbd327ad1a0b97cf8a4525d00f3a826ae4a32ecd555e24b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-claim-resting-on-one-witness-is-named-and-grades-weigh",
+  "properties": {
+    "evidence": "The grades that would weigh are the ones that requirement already records.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent"
+}

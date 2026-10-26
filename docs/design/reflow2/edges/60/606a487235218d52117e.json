@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1710e2edee4f4d6940af6ac814a0ca3824aed9c1482d5f688330f05b3b8068ad",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-lawyers-case-work-as-a-trial-of-a-line-of-reasoning",
+  "properties": {
+    "evidence": "The idea is worth anything only because a design can already hold a line of reasoning, and that accepted requirement names a legal case.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-design-holds-a-line-of-reasoning"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:97cf29c922da8161585ba630f93103e1fca00f07f4cba6b92b8edd0e53a337a5",
+  "node_id": "dec:idea-what-accepted-means-on-an-evidence-record",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Not decided. Recorded as brainstorming, not as a proposal.",
+    "kind": "exploratory",
+    "name": "OPEN — what should `accepted` mean on an evidence record, if anything, given that evidence \"is never read as a requirement awaiting the owner's acceptance\"?",
+    "rationale": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. From the public legal-case trial's F9 (2026-10-25): the agent set `status: accepted` on evidence records. Each was signed as the account owner (via the agent), and the agent itself asked what `accepted` means for evidence.\n\nThe accepted requirement req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent says evidence is never read as intent awaiting acceptance. Yet the status field is still writable on it.\n\nOptions:\n(a) `accepted` on evidence means \"admitted\": the owner agrees it is in the record. It is read back, and changes no truth.\n(b) Status is refused on evidence, with a refusal that says why.\n(c) Leave it as is and say in the skill not to set it.\n\nCOUNTER-ARGUMENT: (b) removes a field some designs may already use. Count them first. Related setup finding: hub fact:a-role-played-trial-signs-approvals-as-the-owner-with-the-agent-recorded-only-as-via-2026-10-25.",
+    "status": "proposed"
+  }
+}

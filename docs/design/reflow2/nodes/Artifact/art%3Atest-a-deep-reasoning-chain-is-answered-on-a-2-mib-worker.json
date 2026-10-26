@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:bcaabd3a2221f46641d3295f3ad9b2a37ff13c538e307c20cfa8d31662509f20",
+  "node_id": "art:test-a-deep-reasoning-chain-is-answered-on-a-2-mib-worker",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "End-to-end: get_node and loop_status through the server's real request path (an in-memory service served over a pipe, the call on a runtime worker built by server_runtime with a 2 MiB stack), on a chain whose every step reads its claim as intent, 1,000 steps deep in debug and 3,000 in release, depths at which main's recursive walks overflowed a 2 MiB worker. Each case runs in a child process.",
+    "location": "crates/reflow2-mcp/tests/a_deep_reasoning_chain_is_answered_on_a_2_mib_worker.rs",
+    "name": "crates/reflow2-mcp/tests/a_deep_reasoning_chain_is_answered_on_a_2_mib_worker.rs",
+    "status": "realized"
+  }
+}

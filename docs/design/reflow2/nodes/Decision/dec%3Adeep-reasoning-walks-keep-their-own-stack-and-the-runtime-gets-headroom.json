@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:50ae5a0c1623ec34c91e37387de5bd56e4e3f0aa4d9a6d697b0bfc95a1bbb76e",
+  "node_id": "dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Options 1 + 3 of fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25. (1) Rewrite the unbounded recursive walks over design data with an explicit work stack, the way graphalg already does, so depth no longer matters and answers stay complete. (3) Set the tokio runtime's thread_stack_size deliberately, as headroom for debug builds and frames nobody has measured. Both land before 0.92.0 is cut.",
+    "kind": "choice",
+    "name": "The reasoning walks that follow a chain step by step (foundations_walk, proof_chain_walk, and any walk of the same kind) keep an explicit work stack instead of recursing, pinned by a deep-chain test on a 2 MiB thread; and the server's runtime threads get a chosen, larger stack as headroom",
+    "rationale": "Anthony, 2026-10-26: \"Go with 1 + 3\". A release build aborts the whole engine process at about 2,000 steps (proof_chain_walk, through loop_status and detect_gaps) and at about 3,900 steps (foundations_walk, through get_node), on a 2 MiB worker stack nobody chose. On flo2.io one process serves every design, so one deep design takes down every person's designs. Option 2, a depth cap, cuts answers short. Option 4, isolation, moves the damage without removing it. #801's shared memo lets the loop_status path reach full depth, so 0.92.0 would crash sooner than 0.91.0. That is why this lands first.",
+    "status": "accepted"
+  }
+}

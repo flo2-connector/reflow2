@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c42e6f9b5076e9fbd63b166fca695654a9ede03b7db4c916df9484852e1fee6a",
+  "node_id": "art:test-the-reasoning-walks-keep-their-own-stack",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Unit tests of the two reasoning walks: foundations_walk and proof_chain_walk called directly on a chain 100,000 steps deep on a thread with an explicit 2 MiB stack, each in a child process (an overflow aborts the whole test program); and two equivalence tests comparing each walk with the recursion it replaced (kept here verbatim from main 0c567349c), state for state, on every fixture of both crates and on 200 generated designs.",
+    "location": "crates/reflow2-core/src/inference/deep_walks.rs",
+    "name": "crates/reflow2-core/src/inference/deep_walks.rs",
+    "status": "realized"
+  }
+}

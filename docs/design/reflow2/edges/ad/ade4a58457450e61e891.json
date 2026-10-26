@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ca199444dab98246f9113625dda1e671ed1ad73f36a42f1a604b48d3b5b49fa9",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-reasoning-walks-keep-their-own-stack-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:db05f972b034e6bbc8e87a0b48ee7a929b27ca6dfd2be3b0b06ad82fdf23df78",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:runtime"
+}

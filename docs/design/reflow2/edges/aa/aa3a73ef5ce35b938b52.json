@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:1296fc7ca833f4d9e0278a37f41a44339fb1f8626436226f2109d71139c01761",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom",
+  "properties": {
+    "approved_at": "2026-10-26",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

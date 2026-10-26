@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:788da6d7fd1282d76829caffd59f0ea6b48a9729b4155247e8c571671c2ecf68",
+  "edge_type": "MITIGATES",
+  "from_id": "cap:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack",
+  "properties": {
+    "confidence": 0.9,
+    "evidence": "Release builds on ajs77 (2026-10-26): main 0c567349c aborted (exit 134, 'has overflowed its stack') on get_node at 4,000 and 5,000 steps and on loop_status and detect_gaps at 2,000 and 3,000 holding steps; the fixed build answered every one, and so did the fixed walks with the runtime held at 2 MiB. Tests on a 2 MiB stack: each walk at 100,000 steps, get_node and loop_status through the request path."
+  },
+  "to_id": "fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25"
+}

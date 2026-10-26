@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:51b5fb7f55427ab8daed67f08d97274171aca9e89748ba2887f2488e05d350aa",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:the-reasoning-walks-keep-their-own-stack-2026-10-26",
+  "properties": {
+    "note": "The change carries out options 1 + 3 of the decision."
+  },
+  "to_id": "dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom"
+}

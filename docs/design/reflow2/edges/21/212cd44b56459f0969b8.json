@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fff289d0609108cf6c811cb01009bf3736b258a924e5ef2e25826ca6d132fd02",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:1a97fc1f1de4d5d2:dec:idea-a-chatgpt-user-designs-through-flo2",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:70d87850b5edbbd0347423eb27c8841830429ac4bc93ed17b14e286abf53d6b8",
+  "node_id": "art:runtime",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The server's async runtime: server_runtime builds the multi-threaded tokio runtime every mode runs on (HTTP, stdio, the shared daemon, --call and the verbs), with SERVER_THREAD_STACK (16 MiB) per thread and the written reason for that size.",
+    "location": "crates/reflow2-mcp/src/runtime.rs",
+    "name": "crates/reflow2-mcp/src/runtime.rs",
+    "status": "realized"
+  }
+}

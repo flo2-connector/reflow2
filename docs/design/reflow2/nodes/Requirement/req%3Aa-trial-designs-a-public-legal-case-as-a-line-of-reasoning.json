@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:b0756da1b7a278568dab1d7c5075b9378231041ff7befecb51338f656b7509db",
+  "node_id": "req:a-trial-designs-a-public-legal-case-as-a-line-of-reasoning",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "A trial designs a lawyer's case work on a public case record as a line of reasoning: discovery organised as evidence, each claim to prove resting on exhibits and testimony, the other side's positions as objections, and questions for witnesses drawn from what reads unsupported or contested",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "who:ajs, 2026-10-25: \"keep the public-case trial for Joe\", after relaying that a lawyer in the family uses a chat app to organise and analyse discovery and to suggest questions for witnesses, limited by confidentiality",
+    "statement": "Before any real legal matter goes into a design, an agent-played trial designs a case whose record is public (a decided case with public filings and transcripts), or a fictional one, on flo2.io as a line of reasoning. Each thing to be proved is a claim. It rests on exhibits, cited by number, and on testimony. The other side's positions contest it as objections. reasoning_report reads back what is supported, contested and unsupported, and the questions for witnesses are drawn from those weak points. The trial reports what reflow2 and flo2 lacked for this kind of work, the same way the Chris argument trial and the HARRIER trial did.",
+    "status": "accepted"
+  }
+}

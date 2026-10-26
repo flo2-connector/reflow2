@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:22e86e250e1be2635f853c7548d1ad97fcee4c36a04e0961bea2e3952ec61056",
+  "edge_type": "MITIGATES",
+  "from_id": "dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom",
+  "properties": {
+    "evidence": "An explicit work stack removes the recursion the backtraces show, and the larger thread stack adds headroom for frames not yet measured."
+  },
+  "to_id": "fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25"
+}

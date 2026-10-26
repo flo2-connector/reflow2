@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4a4f3c8554340d8f0c1efed49ad06c3294799ba32429a389957f5cc1e2b61423",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-claim-resting-on-one-witness-is-named-and-grades-weigh",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

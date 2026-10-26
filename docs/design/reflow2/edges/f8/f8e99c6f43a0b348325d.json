@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:3dcf644e848ec85500b6479c7d8da6cf7666af4960373e45fec277810273b3df",
+  "edge_type": "CAUSES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "assumptions() (inference.rs:4303), which detect_reasoning_not_as_stated reads, keys only on the `assumed` link and discharges, never on the assumed node's kind, so a principle the skill tells the agent to assume is reported as an undischarged supposition.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-chosen-principle-taken-up-as-assumed-raises-a-false-never-discharged-gap-2026-10-25"
+}

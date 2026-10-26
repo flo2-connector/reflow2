@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:543f724503703d201c884a8228e55ea9a0874783a8badd17c693f08507513b74",
+  "edge_type": "CAUSES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "foundations_walk (inference.rs:6562) and proof_chain_walk (inference.rs:6914) recurse once per step with no depth bound, at 528 and about 1,008 bytes a frame, on a 2 MiB tokio worker stack nobody sizes; gdb showed about 3,880 and 2,000 of those frames at the two overflows, and the same call passes on an 8 MiB stack. The truth evaluation beside them is bounded at 64 and graphalg already walks with explicit stacks, so these two walks are the ones left unbounded.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-release-server-overflows-its-2-mib-worker-stack-on-a-reasoning-chain-about-2000-steps-deep-and-the-whole-process-aborts-2026-10-25"
+}
