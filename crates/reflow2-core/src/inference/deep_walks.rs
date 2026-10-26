@@ -303,6 +303,20 @@ fn recursive_proof_chain_walk(
     Ok(())
 }
 
+/// A foundations walk: the steps to walk, the axioms found, what was visited.
+type FoundationsWalk<'a> = dyn Fn(&[String], &mut BTreeMap<String, Foundation>, &mut BTreeSet<String>) -> Result<(), DynoError>
+    + 'a;
+
+/// A proof walk: whether the line is confirmed, the steps under it, those
+/// confirmed, and what was visited.
+type ProofChainWalk<'a> = dyn Fn(
+        &mut bool,
+        &mut BTreeSet<String>,
+        &mut BTreeSet<String>,
+        &mut BTreeSet<String>,
+    ) -> Result<(), DynoError>
+    + 'a;
+
 /// Both foundations walks from every concluded node, and both proof walks
 /// from every step, compared state for state. Returns how many walks of each
 /// it compared.
@@ -319,12 +333,7 @@ fn same_as_the_recursion(g: &DesignGraph, design: &str) -> (usize, usize) {
             concluded.insert(c);
         }
     }
-    let foundations = |walk: &dyn Fn(
-        &[String],
-        &mut BTreeMap<String, Foundation>,
-        &mut BTreeSet<String>,
-    ) -> Result<(), DynoError>,
-                       id: &str| {
+    let foundations = |walk: &FoundationsWalk, id: &str| {
         let mut axioms = BTreeMap::new();
         let mut visited = BTreeSet::from([id.to_string()]);
         let steps = g.inferences_concluding(id).expect("its steps");
@@ -342,12 +351,7 @@ fn same_as_the_recursion(g: &DesignGraph, design: &str) -> (usize, usize) {
     }
     for s in &steps {
         let conclusion = g.conclusion_of(s).expect("a conclusion");
-        let line = |walk: &dyn Fn(
-            &mut bool,
-            &mut BTreeSet<String>,
-            &mut BTreeSet<String>,
-            &mut BTreeSet<String>,
-        ) -> Result<(), DynoError>| {
+        let line = |walk: &ProofChainWalk| {
             let mut confirmed = true;
             let (mut under, mut confirmed_under) = (BTreeSet::new(), BTreeSet::new());
             let mut visited: BTreeSet<String> = conclusion.iter().cloned().collect();

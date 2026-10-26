@@ -6577,12 +6577,18 @@ impl DesignGraph {
         axioms: &mut BTreeMap<String, Foundation>,
         visited: &mut BTreeSet<String>,
     ) -> Result<(), DynoError> {
-        /// One level: the steps being walked, and the premises of the one
-        /// being read.
+        /// The step being read: its premises (each with whether it is
+        /// assumed), and the next of them to take.
+        struct Reading {
+            step_id: String,
+            premises: Vec<(String, bool)>,
+            next: usize,
+        }
+        /// One level: the steps being walked, and the one being read.
         struct Level {
             steps: Vec<String>,
             next_step: usize,
-            reading: Option<(String, Vec<(String, bool)>, usize)>,
+            reading: Option<Reading>,
         }
         let level = |steps: Vec<String>| Level {
             steps,
@@ -6593,7 +6599,12 @@ impl DesignGraph {
         while let Some(top) = stack.last_mut() {
             // The next premise of the step being read.
             let mut deeper: Option<Vec<String>> = None;
-            if let Some((step_id, premises, next)) = top.reading.as_mut() {
+            if let Some(Reading {
+                step_id,
+                premises,
+                next,
+            }) = top.reading.as_mut()
+            {
                 if let Some((premise_id, assumed)) = premises.get(*next).cloned() {
                     *next += 1;
                     // AN ASSUMPTION IS NEVER A FOUNDATION: it is taken up for
@@ -6653,7 +6664,11 @@ impl DesignGraph {
                 continue; // cycle guard
             }
             let premises = self.premise_links(&step_id)?;
-            top.reading = Some((step_id, premises, 0));
+            top.reading = Some(Reading {
+                step_id,
+                premises,
+                next: 0,
+            });
         }
         Ok(())
     }
