@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ac1baee489827c6ca02e42b1f9ce570ca46277d619adc01157c6025dbbc573b8",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:draw-edges-description-names-edges-read-from-its-schema-2026-10-26",
+  "properties": {
+    "at": "2026-10-26",
+    "note": "The generated sentence now names `edges`, read from DrawEdgesReq's schema, and its pinning test (⑦ of the finding) is written for served descriptions: a_served_description_names_only_arguments_its_tool_takes fails on the old sentence naming the 32 helpers and passes on the new one; the census ⑨ asked for found no other wrong argument name in the three shapes it reads. Skills are not read by it, so pinning test (2) of the 2026-09-28 class finding stays open for skills."
+  },
+  "to_id": "fact:draw-edges-is-named-with-items-in-32-tool-descriptions-though-it-takes-edges-a-recurrence-2026-10-26"
+}

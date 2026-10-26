@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:06c32ac3029d7c8a9d066097fe2299897f4147143329dfd7e02332ee69b29abb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:an-act-owed-by-an-outside-party-has-pieces-but-no-record-or-reader-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

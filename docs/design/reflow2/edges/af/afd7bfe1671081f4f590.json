@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:57b3decfd26f851561d0510db72ca16b4ec4f23a7fe96e5a8ddbc03ac1eff125",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-an-outside-part-is-marked-as-outside-and-an-outside-party-is-a-consumer",
+  "properties": {
+    "evidence": "That open idea already names 'a person who will meet a requirement' as an outside party the design misfiles; this one asks the narrower question of an ACT owed by such a party, with who and when."
+  },
+  "to_id": "dec:idea-an-action-owed-by-an-outside-party-is-recorded-with-who-and-by-when"
+}

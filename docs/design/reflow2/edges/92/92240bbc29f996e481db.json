@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c5ef3e1fe1107bf97059306935011aeb51dc42bdfcbc38b60204554befd92574",
+  "edge_type": "CHANGED",
+  "from_id": "chg:draw-edges-description-names-edges-read-from-its-schema-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-served-description-names-only-arguments-its-tool-takes"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d9328f00d609df543e196112ba79933592bfb422fa6689753a3562726cc12023",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:1a97fc1f1de4d5d2:art:the-calling-agent",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

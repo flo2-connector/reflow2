@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:210988eca71bac66c56feea988069b5748bb454dbe49aed342c8362b6c002a6d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:root-cause-an-agent-deciding-for-its-principal-has-no-record-because-the-acts-for-rung-was-deferred-2026-09-29",
+  "properties": {
+    "evidence": "The 2026-09-29 root cause saw this coming: it named the deciding agent as unrecorded under a delegation; ACTS_FOR has since fixed WHO acted, and this recurrence shows the remaining half, UNDER WHOSE standing word."
+  },
+  "to_id": "fact:root-cause-a-choice-made-under-a-standing-delegation-is-recorded-identically-to-the-owners-own-word-2026-10-26"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:28833f577db30025ad527c34e586a667006fc70cde1a66d83b251d470cec7a81",
+  "edge_type": "CHANGED",
+  "from_id": "chg:draw-edges-description-names-edges-read-from-its-schema-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:722b78da27edef99888234f10bdd28117e44411e2ba810eba3be9ec525312c14",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:bulk-edges"
+}

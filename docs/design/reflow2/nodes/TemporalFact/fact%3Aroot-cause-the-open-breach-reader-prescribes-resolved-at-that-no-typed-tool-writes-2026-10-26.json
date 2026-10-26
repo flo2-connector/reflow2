@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:b8105b933fb5454359dd6e553190ab1c9e41d617b2977a57e8554d9b8933dea9",
+  "node_id": "fact:root-cause-the-open-breach-reader-prescribes-resolved-at-that-no-typed-tool-writes-2026-10-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.9,
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (root-cause skill, measured) 2026-10-26: the open-breach reading tells the agent to record `resolved_at` on a VIOLATES_RULE edge, and no typed tool writes it; only the generic create_edge does",
+    "statement": "SYMPTOM (a designer agent on a sample shop design, flo2.io, reflow2 0.92.0): \"No tool sets resolved_at on a violation; I used the generic create_edge, which merged into the existing edge.\" MEASURED in v0.92.0 source and through flo2's describe: (1) the open-breach reader (detect.rs breaches_not_closed, ~7451) counts a VIOLATES_RULE edge ruled `rejected` as open until it carries `resolved_at`, and its repair text (~7553) says \"record `resolved_at` on the VIOLATES_RULE edge (it is kept for audit, never deleted)\"; (2) schema/environment.yaml declares resolved_at (and detected_at) as edge modifiers; (3) violates_rule takes element_id, rule_id, proposer, severity, evidence: no detected_at; set_violation_status (operate.rs:205, ViolationStatusReq) takes element_id, rule_id, status [proposed|confirmed|rejected], rationale: no resolved_at, and no `resolved` status; flo2's describe of both shows the same arguments, so flo2 hides nothing. CANDIDATES. (a) a typed writer exists and the designer missed it: REFUTED by (3). (b) flo2's door strips the argument: REFUTED, describe through flo2 matches the engine's schema. (c) the reader was added (chg:limits-each-part-meets-and-open-breaches-2026-10-24) reading a property that only a hand edge write could set, and the lifecycle writer was not extended: CONFIRMED. (d) the observation is wrong (the merge lost status): NOT RE-MEASURED; set_violation_status itself rewrites the edge keeping other properties, and the designer reports create_edge merged, so status should survive, but I did not read the edge. CLASS: a reader shipped against a property no served writer sets, so the documented close path is the generic edge write, which bypasses the triage tool's checks (it would also create the edge if the pair were mistyped). Sibling: the VIOLATES (constraint) breach closes by DELETING the edge, the VIOLATES_RULE breach by a timestamp: two close paths for one \"open breach\" reading. RECOMMENDED by correctness: set_violation_status gains `resolved_at` (and `detected_at` on violates_rule), refusing a resolved_at on a pair with no edge, with a test that a rejected violation closed through the typed tool leaves the open-breach list; the repair text then names that tool. A further step worth weighing: a check that every property a reader keys on has a served typed writer. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "steps": [
+      "set_violation_status",
+      "violates_rule"
+    ],
+    "subject_id": "cap:every-recorded-breach-still-standing-reaches-the-loop",
+    "valid_from": "2026-10-26"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:db540c02ddf43f4e7b7076bd87e025dca702b9ba7d78f18114e03b0109339f46",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:draw-edges-description-names-edges-read-from-its-schema-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
