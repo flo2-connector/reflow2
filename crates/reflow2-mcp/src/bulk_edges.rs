@@ -98,14 +98,23 @@ pub const HELPERS: &[&str] = &[
 /// Applied at list time rather than on the router, because `find_tools` ranks
 /// the router's descriptions: one shared sentence on 32 tools measurably moved
 /// five of them off first place for their own job.
+///
+/// The argument the sentence names is READ FROM [`DrawEdgesReq`]'s schema
+/// ([`draw_edges_list_argument`]), never typed here. Until 2026-10-26 the
+/// sentence said "`draw_edges`, items {…}" while the field was `edges`, and an
+/// agent that took it at its word was refused
+/// (`fact:draw-edges-is-named-with-items-in-32-tool-descriptions-though-it-takes-edges-a-recurrence-2026-10-26`).
+/// `a_served_description_names_only_arguments_its_tool_takes` checks every
+/// served description for the class.
 pub(crate) fn name_the_bulk_route(mut tools: Vec<Tool>) -> Vec<Tool> {
+    let list = draw_edges_list_argument();
     for t in &mut tools {
         if HELPERS.contains(&t.name.as_ref()) {
             let base = t.description.as_deref().unwrap_or_default();
             t.description = Some(
                 format!(
-                    "{base} MANY AT ONCE: `draw_edges`, items {{\"tool\": \"{}\", \
-                     \"arguments\": {{…}}}}, same checks, all or nothing.",
+                    "{base} MANY AT ONCE: `draw_edges` with `{list}`: [{{\"tool\": \"{}\", \
+                     \"arguments\": {{…}}}}], same checks, all or nothing.",
                     t.name
                 )
                 .into(),
@@ -113,6 +122,28 @@ pub(crate) fn name_the_bulk_route(mut tools: Vec<Tool>) -> Vec<Tool> {
         }
     }
     tools
+}
+
+/// The argument `draw_edges` takes its list of items under, as its served
+/// input schema names it: the property of [`DrawEdgesReq`] whose items are
+/// [`DrawEdgeItem`]s. Read from the schema the router serves
+/// (`rmcp`'s `schema_for_type`, the same generator `#[tool]` uses, which
+/// caches it), so a rename of the field renames the sentence with it.
+pub(crate) fn draw_edges_list_argument() -> String {
+    let schema = rmcp::handler::server::common::schema_for_type::<DrawEdgesReq>();
+    let item = format!("/{}", DrawEdgeItem::schema_name());
+    schema
+        .get("properties")
+        .and_then(JsonValue::as_object)
+        .and_then(|props| {
+            props.iter().find_map(|(name, p)| {
+                p.pointer("/items/$ref")
+                    .and_then(JsonValue::as_str)
+                    .is_some_and(|r| r.ends_with(&item))
+                    .then(|| name.clone())
+            })
+        })
+        .expect("DrawEdgesReq has a property listing DrawEdgeItems")
 }
 
 /// One item of a `draw_edges` call.
