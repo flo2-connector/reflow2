@@ -197,3 +197,62 @@ fn after_the_cut_the_release_section_is_the_announcement() {
     );
     assert_eq!(p.len(), 1, "a version that is not one fails: {p:?}");
 }
+
+/// THE CLASS THAT LET A WRONG ENTRY THROUGH REVIEW: an entry names a release
+/// that is ALREADY CUT (its section is in CHANGELOG.md, dated) and whose notes
+/// do not announce it, while the crate version has not moved past it yet.
+/// Between cuts the crate version is the LAST release's, so a check that
+/// decided "already cut" by `version < crate version` read the last release as
+/// still to be cut and let a fragment stand in for notes that had shipped
+/// without it. #799's two stubs named 0.91.0 that way and passed review; the
+/// 0.92.0 cut's bump then failed them
+/// (`fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26`).
+/// "Cut" is read from the newest dated release section instead
+/// (`dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag`).
+#[test]
+fn a_release_already_cut_is_read_as_cut_before_the_version_moves() {
+    let cut = "# Changelog\n\n## [Unreleased]\n\n## [0.98.0] — 2026-10-20\n\n### Added\n\n- x\n";
+    let p = changelog_problems(
+        &[anchor("0.98.0")],
+        &[("retire-anchor.md".into(), GOOD.into())],
+        cut,
+        "0.98.0",
+    );
+    assert_eq!(
+        p.len(),
+        1,
+        "0.98.0 is cut (its dated section is in the changelog) and its notes do not \
+         announce it; a fragment cannot stand in for them, whatever the crate version: {p:?}"
+    );
+}
+
+/// `announced_in` names the release whose section carries the announcement
+/// when the notice was given outside the changelog: that section is read
+/// instead of `deprecated_in`'s, and the mark still says `deprecated_in`.
+#[test]
+fn an_entry_announced_in_a_later_release_is_read_there() {
+    let cut = format!(
+        "# Changelog\n\n## [Unreleased]\n\n## [0.99.0] — 2026-11-01\n\n{GOOD}\n## [0.98.0] — \
+         2026-10-20\n\n### Added\n\n- x\n"
+    );
+    let late = anchor("0.98.0").announced_in("0.99.0");
+    assert!(
+        changelog_problems(std::slice::from_ref(&late), &[], &cut, "0.99.0").is_empty(),
+        "0.99.0's section announces it"
+    );
+    assert!(
+        late.mark().contains("DEPRECATED in 0.98.0"),
+        "{}",
+        late.mark()
+    );
+    let elsewhere = anchor("0.97.0").announced_in("0.98.0");
+    let p = changelog_problems(&[elsewhere], &[], &cut, "0.99.0");
+    assert_eq!(p.len(), 1, "0.98.0 is cut and its section lacks it: {p:?}");
+    let bad = anchor("0.98.0").announced_in("later");
+    let p = changelog_problems(&[bad], &[("a.md".into(), GOOD.into())], &cut, "0.99.0");
+    assert_eq!(
+        p.len(),
+        1,
+        "an announced_in that is not a version fails: {p:?}"
+    );
+}

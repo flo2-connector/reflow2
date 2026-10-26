@@ -275,6 +275,16 @@ published binary once the release is out.
 
 ### Fixed
 
+- **The check that every deprecation is announced in the release notes now reads
+  where the announcement shipped, and decides "already released" from the
+  newest dated release in CHANGELOG.md.** A deprecation can say `announced_in`,
+  the release whose notes carry its `### Deprecated` entry, when that is not the
+  release that deprecated it: the two removed stubs were deprecated in 0.91.0
+  by their own refusals, and announced here. `describe_schema`'s list of
+  deprecations shows `announced_in` on those two. The check used to treat the
+  last release as unreleased until the crate version moved past it, so an entry
+  naming it was satisfied by a draft note; it failed only at this cut. **Nothing
+  to do.**
 - **A comment and the 0.83.3 notes said the old `/capture-session` wording ran fine in Claude Code; it did not.** Measured 2026-10-24 from one machine's Claude Code transcripts: the old text ran 32 times between 2026-09-20 and 2026-10-24, and the reasoning-extraction classifier stopped 4 of those runs (the first reply 3 times, one run partway). It was still running there because the installed command had never been refreshed, which is what the change above stops.
 
 - **Anything the design records as broken now shows in `loop_status` and
