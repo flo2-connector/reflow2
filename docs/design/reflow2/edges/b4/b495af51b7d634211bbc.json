@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c2a67e521259a6cbc5b56f306be4ae3d0aef9dad29675e790237f4f7876846da",
+  "edge_type": "CAUSES",
+  "from_id": "art:every-deprecation-is-announced-in-the-changelog-test",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The check it runs (deprecation::changelog_problems) binds an entry's announcement to deprecated_in's section and counts deprecated_in equal to the crate version as uncut, so #799's entries (deprecated_in 0.91.0, announced in the 0.92.0 fragment) passed until the version moved to 0.92.0 and fail now; measured both ways (#802 CI green at 0.91.0, both feature sets red at 0.92.0).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:cde1c93a1a0bb58bb23247a1be1b14f9dd579b8e7986ba63904bae3db230e7d2",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag",
+  "properties": {
+    "evidence": "It records how that removal is announced.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:the-two-renamed-stubs-are-removed-in-the-next-release"
+}

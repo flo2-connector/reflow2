@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:390cb3ae2b09c93fd82bae78c1f53dee85ed19ee8b3be5abe6c06ef8e27193d2",
+  "node_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "commits": "b4ce84365",
+    "detected_at": "2026-10-26",
+    "name": "A deprecation says where it was announced, and the announcement check reads the last release from CHANGELOG.md",
+    "rationale": "Built on release/v0.92.0 (PR #803) per dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag, option 1 of the finding the cut recorded. The cause was the class, not the two entries: between cuts the crate version is the last release's, so `version < crate version` read the last release as uncut and let a fragment stand in for notes that had shipped without it; #799's entries passed review that way and failed only at the cut's bump. CHANGELOG.md's dated section was chosen over git tags because CI's checkout carries no tags (actions/checkout fetches none by default; ci.yml checks out at depth 2), and the cut writes that section in the same commit that deletes the fragments. Failing first: the class test returned 0 problems on the old check where 1 is owed (observed, --no-default-features), and passes after; the check and both new tests pass in both feature sets (7 passed each); clippy -D warnings clean with and without default features; fmt clean. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Deprecation gains an optional announced_in (the release whose CHANGELOG section carries its ### Deprecated entry, when not deprecated_in's); the two removed stubs keep deprecated_in 0.91.0 and get announced_in 0.92.0, with the mark and refusal unchanged. changelog_problems reads announced_in's section when set, and decides \"already cut\" from the newest dated `## [x.y.z] — date` section of CHANGELOG.md (last_cut_release), the crate version kept only as a floor. New failing-first test a_release_already_cut_is_read_as_cut_before_the_version_moves, and an_entry_announced_in_a_later_release_is_read_there."
+  }
+}

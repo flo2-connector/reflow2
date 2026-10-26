@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9ad4325f2e6d7939829f24bfc65a5a642d7cf26e48b93c214b20671f477566b5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:d0a8a6e87083420c940985c9abff8ac5f01121df737be0e1cafeab974905eeed"
+  },
+  "to_id": "art:collaborating"
+}

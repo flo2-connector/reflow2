@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.91.0",
+  "reflow2_version": "0.92.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -187,6 +187,9 @@
       }
     },
     "ChangeEvent": {
+      "answered_none": {
+        "type": "bool"
+      },
       "change_type": {
         "type": "enum",
         "values": [
@@ -335,6 +338,7 @@
       "composition": {
         "type": "enum",
         "values": [
+          "each",
           "path",
           "sum"
         ]
@@ -2147,6 +2151,9 @@
         "argued_by": {
           "type": "string"
         },
+        "checksum_used": {
+          "type": "string"
+        },
         "data_volume": {
           "type": "float"
         },
@@ -2163,8 +2170,24 @@
         "frequency": {
           "type": "float"
         },
+        "input": {
+          "type": "string"
+        },
         "optional": {
           "type": "bool"
+        },
+        "unit_used": {
+          "type": "string"
+        },
+        "used_basis": {
+          "type": "enum",
+          "values": [
+            "current",
+            "stated"
+          ]
+        },
+        "value_used": {
+          "type": "float"
         },
         "weight": {
           "type": "float",
@@ -2576,6 +2599,13 @@
         "Inference"
       ],
       "properties": {
+        "reads_as": {
+          "type": "enum",
+          "values": [
+            "delivery",
+            "intent"
+          ]
+        },
         "role": {
           "type": "enum",
           "values": [

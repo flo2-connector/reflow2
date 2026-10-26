@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1e42449ccceaf7287e8b109e912b73941173175a52ac1cab2c09158cd1b1a6c7",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:47135c4d1c75e02a58aaae76fb8a590ae9150da2b7ab1fe4c26a500355cdd37f"
+  },
+  "to_id": "art:what-ifs-and-what-goes-stale-test"
+}

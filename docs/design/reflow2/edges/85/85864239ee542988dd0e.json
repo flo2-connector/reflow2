@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4db1523d916c63a3ea22c7a6b75c18a82b38c7a1b048d9617012694893778f6a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e03eedf7f9e5b2e4676c0b9109ff0db2a5bb228620baeeb03021eac9b9ef8133",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:cbcaaf09bdb9ebb215c2643599e8dcc5f8bc43210405858139b1349bb42c5939"
+  },
+  "to_id": "art:test-the-id-prefix-table-covers-every-stated-convention"
+}

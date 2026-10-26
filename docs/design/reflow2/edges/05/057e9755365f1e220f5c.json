@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e20de7dc5ec8f575dd808ad4b4ff06b9f31b09bfb1cac8eee25b8930664183e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:ae0bd437a038e39a687765b30fb5c19c123fc1dbd8154afcb65a15b2de16e906"
+  },
+  "to_id": "art:test-no-per-design-globals"
+}

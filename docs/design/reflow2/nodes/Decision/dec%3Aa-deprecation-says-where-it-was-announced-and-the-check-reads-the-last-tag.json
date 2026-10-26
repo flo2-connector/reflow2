@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:34804cab9ce9c9ecf19e4ee3149c98b77c7c5bbddc40bfa23795ed0957ab8f71",
+  "node_id": "dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Option 1. The two renamed stubs keep deprecated_in 0.91.0 (true: from 0.91.0 their own replies said they would go) and gain announced_in 0.92.0, where the changelog says it. The check every_registry_entry_is_announced_with_what_to_do reads announced_in when it is present. The check also decides that a release has been cut from the latest release tag, not from the crate version, so a mismatch fails at the merge that causes it rather than at the cut.",
+    "kind": "choice",
+    "name": "A deprecation entry can say where its changelog announcement is (announced_in), and the announcement check counts a release as cut by the last tag, not the crate version",
+    "rationale": "At the 0.92.0 cut (PR #803) the check failed in both CI jobs. The registry says record_change and manual_work_report were deprecated in 0.91.0, but 0.91.0's notes say \"Nothing is deprecated or removed\": #799's fragment, which announces them, lands in [0.92.0]. On main the check passed only because it counts a release as cut once the crate version moves past it (deprecation.rs ~901), and the version moves only at the cut. Option 2 (say 0.92.0) was rejected because it would make the refusal claim they were deprecated in the release that removed them. Option 3 (add the entry to the published 0.91.0 notes) was rejected because it rewrites notes readers may already have seen. Anthony chose option 1, the recommended one, 2026-10-26. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

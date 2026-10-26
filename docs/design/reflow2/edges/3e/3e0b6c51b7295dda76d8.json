@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c0b77a125c2e9624565342a5df001ad53e44bf27b291ce75b8767657478f047e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:cbd0c1623a9012a28fbf96bf3b7fc8b57a73bca0c147f75e14db58bb522dcf3e"
+  },
+  "to_id": "art:test-a-change-says-how-its-reason-is-known"
+}

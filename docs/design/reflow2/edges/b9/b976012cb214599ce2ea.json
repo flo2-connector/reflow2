@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:94ac198ff643eda0168b1d54beaeef4cf2f788d9f2b642ad7b2e5896038a5c70",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:881c4a583d882cab484d2799452e12b4340c8f7546fdb8c4d8abce9e7b95271e"
+  },
+  "to_id": "art:a-change-to-a-tests-criteria-after-its-data-is-reported-test"
+}

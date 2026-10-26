@@ -176,6 +176,16 @@ pub struct Deprecation {
     pub what_to_do: Text,
     /// The design id of the Decision that retires it (`dec:…`).
     pub decision: Text,
+    /// The release whose CHANGELOG section carries its `### Deprecated`
+    /// announcement, when that is not `deprecated_in`'s. Absent means
+    /// `deprecated_in`'s. It exists for a notice given outside the changelog:
+    /// the two renamed stubs refused by name from 2026-09-18 until 0.91.0, from
+    /// before this registry existed, and their changelog announcement shipped
+    /// with the release that removed them
+    /// (`dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag`).
+    /// The mark and the refusal still say `deprecated_in`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub announced_in: Option<Text>,
 }
 
 impl Deprecation {
@@ -190,6 +200,35 @@ impl Deprecation {
             deprecated_in: Cow::Borrowed(deprecated_in),
             what_to_do: Cow::Borrowed(what_to_do),
             decision: Cow::Borrowed(decision),
+            announced_in: None,
+        }
+    }
+
+    /// The same entry, announced in `release`'s CHANGELOG section rather than
+    /// `deprecated_in`'s (see [`Deprecation::announced_in`]).
+    pub fn announced_in(mut self, release: &'static str) -> Self {
+        self.announced_in = Some(Cow::Borrowed(release));
+        self
+    }
+
+    /// A served tool whose changelog announcement shipped in `announced_in`,
+    /// a later release than `deprecated_in`. The registry is a `const`, so it
+    /// cannot call the builder above.
+    pub const fn tool_announced_in(
+        tool: &'static str,
+        deprecated_in: &'static str,
+        announced_in: &'static str,
+        what_to_do: &'static str,
+        decision: &'static str,
+    ) -> Self {
+        Self {
+            item: Item::Tool {
+                tool: Cow::Borrowed(tool),
+            },
+            deprecated_in: Cow::Borrowed(deprecated_in),
+            what_to_do: Cow::Borrowed(what_to_do),
+            decision: Cow::Borrowed(decision),
+            announced_in: Some(Cow::Borrowed(announced_in)),
         }
     }
 
@@ -351,15 +390,22 @@ pub const REGISTRY: &[Deprecation] = &[
     // the release of notice, from before this registry existed. Their entries
     // stay for the one release that removes them, so the old names are refused
     // with what to do; take them out in the release after.
-    Deprecation::tool(
+    //
+    // Their notice was the stubs themselves, so 0.91.0's notes never announced
+    // them; the `### Deprecated` entry shipped in 0.92.0, with the removal
+    // (`announced_in`,
+    // dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag).
+    Deprecation::tool_announced_in(
         "record_change",
         "0.91.0",
+        "0.92.0",
         "call `snapshot_before_change`, which takes the same arguments",
         "dec:the-two-renamed-stubs-are-removed-in-the-next-release",
     ),
-    Deprecation::tool(
+    Deprecation::tool_announced_in(
         "manual_work_report",
         "0.91.0",
+        "0.92.0",
         "call `manual_work_ledger`, which takes the same arguments",
         "dec:the-two-renamed-stubs-are-removed-in-the-next-release",
     ),
@@ -859,12 +905,42 @@ fn announces(entry: &str, d: &Deprecation) -> bool {
         && entry.to_lowercase().contains("what to do")
 }
 
+/// The newest release CHANGELOG.md says was CUT: the highest `## [x.y.z]`
+/// heading with a date after it (`## [0.92.0] — 2026-10-26`). `[Unreleased]`
+/// is not one.
+///
+/// WHY THE CHANGELOG AND NOT GIT TAGS OR THE CRATE VERSION. Between cuts the
+/// crate version is the LAST release's, so it cannot tell the last release
+/// from the next one; deciding by it let an entry naming an already-cut
+/// release be satisfied by a fragment
+/// (`dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag`).
+/// Tags are not in CI's checkout: `actions/checkout` fetches no tags unless
+/// asked, and this repository's jobs check out at depth 2 with none
+/// (`.github/workflows/ci.yml`). The dated section is in every checkout, and
+/// the cut writes it in the same commit that deletes the fragments, so "cut"
+/// here is exactly "the fragments are gone and the section must carry it".
+pub fn last_cut_release(changelog: &str) -> Option<(u64, u64, u64)> {
+    changelog
+        .lines()
+        .filter_map(|line| {
+            let rest = line.strip_prefix("## [")?;
+            let (version, after) = rest.split_once(']')?;
+            if after.chars().any(|c| c.is_ascii_digit()) {
+                parse_version(version)
+            } else {
+                None
+            }
+        })
+        .max()
+}
+
 /// Every registry entry the changelog does not announce. `fragments` are the
 /// `changelog.d/` files (name, text), `changelog` is CHANGELOG.md, and
-/// `current_version` this build's. An entry whose release is still to be cut
-/// (`deprecated_in` at or after the current version) is announced by a
-/// fragment, or by its release's section once the cut has assembled it; one
-/// whose release is already cut is announced only by that release's section.
+/// `current_version` this build's. An entry is announced in the section of
+/// its `announced_in` release when it names one, otherwise of its
+/// `deprecated_in`. While that release is still to be cut a fragment
+/// announces it; once it is cut (at or below the newest dated section,
+/// [`last_cut_release`], or below the crate version) only its section does.
 pub fn changelog_problems(
     entries: &[Deprecation],
     fragments: &[(String, String)],
@@ -872,6 +948,7 @@ pub fn changelog_problems(
     current_version: &str,
 ) -> Vec<String> {
     let current = parse_version(current_version);
+    let last_cut = last_cut_release(changelog);
     let fragment_entries: Vec<String> = fragments
         .iter()
         .flat_map(|(_, text)| deprecated_entries(text))
@@ -893,16 +970,30 @@ pub fn changelog_problems(
             ));
             continue;
         };
-        let in_release = release_section(changelog, &d.deprecated_in)
+        let (announced, announced_version) = match &d.announced_in {
+            Some(a) => match parse_version(a) {
+                Some(v) => (a.as_ref(), v),
+                None => {
+                    problems.push(format!(
+                        "{what}: announced_in `{a}` is not a version (x.y.z)"
+                    ));
+                    continue;
+                }
+            },
+            None => (d.deprecated_in.as_ref(), version),
+        };
+        let in_release = release_section(changelog, announced)
             .is_some_and(|s| deprecated_entries(s).iter().any(|e| announces(e, d)));
         if in_release {
             continue;
         }
-        if current.is_some_and(|c| version < c) {
+        let cut = last_cut.is_some_and(|l| announced_version <= l)
+            || current.is_some_and(|c| announced_version < c);
+        if cut {
             problems.push(format!(
-                "{what} is deprecated in {}, a release already cut, and CHANGELOG.md's [{}] \
-                 section names it ({names}) in no `### Deprecated` entry with a What to do line",
-                d.deprecated_in, d.deprecated_in
+                "{what} is announced in {announced}, a release already cut, and CHANGELOG.md's \
+                 [{announced}] section names it ({names}) in no `### Deprecated` entry with a \
+                 What to do line"
             ));
             continue;
         }

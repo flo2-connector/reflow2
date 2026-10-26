@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c854798681808a48e64e5e6bb06dab486bbb24eee99d8d75ea450ff41d574771",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:913b8658113403c5b57f3d692170eed19eb0363ffcffe567e629f6aebc4dec6f"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

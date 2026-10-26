@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7f5b0ff96c082df2676423f90c040ce80064b40b6c3d6db6a44e1cd214988354",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0920",
+  "properties": {
+    "as_checksum": "sha256:bf24b6bb30e0dcc3aa862b1b3770473a436d19e35ab80744788dbeae584bf4b7"
+  },
+  "to_id": "art:reflow2-design-pointer"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:22a2267373a3aaaa74ba87fe09ea1d34fb9991d04d5011deb356603524b1de5e",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
+  "properties": {
+    "at": "2026-10-26",
+    "note": "The two stubs now say announced_in 0.92.0, where their entry shipped, and the check reads that section; every_registry_entry_is_announced_with_what_to_do passes in both feature sets, and the class (a cut release read as uncut) is pinned by a_release_already_cut_is_read_as_cut_before_the_version_moves, observed failing on the old check."
+  },
+  "to_id": "fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26"
+}

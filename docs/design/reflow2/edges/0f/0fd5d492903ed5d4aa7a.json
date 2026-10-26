@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:abe3d3ea5182be197646d399b00a34f2bf50c1fd08d8b514cb0ec83a2688ab26",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
