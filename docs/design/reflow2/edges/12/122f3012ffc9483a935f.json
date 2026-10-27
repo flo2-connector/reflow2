@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1672bcabf06795200bb62e31aed76953c4658425a5eb929a74cd3630c555b69f",
+  "edge_type": "CAUSES",
+  "from_id": "dec:idea-a-standing-delegation-to-an-agent-is-a-record-with-an-escalation-boundary",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "The delegation record (options b/c) was deferred on 2026-10-13, so a settlement made under a standing decision has no structure naming that decision as its authority; only an approver edge to the owner exists, identical to his own approval (measured on two decisions in the sample shop design).",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-a-choice-made-under-a-standing-delegation-is-recorded-identically-to-the-owners-own-word-2026-10-26"
+}

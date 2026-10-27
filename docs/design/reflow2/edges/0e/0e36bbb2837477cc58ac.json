@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd1349fb36951f092c0a05d140386945a39fdd348987363127b039da30b1ee5d",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-served-description-names-only-arguments-its-tool-takes",
+  "properties": {
+    "covers": "partial"
+  },
+  "to_id": "ver:a-served-description-names-only-arguments-its-tool-takes"
+}

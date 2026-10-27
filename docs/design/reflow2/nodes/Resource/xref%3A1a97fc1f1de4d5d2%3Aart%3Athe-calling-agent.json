@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:05917f73158087186b248ab4d94b3f6daeac0e6ef12b5bb97189090b7efd0e6c",
+  "node_id": "xref:1a97fc1f1de4d5d2:art:the-calling-agent",
+  "node_type": "Resource",
+  "properties": {
+    "design_graph_id": "1a97fc1f1de4d5d2",
+    "design_node_id": "art:the-calling-agent",
+    "name": "agent.ts — the calling agent, from the OAuth client and the User-Agent",
+    "resource_type": "design-node-reference"
+  }
+}

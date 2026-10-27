@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:24ddb94d25ab09cfc9c9f68a8b72b6f2f170fff03c5332758fe92d57ad2ff012",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:draw-edges-is-named-with-items-in-32-tool-descriptions-though-it-takes-edges-a-recurrence-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

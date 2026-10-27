@@ -62,9 +62,10 @@ DEPRECATED = set()
 # What tools/list adds to a router tool's description at list time, and
 # find_tools therefore never scores. Each pattern names where it is added.
 LISTED_ONLY_TEXT = [
-    # bulk_edges.rs name_the_bulk_route: " MANY AT ONCE: `draw_edges`, items
-    # {"tool": "<name>", "arguments": {…}}, same checks, all or nothing."
-    re.compile(r" MANY AT ONCE: `draw_edges`, items \{.*?\}\}, same checks, all or nothing\."),
+    # bulk_edges.rs name_the_bulk_route: " MANY AT ONCE: `draw_edges` with
+    # `edges`: [{"tool": "<name>", "arguments": {…}}], same checks, all or
+    # nothing." (the argument's name is read from DrawEdgesReq's schema).
+    re.compile(r" MANY AT ONCE: `draw_edges` with `\w+`: \[\{.*?\}\}\], same checks, all or nothing\."),
     # lessons.rs: the design's lessons for this tool, appended after a blank line.
     re.compile(r"\n\n⭐ LESSONS THIS DESIGN HOLDS FOR .*\Z", re.S),
 ]

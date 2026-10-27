@@ -263,6 +263,102 @@ async fn every_typed_edge_helper_names_its_bulk_form_or_is_one() {
     );
 }
 
+// ─── the bulk sentence names only what `draw_edges` takes ────────────────────
+
+/// The bulk sentence a helper's served description ends with, split into the
+/// words before its example and the example itself, `{…}` read as `{}`.
+fn bulk_sentence(description: &str) -> Option<(String, Value)> {
+    let tail = &description[description.find("MANY AT ONCE:")?..];
+    let start = tail.find(['[', '{'])?;
+    let mut depth = 0usize;
+    let mut end = None;
+    for (i, c) in tail[start..].char_indices() {
+        match c {
+            '[' | '{' => depth += 1,
+            ']' | '}' => {
+                depth -= 1;
+                if depth == 0 {
+                    end = Some(start + i + c.len_utf8());
+                    break;
+                }
+            }
+            _ => {}
+        }
+    }
+    let example = tail[start..end?].replace('…', "");
+    Some((
+        tail[..start].to_string(),
+        serde_json::from_str(&example).ok()?,
+    ))
+}
+
+/// `fact:draw-edges-is-named-with-items-in-32-tool-descriptions-though-it-takes-edges-a-recurrence-2026-10-26`:
+/// every helper's description said "`draw_edges`, items {\"tool\": …}" and
+/// `draw_edges` takes `edges`, so an agent that followed it was refused. This
+/// reads the sentence as an agent does — the word that introduces the example
+/// is the argument, the example is its value — checks that word against
+/// `draw_edges`'s SERVED input schema, and then SENDS exactly that call
+/// (`check_only`), which must be taken, not refused for its arguments.
+#[tokio::test]
+async fn the_bulk_sentence_names_only_what_draw_edges_takes() {
+    let s = session().await;
+    let listed: BTreeMap<String, rmcp::model::Tool> = s
+        .client
+        .list_all_tools()
+        .await
+        .expect("tools/list")
+        .into_iter()
+        .map(|t| (t.name.to_string(), t))
+        .collect();
+    let takes: BTreeSet<String> = listed["draw_edges"]
+        .input_schema
+        .get("properties")
+        .and_then(Value::as_object)
+        .expect("draw_edges serves its properties")
+        .keys()
+        .cloned()
+        .collect();
+    let mut wrong = Vec::new();
+    let mut read = 0;
+    for (name, t) in &listed {
+        let Some((words, example)) = t.description.as_deref().and_then(bulk_sentence) else {
+            continue;
+        };
+        read += 1;
+        let argument = words
+            .split_whitespace()
+            .next_back()
+            .unwrap_or_default()
+            .trim_matches(|c: char| c == '`' || c == ':' || c == ',')
+            .to_string();
+        if !takes.contains(&argument) {
+            wrong.push(format!(
+                "`{name}` names `draw_edges` with `{argument}`, which it does not take \
+                 (it takes {takes:?})"
+            ));
+            continue;
+        }
+        let call = json!({ argument.as_str(): example, "check_only": true });
+        match s.call("draw_edges", call.clone()).await {
+            Ok(reply) if reply["check_only"] == json!(true) => {}
+            other => wrong.push(format!(
+                "`{name}`'s sentence, sent as written ({call}), was not taken: {other:?}"
+            )),
+        }
+    }
+    assert!(
+        read >= 30,
+        "the bulk sentence was read on only {read} served description(s): the reader no \
+         longer finds it, so this check has gone quiet"
+    );
+    assert!(
+        wrong.is_empty(),
+        "{} served description(s) name `draw_edges` with an argument it does not take:\n{}",
+        wrong.len(),
+        wrong.join("\n")
+    );
+}
+
 // ─── one item through the bulk form == one call to the helper ────────────────
 
 /// Helpers a single `(from_id, to_id)` pair cannot drive; each is exercised by

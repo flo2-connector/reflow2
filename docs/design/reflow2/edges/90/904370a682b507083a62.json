@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:730484f2257b91508c0a0fd4735112655ad4c6faa71f4e7ca24af7723872f4e4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:draw-edges-description-names-edges-read-from-its-schema-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:efc39ae90394766bfa4003d145d6c4091f3ffb1bf2c63750ef94c9fa9d8f906f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-served-description-names-only-arguments-its-tool-takes"
+}

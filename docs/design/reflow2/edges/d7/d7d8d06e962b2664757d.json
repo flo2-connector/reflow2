@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0ce5782e7a78cc27f4cba7f3d635eaa2a26cd0c57c594eddf5606e7c06ccf4fd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ebea849863f3c23a12247e4c138b45feefe31f32825b407a21335e704f6a17bf",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:loop-status-lists-the-first-20-items-awaiting-the-owners-word-by-design-and-points-to-reasoning-report-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

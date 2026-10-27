@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c8addb272b976d4c99a1bd81b1ffff449d9e2ebdaf6f49c332139ccfba8e42bb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-served-description-names-only-arguments-its-tool-takes",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

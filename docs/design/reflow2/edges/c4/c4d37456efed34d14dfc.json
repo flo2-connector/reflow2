@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f45f48443517a948dc619408fc16ad4e94e33a8d7b08c94591ae26ff97971c49",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-action-owed-by-an-outside-party-is-recorded-with-who-and-by-when",
+  "properties": {
+    "evidence": "Option (b) builds on addressing a question to a named Contributor; it only works if asked_of can name an organization outside the design.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-question-is-addressed-to-a-person-and-records-who-answered"
+}

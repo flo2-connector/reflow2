@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9b5c849168ff0f1e03263ff67b9c0356f71fba5eaaecd297be4e9150370d3e20",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-owners-list-of-what-awaits-their-word-is-read-whole-in-one-call",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

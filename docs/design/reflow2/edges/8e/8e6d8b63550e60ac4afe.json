@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:da47703f7091b1e9dce2c883de58fd187188a253b9f4086cc18e661dc1062dff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-served-description-names-only-arguments-its-tool-takes",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

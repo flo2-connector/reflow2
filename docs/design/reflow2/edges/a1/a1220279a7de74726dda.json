@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d82836e0e905c6ae7fde5c48a0c749455d21e4315c5a7990a171a86a30e5c844",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-the-open-breach-reader-prescribes-resolved-at-that-no-typed-tool-writes-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
