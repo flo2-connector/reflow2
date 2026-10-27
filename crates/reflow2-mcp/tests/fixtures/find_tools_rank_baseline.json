@@ -129,6 +129,10 @@
       "move_component"
     ],
     [
+      "create_edge",
+      "create_edges"
+    ],
+    [
       "create_edges",
       "create_nodes"
     ],
