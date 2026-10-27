@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:0ed3bfd4020ee8b513127b25fc33b167ebe713ef3e58fc6c0ead232a8baeed6e",
+  "content_hash": "sha256:014b08203b9601126ff5baf3057c78ae64c3785cc8fb1c7cbec42d3564667377",
   "edge_type": "CHANGED",
   "from_id": "chg:reasoning-report-reserves-its-summary-room-and-keeps-its-budget-2026-10-27",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:f0b840b223f73c19276ad45f6f59698224a324e9b9b71c96addd75100bb62a0c",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:a-reasoning-summary-keeps-its-room-and-the-budget-test"
 }
