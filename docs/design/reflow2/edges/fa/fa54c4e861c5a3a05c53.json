@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:2b4e0ae0df92d821f9eaaa8e38a3c770d8dfbd1fdc623b28d2ebc8b52c07f84b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-phenomenon-is-designed-model-equations-hypothesis-predictions-and-the-experiment-that-tests-them",
+  "properties": {
+    "evidence": "The experiment half of this idea is that accepted requirement; the phenomenon layer sits in front of it.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "xref:0bee0c00b35845f6:req:the-math-of-a-study-is-designed-up-front"
+}

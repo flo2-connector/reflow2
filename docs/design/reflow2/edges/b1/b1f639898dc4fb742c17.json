@@ -1,10 +1,13 @@
 {
-  "content_hash": "sha256:ec979a0978afbd65e16c5ad95cd0d768aa245521fa67e5d485c07a6e3861a478",
+  "content_hash": "sha256:db020571f463ebe46b8ca71897df5d7eba41a5fda2829fefe4e4f7ecf7a956f0",
   "edge_type": "CHANGED",
   "from_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
   "properties": {
-    "accepted_baseline": false,
-    "action": "added"
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:9ae3988503f5ae9eeda2976e581c07940731443adf178e141c41ccd54f34ae27",
+    "checksum_basis": "asserted"
   },
   "to_id": "art:test-the-blast-radius-of-a-change-is-read-whole-in-pages"
 }

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a2f4a10d3492c4e7f54eb8df102b4767815ded982990d6d2714d6114f9fc180b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "xref:0bee0c00b35845f6:dec:calc-keeps-live-formulas-and-solves-for-a-variable-proved-on-a-test-case-first",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
