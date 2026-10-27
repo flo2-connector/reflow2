@@ -106,6 +106,11 @@ const NOT_ASKED: &[(&str, &str, &str)] = &[
     ("add_inference", "rule_node", "names a rule node of its own"),
     (
         "add_inference",
+        "held_as",
+        "says how the assumed premises are held, on their links: needs an assumed premise",
+    ),
+    (
+        "add_inference",
         "establishes",
         "names a node the step establishes",
     ),

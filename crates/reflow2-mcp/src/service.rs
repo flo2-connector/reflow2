@@ -1654,13 +1654,43 @@ pub(crate) fn bulk_result<T, D: serde::Serialize>(
     report: reflow2_core::bulk::BulkReport<T>,
     render: impl Fn(T) -> D,
 ) -> Result<CallToolResult, McpError> {
+    bulk_result_noting(report, render, None)
+}
+
+/// WHAT A GENERIC OR BULK NODE WRITE SAYS ABOUT THE NEAR-MATCH CHECK IT DOES
+/// NOT RUN (fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27).
+/// The check runs at the typed constructors only, and the bulk paths skip it
+/// on purpose so a seed of many alike nodes is never blocked
+/// (cap:search-first-at-the-tool). But a reply that says nothing about it read
+/// as "nothing close" in the sinogram trial, and an empty answer must not mean
+/// both "nothing similar" and "I did not look" (req:no-silent-fallback).
+pub(crate) const NO_NEAR_MATCH_CHECK: &str = "NO NEAR-MATCH CHECK RAN: this generic path writes \
+     what it is given, so nothing here means \"nothing close\" (by design, so a seed of many alike \
+     nodes is never blocked). To check before writing, search_design each item's name (no read \
+     checks a whole list at once yet), or write the item through its typed tool (add_requirement, \
+     add_decision ...), which runs the check. After writing, relation_candidates on a node offers \
+     the nodes it may duplicate.";
+
+/// [`bulk_result`], carrying one more `(key, text)` on a reply that wrote or
+/// checked: what the path did not do, said where the caller reads.
+pub(crate) fn bulk_result_noting<T, D: serde::Serialize>(
+    report: reflow2_core::bulk::BulkReport<T>,
+    render: impl Fn(T) -> D,
+    note: Option<(&str, &str)>,
+) -> Result<CallToolResult, McpError> {
+    let with_note = |mut v: JsonValue| {
+        if let (Some((k, text)), Some(o)) = (note, v.as_object_mut()) {
+            o.insert(k.to_string(), JsonValue::String(text.to_string()));
+        }
+        v
+    };
     if report.check_only {
         // A CHECK was asked for and a check is what comes back — this is not a
         // rejected write dressed as success (dec:bulk-is-all-or-nothing-with-
         // per-item-findings forbids that): nothing was asked to be written.
         // `would_apply` is the answer to the question the caller asked.
         let checked = report.written.len() + report.failures.len();
-        return ok_json(json!({
+        return ok_json(with_note(json!({
             "check_only": true,
             "applied": false,
             "checked": checked,
@@ -1671,7 +1701,7 @@ pub(crate) fn bulk_result<T, D: serde::Serialize>(
             } else {
                 "fix the listed items and send the WHOLE batch again — a bulk write is all or nothing, so the valid items are not written until every item passes"
             },
-        }));
+        })));
     }
     if !report.applied {
         let summary = report
@@ -1692,7 +1722,9 @@ pub(crate) fn bulk_result<T, D: serde::Serialize>(
         ));
     }
     let written: Vec<D> = report.written.into_iter().map(render).collect();
-    ok_json(json!({ "applied": true, "written": written.len(), "items": written }))
+    ok_json(with_note(
+        json!({ "applied": true, "written": written.len(), "items": written }),
+    ))
 }
 
 /// [`bulk_result`], carrying `now_refuted` when the applied batch turned a

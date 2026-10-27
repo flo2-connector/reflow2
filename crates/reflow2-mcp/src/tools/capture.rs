@@ -3214,6 +3214,7 @@ impl ReflowService {
             confirmed_how: req.confirmed_how.clone(),
             confirmed_at: req.confirmed_at.clone(),
             assumed: req.assumed.clone().unwrap_or_default(),
+            held_as: req.held_as.clone(),
             discharges: req.discharges.clone(),
             generalizes_over: req.generalizes_over.clone(),
             independent_of: req.independent_of.clone(),
@@ -4811,6 +4812,18 @@ pub struct AddInferenceReq {
     /// in `premises` is assumed.
     #[serde(default)]
     pub assumed: Option<Vec<String>>,
+    /// HOW the premises in `assumed` are held, said on each one's link:
+    /// `supposition` (a proof's hypothesis, which a later step must
+    /// discharge), `principle` (an argument's chosen starting point) or
+    /// `model` (a model's idealization, held on purpose). Only a supposition
+    /// left undischarged reads NOT AS STATED; a principle or a model is
+    /// counted as held on purpose, and what rests on it still reads
+    /// conditional on it. Omitted, nothing is said and they read as
+    /// suppositions. Refused with nothing in `assumed`, and as `principle` or
+    /// `model` for a statement of kind `hypothesis`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::premise_of_held_as_opt")]
+    pub held_as: Option<String>,
     /// Premises this step reads as their OWNER'S INTENT, by id: a requirement
     /// (accepted or met holds, proposed or deferred is unknown, dropped
     /// fails), a capability (by the needs it SATISFIES) or an interface (by

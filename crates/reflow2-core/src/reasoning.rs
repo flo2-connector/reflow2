@@ -149,9 +149,19 @@ pub struct ReasoningDebt {
     pub unconfirmed_step_ids: Vec<String>,
     pub uncited_premise_ids: Vec<String>,
     pub shown_not_proven_ids: Vec<String>,
-    /// Assumptions some step takes up that no step discharges.
+    /// Assumptions some step takes up that no step discharges, held as
+    /// suppositions (or not said how they are held).
     pub undischarged_assumptions: usize,
     pub undischarged_assumption_ids: Vec<String>,
+    /// ASSUMPTIONS HELD ON PURPOSE (crate::inference::HELD_AS): a chosen
+    /// principle or a model's idealization, never discharged by design. Not
+    /// NOT AS STATED: what rests on them reads conditional on them, and
+    /// reasoning_report names them on each claim. Absent when there are
+    /// none.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub assumptions_held_on_purpose: usize,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub assumptions_held_on_purpose_ids: Vec<String>,
     /// Steps generalizing over a variable something they rest on fixes: each
     /// does not hold.
     pub generalizations_not_holding: usize,
@@ -787,7 +797,14 @@ pub struct AssumptionRead {
 
 impl AssumptionRead {
     fn of(a: AssumptionReading) -> Self {
-        let reads = if a.discharged_by.is_empty() {
+        let reads = if a.discharged_by.is_empty() && a.held_on_purpose() {
+            format!(
+                "assumed, held on purpose as a {}: never discharged by design, so what rests on \
+                 it reads conditional on it (assumed in {})",
+                a.held_as.unwrap_or("model"),
+                a.assumed_in.join(", ")
+            )
+        } else if a.discharged_by.is_empty() {
             format!(
                 "assumed, never discharged: what rests on it holds only under it (assumed in {})",
                 a.assumed_in.join(", ")
@@ -1841,13 +1858,15 @@ impl DesignGraph {
         let (held_on_the_owners_word, held_on_word_ids) = cap(held_on_word);
         let (awaiting_the_owners_word, awaiting_word_ids) = cap(awaiting_word);
         let (shown_not_proven, shown_ids) = cap(shown);
-        let undischarged: Vec<String> = self
+        let (on_purpose, undischarged): (Vec<_>, Vec<_>) = self
             .assumptions()?
             .into_iter()
             .filter(|a| a.discharged_by.is_empty())
-            .map(|a| a.id)
-            .collect();
-        let (undischarged_assumptions, undischarged_ids) = cap(undischarged);
+            .partition(|a| a.held_on_purpose());
+        let (undischarged_assumptions, undischarged_ids) =
+            cap(undischarged.into_iter().map(|a| a.id).collect());
+        let (assumptions_held_on_purpose, held_on_purpose_ids) =
+            cap(on_purpose.into_iter().map(|a| a.id).collect());
         let general: Vec<String> = self
             .generalizations_that_do_not_hold()?
             .into_iter()
@@ -1988,6 +2007,8 @@ impl DesignGraph {
             shown_not_proven_ids: shown_ids,
             undischarged_assumptions,
             undischarged_assumption_ids: undischarged_ids,
+            assumptions_held_on_purpose,
+            assumptions_held_on_purpose_ids: held_on_purpose_ids,
             generalizations_not_holding,
             generalization_not_holding_ids: general_ids,
             independence_not_borne_out,

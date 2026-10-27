@@ -32,7 +32,7 @@ words, because the position or objection may already exist under another name.
 - **A principle** ("minimise deaths", "do not use a person merely as a means") is a Constraint
   too, with `statement_kind` `proposition`. One that gives no verdict on a case lists the case in
   `silent_on`. It is CHOSEN, not shown, so do not mark it taken as
-  given: each step that applies it takes it up in `assumed` (section 3). Every position derived
+  given: each step that applies it takes it up in `assumed`, with `held_as` `principle` (section 3). Every position derived
   from it then reads `conditional` on it — "holds if this principle is accepted" — which is what
   an argument for and against says.
 - **A premise the argument relies on without saying it** ("whatever thinks exists") is made
@@ -62,7 +62,7 @@ words, because the position or objection may already exist under another name.
 A position ("the bystander may turn the trolley") is a Requirement (`add_requirement`) with
 `statement_kind` `proposition`. Each principle that gives a verdict on the case is its own step:
 
-- `add_inference` with the case in `premises`, the principle in `assumed`, the position as
+- `add_inference` with the case in `premises`, the principle in `assumed` and `held_as` `principle`, the position as
   `conclusion`, `rule` `all`, `rule_name` "application of a principle to a case", and a `warrant`
   saying why the principle gives that verdict, in words a reader can challenge.
 - A position several principles support has several steps, one per principle. It holds under
@@ -193,7 +193,7 @@ Then run `loop_status` and `detect_gaps`, and say what the argument still owes.
 By typing /design-an-argument the person asked for the following, in their own words:
 
 - Find each tool by your own word first (find_tools: "objection", "position", "premise").
-- Record each case as given and each principle as chosen: a step applying a principle to a case takes the principle in `assumed`, so each position reads conditional on its principle.
+- Record each case as given and each principle as chosen: a step applying a principle to a case takes the principle in `assumed` with `held_as: principle`, so each position reads conditional on its principle and loop_status counts it as held on purpose, not as reasoning not as stated.
 - One step per principle that gives a verdict; a position several principles support names every line.
 - Aim each objection at what it attacks — a position, a premise, or the step itself — and draw each reply against its objection.
 - Keep rival positions as an open dispute: a contradiction each way, or a Decision I keep `contested`. Never one way.

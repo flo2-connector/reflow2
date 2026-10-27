@@ -100,7 +100,7 @@ const PROSE_RUNGS: [usize; 6] = [4000, 2000, 800, 240, 120, 0];
 /// leave a vocabulary of `…` — complete in shape and empty of content, which is
 /// the quiet-answer failure in its purest form. Measured: reflow2's longest id
 /// is well under this, and a `sha256:` hash is 71.
-const NEVER_TRIM_BELOW: usize = 80;
+pub const NEVER_TRIM_BELOW: usize = 80;
 
 /// Serialized size of a value, in characters — the same measure every budget
 /// in this codebase is stated in.
@@ -408,6 +408,25 @@ pub fn bound_reply_sampling_only(full: Value, budget: usize, hint: &str, only: &
     bound_reply_with(full, budget, hint, Sampling::Allowed, Some(only))
 }
 
+/// [`bound_reply_sampling`] whose prose is NEVER CUT BELOW `floor`
+/// characters: the last rung keeps the first `floor` characters of a longer
+/// string and marks the cut, where the usual last rung keeps none. For a reply
+/// whose prose is NAMES a reader recognises an item by, which the 0 rung
+/// blanked to "…" (reasoning_report's summary: argument names with pinpoint
+/// cites routinely pass 80 characters,
+/// fact:the-zero-rung-blanks-every-name-over-80-characters-so-a-reasoning-summary-reads-as-dots-2026-10-25).
+/// Lists give rows after that, as in [`bound_reply_sampling`].
+#[must_use]
+pub fn bound_reply_sampling_floor(full: Value, budget: usize, hint: &str, floor: usize) -> Value {
+    let rungs: Vec<usize> = PROSE_RUNGS
+        .iter()
+        .copied()
+        .filter(|r| *r > floor)
+        .chain(std::iter::once(floor))
+        .collect();
+    bound_reply_rungs(full, budget, hint, Sampling::Allowed, None, &rungs)
+}
+
 #[must_use]
 fn bound_reply_with(
     full: Value,
@@ -416,6 +435,18 @@ fn bound_reply_with(
     sampling: Sampling,
     only: Option<&[&str]>,
 ) -> Value {
+    bound_reply_rungs(full, budget, hint, sampling, only, &PROSE_RUNGS)
+}
+
+#[must_use]
+fn bound_reply_rungs(
+    full: Value,
+    budget: usize,
+    hint: &str,
+    sampling: Sampling,
+    only: Option<&[&str]>,
+    rungs: &[usize],
+) -> Value {
     let full_chars = chars_of(&full);
     if full_chars <= budget {
         return full;
@@ -423,7 +454,7 @@ fn bound_reply_with(
     let mut block = Block {
         budget,
         full_chars,
-        prose_limit: *PROSE_RUNGS.last().unwrap(),
+        prose_limit: rungs.last().copied().unwrap_or(0),
         fields_trimmed: 0,
         list_note: String::new(),
         lists_shortened: Vec::new(),
@@ -434,7 +465,7 @@ fn bound_reply_with(
     // ① Prose first, progressively. Numbers and ids are never candidates. The
     //    reply that has to fit is the one the client receives, block included.
     let mut body = full.clone();
-    for rung in PROSE_RUNGS {
+    for &rung in rungs {
         let mut cut = 0usize;
         body = truncate_prose(&full, rung, &mut cut);
         block.prose_limit = rung;

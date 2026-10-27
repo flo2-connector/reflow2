@@ -75,6 +75,10 @@ NON_TOOL_TERMS = {
     # intent-or-delivery): add_inference's `as_intent` and `as_delivery`,
     # what a premise is read as.
     "as_intent", "as_delivery",
+    # design-an-argument (2026-10-27, fact:a-chosen-principle-taken-up-as-
+    # assumed-raises-a-false-never-discharged-gap-2026-10-25): add_inference's
+    # `held_as`, how an assumed premise is held, and its value `principle`.
+    "held_as", "principle",
     # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
     # and `conclusion`, reasoning_report's `claim`; a step's `objections`
     # and how it stands against them (`objected`: `contested`, `defeated`,
