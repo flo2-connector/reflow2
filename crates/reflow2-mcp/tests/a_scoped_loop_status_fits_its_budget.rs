@@ -296,3 +296,80 @@ async fn scan_nodes_fits_the_default_budget_whole_reply_and_honours_a_smaller_on
         "what came back and what did not add up to the total"
     );
 }
+
+/// THE BREACH LIST GIVES ROWS TOO, and nothing awaiting is not an excuse to
+/// keep every list whole
+/// (fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26).
+/// MEASURED 2026-10-26 on main's design copy with the 0.92.0 binary: the
+/// unscoped `loop_status` at `budget_chars` 3000 answered 11,767 characters.
+/// The bound named `awaiting_word` as the only list that may give rows; with
+/// it empty (every unscoped call) it fell through to the prose-only rung,
+/// which cut 104 texts to nothing — `next`'s to-do lines included — and kept
+/// all 20 breach rows (4,880 characters even with their names cut). OBSERVED
+/// FAILING FIRST on main 02e2739c8: over budget, and `breaches` not shortened.
+#[tokio::test]
+async fn an_unscoped_loop_status_withholds_breach_rows_before_prose_and_counts_them() {
+    let s = session().await;
+    s.node(
+        "Component",
+        "cmp:pump",
+        json!({"name": "Pump", "purpose": "Moves the water."}),
+    )
+    .await;
+    let total = 25;
+    for i in 0..total {
+        s.node(
+            "TemporalFact",
+            &format!("fact:broken-{i:03}"),
+            json!({"name": format!("Broken {i}: {}", "a measured defect nobody has closed yet ".repeat(4)),
+                   "statement": "Observed broken.", "fact_type": "defect", "basis": "measured",
+                   "subject_id": "cmp:pump",
+                   "valid_from": format!("2026-10-{:02}", 1 + i % 28)}),
+        )
+        .await;
+    }
+    let whole = s
+        .ok("loop_status", json!({"budget_chars": 10_000_000}))
+        .await;
+    assert_eq!(whole["breaches_open"], total, "{}", whole["breaches_open"]);
+    let listed = whole["breaches"].as_array().map_or(0, Vec::len);
+    assert!(listed > 1, "the breaches are listed: {listed}");
+    let budget = 6_000;
+    assert!(
+        chars(&whole) > budget,
+        "the case overflows: {}",
+        chars(&whole)
+    );
+
+    let r = s.ok("loop_status", json!({"budget_chars": budget})).await;
+    assert!(
+        chars(&r) <= budget,
+        "budget_chars {budget} is honoured: {} chars, {}",
+        chars(&r),
+        r["budget"]
+    );
+    assert_eq!(
+        r["breaches_open"], total,
+        "the count is never budgeted away"
+    );
+    let shortened = r["budget"]["lists_shortened"]
+        .as_array()
+        .unwrap_or_else(|| panic!("rows went, and the block names the lists: {}", r["budget"]));
+    let row = shortened
+        .iter()
+        .find(|l| l["path"] == "breaches")
+        .unwrap_or_else(|| panic!("the breach list is shortened: {shortened:?}"));
+    assert_eq!(row["total"], listed, "{row}");
+    assert_eq!(
+        r["breaches"].as_array().map_or(0, Vec::len),
+        row["shown"].as_u64().unwrap() as usize,
+        "`shown` is what the list holds"
+    );
+    // Rows went before the to-do lines' words: `next` still reads.
+    let next = r["next"].as_array().expect("next");
+    assert!(
+        next.iter()
+            .any(|l| l.as_str().is_some_and(|l| l.contains("open breach"))),
+        "the line that counts the breaches survives whole: {next:?}"
+    );
+}

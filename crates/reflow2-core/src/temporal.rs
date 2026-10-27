@@ -1028,7 +1028,7 @@ impl DesignGraph {
             property: "modality".into(),
             message: format!(
                 "the plan for '{target_id}' is not on the record, so {what} would destroy it \
-                 silently. Call record_change against '{target_id}' first (filed in an epoch that \
+                 silently. Call snapshot_before_change against '{target_id}' first (filed in an epoch that \
                  has ARRIVED, taking '{target_id}' as its target) — that snapshots every schedule \
                  edge pointing at it, and then the plan may move."
             ),

@@ -174,7 +174,7 @@ fn detaching_a_parent_names_the_call_that_preserves_it() {
     let mut g = spine();
     let out = g.move_component("cmp:x", "sys:b").expect("move");
     let note = out.history_note.expect("a detached parent is lost history");
-    assert!(note.contains("record_change"), "{note}");
+    assert!(note.contains("snapshot_before_change"), "{note}");
     assert!(note.contains("cmp:x"), "{note}");
     // It names WHICH parent came off, not just that one did.
     assert!(note.contains("sys:a"), "{note}");

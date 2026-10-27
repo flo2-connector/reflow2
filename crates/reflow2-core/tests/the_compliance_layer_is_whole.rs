@@ -253,6 +253,7 @@ fn a_violation_nobody_has_triaged_is_asked_about() {
         None,
         Some("high"),
         Some("The porch overhang sits 18 feet from the lot line."),
+        None,
     )
     .expect("violation");
 
@@ -270,6 +271,7 @@ fn a_violation_nobody_has_triaged_is_asked_about() {
         "envr:setback",
         "confirmed",
         Some("Variance V-2026-14 granted."),
+        None,
     )
     .expect("variance");
     let after = g.detect_gaps().expect("gaps");

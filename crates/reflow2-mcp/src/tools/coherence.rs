@@ -927,16 +927,19 @@ impl ReflowService {
         // with the design — measured 2026-10-14 at 27,951 of 38,939 characters
         // on reflow2's own design, against the 30,000 flo2.io's gateway holds
         // every reply to, replacing a larger one with a refusal. Its prose gives
-        // first, then its rows; `next` keeps the count and the debt lines, and
-        // an answer that fits is returned byte for byte as before.
+        // first, then rows from EVERY list — the breaches too
+        // (fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26)
+        // — and only then prose elsewhere. `next` is never shortened: it keeps
+        // each count and debt line. An answer that fits is returned byte for
+        // byte as before.
         ok_json(crate::reply_budget::bound_reply_list_first(
             payload,
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
             "awaiting_word",
-            "Every awaiting item keeps its node_id, the ids of what delivers it (evidence_ids) \
-             and the call that closes it, and `next` keeps the count; read one in full with \
-             get_node on its node_id, or pass a larger budget_chars to list every row.",
+            &["next"],
+            "Each list is counted beside it (`breaches_open`, `next`). Read a row in full with \
+             get_node on its id, the breaches with detect_gaps, or pass a larger budget_chars.",
         ))
     }
 
@@ -1020,12 +1023,7 @@ impl ReflowService {
             }
         }
 
-        let mut out = if full {
-            serde_json::to_value(&radius)
-        } else {
-            serde_json::to_value(radius.summarize())
-        }
-        .unwrap_or(serde_json::Value::Null);
+        let mut out = crate::service::radius_value(&radius, full, req.offset, "propagate_change")?;
         if !edge_prose.is_empty()
             && let Some(obj) = out.as_object_mut()
         {
@@ -1037,7 +1035,11 @@ impl ReflowService {
         // Across designs only after this design's guard is dropped.
         drop(g);
         self.carry_walk_on(&radius, opts, &mut out).await;
-        ok_json(out)
+        // HELD TO ITS BUDGET BY THE SERIALIZER propagate_from uses
+        // (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
+        // withholds-it-whole-2026-10-26): 38,395 characters on a 35-seed
+        // change were withheld whole at flo2.io's door, and nothing paged.
+        ok_json(crate::service::bound_radius(out, req.budget_chars))
     }
 
     #[tool(
@@ -1087,12 +1089,12 @@ impl ReflowService {
                     ),
                 }));
             };
-            let mut out = if req.full.unwrap_or(false) {
-                serde_json::to_value(&radius)
-            } else {
-                serde_json::to_value(radius.summarize())
-            }
-            .map_err(ser_err)?;
+            let mut out = crate::service::radius_value(
+                &radius,
+                req.full.unwrap_or(false),
+                req.offset,
+                "propagate_from",
+            )?;
             if let Some(obj) = out.as_object_mut() {
                 obj.insert("arrived".into(), json!(true));
                 obj.insert("arriving_from".into(), json!(from));
@@ -1114,12 +1116,12 @@ impl ReflowService {
         let radius = g.propagate_from(&seeds, opts).map_err(dyno_err)?;
         // Across designs only after this design's guard is dropped.
         drop(g);
-        let mut out = if req.full.unwrap_or(false) {
-            serde_json::to_value(&radius)
-        } else {
-            serde_json::to_value(radius.summarize())
-        }
-        .map_err(ser_err)?;
+        let mut out = crate::service::radius_value(
+            &radius,
+            req.full.unwrap_or(false),
+            req.offset,
+            "propagate_from",
+        )?;
         self.carry_walk_on(&radius, opts, &mut out).await;
         // HELD TO ITS BUDGET (fact:the-rocket-equation-rung-ran-on-0-90-0-…,
         // finding (b)): at max_depth 2 the inference walk still reached

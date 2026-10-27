@@ -183,8 +183,8 @@ impl DesignGraph {
                     "No snapshot holds a PRIOR state for '{node_id}', so this check is silent \
                      about its edges rather than clean about them — with nothing to compare \
                      against, an edge whose prose outlived the node is indistinguishable from one \
-                     that never matched it. `record_change` before an edit is what captures the \
-                     prior state this reads."
+                     that never matched it. `snapshot_before_change` before an edit is what \
+                     captures the prior state this reads."
                 )),
                 caveat: CAVEAT,
             });

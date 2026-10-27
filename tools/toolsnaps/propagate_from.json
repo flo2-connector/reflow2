@@ -54,6 +54,16 @@
           "null"
         ]
       },
+      "offset": {
+        "default": null,
+        "description": "With `full: true`: where in `impacted` to start — pass the reply's\n`impacted_page.next_offset` to read the radius on, page by page, until\nit is null. Refused without `full`, whose summary has no rows to page.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "seed_ids": {
         "default": [],
         "description": "Seed node ids to propagate impact from.\nAny node type — the blast radius is walked outward from these.\nLeave it empty with `arriving_from`, which works out the seeds itself.",

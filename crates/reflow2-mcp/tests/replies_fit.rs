@@ -279,6 +279,7 @@ async fn propagate_from_is_held_to_its_budget_naming_every_step_it_withheld() {
             arriving_from: None,
             interfaces: None,
             budget_chars: budget,
+            offset: None,
         }))
     };
     let whole = ask(Some(1_000_000), None)

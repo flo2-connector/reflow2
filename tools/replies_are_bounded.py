@@ -73,6 +73,20 @@ DOCUMENT_SHAPED = {
 SKIP = {"import_graph", "mint_seat", "propose_heal", "reconcile_dependencies"}
 
 
+def widest_change(export: pathlib.Path) -> str | None:
+    """The ChangeEvent with the most CHANGED edges in the saved design: the
+    call a tool with a required change id is measured on. Ties go to the
+    lowest id, so the case is the same on every run of one export."""
+    doc = design_io.load_design(str(export))
+    counts: dict[str, int] = {}
+    for e in doc.get("edges", []):
+        if e.get("edge_type") == "CHANGED" and str(e.get("from_id", "")).startswith("chg:"):
+            counts[e["from_id"]] = counts.get(e["from_id"], 0) + 1
+    if not counts:
+        return None
+    return min(counts, key=lambda c: (-counts[c], c))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
@@ -181,6 +195,20 @@ def main() -> int:
             # overflows and is held, not that it merely fits.
             argument_cases.append(("get_skill", {"name": "root-cause"}))
             argument_cases.append(("propagate_from", {"seed_ids": ["proj:reflow2"], "full": True}))
+            # propagate_change TAKES A REQUIRED ID, so ② never fired it, and
+            # its full radius had no bound while its sibling's had one
+            # (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
+            # withholds-it-whole-2026-10-26: 38,395 characters on a 35-seed
+            # change, withheld whole at flo2.io's door). Its argument comes from
+            # the design itself: the recorded change that touched the most.
+            widest = widest_change(export)
+            if widest:
+                argument_cases.append(("propagate_change", {"change_event_id": widest, "full": True}))
+            else:
+                failures.append(
+                    "propagate_change: the seeded design records no ChangeEvent with a CHANGED "
+                    "edge, so its radius could not be measured — seed from a real export."
+                )
             for name, args in argument_cases:
                 label = f"{name} {json.dumps(args, separators=(',', ':'))}"
                 try:

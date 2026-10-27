@@ -7,6 +7,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000), the\nsame bound `propagate_from` keeps. Over budget, whole rows are withheld\nfrom the end of `impacted`, the redo list's groups and the other lists,\neach named by id in `budget.lists_shortened`; no row shown is cut and\nevery count stays. The edge-prose notes ride inside the budget.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "change_event_id": {
         "description": "The ChangeEvent to propagate from.",
         "type": "string"
@@ -22,6 +32,16 @@
       "max_depth": {
         "default": null,
         "description": "Max traversal depth (default 5).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "offset": {
+        "default": null,
+        "description": "With `full: true`: where in `impacted` to start — pass the reply's\n`impacted_page.next_offset` to read the radius on, page by page, until\nit is null. Refused without `full`, whose summary has no rows to page.",
         "format": "uint",
         "minimum": 0,
         "type": [

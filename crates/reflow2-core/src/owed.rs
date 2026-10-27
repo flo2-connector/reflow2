@@ -164,9 +164,10 @@ pub struct RedoList {
     pub parts: Vec<RedoRow>,
     /// Quantities describing a changed part, whose computations follow.
     pub quantities: Vec<RedoRow>,
-    /// Model files realizing those parts.
+    /// Model files that realize or document those parts.
     pub models: Vec<RedoRow>,
-    /// Drawings and renders made from those models or outputs.
+    /// Drawings and renders of those parts (REALIZES or DOCUMENTS), or made
+    /// from those models or outputs.
     pub drawings: Vec<RedoRow>,
     /// What the list can and cannot say.
     pub note: &'static str,
@@ -183,11 +184,17 @@ impl RedoList {
     }
 }
 
-const REDO_NOTE: &str = "Read from the links the design records: a kept output's inputs \
-     (add_artifact `inputs`), what a record documents or is the source of, GOVERNED_BY from a \
-     part to a decision, CONSTRAINS from a limit to a part, DEPENDS_ON between parts, and \
-     REALIZES from a model to a part. It is only as right as those links: a dependency nobody \
-     drew is not on it. reflow2 re-runs and redraws nothing; it says what must be.";
+const REDO_NOTE: &str = "Read from the links the design records, each group by its own: \
+     `computations`, a kept output that took a reached record as an input (add_artifact \
+     `inputs`); `decisions_and_limits`, what a reached kept output DOCUMENTS or is a PREMISE_OF, \
+     the check that PRODUCES it, a limit whose limit_source it is; `parts`, a part GOVERNED_BY a \
+     reached decision, CONSTRAINED by a reached limit, or that DEPENDS_ON a reached part or \
+     output; `quantities`, a quantity that CONSTRAINS a reached part and that kept outputs took \
+     as an input; `models` and `drawings`, an Artifact of that kind that REALIZES or DOCUMENTS a \
+     reached part (the link drawn from the file to the part), or that took a reached record as \
+     an input. A drawing or model is redrawn, not a reason to redo the other parts it shows. It \
+     is only as right as those links: a dependency nobody drew is not on it. reflow2 re-runs and \
+     redraws nothing; it says what must be.";
 
 /// Is this edge a kept output's input?
 pub fn is_input_edge(e: &StoredEdge) -> bool {
@@ -662,9 +669,19 @@ impl DesignGraph {
                 w.reach(c, &id, next, format!("it took {id} as an input"))?;
             }
             if ty == node::ARTIFACT {
-                // What rests on a kept output.
-                for e in self.outgoing(&id, Some(edge::DOCUMENTS))? {
-                    w.reach(&e.to_id, &id, next, format!("{id} documents it"))?;
+                // What rests on a kept output. A drawing or a model DOCUMENTS
+                // what it shows, and redrawing it asks nothing of the other
+                // parts on the sheet: that link is walked from the part to the
+                // file (below), never back out to the rest of what it shows
+                // (fact:the-redo-list-reaches-a-drawing-or-model-only-by-
+                // realizes-so-documents-edges-leave-it-empty-2026-10-26).
+                let kind = self
+                    .get_node(node::ARTIFACT, &id)?
+                    .map(|n| output_kind(prop_str(&n.properties, "artifact_type")));
+                if !matches!(kind, Some("model" | "drawing")) {
+                    for e in self.outgoing(&id, Some(edge::DOCUMENTS))? {
+                        w.reach(&e.to_id, &id, next, format!("{id} documents it"))?;
+                    }
                 }
                 for e in self.outgoing(&id, Some(edge::PREMISE_OF))? {
                     w.reach(&e.to_id, &id, next, format!("{id} is a premise of it"))?;
@@ -701,7 +718,7 @@ impl DesignGraph {
                 }
             } else if ty == node::COMPONENT {
                 // A part: the parts that depend on it, the quantities that
-                // describe it, and the model files that realize it.
+                // describe it, and the model files and drawings of it.
                 for e in self.incoming(&id, Some(edge::DEPENDS_ON))? {
                     if index.get(&e.from_id).map(String::as_str) == Some(node::COMPONENT) {
                         w.reach(&e.from_id, &id, next, format!("it depends on {id}"))?;
@@ -726,12 +743,19 @@ impl DesignGraph {
                         }
                     }
                 }
-                for e in self.incoming(&id, Some(edge::REALIZES))? {
-                    let kind = self
-                        .get_node(node::ARTIFACT, &e.from_id)?
-                        .map(|n| output_kind(prop_str(&n.properties, "artifact_type")));
-                    if matches!(kind, Some("model" | "drawing")) {
-                        w.reach(&e.from_id, &id, next, format!("it realizes {id}"))?;
+                // The model files and drawings of the part: one that REALIZES
+                // it, and one that DOCUMENTS it — a sheet or a model drawn to
+                // the part it shows, which is how a designer links a drawing.
+                for (edge_type, verb) in
+                    [(edge::REALIZES, "realizes"), (edge::DOCUMENTS, "documents")]
+                {
+                    for e in self.incoming(&id, Some(edge_type))? {
+                        let kind = self
+                            .get_node(node::ARTIFACT, &e.from_id)?
+                            .map(|n| output_kind(prop_str(&n.properties, "artifact_type")));
+                        if matches!(kind, Some("model" | "drawing")) {
+                            w.reach(&e.from_id, &id, next, format!("it {verb} {id}"))?;
+                        }
                     }
                 }
             }

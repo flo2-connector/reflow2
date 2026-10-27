@@ -6911,7 +6911,7 @@ impl DesignGraph {
                  design's record of it did — a re-sync, an accepted drift, a question finally \
                  settled. Both are real and they mean opposite things to anyone later asking what \
                  actually moved, and nothing can tell them apart afterwards: only the person making \
-                 the change knew. State it with `subject` on record_change or add_change_event. If \
+                 the change knew. State it with `subject` on snapshot_before_change or add_change_event. If \
                  this distinction is not one this project needs — or the events came from a bulk \
                  import that could not know — acknowledge this once and it will not be asked again."
             ),
@@ -7550,8 +7550,9 @@ impl DesignGraph {
                         b.subject_id.as_deref().map(name_of).unwrap_or_default(),
                         b.name
                     ),
-                    "When it is fixed, record `resolved_at` on the VIOLATES_RULE edge (it is \
-                     kept for audit, never deleted); if an authority grants a variance, \
+                    "When it is fixed, call `set_violation_status` with `status` `rejected` and \
+                     `resolved_at` (the date it was fixed): the violation is kept for audit, \
+                     never deleted. If an authority grants a variance instead, \
                      `set_violation_status` `confirmed` records the waiver.",
                 ),
             };

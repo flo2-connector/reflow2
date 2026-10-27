@@ -247,13 +247,18 @@ impl ReflowService {
             &req.rule_id,
             &req.status,
             req.rationale.as_deref(),
+            req.resolved_at.as_deref(),
         )
         .map_err(dyno_err)?;
-        ok_json(json!({
+        let mut reply = json!({
             "element": req.element_id,
             "rule": req.rule_id,
             "status": req.status,
-        }))
+        });
+        if let Some(r) = &req.resolved_at {
+            reply["resolved_at"] = json!(r);
+        }
+        ok_json(reply)
     }
 
     #[tool(
@@ -781,6 +786,7 @@ impl ReflowService {
             req.proposer.as_deref(),
             req.severity.as_deref(),
             req.evidence.as_deref(),
+            req.detected_at.as_deref(),
         )
         .map_err(dyno_err)?;
         ok_json(json!({

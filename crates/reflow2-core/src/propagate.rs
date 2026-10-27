@@ -208,8 +208,9 @@ pub struct BlastRadius {
     /// and redrawn, grouped by kind — the kept computations that took a seed
     /// (or one of them) as an input, the decisions and limits resting on those,
     /// the parts those govern or bound and the parts depending on a changed
-    /// part, the model files realizing those parts, and the drawings made from
-    /// them ([`crate::owed`]). Absent when the change reaches none of these.
+    /// part, the model files realizing or documenting those parts, and the
+    /// drawings of them or made from them
+    /// ([`crate::owed`]). Absent when the change reaches none of these.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub redo_list: Option<crate::owed::RedoList>,
 }
@@ -387,8 +388,9 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::equivalents_reached`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub equivalents_reached: Vec<EquivalentReached>,
-    /// See [`BlastRadius::redo_list`]. Carried whole: it is the list a
-    /// session works down.
+    /// See [`BlastRadius::redo_list`]. Carried whole into the summary: it is
+    /// the list a session works down. Over the reply budget the MCP layer
+    /// withholds whole rows from the tail of each group, each named by id.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub redo_list: Option<crate::owed::RedoList>,
 }

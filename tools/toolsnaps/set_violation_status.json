@@ -29,6 +29,14 @@
           "null"
         ]
       },
+      "resolved_at": {
+        "default": null,
+        "description": "WHEN A MUST-FIX VIOLATION WAS FIXED, as a plain date, with `status`\n`rejected`: the violation then leaves the open breaches (and\n`loop_status`), and the edge is kept for audit. Refused with any other\nstatus — a waiver is not a fix. Leave it out while it is not fixed.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "rule_id": {
         "description": "The `EnvironmentRule` of the violation being triaged.\n🛑 NOT a `DesignRule` — see `violates_rule.rule_id`.",
         "type": "string"

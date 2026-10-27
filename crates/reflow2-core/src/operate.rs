@@ -175,6 +175,7 @@ impl DesignGraph {
     /// waiver that was GRANTED and is kept and documented, `rejected` is a
     /// defect somebody must fix. A confirmed violation is not deleted — the
     /// record of the waiver is the audit trail.
+    #[allow(clippy::too_many_arguments)]
     pub fn violates_rule(
         &mut self,
         from_type: &str,
@@ -183,6 +184,7 @@ impl DesignGraph {
         proposer: Option<&str>,
         severity: Option<&str>,
         evidence: Option<&str>,
+        detected_at: Option<&str>,
     ) -> Result<(), DynoError> {
         self.draw_edge_keeping(
             edge::VIOLATES_RULE,
@@ -193,22 +195,53 @@ impl DesignGraph {
             Props::new()
                 .set_opt("proposer", proposer)
                 .set_opt("severity", severity)
-                .set_opt("evidence", evidence),
+                .set_opt("evidence", evidence)
+                .set_opt("detected_at", detected_at),
         )?;
         Ok(())
     }
 
-    /// Triage a flagged violation: grant the variance, or say it must be fixed.
+    /// Triage a flagged violation: grant the variance, or say it must be fixed
+    /// — and, once a must-fix violation IS fixed, when (`resolved_at`).
     ///
     /// The edge is REWRITTEN rather than removed, so the design keeps a record
-    /// of what was found and what was decided about it.
+    /// of what was found and what was decided about it. `resolved_at` is what
+    /// the open-breach reader keys on (`detect::breaches_not_closed`), so this is
+    /// the one typed way to close a `rejected` violation
+    /// (fact:root-cause-the-open-breach-reader-prescribes-resolved-at-that-no-typed-tool-writes-2026-10-26).
+    /// It is refused with any status but `rejected`: a waiver is not a fix, and
+    /// an untriaged finding has nothing yet to be fixed against.
     pub fn set_violation_status(
         &mut self,
         from_id: &str,
         rule_id: &str,
         status: &str,
         rationale: Option<&str>,
+        resolved_at: Option<&str>,
     ) -> Result<(), DynoError> {
+        if let Some(r) = resolved_at {
+            if r.trim().is_empty() {
+                return Err(DynoError::Validation {
+                    node_type: node::ENVIRONMENT_RULE.into(),
+                    property: "resolved_at".into(),
+                    message: "`resolved_at` is empty: pass the date the violation was fixed, or \
+                              leave it out"
+                        .into(),
+                });
+            }
+            if status != "rejected" {
+                return Err(DynoError::Validation {
+                    node_type: node::ENVIRONMENT_RULE.into(),
+                    property: "resolved_at".into(),
+                    message: format!(
+                        "`resolved_at` records when a must-fix violation was FIXED, so it goes \
+                         with status `rejected`, not `{status}`. A granted variance is \
+                         `confirmed` with no `resolved_at`; a fixed violation is `rejected` with \
+                         the date it was fixed."
+                    ),
+                });
+            }
+        }
         let existing = self
             .outgoing(from_id, Some(edge::VIOLATES_RULE))?
             .into_iter()
@@ -223,9 +256,10 @@ impl DesignGraph {
             })?;
         let mut props = Props::new()
             .set("status", status)
-            .set_opt("rationale", rationale);
+            .set_opt("rationale", rationale)
+            .set_opt("resolved_at", resolved_at);
         for (k, v) in &existing.properties {
-            if k != "status" && k != "rationale" {
+            if k != "status" && k != "rationale" && !(k == "resolved_at" && resolved_at.is_some()) {
                 props = props.set(k.as_str(), v.clone());
             }
         }

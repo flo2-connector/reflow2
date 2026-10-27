@@ -439,6 +439,7 @@ fn well_rule() -> DesignGraph {
         Some("check"),
         Some("critical"),
         Some("12 ft from the well head"),
+        None,
     )
     .expect("flagged");
     g
@@ -457,6 +458,7 @@ fn a_rule_violation_ruled_must_fix_stays_open_until_it_is_resolved() {
         "erule:well-setback",
         "rejected",
         Some("must move"),
+        None,
     )
     .expect("ruled must fix");
     assert_eq!(
@@ -465,17 +467,16 @@ fn a_rule_violation_ruled_must_fix_stays_open_until_it_is_resolved() {
         "ruled must-fix and not yet fixed, it is still broken"
     );
     assert!(open_finding_line(&g).is_some());
-    // Fixed: the edge records when, and it is kept for audit.
-    g.create_edge(
-        edge::VIOLATES_RULE,
-        node::COMPONENT,
+    // Fixed: the typed triage tool records when, and the edge is kept for
+    // audit (fact:root-cause-the-open-breach-reader-prescribes-resolved-at-
+    // that-no-typed-tool-writes-2026-10-26: until then only a hand edge write
+    // could set it).
+    g.set_violation_status(
         "cmp:barn-lean-to",
-        node::ENVIRONMENT_RULE,
         "erule:well-setback",
-        Props::new()
-            .set("status", "rejected")
-            .set("resolved_at", "2026-10-24")
-            .set("evidence", "12 ft from the well head"),
+        "rejected",
+        Some("moved to 140 ft"),
+        Some("2026-10-24"),
     )
     .expect("resolved");
     assert!(breach_gaps_on(&g, "erule:well-setback").is_empty());
@@ -490,6 +491,7 @@ fn a_waived_rule_violation_is_not_a_breach() {
         "erule:well-setback",
         "confirmed",
         Some("variance"),
+        None,
     )
     .expect("waived");
     assert!(breach_gaps_on(&g, "erule:well-setback").is_empty());
