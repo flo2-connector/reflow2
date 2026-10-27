@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:12dde540df02993d9d3b0c540bbdaab0bd7be8a3e04a5c619c2e86f9b7bfeb74",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "chg:granularity-optimised-against-a-written-budget",
+  "properties": {
+    "evidence": "The granularity change already guarded a growth claim (cost scales with artifacts, not edges) by a count at three sizes; option (b) generalises that one-off into a pattern."
+  },
+  "to_id": "dec:idea-a-software-design-records-how-its-costs-grow-with-size-big-o"
+}

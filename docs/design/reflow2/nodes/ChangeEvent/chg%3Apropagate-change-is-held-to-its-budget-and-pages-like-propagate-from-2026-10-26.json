@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:334168fa2c6c47bec1e40ceadd0a6600c03507676dbf4ad6e7347f7376b59457",
+  "node_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "36af92db2,6766ee6e1",
+    "detected_at": "2026-10-26",
+    "name": "propagate_change takes budget_chars and both radius tools page by offset, through one serializer",
+    "rationale": "Root cause (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-withholds-it-whole-2026-10-26): the bound given to propagate_from on 2026-10-23 was not given to its sibling, which serialized the same radius its own way, and the gate only called tools with no required argument. The class fix is one serializer for both and a gate case for a required-id tool. Measured: the gate on the 0.92.0 binary fails on propagate_change (2,748,341 characters, unbounded); the first fix still answered 80,151 to a 30,000 budget on reflow2's design, which settles the finding's open candidate (c): 541 per-seed copies of the no-prior-snapshot note were 55,599 characters with their prose cut, and 579 seed ids nothing shortened. With the silent seeds grouped and the seed lists giving rows it is held by default to 29,933, and the gate passes. Tests: the_blast_radius_of_a_change_is_read_whole_in_pages.rs (5), failing on main (unknown fields) and passing after. A step toward req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on (accepted 2026-10-27), NOT its completion: the gate still calls only the tools with no required argument plus five argument cases (loop_status scoped, scan_nodes, get_skill, propagate_from, propagate_change), about 50 of the 199 served tools. The reply shape of stale_edge_evidence changed for silent seeds (CHANGELOG, Changed). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "PropagateChangeReq gains budget_chars and offset; PropagateFromReq gains offset. service::radius_value is the one serializer of a BlastRadius for both tools (summary by default; with full, impacted from offset on plus impacted_page {offset,total}), and service::bound_radius holds it to the budget rows-first (impacted, seeds, the redo list's six groups, inferences, rings, crossings, across_designs) and fills impacted_page.shown/next_offset; an offset without full is refused by name. reply_budget::bound_reply_rows_first takes `paged` lists (impacted: counted, read on by offset, not named) and names at most 50 withheld ids per list (withheld_not_named counts the rest). propagate_change names the seeds the edge-prose check was silent on (no prior snapshot) once, under stale_edge_evidence_silent_on {count, seeds, coverage_note}, instead of a note per seed. tools/replies_are_bounded.py now calls propagate_change {change_event_id: the export's widest change, full: true}."
+  }
+}

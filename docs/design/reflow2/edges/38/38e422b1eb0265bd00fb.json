@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fdbe71dace7625a34aebc1db5d38faec6826c7183a075152c52153c6aa93359",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:e5c9e5eb91659591534409bd724decc2c71743c62bd6f5871d86edc248c0b347",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-scoped-loop-status-fits-its-budget-test"
+}

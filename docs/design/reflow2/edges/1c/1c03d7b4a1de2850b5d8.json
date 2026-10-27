@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:86b06fff6a0c753986abfe8a9f5d6335c7aec4deb01646885dae0195529ac384",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-coherence",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "tools/coherence.rs v0.92.0 propagate_change: PropagateChangeReq is {change_event_id, max_depth, full}; with full it serializes the whole BlastRadius plus stale_edge_evidence through ok_json, which applies no budget. propagate_from (same radius) takes budget_chars since chg:replies-fit-2026-10-23.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:propagate-change-full-has-no-budget-or-paging-so-the-door-withholds-it-whole-2026-10-26"
+}

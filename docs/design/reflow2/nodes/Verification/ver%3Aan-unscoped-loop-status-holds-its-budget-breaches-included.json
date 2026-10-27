@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a1b51365b8e85c4d6618fa3af45b45f10c147d18f0fc3e906d5a9b2a9a57a40a",
+  "node_id": "ver:an-unscoped-loop-status-holds-its-budget-breaches-included",
+  "node_type": "Verification",
+  "properties": {
+    "description": "a_scoped_loop_status_fits_its_budget.rs::an_unscoped_loop_status_withholds_breach_rows_before_prose_and_counts_them: 25 long-named defect findings and nothing awaiting; loop_status at budget_chars 6,000 must fit, keep breaches_open at 25, name `breaches` in budget.lists_shortened with shown equal to the rows kept and total equal to the rows listed, and keep the to-do line in `next` that counts the open breaches. The reply_budget unit test pins the list-first order with `next` kept whole.",
+    "findings": "On main 02e2739c8 it FAILS: 7,100 characters to a 6,000 budget, prose cut and every breach row kept. With the fix it passes with the file's other three tests. Measured on main's design copy with the fixed debug build: budget 10,000 answers 9,754; 6,000 answers 5,249; 3,000 answers 5,449, the reply's floor (every count, one row per list, all prose cut), which the reply says (2026-10-26).",
+    "kind": "verification",
+    "last_run_at": "2026-10-26",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_scoped_loop_status_fits_its_budget.rs",
+    "method": "test",
+    "name": "An unscoped loop_status holds its budget, breaches included",
+    "status": "passing"
+  }
+}

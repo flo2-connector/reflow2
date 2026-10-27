@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c72a2499a24d8a4cea229f70c25407c3b3272d4a332339953095e8e1ad81f96e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:an-unscoped-loop-status-holds-its-budget-breaches-included"
+}

@@ -246,7 +246,7 @@ fn with_no_prior_state_the_check_says_it_could_not_run() {
         .as_deref()
         .expect("a zero with no prior state must SAY it is silent rather than clean");
     assert!(
-        note.contains("silent") && note.contains("record_change"),
+        note.contains("silent") && note.contains("snapshot_before_change"),
         "the note must say it is silent rather than clean, and name what would fix that: {note}"
     );
 }

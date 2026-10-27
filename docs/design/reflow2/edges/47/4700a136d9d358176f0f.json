@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:53da3dd80a6f2b0f5f160755096c7d5c0ed0963817fe11e1a976434c3419ba1a",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:the-rocket-equation-rung-ran-on-0-90-0-and-a-unit-check-caught-a-nasa-formula-but-reflow2-checks-no-units-2026-10-23",
+  "properties": {
+    "evidence": "The rocket rung recorded that propagate_from's reply could not be bounded; the fix (chg:replies-fit-2026-10-23) covered propagate_from only, and its sibling propagate_change, which serializes the same radius, overflowed on 2026-10-26."
+  },
+  "to_id": "fact:propagate-change-full-has-no-budget-or-paging-so-the-door-withholds-it-whole-2026-10-26"
+}

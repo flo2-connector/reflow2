@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1998e30ddfa03a46f876bb4ad2cd98c747e36ed7f30a33efca142b786563d786",
+  "node_id": "dec:loop-status-keeps-its-floor-2026-10-27",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony's choice, 2026-10-27: \"Keep the floor\". The counts are the answer. A budget_chars below loop_status's floor (every count, one row per list, every long text cut: about 5.4k characters on reflow2's own design) is answered at the floor, over the budget, and the budget note says so and why: \"AND THE REPLY IS STILL N CHARACTERS with every list at one row and every long text cut: what remains is the report's own counts and structure, which this budget cannot hold — raise `budget_chars`.\" Lists are not emptied and counts are not dropped to meet it.",
+    "kind": "choice",
+    "name": "loop_status keeps its floor: below it the reply goes over budget and says it is at its floor and why",
+    "rationale": "fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26 left one question open after its fix: a 3,000 budget can be met only by emptying lists below one row or dropping counts, which the reply-budget rule forbids. Options put to him: keep the floor (chosen), or let lists go to zero rows. The sentence is pinned by a_scoped_loop_status_fits_its_budget.rs::a_budget_below_the_floor_is_answered_at_the_floor_and_says_why. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

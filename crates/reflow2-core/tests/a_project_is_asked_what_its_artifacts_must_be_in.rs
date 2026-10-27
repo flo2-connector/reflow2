@@ -191,6 +191,7 @@ fn a_drawing_flagged_as_outside_the_standard_has_answered() {
         None,
         Some("medium"),
         Some("A hand-authored HTML sheet; not an IFC model and never will be."),
+        None,
     )
     .unwrap();
     assert!(

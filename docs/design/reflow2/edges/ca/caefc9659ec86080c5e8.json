@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:51bcf87f8824ed052e065535d40581c73352d13677c04e3ffb407ee3b685b6fb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:served-texts-name-snapshot-before-change-not-the-removed-record-change-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

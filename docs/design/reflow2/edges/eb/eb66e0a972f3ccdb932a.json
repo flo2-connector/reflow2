@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d3845fb5b6c70e1cbc3ea42898bc4ec5139fbbecaa2f303f6c42fec371bbbe0c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:move-component-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

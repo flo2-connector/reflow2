@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b097574e18524d34c5e9301dc81be049cd4a045bed35203022c4c0723981c073",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-redo-list-follows-documents-into-drawings-and-models-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:f96a2ec515488e0be86129c8804133f35e77d435bdfc2b0bbe3e24e07fc40269",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it"
+}

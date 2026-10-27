@@ -153,6 +153,7 @@ async fn a_drawn_relation_is_a_complete_answer_and_lands_in_the_same_call() {
             arriving_from: None,
             interfaces: None,
             budget_chars: None,
+            offset: None,
         }))
         .await
         .expect("propagate ok")

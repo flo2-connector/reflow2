@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c30b3b4243250f5a816add0f36e0e02b0cfab4a5e9c8ffe007ef22f085573244",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:a-test-writing-a-large-design-outside-a-write-unit-runs-200x-slower-where-full-text-is-on-2026-10-26",
+  "properties": {
+    "evidence": "Measured the same week: a 200x constant at unchanged growth, the counter-example that a class alone would miss."
+  },
+  "to_id": "dec:idea-a-software-design-records-how-its-costs-grow-with-size-big-o"
+}

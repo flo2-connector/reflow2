@@ -3649,6 +3649,10 @@ pub struct ViolatesRuleReq {
     /// WHY it violates: the specific rule text and the offending detail.
     #[serde(default)]
     pub evidence: Option<String>,
+    /// WHEN it was found, as a plain date. The open breach it becomes, once
+    /// ruled must-fix, is dated by it.
+    #[serde(default)]
+    pub detected_at: Option<String>,
 }
 
 /// One triage decision for `set_violation_status`.
@@ -3676,6 +3680,12 @@ pub struct ViolationStatusReq {
     /// one it is what has to change.
     #[serde(default)]
     pub rationale: Option<String>,
+    /// WHEN A MUST-FIX VIOLATION WAS FIXED, as a plain date, with `status`
+    /// `rejected`: the violation then leaves the open breaches (and
+    /// `loop_status`), and the edge is kept for audit. Refused with any other
+    /// status — a waiver is not a fix. Leave it out while it is not fixed.
+    #[serde(default)]
+    pub resolved_at: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5894,26 +5904,129 @@ pub struct PropagateFromReq {
     /// in `budget.lists_shortened`; no row shown is cut and every count stays.
     #[serde(default)]
     pub budget_chars: Option<usize>,
+    /// With `full: true`: where in `impacted` to start — pass the reply's
+    /// `impacted_page.next_offset` to read the radius on, page by page, until
+    /// it is null. Refused without `full`, whose summary has no rows to page.
+    #[serde(default)]
+    pub offset: Option<usize>,
 }
 
-/// The lists a blast radius withholds rows from, whole, to fit its budget.
-pub const RADIUS_ROWS: [&str; 5] = [
+/// The lists a blast radius withholds rows from, whole, to fit its budget:
+/// the walk's own lists, and each group of the redo list.
+pub const RADIUS_ROWS: [&str; 14] = [
+    "seeds",
+    "stale_edge_evidence",
+    "stale_edge_evidence_silent_on.seeds",
     "inferences",
     "impacted",
     "direct_ring",
     "risk_crossings",
     "across_designs",
+    "redo_list.computations",
+    "redo_list.decisions_and_limits",
+    "redo_list.parts",
+    "redo_list.quantities",
+    "redo_list.models",
+    "redo_list.drawings",
 ];
 
-/// A blast radius held to its budget: rows first, never a row's words.
+/// THE ONE SERIALIZER OF A BLAST RADIUS, for `propagate_change` and
+/// `propagate_from` alike
+/// (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-withholds-it-whole-2026-10-26:
+/// the budget was given to `propagate_from` on 2026-10-23 and not to its
+/// sibling, which serialized the same radius its own way). The summary by
+/// default; with `full`, every impacted row from `offset` on, with an
+/// `impacted_page` block saying where the page starts and the total. An
+/// `offset` without `full` is refused by name.
+pub fn radius_value(
+    radius: &reflow2_core::propagate::BlastRadius,
+    full: bool,
+    offset: Option<usize>,
+    tool: &str,
+) -> Result<serde_json::Value, McpError> {
+    if offset.is_some() && !full {
+        return Err(McpError::invalid_params(
+            format!(
+                "{tool}: `offset` pages `impacted`, which only `full: true` lists — the summary \
+                 has no rows to page. Pass `full: true` with it, or leave `offset` out."
+            ),
+            None,
+        ));
+    }
+    let ser = |e: serde_json::Error| McpError::internal_error(e.to_string(), None);
+    if !full {
+        return serde_json::to_value(radius.summarize()).map_err(ser);
+    }
+    let mut out = serde_json::to_value(radius).map_err(ser)?;
+    let total = radius.impacted.len();
+    let start = offset.unwrap_or(0).min(total);
+    if let Some(rows) = out
+        .get_mut("impacted")
+        .and_then(serde_json::Value::as_array_mut)
+    {
+        rows.drain(..start);
+    }
+    if let Some(o) = out.as_object_mut() {
+        o.insert(
+            "impacted_page".into(),
+            serde_json::json!({"offset": start, "total": total}),
+        );
+    }
+    Ok(out)
+}
+
+/// A blast radius held to its budget: rows first, never a row's words. Every
+/// count stays; each row withheld is named by id in `budget.lists_shortened`,
+/// and a full radius's `impacted_page` says how many rows this page shows and
+/// the `next_offset` to read on from (null when this page reaches the end).
 pub fn bound_radius(out: serde_json::Value, budget: Option<usize>) -> serde_json::Value {
-    crate::reply_budget::bound_reply_rows_first(
+    let budget = budget.unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
+    // The page's `shown` and `next_offset` are known only once the rows are
+    // chosen, so their room is kept back from the budget the rows are fitted
+    // to.
+    const PAGE_FIELDS: usize = 48;
+    let paging = out.get("impacted_page").is_some();
+    let mut out = crate::reply_budget::bound_reply_rows_first(
         out,
-        budget.unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
-        "Read one withheld step with get_node on its id, narrow with `max_depth` or fewer \
-         `seed_ids`, or raise `budget_chars`.",
+        if paging {
+            budget.saturating_sub(PAGE_FIELDS)
+        } else {
+            budget
+        },
+        "Read on with `offset` (the `impacted_page.next_offset` given) and `full: true`, read \
+         one withheld row with get_node on its id, narrow with `max_depth` or fewer seeds, or \
+         raise `budget_chars`.",
         &RADIUS_ROWS,
-    )
+        &["impacted"],
+    );
+    let shown = out
+        .get("impacted")
+        .and_then(serde_json::Value::as_array)
+        .map(Vec::len);
+    if let (Some(shown), Some(page)) = (
+        shown,
+        out.get_mut("impacted_page")
+            .and_then(serde_json::Value::as_object_mut),
+    ) {
+        let start = page
+            .get("offset")
+            .and_then(serde_json::Value::as_u64)
+            .unwrap_or(0) as usize;
+        let total = page
+            .get("total")
+            .and_then(serde_json::Value::as_u64)
+            .unwrap_or(0) as usize;
+        page.insert("shown".into(), serde_json::json!(shown));
+        page.insert(
+            "next_offset".into(),
+            if start + shown < total {
+                serde_json::json!(start + shown)
+            } else {
+                serde_json::Value::Null
+            },
+        );
+    }
+    out
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5933,6 +6046,18 @@ pub struct PropagateChangeReq {
     /// read, and every band is still counted in the summary.
     #[serde(default)]
     pub full: Option<bool>,
+    /// How many characters of JSON this reply may spend (default 30,000), the
+    /// same bound `propagate_from` keeps. Over budget, whole rows are withheld
+    /// from the end of `impacted`, the redo list's groups and the other lists,
+    /// each named by id in `budget.lists_shortened`; no row shown is cut and
+    /// every count stays. The edge-prose notes ride inside the budget.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
+    /// With `full: true`: where in `impacted` to start — pass the reply's
+    /// `impacted_page.next_offset` to read the radius on, page by page, until
+    /// it is null. Refused without `full`, whose summary has no rows to page.
+    #[serde(default)]
+    pub offset: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

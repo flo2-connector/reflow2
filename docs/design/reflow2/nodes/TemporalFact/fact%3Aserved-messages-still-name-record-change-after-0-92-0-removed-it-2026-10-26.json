@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:8d5edc31cb8fd64b411c51db45f8fd470603d1c6007395d0b46d9a634eef33f4",
+  "node_id": "fact:served-messages-still-name-record-change-after-0-92-0-removed-it-2026-10-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "confidence": 0.8,
+    "fact_type": "defect",
+    "name": "ROOT CAUSE (code read, 0.92.0): record_change was removed from the tool list in 0.92.0, but four served runtime messages and one schema description still tell the caller to call it (edge_prose's coverage note riding every propagate_change, the change-axis gap, the hierarchy move note, the planned-epoch refusal), so the chat was pointed at a tool flo2's door refuses",
+    "statement": "RUN AS THE SKILL (root-cause), 2026-10-26, flo2 trial on a sample apartment building design (reflow2 0.92.0).\n\n① OBSERVED: \"record_change is named in reflow2's notes but refused by the chat door.\" NOT affected: the served skills and the served instructions.\n\n② PRECEDENT: reflow2:dec:the-two-renamed-stubs-are-removed-in-the-next-release and reflow2:cap:the-two-renamed-stubs-are-removed (the removal itself); reflow2:fact:the-deprecation-announcement-check-fails-at-the-0-92-0-cut-because-two-stubs-name-0-91-0-whose-notes-never-announced-them-2026-10-26. No finding on prose still naming it.\n\n③ CANDIDATES: (a) a served SKILL names it; (b) the served INSTRUCTIONS (AGENTS.md) name it; (c) runtime messages or schema descriptions in the binary name it; (d) OUTSIDE reflow2: flo2's catalog or door text names it; (e) the agent read an old note from the design itself (graph prose, which is data).\n\n④–⑤ MEASURED in source at v0.92.0: (a) refuted: `git grep record_change v0.92.0 -- getting-started` (the embedded skills and the served AGENTS.md, build.rs kit_dir) finds nothing. (b) refuted (same grep; the repo-root AGENTS.md mentions it at lines 893 and 1171, but that file is not the served one). (c) holds: edge_prose.rs:186 \"`record_change` before an edit is what captures the prior state this reads\" (a coverage_note propagate_change attaches as stale_edge_evidence for every seed with no prior snapshot; the trial ran it on 35 seeds, which makes this the likeliest one the agent met); detect.rs:6914 (the change-axis gap: \"State it with `subject` on record_change or add_change_event\"); hierarchy.rs:652; temporal.rs:1031 (the planned-epoch refusal: \"Call record_change against ... first\"); schema/temporal.yaml's DesignEpoch.status description. (d) refuted: flo2 origin/main refuses both names at the door and its tests assert they are gone (the-gateway-in-front-of-reflow2-0920.test.ts). (e) cannot be excluded: the trial design holds older prose.\n\n⑥ CLASS: a removal checked by the tool list and the changelog, with the tool's name left in prose the binary serves. The same check would have caught manual_work_report (not grepped here).\n\nRECOMMENDED, by correctness: (1) replace each message with snapshot_before_change (same arguments); (2) a test that no served string (every tool description, schema description, and every message a fixture run emits) names a tool absent from tools/list and not in the deprecation registry: it fails today on these five. \n\n⑨ NOT ESTABLISHED: which of the texts the trial agent actually read (its reply was not kept). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "steps": [
+      "propagate_change",
+      "snapshot_before_change"
+    ],
+    "subject_id": "cap:the-two-renamed-stubs-are-removed",
+    "valid_from": "2026-10-26"
+  }
+}

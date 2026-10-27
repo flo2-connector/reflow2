@@ -465,3 +465,78 @@ async fn an_input_that_is_not_a_quantity_or_a_kept_record_is_refused_by_name() {
         .expect_err("an input naming nothing");
     assert!(refused.contains("cst:nothing-here"), "{refused}");
 }
+
+/// A SHEET OR A MODEL THAT DOCUMENTS A PART IS REDRAWN WHEN THE PART CHANGES
+/// (fact:the-redo-list-reaches-a-drawing-or-model-only-by-realizes-so-documents-edges-leave-it-empty-2026-10-26).
+/// On 0.92.0 the walk reached a drawing or a model only through REALIZES, and
+/// followed DOCUMENTS only outward from an Artifact, while the reply's note
+/// said "what a record documents" counts; a designer who drew DOCUMENTS from
+/// the basement sheets and the IFC model to the walls got empty `drawings`
+/// and `models`. OBSERVED FAILING FIRST on main 02e2739c8: both lists empty.
+///
+/// And the other way round: a sheet that shows two parts is redrawn when one
+/// changes, and that does not ask the OTHER part it shows to be redone.
+#[tokio::test]
+async fn a_part_documented_by_a_drawing_and_a_model_returns_both() {
+    let s = the_household_of_four().await;
+    for (id, name) in [
+        ("cmp:basement-walls", "Basement walls"),
+        ("cmp:slab", "Ground slab"),
+    ] {
+        s.ok(
+            "add_component",
+            json!({"id": id, "name": name, "description": "A part of the basement."}),
+        )
+        .await;
+    }
+    s.ok(
+        "add_artifact",
+        json!({"id": "art:sheet-s-201", "name": "S-201 basement walls and slab",
+               "artifact_type": "drawing", "location": "sheets/S-201.pdf",
+               "checksum": "sha256:s201-1"}),
+    )
+    .await;
+    s.ok(
+        "add_artifact",
+        json!({"id": "art:basement-ifc", "name": "basement.ifc", "artifact_type": "model",
+               "location": "basement.ifc", "checksum": "sha256:ifc-1"}),
+    )
+    .await;
+    for (art, part) in [
+        ("art:sheet-s-201", "cmp:basement-walls"),
+        ("art:sheet-s-201", "cmp:slab"),
+        ("art:basement-ifc", "cmp:basement-walls"),
+    ] {
+        s.ok(
+            "documents",
+            json!({"artifact_id": art, "target_id": part, "target_type": "Component"}),
+        )
+        .await;
+    }
+    let r = s
+        .ok(
+            "propagate_from",
+            json!({"seed_ids": ["cmp:basement-walls"]}),
+        )
+        .await;
+    let redo = &r["redo_list"];
+    assert!(redo.is_object(), "a documented part has a redo list: {r}");
+    assert_eq!(ids(&redo["drawings"]), vec!["art:sheet-s-201"], "{r}");
+    assert_eq!(ids(&redo["models"]), vec!["art:basement-ifc"], "{r}");
+    assert!(
+        row(&redo["drawings"], "art:sheet-s-201")["because"]
+            .as_str()
+            .is_some_and(|b| b.contains("documents")),
+        "it says which link put it there: {r}"
+    );
+    assert!(
+        !ids(&redo["parts"]).contains(&"cmp:slab".to_string()),
+        "the slab the sheet also shows is not a part to redo: {r}"
+    );
+    // The note says which edge fills which group, DOCUMENTS among them.
+    let note = redo["note"].as_str().unwrap_or_default();
+    assert!(
+        note.contains("drawings") && note.contains("DOCUMENTS") && note.contains("REALIZES"),
+        "the note names the edges that fill drawings and models: {note}"
+    );
+}

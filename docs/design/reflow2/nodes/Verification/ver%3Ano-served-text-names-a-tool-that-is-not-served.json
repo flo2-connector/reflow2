@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:832c831e800bdf11d717d9efbacb2c4977c74258c5f3559fa0e6f56f24f221fa",
+  "node_id": "ver:no-served-text-names-a-tool-that-is-not-served",
+  "node_type": "Verification",
+  "properties": {
+    "description": "no_served_text_names_a_tool_that_is_not_served.rs reads every served tool description and input-schema description (tools/list with lessons), every Markdown file of the served kit (getting-started/: skills and instructions), schema/*.yaml (what describe_schema serves), and every string literal in crates/reflow2-core/src and crates/reflow2-mcp/src (the fixed prose of replies and refusals; deprecation.rs excepted, whose job is to name a removed tool to refuse it). It fails on any removed tool (a deprecation-registry tool the served list no longer carries) named as a whole word, and on a backticked tool-like name after \"call\" that nothing serves. Anti-vacuity: more than 5,000 literals and at least 20 \"call `tool`\" sentences must be read; the_reader_sees_the_shapes_it_names pins the literal reader (comments, raw strings, continuations, char literals and lifetimes) both ways. Not read: a never-served name in plain prose with no backticks and no \"call\", and graph text.",
+    "findings": "On main 02e2739c8 it FAILS naming exactly the five texts the finding found: detect.rs:6910, edge_prose.rs:183, hierarchy.rs:651, temporal.rs:1030 and schema/temporal.yaml:19, each naming `record_change`; manual_work_report is named by no served text. With the fix it passes (2026-10-26).",
+    "kind": "verification",
+    "last_run_at": "2026-10-26",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/no_served_text_names_a_tool_that_is_not_served.rs",
+    "method": "test",
+    "name": "No served text names a tool that is not served",
+    "status": "passing"
+  }
+}

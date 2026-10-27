@@ -2,11 +2,21 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Blast radius of a recorded ChangeEvent along the golden thread. Returns a summary (counts by distance, the distance-1 ring, risk crossings); pass full=true for every impacted node with its hop chain. ALSO READS THE EDGES' OWN PROSE: `stale_edge_evidence` names edges whose `evidence` or `note` still uses language the changed node has DROPPED — the case where a reader following an edge is misled by text that reads as current. It is lexical, never a refusal, and it says so; a node with no snapshot gets a `coverage_note` saying the check was SILENT about its edges rather than clean on them. Ask for this when you want to know what a change will break downstream — the blast radius of a change you recorded.",
+  "description": "Blast radius of a recorded ChangeEvent along the golden thread. Returns a summary (counts by distance, the distance-1 ring, risk crossings); pass full=true for every impacted node with its hop chain. ALSO READS THE EDGES' OWN PROSE: `stale_edge_evidence` names edges whose `evidence` or `note` still uses language the changed node has DROPPED — the case where a reader following an edge is misled by text that reads as current. It is lexical, never a refusal, and it says so; the nodes with no snapshot are named together with one `coverage_note` saying the check was SILENT about their edges rather than clean on them. Ask for this when you want to know what a change will break downstream — the blast radius of a change you recorded.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000), the\nsame bound `propagate_from` keeps. Over budget, whole rows are withheld\nfrom the end of `impacted`, the redo list's groups and the other lists,\neach named by id in `budget.lists_shortened`; no row shown is cut and\nevery count stays. The edge-prose notes ride inside the budget.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "change_event_id": {
         "description": "The ChangeEvent to propagate from.",
         "type": "string"
@@ -22,6 +32,16 @@
       "max_depth": {
         "default": null,
         "description": "Max traversal depth (default 5).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "offset": {
+        "default": null,
+        "description": "With `full: true`: where in `impacted` to start — pass the reply's\n`impacted_page.next_offset` to read the radius on, page by page, until\nit is null. Refused without `full`, whose summary has no rows to page.",
         "format": "uint",
         "minimum": 0,
         "type": [

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:94af41c3b38f988fa754b2c41e70d79ada930f1fd5eb2a2290d072fd83dde478",
+  "edge_type": "CHANGED",
+  "from_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:loop-status"
+}

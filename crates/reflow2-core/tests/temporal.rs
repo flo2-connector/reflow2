@@ -889,7 +889,7 @@ fn un_scheduling_is_refused_while_the_plan_is_unrecorded() {
         .expect_err("a plan nobody recorded cannot be quietly moved");
     let said = format!("{err:?}");
     assert!(
-        said.contains("record_change") && said.contains("epoch:3"),
+        said.contains("snapshot_before_change") && said.contains("epoch:3"),
         "the refusal must say what to do instead, got: {said}"
     );
 }
@@ -946,7 +946,7 @@ fn changing_a_modality_is_a_rewrite_and_is_refused() {
             None,
         )
         .expect_err("promoting a claim is rewriting it");
-    assert!(format!("{err:?}").contains("record_change"));
+    assert!(format!("{err:?}").contains("snapshot_before_change"));
 }
 
 /// Deleting the requirement takes its commitments with it — a second door onto

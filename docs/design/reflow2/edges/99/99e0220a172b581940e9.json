@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:adb673cde60564fc1198beb0a19002d86a9313998b7f941624a90f06cc97a785",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "properties": {
+    "at": "2026-10-26",
+    "note": "Cause recorded on the finding; every list now gives rows before prose, breaches counted. Partly: a budget below the reply's floor (about 5.4k on reflow2's design) is still answered at the floor, and the reply says so."
+  },
+  "to_id": "fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26"
+}

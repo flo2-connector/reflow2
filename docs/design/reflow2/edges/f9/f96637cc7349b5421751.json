@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:77cf65d1a55e69fde5876891e2b01aed571c4760addb8e98404ba2969cbf0259",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:an-unscoped-loop-status-holds-its-budget-breaches-included",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

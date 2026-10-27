@@ -649,9 +649,9 @@ impl DesignGraph {
                 .join(", ");
             format!(
                 "Detached {names} from '{child_id}'. That containment is design history: if this \
-                 move is not already on the record, record_change against '{child_id}' preserves \
-                 it — taken BEFORE the edit it captures the previous parent, and taken after it \
-                 captures this one."
+                 move is not already on the record, snapshot_before_change against '{child_id}' \
+                 preserves it — taken BEFORE the edit it captures the previous parent, and taken \
+                 after it captures this one."
             )
         });
 

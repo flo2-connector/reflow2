@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:9271e7ea7c953a406ae4bb889068c9c5f566f3a56ea77492de787ebff6c178c1",
+  "node_id": "req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "nonfunctional",
+    "lineage": "derived",
+    "name": "No reply grows with the size of the design: each fills its budget, counts what it left out, and names the call that reads on; one gate checks every served tool, required arguments included",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "who:ajs",
+    "statement": "No reflow2 reply grows with the size of the design it reads (Big O of the reply is bounded by its budget, never O(n)). Every read tool fills its reply up to the caller's or host's budget, keeps its outcome whole, counts what it left out, and names the call (a cursor, an offset, a narrower scope) that reads the rest. One gate calls EVERY served tool, those with required arguments included, on a design large enough to exceed the budget, and fails on any reply over it. Kept as intent by Anthony 2026-10-27 (\"Let's go with your recommendations\"), from the Big O brainstorm, after four replies that grew with the design and had no bound were root-caused the same week (list_my_design_files, search_my_design_files, propagate_change, loop_status).",
+    "status": "accepted"
+  }
+}

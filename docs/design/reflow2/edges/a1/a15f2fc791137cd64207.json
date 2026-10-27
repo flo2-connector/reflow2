@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd00815baddb56a58f5fec3f27ed1024217f1a391e6e547c35fea388f0f3ba97",
+  "edge_type": "MITIGATES",
+  "from_id": "req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on",
+  "properties": {
+    "evidence": "That finding's cause includes a gate that skipped tools with required arguments; this requirement's gate covers them."
+  },
+  "to_id": "fact:propagate-change-full-has-no-budget-or-paging-so-the-door-withholds-it-whole-2026-10-26"
+}

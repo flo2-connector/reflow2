@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3fcdf57bafa424915fa83ace5a439ea1c1a481b09b3ebfa3bde904ac1fa0774d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:served-texts-name-snapshot-before-change-not-the-removed-record-change-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:3e1bc738cddaac8ba230a719ca5ff58dcd53342e25fb9a0834222e65469d90a9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-readings-before-the-shared-evaluation"
+}

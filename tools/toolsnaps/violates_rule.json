@@ -8,6 +8,14 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "detected_at": {
+        "default": null,
+        "description": "WHEN it was found, as a plain date. The open breach it becomes, once\nruled must-fix, is dated by it.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",

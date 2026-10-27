@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:1cd514c593f7502965e33303c03784148b374dac6815154f07ff99f469e8cc3d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:loop-status-keeps-its-floor-2026-10-27",
+  "properties": {
+    "approved_at": "2026-10-27",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4a535dfe9355862b2c2b0f6cd922c1f680aa3e19e19b6afd81476d484bf58d61",
+  "edge_type": "CHANGED",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:f47585e9daea9adf5794880a292d01ae9b3b87c156b812decccabf66edcef276",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-operate"
+}

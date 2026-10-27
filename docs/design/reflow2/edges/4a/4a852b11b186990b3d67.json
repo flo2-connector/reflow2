@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:cb4428d27c0e3e789d654073882cfd65fe038dd31ed37f5b46cd85c46bd4ebfd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

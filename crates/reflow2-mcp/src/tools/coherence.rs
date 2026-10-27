@@ -48,6 +48,11 @@ use reflow2_core::{
 use crate::dto::{EdgeDto, NodeDto};
 use crate::service::*;
 
+/// The `coverage_note` a seed with no prior snapshot keeps in
+/// `propagate_change`'s `stale_edge_evidence`: a pointer to the one note that
+/// explains every such seed, so the entry stays and its words are said once.
+const SILENT_POINTER: &str = "No prior snapshot: see stale_edge_evidence_silent_on.";
+
 #[tool_router(router = coherence_router, vis = "pub")]
 impl ReflowService {
     // ---- DETECT / analyze (deterministic, read-only) ----
@@ -927,16 +932,19 @@ impl ReflowService {
         // with the design — measured 2026-10-14 at 27,951 of 38,939 characters
         // on reflow2's own design, against the 30,000 flo2.io's gateway holds
         // every reply to, replacing a larger one with a refusal. Its prose gives
-        // first, then its rows; `next` keeps the count and the debt lines, and
-        // an answer that fits is returned byte for byte as before.
+        // first, then rows from EVERY list — the breaches too
+        // (fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26)
+        // — and only then prose elsewhere. `next` is never shortened: it keeps
+        // each count and debt line. An answer that fits is returned byte for
+        // byte as before.
         ok_json(crate::reply_budget::bound_reply_list_first(
             payload,
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
             "awaiting_word",
-            "Every awaiting item keeps its node_id, the ids of what delivers it (evidence_ids) \
-             and the call that closes it, and `next` keeps the count; read one in full with \
-             get_node on its node_id, or pass a larger budget_chars to list every row.",
+            &["next"],
+            "Each list is counted beside it (`breaches_open`, `next`). Read a row in full with \
+             get_node on its id, the breaches with detect_gaps, or pass a larger budget_chars.",
         ))
     }
 
@@ -975,8 +983,8 @@ impl ReflowService {
                        impacted node with its hop chain. ALSO READS THE EDGES' OWN PROSE: `stale_edge_evidence` \
                        names edges whose `evidence` or `note` still uses language the changed node has DROPPED \
                        — the case where a reader following an edge is misled by text that reads as current. It \
-                       is lexical, never a refusal, and it says so; a node with no snapshot gets a \
-                       `coverage_note` saying the check was SILENT about its edges rather than clean on them. \
+                       is lexical, never a refusal, and it says so; the nodes with no snapshot are named \
+                       together with one `coverage_note` saying the check was SILENT about their edges rather than clean on them. \
                        Ask for this when you want to know what a change will break downstream — the blast \
                        radius of a change you recorded.",
         title = "Blast Radius of a Change",
@@ -1004,10 +1012,31 @@ impl ReflowService {
         //
         // Seeds are the nodes the ChangeEvent CHANGED, which are exactly the
         // nodes whose wording may have moved out from under an edge.
+        //
+        // THE SEEDS NO SNAPSHOT COVERS ARE ALSO NAMED TOGETHER, under one
+        // note (`stale_edge_evidence_silent_on`), and each one's own entry
+        // keeps its `coverage_note` as a short pointer there: measured
+        // 2026-10-26 on a 579-seed change of reflow2's own design, the
+        // per-seed copies of the note were 541 entries and 55,599 characters
+        // even with their prose cut, more than the whole budget
+        // (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
+        // withholds-it-whole-2026-10-26, candidate (c)). Every entry stays,
+        // because a served reply only grows (Anthony, 2026-10-27, "Keep a
+        // short pointer"); the map's entries give rows to the budget like a
+        // list's (`RADIUS_ROWS`).
         let mut edge_prose = serde_json::Map::new();
+        let mut silent: Vec<&str> = Vec::new();
         for seed in &radius.seeds {
             match g.stale_edge_evidence(seed) {
                 Ok(report) if report.findings.is_empty() && report.coverage_note.is_none() => {}
+                Ok(mut report) if report.findings.is_empty() && report.no_prior_state => {
+                    silent.push(seed);
+                    report.coverage_note = Some(SILENT_POINTER.to_string());
+                    edge_prose.insert(
+                        seed.clone(),
+                        serde_json::to_value(report).unwrap_or(serde_json::Value::Null),
+                    );
+                }
                 Ok(report) => {
                     edge_prose.insert(
                         seed.clone(),
@@ -1020,12 +1049,7 @@ impl ReflowService {
             }
         }
 
-        let mut out = if full {
-            serde_json::to_value(&radius)
-        } else {
-            serde_json::to_value(radius.summarize())
-        }
-        .unwrap_or(serde_json::Value::Null);
+        let mut out = crate::service::radius_value(&radius, full, req.offset, "propagate_change")?;
         if !edge_prose.is_empty()
             && let Some(obj) = out.as_object_mut()
         {
@@ -1034,10 +1058,26 @@ impl ReflowService {
                 serde_json::Value::Object(edge_prose),
             );
         }
+        if !silent.is_empty()
+            && let Some(obj) = out.as_object_mut()
+        {
+            obj.insert(
+                "stale_edge_evidence_silent_on".into(),
+                json!({
+                    "count": silent.len(),
+                    "seeds": silent,
+                    "coverage_note": reflow2_core::edge_prose::NO_PRIOR_STATE,
+                }),
+            );
+        }
         // Across designs only after this design's guard is dropped.
         drop(g);
         self.carry_walk_on(&radius, opts, &mut out).await;
-        ok_json(out)
+        // HELD TO ITS BUDGET BY THE SERIALIZER propagate_from uses
+        // (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
+        // withholds-it-whole-2026-10-26): 38,395 characters on a 35-seed
+        // change were withheld whole at flo2.io's door, and nothing paged.
+        ok_json(crate::service::bound_radius(out, req.budget_chars))
     }
 
     #[tool(
@@ -1087,12 +1127,12 @@ impl ReflowService {
                     ),
                 }));
             };
-            let mut out = if req.full.unwrap_or(false) {
-                serde_json::to_value(&radius)
-            } else {
-                serde_json::to_value(radius.summarize())
-            }
-            .map_err(ser_err)?;
+            let mut out = crate::service::radius_value(
+                &radius,
+                req.full.unwrap_or(false),
+                req.offset,
+                "propagate_from",
+            )?;
             if let Some(obj) = out.as_object_mut() {
                 obj.insert("arrived".into(), json!(true));
                 obj.insert("arriving_from".into(), json!(from));
@@ -1114,12 +1154,12 @@ impl ReflowService {
         let radius = g.propagate_from(&seeds, opts).map_err(dyno_err)?;
         // Across designs only after this design's guard is dropped.
         drop(g);
-        let mut out = if req.full.unwrap_or(false) {
-            serde_json::to_value(&radius)
-        } else {
-            serde_json::to_value(radius.summarize())
-        }
-        .map_err(ser_err)?;
+        let mut out = crate::service::radius_value(
+            &radius,
+            req.full.unwrap_or(false),
+            req.offset,
+            "propagate_from",
+        )?;
         self.carry_walk_on(&radius, opts, &mut out).await;
         // HELD TO ITS BUDGET (fact:the-rocket-equation-rung-ran-on-0-90-0-…,
         // finding (b)): at max_depth 2 the inference walk still reached

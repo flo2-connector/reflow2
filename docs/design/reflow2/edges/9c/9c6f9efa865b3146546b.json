@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:90ecf88c7cdeac585232fdfcc1fbf4613545a61d9c9effe056d52b018b1adbdd",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "at": "2026-10-26",
+    "note": "set_violation_status takes resolved_at and violates_rule detected_at; the gap names the typed tool; a must-fix violation closed through it leaves the open breaches (tested)."
+  },
+  "to_id": "fact:root-cause-the-open-breach-reader-prescribes-resolved-at-that-no-typed-tool-writes-2026-10-26"
+}

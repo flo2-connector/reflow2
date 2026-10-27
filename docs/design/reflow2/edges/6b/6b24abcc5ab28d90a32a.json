@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:7724606ce43e79ab07acadb53969c10364fefa683f4d86b58166b0548dca7ecd",
+  "edge_type": "CHANGED",
+  "from_id": "chg:served-texts-name-snapshot-before-change-not-the-removed-record-change-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-no-served-text-names-a-tool-that-is-not-served"
+}

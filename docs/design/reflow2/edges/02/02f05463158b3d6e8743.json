@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a13b686995e12375ad2fff50c0701eab7d08e23db6e17d8ba3ced31431b01f90",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
