@@ -16,17 +16,16 @@
   is kept for audit. Before, only a hand-written `create_edge` could set it,
   though the open-breach gap told the agent to. `resolved_at` is refused with
   any status but `rejected`.
-
-### Changed
-
-- **`propagate_change` names the seeds the edge-prose check was silent on
-  together, under `stale_edge_evidence_silent_on`** (`count`, `seeds`, one
-  `coverage_note`), instead of a copy of the same note per seed in
-  `stale_edge_evidence`. On a 579-seed change of reflow2's own design the copies
-  were 55,599 characters, more than a whole reply's budget. `stale_edge_evidence`
-  still carries every seed with a finding or another note. **What to do:** a
-  client that read the per-seed `coverage_note` for "no prior snapshot" reads
-  `stale_edge_evidence_silent_on.seeds` instead.
+- **`propagate_change` adds `stale_edge_evidence_silent_on`** (`count`,
+  `seeds`, one `coverage_note`): every seed the edge-prose check was silent on
+  because no snapshot holds its prior state, named once. Each of those seeds
+  keeps its entry in `stale_edge_evidence`, whose `coverage_note` is now a short
+  pointer there ("No prior snapshot: see stale_edge_evidence_silent_on.")
+  rather than the same paragraph per seed: on a 579-seed change of reflow2's
+  own design the copies were 55,599 characters, more than a whole reply's
+  budget. Over the budget, `stale_edge_evidence`'s entries give rows like a
+  list's, each counted in `budget.lists_shortened`. **What to do:** nothing; the
+  explanation is in `stale_edge_evidence_silent_on.coverage_note`.
 
 ### Fixed
 
@@ -44,7 +43,9 @@
   Every list in the reply now gives rows, from its tail and by what it costs,
   before any text is cut, and `budget.lists_shortened` counts what each one
   left out. `next` is never shortened. A budget smaller than the report's own
-  counts still cannot be met, and the reply says so.
+  counts is answered at that floor, over the budget, because the counts are the
+  answer: the `budget` note says the reply is still that size with every list
+  at one row and every long text cut, and why.
 - **No served text names `record_change` any more.** It was removed in 0.92.0,
   and five messages still said to call it: the coverage note `propagate_change`
   attaches for a node with no earlier snapshot, the gap about a change that

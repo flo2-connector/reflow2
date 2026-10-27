@@ -373,3 +373,44 @@ async fn an_unscoped_loop_status_withholds_breach_rows_before_prose_and_counts_t
         "the line that counts the breaches survives whole: {next:?}"
     );
 }
+
+/// BELOW ITS FLOOR THE REPLY SAYS SO, AND WHY (Anthony, 2026-10-27, "Keep the
+/// floor": the counts are the answer). With every list at one row and every
+/// long text cut, what is left is the report's own counts and structure; a
+/// budget smaller than that is answered at the floor, over the budget, and
+/// the budget block says it is at its floor and why, instead of dropping a
+/// count to fit.
+#[tokio::test]
+async fn a_budget_below_the_floor_is_answered_at_the_floor_and_says_why() {
+    let s = session().await;
+    s.node(
+        "Component",
+        "cmp:pump",
+        json!({"name": "Pump", "purpose": "Moves the water."}),
+    )
+    .await;
+    for i in 0..10 {
+        s.node(
+            "TemporalFact",
+            &format!("fact:broken-{i:03}"),
+            json!({"name": format!("Broken {i}: {}", "a measured defect nobody closed ".repeat(4)),
+                   "statement": "Observed broken.", "fact_type": "defect", "basis": "measured",
+                   "subject_id": "cmp:pump", "valid_from": "2026-10-20"}),
+        )
+        .await;
+    }
+    let budget = 500;
+    let r = s.ok("loop_status", json!({"budget_chars": budget})).await;
+    assert!(chars(&r) > budget, "500 is below any loop_status floor");
+    assert_eq!(
+        r["breaches_open"], 10,
+        "the counts are the answer, kept whole"
+    );
+    let note = r["budget"]["note"].as_str().unwrap_or_default();
+    assert!(
+        note.contains("AND THE REPLY IS STILL")
+            && note.contains("what remains is the report's own counts and structure")
+            && note.contains("raise `budget_chars`"),
+        "the reply says it is at its floor and why: {note}"
+    );
+}

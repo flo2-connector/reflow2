@@ -48,6 +48,11 @@ use reflow2_core::{
 use crate::dto::{EdgeDto, NodeDto};
 use crate::service::*;
 
+/// The `coverage_note` a seed with no prior snapshot keeps in
+/// `propagate_change`'s `stale_edge_evidence`: a pointer to the one note that
+/// explains every such seed, so the entry stays and its words are said once.
+const SILENT_POINTER: &str = "No prior snapshot: see stale_edge_evidence_silent_on.";
+
 #[tool_router(router = coherence_router, vis = "pub")]
 impl ReflowService {
     // ---- DETECT / analyze (deterministic, read-only) ----
@@ -1008,20 +1013,29 @@ impl ReflowService {
         // Seeds are the nodes the ChangeEvent CHANGED, which are exactly the
         // nodes whose wording may have moved out from under an edge.
         //
-        // THE SEEDS NO SNAPSHOT COVERS ARE NAMED TOGETHER, under one note
-        // (`stale_edge_evidence_silent_on`), rather than one copy of the note
-        // per seed: measured 2026-10-26 on a 579-seed change of reflow2's own
-        // design, the per-seed copies were 541 entries and 55,599 characters
-        // even with their prose cut, more than the whole budget, and a map
-        // cannot give rows (fact:propagate-change-full-has-no-budget-or-paging-
-        // so-the-door-withholds-it-whole-2026-10-26, candidate (c)).
+        // THE SEEDS NO SNAPSHOT COVERS ARE ALSO NAMED TOGETHER, under one
+        // note (`stale_edge_evidence_silent_on`), and each one's own entry
+        // keeps its `coverage_note` as a short pointer there: measured
+        // 2026-10-26 on a 579-seed change of reflow2's own design, the
+        // per-seed copies of the note were 541 entries and 55,599 characters
+        // even with their prose cut, more than the whole budget
+        // (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
+        // withholds-it-whole-2026-10-26, candidate (c)). Every entry stays,
+        // because a served reply only grows (Anthony, 2026-10-27, "Keep a
+        // short pointer"); the map's entries give rows to the budget like a
+        // list's (`RADIUS_ROWS`).
         let mut edge_prose = serde_json::Map::new();
         let mut silent: Vec<&str> = Vec::new();
         for seed in &radius.seeds {
             match g.stale_edge_evidence(seed) {
                 Ok(report) if report.findings.is_empty() && report.coverage_note.is_none() => {}
-                Ok(report) if report.findings.is_empty() && report.no_prior_state => {
+                Ok(mut report) if report.findings.is_empty() && report.no_prior_state => {
                     silent.push(seed);
+                    report.coverage_note = Some(SILENT_POINTER.to_string());
+                    edge_prose.insert(
+                        seed.clone(),
+                        serde_json::to_value(report).unwrap_or(serde_json::Value::Null),
+                    );
                 }
                 Ok(report) => {
                     edge_prose.insert(

@@ -259,7 +259,8 @@ async fn an_offset_without_full_is_refused_by_name() {
 /// with no prior snapshot carried its own copy of the edge-prose coverage note
 /// (541 entries, 55,599 characters with their prose cut, in a map that cannot
 /// give rows) and the 579 seed ids were a list nothing shortened. The silent
-/// seeds are now named together under one note, and the seed lists give rows.
+/// seeds are now named together under one note, each keeping its own entry
+/// with a pointer there, and the seed lists and the per-seed map give rows.
 #[tokio::test]
 async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
     let s = a_core_with_ninety_dependents().await;
@@ -288,11 +289,20 @@ async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
             .is_some_and(|n| n.contains("snapshot_before_change")),
         "{silent}"
     );
-    assert!(
-        whole.get("stale_edge_evidence").is_none(),
-        "no per-seed copy of the note: {}",
-        whole["stale_edge_evidence"]
-    );
+    // Every seed keeps its own entry (a served reply only grows: Anthony,
+    // 2026-10-27, "Keep a short pointer"), its note a pointer to the one
+    // above rather than a copy of it.
+    let per_seed = whole["stale_edge_evidence"]
+        .as_object()
+        .unwrap_or_else(|| panic!("each seed keeps its entry: {whole}"));
+    assert_eq!(per_seed.len(), PARTS, "no entry is removed");
+    for (seed, entry) in per_seed {
+        assert_eq!(
+            entry["coverage_note"], "No prior snapshot: see stale_edge_evidence_silent_on.",
+            "{seed}: {entry}"
+        );
+        assert_eq!(entry["findings"], json!([]), "{seed}: {entry}");
+    }
     for full in [false, true] {
         let r = s
             .ok(
@@ -310,6 +320,19 @@ async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
         assert_eq!(
             r["stale_edge_evidence_silent_on"]["count"], PARTS,
             "the count stays"
+        );
+        // The per-seed entries gave rows to the budget, each counted.
+        let shortened = r["budget"]["lists_shortened"]
+            .as_array()
+            .unwrap_or_else(|| panic!("full={full}: {}", r["budget"]));
+        let entries = shortened
+            .iter()
+            .find(|l| l["path"] == "stale_edge_evidence")
+            .unwrap_or_else(|| panic!("full={full}: the per-seed map gave rows: {shortened:?}"));
+        assert_eq!(entries["total"], PARTS, "{entries}");
+        assert_eq!(
+            r["stale_edge_evidence"].as_object().map_or(0, |m| m.len()),
+            entries["shown"].as_u64().unwrap() as usize
         );
     }
 }

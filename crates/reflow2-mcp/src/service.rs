@@ -5913,8 +5913,9 @@ pub struct PropagateFromReq {
 
 /// The lists a blast radius withholds rows from, whole, to fit its budget:
 /// the walk's own lists, and each group of the redo list.
-pub const RADIUS_ROWS: [&str; 13] = [
+pub const RADIUS_ROWS: [&str; 14] = [
     "seeds",
+    "stale_edge_evidence",
     "stale_edge_evidence_silent_on.seeds",
     "inferences",
     "impacted",

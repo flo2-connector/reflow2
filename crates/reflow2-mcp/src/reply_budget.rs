@@ -224,10 +224,18 @@ fn apply_caps(body: &Value, lists: &[ListSlot]) -> Value {
 fn cap_array_at(v: &Value, path: &str, keep: usize) -> Value {
     fn walk(v: &Value, parts: &[&str], keep: usize) -> Value {
         if parts.is_empty() {
-            if let Value::Array(a) = v {
-                return Value::Array(a.iter().take(keep).cloned().collect());
-            }
-            return v.clone();
+            return match v {
+                Value::Array(a) => Value::Array(a.iter().take(keep).cloned().collect()),
+                // A map whose entries are rows (bound_reply_rows_first's
+                // `only` may name one): its first `keep` entries.
+                Value::Object(o) => Value::Object(
+                    o.iter()
+                        .take(keep)
+                        .map(|(k, x)| (k.clone(), x.clone()))
+                        .collect(),
+                ),
+                _ => v.clone(),
+            };
         }
         match v {
             Value::Object(o) => Value::Object(
@@ -677,7 +685,8 @@ const WITHHELD_NAMED_MAX: usize = 50;
 /// first [`WITHHELD_NAMED_MAX`] of them, `withheld_not_named` counting the
 /// rest), so each can be read on its own. A list in `paged` is read on by an
 /// offset instead, so its withheld rows are counted and not named
-/// (`read_on: "offset"`). Every count elsewhere in the reply is untouched. A
+/// (`read_on: "offset"`). A path in `only` that holds an OBJECT gives its
+/// entries as rows, each named by its key. Every count elsewhere in the reply is untouched. A
 /// reply that fits is returned unchanged, byte for byte.
 #[must_use]
 pub fn bound_reply_rows_first(
@@ -694,6 +703,24 @@ pub fn bound_reply_rows_first(
     let mut lists = Vec::new();
     collect_lists(&full, "", &mut lists);
     lists.retain(|l| only.contains(&l.path.as_str()));
+    // A MAP NAMED IN `only` GIVES ITS ENTRIES AS ROWS, from the tail of its
+    // key order, each withheld whole and named by its key: a per-node report
+    // keyed by id (propagate_change's `stale_edge_evidence`) grows with the
+    // change exactly as a list does.
+    for path in only {
+        if let Some(Value::Object(o)) = path_value(&full, path)
+            && !o.is_empty()
+        {
+            lists.push(ListSlot {
+                path: (*path).to_string(),
+                costs: o
+                    .iter()
+                    .map(|(k, x)| k.chars().count() + 3 + chars_of(x))
+                    .collect(),
+                keep: o.len(),
+            });
+        }
+    }
     let row_id = |r: &Value| -> Option<Value> {
         // A list of ids (a radius's `seeds`) is its own names.
         if r.is_string() {
@@ -703,19 +730,31 @@ pub fn bound_reply_rows_first(
             .iter()
             .find_map(|k| r.get(*k).filter(|v| v.is_string()).cloned())
     };
-    let assemble = |lists: &[ListSlot], capped: &Value| -> Value {
+    // `name`: name each withheld row by id. The names are what lets a row be
+    // read on its own, and they cost characters too, so when they are what
+    // would push the reply over, the rows are counted without them.
+    let assemble = |lists: &[ListSlot], capped: &Value, name: bool| -> Value {
         let shortened: Vec<Value> = lists
             .iter()
             .filter(|l| l.keep < l.total())
             .map(|l| {
+                if !name {
+                    return json!({"path": l.path, "shown": l.keep, "total": l.total(),
+                                  "withheld_not_named": l.total() - l.keep});
+                }
                 if paged.contains(&l.path.as_str()) {
                     // Read on by offset: naming every row a page leaves for
                     // the next would cost what the page saved.
                     return json!({"path": l.path, "shown": l.keep, "total": l.total(),
                                   "read_on": "offset"});
                 }
-                let rows = path_array(&full, &l.path);
-                let ids: Vec<Value> = rows[l.keep..].iter().filter_map(row_id).collect();
+                let ids: Vec<Value> = match path_value(&full, &l.path) {
+                    Some(Value::Object(o)) => o.keys().skip(l.keep).map(|k| json!(k)).collect(),
+                    _ => path_array(&full, &l.path)[l.keep..]
+                        .iter()
+                        .filter_map(row_id)
+                        .collect(),
+                };
                 let more = ids.len().saturating_sub(WITHHELD_NAMED_MAX);
                 let withheld: Vec<Value> = ids.into_iter().take(WITHHELD_NAMED_MAX).collect();
                 let mut row = json!({"path": l.path, "shown": l.keep, "total": l.total(),
@@ -750,9 +789,13 @@ pub fn bound_reply_rows_first(
                 "note": format!(
                     "WITHHELD TO FIT. The whole answer is {full_chars} characters against a \
                      budget of {budget}. What was withheld is ROWS, each whole, from the end of \
-                     its list: {named}. Each row withheld is named by id in \
-                     `lists_shortened[].withheld`; no row shown was cut, and every count is \
-                     untouched. Raise `budget_chars` if this client has the room. {hint}"
+                     its list: {named}. {which} No row shown was cut, and every count is \
+                     untouched. Raise `budget_chars` if this client has the room. {hint}",
+                    which = if name {
+                        "Each row withheld is named by id in `lists_shortened[].withheld`."
+                    } else {
+                        "The rows withheld are counted, not named: their names did not fit."
+                    }
                 ),
             });
             out = capped.clone();
@@ -769,15 +812,20 @@ pub fn bound_reply_rows_first(
     };
     let mut capped = full.clone();
     for _ in 0..64 {
-        let out = assemble(&lists, &capped);
+        let out = assemble(&lists, &capped, true);
         let now = chars_of(&out);
         if now <= budget {
             return out;
         }
         if shorten_by_chars(&mut lists, now - budget) == 0 {
-            // Every named list is at one row: what remains is prose, which
-            // the usual rungs cut, saying so in their own block.
-            let rows_note = assemble(&lists, &capped);
+            // Every named list is at one row. The withheld rows' names go
+            // first (they are counted all the same); then what remains is
+            // prose, which the usual rungs cut, saying so in their own block.
+            let bare = assemble(&lists, &capped, false);
+            if chars_of(&bare) <= budget {
+                return bare;
+            }
+            let rows_note = bare;
             let mut out = bound_reply(capped, budget, hint);
             if let (Some(o), Some(b)) = (out.as_object_mut(), rows_note.get("budget")) {
                 match o.get_mut("budget").and_then(Value::as_object_mut) {
@@ -793,7 +841,16 @@ pub fn bound_reply_rows_first(
         }
         capped = apply_caps(&full, &lists);
     }
-    assemble(&lists, &capped)
+    assemble(&lists, &capped, false)
+}
+
+/// The value at a dotted path, if every step is an object key.
+fn path_value<'a>(v: &'a Value, path: &str) -> Option<&'a Value> {
+    let mut at = v;
+    for part in path.split('.').filter(|p| !p.is_empty()) {
+        at = at.get(part)?;
+    }
+    Some(at)
 }
 
 /// The array at a dotted object path, or an empty slice.
