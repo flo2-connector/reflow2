@@ -17,6 +17,17 @@
   though the open-breach gap told the agent to. `resolved_at` is refused with
   any status but `rejected`.
 
+### Changed
+
+- **`propagate_change` names the seeds the edge-prose check was silent on
+  together, under `stale_edge_evidence_silent_on`** (`count`, `seeds`, one
+  `coverage_note`), instead of a copy of the same note per seed in
+  `stale_edge_evidence`. On a 579-seed change of reflow2's own design the copies
+  were 55,599 characters, more than a whole reply's budget. `stale_edge_evidence`
+  still carries every seed with a finding or another note. **What to do:** a
+  client that read the per-seed `coverage_note` for "no prior snapshot" reads
+  `stale_edge_evidence_silent_on.seeds` instead.
+
 ### Fixed
 
 - **A drawing or a model that DOCUMENTS a part is on that part's redo list.** A

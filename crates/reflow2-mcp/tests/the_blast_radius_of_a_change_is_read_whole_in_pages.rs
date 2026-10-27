@@ -252,3 +252,64 @@ async fn an_offset_without_full_is_refused_by_name() {
         "it names the argument and what would work: {refused}"
     );
 }
+
+/// A CHANGE TOUCHING MANY NODES FITS TOO. Measured 2026-10-26 on reflow2's own
+/// design (tools/replies_are_bounded.py, a 579-seed change): with the radius
+/// held to 30,000, the reply was still 80,151 characters, because every seed
+/// with no prior snapshot carried its own copy of the edge-prose coverage note
+/// (541 entries, 55,599 characters with their prose cut, in a map that cannot
+/// give rows) and the 579 seed ids were a list nothing shortened. The silent
+/// seeds are now named together under one note, and the seed lists give rows.
+#[tokio::test]
+async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
+    let s = a_core_with_ninety_dependents().await;
+    let affected: Vec<Value> = (0..PARTS)
+        .map(|i| json!({"node_id": format!("cmp:part-{i:03}")}))
+        .collect();
+    s.ok(
+        "add_change_event",
+        json!({"id": "chg:every-unit-refits", "name": "Every unit is refitted",
+               "change_type": "scope_change", "summary": "Every unit is refitted.",
+               "rationale": "A new fit-out standard.", "affected": affected}),
+    )
+    .await;
+    let whole = s
+        .ok(
+            "propagate_change",
+            json!({"change_event_id": "chg:every-unit-refits", "budget_chars": 10_000_000}),
+        )
+        .await;
+    let silent = &whole["stale_edge_evidence_silent_on"];
+    assert_eq!(silent["count"], PARTS, "{silent}");
+    assert_eq!(silent["seeds"].as_array().map_or(0, Vec::len), PARTS);
+    assert!(
+        silent["coverage_note"]
+            .as_str()
+            .is_some_and(|n| n.contains("snapshot_before_change")),
+        "{silent}"
+    );
+    assert!(
+        whole.get("stale_edge_evidence").is_none(),
+        "no per-seed copy of the note: {}",
+        whole["stale_edge_evidence"]
+    );
+    for full in [false, true] {
+        let r = s
+            .ok(
+                "propagate_change",
+                json!({"change_event_id": "chg:every-unit-refits", "full": full,
+                       "budget_chars": 4_000}),
+            )
+            .await;
+        assert!(
+            chars(&r) <= 4_000,
+            "full={full}: {} chars, {}",
+            chars(&r),
+            r["budget"]
+        );
+        assert_eq!(
+            r["stale_edge_evidence_silent_on"]["count"], PARTS,
+            "the count stays"
+        );
+    }
+}

@@ -978,8 +978,8 @@ impl ReflowService {
                        impacted node with its hop chain. ALSO READS THE EDGES' OWN PROSE: `stale_edge_evidence` \
                        names edges whose `evidence` or `note` still uses language the changed node has DROPPED \
                        — the case where a reader following an edge is misled by text that reads as current. It \
-                       is lexical, never a refusal, and it says so; a node with no snapshot gets a \
-                       `coverage_note` saying the check was SILENT about its edges rather than clean on them. \
+                       is lexical, never a refusal, and it says so; the nodes with no snapshot are named \
+                       together with one `coverage_note` saying the check was SILENT about their edges rather than clean on them. \
                        Ask for this when you want to know what a change will break downstream — the blast \
                        radius of a change you recorded.",
         title = "Blast Radius of a Change",
@@ -1007,10 +1007,22 @@ impl ReflowService {
         //
         // Seeds are the nodes the ChangeEvent CHANGED, which are exactly the
         // nodes whose wording may have moved out from under an edge.
+        //
+        // THE SEEDS NO SNAPSHOT COVERS ARE NAMED TOGETHER, under one note
+        // (`stale_edge_evidence_silent_on`), rather than one copy of the note
+        // per seed: measured 2026-10-26 on a 579-seed change of reflow2's own
+        // design, the per-seed copies were 541 entries and 55,599 characters
+        // even with their prose cut, more than the whole budget, and a map
+        // cannot give rows (fact:propagate-change-full-has-no-budget-or-paging-
+        // so-the-door-withholds-it-whole-2026-10-26, candidate (c)).
         let mut edge_prose = serde_json::Map::new();
+        let mut silent: Vec<&str> = Vec::new();
         for seed in &radius.seeds {
             match g.stale_edge_evidence(seed) {
                 Ok(report) if report.findings.is_empty() && report.coverage_note.is_none() => {}
+                Ok(report) if report.findings.is_empty() && report.no_prior_state => {
+                    silent.push(seed);
+                }
                 Ok(report) => {
                     edge_prose.insert(
                         seed.clone(),
@@ -1030,6 +1042,18 @@ impl ReflowService {
             obj.insert(
                 "stale_edge_evidence".into(),
                 serde_json::Value::Object(edge_prose),
+            );
+        }
+        if !silent.is_empty()
+            && let Some(obj) = out.as_object_mut()
+        {
+            obj.insert(
+                "stale_edge_evidence_silent_on".into(),
+                json!({
+                    "count": silent.len(),
+                    "seeds": silent,
+                    "coverage_note": reflow2_core::edge_prose::NO_PRIOR_STATE,
+                }),
             );
         }
         // Across designs only after this design's guard is dropped.

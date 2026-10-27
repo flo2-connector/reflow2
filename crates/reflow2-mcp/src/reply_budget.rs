@@ -695,6 +695,10 @@ pub fn bound_reply_rows_first(
     collect_lists(&full, "", &mut lists);
     lists.retain(|l| only.contains(&l.path.as_str()));
     let row_id = |r: &Value| -> Option<Value> {
+        // A list of ids (a radius's `seeds`) is its own names.
+        if r.is_string() {
+            return Some(r.clone());
+        }
         ["id", "node_id", "inference"]
             .iter()
             .find_map(|k| r.get(*k).filter(|v| v.is_string()).cloned())

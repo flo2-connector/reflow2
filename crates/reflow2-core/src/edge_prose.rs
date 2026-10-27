@@ -97,7 +97,21 @@ pub struct EdgeProseReport {
     /// What this check cannot tell, carried with every answer rather than left
     /// in the docs where a reader quoting the result will not see it.
     pub caveat: &'static str,
+    /// True when the check was silent ONLY because no snapshot holds a prior
+    /// state for the node — the case `coverage_note` explains in
+    /// [`NO_PRIOR_STATE`]'s words. Not serialized: a caller naming many such
+    /// nodes (propagate_change's seeds) groups them under one note instead of
+    /// repeating it per node.
+    #[serde(skip)]
+    pub no_prior_state: bool,
 }
+
+/// Why the check is silent about a node no snapshot holds a prior state for,
+/// said once for every such node.
+pub const NO_PRIOR_STATE: &str = "No snapshot holds a PRIOR state for these, so this check is \
+     silent about their edges rather than clean about them — with nothing to compare against, an \
+     edge whose prose outlived the node is indistinguishable from one that never matched it. \
+     `snapshot_before_change` before an edit is what captures the prior state this reads.";
 
 const CAVEAT: &str = "A LEXICAL CHECK, NOT A SEMANTIC ONE. It reports that an edge's prose still \
                       uses words the node has dropped — which is usually staleness and is \
@@ -153,6 +167,7 @@ impl DesignGraph {
                      edge's prose against."
                 )),
                 caveat: CAVEAT,
+                no_prior_state: false,
             });
         };
         let Some(current) = self.get_node(node_type, node_id)? else {
@@ -161,6 +176,7 @@ impl DesignGraph {
                 edges_with_prose: 0,
                 coverage_note: Some(format!("'{node_id}' could not be read.")),
                 caveat: CAVEAT,
+                no_prior_state: false,
             });
         };
         let now = terms(&text_of(&current.properties));
@@ -187,6 +203,7 @@ impl DesignGraph {
                      captures the prior state this reads."
                 )),
                 caveat: CAVEAT,
+                no_prior_state: true,
             });
         };
 
@@ -253,6 +270,7 @@ impl DesignGraph {
             edges_with_prose,
             coverage_note: None,
             caveat: CAVEAT,
+            no_prior_state: false,
         })
     }
 }
