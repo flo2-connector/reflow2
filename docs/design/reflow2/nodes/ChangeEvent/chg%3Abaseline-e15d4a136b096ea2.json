@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:22168eda1b23fec6c9a271a30a36f5ab0bb4ca2ad7a96c04181370829981f612",
+  "node_id": "chg:baseline-e15d4a136b096ea2",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-26",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:test-a-fixed-rule-violation-closes-through-its-typed-tool' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position.",
+    "subject": "record"
+  }
+}

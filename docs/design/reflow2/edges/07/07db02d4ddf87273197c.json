@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d0cb3aa4e8c0c73857e13483a72ab83d9dd1b608892f8153723fc9cc6949ba83",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-part-documented-by-a-drawing-and-a-model-is-on-its-redo-list",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

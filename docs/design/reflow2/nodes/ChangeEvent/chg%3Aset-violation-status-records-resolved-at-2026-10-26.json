@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:b779b4bcd3e849d08045ed6f9c3fb83bb02a8cde569432078ad17cbcdc9277dd",
+  "node_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "36af92db2",
+    "detected_at": "2026-10-26",
+    "name": "set_violation_status takes resolved_at and violates_rule takes detected_at; the open-breach gap names the typed tool",
+    "rationale": "Root cause (fact:root-cause-the-open-breach-reader-prescribes-resolved-at-that-no-typed-tool-writes-2026-10-26): the reader keyed on a property no served writer set, so the documented close path was the generic edge write that bypasses the triage tool's checks. Fixed at the writer, and the prose now names it. Before/after, measured: on main 02e2739c8 both new tests fail (unknown fields detected_at and resolved_at); after, both pass, and so do the core breach and compliance tests. Not done: the finding's further step, a check that every property a reader keys on has a served typed writer. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Core DesignGraph::set_violation_status takes resolved_at (refused blank, and refused with any status but `rejected`; an existing resolved_at is kept when none is passed) and violates_rule takes detected_at; ViolationStatusReq.resolved_at and ViolatesRuleReq.detected_at serve them, and set_violation_status's reply echoes resolved_at. The open-breach gap's close text (detect.rs) now says: call `set_violation_status` with `status` `rejected` and `resolved_at`, instead of \"record `resolved_at` on the VIOLATES_RULE edge\". an_open_breach_reaches_the_loop.rs closes its violation through the typed writer instead of create_edge. Test: a_fixed_rule_violation_closes_through_its_typed_tool.rs."
+  }
+}

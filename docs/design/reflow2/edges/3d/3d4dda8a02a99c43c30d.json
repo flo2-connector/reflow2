@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ce97bcea34b895e70392aaa0b39d6d73720347873254f9a926dd0dac27a97366",
+  "edge_type": "CHANGED",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

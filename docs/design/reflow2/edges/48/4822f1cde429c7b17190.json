@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e0efd2381f922fd413698e55ea007498451a968ac0f4f2fc19870c2c26531c6f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-redo-list-follows-documents-into-drawings-and-models-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-part-documented-by-a-drawing-and-a-model-is-on-its-redo-list"
+}

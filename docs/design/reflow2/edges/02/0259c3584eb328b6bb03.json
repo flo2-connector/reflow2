@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3201f8f518bbeb568fa992eb5cb8e1982d11d75a04f9c5f256c349ea25f874a2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:served-texts-name-snapshot-before-change-not-the-removed-record-change-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-two-renamed-stubs-are-removed"
+}

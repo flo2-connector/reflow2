@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3ea89e8924515f7d4cfd21554f860f987ba5a13f5a62eb0c8b1a9b1c7f652dcf",
+  "edge_type": "CHANGED",
+  "from_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 34,
+    "action": "modified",
+    "checksum_after": "sha256:601b7a30e8d9b23c769f04c252b79421437feca9c02de071ce4d7853b2e293e5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

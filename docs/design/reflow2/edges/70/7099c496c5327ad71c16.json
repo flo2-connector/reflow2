@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5b6e195cf69f53d144a3fd6c8b14c94163aaaf26a70b910b19c0af48f38a7a4f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:a-fixed-rule-violation-closes-through-its-typed-tool"
+}

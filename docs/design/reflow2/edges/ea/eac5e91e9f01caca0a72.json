@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8e7a6972b5c0ad1250d9c55b5b88b4e8e970d7ea1f9056d99813b3fa0b41667f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:replies-are-bounded-gate",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:the-blast-radius-of-a-change-is-read-whole-in-pages"
+}

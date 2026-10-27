@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd5720ca522d8365108f2a6fae0ee7c40afca7f820b247b2aaf53332b232f695",
+  "edge_type": "CHANGED",
+  "from_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 6,
+    "action": "modified",
+    "checksum_after": "sha256:59b32961ec96d9dc58dab71ddbf8e05108133cac89e4b422dd7aee7aa5353612",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reply-budget"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:117df62f3f9a1cc8d5f3ab9984db626bc75a5419457ca31e0ba17bff1816ffbb",
+  "edge_type": "CAUSES",
+  "from_id": "art:awaiting",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "awaiting.rs v0.92.0 builds awaiting_word from two families only (DeliveredRequirement, PromotedIdea); report.rs fills it only when contributor_id is given, and counts a proposed Decision as assigned only when it carries AUTHORED_BY role=approver (report.rs ~1120). The name reads as everything awaiting the owner's word.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:awaiting-word-lists-only-built-work-so-new-proposed-decisions-awaiting-the-owner-read-as-nothing-2026-10-26"
+}

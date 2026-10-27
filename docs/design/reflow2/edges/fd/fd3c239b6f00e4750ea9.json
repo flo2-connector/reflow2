@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:51ca539faf3e79a32ae24b67e63b11f04accf76f9df7623818a86d1a86947c8f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-redo-list-reaches-a-drawing-or-model-only-by-realizes-so-documents-edges-leave-it-empty-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

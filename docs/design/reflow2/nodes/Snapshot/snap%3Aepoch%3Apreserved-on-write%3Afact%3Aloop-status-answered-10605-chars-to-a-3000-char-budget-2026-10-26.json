@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e422bee1201afe7b500ed6968141577362c91fabbb36066680f065e5c5466bd",
+  "node_id": "snap:epoch:preserved-on-write:fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26",
+  "node_type": "Snapshot",
+  "properties": {
+    "edges": "[{\"direction\":\"in\",\"edge_type\":\"HAS_TEMPORAL_FACT\",\"other_type\":\"Decision\",\"other_id\":\"dec:idea-the-owners-list-of-what-awaits-their-word-is-read-whole-in-one-call\",\"properties\":{}},{\"direction\":\"out\",\"edge_type\":\"AUTHORED_BY\",\"other_type\":\"Contributor\",\"other_id\":\"who:ajs\",\"properties\":{\"authored_via\":[\"who:agent-8d84cd1476\"],\"roles\":[\"author\"]}}]",
+    "state": "{\"basis\":\"measured\",\"fact_type\":\"defect\",\"name\":\"loop_status answered 10,605 characters when asked for budget_chars 3000 (the breach list is kept whole)\",\"statement\":\"Observed 2026-10-26 by the trial-triage agent on reflow2's design through flo2.io (reflow2 0.92.0): loop_status with budget_chars 3000 answered 10,605 characters; the reply kept the whole breach list. Observation only: the cause is not established (whether `breaches` is exempt from the budget by design, or the budget is not applied to it). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P\",\"steps\":[\"loop_status\"],\"subject_id\":\"dec:idea-the-owners-list-of-what-awaits-their-word-is-read-whole-in-one-call\",\"valid_from\":\"2026-10-26\"}",
+    "target_id": "fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26",
+    "target_type": "TemporalFact"
+  }
+}

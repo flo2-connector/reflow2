@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e1ef455ee5a76e1b1cc89f323215eaef7a33ad17cd4b882cedc91ae28f7dbb71",
+  "node_id": "chg:served-texts-name-snapshot-before-change-not-the-removed-record-change-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "36af92db2",
+    "detected_at": "2026-10-26",
+    "name": "No served text names record_change; a test reads every served text for a tool that is not served",
+    "rationale": "Root cause (fact:served-messages-still-name-record-change-after-0-92-0-removed-it-2026-10-26): the removal was checked by the tool list and the changelog, and prose the binary serves was checked by nothing. Driving every message from a fixture would reach only what a fixture triggers (the five were behind five different paths), so the check reads the literals where the text is written; PR #804's sibling check reads argument names in descriptions, this one tool names in all served text. Before/after, measured: on main 02e2739c8 the test fails naming exactly the five texts (detect.rs:6910, edge_prose.rs:183, hierarchy.rs:651, temporal.rs:1030, schema/temporal.yaml:19); manual_work_report appears in none; after, it passes. Limit stated in the test: a never-served name in plain prose with no backticks and no \"call\" is not caught. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "The five served texts that still named record_change (edge_prose.rs coverage note, detect.rs change-axis gap, hierarchy.rs move note, temporal.rs planned-epoch refusal, schema/temporal.yaml DesignEpoch.status) name snapshot_before_change, the replacement docs/upgrading-to-v0.92.0.md names; four core tests that pinned the old word follow. New test no_served_text_names_a_tool_that_is_not_served.rs reads tool and schema descriptions, the served kit (getting-started/**/*.md), schema/*.yaml and every string literal in both crates' src (deprecation.rs excepted) for a removed tool named as a word, and for a \"call `x`\" nothing serves."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:59539957f756090316a8f3d451c2f9bb1a9cf3f742d2de0755cd5219f75a6d06",
+  "node_id": "chg:loop-status-gives-rows-from-every-list-before-prose-2026-10-26",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "36af92db2",
+    "detected_at": "2026-10-26",
+    "name": "loop_status's bound gives rows from every list, breaches included, before cutting prose",
+    "rationale": "Root cause, established and recorded on fact:loop-status-answered-10605-chars-to-a-3000-char-budget-2026-10-26: the bound named one list (awaiting_word, the biggest on 2026-10-14) as allowed to give rows, while the reply holds a dozen lists that grow with the design, each counted beside it; with nothing awaiting it cut 104 texts to nothing and kept all 20 breach rows. Before/after, measured: the new test fails on main (7,100 characters to a 6,000 budget, breaches whole) and passes after; on main's design copy, budget 10,000 → 9,754 and 6,000 → 5,249. NOT met: 3,000 → 5,449, the reply's floor (every count, one row per list, every long text cut), which the reply says; reaching it would need lists emptied or counts dropped, which the budget rule forbids, so that is the owner's call. A step toward req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on, not its completion. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "reply_budget::bound_reply_list_first(full, budget, list, keep_whole, hint) gives, in order: the named list's prose; ROWS from every list in the reply but those kept whole (loop_status keeps `next`), costliest first, each whole from its tail to a floor of one, every shortened list counted in budget.lists_shortened {path, shown, total}; only then prose anywhere else. With the named list empty it no longer falls straight to the prose-only bound. The block's note names how many lists gave rows instead of repeating them, and says \"No text was cut\" when only rows went. Test: a_scoped_loop_status_fits_its_budget.rs::an_unscoped_loop_status_withholds_breach_rows_before_prose_and_counts_them."
+  }
+}

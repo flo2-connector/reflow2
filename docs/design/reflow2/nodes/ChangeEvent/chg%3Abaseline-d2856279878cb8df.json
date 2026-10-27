@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:334393ac7e4b4df5656a499963bf7356b34f75cf9766edef11a25a315e20e824",
+  "node_id": "chg:baseline-d2856279878cb8df",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "baseline_established",
+    "detected_at": "2026-10-26",
+    "name": "Recorded as a FIRST BASELINE (baseline_established): 'art:test-no-served-text-names-a-tool-that-is-not-served' had no checksum, so the disposition passed could claim nothing about a movement nobody observed. Nothing moved and the design took no position.",
+    "subject": "record"
+  }
+}

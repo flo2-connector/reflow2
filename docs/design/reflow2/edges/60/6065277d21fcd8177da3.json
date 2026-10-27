@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:e3a0612ce734a097fcbac5cf1b72e5025c90878bc1647e2d69be2159a8faac85",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-software-parts-growth-is-measured-at-several-sizes-and-budgeted-at-its-real-size",
+  "properties": {
+    "approved_at": "2026-10-27",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:2ea631c4d60e6ac9388b06dea6fcf3ea15ec1fc3d29f79fe177cb923f61734ab",
+  "node_id": "ver:a-part-documented-by-a-drawing-and-a-model-is-on-its-redo-list",
+  "node_type": "Verification",
+  "properties": {
+    "description": "a_changed_quantity_names_every_kept_computation_that_used_it.rs::a_part_documented_by_a_drawing_and_a_model_returns_both: basement walls and a slab; sheet S-201 (artifact_type drawing) DOCUMENTS both, an IFC model (model) DOCUMENTS the walls. propagate_from on the walls lists the sheet in drawings and the model in models, each saying \"documents\"; the slab the sheet also shows is not listed as a part to redo; the redo list's note names DOCUMENTS and REALIZES and the drawings group.",
+    "findings": "On main 02e2739c8 it FAILS: the radius reaches nothing and carries no redo_list. With the fix it passes, with the file's other seven redo-list tests (2026-10-26).",
+    "kind": "verification",
+    "last_run_at": "2026-10-26",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_changed_quantity_names_every_kept_computation_that_used_it.rs",
+    "method": "test",
+    "name": "A part documented by a drawing and a model puts both on its redo list",
+    "status": "passing"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:ea9694b8fd824870a7ff21099135104e3c0dce5a6bb5cae8975ee62ed9842079",
+  "edge_type": "CHANGED",
+  "from_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:47cd454e1ff1c175c8b4f8365805c6143591cf1b2a383013febb65c227c69bad",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:edge-prose"
+}

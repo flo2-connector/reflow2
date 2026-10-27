@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:01392cd94eef6fdd7f427bf10ad8a5d33ccf132ef0258d22d5f864ff6deeac83",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:served-messages-still-name-record-change-after-0-92-0-removed-it-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

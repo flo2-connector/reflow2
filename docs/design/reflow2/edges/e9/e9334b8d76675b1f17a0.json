@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5bd0df440214b8332a0f0aeb9b251f1ca3cc688874cb214ed91aeaefa23d915f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:propagate-change-is-held-to-its-budget-and-pages-like-propagate-from-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

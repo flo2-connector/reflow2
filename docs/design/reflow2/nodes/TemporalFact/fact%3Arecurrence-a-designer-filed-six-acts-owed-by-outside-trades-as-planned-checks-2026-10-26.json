@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:11ba3f446fbea26bc7d6f4801acd1fcc38d3e0ba3cb9455ddc77f14f9ff37695",
+  "node_id": "fact:recurrence-a-designer-filed-six-acts-owed-by-outside-trades-as-planned-checks-2026-10-26",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "RECURRENCE 2026-10-26 (second trial the same day): on a sample apartment building design a designer filed six acts owed by outside trades (architect of record, geotechnical and dewatering, MEP and fire, shoring, structural, the permit office) as planned Verifications named \"OWED by ...\", for want of a record of owed work by a role",
+    "statement": "MEASURED read-only on the trial design (loop_status scoped to the owner, 2026-10-26): its verifications list holds six `planned` checks named \"OWED by the architect of record ...\", \"OWED by the geotechnical engineer and the dewatering hydrogeologist ...\", \"OWED by the mechanical, plumbing, electrical and fire protection designers ...\", \"OWED by the owner's team with the permit office ...\", \"OWED by the shoring engineer ...\", \"OWED by the structural engineer of record ...\", each never run; loop_status reads them as checks never run, not as work owed by a named party. The same workaround reflow2:fact:an-act-owed-by-an-outside-party-has-pieces-but-no-record-or-reader-2026-10-26 measured on another sample design that morning: the idea's need recurs on a second domain, unprompted. No new cause; the idea stands as recorded. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject_id": "dec:idea-an-action-owed-by-an-outside-party-is-recorded-with-who-and-by-when",
+    "valid_from": "2026-10-26"
+  }
+}

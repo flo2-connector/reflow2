@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4f03fb8a8db77476846f3663c8eee3cdde630a9ef5381fc1583f5ccc5bf1d115",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:recurrence-a-designer-filed-six-acts-owed-by-outside-trades-as-planned-checks-2026-10-26",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0e3b0d0b34e37616a7790c5526368193289d90dfc060f0268b5be560fec39613",
+  "edge_type": "CAUSES",
+  "from_id": "art:deprecation",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "deprecation.rs's registry removes the tool and the changelog test checks the announcement, but nothing checks served prose (format! messages in reflow2-core, schema/*.yaml descriptions) for a removed tool's name; at v0.92.0 edge_prose.rs:186, detect.rs:6914, hierarchy.rs:652, temporal.rs:1031 and schema/temporal.yaml still say record_change.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:served-messages-still-name-record-change-after-0-92-0-removed-it-2026-10-26"
+}

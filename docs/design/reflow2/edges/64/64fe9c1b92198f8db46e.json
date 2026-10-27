@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8feba0122c0f7a39c68db5d84f280ae786a8c7177978c98fc1b86a5f96fbb212",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-software-design-records-how-its-costs-grow-with-size-big-o",
+  "properties": {
+    "evidence": "Option (c) is that requirement's budget applied at the design's expected size; Big O would add the growth beyond it.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:time-and-tokens-are-measured-per-task-against-budgets"
+}

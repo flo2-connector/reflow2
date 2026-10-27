@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c441ea711d214a5573d995d963e66a56501871a58dd32a382634ecc6e4b07012",
+  "edge_type": "CHANGED",
+  "from_id": "chg:set-violation-status-records-resolved-at-2026-10-26",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:d6e89f02f02143ec42b5c6d2c17ca0d137b69ff55664414d1a4a34d01785daa3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-compliance-layer-is-whole"
+}
