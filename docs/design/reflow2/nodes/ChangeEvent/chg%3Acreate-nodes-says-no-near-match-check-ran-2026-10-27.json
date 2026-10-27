@@ -1,16 +1,16 @@
 {
-  "content_hash": "sha256:50397bcc33246df02573ec488fa3ebcbbc939d480aede24ba1a5aa31a34a4039",
+  "content_hash": "sha256:30c83975839ccc45a4e8d6aab386db1fa966f2351ef7a300f1c789da2a94bfac",
   "node_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
   "node_type": "ChangeEvent",
   "properties": {
     "change_type": "defect_fix",
-    "commits": "2ed43b8cd",
+    "commits": "2ed43b8cd,0b51e5a62",
     "detected_at": "2026-10-27",
     "name": "create_nodes and create_node say no near-match check ran, and name the reads that check",
-    "rationale": "Recorded on fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27: skipping the check on bulk paths is deliberate (cap:search-first-at-the-tool), but a silent reply read as \"nothing close\" (req:no-silent-fallback). Option (a): the reply says so, with the description change kept to one sentence because descriptions move find_tools rankings (#805). No read checks a whole list at once yet: dec:idea-a-bulk-matcher-says-which-of-a-list-of-texts-the-design-already-holds is accepted but waits on its measurement, so the reply names search_design per item and says no bulk read exists yet. find_tools: every ranking test passes; the baseline pair (create_edge, create_edges) came apart and was removed, as the baseline only shrinks. Additive: one new reply field. Before/after: the test fails on main 983811cae and passes after. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale": "Recorded on fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27: skipping the check on bulk paths is deliberate (cap:search-first-at-the-tool), but a silent reply read as \"nothing close\" (req:no-silent-fallback). Option (a): the replies say so; the description change is kept to one sentence on create_nodes, because descriptions move find_tools rankings (#805) and create_node's is at its length limit. No read checks a whole list at once yet: dec:idea-a-bulk-matcher-says-which-of-a-list-of-texts-the-design-already-holds is accepted but waits on its measurement, so the reply names search_design per item and says no bulk read exists yet. find_tools: every ranking test passes against main's baseline. Additive: one new reply field. Before/after: the test fails on main 983811cae and passes after. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
     "rationale_basis": "contemporaneous",
     "repair": "corrected_cause",
     "subject": "system",
-    "summary": "service::NO_NEAR_MATCH_CHECK and bulk_result_noting: create_nodes' reply (applied and check_only) and create_node's carry `near_match_check`, saying no check ran on this generic path (by design) and naming search_design per item, a typed tool, or relation_candidates after writing. Each tool's description gains one sentence: \"No near-match check runs (the typed tools run one).\" Test: a_bulk_write_says_no_near_match_check_ran.rs."
+    "summary": "service::NO_NEAR_MATCH_CHECK and bulk_result_noting: create_nodes' reply (applied and check_only) and create_node's carry `near_match_check`, saying no check ran on this generic path (by design) and naming search_design per item, a typed tool, or relation_candidates after writing. create_nodes' description gains one sentence: \"No near-match check runs (the typed tools run one).\" create_node's description is unchanged: with the sentence it was 1,539 characters, past skill_lint's 1,500 limit (found by CI's core gates), so it is said in its reply only. Test: a_bulk_write_says_no_near_match_check_ran.rs."
   }
 }

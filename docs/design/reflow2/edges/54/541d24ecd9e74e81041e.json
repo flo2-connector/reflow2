@@ -1,12 +1,12 @@
 {
-  "content_hash": "sha256:6b774ff7baf958ea77a34295f220cfc6bf4cef46ff1ad3d5083849544014b179",
+  "content_hash": "sha256:6cf6b16092229251d77ae31b2626eb254e5473a905627a1dd71bb576e11be5df",
   "edge_type": "CHANGED",
   "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
   "properties": {
     "accepted_baseline": true,
     "accepted_seq": 32,
     "action": "modified",
-    "checksum_after": "sha256:9229a5573505233f32385d446863fad82fcbeff68b99934cfed1e958aab2a84e",
+    "checksum_after": "sha256:60653cfcb0b2c328ba94ff07890609b1cebdf4f2edc2eb1cad05b1abce744241",
     "checksum_basis": "asserted"
   },
   "to_id": "art:tools-query"

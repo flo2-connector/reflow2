@@ -1,10 +1,10 @@
 {
-  "content_hash": "sha256:a595f0696b459bc53998d7cd4c7b15f1169d34c153686b9df651b8407ced0439",
+  "content_hash": "sha256:57da86112f199b3bcf5060ae60ef323622a0af1ff5df74f598ed5db170c2a9c3",
   "node_id": "ver:a-bulk-write-says-no-near-match-check-ran",
   "node_type": "Verification",
   "properties": {
     "description": "a_bulk_write_says_no_near_match_check_ran.rs::create_nodes_and_create_node_say_no_near_match_check_ran: create_nodes (two alike requirements) and create_node each carry `near_match_check`, saying NO NEAR-MATCH CHECK RAN and naming search_design.",
-    "findings": "On main 983811cae it FAILS: create_nodes' reply has no near_match_check. With the fix it passes; the find_tools ranking tests pass, and one baseline pair (create_edge, create_edges) came apart and was removed, as the baseline only shrinks (2026-10-27).",
+    "findings": "On main 983811cae it FAILS: create_nodes' reply has no near_match_check. With the fix it passes, and the find_tools ranking tests pass against main's rank baseline (create_node's description is kept as on main, at its 1,500-character limit) (2026-10-27).",
     "kind": "verification",
     "last_run_at": "2026-10-27",
     "level": "integration",
