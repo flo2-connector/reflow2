@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4aeacdf40e62a6a3b56d0e657d8695c65755113eb9d29e44eb8cf0a4153cdbc0",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
+  "properties": {
+    "at": "2026-10-27",
+    "note": "Option (a): create_nodes' and create_node's replies carry near_match_check (no check ran; search_design per item, a typed tool, or relation_candidates), and each description says so in one sentence. Pinned by a_bulk_write_says_no_near_match_check_ran.rs, failing on main 983811cae."
+  },
+  "to_id": "fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27"
+}

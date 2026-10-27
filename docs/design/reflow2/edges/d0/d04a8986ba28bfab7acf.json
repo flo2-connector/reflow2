@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7edee29a6c88a23a9d3b34a533012f5ce565f351981b6ef51b150305bddece09",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-reasoning-summary-keeps-its-room-and-the-budget-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

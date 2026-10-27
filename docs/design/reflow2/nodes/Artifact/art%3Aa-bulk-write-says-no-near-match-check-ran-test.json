@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b5429c3bed4505cad5f11050e5fe73584452eb104e62878f267fede6a531775a",
+  "node_id": "art:a-bulk-write-says-no-near-match-check-ran-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:2e140876c8add72acfffee42399199310fd8b2f2636e2b7d3038851e81d06c60",
+    "description": "Pins over MCP that create_nodes (two alike requirements) and create_node each carry `near_match_check` in the reply, saying NO NEAR-MATCH CHECK RAN and naming search_design as the read that checks.",
+    "location": "crates/reflow2-mcp/tests/a_bulk_write_says_no_near_match_check_ran.rs",
+    "name": "tests/a_bulk_write_says_no_near_match_check_ran.rs",
+    "status": "realized"
+  }
+}

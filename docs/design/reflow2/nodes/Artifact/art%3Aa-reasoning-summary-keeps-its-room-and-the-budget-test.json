@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:014d97739f125713b9b4593c40bbb60de13ab9668b4f66f0162e212933d4e213",
+  "node_id": "art:a-reasoning-summary-keeps-its-room-and-the-budget-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "checksum": "sha256:f0b840b223f73c19276ad45f6f59698224a324e9b9b71c96addd75100bb62a0c",
+    "description": "Pins reasoning_report's budget on the sinogram's shape over MCP: one claim of about 7,000 characters resting on six idealizations named past 80 characters. At budget_chars 6,000 the reply fits, returns no claim, sets next_offset 0 and page.claim_needs_budget_chars above 6,000 (named in page.reads), and no string outside the claims is cut below 80 characters. At the budget it names, the claim comes back whole and the reply fits.",
+    "location": "crates/reflow2-mcp/tests/a_reasoning_summary_keeps_its_room_and_the_budget.rs",
+    "name": "tests/a_reasoning_summary_keeps_its_room_and_the_budget.rs",
+    "status": "realized"
+  }
+}

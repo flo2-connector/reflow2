@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5d362671d84762c18cb08bc98ffa590a2035658f352bb48d7d52ccb60684ef56",
+  "edge_type": "CHANGED",
+  "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 53,
+    "action": "modified",
+    "checksum_after": "sha256:d79a789645f407fd777339121f11215704cf2905599ab1c66ef16d94193ab982",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

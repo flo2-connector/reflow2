@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fce87910f24c08227eb2d93b5f0f0f7fb6bc5ab07c49be4142d40f2214fe6ba6",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:an-assumption-says-how-it-is-held-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

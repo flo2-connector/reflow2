@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:e9d8428932e8003a3f6c4560ad401869b2789247505557ed1c7de8f35d045dd8",
+  "edge_type": "CAUSES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "assumptions() in inference.rs, read by detect_reasoning_not_as_stated, keys only on the `assumed` flag and discharging steps, never on why the assumption is held, so a model's idealization held on purpose is reported as an undischarged supposition; unchanged on main 983811cae.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:a-physical-models-stated-assumptions-read-as-reasoning-not-as-stated-2026-10-27"
+}

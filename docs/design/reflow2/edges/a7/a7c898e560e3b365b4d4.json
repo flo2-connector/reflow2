@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d061da4928ef81594811db1d9d4c8d00902d78de4b75950d7173baa21c703c37",
+  "edge_type": "CAUSES",
+  "from_id": "art:tools-query",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "tools/query.rs's create_node/create_nodes never call search_first (all 7 call sites are in tools/capture.rs) and neither their description nor reply says so, which is the asymmetry the trial met; the exemption itself is deliberate per cap:search-first-at-the-tool.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27"
+}
