@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:3b93a7064dcf489bc6d495e421fb704b091884a60ebb072825de66e416b0646b",
+  "edge_type": "INVALIDATES",
+  "from_id": "chg:reasoning-report-reserves-its-summary-room-and-keeps-its-budget-2026-10-27",
+  "properties": {
+    "at": "2026-10-27",
+    "note": "Fixed by option (a): the summary's room is reserved, names are never cut below 80 characters, and a claim that will not fit beside the summary is not returned; the page names next_offset and the budget the claim needs. The trial's shape at 6,000 now fits (test a_reasoning_summary_keeps_its_room_and_the_budget.rs; main answered 13,534). A budget below the summary's own floor is answered at that floor and says so."
+  },
+  "to_id": "fact:reasoning-report-at-6000-blanked-its-summary-and-answered-9529-characters-2026-10-27"
+}

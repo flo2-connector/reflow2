@@ -192,6 +192,7 @@ schema_enum!(flow_tier_opt, "Flow", "tier", opt);
 schema_enum!(fragment_provenance_opt, "Fragment", "provenance", opt);
 schema_enum!(gated_on_kind_req, "GATED_ON", "kind", req);
 schema_enum!(governed_by_ruling_opt, "GOVERNED_BY", "ruling", opt);
+schema_enum!(premise_of_held_as_opt, "PREMISE_OF", "held_as", opt);
 schema_enum!(interface_designation_req, "Interface", "designation", req);
 schema_enum!(project_mode_opt, "Project", "mode", opt);
 schema_enum!(project_mode_req, "Project", "mode", req);

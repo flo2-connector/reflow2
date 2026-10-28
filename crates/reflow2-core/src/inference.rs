@@ -161,6 +161,19 @@ pub const INFERENCE_RULES: [&str; 4] = ["all", "any", "k_of_n", "immediate"];
 /// The values a premise's `reads_as` may take (PREMISE_OF `reads_as`).
 pub const READS_AS: [&str; 2] = ["intent", "delivery"];
 
+/// HOW AN ASSUMED PREMISE IS HELD (PREMISE_OF `held_as`), when its step says
+/// so. One property, `assumed`, came to carry three meanings: a proof's
+/// SUPPOSITION, to be discharged (2026-10-17); an argument's chosen PRINCIPLE
+/// (2026-10-20); and a physical MODEL's idealization, held on purpose (the
+/// sinogram trial, 2026-10-27). Only the first had a reader, so the other two
+/// read "THE REASONING IS NOT AS STATED"
+/// (fact:a-physical-models-stated-assumptions-read-as-reasoning-not-as-stated-2026-10-27).
+/// A `principle` or a `model` is never discharged by design: what rests on it
+/// reads conditional on it, and it is counted as held on purpose, not as a
+/// gap. ABSENT, an assumption reads as a supposition, as every one written
+/// before this did.
+pub const HELD_AS: [&str; 3] = ["supposition", "principle", "model"];
+
 /// WHAT A STEP READS ONE OF ITS PREMISES AS
 /// (dec:a-premise-says-whether-it-rests-on-intent-or-delivery, Anthony
 /// 2026-10-24). A requirement record carries two propositions: "X is
@@ -772,6 +785,21 @@ pub struct AssumptionReading {
     /// The steps that discharge it, resting on one of those. Empty means it is
     /// NEVER DISCHARGED: whatever rests on it holds only under it.
     pub discharged_by: Vec<String>,
+    /// HOW IT IS HELD ([`HELD_AS`]), when a step that assumes it says so:
+    /// `supposition` when any of those steps holds it as one (or says
+    /// nothing), else `principle` when any says principle, else `model`.
+    /// Absent when no step says, and then it reads as a supposition, as
+    /// before.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub held_as: Option<&'static str>,
+}
+
+impl AssumptionReading {
+    /// Whether it is HELD ON PURPOSE (a principle or a model): never
+    /// discharged by design, so leaving it undischarged is not a gap.
+    pub fn held_on_purpose(&self) -> bool {
+        matches!(self.held_as, Some("principle" | "model"))
+    }
 }
 
 /// What a statement says it is (`statement_kind`) and how it reads now.
@@ -4302,12 +4330,21 @@ impl DesignGraph {
     /// by id; empty for a design that assumes nothing.
     pub fn assumptions(&self) -> Result<Vec<AssumptionReading>, DynoError> {
         let mut assumed_in: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+        // How each step that assumes it says it is held: `None` for a link
+        // that does not say (a supposition, as before).
+        let mut held: BTreeMap<String, Vec<Option<&'static str>>> = BTreeMap::new();
         let steps = self.scan_nodes(node::INFERENCE)?;
         for st in &steps {
             for (p, assumed) in self.premise_links(&st.node_id)? {
                 if assumed {
-                    assumed_in.entry(p).or_default().insert(st.node_id.clone());
+                    assumed_in
+                        .entry(p.clone())
+                        .or_default()
+                        .insert(st.node_id.clone());
                 }
+            }
+            for (p, mark) in self.assumed_held_as(&st.node_id)? {
+                held.entry(p).or_default().push(mark);
             }
         }
         if assumed_in.is_empty() {
@@ -4334,14 +4371,50 @@ impl DesignGraph {
                     .and_then(|n| prop(&n.properties, "name").map(str::to_string)),
                 None => None,
             };
+            let marks = held.remove(&a).unwrap_or_default();
+            let held_as = if marks.iter().all(Option::is_none) {
+                None
+            } else if marks
+                .iter()
+                .any(|m| matches!(m, None | Some("supposition")))
+            {
+                Some("supposition")
+            } else if marks.contains(&Some("principle")) {
+                Some("principle")
+            } else {
+                Some("model")
+            };
             out.push(AssumptionReading {
                 id: a,
                 name,
                 assumed_in: in_steps.into_iter().collect(),
                 discharged_by,
+                held_as,
             });
         }
         Ok(out)
+    }
+
+    /// How one step holds each premise it ASSUMES: the link's `held_as`
+    /// ([`HELD_AS`]), or `None` when the link does not say. One hop, one
+    /// step's own links.
+    fn assumed_held_as(
+        &self,
+        step: &str,
+    ) -> Result<Vec<(String, Option<&'static str>)>, DynoError> {
+        Ok(self
+            .incoming(step, Some(edge::PREMISE_OF))?
+            .into_iter()
+            .filter(|e| e.properties.get("role").and_then(Value::as_str) == Some("assumed"))
+            .map(|e| {
+                let mark = e
+                    .properties
+                    .get("held_as")
+                    .and_then(Value::as_str)
+                    .and_then(|m| HELD_AS.iter().copied().find(|h| *h == m));
+                (e.from_id, mark)
+            })
+            .collect())
     }
 
     /// Every step a step rests on, itself included: its premises' concluding
@@ -7349,6 +7422,53 @@ impl DesignGraph {
                 }
             }
         }
+        // HOW THE ASSUMED PREMISES ARE HELD: one of HELD_AS, said of the
+        // premises this call names in `assumed`. A statement of kind
+        // `hypothesis` IS a supposition by its kind, so it is never held as a
+        // principle or a model.
+        let held_as: Option<&'static str> = match spec.held_as.as_deref().map(str::trim) {
+            None | Some("") => None,
+            Some(h) => {
+                let Some(h) = HELD_AS.iter().copied().find(|x| *x == h) else {
+                    return Err(invalid(
+                        "held_as",
+                        format!(
+                            "'{h}' is not how an assumption is held. The legal values: \
+                             `supposition` (a proof's hypothesis, to be discharged), `principle` \
+                             (an argument's chosen starting point) and `model` (an idealization \
+                             held on purpose)"
+                        ),
+                    ));
+                };
+                if spec.assumed.is_empty() {
+                    return Err(invalid(
+                        "held_as",
+                        format!(
+                            "`held_as: {h}` says how the premises in `assumed` are held, and this \
+                             call names none: name them in `assumed` too"
+                        ),
+                    ));
+                }
+                if h != "supposition" {
+                    for p in &spec.assumed {
+                        if self
+                            .node_props(p)?
+                            .is_some_and(|props| statement_kind(&props) == Some("hypothesis"))
+                        {
+                            return Err(invalid(
+                                "held_as",
+                                format!(
+                                    "'{p}' is a statement of kind `hypothesis`, which is a \
+                                     supposition by its kind: it is discharged, never held as a \
+                                     {h}. Leave `held_as` out for it, or change its kind"
+                                ),
+                            ));
+                        }
+                    }
+                }
+                Some(h)
+            }
+        };
         match (spec.rule.as_str(), spec.k) {
             ("k_of_n", None) => {
                 return Err(invalid(
@@ -7685,6 +7805,9 @@ impl DesignGraph {
             } else {
                 Props::new()
             };
+            if assumed && let Some(h) = held_as {
+                props = props.set("held_as", h);
+            }
             if let Some(n) = uses.get(p).copied().filter(|n| *n > 1) {
                 props = props.set("uses", Value::Int(n));
             }
@@ -7715,6 +7838,30 @@ impl DesignGraph {
             let ty = self.one_type_for(p, "premise")?;
             self.create_edge(edge::PREMISE_OF, &ty, p, node::INFERENCE, &spec.id, props)?;
             drawn.push(format!("{p} PREMISE_OF {} (reads_as: {mark})", spec.id));
+        }
+        // HOW EACH ASSUMED PREMISE IS HELD, on its link: drawn above or
+        // already linked, re-drawn keeping everything else the link carried.
+        if let Some(h) = held_as {
+            for p in &spec.assumed {
+                let Some(link) = self
+                    .incoming(&spec.id, Some(edge::PREMISE_OF))?
+                    .into_iter()
+                    .find(|e| &e.from_id == p)
+                else {
+                    continue;
+                };
+                if link.properties.get("held_as").and_then(Value::as_str) == Some(h) {
+                    continue;
+                }
+                let mut props = Props::new();
+                for (k, v) in link.properties.iter() {
+                    props = props.set(k, v.clone());
+                }
+                props = props.set("role", "assumed").set("held_as", h);
+                let ty = self.one_type_for(p, "premise")?;
+                self.create_edge(edge::PREMISE_OF, &ty, p, node::INFERENCE, &spec.id, props)?;
+                drawn.push(format!("{p} PREMISE_OF {} (held_as: {h})", spec.id));
+            }
         }
         // The exhaustiveness record is a premise of the split: losing it
         // reaches the step in a change walk.
@@ -7850,6 +7997,10 @@ pub struct InferenceSpec {
     /// assumed`): hypotheses held inside the argument whatever their own
     /// truth. Drawn beside `premises`; a premise named in both is assumed.
     pub assumed: Vec<String>,
+    /// HOW the premises in `assumed` are held ([`HELD_AS`]): `supposition`,
+    /// `principle` or `model`, written on each one's link (PREMISE_OF
+    /// `held_as`). Absent, nothing is said and they read as suppositions.
+    pub held_as: Option<String>,
     /// The assumptions this step discharges. Each must be assumed by this
     /// step or by a step it rests on. Overwrites what is stored.
     pub discharges: Option<Vec<String>>,

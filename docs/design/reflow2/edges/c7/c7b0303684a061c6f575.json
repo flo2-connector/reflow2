@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:8743dd2e62cdcaff003c3e225b4127c82457aea0f5afb9c1690fb1411cb65702",
+  "edge_type": "CAUSES",
+  "from_id": "art:reply-budget",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "reply_budget.rs cuts prose to 0 at its last rung for any string over NEVER_TRIM_BELOW (80), and reasoning_report fills its claims page before the summary (summary_room 0 measured), so at 6,000 every summary field reads \"…\"; unchanged on main 983811cae.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:reasoning-report-at-6000-blanked-its-summary-and-answered-9529-characters-2026-10-27"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0928d8af70328ce5aaf1e090bf0264c3775fc540146d19299b9fa1fdc07eda09",
+  "node_id": "chg:accept-8093708f40a8140b",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "test_failure_fix",
+    "detected_at": "2026-10-27",
+    "name": "Back to main's content: with create_node's description unchanged, the (create_edge, create_edges) pair is mutual again.",
+    "subject": "system"
+  }
+}

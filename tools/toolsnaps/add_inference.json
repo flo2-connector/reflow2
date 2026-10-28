@@ -159,6 +159,20 @@
           "null"
         ]
       },
+      "held_as": {
+        "default": null,
+        "description": "HOW the premises in `assumed` are held, said on each one's link:\n`supposition` (a proof's hypothesis, which a later step must\ndischarge), `principle` (an argument's chosen starting point) or\n`model` (a model's idealization, held on purpose). Only a supposition\nleft undischarged reads NOT AS STATED; a principle or a model is\ncounted as held on purpose, and what rests on it still reads\nconditional on it. Omitted, nothing is said and they read as\nsuppositions. Refused with nothing in `assumed`, and as `principle` or\n`model` for a statement of kind `hypothesis`.",
+        "enum": [
+          "supposition",
+          "principle",
+          "model",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "id": {
         "description": "The step's id — `inf:<slug>` by convention. Calling again with an\nEXISTING step's id revises it: the rule and fields you pass overwrite,\nthe premises you pass are ADDED (remove one with `delete_edge`), and the\nconclusion must be the one it already has.",
         "type": "string"

@@ -311,8 +311,12 @@ impl ReflowService {
                 // work actually happened.
                 crate::tools::capture::preserve_prior(&mut g, prior.as_ref(), &dto);
                 let revision = crate::tools::capture::revision_of(&g, prior.as_ref(), &dto);
+                let mut reply = serde_json::to_value(&dto).map_err(ser_err)?;
+                if let Some(o) = reply.as_object_mut() {
+                    o.insert("near_match_check".into(), json!(NO_NEAR_MATCH_CHECK));
+                }
                 crate::tools::capture::with_capture_notes(
-                    dto,
+                    reply,
                     "loop: a generic write is still a design change — run detect_gaps \
                      (detect-and-ask) when the batch lands",
                     None,
@@ -337,7 +341,7 @@ impl ReflowService {
         description = "Create or update MANY nodes in one call — the bulk form of create_node. ALL OF IT OR \
                        NONE OF IT: every item is attempted so you learn every failure in one round trip, and if \
                        anything failed nothing is written. Upsert, like create_node, so re-running after a fix \
-                       is safe. Ask for this when you want to add many items at once — several nodes in one \
+                       is safe. No near-match check runs (the typed tools run one). Ask for this when you want to add many items at once — several nodes in one \
                        call, a bulk create.",
         title = "Create Many Nodes",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -414,7 +418,11 @@ impl ReflowService {
                 }
             }
         }
-        bulk_result(report, NodeDto::from)
+        bulk_result_noting(
+            report,
+            NodeDto::from,
+            Some(("near_match_check", NO_NEAR_MATCH_CHECK)),
+        )
     }
 
     #[tool(
@@ -2008,7 +2016,10 @@ pub(crate) fn generic_settle(
 /// reply's `next_offset` and `remaining` then say where the next page starts,
 /// and `page` names the budget it was held to, so a budget lowered on the way
 /// shows in the result itself. Only if ONE claim and the summary still pass
-/// the budget is prose cut, and then only outside `claims`.
+/// the budget is prose cut, and then only outside `claims`, never below
+/// NEVER_TRIM_BELOW characters; and if one claim will not fit beside the
+/// summary at that floor, the page returns NO claim, the summary, and the
+/// budget the claim needs (2026-10-27), so the reply keeps to its budget.
 ///
 /// EACH PREMISE'S REASON IS SAID ONCE (crate::said_once): a premise row
 /// carries a short reading, the page cites each full reason once in
@@ -2034,12 +2045,14 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     } else {
         format!("budget_chars {budget}")
     };
-    let build = |keep: usize| -> JsonValue {
+    // `needs`: when no claim fits beside the summary, the budget the next one
+    // needs, said on the page.
+    let build = |keep: usize, needs: Option<usize>| -> JsonValue {
         let mut v = full.clone();
         let end = offset + keep;
         let remaining = total.saturating_sub(end);
         let next = (end < total).then_some(end);
-        let fewer = if keep < page_len {
+        let fewer = if keep < page_len && keep > 0 {
             format!(
                 " To fit, it returns {keep} of the {page_len} this page's `limit` allows; no \
                  claim is cut."
@@ -2047,9 +2060,14 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
         } else {
             String::new()
         };
-        let on = match next {
-            Some(n) => format!(" {remaining} remain: read on with `offset: {n}`."),
-            None => " This is the last page.".to_string(),
+        let on = match (needs, next) {
+            (Some(n), Some(at)) => format!(
+                " THE CLAIM AT offset {at} DOES NOT FIT beside the summary in this budget: it \
+                 needs budget_chars {n}. Read on with `offset: {at}` and `budget_chars: {n}`, or \
+                 read that claim alone with reasoning_report on its id. {remaining} remain."
+            ),
+            (None, Some(n)) => format!(" {remaining} remain: read on with `offset: {n}`."),
+            (_, None) => " This is the last page.".to_string(),
         };
         let reads = format!(
             "{keep} of {total} claims, from offset {offset}, each WHOLE (its words in `says`, \
@@ -2064,18 +2082,19 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
                 Some(n) => o.insert("next_offset".into(), json!(n)),
                 None => o.remove("next_offset"),
             };
-            o.insert(
-                "page".into(),
-                json!({
-                    "offset": offset,
-                    "returned": keep,
-                    "total": total,
-                    "remaining": remaining,
-                    "next_offset": next,
-                    "budget_chars": budget,
-                    "reads": reads,
-                }),
-            );
+            let mut page = json!({
+                "offset": offset,
+                "returned": keep,
+                "total": total,
+                "remaining": remaining,
+                "next_offset": next,
+                "budget_chars": budget,
+                "reads": reads,
+            });
+            if let (Some(n), Some(p)) = (needs, page.as_object_mut()) {
+                p.insert("claim_needs_budget_chars".into(), json!(n));
+            }
+            o.insert("page".into(), page);
         }
         let mut cited = std::collections::BTreeMap::new();
         for m in &moved[..keep] {
@@ -2087,23 +2106,88 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     // Estimate from what each claim costs, then confirm on the real reply:
     // the page block's numbers move its own size by a few characters.
     let costs: Vec<usize> = rows.iter().map(chars_of).collect();
-    let base = chars_of(&build(0));
+    let base = chars_of(&build(0, None));
     let mut keep = page_len;
     let mut spent: usize = costs.iter().sum::<usize>() + page_len.saturating_sub(1);
     while keep > 1 && base + spent > budget {
         keep -= 1;
         spent -= costs[keep] + usize::from(keep > 0);
     }
-    let mut out = build(keep);
+    let mut out = build(keep, None);
     while keep > 1 && chars_of(&out) > budget {
         keep -= 1;
-        out = build(keep);
+        out = build(keep, None);
     }
     if chars_of(&out) <= budget {
         return out;
     }
-    // One whole claim and the summary still pass the budget: cut prose
-    // OUTSIDE the claims, and say so in the usual budget block.
+    // One whole claim and the whole summary pass the budget: the summary
+    // gives prose, never below NEVER_TRIM_BELOW characters, then rows.
+    let one = fit_summary_beside_claims(out, budget);
+    if keep == 0 || chars_of(&one) <= budget {
+        return one;
+    }
+    // ONE CLAIM WILL NOT FIT BESIDE THE SUMMARY AT ITS FLOOR
+    // (fact:reasoning-report-at-6000-blanked-its-summary-and-answered-9529-characters-2026-10-27):
+    // until 2026-10-27 the claim was kept whole, the summary got 0 room, every
+    // name in it read "…", and the reply still passed the budget (9,529
+    // characters to 6,000 on the sinogram design). Now the summary keeps its
+    // room, no claim is returned, and the page says where to read on and what
+    // budget the claim needs, rounded up past what it measured
+    // (req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on).
+    let needs = (chars_of(&one) + 64).div_ceil(500) * 500;
+    let zero = build(0, Some(needs));
+    let mut zero = if chars_of(&zero) <= budget {
+        zero
+    } else {
+        fit_summary_beside_claims(zero, budget)
+    };
+    // THE SUMMARY'S OWN FLOOR, said where the reader looks: every count, one
+    // entry of each list, each name at NEVER_TRIM_BELOW characters. A budget
+    // below it is answered at the floor, never with names blanked.
+    let at_floor = chars_of(&zero);
+    if at_floor > budget {
+        if let Some(reads) = zero
+            .get_mut("page")
+            .and_then(|p| p.get_mut("reads"))
+            .and_then(|r| r.as_str().map(str::to_string))
+            .map(|r| {
+                format!(
+                    "{r} THE SUMMARY ALONE IS OVER budget_chars {budget} AT ITS FLOOR (every \
+                     count, one entry of each list, each name at {} characters): that floor, \
+                     about {at_floor} characters, is the least this read answers.",
+                    crate::reply_budget::NEVER_TRIM_BELOW
+                )
+            })
+        {
+            zero["page"]["reads"] = json!(reads);
+        }
+        settle_reply_chars(&mut zero);
+    }
+    zero
+}
+
+/// `reply_chars` in the budget block counts the reply it is in: two passes
+/// settle its own digits.
+fn settle_reply_chars(v: &mut JsonValue) {
+    use crate::reply_budget::chars_of;
+    if v.get("budget").is_none() {
+        return;
+    }
+    for _ in 0..2 {
+        let n = chars_of(v);
+        if let Some(b) = v.get_mut("budget").and_then(|b| b.as_object_mut()) {
+            b.insert("reply_chars".into(), json!(n));
+        }
+    }
+}
+
+/// Fit `out`'s SUMMARY to what its whole claims leave of `budget`: prose cut
+/// outside `claims`, never below NEVER_TRIM_BELOW characters, then rows from
+/// the summary lists, said in the usual budget block. The claims, the page and
+/// the reasons said once with the claims stay whole.
+fn fit_summary_beside_claims(mut out: JsonValue, budget: usize) -> JsonValue {
+    use crate::reply_budget::chars_of;
     let Some(o) = out.as_object_mut() else {
         return out;
     };
@@ -2122,7 +2206,12 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     // 2026-10-25 the labels were added after the fitting and pushed a fitted
     // reply past its budget.
     let whole = |room: usize| -> JsonValue {
-        let mut rest = crate::reply_budget::bound_reply_sampling(summary.clone(), room, hint);
+        let mut rest = crate::reply_budget::bound_reply_sampling_floor(
+            summary.clone(),
+            room,
+            hint,
+            crate::reply_budget::NEVER_TRIM_BELOW,
+        );
         if let Some(r) = rest.as_object_mut() {
             r.insert("claims".into(), claims.clone());
             r.insert("page".into(), page.clone());
@@ -2150,13 +2239,7 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
                 b.insert("note".into(), json!(note));
             }
         }
-        // The count counts itself: two passes settle its own digits.
-        for _ in 0..2 {
-            let reply_chars = chars_of(&rest);
-            if let Some(b) = rest.get_mut("budget").and_then(|b| b.as_object_mut()) {
-                b.insert("reply_chars".into(), json!(reply_chars));
-            }
-        }
+        settle_reply_chars(&mut rest);
         rest
     };
     // THE SUMMARY GETS EVERY CHARACTER THE CLAIMS LEAVE (items 5 and 7 of

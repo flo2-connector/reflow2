@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:13376d8e88b52e9b4b4d53fcc468076d7409b9723aa918157e5f7c9d8d9ce478",
+  "edge_type": "CHANGED",
+  "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2e140876c8add72acfffee42399199310fd8b2f2636e2b7d3038851e81d06c60",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-bulk-write-says-no-near-match-check-ran-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fd62438eccc48e79f32eee55434f8977a98ed57db047bbe00df766021c3e2cf2",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:an-assumption-says-how-it-is-held-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-models-idealizations-are-held-on-purpose-not-as-stated"
+}

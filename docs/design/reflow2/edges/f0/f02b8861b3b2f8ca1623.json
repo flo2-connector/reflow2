@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d20c8bf816dfa24aa8736c13d071a1bdb03781d8ae762ca935978beec5d643ea",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "chg:reasoning-report-reserves-its-summary-room-and-keeps-its-budget-2026-10-27",
+  "properties": {
+    "note": "As with loop_status, a budget below the summary's floor is answered at the floor and the reply says so, rather than blanking names or dropping counts."
+  },
+  "to_id": "dec:loop-status-keeps-its-floor-2026-10-27"
+}

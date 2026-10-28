@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:90bec7544b9cfbc0cacda2967a7d280515fa629556ff449237d2654848fdb46b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:an-assumption-says-how-it-is-held-2026-10-27",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 14,
+    "action": "modified",
+    "checksum_after": "sha256:90f8bb9b1daa1c874284b80828c869658bb64aee44c3a2a25c6ec09a98e454a5",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:schema-inference"
+}

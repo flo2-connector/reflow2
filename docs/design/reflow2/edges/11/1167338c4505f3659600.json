@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bce7e675c793abd131fdb6eb235a4bac66f4aa752bba71e074b49c17f3d7f3a9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-bulk-write-says-no-near-match-check-ran",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a15f4dde86b816557c9bf53e5c9a19dc54ebad12681a2d688c704d12f12b3cd4",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:create-nodes-runs-no-near-match-check-and-its-reply-does-not-say-so-2026-10-27",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

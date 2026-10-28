@@ -4675,7 +4675,10 @@ impl DesignGraph {
                 });
             };
         for a in self.assumptions()? {
-            if !a.discharged_by.is_empty() {
+            // A principle or a model is held on purpose and never discharged
+            // by design (crate::inference::HELD_AS): counted by loop_status,
+            // never a gap.
+            if !a.discharged_by.is_empty() || a.held_on_purpose() {
                 continue;
             }
             let mut affected = vec![a.id.clone()];
@@ -4691,7 +4694,11 @@ impl DesignGraph {
                  claim above it reads `conditional`, never proven. Either the step that closes \
                  the argument names it in `discharges` (add_inference — a reductio concluding \
                  the negation, an induction step concluding the implication), or it is not an \
-                 assumption but a premise the reasoning really rests on."
+                 assumption but a premise the reasoning really rests on. If it is held ON \
+                 PURPOSE and never to be discharged, say how on the step that assumes it: \
+                 add_inference's `held_as` — `principle` (an argument's chosen starting point) \
+                 or `model` (a model's idealization) — and it is counted as held on purpose, \
+                 not as a gap, while what rests on it still reads conditional on it."
                     .to_string(),
                 format!(
                     "assumed in {}; discharged by no step",

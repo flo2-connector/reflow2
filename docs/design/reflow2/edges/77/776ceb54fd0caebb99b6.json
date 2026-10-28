@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e182ed6ac66592f218f521b8946040a51c4cf269fdcd13831e5548430fa0d4e6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 35,
+    "action": "modified",
+    "checksum_after": "sha256:5751e08d9be354d4076e84252e66e9a5144db72d9c1e39df797af6452d0d0dfd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

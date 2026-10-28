@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e4059ef9b6bf9e0ad009b7db54499708b17aa6ea06b5bc3bde9176794ccba1c6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:create-nodes-says-no-near-match-check-ran-2026-10-27",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:search-first-at-the-tool"
+}

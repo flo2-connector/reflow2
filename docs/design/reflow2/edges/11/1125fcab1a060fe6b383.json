@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8ccbca24bfffc4cec6b8f01a7d3640b6a50ff6270df6b310d743216c2f6440e2",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:served-messages-still-name-record-change-after-0-92-0-removed-it-2026-10-26",
+  "properties": {
+    "evidence": "The sinogram trial (reflow2 0.92.0) found record_change not offered through the chat: the same removal, with served messages still naming it, that the 10-26 finding root-caused; the fix (snapshot_before_change in those messages) merged in reflow2 #805 (983811cae) and is unreleased, and no served message on main still names record_change (code comments only). Which text the trial agent read was not kept. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P"
+  },
+  "to_id": "fact:the-sinogram-trial-laid-out-a-phenomenon-and-names-what-the-skill-must-say-2026-10-27"
+}

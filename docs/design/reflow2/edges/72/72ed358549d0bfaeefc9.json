@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:66eac71b5ef55e7ca815c69778ac65da38e023cd4e9f5598a29ae6caf75c1256",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-reasoning-summary-keeps-its-room-and-the-budget",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f93985cdbbc26eae8b0fb69de245713ab9a0db8eb91ff20081b273635436e4ea",
+  "node_id": "art:an-assumption-says-how-it-is-held-test",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "Pins add_inference's `held_as` over MCP. A model with two idealizations assumed with held_as model raises no reasoning_not_as_stated gap, loop_status has no NOT AS STATED line and counts reasoning.assumptions_held_on_purpose 2 with both ids, and reasoning_report lists each assumption with held_as model and \"held on purpose\" while the claim reads conditional. A chosen principle (held_as principle) reads the same. An assumption with nothing said reads as before (one gap, undischarged_assumptions 1, no new field) and the gap names held_as; saying supposition reads the same; saying model on a revise moves it. held_as is refused on a statement of kind hypothesis, and with nothing in `assumed`.",
+    "location": "crates/reflow2-mcp/tests/an_assumption_says_how_it_is_held.rs",
+    "name": "tests/an_assumption_says_how_it_is_held.rs",
+    "status": "realized"
+  }
+}
