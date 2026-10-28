@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:00b233e45fd2993c5566f44183928eca0a2c75dab2fc4f6a8750d5578fcf968a",
+  "edge_type": "REALIZES",
+  "from_id": "art:design-a-phenomenon-skill",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-served-skill-teaches-designing-a-phenomenon"
+}

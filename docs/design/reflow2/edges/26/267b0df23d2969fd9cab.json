@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ecb5d47cda505aff042e6d9461530c968e43e711d931cbf2a42f5ef0d62b5219",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-phenomenon-is-designed-with-a-skill-that-agrees-with-the-tools-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

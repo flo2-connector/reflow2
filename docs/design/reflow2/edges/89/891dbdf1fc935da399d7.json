@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b1acc47160a731436136cdd60f9d23464df4c840a16b71242d17370d506b73e3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:design-a-phenomenon-skill",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

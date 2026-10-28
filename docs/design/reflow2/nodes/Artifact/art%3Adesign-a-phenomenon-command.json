@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:5f88e188076c5b61add6bf23ebec2dfb7a353f72c3585a3bb28460ff06e6673d",
+  "node_id": "art:design-a-phenomenon-command",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "document",
+    "description": "The slash command that runs the design-a-phenomenon skill on an observation or hypothesis in the person's own words.",
+    "location": "getting-started/commands/design-a-phenomenon.md",
+    "name": "getting-started/commands/design-a-phenomenon.md — the /design-a-phenomenon command",
+    "status": "realized"
+  }
+}

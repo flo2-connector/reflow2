@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:a4a11f11dc2d8fa0a7a31dd14eaee3657d3a646bd0d5927742d5abca62c85ba4",
+  "node_id": "ver:a-phenomenon-is-designed-with-a-skill-that-agrees-with-the-tools-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "find_skills ranks design-a-phenomenon first for \"design a phenomenon\", \"design an experiment to test a hypothesis\", \"physical model and its assumptions\" and \"predictions an experiment can tell apart\", and design-a-proof and design-an-argument still first for their own words; the skill teaches held_as model and principle, discharges, the two-call step, computed records and none faked, never proven, still_contested, reasoning_report, assumptions_held_on_purpose and its honest limits, and the proof and argument skills point to it; its recipe run through add_constraint, add_artifact, add_verification, add_requirement, add_inference, documents and review_relations reads as the skill says (predictions conditional on the held model, no undischarged assumption, 3 held on purpose, a what-if on one idealization naming its predictions, the supported claim conditional with the result in rests_on_tests, the rival open and in still_contested, and a passing experiment check moving neither).",
+    "findings": "3 of 3 pass on the branch (cargo test -p reflow2-mcp --no-default-features --test in_memory a_phenomenon_is_designed, with the served-skill, find_skills corpus and argument-skill tests: 54 of 54). The whole MCP crate without RocksDB ran 934 of 936 before the last ranking fix; both failures were this change's own and pass now. Measured while writing it: a step can hold a model and a supposition only through two add_inference calls (held_as is per call), and a result contradicting a conjecture nothing derives leaves it reading open, listed in still_contested.",
+    "kind": "verification",
+    "last_run_at": "2026-10-27",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_phenomenon_is_designed_with_a_skill_that_agrees_with_the_tools.rs",
+    "method": "test",
+    "name": "A phenomenon is designed with a skill that agrees with the tools (3 MCP tests)",
+    "status": "passing"
+  }
+}
