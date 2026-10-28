@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1510eff9f1d57e29b63e95fd9429b1778ae924e6a40bd5f761f4061f18c8e405",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-v0930-release-cut-2026-10-28",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

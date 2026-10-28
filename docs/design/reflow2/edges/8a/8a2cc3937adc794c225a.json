@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9f388c730ffdf7452f9c367ce9e69ade435425a3fe471ab5c044032498a7b2bc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:7f1196b4df4078bd21d1e7ae275c8fb5a6139b76a2930e5a46a698b9ffa2390b"
+  },
+  "to_id": "art:fixture-argument-trial-gettier"
+}

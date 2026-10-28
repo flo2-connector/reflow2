@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f93a05cf51342d4e26aedcea0f8205b08cd7e42eeed08ed1c3041f38d17b90b5",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:fc6c68a365cb158eef4bd544a4a773214d6f3cb462931f05c513a0ed9a268a80"
+  },
+  "to_id": "art:said-once-rs"
+}

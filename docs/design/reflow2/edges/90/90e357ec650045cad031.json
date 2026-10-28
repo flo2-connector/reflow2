@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0354cbf8519b14e86b208b74c8f64cf8ac364afb9c9eeeffc022104186fa7511",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:d2163e19c93a6f2f5b4751652941c669a3a2fdbfd3c5422c4f6d8f064d2c1e07"
+  },
+  "to_id": "art:the-unused-anchor-type-is-announced-for-removal-test"
+}

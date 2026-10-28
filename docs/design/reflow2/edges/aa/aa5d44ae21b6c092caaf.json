@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1441f2953f47a913ab87651e92f2cab3bf1e91ec4f4809fb2e3b98c1c3e9dbf0",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:49971de37a2dd6e67d9c0cf84eeeca3ff1dad9bf59be748c08dc0d209c4af186"
+  },
+  "to_id": "art:site-walkthrough-html"
+}

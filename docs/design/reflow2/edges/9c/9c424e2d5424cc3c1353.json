@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0bc0c6035061ac13456f0d1f73b1129a43b236ae1e3c0f16f5ae5fadd5449cb8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:c27d58eff5f03ba0a28347bec7afbafeddaf646e739d57acd84e0b3cb68bd17c"
+  },
+  "to_id": "art:proofs-and-arguments-read-right-on-the-wire-test"
+}

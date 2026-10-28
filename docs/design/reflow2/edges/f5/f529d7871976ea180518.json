@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f1ed85d4f8dd1be7bae8fd32882481d503d2c43a830e3f384e75e3886cf4a43e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:3df388205232a8f54a1dae79c223cd81e3d0236c773a000b8b139f16d980838c"
+  },
+  "to_id": "art:fixture-proof-trial-rung-2-fta"
+}

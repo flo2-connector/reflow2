@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:26dca775e407af4ca5de994f5b3555e09faff77f4d4434d8755a0026ae3cc555",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-v0930-release-cut-2026-10-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:dependency-manifest"
+}

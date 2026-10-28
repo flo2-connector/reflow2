@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a06cf3d4e2f297725f2ab0f06512e1104d4b0cce735fa036c54e82e07b821ed",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:16bc58b8621c7bf6d0d7576ec31841c59db315bc263631b12c53faa9156a8435"
+  },
+  "to_id": "art:upstream-judgement-test"
+}

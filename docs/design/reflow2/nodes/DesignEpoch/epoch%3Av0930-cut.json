@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:2722a231d8e5cb8533e88c7a4a359d1d392d30da1c1082bdf3024e92a6d4f425",
+  "node_id": "epoch:v0930-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The minor in which an experiment's result refutes a claim only on its owner's signed ruling, a model's idealizations are held on purpose, a prediction reads whether it was stated before its result, reflow2 records the time of every write from its own clock, and a change's blast radius is read whole, a page at a time. It carries #804 (draw_edges' real argument named, and a check for served argument names), #805 (the impact path reads whole: propagate_change budget_chars and paging, loop_status rows before prose, resolved_at / detected_at), #806 (add_inference held_as; reasoning_report keeps its summary room; near_match_check), #807 (the design-a-phenomenon skill), #808 (the owner's signed ruling refutes by a named result; supported given a held model), #809 (server-time write stamps sealed with an HMAC; reasoning_report prediction_order; export_graph stamps: true), and the cut itself (release/v0.93.0).\n\nPinned here: rel:v0930, the increment's ChangeEvents (found by diffing ids against the v0.92.0 tag's committed copy: 19), and the cut's drift acceptances. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "epoch_type": "release_cut",
+    "name": "v0.93.0 release cut (2026-10-28)",
+    "sequence": 771,
+    "status": "arrived"
+  }
+}

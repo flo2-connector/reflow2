@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f361f2d4358be1ac4e53c991d553eda81ee1eeee8c50f7fd3a3fc7d35845030a",
+  "node_id": "chg:accept-ba3e79573b2e2f98",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-28",
+    "name": "v0.93.0 cut, step 1: reflow2.toml's version moves 0.92.0 -> 0.93.0 with Cargo.toml. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e14500671a3a52bc2dae924609c759ca3412d4b7e2c7bb6fcbed00b80914df8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:155eea437dadc5f056702852afd20a06952b7a8306c8d0d7574d93f766cfcf8c"
+  },
+  "to_id": "art:test-a-reasoning-read-back-keeps-its-words-and-pages"
+}
