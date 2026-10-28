@@ -1,6 +1,6 @@
 ---
 name: design-a-phenomenon
-description: Use when the design IS a phenomenon and the experiment that tests it — "design a phenomenon", "design an experiment", "test a hypothesis", "what does the model predict", "a physical model and its assumptions", "rival explanations of an observation", "what could cause what I measured", "which experiment would tell them apart", or the reasoning behind a journal article's methods and results, in any science. Records the observation as given; the model and each law used as given as held; each idealization as its own premise with where it fails; each prediction, and the one made when an idealization is dropped; the hypothesis under test as a supposition discharged into its prediction; each number through a kept calculator record; experiments chosen because they discriminate; results as evidence that supports or contests, never proves or refutes. Then reads back what is supported, conditional or contested. For a proof use design-a-proof; for a debate on principles, design-an-argument.
+description: Use when the design IS a phenomenon and the experiment that tests it — "design a phenomenon", "design an experiment", "test a hypothesis", "what does the model predict", "a physical model and its assumptions", "rival explanations of an observation", "what could cause what I measured", "which experiment would tell them apart", or the reasoning behind a journal article's methods and results, in any science. Records the observation as given; the model and each law used as given as held; each idealization as its own premise with where it fails; each prediction, and the one made when an idealization is dropped; the hypothesis under test as a supposition discharged into its prediction; each number through a kept record; experiments chosen because they discriminate; results as evidence that supports or contests, never proves; only the owner's signed ruling refutes. Then reads back what is supported, conditional, contested or refuted. For a proof use design-a-proof; for a debate on principles, design-an-argument.
 metadata: {composes: [STANDING, WRITES, MINTS, REPORTS, MEASURES], audience: anyone, summary: "Lay out what you observe, the causes that could explain it, what each predicts, and the test that tells them apart."}
 ---
 
@@ -155,11 +155,26 @@ result. Then say what it bears on, and no more:
   ("if beam hardening, cupping falls with filtration"; "if scatter, it moves with distance") and
   the claim as `conclusion`, `rule_name` "the discriminating result", and a warrant naming what was
   predicted and what was seen, within its uncertainty. The claim then rests on the result as
-  evidence (`rests_on_tests`): supported, never proven, and still conditional on the held model.
+  evidence (`rests_on_tests`) and reads supported given the model and idealizations held on
+  purpose, each named in `given`: never proven. If it also rests on an undischarged supposition,
+  or on a result no pinned source documents, it reads conditional instead.
 - **It goes against a claim**: a CONTRADICTS from the result to that claim (`review_relations`,
-  the failed prediction named in `evidence`). It contests the claim and never refutes it: a
-  result is evidence, and the miss may lie in the hypothesis or in any idealization under the
-  prediction. Name both possibilities to the person.
+  the failed prediction named in `evidence`). On its own it contests the claim and never refutes
+  it: a result is evidence, and the miss may lie in the hypothesis or in any idealization under
+  the prediction. Name both possibilities to the person.
+- **The owner rules where the miss lies**: only the person can, so it is their act, recorded with
+  three tools. A Decision (`add_decision`) saying what the result refutes; a step concluding it
+  (`add_inference`: in `premises` the result and the one prediction it missed, `rule_name` "the
+  owner's ruling on a result", a warrant saying why the miss is laid on the hypothesis rather
+  than the model or an idealization); and a CONTRADICTS from the Decision to the result with
+  `alignment` `conceding` (`review_relations`). Then put the Decision to the owner: it rules only
+  once they accept it under their own name (`set_decision_status`, `accepted`, with `approver`
+  themselves). Never accept it for them; a signature naming anyone else is refused. While it is
+  in force, the claim the result goes against reads refuted by the ruling, naming the ruling, the
+  result and the conditions (the model and idealizations held on purpose under the missed
+  prediction), and the hypothesis discharged into that prediction reads refuted with it. Name only
+  the missed prediction in the ruling's step: a prediction named there takes its hypothesis down
+  too. To withdraw it, `set_decision_status` `rejected`: the result only contests again.
 - **It separates nothing** (inside the uncertainty of both predictions): record the result, draw
   nothing, and say so in its statement. The experiment is still owed.
 
@@ -176,19 +191,25 @@ model"), the results under it (`rests_on_tests`) and what stands against it. Rea
 with no `claim` for the summary: `still_contested` lists each rival a result goes against, with
 the result. Then tell the person, in the words of their field rather than reflow2's:
 
-- **supported**: a claim a result bears for, under the model it names. Its reading says
-  `conditional` while it rests on held assumptions; say "supported by <result>, if <assumptions>",
+- **supported**: a claim a result bears for, given the model and idealizations held on purpose,
+  which its `proof_status` names in `given`. Say "supported by <result>, given <assumptions>",
   never proven.
 - **conditional**: every prediction, on the model and idealizations named in `assumes`. These are
   the assumptions and limits a methods section states.
 - **contested**: a rival a result goes against (it reads `open` on its own when nothing derives
-  it, and appears in `still_contested`). Never "refuted".
+  it, and appears in `still_contested`). Never "refuted" until the owner rules.
+- **refuted**: a claim the owner's signed ruling on a result refutes, and the hypothesis
+  discharged into the missed prediction. Say "refuted by <result>, on <owner>'s ruling, given
+  <assumptions>": a judgement under the model, not a proof that the model is right.
+  `refuted_by_ruling` in reasoning_report lists each ruling, with what it refutes and its
+  conditions in `given`.
 - **open**: a claim no result has reached yet: an experiment still owed.
 
 To see what one failed idealization costs, run `propagate_from` on it: every prediction that rests
-on it is named. Then run `loop_status`: `assumptions_held_on_purpose` names the model's statements,
-and an undischarged supposition, an unconfirmed step or an unverified citation is what the design
-still owes. On flo2.io, read the design back to the person as well.
+on it is named, and `rulings_lost` names each ruling that holds only under it. Then run
+`loop_status`: `assumptions_held_on_purpose` names the model's statements, `rulings_in_force` the
+owner's rulings, and an undischarged supposition, an unconfirmed step or an unverified citation is
+what the design still owes. On flo2.io, read the design back to the person as well.
 
 **What the structure gives a journal article.** The introduction is the observation and the rival
 explanations. The methods are the model, each idealization with where it fails, the experiment and
@@ -205,8 +226,9 @@ checked against.
   algebra and the numbers, never physical validity.
 - `held_as` is said per call, not per premise: a step that takes up a model and a supposition
   needs two calls (section 4).
-- A result never refutes, by design: it contests. A claim it supports reads `conditional` on the
-  held model, with the result named in `rests_on_tests`, rather than a separate "supported".
+- reflow2 never judges where a failed prediction's miss lies: a result refutes only on the
+  owner's ruling, which it records and reads back, and the refutation holds only as far as the
+  model held under the missed prediction does.
 - Nothing checks that a prediction was written before the result that bears on it: the owner's
   dated acceptance of the experiment's Decision is the record, and a statistical test's criteria
   lock is the only automatic check.
@@ -223,6 +245,6 @@ By typing /design-a-phenomenon the person asked for the following, in their own 
 - The hypothesis under test is a supposition, discharged into the prediction stated before the data; rival claims stay an open dispute.
 - Every number through a kept calculator record, exact or bounded, with units and its source; with no calculator, the number with its source and no record claimed.
 - Choose experiments because they tell the rivals apart, and accept them before the data.
-- Record each result against the predictions: supports, goes against (contested), or separates nothing. Never proven, never refuted.
+- Record each result against the predictions: supports, goes against (contested), or separates nothing. Never proven; refuted only when I rule so, signed as myself.
 - Put anything only I can settle to me as a question of your own.
 - End with reasoning_report on each claim, said in my words — what is supported, what stays conditional, what is contested — then loop_status.

@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:a4a11f11dc2d8fa0a7a31dd14eaee3657d3a646bd0d5927742d5abca62c85ba4",
+  "content_hash": "sha256:5a8d5749b2c5a70ed52fb48d0607def50ce60e74ccfbabdd392104dcf0db1f2d",
   "node_id": "ver:a-phenomenon-is-designed-with-a-skill-that-agrees-with-the-tools-tests",
   "node_type": "Verification",
+  "prev_item_hash": "sha256:a4a11f11dc2d8fa0a7a31dd14eaee3657d3a646bd0d5927742d5abca62c85ba4",
   "properties": {
     "description": "find_skills ranks design-a-phenomenon first for \"design a phenomenon\", \"design an experiment to test a hypothesis\", \"physical model and its assumptions\" and \"predictions an experiment can tell apart\", and design-a-proof and design-an-argument still first for their own words; the skill teaches held_as model and principle, discharges, the two-call step, computed records and none faked, never proven, still_contested, reasoning_report, assumptions_held_on_purpose and its honest limits, and the proof and argument skills point to it; its recipe run through add_constraint, add_artifact, add_verification, add_requirement, add_inference, documents and review_relations reads as the skill says (predictions conditional on the held model, no undischarged assumption, 3 held on purpose, a what-if on one idealization naming its predictions, the supported claim conditional with the result in rests_on_tests, the rival open and in still_contested, and a passing experiment check moving neither).",
-    "findings": "3 of 3 pass on the branch (cargo test -p reflow2-mcp --no-default-features --test in_memory a_phenomenon_is_designed, with the served-skill, find_skills corpus and argument-skill tests: 54 of 54). The whole MCP crate without RocksDB ran 934 of 936 before the last ranking fix; both failures were this change's own and pass now. Measured while writing it: a step can hold a model and a supposition only through two add_inference calls (held_as is per call), and a result contradicting a conjecture nothing derives leaves it reading open, listed in still_contested.",
+    "findings": "3 passed at c6b4c1f14 (MCP in_memory, no RocksDB). The recipe now reads the supported claim `supported` with `given` naming the held model and idealizations, and runs the owner's ruling through the tools a client calls: add_decision, add_inference concluding it from the result and the missed prediction, review_relations CONTRADICTS alignment conceding, set_decision_status accepted with approver. Proposed it rules nothing; accepted and signed the rival claim and its hypothesis read refuted (naming ruling, signer, result, held model), reasoning_report's refuted_by_ruling and loop_status's reasoning.rulings_in_force name it, a what-if on the held idealization names rulings_lost; rejected, the rival is open and still contested again. find_skills still ranks design-a-phenomenon first for the four phenomenon queries.",
     "kind": "verification",
-    "last_run_at": "2026-10-27",
+    "last_run_at": "2026-10-28",
     "level": "integration",
     "location": "crates/reflow2-mcp/tests/a_phenomenon_is_designed_with_a_skill_that_agrees_with_the_tools.rs",
     "method": "test",

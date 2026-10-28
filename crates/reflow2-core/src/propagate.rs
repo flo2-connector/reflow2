@@ -195,6 +195,13 @@ pub struct BlastRadius {
     /// support, with those conditions. Absent when none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
+    /// RULINGS LOST (req:the-owner-can-rule-a-prediction-refuted-by-a-named-
+    /// result): each owner's ruling on a result whose force the change takes
+    /// away — the ruling itself, or a model or principle it holds under —
+    /// with the result, what it refuted (only contested again) and what was
+    /// taken. Absent when none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rulings_lost: Vec<crate::inference::RulingLost>,
     /// EQUIVALENTS REACHED (req:two-statements-can-be-recorded-as-proven-
     /// equivalent, part 3): each statement the change touches — a seed, or a
     /// claim the walk counts lost — that is proven equivalent to another,
@@ -299,6 +306,7 @@ impl BlastRadius {
             arguments_lost: self.arguments_lost.clone(),
             objections_returning: self.objections_returning.clone(),
             checks_gone_stale: self.checks_gone_stale.clone(),
+            rulings_lost: self.rulings_lost.clone(),
             equivalents_reached: self.equivalents_reached.clone(),
             redo_list: self.redo_list.clone(),
         }
@@ -385,6 +393,9 @@ pub struct BlastRadiusSummary {
     /// See [`BlastRadius::checks_gone_stale`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub checks_gone_stale: Vec<crate::inference::StaleCheck>,
+    /// See [`BlastRadius::rulings_lost`]. Carried whole.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rulings_lost: Vec<crate::inference::RulingLost>,
     /// See [`BlastRadius::equivalents_reached`]. Carried whole.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub equivalents_reached: Vec<EquivalentReached>,
@@ -864,6 +875,7 @@ impl DesignGraph {
             arguments_lost,
             objections_returning: walk.objections_returning,
             checks_gone_stale: walk.checks_gone_stale,
+            rulings_lost: walk.rulings_lost,
             equivalents_reached,
             redo_list: self.redo_list(seed_ids)?,
         })

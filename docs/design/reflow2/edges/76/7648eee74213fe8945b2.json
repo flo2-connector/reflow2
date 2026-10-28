@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:c40b1a0a224c7fb14c027eac7a9dacc99539d80e36d13175dde56dae07d8dc2e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28",
+  "properties": {
+    "approved_at": "2026-10-28",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

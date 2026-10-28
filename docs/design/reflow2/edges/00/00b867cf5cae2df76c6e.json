@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:df26a9089505eebf9aedc1f97edbac40037d4c5297a9bd7ddfe77a97fd929e03",
+  "edge_type": "REALIZES",
+  "from_id": "art:reasoning-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-claim-a-result-supports-reads-supported-given-what-is-held-on-purpose"
+}

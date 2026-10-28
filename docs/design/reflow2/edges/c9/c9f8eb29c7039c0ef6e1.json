@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c3be483ade519e4c142b0de0e7b78cdaf4caf4ade943722bd119ba6c3ae24815",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-claim-a-result-supports-reads-supported-given-what-is-held-on-purpose",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
