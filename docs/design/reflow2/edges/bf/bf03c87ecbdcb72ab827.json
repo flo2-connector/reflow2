@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1b9a2d9169a5f04e1af9a18b6ce8ea6d01db912e1a460c0fa4f9fe85eeb292b6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:079363b95b5f536cc7f55a7af26c81446c99843c2ee6f31877d3350d21c70cc9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-readings-before-the-shared-evaluation"
+}

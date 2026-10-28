@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:ab0f7b5133bcde6f1b17577ab6418c46ff276c66df0b76186149faeb16a1af76",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time",
+  "properties": {},
+  "to_id": "req:reflow2-stamps-the-server-time-on-each-node-creation-and-content-change"
+}

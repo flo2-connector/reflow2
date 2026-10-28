@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:66f1486ed03513702e81421f81b56a11da31653a0fe9b338f6fbe8e095057e4f",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-exchange",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
+}

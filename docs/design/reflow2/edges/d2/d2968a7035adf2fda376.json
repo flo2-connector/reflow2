@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:bf8ab18b4e021dff3b53b5faa5c5d83d8d49c42af5b1eef0e0c3dbf3fd7c9988",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:the-server-stamps-each-node-creation-and-content-change-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

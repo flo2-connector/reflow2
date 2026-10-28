@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:35c77baf16799fed9e4c7097f4364f244f227c5b735ae71e6980649c8d9494ed",
+  "node_id": "frag:art:the-server-stamps-each-node-creation-and-content-change-test",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/the_server_stamps_each_node_creation_and_content_change.rs"
+  }
+}

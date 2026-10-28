@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:01b8cbd132eeddbb32e5b37a563b705cc21e8cfcac77d42bbeef0721aa787b70",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:the-server-stamps-each-node-creation-and-content-change-test",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:the-server-stamps-each-node-creation-and-content-change-test"
+}

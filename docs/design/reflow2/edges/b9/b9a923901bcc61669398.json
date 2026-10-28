@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6cd057ff52b7245784ef9bc2ea7983e34d7fee207596d27156dc283ce1f88a54",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28",
+  "properties": {
+    "evidence": "Says where the stamps that decision chose are kept and when they travel.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:370452cba50024f6e392d4c4d5692e4f3877d648801a822f52b73d0c9e8cc9aa",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6641b432093eda02a7824832f9245cfec809850d4f09031f94a22b7940d5e061",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:2c010a8657bd025249efea1b5321a5ca842b5094fe7f0b7381aaf817a69bee86",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:prediction-order-rs"
+}

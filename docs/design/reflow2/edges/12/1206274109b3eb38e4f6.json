@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d56ab0dc180041eee450c4790a6d33823e65a3167018b08605d762f9dde77e4d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 39,
+    "action": "modified",
+    "checksum_after": "sha256:e052c07fb4dedc0d53fa13fb68e71f51b8f620fa8765f1851f067f793520e189",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:skill-lint"
+}

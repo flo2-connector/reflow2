@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:644cb1e2b4f254be51e54f1fb20be2a62c28a3a9719ac7a9c858d3db200c39ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

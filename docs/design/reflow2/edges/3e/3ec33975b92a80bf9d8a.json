@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:eacae993a0ce5b966345a926080b45a4772e9fe0c1b74b2ab0a68cb740856bf2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

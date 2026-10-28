@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:35696344c7d721ea58fda79c11805e6604a85559b7a8d9626892783e263c68dd",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it",
+  "properties": {
+    "note": "Read from the stamps only, said and never enforced."
+  },
+  "to_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0766d2ad5830ecea58b9de8c68dcdbb45b0f160f9b120d693eb3b3d8c1d3133a",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-prediction-reads-whether-it-was-stated-before-its-result-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it"
+}

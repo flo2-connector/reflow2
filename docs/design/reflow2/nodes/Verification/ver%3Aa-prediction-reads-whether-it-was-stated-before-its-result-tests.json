@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:32e6e0ac1a20087fd4c3ef0b71e65c7037ee9e8259825e81210ffe66e9a25425",
+  "node_id": "ver:a-prediction-reads-whether-it-was-stated-before-its-result-tests",
+  "node_type": "Verification",
+  "properties": {
+    "description": "cargo test -p reflow2-mcp --no-default-features --test in_memory a_prediction_reads_whether_it_was_stated_before_its_result, on a design whose stamp clock moves one second per write (ReflowService::in_memory_on_clock). A prediction recorded before its result reads stated_before_the_result; one recorded after reads stated_after_the_result (post hoc) and the claim it supports reads exactly as the early one's; one revised after (replace_text) reads revised_after_the_result and earlier_wording_in names a snapshot holding the old wording; reported_at 1999 or 2999 and acted_at cannot move the order, and create_node and create_nodes naming a stamp are refused and write nothing; a result that CONTRADICTS a claim reads contests with the order; a plain export carries no stamp, an item-layout path with stamps: true is refused and writes nothing, and a design imported from an export with stamps reads imported_not_recorded_here; a design with no results gains no field and a node read carries no stamp.",
+    "findings": "7 passed at 5ba902f6f (with the phenomenon skill test and the reviewed toolsnap test). On main 73b29e4df the file does not compile: ReflowService::in_memory_on_clock and the stamps do not exist, and reasoning_report carries no prediction_order. The readings golden moved only in four-colour and riemann, which gain prediction_order lines reading order_not_recorded (their fixtures carry no stamps); with the field hidden the golden passed unchanged.",
+    "kind": "verification",
+    "last_run_at": "2026-10-28",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_prediction_reads_whether_it_was_stated_before_its_result.rs",
+    "method": "test",
+    "name": "prediction_order over the wire: before, post hoc, revised after, imported, never from a typed date",
+    "status": "passing"
+  }
+}

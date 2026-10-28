@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:83cc15e0f38d85d7288741fe7536b1390f70fa2880e916e176523e8caa2ecd71",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it",
+  "properties": {},
+  "to_id": "req:a-prediction-reads-whether-it-was-stated-before-the-result-it-is-tested-by"
+}
