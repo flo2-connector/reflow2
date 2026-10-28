@@ -31,6 +31,322 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.93.0] — 2026-10-28
+
+**Minor. An experiment's result refutes a claim only on its owner's signed ruling, a model's
+idealizations are held on purpose, a prediction reads whether it was stated before its result,
+reflow2 records the time of every write from its own clock, and a change's blast radius is read
+whole, a page at a time.** It contains:
+- #804: every typed edge tool's description names `draw_edges`' real argument (`edges`), and a
+  check fails the build when a served description names an argument its tool does not take;
+- #805: `propagate_change` takes `budget_chars`, and `propagate_change` and `propagate_from` page
+  a full radius with `offset`; `loop_status` gives list rows to its budget before it cuts any text;
+  `set_violation_status` takes `resolved_at` and `violates_rule` takes `detected_at`; a drawing or
+  model that DOCUMENTS a part is on its redo list; no served text names `record_change` any more;
+- #806: `add_inference` takes `held_as` (`supposition`, `principle` or `model`) for an assumed
+  premise; `reasoning_report` keeps room for its summary within its budget; `create_node` and
+  `create_nodes` say no near-match check ran (`near_match_check`);
+- #807: a served skill, `design-a-phenomenon`, for a phenomenon and the experiment that tests it;
+- #808: the owner's ruling, a Decision conceding a result, accepted and signed, makes the claim
+  the result goes against read `refuted`, naming the ruling; a claim a result supports, resting
+  otherwise only on what is held on purpose, reads `supported` given it;
+- #809: the server stamps each node's creation and content change from its own clock, sealed
+  (HMAC-SHA256) under a key kept in the store; `reasoning_report` carries `prediction_order`;
+  `export_graph` takes `stamps: true`.
+
+**Behaviour you will notice:**
+- an assumption marked `held_as: model` or `principle` is counted under `loop_status`'s
+  `reasoning.assumptions_held_on_purpose` and **no longer reads "THE REASONING IS NOT AS
+  STATED"**; an assumption whose step says nothing reads as a supposition, exactly as before;
+- a **Decision that concedes a result counts only as a ruling**: unsigned or not accepted it
+  grants nothing, and the result only contests; before, any holding reply's concession of a result
+  refuted what the result went against. No design in the trial fixtures or reflow2's own design
+  holds one;
+- a claim resting on a documented result and otherwise only on premises held as a model or a
+  principle **reads `supported`, with those premises in `given`**, where it read `conditional`;
+- **every node write is stamped** with the server's time, and a write that names
+  `server_created_at`, `server_changed_at` or `server_seal` is refused. Reads, receipts and content
+  hashes leave the stamps out, so every reply reads as before;
+- **a write costs about what it did, and a store grows about 180 bytes per stamped node.**
+  Measured at this cut against the published 0.92.0 binary, one stdio server per run on an
+  on-disk store, a mix of `create_node`, `add_requirement`, `add_inference`, `review_relations`
+  and 100-node `create_nodes` batches, median per call: on an NVMe disk, every single write
+  74–80 ms on both (the disk's flush dominates) and a batch 142.5 ms on both; on a RAM disk, the
+  stamps' own cost, single writes within 0.05 ms of 0.92.0 (4.7–5.9 ms) and a batch of 100
+  11.3 → 12.5 ms. The store held 182 bytes more per node written (2,400 nodes: 1.94 → 2.38 MB);
+- `loop_status` **keeps to `budget_chars`** by giving rows from its lists first; measured at this
+  cut on reflow2's own design, an unscoped call answered 23,868 characters where 0.92.0 answered
+  29,641, in the same time (8.1 s against 8.1 s, median of 3 one-shot `reflow2 read` runs on an
+  i5-10300H);
+- `reasoning_report` with a small `budget_chars` may return **no claim**, the summary,
+  `next_offset` at that claim and `page.claim_needs_budget_chars`; ask again with that budget.
+
+**The MCP surface stays at 199 tools**, measured against the published 0.92.0 binary (sha256
+`7720cf66…` for its linux-x86_64 archive, checked against `checksums.txt`). None is added or
+removed, and 38 served tools differ, all additively:
+- **new arguments:** `add_inference` (`held_as`), `export_graph` (`stamps`), `propagate_change`
+  (`budget_chars`, `offset`; description), `propagate_from` (`offset`), `set_violation_status`
+  (`resolved_at`), `violates_rule` (`detected_at`; description);
+- **descriptions only:** `create_nodes`, `move_component`, and the "MANY AT ONCE" sentence of 30
+  typed edge tools (`allocate`, `answers`, `authored_by`, `calibrated_against`, `complies_with`,
+  `constrains`, `consumes`, `contain_component`, `contains`, `decomposes`, `depends_on`,
+  `deploy_to`, `documents`, `gate_on`, `governed_by`, `imposes`, `invalidates`, `operates_in`,
+  `owned_by`, `part_of_flow`, `performed_in`, `pin_at_epoch`, `precedes`, `provides`, `realizes`,
+  `release_includes`, `require_resource`, `satisfies`, `schedule_for`, `verifies`).
+
+**Skills go from 34 to 35**: `design-a-phenomenon` is added. The other 34 keep their names and
+metadata; `design-a-proof` and `design-an-argument` change in their own words (each points to
+the new skill, and `design-an-argument` takes a principle up with `held_as: principle`).
+`get_instructions` is unchanged. Nothing is deprecated and nothing is removed, so no notice is
+owed to anyone who runs their own MCP server.
+
+- **The schema stamp does not move**: 28 node types and 69 edge types, and the same node
+  vocabulary, as in 0.92.0. `PREMISE_OF` gains an edge property, `held_as`, which the stamp does
+  not carry, so no upgrade doc is owed. Measured at this cut with the published 0.92.0 binary:
+  - 0.92.0 opens a store this release wrote, with its "behind" warning, and reads it;
+  - **0.92.0 shows the three stamps as ordinary properties** of each node this release wrote: in
+    `get_node`, `scan_nodes`, its write receipts and its exports (not in `search_design`);
+  - a 0.92.0 write to a stamped node keeps the old stamps beside the new content; this release
+    then reads that node's stamps as "imported, not recorded here", and its next change of the
+    node drops `server_created_at`; a node 0.92.0 creates carries none;
+  - 0.92.0 refuses this release's exports without `--accept-newer`; with it, it imports them,
+    and a `stamps: true` export's stamps become ordinary properties there.
+
+  **Rolling a server back to 0.92.0** therefore works from a store snapshot, as before, but the
+  stamps it reads as properties are copied into every export 0.92.0 takes, and they would ride
+  into a committed design copy taken while it runs.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of it with the binary. Each line below was checked by running
+`reflow2-mcp read` / `reflow2-mcp write` on the 0.93.0 release build, one process per call,
+against a design on disk:
+- **`held_as: model`**: a model and two idealizations taken up by three steps read
+  `assumptions_held_on_purpose: 3`, `undischarged_assumptions: 0`;
+- **supported given**: a claim resting on a documented result and the held model read
+  `supported`, `given` naming the three held premises;
+- **`prediction_order`**: each prediction recorded before the result read
+  `stated_before_the_result`, with both times from the server's clock;
+- **the owner's ruling**: the rival the result went against read `open` while the ruling was
+  proposed and `refuted` once it was accepted with `approver`, naming the ruling, its signer and
+  the result; `reasoning_report` listed it in `refuted_by_ruling`;
+- **stamps**: a write naming `server_created_at` was refused; `get_node` showed none;
+  `export_graph` carried them only with `stamps: true`;
+- **budgets and paging**: `loop_status` at `budget_chars: 3000` shortened four lists and said so;
+  `reasoning_report` at 2,000 returned the summary and `claim_needs_budget_chars`;
+  `propagate_change` with `full: true` paged a 12-row radius (`impacted_page`);
+- **`resolved_at`**: a must-fix violation left `breaches` once `set_violation_status` recorded
+  it fixed; **`near_match_check`** came back on `create_nodes`;
+- **the skill**: `get_skill design-a-phenomenon` answered, and `reflow2 init --harness
+  vscode-cli` wrote `.github/prompts/design-a-phenomenon.prompt.md` and its skill folder; run
+  `reflow2 update` in each repository to get them.
+
+**Still needs a hosted gateway such as flo2.io:** nothing new in this release. As before, the
+hosted hub view (a hub's address answering from every member live, `member` on a hosted member)
+and cross-design reads by graph id without your own `--registry-root` server. These lines get
+checked again on the published binary once the release is out.
+
+### Added
+
+- **A prediction reads whether it was stated before the result that tests it.**
+  `reasoning_report` carries `prediction_order`: for each result (a statement of
+  kind `evidence`) that is a premise of a step beside a prediction, or that
+  CONTRADICTS a claim, how the prediction stands against it —
+  `stated_before_the_result`, `stated_after_the_result` (post hoc),
+  `revised_after_the_result` (with `earlier_wording_in`, the Snapshot that keeps
+  the wording it had when the result was recorded), `changed_after_the_result`,
+  `order_not_recorded` or `imported_not_recorded_here` — with the times and a
+  sentence that says it. It is read only from times the server recorded, never
+  from `reported_at`, `acted_at` or any date a caller typed. It is said, never
+  enforced: a late prediction is not refused, and no support, contest or
+  refutation reading moves because of it. Absent when no result tests anything,
+  so a design with no results reads as before. **What to do:** nothing; a prediction
+  or result recorded before this release has no stamp and reads
+  `order_not_recorded`, and every one recorded after it is stamped.
+- **reflow2 stamps the server time on each node's creation and content change.**
+  Every node write records, from the server's own clock, when the node was
+  created and when its content last changed, sealed (HMAC-SHA256) under a key
+  kept inside the store. A write that names a stamp (`server_created_at`,
+  `server_changed_at`, `server_seal`) is REFUSED, on every write path. Reads
+  leave the stamps out, so every reply, receipt, comparison and content hash
+  reads as before. A stamp reads as recorded here only in the store that sealed
+  it, against the content it was sealed over; one carried in from elsewhere, or
+  left on content edited outside reflow2, reads "imported, not recorded here".
+  The store's format does not change, and an older reflow2 still opens it.
+  **What to do:** nothing. A backup or move by store directory keeps the stamps
+  and the key.
+- **`export_graph` takes `stamps: true`** to carry each node's stamps (in its
+  properties, which every older reader accepts), for a backup or a move by
+  export that should keep them. Off by default, so two exports of one design
+  stay byte-identical and two branches making the same change to one item still
+  merge; refused with an item-layout path, which never carries them.
+
+- **The owner can rule that an experiment's result refutes a claim, and it
+  reads refuted by that ruling.** A result (a statement of kind `evidence`, or
+  a statistical test) still only CONTESTS what it goes against on its own. The
+  owner settles it with acts reflow2 already serves: a Decision
+  (`add_decision`), optionally concluded by a step from the result and the
+  prediction it missed (`add_inference`), that CONCEDES the result
+  (`review_relations` CONTRADICTS with `alignment: conceding`), accepted and
+  signed by the owner (`set_decision_status` `accepted` with `approver`). While
+  that ruling is in force, the claim the result goes against reads `refuted`,
+  and its reading names the ruling, who signed it, the result and the
+  conditions: the model and idealizations held on purpose (`held_as`) beneath
+  the claim and the ruling's step. A hypothesis (statement of kind
+  `hypothesis`) discharged into the missed prediction, or derived under, reads
+  refuted by the same ruling. The objection carries the ruling whole
+  (`ruling`); `reasoning_report` lists each ruling in `refuted_by_ruling`;
+  `loop_status`'s `reasoning` names them in `rulings` / `rulings_in_force`; and
+  `propagate_from` / `propagate_change` name each ruling a change takes the
+  force of in `rulings_lost` (the Decision itself, or a held model or
+  idealization it rests on). Withdraw it (`set_decision_status` `rejected`, or
+  delete the concession) and the result only contests again. **What to do:**
+  nothing for an existing design. To rule, follow the design-a-phenomenon
+  skill, section 6.
+- **A claim a result supports, resting otherwise only on what is held on
+  purpose, reads `supported` given it.** When a line under a claim rests on a
+  documented result and otherwise only on premises held as a `model` or a
+  `principle`, its `proof_status` reads `supported` with those premises in
+  `given` (and reasoning_report's claim reads `truth: supported` with `given`;
+  the step's `holds_as` reads `supported`), never `proven`. Before, it read
+  plain `conditional`. A claim that also rests on an undischarged supposition,
+  an unverified citation, an undocumented report or a bridge reads as before.
+  **What to do:** nothing; a design that holds nothing as a model or a
+  principle reads exactly as before.
+
+- **An assumed premise says how it is held: `add_inference` takes `held_as`.**
+  `supposition` (a proof's hypothesis, which a later step must discharge),
+  `principle` (an argument's chosen starting point) or `model` (a model's
+  idealization, held on purpose), written on each assumed premise's link
+  (PREMISE_OF `held_as`). Only a supposition left undischarged is a
+  `reasoning_not_as_stated` gap. A principle or a model is counted in
+  `loop_status`'s `reasoning.assumptions_held_on_purpose` (with its ids), and
+  what rests on it still reads conditional on it; reasoning_report's
+  `assumptions` carry `held_as` and read "held on purpose". Before, a physical
+  model's nine stated idealizations read "THE REASONING IS NOT AS STATED: 9
+  assumption(s) never discharged", and so did an argument's governing
+  principles. `held_as` is refused with nothing in `assumed`, and as
+  `principle` or `model` for a statement of kind `hypothesis`. **What to do:**
+  nothing for an existing design: an assumption whose step says nothing reads
+  as a supposition, exactly as before. Mark a model's or an argument's
+  assumptions with `held_as` to stop them reading as not as stated.
+- **`create_nodes` and `create_node` say no near-match check ran.** Their
+  replies carry `near_match_check`, which says the generic path runs none (by
+  design, so a bulk seed is never blocked) and names the reads that check:
+  `search_design` per item before writing, a typed tool, or
+  `relation_candidates` after. Before, the reply was silent, and silence read as
+  "nothing close". **What to do:** nothing.
+
+- **A served skill for designing a phenomenon and the experiment that tests it:
+  `design-a-phenomenon` (`/design-a-phenomenon`).** It lays out what is
+  observed, the model that explains it and each law used as given (taken up
+  with `held_as: model` or `principle`, so they read held on purpose, never as
+  reasoning not as stated), each idealization as its own premise with where it
+  fails, the prediction each step makes and the one it makes when an
+  idealization is dropped, the hypothesis under test as a supposition
+  discharged into the prediction stated before the data, every number through
+  a kept calculator record (exact or bounded, with units and its source; with
+  no calculator, the number and its source and no record claimed), experiments
+  chosen because they tell rival explanations apart, and each result as
+  evidence that supports or contests a claim, never proves or refutes it. It
+  ends by reading back what is supported, what stays conditional and what is
+  contested, and says what the structure gives a journal article's methods and
+  results. Written from the sinogram reconstruction trial of 2026-10-27.
+  `design-a-proof` and `design-an-argument` point to it. **What to do:**
+  nothing; `get_skill design-a-phenomenon` serves it, and `reflow2 update`
+  installs the `/design-a-phenomenon` command in a project.
+
+- **`propagate_change` takes `budget_chars`, and both blast-radius tools page.**
+  A full radius (`full: true`) is held to `budget_chars` (default 30,000) by one
+  bounded serializer that `propagate_change` and `propagate_from` share, and
+  `offset` reads on: `impacted_page` says the `offset`, how many rows are
+  `shown`, the `total` and the `next_offset` to pass back (null on the last
+  page). Before, `propagate_change` took no bound, so on a 35-seed change its
+  38,395-character radius was withheld whole by a gateway holding replies to
+  30,000. The redo list's groups give rows to the budget too, each named by id.
+  **What to do:** nothing to keep a call working; pass `offset` with
+  `full: true` to read a large radius whole.
+- **`set_violation_status` takes `resolved_at`, and `violates_rule` takes
+  `detected_at`.** A violation ruled must-fix (`rejected`) leaves the open
+  breaches when `set_violation_status` records the date it was fixed; the edge
+  is kept for audit. Before, only a hand-written `create_edge` could set it,
+  though the open-breach gap told the agent to. `resolved_at` is refused with
+  any status but `rejected`.
+- **`propagate_change` adds `stale_edge_evidence_silent_on`** (`count`,
+  `seeds`, one `coverage_note`): every seed the edge-prose check was silent on
+  because no snapshot holds its prior state, named once. Each of those seeds
+  keeps its entry in `stale_edge_evidence`, whose `coverage_note` is now a short
+  pointer there ("No prior snapshot: see stale_edge_evidence_silent_on.")
+  rather than the same paragraph per seed: on a 579-seed change of reflow2's
+  own design the copies were 55,599 characters, more than a whole reply's
+  budget. Over the budget, `stale_edge_evidence`'s entries give rows like a
+  list's, each counted in `budget.lists_shortened`. **What to do:** nothing; the
+  explanation is in `stale_edge_evidence_silent_on.coverage_note`.
+
+### Changed
+
+- **A Decision that concedes a result counts only as a ruling.** Unsigned, or
+  not accepted, it grants nothing and the result contests; before, any
+  holding reply's concession of a result refuted what the result went against.
+  A concession of any other objection, and a concession of a result by a
+  statement that is not a Decision, read as before. No design in the trial
+  fixtures or reflow2's own design holds a Decision conceding a result.
+
+### Fixed
+
+- **`reasoning_report` keeps to its budget, and its summary keeps its names.**
+  The summary's room is reserved before the claims page is filled, and its
+  names are cut to no fewer than 80 characters, never to "…". When one claim
+  alone will not fit beside the summary, the page returns no claim, the
+  summary, `next_offset` at that claim, and `page.claim_needs_budget_chars`,
+  the budget that claim needs; `page.reads` says so. Before, at budget_chars
+  6,000 the reply kept a 7,300-character claim whole, blanked all 20 summary
+  fields, and answered 9,529 characters. A budget below the summary's own floor
+  (every count, one entry per list, names at 80 characters) is answered at that
+  floor, and `page.reads` says so. **What to do:** when `claims` is empty and
+  `next_offset` is set, ask again with the budget the page names, or read the
+  claim alone by its id.
+
+- **The typed edge tools now name `draw_edges`'s real argument.** Since 0.75
+  every typed edge tool's description (`allocate`, `satisfies`, `invalidates`
+  and 29 more) ended "MANY AT ONCE: `draw_edges`, items {…}", but `draw_edges`
+  takes `edges`, so an agent that followed the text was refused. The sentence
+  now reads "`draw_edges` with `edges`: [{"tool": …, "arguments": {…}}]", and
+  the argument's name is read from `draw_edges`' own schema, so a rename
+  cannot leave it behind again. A new check reads every served description for
+  an argument named in three shapes ("`tool` with `arg`", "`tool`'s `arg`
+  argument", and a JSON example after a tool's name) and fails the build when
+  the tool does not take it. **What to do:** nothing; a call that sent `items`
+  should send `edges`.
+
+- **A drawing or a model that DOCUMENTS a part is on that part's redo list.** A
+  change's `redo_list` filled `drawings` and `models` only through an Artifact
+  that REALIZES a reached part, so a sheet or an IFC model linked to the part
+  it shows with `documents` was left off while the note said what a record
+  documents counts. And a sheet showing several parts no longer puts the other
+  parts on the list as parts to redo. The note now says which link fills each
+  group.
+- **`loop_status` holds to `budget_chars`, breaches included.** Its bound let
+  only `awaiting_word` give rows; with nothing awaiting (every unscoped call) it
+  cut every text instead, the to-do lines in `next` with them, and kept every
+  breach row: 11,767 characters to a budget of 3,000 on reflow2's own design.
+  Every list in the reply now gives rows, from its tail and by what it costs,
+  before any text is cut, and `budget.lists_shortened` counts what each one
+  left out. `next` is never shortened. A budget smaller than the report's own
+  counts is answered at that floor, over the budget, because the counts are the
+  answer: the `budget` note says the reply is still that size with every list
+  at one row and every long text cut, and why.
+- **No served text names `record_change` any more.** It was removed in 0.92.0,
+  and five messages still said to call it: the coverage note `propagate_change`
+  attaches for a node with no earlier snapshot, the gap about a change that
+  does not say its `subject`, the note after a part is moved, the refusal to
+  move a plan nobody recorded, and the description of `DesignEpoch.status`.
+  Each now names `snapshot_before_change`. A test now reads every served text
+  (tool descriptions, the skills and instructions, the schema, and the fixed
+  prose of every reply) for a tool that is not served.
+- **The open-breach gap names the tool that closes a must-fix violation**
+  (`set_violation_status` with `resolved_at`), instead of telling the agent to
+  set a property on the edge directly.
+
 ## [0.92.0] — 2026-10-26
 
 **Minor. A design choice reads by what its owner accepted, anything recorded broken stays open
