@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:20bb4e8da4eeb02edb4363ce6c8f3ce36b7c09ce77b3c766729d2a714f0044d0",
+  "node_id": "frag:art:file-handles",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered file_handles.rs (reflow2-mcp) — a registry raises its open-file limit, checks max_open × files a design against it, and says the headroom"
+  }
+}

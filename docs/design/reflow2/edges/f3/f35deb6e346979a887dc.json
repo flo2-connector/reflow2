@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19b27e3535d4a1d144adaeae88782e22355bc23d9001801717f464f05dfa9f7b",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit",
+  "properties": {
+    "evidence": "Anthony kept option F (report the headroom) as intent on 2026-10-28: \"Go with your recommendation\"."
+  },
+  "to_id": "req:a-server-reports-its-open-file-headroom"
+}

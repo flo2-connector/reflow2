@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:bdd2b9f708182ec6abd5af628fd24a312f3527b1670d690a6cf5cda9e82c09ba",
+  "node_id": "cap:readyz-reports-open-files-against-the-limit",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Every HTTP surface's /readyz answer keeps its status and first line, and adds a second line 'open files: N of L allowed (R left)' and two headers, x-reflow2-open-files and x-reflow2-open-file-limit, for a monitor to alarm on. N is counted from /proc/self/fd on Linux; elsewhere it reads 'unknown', never a guess. L is the soft RLIMIT_NOFILE ('unlimited' or 'unknown' where there is none). Additive: no field removed or renamed. Code: crates/reflow2-mcp/src/readiness.rs (ready_answer) and file_handles.rs (open_file_count, headroom_line).",
+    "name": "GET /readyz reports the files the server has open against its open-file limit",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

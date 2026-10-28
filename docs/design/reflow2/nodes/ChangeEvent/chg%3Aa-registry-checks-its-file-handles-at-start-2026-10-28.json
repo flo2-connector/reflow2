@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:ab0cab773ad5f00245edfc0b23c3bc8db3fa1613f8c196031ac6f8050730aed8",
+  "node_id": "chg:a-registry-checks-its-file-handles-at-start-2026-10-28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "new_feature",
+    "commits": "e3713c383",
+    "detected_at": "2026-10-28",
+    "name": "A registry raises its open-file limit at start, warns when its designs may not fit, and /readyz says the headroom",
+    "rationale": "Answers req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open (options A+B) and req:a-server-reports-its-open-file-headroom (option F), kept by Anthony on 2026-10-28 from dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit, after fact:root-cause-a-registry-at-its-open-limit-runs-out-of-file-handles-2026-10-28 (flo2.io's 64 designs met Docker's soft 1024).\n\nMEASURED for the estimate, 2026-10-28, published 0.92.0 build, /proc/<pid>/fd after initialize + search_design + get_node over HTTP: reflow2's own design served alone = 22 handles (12 in the store: 5 .sst + 7 others); a one-node design = 9 in the store (2 .sst + the same 7); a registry = 10 with nothing open, then +12, +9, +9, +9 per design. The 7 every design holds: WAL (.log), MANIFEST, LOCK, info LOG, two store-directory handles, tantivy's .tantivy-writer.lock; tantivy segments are mmapped and hold no handle. So FIXED_FILES_PER_DESIGN = 12 (7 measured + 5 allowed for a WAL rotation, a flush or compaction output, the index's meta.json and new segments), PROCESS_OWN_FILES = 32 (10 measured + connections). On flo2.io's numbers: 64 × 76 + 32 = 4896 against 1024 → the warning says raise to 4896 or lower --registry-max-open to 13; but the raise takes 1024 to 524288 first there, so flo2.io gets the raise line and no warning.\n\nNot done here (still open in the idea): C (derive one limit from the others), D (handle EMFILE at open by closing an idle design), E (one shared file budget). The estimate is a worst case: RocksDB keeps 10 of max_open_files for non-table files, so 64 + 12 overstates a store by up to 10.\nSession: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "A --registry-root server now raises its soft RLIMIT_NOFILE to the hard limit at start (macOS: kern.maxfilesperproc, then OPEN_MAX), then checks --registry-max-open × (64 table files + 12 fixed files a design) + 32 of its own against the soft limit and prints one WARNING naming the numbers and what to change when they do not fit; it keeps running. GET /readyz keeps its status and first line and adds 'open files: N of L allowed (R left)' plus the headers x-reflow2-open-files and x-reflow2-open-file-limit (count from /proc/self/fd on Linux, 'unknown' elsewhere). MAX_OPEN_FILES_PER_STORE is now public in reflow2-core so the check reads the number the store is opened with. New: crates/reflow2-mcp/src/file_handles.rs, crates/reflow2-mcp/tests/a_registry_checks_its_file_handles_at_start.rs. Changed: main.rs (registry branch), readiness.rs, core backend.rs / store mod.rs / lib.rs, mcp lib.rs, tests/in_memory.rs."
+  }
+}

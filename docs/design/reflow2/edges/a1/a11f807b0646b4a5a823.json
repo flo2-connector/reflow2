@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:e60628b9c2580672cfebd852f74dc842fb37f706b5bc35fb0572d39811aa56cb",
+  "edge_type": "HAS_TEMPORAL_FACT",
+  "from_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
+  "properties": {},
+  "to_id": "fact:root-cause-a-registry-at-its-open-limit-runs-out-of-file-handles-2026-10-28"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:9c60ea2b1f313654bf57bc461c1f172041a9271f6b023fc487b1e2cf63bd4a88",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:file-handles",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

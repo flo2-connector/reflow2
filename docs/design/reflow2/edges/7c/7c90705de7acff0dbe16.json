@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:c798d6ca2864cefed2b04e33fd76554cda69199384f09076240f84644def0412",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:readyz-reports-open-files-against-the-limit",
+  "properties": {},
+  "to_id": "req:a-server-reports-its-open-file-headroom"
+}

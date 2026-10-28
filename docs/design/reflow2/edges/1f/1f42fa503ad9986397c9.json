@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:9903d6406ec9fe86450de0bb37f78a5eb59fa43b582bd648ce442917d90c6362",
+  "edge_type": "REALIZES",
+  "from_id": "art:file-handles",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:readyz-reports-open-files-against-the-limit"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:65d44cdfe397e514f0d2a2e9eb3692df713a934790068e40661a0a49d5de12c7",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:readyz-reports-open-files-against-the-limit",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:readyz-reports-open-files-against-the-limit"
+}

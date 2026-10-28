@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:dde672cf8a52d576ee9a5e5857c6bde1866e78a386f73678afb49c152d3bdc45",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:a-registry-raises-and-checks-its-open-file-limit-at-start",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0ace872162d719c6a5bb9e232dcb5c86f695c14a3b958146b9da3e43dbc33071",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:readyz-reports-open-files-against-the-limit",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:mcp-http"
+}

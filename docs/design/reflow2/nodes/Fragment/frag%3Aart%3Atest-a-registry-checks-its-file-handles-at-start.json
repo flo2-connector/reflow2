@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d9ac3446cc483adbc8a7f2c25c69fa079ee9e8fc33b78cf18bdf1b1090a27330",
+  "node_id": "frag:art:test-a-registry-checks-its-file-handles-at-start",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered a_registry_checks_its_file_handles_at_start.rs — the real binary started under a chosen limit raises it, warns with the numbers when 8 designs cannot fit under a hard 256, keeps serving, and /readyz reports the headroom"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:1739410ea5a86f3c7ac7de4e5e8fe9b22c76abffc8220d20ca056af53cce42bf",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-registry-checks-its-file-handles-and-readyz-says-the-headroom",
+  "properties": {},
+  "to_id": "cap:readyz-reports-open-files-against-the-limit"
+}

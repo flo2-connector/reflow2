@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:261cc70579b6a55a9cc45e0c05e1cea1bf57ab20c7c6457f5d512cf0d669abf3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

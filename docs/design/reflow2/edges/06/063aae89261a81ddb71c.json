@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:afd7439813778f477c9fc1c3da5902e9450701746cacf0cd604d0dacb0ff5c37",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-server-reports-its-open-file-headroom",
+  "properties": {
+    "approved_at": "2026-10-28",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}
