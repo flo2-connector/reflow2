@@ -136,8 +136,11 @@ use crate::graph::DesignGraph;
 use crate::nodes::{Props, edge, node};
 
 mod memo;
+mod ruling;
 use memo::{Kept, Stack, Stacks, Tracker};
 pub(crate) use memo::{debt_held, note_truncation};
+use ruling::RulingState;
+pub use ruling::{RulingLost, RulingReading};
 use std::rc::Rc;
 
 /// How far a chain of steps is followed before the answer is `unknown`. A
@@ -467,6 +470,12 @@ pub struct ProofReading {
     /// What the three counts mean, carried beside them on every reading
     /// ([`PROOF_COUNTS_MEAN`]), so the number is never read without it.
     pub counts: &'static str,
+    /// SUPPORTED GIVEN (req:a-claim-a-result-supports-reads-supported-given-
+    /// the-model-held-on-purpose): with `status` `supported`, the premises
+    /// held on purpose — a model, a principle — the evidence supports it
+    /// under, each by id. Absent otherwise.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub given: Vec<String>,
 }
 
 /// What a [`ProofReading`]'s counts mean: served on every `proof_status`.
@@ -833,6 +842,8 @@ pub struct InferenceWalk {
     pub rows: Vec<InferenceImpact>,
     pub objections_returning: Vec<ObjectionReturning>,
     pub checks_gone_stale: Vec<StaleCheck>,
+    /// The owner's rulings the change takes the force of.
+    pub rulings_lost: Vec<RulingLost>,
 }
 
 /// An objection a change brings back into force: the reply that answered it
@@ -1295,6 +1306,10 @@ pub(crate) struct ClaimParts {
     pub lines: Vec<LineConditions>,
     pub lines_capped: bool,
     pub contested_by: Vec<String>,
+    /// SUPPORTED GIVEN: the premises held on purpose a line resting on
+    /// evidence holds under ([`DesignGraph::supported_given`]). Empty unless
+    /// the claim reads supported given them.
+    pub given: Vec<String>,
 }
 
 /// Several lines in words: "under con:a; or under con:b; or under con:c".
@@ -1573,6 +1588,14 @@ pub struct ObjectionReading {
     /// concession names none.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub moves_to: Option<String>,
+    /// THE OWNER'S RULING THAT GRANTS IT (req:the-owner-can-rule-a-
+    /// prediction-refuted-by-a-named-result): when the objection is a result
+    /// and an accepted, signed Decision concedes it, the ruling — its
+    /// Decision, who signed it, what it refutes and the conditions it holds
+    /// under. `standing` then reads `conceded` and `conceded_by` names the
+    /// Decision. Absent otherwise.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ruling: Option<RulingReading>,
 }
 
 /// Whether an objection's standing counts against its target as holding:
@@ -2150,7 +2173,12 @@ impl DesignGraph {
     /// needs, without evaluating the claim five times.
     pub(crate) fn claim_parts(&self, id: &str) -> Result<ClaimParts, DynoError> {
         let r = self.premise_reading(id)?;
+        let given = match (r.truth, self.supported_given(&r)?) {
+            (Truth::Holds, Some(line)) => line.assumes.into_iter().collect(),
+            _ => Vec::new(),
+        };
         Ok(ClaimParts {
+            given,
             lines: r.served_lines(),
             lines_capped: r.lines_capped,
             truth: r.truth,
@@ -2184,6 +2212,63 @@ impl DesignGraph {
     /// `bridge`, beneath it or itself, sorted. Empty when it rests on none.
     pub fn bridges_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
         Ok(self.premise_reading(id)?.bridges.into_iter().collect())
+    }
+
+    /// SUPPORTED GIVEN WHAT IS HELD ON PURPOSE
+    /// (req:a-claim-a-result-supports-reads-supported-given-the-model-held-on-
+    /// purpose, Anthony 2026-10-28): for a reading that would otherwise be
+    /// CONDITIONAL, the lightest line that rests on evidence (a result, a
+    /// statistical test) and otherwise only on premises held on purpose — a
+    /// model or a principle (`held_as`) — with no undischarged supposition,
+    /// no unverified citation or undocumented report and no bridge. The claim
+    /// then reads SUPPORTED given those premises, never proven. `None` for
+    /// every other reading, so a design that holds nothing on purpose reads
+    /// exactly as before.
+    fn supported_given(&self, r: &Read) -> Result<Option<Condition>, DynoError> {
+        let would_be_conditional =
+            !r.assumes.is_empty() || !r.unverified.is_empty() || !r.bridges.is_empty();
+        if !would_be_conditional {
+            return Ok(None);
+        }
+        self.supported_given_line(&r.lines)
+    }
+
+    /// The lightest of `lines` that reads supported given what is held on
+    /// purpose: see [`Self::supported_given`].
+    fn supported_given_line(&self, lines: &[Condition]) -> Result<Option<Condition>, DynoError> {
+        for line in lines {
+            if line.evidential.is_empty()
+                || line.assumes.is_empty()
+                || !line.unverified.is_empty()
+                || !line.bridges.is_empty()
+            {
+                continue;
+            }
+            let mut all_held = true;
+            for a in &line.assumes {
+                if !self.is_held_on_purpose(a)? {
+                    all_held = false;
+                    break;
+                }
+            }
+            if all_held {
+                return Ok(Some(line.clone()));
+            }
+        }
+        Ok(None)
+    }
+
+    /// The premises held on purpose `id` reads SUPPORTED given, sorted: empty
+    /// unless it reads so ([`Self::supported_given`]).
+    pub fn supported_given_under(&self, id: &str) -> Result<Vec<String>, DynoError> {
+        let r = self.premise_reading(id)?;
+        if r.truth != Truth::Holds {
+            return Ok(Vec::new());
+        }
+        Ok(self
+            .supported_given(&r)?
+            .map(|l| l.assumes.into_iter().collect())
+            .unwrap_or_default())
     }
 
     // ─── A write that refutes says so ──────────────────────────────────────
@@ -2257,7 +2342,15 @@ impl DesignGraph {
                 continue;
             }
             let step = self.get_node(node::INFERENCE, id)?.is_some();
-            let keep_as_dispute = (!step).then(|| {
+            // A RULING IS THE OWNER'S SETTLING, not a dispute drawn one way:
+            // withdrawing it is how it is undone, so no advice to redraw it.
+            let ruled = !step
+                && self
+                    .objections_to(id)?
+                    .iter()
+                    .filter(|o| counts_as_holding(o.standing))
+                    .all(|o| o.ruling.is_some());
+            let keep_as_dispute = (!step && !ruled).then(|| {
                 format!(
                     "If {id} and {} are rival positions in an open dispute rather than a \
                      refutation, draw a CONTRADICTS back from {id} to {} as well: both then read \
@@ -2306,7 +2399,11 @@ impl DesignGraph {
         if holding.is_empty() {
             return Ok(None);
         }
-        let reads = if holding.iter().all(|o| o.standing == "conceded") {
+        // REFUTED BY THE OWNER'S RULING: refuted, on the owner's word, never
+        // merely conceded by an arguer.
+        let reads = if holding.iter().all(|o| o.ruling.is_some()) {
+            "refuted"
+        } else if holding.iter().all(|o| o.standing == "conceded") {
             "conceded"
         } else {
             "refuted"
@@ -2560,6 +2657,28 @@ impl DesignGraph {
             }
         };
         let objections = self.objections_within(id, ev, depth, &own)?;
+        // REFUTED BY THE OWNER'S RULING ON A RESULT: said as the ruling,
+        // naming the result and the conditions it holds under.
+        let ruled: Vec<&RulingReading> = objections
+            .iter()
+            .filter(|o| counts_as_holding(o.standing))
+            .filter_map(|o| o.ruling.as_ref())
+            .collect();
+        if !ruled.is_empty()
+            && objections
+                .iter()
+                .filter(|o| counts_as_holding(o.standing))
+                .all(|o| o.ruling.is_some())
+        {
+            return Ok(Read::plain(
+                Truth::Fails,
+                ruled
+                    .iter()
+                    .map(|r| r.why.clone())
+                    .collect::<Vec<_>>()
+                    .join("; and "),
+            ));
+        }
         let refuting: Vec<String> = objections
             .iter()
             .filter(|o| counts_as_holding(o.standing))
@@ -2767,12 +2886,41 @@ impl DesignGraph {
             } else {
                 (standing_of(truth), r.why)
             };
+            // A RESULT IS SETTLED BY THE OWNER'S SIGNED RULING, and by nothing
+            // else (req:the-owner-can-rule-a-prediction-refuted-by-a-named-
+            // result): while one is in force the result counts against its
+            // target as if it held, and the target reads refuted BY THE
+            // RULING, with the conditions it holds under. A Decision that
+            // concedes a result and is not in force leaves it contesting.
+            let mut ruling: Option<RulingReading> = None;
+            let mut why = why;
+            if self.is_result(&e.from_id)? {
+                match self.ruling_of_result(&e.from_id, ev, depth)? {
+                    Some(RulingState::InForce(r)) => ruling = Some(r),
+                    Some(RulingState::NotInForce { why: not }) => {
+                        why = format!("{why}; {not}");
+                    }
+                    None => {}
+                }
+            }
             // GRANTED BY A REPLY THAT HOLDS: the objection counts against its
             // target as if it held, whatever its own truth — the arguer has
             // conceded it, and moved the argument to another reading.
-            let (standing, why, conceded_by, moves_to) = match self
-                .concession_of(&e.from_id, ev, depth)?
-            {
+            let conceded = match &ruling {
+                Some(r) => Some((r.ruling.clone(), None)),
+                None => self.concession_of(&e.from_id, ev, depth)?,
+            };
+            let (standing, why, conceded_by, moves_to) = match conceded {
+                Some((reply, _)) if ruling.is_some() => (
+                    "conceded",
+                    format!(
+                        "granted by the owner's ruling {reply}, so what it goes against is {}; on \
+                         its own, {why}",
+                        ruling.as_ref().map(|r| r.why.as_str()).unwrap_or_default()
+                    ),
+                    Some(reply),
+                    None,
+                ),
                 Some((reply, moves_to)) => (
                     "conceded",
                     format!(
@@ -2789,6 +2937,7 @@ impl DesignGraph {
             };
             out.push(ObjectionReading {
                 node_type: self.type_holding(&e.from_id)?,
+                ruling,
                 conceded_by,
                 moves_to,
                 standing,
@@ -3177,6 +3326,12 @@ impl DesignGraph {
             .collect();
         conceding.sort();
         for (reply, moves_to) in conceding {
+            // A DECISION CONCEDING A RESULT IS A RULING, read only as one
+            // (crate::inference::ruling): unsigned or not accepted, it grants
+            // nothing.
+            if self.concession_is_a_ruling(&reply, objection)? {
+                continue;
+            }
             if self.truth_full(&reply, ev, depth.saturating_sub(1))?.truth == Truth::Holds {
                 return Ok(Some((reply, moves_to)));
             }
@@ -3669,6 +3824,26 @@ impl DesignGraph {
             && let Some(far) = self.far_premise(id)?
         {
             return Ok(far_read(&far));
+        }
+        // A HYPOTHESIS A RULING REFUTES (req:the-owner-can-rule-a-prediction-
+        // refuted-by-a-named-result): the owner ruled that a result refutes
+        // what it was discharged into or derived under, so it reads refuted
+        // by that ruling, on the same conditions. Inside the argument it is
+        // still held whatever its truth, as every assumption is.
+        if statement_kind(&n.properties) == Some("hypothesis")
+            && let Some(r) = self.ruling_on_hypothesis(id, ev, depth)?
+        {
+            return Ok(Read::plain(
+                Truth::Fails,
+                format!(
+                    "a hypothesis {}",
+                    r.why.replacen(
+                        "refuted by",
+                        "refuted, through the prediction it was discharged into, by",
+                        1
+                    )
+                ),
+            ));
         }
         let status = prop(&n.properties, "status").map(str::to_string);
         if node_type == node::REQUIREMENT && status.as_deref() == Some("dropped") {
@@ -5514,7 +5689,18 @@ impl DesignGraph {
         // here too, not only at its claim; one resting on evidence is
         // supported. Until 2026-10-20 the step read plain `holds`.
         if reading.verdict == Truth::Holds {
-            reading.holds_as = if !reading.assumes.is_empty()
+            reading.holds_as = if (!reading.assumes.is_empty()
+                || !reading.rests_on_unverified.is_empty()
+                || !reading.rests_on_bridges.is_empty())
+                && reading.lines.first().is_some_and(|l| {
+                    !l.assumes.is_empty() || !l.unverified.is_empty() || !l.bridges.is_empty()
+                })
+                && self.supported_given_line(&reading.lines)?.is_some()
+            {
+                // Supported given what is held on purpose (see
+                // `supported_given`).
+                Some("supported")
+            } else if !reading.assumes.is_empty()
                 || !reading.rests_on_unverified.is_empty()
                 || !reading.rests_on_bridges.is_empty()
             {
@@ -6162,10 +6348,16 @@ impl DesignGraph {
                 });
             }
         }
+        // RULINGS THE CHANGE TAKES THE FORCE OF (req:the-owner-can-rule-a-
+        // prediction-refuted-by-a-named-result): the ruling itself, or a
+        // condition it holds under, taken away — what it refuted is only
+        // contested again.
+        let rulings_lost = self.rulings_lost(&lost, &mut before_ev, &mut after_ev)?;
         Ok(InferenceWalk {
             rows,
             objections_returning: returning,
             checks_gone_stale,
+            rulings_lost,
         })
     }
 
@@ -6885,9 +7077,36 @@ impl DesignGraph {
                 confirmed_steps: confirmed,
                 unconfirmed_steps: total.saturating_sub(confirmed),
                 counts: PROOF_COUNTS_MEAN,
+                given: Vec::new(),
             }));
         }
         let unconfirmed = total.saturating_sub(confirmed);
+        // SUPPORTED BY EVIDENCE, GIVEN WHAT IS HELD ON PURPOSE (req:a-claim-
+        // a-result-supports-reads-supported-given-the-model-held-on-purpose):
+        // a line resting on a result and otherwise only on a model or
+        // principles held on purpose reads supported given them, never
+        // proven, rather than plain conditional.
+        if any_holds && conclusion_truth == Truth::Holds {
+            let r = self.premise_reading(id)?;
+            if let Some(line) = self.supported_given(&r)? {
+                let given: Vec<String> = line.assumes.iter().cloned().collect();
+                return Ok(Some(ProofReading {
+                    status: ProofStatus::Supported,
+                    why: format!(
+                        "supported by the evidence {}, given what is held on purpose: {} — \
+                         evidence under a model, never proven, and only as far as each of them \
+                         holds",
+                        self.tests_said(&line.evidential)?,
+                        self.held_said(&given)?
+                    ),
+                    total_steps: total,
+                    confirmed_steps: confirmed,
+                    unconfirmed_steps: unconfirmed,
+                    counts: PROOF_COUNTS_MEAN,
+                    given,
+                }));
+            }
+        }
         // A derivation holds only UNDER AN ASSUMPTION no step on the way
         // discharges: a result inside a hypothetical argument, never a proof.
         if any_holds && conclusion_truth == Truth::Holds {
@@ -6919,6 +7138,7 @@ impl DesignGraph {
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
                     counts: PROOF_COUNTS_MEAN,
+                    given: Vec::new(),
                 }));
             }
         }
@@ -6938,6 +7158,7 @@ impl DesignGraph {
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
                     counts: PROOF_COUNTS_MEAN,
+                    given: Vec::new(),
                 }));
             }
         }
@@ -6958,6 +7179,7 @@ impl DesignGraph {
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
                     counts: PROOF_COUNTS_MEAN,
+                    given: Vec::new(),
                 }));
             }
         }
@@ -6978,6 +7200,7 @@ impl DesignGraph {
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
                     counts: PROOF_COUNTS_MEAN,
+                    given: Vec::new(),
                 }));
             }
         }
@@ -6991,6 +7214,7 @@ impl DesignGraph {
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
                 counts: PROOF_COUNTS_MEAN,
+                given: Vec::new(),
             }));
         }
         // NO ROUTE HOLDS, BUT A DISPUTE IS WHAT HOLDS ONE UP: contested, never
@@ -7007,6 +7231,7 @@ impl DesignGraph {
                     confirmed_steps: confirmed,
                     unconfirmed_steps: unconfirmed,
                     counts: PROOF_COUNTS_MEAN,
+                    given: Vec::new(),
                 }));
             }
         }
@@ -7018,6 +7243,7 @@ impl DesignGraph {
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
                 counts: PROOF_COUNTS_MEAN,
+                given: Vec::new(),
             }))
         } else if any_holds {
             Ok(Some(ProofReading {
@@ -7029,6 +7255,7 @@ impl DesignGraph {
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
                 counts: PROOF_COUNTS_MEAN,
+                given: Vec::new(),
             }))
         } else {
             Ok(Some(ProofReading {
@@ -7038,6 +7265,7 @@ impl DesignGraph {
                 confirmed_steps: confirmed,
                 unconfirmed_steps: unconfirmed,
                 counts: PROOF_COUNTS_MEAN,
+                given: Vec::new(),
             }))
         }
     }

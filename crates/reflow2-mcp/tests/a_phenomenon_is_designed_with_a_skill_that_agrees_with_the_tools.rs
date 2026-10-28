@@ -16,9 +16,16 @@
 //!   hypothesis under test is a supposition, discharged into the prediction
 //!   stated before the data ("if H, then P"); a number counts through its kept
 //!   record; a result pinned to its data supports the claim it bears for
-//!   (supported, never proven) and contests the rival it bears against (never
-//!   refutes it); and `propagate_from` on one idealization names the
-//!   predictions resting on it.
+//!   (supported given the model held on purpose, never proven) and contests
+//!   the rival it bears against (never refutes it on its own); the owner's
+//!   signed ruling on the result refutes the rival and the hypothesis
+//!   discharged into its prediction, given the model, until it is withdrawn;
+//!   and `propagate_from` on one idealization names the predictions resting
+//!   on it, and the ruling that holds only under it.
+//!
+//! Since 2026-10-28 (`req:a-claim-a-result-supports-reads-supported-given-the-model-held-on-purpose`,
+//! `req:the-owner-can-rule-a-prediction-refuted-by-a-named-result`): gaps 1
+//! and 2 that this skill's first version named in its honest limits.
 
 use reflow2_mcp::service::ReflowService;
 use reflow2_mcp::skills::SKILLS;
@@ -145,9 +152,13 @@ fn the_skill_teaches_what_the_trial_named() {
         // Each number through its kept record, and nothing faked without one.
         "`computed`",
         "for a record that does not exist",
-        // A result supports, contests, or neither; never proven, never refuted.
+        // A result supports, contests, or neither; never proven, and refuted
+        // only on the owner's signed ruling.
         "never proven",
         "`still_contested`",
+        "supported given",
+        "`alignment` `conceding`",
+        "`refuted_by_ruling`",
         // The read-back and the debt.
         "`reasoning_report`",
         "`assumptions_held_on_purpose`",
@@ -332,12 +343,22 @@ async fn the_recipe_reads_as_the_skill_says() {
     )
     .await;
 
-    // The claim the result bears for: conditional on the held model, resting
-    // on the result as evidence. Never proven, and never plain holds.
+    // The claim the result bears for: SUPPORTED GIVEN the model held on
+    // purpose, resting on the result as evidence and naming each held
+    // premise. Never proven, and never plain holds.
     let bh = s.reading("req:claim-bh").await;
     assert_eq!(
-        bh["statement_reading"]["reads"], "conditional",
-        "supported by the result, under the held model: {bh:#}"
+        bh["statement_reading"]["reads"], "supported",
+        "supported by the result, given the held model: {bh:#}"
+    );
+    assert_eq!(
+        bh["proof_status"]["given"],
+        json!([
+            "con:idl-monochromatic",
+            "con:idl-no-scatter",
+            "con:model-attenuation"
+        ]),
+        "{bh:#}"
     );
     let rep = s
         .ok("reasoning_report", json!({"claim": "req:claim-bh"}))
@@ -363,6 +384,8 @@ async fn the_recipe_reads_as_the_skill_says() {
         ]),
         "{claim:#}"
     );
+    assert_eq!(claim["truth"], "supported", "{claim:#}");
+    assert_eq!(claim["given"], claim["assumes"], "{claim:#}");
 
     // The rival the result bears against: contested, never refuted. On its
     // own it reads open (no step shows it); the read-back lists it as still
@@ -398,6 +421,114 @@ async fn the_recipe_reads_as_the_skill_says() {
     );
     assert_eq!(
         s.reading("req:claim-bh").await["statement_reading"]["reads"],
-        "conditional"
+        "supported"
+    );
+
+    // THE OWNER'S RULING, with the acts the skill names: a Decision accepted
+    // and signed by the owner, concluded by a step from the result and the
+    // prediction it missed, conceding the result.
+    s.ok(
+        "add_contributor",
+        json!({"id": "who:owner", "name": "The owner", "kind": "person"}),
+    )
+    .await;
+    s.ok(
+        "add_decision",
+        json!({"id": "dec:ruling-scatter", "name": "Ruling: the filtration result refutes scatter",
+               "decision": "The cupping is not scatter: the filtration result refutes it, given the model.",
+               "rationale": "The model and both idealizations are kept; the miss is laid on scatter."}),
+    )
+    .await;
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:ruling-scatter",
+               "premises": ["con:result-filtration", "req:if-sc-then-distance"],
+               "conclusion": "dec:ruling-scatter", "rule": "all",
+               "rule_name": "the owner's ruling on a result",
+               "warrant": "Scatter predicted a change with detector distance; the result shows none; the model and the monochromatic idealization are kept, so the miss is laid on scatter."}),
+    )
+    .await;
+    s.ok(
+        "review_relations",
+        json!({"node_id": "dec:ruling-scatter", "links": [{"relation": "CONTRADICTS",
+               "other_id": "con:result-filtration", "alignment": "conceding",
+               "evidence": "the owner rules the filtration result refutes scatter"}]}),
+    )
+    .await;
+    // Proposed, it rules nothing: the rival is still only contested.
+    assert_eq!(
+        s.reading("req:claim-sc").await["statement_reading"]["reads"],
+        "open"
+    );
+    s.ok(
+        "set_decision_status",
+        json!({"decision_id": "dec:ruling-scatter", "status": "accepted",
+               "approver": "who:owner", "acted_at": "2026-10-28"}),
+    )
+    .await;
+    let sc = s.reading("req:claim-sc").await;
+    assert_eq!(sc["statement_reading"]["reads"], "refuted", "{sc:#}");
+    let why = sc["statement_reading"]["why"].as_str().unwrap();
+    for named in [
+        "dec:ruling-scatter",
+        "who:owner",
+        "con:result-filtration",
+        "con:model-attenuation",
+        "con:idl-monochromatic",
+    ] {
+        assert!(why.contains(named), "the reading names {named}: {why}");
+    }
+    let h = s.reading("req:hyp-scatter").await;
+    assert_eq!(h["statement_reading"]["reads"], "refuted", "{h:#}");
+    assert_eq!(
+        s.reading("req:hyp-beam-hardening").await["statement_reading"]["reads"],
+        "discharged"
+    );
+    assert_eq!(
+        s.reading("req:claim-bh").await["statement_reading"]["reads"],
+        "supported"
+    );
+    let whole = s.ok("reasoning_report", json!({})).await;
+    assert_eq!(
+        whole["refuted_by_ruling"][0]["ruling"], "dec:ruling-scatter",
+        "{whole:#}"
+    );
+    assert_eq!(
+        whole["refuted_by_ruling"][0]["hypotheses"],
+        json!(["req:hyp-scatter"]),
+        "{whole:#}"
+    );
+    let status = s.ok("loop_status", json!({})).await;
+    assert_eq!(
+        status["reasoning"]["rulings_in_force"][0]["result"], "con:result-filtration",
+        "{status:#}"
+    );
+    let walk = s
+        .ok(
+            "propagate_from",
+            json!({"seed_ids": ["con:idl-monochromatic"]}),
+        )
+        .await;
+    assert!(
+        walk.to_string().contains("rulings_lost"),
+        "a what-if on the held idealization names the ruling it costs: {walk:#}"
+    );
+
+    // Withdrawn, the result only contests again.
+    s.ok(
+        "set_decision_status",
+        json!({"decision_id": "dec:ruling-scatter", "status": "rejected"}),
+    )
+    .await;
+    assert_eq!(
+        s.reading("req:claim-sc").await["statement_reading"]["reads"],
+        "open"
+    );
+    let whole = s.ok("reasoning_report", json!({})).await;
+    assert!(
+        whole["still_contested"]
+            .as_array()
+            .is_some_and(|a| a.iter().any(|c| c["claim"] == "req:claim-sc")),
+        "{whole:#}"
     );
 }
