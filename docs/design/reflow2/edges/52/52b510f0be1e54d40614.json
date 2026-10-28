@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7676ce10bae3d83d987a3837be56e4ea626a7c89f146da46cbf5c208a4532eed",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:6e42da1b1de19d26718394c96c4990950dbe108b75006782045a19da7c772d22"
+  },
+  "to_id": "art:import-from-a-newer-reflow2-test"
+}

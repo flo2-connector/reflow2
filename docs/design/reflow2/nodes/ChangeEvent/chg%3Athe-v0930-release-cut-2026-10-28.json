@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ad56dd2775335fa18e861fdaf99d8cf10b1fa9f421e6a77b1d37e537c73572f0",
+  "node_id": "chg:the-v0930-release-cut-2026-10-28",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-28",
+    "name": "The v0.93.0 release cut",
+    "rationale": "The owner said \"prepare the release\" on 2026-10-28; the tag push stays his. Minor by CHANGELOG's Versioning table: the tool surface changes shape additively (add_inference held_as, export_graph stamps, propagate_change budget_chars / offset, propagate_from offset, set_violation_status resolved_at, violates_rule detected_at) and a skill is added. The schema stamp does not move (measured: 28 node and 69 edge types and the node vocabulary are unchanged; held_as is an edge property, which the stamp does not carry), so no upgrade doc is owed. Nothing is deprecated or removed, so the deprecation-announcement check has nothing new to read and no notice to the MCP users is owed. Measured against the published 0.92.0 binary: the surface is additive only (199 tools on both, 38 differ; skills 34 -> 35); the stamps cost no measurable time on single writes and add about 182 bytes of store per node; loop_status on reflow2's own design takes the same time (8.1 s one-shot on an i5-10300H) with a smaller reply; 0.92.0 opens a store this release wrote and shows its stamps as ordinary properties, which matters for rolling flo2.io back. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "reflow2 0.93.0 is cut in PR release/v0.93.0: every version claim moves 0.92.0 -> 0.93.0 (Cargo.toml, Cargo.lock, reflow2.toml, AGENTS.md's two lines, the five site pages), the six changelog.d fragments (#804-#809) are assembled under [0.93.0] with the opening, behaviour, surface, stamp, rollback and \"In your setup\" paragraphs, the schema snapshot is re-blessed (PREMISE_OF.held_as), and site/index.html's reasoning bullet says what #806, #808 and #809 change. rel:v0930 is recorded, pinned to epoch:v0930-cut with the increment's 19 ChangeEvents and the cut's 8 acceptances, and its manifest derived (911 INCLUDES)."
+  }
+}

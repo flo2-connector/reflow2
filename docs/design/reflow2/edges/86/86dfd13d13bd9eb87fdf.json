@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d4dc83818083f37ce11b010aba96389fc0fcb2dbafcd77757aa8d900f30c9ada",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:ada2328b7b709a7131ee5cd4138ec55b267fdbb0e259ed6ae4ffe495fbd061c7"
+  },
+  "to_id": "art:docs-overview"
+}

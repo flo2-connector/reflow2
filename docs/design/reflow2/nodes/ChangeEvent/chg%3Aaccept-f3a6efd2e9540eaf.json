@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f7d6bb4f23e199f278b015db29a754dd75659617fab5b4f22059bb04fe43c151",
+  "node_id": "chg:accept-f3a6efd2e9540eaf",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-28",
+    "name": "v0.93.0 cut, step 1: the schema snapshot is re-blessed from the 0.93.0 build (11 passed); it gains PREMISE_OF.held_as. The stamp does not move: no node or edge type added (28, 69), node vocabulary unchanged. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

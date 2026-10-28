@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:bc9e3f26ef3725e9c262d295b36ab81292563678765626773209d88b800caa6e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-v0930-release-cut-2026-10-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "art:site-walkthrough-html"
+}

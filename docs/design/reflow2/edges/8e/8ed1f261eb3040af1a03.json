@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:74310e0ce5fc7578b29ec2ed085bbd5a5b3f351a1d2c1850d6f720796c124175",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:0ed7eaeb6647e78da01ca48ce4b354958cb871be65c8e79f86e8876d9df6aac4"
+  },
+  "to_id": "art:heal"
+}

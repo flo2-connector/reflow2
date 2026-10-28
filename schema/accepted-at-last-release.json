@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.92.0",
+  "reflow2_version": "0.93.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -2599,6 +2599,14 @@
         "Inference"
       ],
       "properties": {
+        "held_as": {
+          "type": "enum",
+          "values": [
+            "model",
+            "principle",
+            "supposition"
+          ]
+        },
         "reads_as": {
           "type": "enum",
           "values": [

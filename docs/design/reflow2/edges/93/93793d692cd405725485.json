@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19ade1a4a466f91dda5aa6fc25b049ae02c25e37d0cc923ec1000a3a556f11c8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:cd5bfd1629291403266d88b71804ea4f212292836afc29075a374c2d07e1ad86"
+  },
+  "to_id": "art:degraded"
+}

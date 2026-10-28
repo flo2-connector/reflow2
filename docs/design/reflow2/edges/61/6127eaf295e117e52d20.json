@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:1d066240ace53c5657c49aecaa14d6a9fae680df27fd957b88929b82eb6d4d02",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:4382d21518c3d2b302e9e49515fbe0c35a5c3f8b29d670656e8389b934018a6e"
+  },
+  "to_id": "art:test-no-served-text-names-a-tool-that-is-not-served"
+}

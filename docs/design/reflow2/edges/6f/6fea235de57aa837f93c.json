@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd5e4c773d025bdec57d5035a583b8905f094709ebf007565abd42f4f6d29022",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:136c60c2b5cce28317cf97c0f069c47c4a6fba80e1e335757cd307b7944c05c7"
+  },
+  "to_id": "art:claims-and-shared-premises-on-the-wire-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:7ccc41623323f5d8a1794163bd23468d7da7fdf915bea73d7e504ba7a3dbe1fe",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0930",
+  "properties": {
+    "as_checksum": "sha256:cfa4f2a130fa43614592ad7b77199e3aa1de0815692c2173889ea34a193fa76d"
+  },
+  "to_id": "art:design-an-argument-command"
+}
