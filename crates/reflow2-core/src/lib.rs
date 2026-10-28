@@ -88,6 +88,7 @@ pub mod node_edges;
 pub mod nodes;
 pub mod operate;
 pub mod owed;
+pub mod prediction_order;
 pub mod preserve;
 pub mod propagate;
 pub mod provenance;

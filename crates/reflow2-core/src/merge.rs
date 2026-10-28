@@ -832,11 +832,9 @@ impl fmt::Display for MergeError {
 impl std::error::Error for MergeError {}
 
 fn exported_node(id: &str, node_type: &str, properties: Props) -> ExportedNode {
-    ExportedNode {
-        node_type: node_type.to_string(),
-        node_id: id.to_string(),
-        properties,
-    }
+    // A merged node is new content, so it carries no stamp: an import keeps
+    // the stamps of a node whose content the merge left as the store holds it.
+    ExportedNode::from_disk(node_type.to_string(), id.to_string(), properties)
 }
 
 /// Resolve one node's merged property bag, consulting the human's decisions for

@@ -21,4 +21,7 @@ mod keys;
 pub use cache::{CacheConfig, ReadCache};
 #[cfg(feature = "fulltext")]
 pub use engine::{FulltextCoverage, FulltextHit};
-pub use engine::{StorageEngine, StoredEdge, StoredNode};
+pub use engine::{
+    NodeStamp, STAMP_CHANGED, STAMP_CREATED, STAMP_KEYS, STAMP_SEAL, StampClock, StampMode,
+    StorageEngine, StoredEdge, StoredNode, format_stamp_time, system_clock,
+};

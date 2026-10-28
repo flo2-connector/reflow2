@@ -367,8 +367,12 @@ impl DesignGraph {
     /// rather than half-done here.
     pub fn open_in_memory_as(graph_id: &str) -> Result<Self, DynoError> {
         let schema = crate::schema::load_schema()?;
+        let mut engine = StorageEngine::new_in_memory(schema);
+        // A design stamps every node write from its own clock
+        // (`foundation::store` stamps); in memory, under a key of its own.
+        engine.enable_stamps()?;
         Ok(Self {
-            engine: StorageEngine::new_in_memory(schema),
+            engine,
             graph_id: graph_id.to_string(),
             store_path: None,
             derived: Default::default(),
@@ -603,6 +607,9 @@ impl DesignGraph {
             search_rebuilt_on_open: None,
             identity_on_open: identity_note,
         };
+        // Stamping starts before anything below writes: a repair on open that
+        // changes a node's content is a change this server made, now.
+        graph.engine.enable_stamps()?;
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
         // on-disk store uniform when nothing is stamped on it to key a
@@ -700,6 +707,37 @@ impl DesignGraph {
     #[cfg(feature = "fulltext")]
     pub(crate) fn engine(&self) -> &StorageEngine {
         &self.engine
+    }
+
+    /// When this server recorded the node's creation and its last content
+    /// change, and whether this store vouches for those times — the only way
+    /// the stamps are read (every node read leaves them out). `None` when the
+    /// node does not exist.
+    pub fn node_stamp(
+        &self,
+        node_type: &str,
+        id: &str,
+    ) -> Result<Option<crate::foundation::store::NodeStamp>, DynoError> {
+        self.engine.node_stamp(&self.graph_id, node_type, id)
+    }
+
+    /// The node's stamp properties exactly as stored, for an export to carry.
+    pub(crate) fn stamp_properties(
+        &self,
+        node_type: &str,
+        id: &str,
+    ) -> Result<Vec<(String, Value)>, DynoError> {
+        self.engine.stamp_properties(&self.graph_id, node_type, id)
+    }
+
+    /// Read stamps from `clock` instead of the system clock. FOR TESTS: a
+    /// golden reading cannot hold the wall clock, and an order a test pins
+    /// needs times it chose.
+    pub fn set_stamp_clock(
+        &mut self,
+        clock: crate::foundation::store::StampClock,
+    ) -> Result<(), DynoError> {
+        self.engine.set_stamp_clock(clock)
     }
 
     /// The merged schema backing this graph.
@@ -1017,8 +1055,10 @@ impl DesignGraph {
             widen_ints_for_float_props(&def.properties, &mut props);
         }
         self.check_settle_write(node_type, id, &props)?;
+        // A restore: the stamps the document states are kept as stated, and
+        // read as recorded here only when their seal verifies.
         self.engine
-            .create_node(&self.graph_id, node_type, id, props)
+            .create_node_imported(&self.graph_id, node_type, id, props)
     }
 
     /// [`create_node`](Self::create_node), REFUSED when the node has moved since

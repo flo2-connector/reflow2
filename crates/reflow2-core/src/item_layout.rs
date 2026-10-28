@@ -299,11 +299,9 @@ pub fn parse_item(rel_path: &str, bytes: &[u8]) -> Result<ParsedItem, String> {
         file.from_id,
         file.to_id,
     ) {
-        (Some(node_type), Some(node_id), None, None, None) => ParsedBody::Node(ExportedNode {
-            node_type,
-            node_id,
-            properties: file.properties,
-        }),
+        (Some(node_type), Some(node_id), None, None, None) => {
+            ParsedBody::Node(ExportedNode::from_disk(node_type, node_id, file.properties))
+        }
         (None, None, Some(edge_type), Some(from_id), Some(to_id)) => {
             ParsedBody::Edge(ExportedEdge {
                 edge_type,

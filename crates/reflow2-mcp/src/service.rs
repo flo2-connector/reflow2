@@ -7676,6 +7676,18 @@ impl ReflowService {
         Ok(Self::wrap(DesignGraph::open_in_memory()?))
     }
 
+    /// An in-memory design whose server stamps are read from `clock` rather
+    /// than the system clock — FOR TESTS: an order a test pins needs times it
+    /// chose, and a golden reading cannot hold the wall clock. A caller of the
+    /// served surface can never reach this.
+    pub fn in_memory_on_clock(
+        clock: reflow2_core::foundation::store::StampClock,
+    ) -> Result<Self, DynoError> {
+        let mut graph = DesignGraph::open_in_memory()?;
+        graph.set_stamp_clock(clock)?;
+        Ok(Self::wrap(graph))
+    }
+
     /// An in-memory design that answers to `graph_id` — for a test holding
     /// several designs at once, where each must be told apart the way two
     /// real stores are.

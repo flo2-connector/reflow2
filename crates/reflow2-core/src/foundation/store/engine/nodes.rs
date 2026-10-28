@@ -7,12 +7,41 @@ use super::*;
 
 impl StorageEngine {
     /// Create a node with schema validation.
+    ///
+    /// A property naming one of the server's stamps (`stamps::STAMP_KEYS`) is
+    /// REFUSED: the stamps are put on here, from this store's clock, and the
+    /// node handed back (like every read) carries none of them.
     pub fn create_node(
         &mut self,
         graph_id: &str,
         node_type: &str,
         node_id: &str,
+        properties: HashMap<String, Value>,
+    ) -> Result<StoredNode, DynoError> {
+        Self::refuse_caller_stamps(node_type, &properties)?;
+        self.create_node_stamped(graph_id, node_type, node_id, properties, StampMode::Write)
+    }
+
+    /// [`create_node`](Self::create_node) for a restore from a document: the
+    /// stamps the document states are kept as it states them, and read as
+    /// recorded here only when their seal verifies under this store's key.
+    pub fn create_node_imported(
+        &mut self,
+        graph_id: &str,
+        node_type: &str,
+        node_id: &str,
+        properties: HashMap<String, Value>,
+    ) -> Result<StoredNode, DynoError> {
+        self.create_node_stamped(graph_id, node_type, node_id, properties, StampMode::Import)
+    }
+
+    fn create_node_stamped(
+        &mut self,
+        graph_id: &str,
+        node_type: &str,
+        node_id: &str,
         mut properties: HashMap<String, Value>,
+        mode: StampMode,
     ) -> Result<StoredNode, DynoError> {
         // validate_node mutates `properties` to apply schema defaults.
         self.schema.validate_node(node_type, &mut properties)?;
@@ -24,21 +53,32 @@ impl StorageEngine {
         let key = crate::foundation::store::keys::node_key(graph_id, node_type, node_id);
         let has_indexed = self.schema.has_indexed_properties(node_type);
 
+        // The node as stored, stamps included: the stamps decide from it
+        // whether the content changed, and keep what it had when it did not.
+        let old = self.raw_node_properties(graph_id, node_type, node_id)?;
+        self.stamp_for_write(
+            graph_id,
+            node_type,
+            node_id,
+            old.as_ref(),
+            &mut properties,
+            mode,
+        );
+
         // Create-or-replace semantics: if a node already exists at this id,
         // reconcile its reverse-index entries before overwriting. A bare
         // create would leave the prior (value -> node_id) entries dangling
         // under stale values, corrupting `scan_nodes_by_property`. Mirrors
         // the diff in `replace_node_properties`.
-        if has_indexed && let Some(old_bytes) = self.get(CF_NODES, &key)? {
-            let old: HashMap<String, Value> = rmp_serde::from_slice(&old_bytes)
-                .map_err(|e| DynoError::Serialization(e.to_string()))?;
-            self.delete_index_entries(graph_id, node_type, node_id, &old)?;
+        if has_indexed && let Some(old) = &old {
+            self.delete_index_entries(graph_id, node_type, node_id, old)?;
         }
 
         let value =
             rmp_serde::to_vec(&properties).map_err(|e| DynoError::Serialization(e.to_string()))?;
 
         self.put(CF_NODES, key, value)?;
+        stamps::strip(&mut properties);
         if has_indexed {
             self.write_index_entries(graph_id, node_type, node_id, &properties)?;
         }
@@ -63,8 +103,10 @@ impl StorageEngine {
         let key = crate::foundation::store::keys::node_key(graph_id, node_type, node_id);
         match self.get(CF_NODES, &key)? {
             Some(bytes) => {
-                let properties: HashMap<String, Value> = rmp_serde::from_slice(&bytes)
+                let mut properties: HashMap<String, Value> = rmp_serde::from_slice(&bytes)
                     .map_err(|e| DynoError::Serialization(e.to_string()))?;
+                // The server's stamps are read only through `node_stamp`.
+                stamps::strip(&mut properties);
                 Ok(Some(StoredNode {
                     graph_id: graph_id.to_string(),
                     node_type: node_type.to_string(),
@@ -198,25 +240,14 @@ impl StorageEngine {
         node_id: &str,
         mut properties: HashMap<String, Value>,
     ) -> Result<Option<StoredNode>, DynoError> {
+        Self::refuse_caller_stamps(node_type, &properties)?;
         let key = crate::foundation::store::keys::node_key(graph_id, node_type, node_id);
         let has_indexed = self.schema.has_indexed_properties(node_type);
 
-        // When the type has indexed properties we need old values to drive
-        // `delete_index_entries`. Otherwise just confirm existence — skipping
-        // the msgpack decode that the pre-index path avoided.
-        let old_properties: Option<HashMap<String, Value>> = if has_indexed {
-            match self.get(CF_NODES, &key)? {
-                Some(bytes) => Some(
-                    rmp_serde::from_slice(&bytes)
-                        .map_err(|e| DynoError::Serialization(e.to_string()))?,
-                ),
-                None => return Ok(None),
-            }
-        } else {
-            if self.get(CF_NODES, &key)?.is_none() {
-                return Ok(None);
-            }
-            None
+        // The stored node, stamps included: the stamps need it whatever the
+        // type, and `delete_index_entries` needs it when the type is indexed.
+        let Some(stored) = self.raw_node_properties(graph_id, node_type, node_id)? else {
+            return Ok(None);
         };
 
         // validate_node mutates `properties` to apply schema defaults.
@@ -224,10 +255,20 @@ impl StorageEngine {
         // Reject NUL-bearing key segments before the put — the new
         // indexed string values are the corruption vector on replace.
         self.validate_node_key_segments(graph_id, node_type, node_id, &properties)?;
+        self.stamp_for_write(
+            graph_id,
+            node_type,
+            node_id,
+            Some(&stored),
+            &mut properties,
+            StampMode::Write,
+        );
+        let old_properties = has_indexed.then_some(stored);
 
         let value =
             rmp_serde::to_vec(&properties).map_err(|e| DynoError::Serialization(e.to_string()))?;
         self.put(CF_NODES, key, value)?;
+        stamps::strip(&mut properties);
 
         // Diff indexed properties: drop entries whose old value no longer
         // matches, add entries for new values. Unchanged values are a wash —

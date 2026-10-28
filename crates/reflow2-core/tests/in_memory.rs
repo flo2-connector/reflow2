@@ -257,6 +257,7 @@ mod the_design_is_saved_one_file_per_item;
 mod the_design_says_whose_words_to_use;
 mod the_engine_proposes_a_merge_and_a_person_picks_the_survivor;
 mod the_schema_serves_the_rules_that_tell_the_types_apart;
+mod the_server_stamps_each_node_creation_and_content_change;
 mod the_settle_predicate_has_one_answer;
 mod the_surface_says_what_it_already_knew;
 mod understated_status;
