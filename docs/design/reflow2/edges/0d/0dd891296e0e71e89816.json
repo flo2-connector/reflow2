@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6304f17cd5fe5803a0cad9cd53ed36f257b618e0642a900ea8c67fada4b4f024",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:a-prediction-reads-whether-it-was-stated-before-its-result-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-prediction-reads-whether-it-was-stated-before-its-result-tests"
+}
