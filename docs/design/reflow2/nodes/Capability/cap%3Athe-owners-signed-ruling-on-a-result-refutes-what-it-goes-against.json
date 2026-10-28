@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:31b50b0c2f58264137f7bc40cf67bee532fdd6220c65b4fc7e89772c6674a111",
+  "node_id": "cap:the-owners-signed-ruling-on-a-result-refutes-what-it-goes-against",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-28 (branch reading/owner-ruling-and-supported-given), with acts reflow2 already serves, no new tool or argument: a Decision (add_decision), optionally concluded by a step from the result and the prediction it missed (add_inference), that CONCEDES the result (review_relations CONTRADICTS alignment conceding), accepted and signed by the owner (set_decision_status accepted with approver; a signature naming anyone but the caller is refused by the signer rule every signature meets). crates/reflow2-core/src/inference/ruling.rs reads it: while the Decision is accepted, signed by an approver and holds, and nothing it rests on is taken away, the result (a statement of kind evidence, or a statistical test) counts against what it CONTRADICTS as conceded, and each target reads refuted BY THE RULING, naming the ruling, its signer, the result and the conditions (the premises held_as model or principle beneath the target and beneath the ruling's step). A statement of kind hypothesis discharged into, or derived under, what the ruling rests on reads refuted by the same ruling; inside the argument it is still held. The objection carries `ruling`; reasoning_report lists `refuted_by_ruling`; loop_status's reasoning names `rulings` / `rulings_in_force`; propagate_from and propagate_change name `rulings_lost` when a change takes the ruling, the result or a held condition away. Withdrawn (rejected, superseded, or the concession deleted) the result only contests again. A Decision conceding a result counts only as a ruling: unsigned or not accepted it grants nothing. The 10-20 rule (dec:idea-an-objection-resting-on-evidence-contests-or-refutes) is untouched: evidence alone still contests.",
+    "name": "The owner's signed ruling on an experiment's result refutes what the result goes against, naming the ruling, the result and the model held beneath it; a result alone still contests",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

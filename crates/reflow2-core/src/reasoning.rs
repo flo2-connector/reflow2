@@ -201,6 +201,16 @@ pub struct ReasoningDebt {
     /// Checks whose conditions no longer hold: stale.
     pub stale_checks: usize,
     pub stale_check_ids: Vec<String>,
+    /// THE OWNER'S RULINGS IN FORCE (req:the-owner-can-rule-a-prediction-
+    /// refuted-by-a-named-result): each accepted, signed Decision that
+    /// concedes a result, with what it refutes, the hypotheses refuted with
+    /// it and the conditions it holds under. Not debt: the owner's settling,
+    /// named so a reader knows what reads refuted on whose word. The first
+    /// `list_cap`; absent when there are none.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub rulings: usize,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rulings_in_force: Vec<crate::inference::RulingReading>,
     /// How many ids each list may name.
     pub list_cap: usize,
     /// What these counts mean.
@@ -478,6 +488,12 @@ pub struct ClaimReading {
     /// `supported` rather than `holds`. Empty when it rests on none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_tests: Vec<String>,
+    /// SUPPORTED GIVEN (req:a-claim-a-result-supports-reads-supported-given-
+    /// the-model-held-on-purpose): when `truth` reads `supported` on a line
+    /// that also rests on premises held on purpose — a model, a principle —
+    /// those premises, each by id. Empty otherwise.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub given: Vec<String>,
     /// The `contested` Decision that keeps its dispute open on purpose: one
     /// governing the claim itself, or one governing the steps that conclude
     /// it (rival readings of one argument).
@@ -705,6 +721,13 @@ pub struct ReasoningReport {
     pub awaiting_the_owners_word: Vec<String>,
     /// Points still contested.
     pub still_contested: Vec<StillContested>,
+    /// SETTLED BY THE OWNER'S RULING (req:the-owner-can-rule-a-prediction-
+    /// refuted-by-a-named-result): each ruling in force on a result the walk
+    /// read, with what it refutes, the hypotheses refuted with it, who signed
+    /// it and the conditions it holds under. A result alone only contests,
+    /// and lists under `still_contested`. Absent when there is none.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub refuted_by_ruling: Vec<crate::inference::RulingReading>,
     /// STEPS AN OBJECTION IS AIMED AT that it defeats or contests
     /// (req:an-objection-aimed-at-a-step-is-read-against-that-step): each
     /// step, the claim it concludes, how it reads, and what stands against
@@ -1098,6 +1121,19 @@ impl DesignGraph {
             }
         }
         let mut still_contested = Vec::new();
+        let mut refuted_by_ruling: Vec<crate::inference::RulingReading> = Vec::new();
+        for c in &claims {
+            for o in &c.objections {
+                if let Some(r) = &o.ruling
+                    && !refuted_by_ruling
+                        .iter()
+                        .any(|x| x.ruling == r.ruling && x.result == r.result)
+                {
+                    refuted_by_ruling.push(r.clone());
+                }
+            }
+        }
+        refuted_by_ruling.sort_by(|a, b| (&a.ruling, &a.result).cmp(&(&b.ruling, &b.result)));
         let mut contested_by_design = Vec::new();
         let mut unsupported = Vec::new();
         let mut steps_objected = Vec::new();
@@ -1330,6 +1366,7 @@ impl DesignGraph {
             held_on_the_owners_word,
             awaiting_the_owners_word,
             still_contested,
+            refuted_by_ruling,
             steps_objected,
             contested_by_design,
             positions,
@@ -1543,6 +1580,7 @@ impl DesignGraph {
         let rests_on_tests = parts.tests;
         let (holds_under_any_of, lines_capped) = (parts.lines, parts.lines_capped);
         let contested_by = parts.contested_by;
+        let given = parts.given;
         let claim_truth = ClaimTruth::of(
             truth,
             &assumes,
@@ -1550,7 +1588,24 @@ impl DesignGraph {
             &rests_on_bridges,
             &rests_on_tests,
         );
-        let why = if claim_truth == ClaimTruth::Conditional && holds_under_any_of.len() > 1 {
+        // SUPPORTED GIVEN WHAT IS HELD ON PURPOSE (req:a-claim-a-result-
+        // supports-reads-supported-given-the-model-held-on-purpose): a claim a
+        // result supports, resting otherwise only on a model or principles
+        // held on purpose, reads supported given them, never plain
+        // conditional and never proven.
+        let claim_truth = if claim_truth == ClaimTruth::Conditional && !given.is_empty() {
+            ClaimTruth::Supported
+        } else {
+            claim_truth
+        };
+        let why = if claim_truth == ClaimTruth::Supported && !given.is_empty() {
+            format!(
+                "supported given what is held on purpose, never proven: the evidence under it \
+                 bears it out on a line that otherwise rests only on {}, so it holds as far as \
+                 each of them holds; {why}",
+                self.held_said(&given)?
+            )
+        } else if claim_truth == ClaimTruth::Conditional && holds_under_any_of.len() > 1 {
             // EVERY LINE IS NAMED (req:a-claim-with-several-lines-reads-each-
             // lines-assumptions): a claim held on several lines holds under any
             // one of them, and is never read as holding under the first alone.
@@ -1674,6 +1729,7 @@ impl DesignGraph {
             rests_on_unverified,
             rests_on_bridges,
             rests_on_tests,
+            given,
             equivalent_to: self.equivalents_of(id)?,
             contested_by_design: self.contested_governor(id)?.or(steps_dispute),
             contested_by,
@@ -1982,6 +2038,9 @@ impl DesignGraph {
         let (reasons_lost, reason_lost_ids) = cap(reasons);
         let (decisions_without_a_holding_chain, chainless_ids) = cap(chainless);
         let (stale_checks, stale_ids) = cap(stale);
+        let mut rulings_in_force = self.rulings_in_force()?;
+        let rulings = rulings_in_force.len();
+        rulings_in_force.truncate(REASONING_DEBT_LIST_CAP);
         let mut premises_withdrawn_ids = premises_withdrawn_ids;
         premises_withdrawn_ids.truncate(REASONING_DEBT_LIST_CAP);
         Ok(Some(ReasoningDebt {
@@ -1993,6 +2052,8 @@ impl DesignGraph {
             decision_without_a_holding_chain_ids: chainless_ids,
             stale_checks,
             stale_check_ids: stale_ids,
+            rulings,
+            rulings_in_force,
             steps: steps.len(),
             unconfirmed_steps,
             uncited_premises,

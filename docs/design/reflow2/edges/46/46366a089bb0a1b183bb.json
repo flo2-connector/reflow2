@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:d8caf9d9d2c7d7406e6c199866de6ac5caeea58d16ba6bf4fa9080b804123951",
+  "edge_type": "REALIZES",
+  "from_id": "art:inference-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-owners-signed-ruling-on-a-result-refutes-what-it-goes-against"
+}

@@ -84,6 +84,13 @@ NON_TOOL_TERMS = {
     # `assumptions_held_on_purpose`, and add_verification's `method` values
     # an experiment or a hand calculation is recorded with.
     "assumptions_held_on_purpose", "analysis", "observation", "simulation",
+    # design-a-phenomenon (2026-10-28, req:the-owner-can-rule-a-prediction-
+    # refuted-by-a-named-result and req:a-claim-a-result-supports-reads-
+    # supported-given-the-model-held-on-purpose): a proof status's and a
+    # ruling's `given`, reasoning_report's `refuted_by_ruling`, loop_status's
+    # `rulings_in_force`, a what-if's `rulings_lost`, and the Decision status
+    # `rejected` that withdraws a ruling.
+    "given", "refuted_by_ruling", "rulings_in_force", "rulings_lost", "rejected",
     # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
     # and `conclusion`, reasoning_report's `claim`; a step's `objections`
     # and how it stands against them (`objected`: `contested`, `defeated`,

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f2e4b6530f69d43447311ad9a068b0707f3d3dcf30f6acddbd3b87ca78d25aee",
+  "edge_type": "REALIZES",
+  "from_id": "art:a-result-refutes-only-on-the-owners-ruling-test",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-owners-signed-ruling-on-a-result-refutes-what-it-goes-against"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f68b9691347cd418ff1faff7e097b077902299db98fbc0e43f1d43683d4535d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-result-refutes-only-on-the-owners-ruling-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:a09325073668c3c23b4cd9f86e5f96be1119c7f2ab76119bedb28c3585b4e1d6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:a-phenomenon-is-designed-with-a-skill-that-agrees-with-the-tools-test"
+}

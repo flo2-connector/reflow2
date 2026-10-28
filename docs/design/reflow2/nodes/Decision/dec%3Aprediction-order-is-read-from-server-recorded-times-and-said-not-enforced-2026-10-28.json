@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:899554914a8b617e19e239f594f96831ffe8a3251d8f2f28b186aa5d0a770dee",
+  "node_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Chosen: reflow2 itself stamps the server time on every node's creation and on each change to its content, from now on; a stamp sent by a caller is refused. The order of a prediction and the result that tests it is read from those stamps and SAID (\"stated before the result\", \"stated after the result (post hoc)\", \"revised after the result\"), never enforced: a late prediction is not refused and no support/refute reading changes because of order. A node written before stamping began reads \"order not recorded\"; a stamp carried in by an import or design copy reads \"imported, not recorded here\" unless the export's hash chain vouches for it. Rejected: flo2.io answering from its gateway write log (hosted only, from 2026-09-23, outside reflow2's read-back); both (two pieces to keep agreeing); park it (only caller-typed dates remain).",
+    "kind": "choice",
+    "name": "The order of prediction and result is read from server-recorded times, and said, never enforced",
+    "rationale": "Measured 2026-10-28 on reflow2 main 73b29e4 (gap-3 agent, measure-first step): reflow2 records NO server-side time or order for a node's creation or content change. The store saves only caller properties; every dated property (created_at, reported_at, detected_at, AUTHORED_BY authored_at/approved_at from acted_at) is caller-typed; Snapshots keep prior wording but carry no time; the server clock is read only for search ages, id minting, the usage ledger (no node ids) and sidecars. The one time a caller cannot set is flo2.io's Postgres design_writes.created_at, outside reflow2. So the proposed option (a), \"read server-recorded times\", had nothing to read; Anthony chose the new stamp. Anthony's word 2026-10-28, AskUserQuestion: \"reflow2 stamps writes (Recommended)\". Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

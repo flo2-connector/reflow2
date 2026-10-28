@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:679e3fd8b5258ee8d21c58ef252493e5b27d51a5399a67a787544d291b1bdd05",
+  "edge_type": "ANTICIPATES",
+  "from_id": "cap:a-served-skill-teaches-designing-a-phenomenon",
+  "properties": {
+    "evidence": "The phenomenon skill (#807) names 'a result never refutes; it only contests' as a gap; this decides how it is closed."
+  },
+  "to_id": "dec:a-result-refutes-a-prediction-only-on-the-owners-ruling-2026-10-28"
+}

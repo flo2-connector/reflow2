@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1e0dc997841faf12dfb2582cd4e9f7e7a966f2b564bd13a9f706cc14337230ee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-owners-signed-ruling-on-a-result-refutes-what-it-goes-against",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

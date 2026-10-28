@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1a8c27bd778fb95f8f7a993037e0c8f8b0fea7a790f5966348a3430a5b6a45bb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:a-result-refutes-only-on-the-owners-ruling-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
