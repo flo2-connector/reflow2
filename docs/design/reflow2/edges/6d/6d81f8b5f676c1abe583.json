@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:817c79db668555b0e2fd2047353ad55b4f73e59336284ae68cceadb60d5dbb9a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:86580d0f83053bb8515fca68ca523ca7ed02347696ec0bd6340a2d0a1e57dd46",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-an-export-says-which-tree-it-was-taken-in"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a5f5ab568433507353ef28e31cddcc5f6c347630f3dcd164b128cd2b785f7a2b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:merge",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

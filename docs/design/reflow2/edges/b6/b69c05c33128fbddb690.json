@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a7d88b3e865ed79bcf8a04778285e131def5baf383ac5ed6552759a0477df241",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:a-prediction-reads-whether-it-was-stated-before-its-result-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

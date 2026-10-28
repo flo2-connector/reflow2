@@ -175,6 +175,7 @@ fn a_bad_document_imports_nothing() {
         node_type: "NotAType".into(),
         node_id: "x:1".into(),
         properties: Default::default(),
+        stamps: Default::default(),
     });
 
     let mut g = DesignGraph::open_in_memory().unwrap();

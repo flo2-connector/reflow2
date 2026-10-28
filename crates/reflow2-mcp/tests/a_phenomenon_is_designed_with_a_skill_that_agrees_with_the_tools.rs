@@ -159,6 +159,11 @@ fn the_skill_teaches_what_the_trial_named() {
         "supported given",
         "`alignment` `conceding`",
         "`refuted_by_ruling`",
+        // Whether each prediction came before its result, from the server's
+        // own stamps, said and never enforced.
+        "`prediction_order`",
+        "labelled post hoc",
+        "`earlier_wording_in`",
         // The read-back and the debt.
         "`reasoning_report`",
         "`assumptions_held_on_purpose`",

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e824ee1bf4039efce0687098ea67163e314b4bf19b02b882fe82377a771b6f8f",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:byte-store"
+}

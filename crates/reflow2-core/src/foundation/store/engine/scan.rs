@@ -78,8 +78,10 @@ impl StorageEngine {
         let mut results = Vec::new();
 
         for (key, bytes) in entries {
-            let properties: HashMap<String, Value> = rmp_serde::from_slice(&bytes)
+            let mut properties: HashMap<String, Value> = rmp_serde::from_slice(&bytes)
                 .map_err(|e| DynoError::Serialization(e.to_string()))?;
+            // The server's stamps are read only through `node_stamp`.
+            super::stamps::strip(&mut properties);
             let after_prefix = &key[prefix.len()..];
             let node_id = decode_key_segment(after_prefix, "node key node_id suffix")?;
             results.push(StoredNode {

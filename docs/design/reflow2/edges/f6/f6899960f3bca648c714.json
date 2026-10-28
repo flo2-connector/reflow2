@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:10441a17bca0c004e4fd41a450ac96f7042def532a5169c2a96fa1842342c1f6",
+  "edge_type": "REALIZES",
+  "from_id": "art:store-engine",
+  "properties": {
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
+}

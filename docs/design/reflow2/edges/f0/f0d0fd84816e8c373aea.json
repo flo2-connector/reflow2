@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:fefcbf042fe440076b009416bfce83641246cf086fabb163fa819147172fefd9",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time",
+  "properties": {
+    "note": "Option C: stamps stay in the store; export_graph carries them only with stamps: true; the item layout and design copy never."
+  },
+  "to_id": "dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28"
+}

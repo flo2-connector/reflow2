@@ -787,6 +787,14 @@ pub struct ReasoningReport {
     /// judge; each step still reads by its rule. Empty when there are none.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub circular_steps: Vec<crate::equivalence::CircularStep>,
+    /// WHICH CAME FIRST, a prediction or the result that tests it, for every
+    /// result the walk reached that supports or contests one — read from the
+    /// times this server recorded, and said, never enforced
+    /// (req:a-prediction-reads-whether-it-was-stated-before-the-result-it-is-
+    /// tested-by). No reading above moves because of it. Absent when no result
+    /// tests anything the walk reached.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub prediction_order: Vec<crate::prediction_order::OrderReading>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
@@ -1342,6 +1350,8 @@ impl DesignGraph {
         }
         circular_steps.sort_by(|a, b| a.step.cmp(&b.step));
 
+        let prediction_order = self.prediction_order_over(&walked_steps, &order)?;
+
         // THE PAGE: whole claims from `offset`, at most `limit` of them.
         let total_claims = claims.len();
         let start = offset.unwrap_or(0).min(total_claims);
@@ -1378,6 +1388,7 @@ impl DesignGraph {
             formulas,
             bridges,
             circular_steps,
+            prediction_order,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,

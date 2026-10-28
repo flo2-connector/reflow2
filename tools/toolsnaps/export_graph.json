@@ -30,6 +30,14 @@
           "string",
           "null"
         ]
+      },
+      "stamps": {
+        "default": null,
+        "description": "Carry each node's SERVER STAMPS — when this server recorded its creation\nand last content change — for a backup or a move that should keep them.\nOff by default: the stamps stay in the store, so an export of the same\ndesign stays byte-identical and two branches making the same change\nstill merge. Imported elsewhere they read \"imported, not recorded\nhere\". REFUSED with an item-layout path: the committed layout never\ncarries them.",
+        "type": [
+          "boolean",
+          "null"
+        ]
       }
     },
     "type": "object"

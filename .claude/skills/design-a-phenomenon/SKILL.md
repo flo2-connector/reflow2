@@ -143,8 +143,13 @@ when the data arrive.
 
 **State the predictions before the results.** Write the conditional predictions and the
 experiment's Decision (`add_decision`, the experiment `governed_by` it) before any data, and put
-the Decision to the owner: their acceptance is dated, and that date is what shows the predictions
-came first. The check's own status records that it ran; it moves no claim.
+the Decision to the owner. reflow2 stamps each record with the time it was created and last
+changed, from its own clock, and `reasoning_report`'s `prediction_order` reads each prediction
+against each result that tests it: "stated before the result", "stated after the result (post
+hoc)", or "revised after the result" with `earlier_wording_in` naming the snapshot that keeps the
+wording it had. Only those stamps count, never `reported_at` or any date you type. The order is
+said, never enforced: a prediction written after the data is recorded, labelled post hoc, and
+supports exactly as it would have. The check's own status records that it ran; it moves no claim.
 
 **A result** is a Constraint with `statement_kind` `evidence`: what was measured, with its
 uncertainty, its `source_reliability`, `information_credibility` and `reported_at`. Register the
@@ -204,6 +209,10 @@ the result. Then tell the person, in the words of their field rather than reflow
   `refuted_by_ruling` in reasoning_report lists each ruling, with what it refutes and its
   conditions in `given`.
 - **open**: a claim no result has reached yet: an experiment still owed.
+- **the order**: for each prediction and result, `prediction_order` says whether the prediction was
+  stated before the result, after it (post hoc), or revised after it. Say it beside the support:
+  "supported by <result>, predicted before it", or "a post hoc prediction". Never drop a post hoc
+  one; label it.
 
 To see what one failed idealization costs, run `propagate_from` on it: every prediction that rests
 on it is named, and `rulings_lost` names each ruling that holds only under it. Then run
@@ -229,9 +238,9 @@ checked against.
 - reflow2 never judges where a failed prediction's miss lies: a result refutes only on the
   owner's ruling, which it records and reads back, and the refutation holds only as far as the
   model held under the missed prediction does.
-- Nothing checks that a prediction was written before the result that bears on it: the owner's
-  dated acceptance of the experiment's Decision is the record, and a statistical test's criteria
-  lock is the only automatic check.
+- The order of a prediction and its result is read only from times this server recorded. One
+  written before reflow2 stamped its writes reads "order not recorded", and one carried in by an
+  import or a design copy reads "imported, not recorded here".
 - An idealization's regime is prose in its statement: there is no field for where it holds, so a
   changed regime does not re-derive the predictions resting on it.
 
@@ -246,5 +255,6 @@ By typing /design-a-phenomenon the person asked for the following, in their own 
 - Every number through a kept calculator record, exact or bounded, with units and its source; with no calculator, the number with its source and no record claimed.
 - Choose experiments because they tell the rivals apart, and accept them before the data.
 - Record each result against the predictions: supports, goes against (contested), or separates nothing. Never proven; refuted only when I rule so, signed as myself.
+- Say whether each prediction was stated before its result, after it (post hoc), or revised after it, as `prediction_order` reads it.
 - Put anything only I can settle to me as a question of your own.
 - End with reasoning_report on each claim, said in my words — what is supported, what stays conditional, what is contested — then loop_status.

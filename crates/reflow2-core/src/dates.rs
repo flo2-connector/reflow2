@@ -79,7 +79,7 @@ pub fn today_utc() -> String {
 }
 
 /// Inverse of [`days_from_civil`] — day number back to `YYYY-MM-DD`.
-fn civil_from_days(z: i64) -> String {
+pub(crate) fn civil_from_days(z: i64) -> String {
     let z = z + 719_468;
     let era = if z >= 0 { z } else { z - 146_096 } / 146_097;
     let doe = z - era * 146_097; // [0, 146096]

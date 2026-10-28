@@ -48,6 +48,7 @@ async fn doc(s: &ReflowService) -> JsonValue {
         path: None,
         overwrite: None,
         accept_divergence: None,
+        stamps: None,
     })))
 }
 

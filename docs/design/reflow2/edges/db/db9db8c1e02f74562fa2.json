@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c0a5c5eb9e9d1e13b121e566cee1bc1c3e5c0b3c5b53cab0730990af6642a54e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:9278d5dec564cafb3604fef7605b09a57a6e4e355084570264854535bafec69b",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:saved-design"
+}

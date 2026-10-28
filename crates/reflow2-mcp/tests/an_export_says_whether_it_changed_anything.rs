@@ -89,6 +89,7 @@ fn export(path: &std::path::Path) -> ExportGraphToReq {
         path: Some(path.display().to_string()),
         overwrite: Some(true),
         accept_divergence: None,
+        stamps: None,
     }
 }
 

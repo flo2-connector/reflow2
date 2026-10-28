@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d23289c24e3e29638912673c40620dbe6f30b5ef3dceefb989cb8d8678ffb393",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

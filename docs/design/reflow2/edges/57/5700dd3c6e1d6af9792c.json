@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:302967a9a1c4da41a06cf4e25196f227da1c8883284d20d436695877ba0f756a",
+  "edge_type": "REALIZES",
+  "from_id": "art:store-engine-stamps-rs",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:60dbf50cf4dc5c774a2aefcd853ef7d14c25435e702189847c7562b48eea6c82",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:81f7014b582887b0a56bfd1b0c1ce2d0a89fc4615960e78a0fe94c7713c5d006",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-export-chains-from-main-test"
+}

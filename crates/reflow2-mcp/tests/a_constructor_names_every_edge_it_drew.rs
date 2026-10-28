@@ -53,6 +53,7 @@ async fn edges(s: &ReflowService, dir: &std::path::Path) -> BTreeSet<String> {
         path: Some(f.display().to_string()),
         overwrite: Some(true),
         accept_divergence: None,
+        stamps: None,
     })));
     let doc: Value = serde_json::from_str(&std::fs::read_to_string(&f).expect("export read"))
         .expect("export parses");

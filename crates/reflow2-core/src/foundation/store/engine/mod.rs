@@ -65,6 +65,11 @@ pub struct StorageEngine {
     /// its writes to the outer batch, and an inner discard truncates the
     /// buffer back to its savepoint, dropping only its own.
     savepoints: Vec<usize>,
+    /// The server's stamps on each node's creation and content change
+    /// (`stamps`): this store's key and its clock. `None` until the design
+    /// layer turns stamping on, so a bare engine writes exactly what it is
+    /// given.
+    stamper: Option<stamps::Stamper>,
     /// Optional sidecar full-text index (only with the `fulltext` feature).
     /// `Some` only when the schema declares at least one `fulltext` property —
     /// otherwise there's nothing to mirror and we skip the writer arena. RocksDB
@@ -121,9 +126,14 @@ mod embeddings;
 mod fulltext;
 mod nodes;
 mod scan;
+mod stamps;
 
 #[cfg(feature = "fulltext")]
 pub use fulltext::{FulltextCoverage, FulltextHit};
+pub use stamps::{
+    NodeStamp, STAMP_CHANGED, STAMP_CREATED, STAMP_KEYS, STAMP_SEAL, StampClock, StampMode,
+    format_stamp_time, system_clock,
+};
 
 /// The write buffer, with an index over its own ops.
 ///
@@ -296,6 +306,7 @@ impl StorageEngine {
             read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
             write_buffer: None,
             savepoints: Vec::new(),
+            stamper: None,
             #[cfg(feature = "fulltext")]
             text_index,
             #[cfg(feature = "fulltext")]
@@ -337,6 +348,7 @@ impl StorageEngine {
             read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
             write_buffer: None,
             savepoints: Vec::new(),
+            stamper: None,
             #[cfg(feature = "fulltext")]
             text_index,
             #[cfg(feature = "fulltext")]
@@ -375,6 +387,7 @@ impl StorageEngine {
             read_cache: Mutex::new(ReadCache::new(CacheConfig::default())),
             write_buffer: None,
             savepoints: Vec::new(),
+            stamper: None,
             #[cfg(feature = "fulltext")]
             text_index: None,
             #[cfg(feature = "fulltext")]

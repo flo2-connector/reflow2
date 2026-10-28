@@ -42,12 +42,67 @@ use crate::provenance::GraphStamp;
 pub type Props = BTreeMap<String, Value>;
 
 /// A node, as it appears in an export.
+///
+/// ON DISK the server's stamps (`server_created_at`, `server_changed_at`,
+/// `server_seal`) sit in `properties`, where every older reader already
+/// accepts a property it does not know. IN MEMORY they are held apart, in
+/// `stamps`, so nothing that reads or compares a node's properties — a diff
+/// between two designs, a mirror's refresh, a merge — sees a stamp as content.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(from = "NodeOnDisk", into = "NodeOnDisk")]
 pub struct ExportedNode {
     pub node_type: String,
     pub node_id: String,
-    #[serde(default)]
     pub properties: Props,
+    /// The server's stamps the node carried where it was exported, as stored.
+    /// An import keeps them as stated; their seal decides how they read.
+    pub stamps: Props,
+}
+
+/// [`ExportedNode`] as its file holds it.
+#[derive(Clone, Serialize, Deserialize)]
+struct NodeOnDisk {
+    node_type: String,
+    node_id: String,
+    #[serde(default)]
+    properties: Props,
+}
+
+impl From<NodeOnDisk> for ExportedNode {
+    fn from(d: NodeOnDisk) -> Self {
+        Self::from_disk(d.node_type, d.node_id, d.properties)
+    }
+}
+
+impl From<ExportedNode> for NodeOnDisk {
+    fn from(n: ExportedNode) -> Self {
+        let mut properties = n.properties;
+        properties.extend(n.stamps);
+        Self {
+            node_type: n.node_type,
+            node_id: n.node_id,
+            properties,
+        }
+    }
+}
+
+impl ExportedNode {
+    /// A node from properties as a file holds them: any stamp among them is
+    /// moved into `stamps`.
+    pub fn from_disk(node_type: String, node_id: String, mut properties: Props) -> Self {
+        let mut stamps = Props::new();
+        for k in crate::foundation::store::STAMP_KEYS {
+            if let Some(v) = properties.remove(k) {
+                stamps.insert(k.to_string(), v);
+            }
+        }
+        Self {
+            node_type,
+            node_id,
+            properties,
+            stamps,
+        }
+    }
 }
 
 impl From<StoredNode> for ExportedNode {
@@ -56,6 +111,7 @@ impl From<StoredNode> for ExportedNode {
             node_type: n.node_type,
             node_id: n.node_id,
             properties: n.properties.into_iter().collect(),
+            stamps: Props::new(),
         }
     }
 }
@@ -425,7 +481,25 @@ impl DesignGraph {
     ///
     /// Walks every node type the schema declares, then each node's outgoing
     /// edges — so every edge is visited exactly once, from its source.
+    ///
+    /// The server's stamps stay in the store and are NOT in it
+    /// (`dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28`):
+    /// two exports of the same design built apart stay byte-identical, and two
+    /// branches making the same change to one item still merge. Ask for them
+    /// with [`export_graph_with_stamps`](Self::export_graph_with_stamps).
     pub fn export_graph(&self) -> Result<GraphExport, DynoError> {
+        self.export_graph_carrying(false)
+    }
+
+    /// [`export_graph`](Self::export_graph) carrying each node's server stamps,
+    /// for a backup or a move that should keep them. An import keeps them as
+    /// stated, and they read as recorded here only in the store whose key
+    /// sealed them; anywhere else they read "imported, not recorded here".
+    pub fn export_graph_with_stamps(&self) -> Result<GraphExport, DynoError> {
+        self.export_graph_carrying(true)
+    }
+
+    fn export_graph_carrying(&self, stamps: bool) -> Result<GraphExport, DynoError> {
         let mut node_types: Vec<&String> = self.schema().node_types.keys().collect();
         node_types.sort();
 
@@ -438,7 +512,18 @@ impl DesignGraph {
                 for e in self.outgoing(&n.node_id, None)? {
                     edges.push(ExportedEdge::from(e));
                 }
-                nodes.push(ExportedNode::from(n));
+                // Asked for, the server's stamps travel with the node (in
+                // its properties on disk, where every older reader already
+                // accepts them); an import keeps them as stated and their seal
+                // decides how they read there.
+                let carried = if stamps {
+                    self.stamp_properties(&n.node_type, &n.node_id)?
+                } else {
+                    Vec::new()
+                };
+                let mut exported = ExportedNode::from(n);
+                exported.stamps.extend(carried);
+                nodes.push(exported);
             }
         }
         edges.sort_by(|a, b| {
@@ -646,6 +731,8 @@ impl DesignGraph {
                         target,
                     ));
                 }
+                // The stamps the document carries go in as it states them.
+                props.extend(n.stamps.iter().map(|(k, v)| (k.clone(), v.clone())));
                 match self.create_node_refs_checked_later(&n.node_type, &n.node_id, props) {
                     Ok(stored) => {
                         for key in stored.properties.keys() {

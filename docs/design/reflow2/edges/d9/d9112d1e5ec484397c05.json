@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:8f52bc2d40111ec312b93633d514182c400d0fcf172217d856e45679761d2753",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:the-server-stamps-each-node-creation-and-content-change-tests",
+  "properties": {},
+  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
+}

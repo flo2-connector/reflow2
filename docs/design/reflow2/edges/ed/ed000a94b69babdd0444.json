@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:c7ca951fd1c1f22d9ee5adb297c07ab25ad4cc5668e3386123caa33f00bf809d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 20,
+    "action": "modified",
+    "checksum_after": "sha256:313f196aec4f1b731f7c1d0c8729058938b95f10bab905098b37494e8dd38353",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

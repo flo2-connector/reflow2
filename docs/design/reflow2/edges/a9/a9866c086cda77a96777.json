@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9cc3c20589113f22ddb9bcc2bfd032bf9e6866c78286ff1040547afd0313167e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:6fc1792b7d51547b08b37f86c8a7590a41d2d9266a43dbc3ec0247631fc2dae9",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-constructor-stores-the-status-it-was-given"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:aa44dad2c5c5e7e7d77c53dcb067946c23fdcb797707c6bd4d93c0634e5021f4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 19,
+    "action": "modified",
+    "checksum_after": "sha256:8311a91cd8301ac0f41d7b165d57503189e19380a8f518e65f99221d3a8ca4b6",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-mcp-tools"
+}

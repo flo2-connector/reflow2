@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9fe1f5b0afa6a2895ed23b38abd092ec85be4e59e344dbfd2e54ec32e680c864",
+  "node_id": "art:store-engine-stamps-rs",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "The engine's stamps: server_created_at, server_changed_at and server_seal (HMAC-SHA256 under a key kept in the store) put on every node write, refused from a caller, stripped from every read, read through node_stamp.",
+    "location": "crates/reflow2-core/src/foundation/store/engine/stamps.rs",
+    "name": "crates/reflow2-core/src/foundation/store/engine/stamps.rs — the server's sealed stamps on each node write",
+    "status": "realized"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5e261e4d4e6b6945c7816cd10e77a02bb97633f105cc49df2c579e0dae0bfdb3",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:prediction-order-rs",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

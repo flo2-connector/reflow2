@@ -6123,6 +6123,15 @@ pub struct ExportGraphToReq {
     /// (`req:stale-seat-knows`). Set this only to discard that work on purpose.
     #[serde(default)]
     pub accept_divergence: Option<bool>,
+    /// Carry each node's SERVER STAMPS — when this server recorded its creation
+    /// and last content change — for a backup or a move that should keep them.
+    /// Off by default: the stamps stay in the store, so an export of the same
+    /// design stays byte-identical and two branches making the same change
+    /// still merge. Imported elsewhere they read "imported, not recorded
+    /// here". REFUSED with an item-layout path: the committed layout never
+    /// carries them.
+    #[serde(default)]
+    pub stamps: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -7674,6 +7683,18 @@ impl ReflowService {
     /// Open an in-memory design graph (tests / dry runs; not persisted).
     pub fn in_memory() -> Result<Self, DynoError> {
         Ok(Self::wrap(DesignGraph::open_in_memory()?))
+    }
+
+    /// An in-memory design whose server stamps are read from `clock` rather
+    /// than the system clock — FOR TESTS: an order a test pins needs times it
+    /// chose, and a golden reading cannot hold the wall clock. A caller of the
+    /// served surface can never reach this.
+    pub fn in_memory_on_clock(
+        clock: reflow2_core::foundation::store::StampClock,
+    ) -> Result<Self, DynoError> {
+        let mut graph = DesignGraph::open_in_memory()?;
+        graph.set_stamp_clock(clock)?;
+        Ok(Self::wrap(graph))
     }
 
     /// An in-memory design that answers to `graph_id` — for a test holding

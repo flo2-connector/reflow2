@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7d5abcd9a819ccfe10619497740d5e615c97f3cc9891868f17ed72aa5b473df6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-prediction-reads-whether-it-came-before-its-result-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:6f30deaf0592b86f0d5f73db875695aa9e1af0d43fb92111127db79408a69cae",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:store-engine-stamps-rs"
+}
