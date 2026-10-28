@@ -91,6 +91,10 @@ NON_TOOL_TERMS = {
     # `rulings_in_force`, a what-if's `rulings_lost`, and the Decision status
     # `rejected` that withdraws a ruling.
     "given", "refuted_by_ruling", "rulings_in_force", "rulings_lost", "rejected",
+    # design-a-phenomenon (2026-10-28, req:a-prediction-reads-whether-it-was-
+    # stated-before-the-result-it-is-tested-by): reasoning_report's
+    # `prediction_order` and an entry's `earlier_wording_in`.
+    "prediction_order", "earlier_wording_in",
     # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
     # and `conclusion`, reasoning_report's `claim`; a step's `objections`
     # and how it stands against them (`objected`: `contested`, `defeated`,
