@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7a50c99aa1072afc1d5ddf16f4740cd9ce7c263296673bdad70832e12719b112",
+  "node_id": "cap:a-claim-a-result-supports-reads-supported-given-what-is-held-on-purpose",
+  "node_type": "Capability",
+  "properties": {
+    "description": "Built 2026-10-28 (branch reading/owner-ruling-and-supported-given). In crates/reflow2-core/src/inference.rs, `supported_given`: for a reading that would otherwise be conditional, the lightest line resting on evidence (a documented result or a statistical test) and otherwise only on assumptions every step holds as a model or a principle (held_as, #806), with no undischarged supposition, unverified citation, undocumented report or bridge, makes the claim read `supported`: proof_status `supported` with the held premises in `given` and a why naming each (\"con:m (held as a model)\"); reasoning_report's claim `truth: supported` with `given`; a step's `holds_as` `supported`. Anything else reads as before, and a design that holds nothing as a model or principle reads exactly as before (the readings golden did not move).",
+    "name": "A claim a documented result supports, resting otherwise only on premises held on purpose, reads supported given them, naming each; never proven",
+    "provenance": "authored",
+    "status": "realized"
+  }
+}

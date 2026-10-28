@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:6c0dccdaa4f3b47010b5846894ee9810710b9fafc2dccd4abd87e34d415e5ac6",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:a-claim-a-result-supports-reads-supported-given-what-is-held-on-purpose",
+  "properties": {},
+  "to_id": "req:a-claim-a-result-supports-reads-supported-given-the-model-held-on-purpose"
+}

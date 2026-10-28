@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:28145a8b5e4dd3eff3165a44b295884bac90543765c5ff254a7d23dfdc8f9306",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:a-result-refutes-a-prediction-only-on-the-owners-ruling-2026-10-28",
+  "properties": {
+    "approved_at": "2026-10-28",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

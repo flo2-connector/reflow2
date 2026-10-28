@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0a8a8a1dd7bf5cbb88264d7cf15f2c7ed6f0898ffd485347fe118316b101abc6",
+  "edge_type": "GOVERNED_BY",
+  "from_id": "req:the-owner-can-rule-a-prediction-refuted-by-a-named-result",
+  "properties": {
+    "note": "The ruling is the act this decision chose; a result alone still contests."
+  },
+  "to_id": "dec:a-result-refutes-a-prediction-only-on-the-owners-ruling-2026-10-28"
+}

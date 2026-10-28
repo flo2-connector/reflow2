@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7032eba5c29adedb5ec61b473f922e20db0864312b06e60a5907f04d59b865c4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-result-refutes-only-on-the-owners-ruling-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 20,
+    "action": "modified",
+    "checksum_after": "sha256:d09cdf37b9b6a902671e028dac96ae142f1a06dbb8bb767ea66c36e27e566a56",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reasoning-rs"
+}

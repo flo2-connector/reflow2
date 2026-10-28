@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:44a27b2b40ef608c97fb06cadfccf41923e7a0a61d9f96853c35061a8287dc83",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-result-refutes-only-on-the-owners-ruling-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 19,
+    "action": "modified",
+    "checksum_after": "sha256:95dfb23cf79bde251e3634832436330a09d27a48dac7c011e61a2187138884e7",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-test-program-in-memory"
+}

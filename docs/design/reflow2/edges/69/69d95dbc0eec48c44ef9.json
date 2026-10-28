@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d5679a9da13857cf29cd5a683bd4257ccfb99ddd257ebc39f43aaefc2a8d69fe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-result-refutes-only-on-the-owners-ruling-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 12,
+    "action": "modified",
+    "checksum_after": "sha256:3054147af10ef12714e4243d14bdf69d5eafa75ca41f8d29a2db96829bcf5c12",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:propagate"
+}
