@@ -132,7 +132,7 @@ fn an_export_carries_the_stamps_and_the_same_store_vouches_for_them_on_return() 
     let mut g = stamped();
     g.create_node(node::REQUIREMENT, "req:p", requirement("it falls"))
         .unwrap();
-    let doc = g.export_graph().unwrap();
+    let doc = g.export_graph_with_stamps().unwrap();
     let n = doc.nodes.iter().find(|n| n.node_id == "req:p").unwrap();
     assert!(n.stamps.contains_key(STAMP_SEAL), "{n:?}");
     assert!(
@@ -162,7 +162,7 @@ fn a_stamp_imported_into_another_store_reads_imported_not_recorded_here() {
     let mut g = stamped();
     g.create_node(node::REQUIREMENT, "req:p", requirement("it falls"))
         .unwrap();
-    let doc = g.export_graph().unwrap();
+    let doc = g.export_graph_with_stamps().unwrap();
 
     let mut other = stamped();
     other.import_graph(&doc).unwrap();
@@ -175,7 +175,7 @@ fn a_stamp_imported_into_another_store_reads_imported_not_recorded_here() {
 
     // Re-exported from there, the copy is the same document: a design copy
     // round trip writes nothing new.
-    let again = other.export_graph().unwrap();
+    let again = other.export_graph_with_stamps().unwrap();
     assert_eq!(
         again.nodes.iter().find(|n| n.node_id == "req:p"),
         doc.nodes.iter().find(|n| n.node_id == "req:p")
@@ -199,7 +199,7 @@ fn a_backdated_or_edited_stamp_in_a_document_is_never_vouched_for() {
     let mut g = stamped();
     g.create_node(node::REQUIREMENT, "req:p", requirement("it falls"))
         .unwrap();
-    let mut doc = g.export_graph().unwrap();
+    let mut doc = g.export_graph_with_stamps().unwrap();
     let n = doc.nodes.iter_mut().find(|n| n.node_id == "req:p").unwrap();
     // The wording edited, the store's own seal left on it.
     n.properties.insert("statement".into(), "it rises".into());
@@ -213,7 +213,7 @@ fn a_backdated_or_edited_stamp_in_a_document_is_never_vouched_for() {
     );
 
     // A time moved back, the seal left as it was.
-    let mut doc = g.export_graph().unwrap();
+    let mut doc = g.export_graph_with_stamps().unwrap();
     let n = doc.nodes.iter_mut().find(|n| n.node_id == "req:p").unwrap();
     n.stamps
         .insert(STAMP_CREATED.into(), "1999-01-01T00:00:00.000000Z".into());
@@ -231,7 +231,7 @@ fn a_node_no_stamp_was_ever_recorded_for_reads_not_recorded() {
     let mut g = stamped();
     g.create_node(node::REQUIREMENT, "req:p", requirement("it falls"))
         .unwrap();
-    let mut doc = g.export_graph().unwrap();
+    let mut doc = g.export_graph_with_stamps().unwrap();
     for n in &mut doc.nodes {
         n.stamps.clear();
     }
@@ -242,4 +242,26 @@ fn a_node_no_stamp_was_ever_recorded_for_reads_not_recorded() {
         .unwrap()
         .unwrap();
     assert_eq!((s.created, s.changed, s.recorded_here), (None, None, false));
+}
+
+#[test]
+fn a_plain_export_carries_no_stamp_so_designs_built_apart_export_alike() {
+    let build = || {
+        let mut g = stamped();
+        g.create_node(node::REQUIREMENT, "req:p", requirement("it falls"))
+            .unwrap();
+        g
+    };
+    let (a, b) = (build(), build());
+    let doc = a.export_graph().unwrap();
+    assert!(doc.nodes.iter().all(|n| n.stamps.is_empty()), "{doc:?}");
+    assert_eq!(
+        serde_json::to_string(&doc).unwrap(),
+        serde_json::to_string(&b.export_graph().unwrap()).unwrap()
+    );
+    assert_ne!(
+        serde_json::to_string(&a.export_graph_with_stamps().unwrap()).unwrap(),
+        serde_json::to_string(&b.export_graph_with_stamps().unwrap()).unwrap(),
+        "asked for, the stamps are there, sealed by each store's own key"
+    );
 }

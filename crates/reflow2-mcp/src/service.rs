@@ -6123,6 +6123,15 @@ pub struct ExportGraphToReq {
     /// (`req:stale-seat-knows`). Set this only to discard that work on purpose.
     #[serde(default)]
     pub accept_divergence: Option<bool>,
+    /// Carry each node's SERVER STAMPS — when this server recorded its creation
+    /// and last content change — for a backup or a move that should keep them.
+    /// Off by default: the stamps stay in the store, so an export of the same
+    /// design stays byte-identical and two branches making the same change
+    /// still merge. Imported elsewhere they read "imported, not recorded
+    /// here". REFUSED with an item-layout path: the committed layout never
+    /// carries them.
+    #[serde(default)]
+    pub stamps: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

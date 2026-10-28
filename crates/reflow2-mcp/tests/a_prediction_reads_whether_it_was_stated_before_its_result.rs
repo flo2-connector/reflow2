@@ -419,7 +419,24 @@ async fn a_result_carried_in_by_an_import_reads_imported_not_recorded_here() {
         "req:claim-bh",
     )
     .await;
-    let exported = s.ok("export_graph", json!({})).await;
+    let plain = s.ok("export_graph", json!({})).await;
+    assert!(
+        !plain.to_string().contains("server_seal"),
+        "a plain export leaves the stamps in the store"
+    );
+    let dir = std::env::temp_dir().join(format!("stamps-layout-{}/", std::process::id()));
+    let refused = s
+        .call(
+            "export_graph",
+            json!({"path": dir.to_string_lossy(), "stamps": true}),
+        )
+        .await;
+    assert!(
+        refused.as_ref().is_err_and(|e| e.contains("item layout")),
+        "the item layout never carries them: {refused:?}"
+    );
+    assert!(!dir.exists(), "nothing was written");
+    let exported = s.ok("export_graph", json!({"stamps": true})).await;
     let document = exported
         .get("document")
         .cloned()

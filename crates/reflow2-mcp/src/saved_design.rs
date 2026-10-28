@@ -339,6 +339,13 @@ pub(crate) fn write_items(
     record_to: Option<&str>,
     accept_divergence: bool,
 ) -> Result<Written, WriteRefusal> {
+    // THE LAYOUT NEVER CARRIES THE SERVER'S STAMPS
+    // (dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28):
+    // a stamp differs between two branches making the same change, so the item
+    // would conflict where git merged it before.
+    for n in &mut export.nodes {
+        n.stamps.clear();
+    }
     let dir = Path::new(dir_text.trim_end_matches(['/', std::path::MAIN_SEPARATOR]));
     let dir = if dir.as_os_str().is_empty() {
         Path::new(dir_text)

@@ -481,7 +481,25 @@ impl DesignGraph {
     ///
     /// Walks every node type the schema declares, then each node's outgoing
     /// edges — so every edge is visited exactly once, from its source.
+    ///
+    /// The server's stamps stay in the store and are NOT in it
+    /// (`dec:write-stamps-stay-in-the-store-and-travel-in-an-export-only-when-asked-2026-10-28`):
+    /// two exports of the same design built apart stay byte-identical, and two
+    /// branches making the same change to one item still merge. Ask for them
+    /// with [`export_graph_with_stamps`](Self::export_graph_with_stamps).
     pub fn export_graph(&self) -> Result<GraphExport, DynoError> {
+        self.export_graph_carrying(false)
+    }
+
+    /// [`export_graph`](Self::export_graph) carrying each node's server stamps,
+    /// for a backup or a move that should keep them. An import keeps them as
+    /// stated, and they read as recorded here only in the store whose key
+    /// sealed them; anywhere else they read "imported, not recorded here".
+    pub fn export_graph_with_stamps(&self) -> Result<GraphExport, DynoError> {
+        self.export_graph_carrying(true)
+    }
+
+    fn export_graph_carrying(&self, stamps: bool) -> Result<GraphExport, DynoError> {
         let mut node_types: Vec<&String> = self.schema().node_types.keys().collect();
         node_types.sort();
 
@@ -494,13 +512,17 @@ impl DesignGraph {
                 for e in self.outgoing(&n.node_id, None)? {
                     edges.push(ExportedEdge::from(e));
                 }
-                // The server's stamps travel with the node (in its
-                // properties on disk, where every older reader already
+                // Asked for, the server's stamps travel with the node (in
+                // its properties on disk, where every older reader already
                 // accepts them); an import keeps them as stated and their seal
                 // decides how they read there.
-                let stamps = self.stamp_properties(&n.node_type, &n.node_id)?;
+                let carried = if stamps {
+                    self.stamp_properties(&n.node_type, &n.node_id)?
+                } else {
+                    Vec::new()
+                };
                 let mut exported = ExportedNode::from(n);
-                exported.stamps.extend(stamps);
+                exported.stamps.extend(carried);
                 nodes.push(exported);
             }
         }

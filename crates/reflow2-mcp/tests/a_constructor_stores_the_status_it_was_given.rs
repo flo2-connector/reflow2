@@ -76,6 +76,7 @@ async fn doc(s: &ReflowService) -> Value {
         path: None,
         overwrite: None,
         accept_divergence: None,
+        stamps: None,
     }))
     .await
     .expect("export")

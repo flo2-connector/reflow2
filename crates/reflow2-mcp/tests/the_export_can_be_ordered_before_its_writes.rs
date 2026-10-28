@@ -102,6 +102,7 @@ async fn export_text(s: &ReflowService) -> String {
             path: None,
             overwrite: None,
             accept_divergence: None,
+            stamps: None,
         }))
         .await
         .expect("export ok")

@@ -181,8 +181,25 @@ impl ReflowService {
         if let Some(refusal) = crate::service::export_stale_refusal(stale, note) {
             return Err(refusal);
         }
+        let stamps = req.stamps.unwrap_or(false);
+        if stamps
+            && let Some(path) = &req.path
+            && crate::saved_design::is_item_layout(std::path::Path::new(path))
+        {
+            return Err(McpError::invalid_params(
+                format!(
+                    "REFUSED: {path} is an item layout, and the item layout never carries the                      server's stamps (dec:write-stamps-stay-in-the-store-and-travel-in-an-export-                     only-when-asked-2026-10-28): two branches making the same change to one item                      would otherwise conflict on it. Nothing was written. Drop `stamps`, or name a                      .json file for a backup that keeps them."
+                ),
+                None,
+            ));
+        }
         let g = self.graph.read().await;
-        let mut export = g.export_graph().map_err(dyno_err)?;
+        let mut export = if stamps {
+            g.export_graph_with_stamps()
+        } else {
+            g.export_graph()
+        }
+        .map_err(dyno_err)?;
         let Some(path) = req.path else {
             return ok_json(export);
         };

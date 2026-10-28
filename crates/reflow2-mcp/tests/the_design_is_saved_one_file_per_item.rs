@@ -81,6 +81,7 @@ fn export_to(path: &str) -> ExportGraphToReq {
         path: Some(path.to_string()),
         overwrite: Some(true),
         accept_divergence: None,
+        stamps: None,
     }
 }
 
@@ -154,6 +155,7 @@ async fn a_directory_path_is_written_one_file_per_item_and_reads_back_whole() {
         path: None,
         overwrite: None,
         accept_divergence: None,
+        stamps: None,
     })));
     assert_eq!(back["content_hash"], receipt["content_hash"]);
     let _ = std::fs::remove_dir_all(&root);
