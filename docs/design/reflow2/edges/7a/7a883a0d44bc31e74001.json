@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c00f6dc42afb4d12b904b14dbd9eab0ab8c215289d25016f5b0375dc0fc50bca",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:design-a-phenomenon-command",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

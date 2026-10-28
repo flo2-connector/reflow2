@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b1e99bdf7a9963a3321ab64bcbf90c052e17f5a3cf9f07ca522297d43a2db0ee",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:a-served-skill-designs-a-phenomenon-2026-10-27",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

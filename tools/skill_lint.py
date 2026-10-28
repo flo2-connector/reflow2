@@ -79,6 +79,11 @@ NON_TOOL_TERMS = {
     # assumed-raises-a-false-never-discharged-gap-2026-10-25): add_inference's
     # `held_as`, how an assumed premise is held, and its value `principle`.
     "held_as", "principle",
+    # design-a-phenomenon (2026-10-27, req:a-served-skill-designs-a-phenomenon-
+    # and-the-experiment-that-tests-it): loop_status's
+    # `assumptions_held_on_purpose`, and add_verification's `method` values
+    # an experiment or a hand calculation is recorded with.
+    "assumptions_held_on_purpose", "analysis", "observation", "simulation",
     # design-an-argument (2026-10-20, phase 6): add_inference's `premises`
     # and `conclusion`, reasoning_report's `claim`; a step's `objections`
     # and how it stands against them (`objected`: `contested`, `defeated`,

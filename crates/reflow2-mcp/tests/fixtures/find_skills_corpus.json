@@ -7,6 +7,7 @@
     "capture-session": "save what we decided in this conversation before I close it",
     "check-health": "we changed the structure, is anything now broken or inconsistent",
     "ci-gate": "make the build fail when the code no longer matches what we designed",
+    "design-a-phenomenon": "I see something odd in my measurements and want to lay out what could cause it, what each cause predicts, and which experiment would tell them apart",
     "design-a-proof": "I want to show step by step that a statement in number theory is true, from definitions, the way a mathematician would",
     "design-an-argument": "map out both sides of a moral dilemma: what each verdict depends on, and what critics say against each side",
     "detect-and-ask": "what open questions do I still need to answer",

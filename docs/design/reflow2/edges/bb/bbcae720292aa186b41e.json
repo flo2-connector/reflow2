@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:20a33e6835dbbaf16c9ba6ccbec7bc594af4267ec4d9380841c514970f40fd3d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-served-skill-teaches-designing-a-phenomenon",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

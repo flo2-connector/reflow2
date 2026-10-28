@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:432af4f43bd1cb36757ad560d8e680b49ca7d9bb69cee0d575070856c438e80c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:a-phenomenon-is-designed-with-a-skill-that-agrees-with-the-tools-tests",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}
