@@ -12,6 +12,7 @@
 //! [`crate::foundation::core`] directly.
 
 mod backend;
+pub use backend::MAX_OPEN_FILES_PER_STORE;
 #[cfg(feature = "rocksdb")]
 pub use backend::{DEFAULT_STORE_MEMORY_BYTES, set_store_memory_budget, store_memory_usage};
 mod cache;
