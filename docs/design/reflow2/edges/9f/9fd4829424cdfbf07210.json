@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8bb63dc9219b11c321f5c6abb37a85eb81abb19d95fb34647d9b32c30964c56c",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-cues-reach-the-agent-and-are-counted"
+}

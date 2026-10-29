@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:107784b798cda479d870f57b53f80ecd03b79ef85f7d639675b5f6a206759c04",
+  "node_id": "req:the-proof-method-is-calibrated-on-a-problem-whose-answer-is-known",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "Before any open problem, the proof method is calibrated on a problem whose answer is known: a fresh agent per round working from the design alone, and the result trusted through the trail, a person's review and an independent re-derivation",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-29, through reflow2:dec:the-cognition-plus-memory-thesis-is-tested-by-measurement-first (options 1b, 2d, 3b with 3d, 4a with 4c)",
+    "statement": "Before any attempt on an open problem, the method of working a proof's holes is run on a calibration problem whose answer is known, so success can be counted. The holes are worked with the skills reflow2 serves today, and nothing new is built first; what is missing is recorded as it is met. Each round is a fresh agent given only the design's read-back, never the previous transcript. The result is trusted through its recorded trail and a person's review, plus an independent re-derivation of the closing steps by a second agent that never saw the first. The same agent is also run without reflow2 on the same problem, for comparison.",
+    "status": "accepted"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a93b85ad00153fb7cb35a2f86e86ea831fd10a303b5fe068b01526153693498f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-reach-the-agent-and-are-counted-2026-10-29",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:b1f836c9ee62563e1cfb0c4649683d4539de0cd98a45c68c3eac7519e0822ecb",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-settling-cue-goes-to-whoever-can-give-the-word"
+}

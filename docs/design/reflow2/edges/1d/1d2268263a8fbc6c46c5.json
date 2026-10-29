@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:347d475a60cd00a6d8e8ac3831f35b3b0830fe0bd58767225b14f0ca78eb4d2a",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

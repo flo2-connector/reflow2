@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:9e26d49dcda7a029bfdd904cf82e41fc0234119f015162983f857e68b6564ae0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-cognition-plus-memory-thesis-is-tested-by-measurement-first",
+  "properties": {
+    "approved_at": "2026-10-29",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

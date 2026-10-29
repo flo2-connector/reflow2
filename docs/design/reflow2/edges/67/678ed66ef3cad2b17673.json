@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:dc7b4881cd0b6033109724b33945386a7d47bd1d292c5925e82ef5b3d663dc6c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:the-size-sweep-waits-for-the-cues-and-uses-a-made-up-project-three-to-five-times-larger",
+  "properties": {
+    "approved_at": "2026-10-29",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

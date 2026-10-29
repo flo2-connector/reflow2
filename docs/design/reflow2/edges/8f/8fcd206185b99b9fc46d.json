@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:52b4cb73048715bc005b250dfd21337adcca790c2f49ae21ac5d0c2ddee92081",
+  "edge_type": "ANTICIPATES",
+  "from_id": "xref:0bee0c00b35845f6:dec:idea-flo2-calc-builds-and-checks-a-proof",
+  "properties": {
+    "evidence": "flo2-calc already weighed formal proof checking and kept it considered; option (b) here is that idea returning with a reason."
+  },
+  "to_id": "dec:idea-what-makes-a-finished-proof-trustworthy-to-a-person"
+}

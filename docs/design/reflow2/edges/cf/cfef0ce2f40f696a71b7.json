@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:cdf578e3ac99609bca27d733bf4278778ed84fefbecaee4ba629c897f4b105e9",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-cues-reach-the-agent-and-are-counted"
+}

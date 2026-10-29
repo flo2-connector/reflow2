@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a72f848cd3c46a1276506c2b198ae54ee5a35f5e6cb0ce790759564c844bf329",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-memory-measurement-scores-whether-a-person-can-trace-why-an-answer-is-right",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-structure-against-notes-at-one-reading-budget"
+}

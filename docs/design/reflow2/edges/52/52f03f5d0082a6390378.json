@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:88a9ab621aadd29f5bcd5daf223d769c3b2d3bed9812c80f8ed81c8ddc6ca54a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-cognition-plus-memory",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

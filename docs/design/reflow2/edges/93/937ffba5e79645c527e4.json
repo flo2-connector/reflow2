@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5f012abc966492c51887b12e549afaff9d0f3c9970ef5946f16f6089d90262f5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-reach-the-agent-and-are-counted-2026-10-29",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:13a9e2c01ecb283ca0a3b2798403d6f9f75ba34553b65e737512bcfcf04d0d1f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:feedback-is-a-computed-tally-wire-test"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:4cea5a785797edfbc5259424958e97cbdcb8327f05f9cbd8ba69d092eed86222",
+  "node_id": "req:a-cue-is-one-named-kind-of-message-in-reflow2s-interface",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A cue is one named kind of message in reflow2's interface: a few declared types, in one consistent place in every reply, ranked and kept within a budget",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-29: \"We can keep (c) with (d) now, then (a)\" (option a of the open question on cues, after c and d)",
+    "statement": "A cue is one declared kind of message in reflow2's interface with a few types (the next call, a lesson, a related record, owed work), carried in one consistent place in every reply, ranked, and kept within a budget so more cues never mean each one is read less. What exists today under other names (hints, lessons at the step, debt on reads, near-matches) is brought under it. It follows the side-of-the-agent cues and the counting, so the counts say which cues earn their place first.",
+    "status": "accepted"
+  }
+}

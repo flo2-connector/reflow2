@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0d1e3dd3f8156364fe09a866785f1bfe9e6317d1bd78cf36fd5cd312cfb9fabb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

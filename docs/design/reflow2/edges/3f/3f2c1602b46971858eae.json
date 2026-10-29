@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c112a4658144471bb27de0088b82770b4629d03df3421790a073ba1062e8c163",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:one-named-hole-inside-a-proof-map-is-worked-after-calibration",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-one-named-hole-in-a-proof-map"
+}

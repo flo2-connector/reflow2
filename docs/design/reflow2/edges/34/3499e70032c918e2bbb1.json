@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:d31c03a323b8aaa823555811c0e58d38723cb01f5895615832bd398de047e0c2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-cues-are-a-message-on-the-interface-between-reflow2-and-the-agent",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

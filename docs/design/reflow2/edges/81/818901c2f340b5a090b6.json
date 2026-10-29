@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:e775c97502a2cda7e20be1f503ee85e7b946ee8fced3948e8e8a18358d74c9f1",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-loop-nudge",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}

@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:f9d75e60555025d2030e1592dcbd6bceda49fdfe5dc15b7e9d91f4654805baa6",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:each-cue-carries-an-id-and-is-counted",
+  "properties": {},
+  "to_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed"
+}

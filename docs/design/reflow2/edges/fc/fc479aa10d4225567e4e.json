@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:a744b35025802a9ac63a5d2360427f1e7375eea7c04f1bc93bf3c91533c6d96b",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call",
+  "properties": {
+    "evidence": "A cue on the agent's side is only worth something on a path proven to reach the agent.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:nudge-path-proven"
+}

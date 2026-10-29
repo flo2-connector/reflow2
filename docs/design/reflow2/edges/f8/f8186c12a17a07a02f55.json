@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5ceff1f84116b256a9bdbe6af6950e7bc1d585fdb9dee4f60c5a2dfb963bec3b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-a-budget-limited-reader-was-not-cued-to-the-designs-current-state-record-2026-10-29",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

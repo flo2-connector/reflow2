@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ec25c44d9ffbcb8550b04a7354bb828a905887bc505bd06d38279f7281735824",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-one-named-hole-in-a-proof-map",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

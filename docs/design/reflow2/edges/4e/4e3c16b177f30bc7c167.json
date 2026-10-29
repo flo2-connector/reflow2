@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:fb7e4c86f5a858c43fca2def2fcb76151dc80d5aaff3691eee03670a478ac7a2",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it",
+  "properties": {
+    "approved_at": "2026-10-29",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c43b9d45d3dfe9ad11c9789ff375f3c2236ba6186b5baab29131f81092d10d9c",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-cues-are-a-message-on-the-interface-between-reflow2-and-the-agent",
+  "properties": {
+    "evidence": "A cue placed on the agent's side (option c) is only worth something on a path proven to reach the agent, which that accepted requirement asks for.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:nudge-path-proven"
+}

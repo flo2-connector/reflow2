@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f750746f5dd2c2387048fb583c19de85da38d536449ccc3ce97e7c31e6154481",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it",
+  "properties": {
+    "evidence": "The count is of verbs only; it must never carry the design's content.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:telemetry-carries-usage-never-design-content"
+}

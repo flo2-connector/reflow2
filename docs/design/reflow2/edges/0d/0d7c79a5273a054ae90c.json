@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a3d086cbdf1dc55216ce10a15eb34880a993baf343b18ab8f8a24b1629299ab",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue",
+  "properties": {
+    "evidence": "Delivering a discipline at the tool that triggers it is an early cue under another name; this idea would name that kind of message and the others like it."
+  },
+  "to_id": "dec:idea-cues-are-a-message-on-the-interface-between-reflow2-and-the-agent"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:177aaa2acbc1d742721e85b6b4c66970271ede0a7dd1b5862704721efcd00075",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-the-first-read-cue-reaches-the-agent-at-connect",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}

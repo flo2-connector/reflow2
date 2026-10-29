@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:5b055f205f89b6784833bc055e19f03855a5e9df20851a4980b9cd059c2c1d69",
+  "edge_type": "HAS_SNAPSHOT",
+  "from_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed",
+  "properties": {},
+  "to_id": "snap:epoch:preserved-on-write:cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed"
+}

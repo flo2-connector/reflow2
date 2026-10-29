@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:32e2a6a2ffdd54cd78e015fe407c4b6ff2288738d6ecd1736d7dfbabddf82ca5",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-memory-measurement-sweeps-size-against-the-agents-context",
+  "properties": {
+    "approved_at": "2026-10-29",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

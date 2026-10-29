@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5d40d87156768d92fe46cad734ec856531beb2dd062f5d68f8f2b1c4abfe2e55",
+  "edge_type": "ANTICIPATES",
+  "from_id": "req:skill-use-survives-a-long-session",
+  "properties": {
+    "evidence": "The accepted rule that skill use is triggered by the situation and the user must never be the trigger saw this coming; this names the agent-side cue as one way to meet it."
+  },
+  "to_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call"
+}

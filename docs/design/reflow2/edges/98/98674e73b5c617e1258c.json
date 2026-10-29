@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:0242ab64a1c170ff8bed5275c986cd32a960072315117e9a8168225a76adfe2d",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-general-intelligence-as-cognition-plus-memory-an-agent-and-reflow2",
+  "properties": {
+    "evidence": "The accepted rule already says reflow2 is one of three parts (AI, human, graph) and competes with neither; this framing assigns the agent cognition and reflow2 memory, and leaves the human's place open.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "rule:reflow2-is-one-of-three-parts-and-does-not-compete-with-the-others"
+}

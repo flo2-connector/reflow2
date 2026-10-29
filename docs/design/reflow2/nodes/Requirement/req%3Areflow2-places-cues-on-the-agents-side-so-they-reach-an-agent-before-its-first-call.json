@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:727041fe622fb69952d10cf6a471136a1dd6e0a8c5f819372d6253c4bffdf37b",
+  "node_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "reflow2 places its cues on the agent's side of the interface too (its kit's hooks and its connect-time instructions), so they reach an agent that has not called reflow2 yet",
+    "priority": "high",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-29: \"We can keep (c) with (d) now, then (a)\" (option c of the open question on cues)",
+    "statement": "reflow2 owns what a cue says, and places cues on the agent's side of the interface as well as in its replies: the hooks its kit installs (at session start, before a tool runs, at stop) and the instructions the server gives when an agent connects. A cue placed there reaches an agent that has not called reflow2 at all, which no cue inside a reply can.",
+    "status": "accepted"
+  }
+}

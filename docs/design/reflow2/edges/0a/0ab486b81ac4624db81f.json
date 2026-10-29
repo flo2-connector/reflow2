@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:59a9abff211f5b82538965baf151e2704a96adec64362cf7ee0c901dd51b9765",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-memory-measurement-holds-what-the-answering-agent-may-read-to-one-budget",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-structure-against-notes-at-one-reading-budget"
+}

@@ -1,7 +1,8 @@
 {
-  "content_hash": "sha256:6ee7a39c75325d564885db2a2187c54b53eb3452fec6633609769130ddcecc33",
+  "content_hash": "sha256:aaa723853b93f82394337a9943896ab9a299963f25c5ce74f44166284aad5971",
   "node_id": "fact:root-cause-a-registry-at-its-open-limit-runs-out-of-file-handles-2026-10-28",
   "node_type": "TemporalFact",
+  "prev_item_hash": "sha256:6ee7a39c75325d564885db2a2187c54b53eb3452fec6633609769130ddcecc33",
   "properties": {
     "basis": "measured",
     "confidence": 0.85,
@@ -10,6 +11,7 @@
     "source": "ssh read-only measurements on the flo2.io droplet (/proc/<pid>/limits, /proc/<pid>/fd, docker logs reflow2) and a local fd count of the published 0.92.0 and 0.93.0 binaries on one store",
     "statement": "OBSERVED 2026-10-28 16:36 UTC, moving flo2.io to 0.93.0. The upgrade's step 5 opened all 64 designs one after another. The last two, 8a37349fecb055d8 and 76713bdbff6684be, answered HTTP 503 (Retry-After 30). The engine said \"Failed to open RocksDB … 000029.sst: Too many open files\" for one and \"full-text index open failed … TooManyOpenFiles … meta.json\" for the other. tantivy's file watcher also failed for 3 designs that were already open. No storage write failed.\n\nMEASURED:\n- The engine process had soft RLIMIT_NOFILE 1024 (hard 524288), Docker's default. The container sets no ulimit.\n- It held 1,013 file handles with about 62 designs open, about 16 per design.\n- On reflow2's own store, the published 0.92.0 and 0.93.0 hold the same: 22 handles per process, 12 of them in the store, over repeated runs. So this is not a regression in 0.93.0.\n- When the idle designs closed after 15 minutes, the count fell to 446 and both designs opened (HTTP 200).\n- flo2.io's design count reached 64 since 2026-10-26: 57 designs existed before that day, and 7 were made after.\n\nCAUSE (the class): three bounds meet in one process, and nothing compares them.\n- --registry-max-open (64 on flo2.io) was set as a MEMORY bound.\n- MAX_OPEN_FILES_PER_STORE (64 table files per store, #606) was set per store.\n- The process's RLIMIT_NOFILE is whatever the host gives. Docker's default soft limit is 1024.\nTheir product has no check: 64 designs × up to 64 table files plus WAL and index files can need several thousand handles. Today's designs are small (about 5 table files each), so this held until the design count reached about 62. A design's growth in table files moves the same line.\n\nCANDIDATES REFUTED:\n- A regression in 0.93.0: refuted, the per-design count is equal.\n- A store damaged by the move: refuted, both designs open once handles free up.\n- The registry's busy 503 (every open design serving at once): refuted, the reply text names TooManyOpenFiles.\n\nNOT ESTABLISHED:\n- Whether 0.92.0 ever hit this in normal traffic. The old container's logs went with the recreate.\n- Whether a RocksDB flush or compaction refused for lack of a handle would leave a store in a background-error state. None was seen.\nSession: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
     "subject_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
-    "valid_from": "2026-10-28"
+    "valid_from": "2026-10-28",
+    "valid_to": "2026-10-29"
   }
 }

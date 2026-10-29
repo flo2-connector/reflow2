@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:1896c066aabd8f0be65864cfacb285f6d29383b40b3fa530a633e0dcf9e7eb29",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-settling-cue-goes-to-whoever-can-give-the-word",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

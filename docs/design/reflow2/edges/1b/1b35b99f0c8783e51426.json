@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:53746c2c2d2b5e6d70b8e8d862db757bcb7852040b46b5423ff7af09968cb532",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

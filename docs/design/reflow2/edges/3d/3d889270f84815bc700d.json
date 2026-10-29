@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5e470d9d1b985cbc8495fc3d7386a8b01564cd58f414f05580a33913f1715832",
+  "edge_type": "MITIGATES",
+  "from_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it",
+  "properties": {
+    "evidence": "BL-155: reflow2 cannot tell an unused tool from an unreachable one. Counting cues says which: cued and never followed is unwanted; never cued and never called is unreachable."
+  },
+  "to_id": "dec:bl-155"
+}

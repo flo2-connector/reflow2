@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:85f288327e02b243e0c7a2793b40fcea3fe94aa04100b1ecee3c870a6debf0dd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-memory-measurement-scores-whether-a-person-can-trace-why-an-answer-is-right",
+  "properties": {
+    "approved_at": "2026-10-29",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

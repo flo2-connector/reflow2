@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1036eaf7d9865fa4cda620f71957b3453cb1eeaf73fd0e0adfdd441ff53e7063",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-measure-where-structure-starts-to-matter-size-against-context-and-graph-against-notes",
+  "properties": {
+    "evidence": "This refines how the accepted measurement is run: it adds the size and the reading-budget dimensions the pilot lacks.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:the-cognition-plus-memory-thesis-is-tested-by-measurement-first"
+}
