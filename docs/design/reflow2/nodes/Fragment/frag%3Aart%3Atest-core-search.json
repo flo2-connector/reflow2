@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:b5925a2762b5f0f3bab1a1b6fbac6475401b9df15920b99a18f6f579db2a68cc",
+  "node_id": "frag:art:test-core-search",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered crates/reflow2-core/tests/search.rs"
+  }
+}
