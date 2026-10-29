@@ -40,12 +40,16 @@ What a call's exit code means:
 
 ## Start of a session
 
-1. `reflow2 read loop_status` says what the coherence loop is owed. This project's SessionStart
+1. `reflow2 read graph_report_markdown` says where the design stands, in a few KB: what it holds,
+   what is delivered, the top open gaps. Read it first, before anything longer. If the design keeps
+   its own record of where things stand,
+   `reflow2 read search_design '{"query": "current state"}'` finds it.
+2. `reflow2 read loop_status` says what the coherence loop is owed. This project's SessionStart
    hook may already have put its reading in your context.
-2. `reflow2 read get_instructions` gives the full working instructions, served by the binary you
+3. `reflow2 read get_instructions` gives the full working instructions, served by the binary you
    are running. If the reply is cut short, fetch one section at a time:
    `reflow2 read get_instructions '{"section": "<slug>"}'`, with the slugs from its `sections` list.
-3. `reflow2 read get_skill '{"name": "where-am-i"}'` reads the design back before you change it.
+4. `reflow2 read get_skill '{"name": "where-am-i"}'` reads the design back before you change it.
 
 **When something fails,** run `reflow2 read search_design '{"query": "<the exact error>"}'` before
 you reason about it. The moment you are about to write down *why*, in the design or in your reply,

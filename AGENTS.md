@@ -1047,7 +1047,8 @@ joined by *traceability* edges) for HEAL's topology detectors.
   `RefusedByName` (the import and `detect_defects`' `refused_by_schema` name what fits), or
   `Retired`. **At a cut, after the version bump, re-bless the snapshot**:
   `REFLOW2_BLESS_ACCEPTANCE=1 cargo test -p reflow2-core --no-default-features --test
-  a_schema_narrowing_ships_its_migration` — it refuses while anything is unaccounted for. Stored
+  in_memory a_schema_narrowing_ships_its_migration` (the file is a module of the core's
+  `in_memory` test program) — it refuses while anything is unaccounted for. Stored
   data is now re-judged by the same write rule on demand: `detect_defects` reports every stored
   item the current schema refuses, before the import that would fail.
 - **The MCP surface shrinks only through a deprecating release** (Anthony, 2026-10-05: *"don't

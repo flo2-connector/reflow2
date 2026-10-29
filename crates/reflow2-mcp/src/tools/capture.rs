@@ -1098,8 +1098,9 @@ pub(crate) fn with_approval_and_settled_question(
 ///
 /// AND IT IS ADDRESSED TO WHOEVER CAN ACT ON IT
 /// (`cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word`).
-/// `owner_can_settle` is [`crate::service::call_can_give_the_owners_word`]:
-/// when this call was made for nobody who owns the design, settling the
+/// `owner_can_settle` is [`crate::service::ReflowService::call_can_give_the_owners_word`]:
+/// when this call was made for somebody known who does not own the design
+/// (or for nobody, on an engine served for others), settling the
 /// Decision is not the caller's next call, so the hint says it is a question
 /// for the owner and names the call that puts it to them, not the one that
 /// settles it. The recall pilot measured the old sentence offered 25 times by
@@ -1675,7 +1676,7 @@ impl ReflowService {
                           "chars_before": current.chars().count(), "chars_after": next.chars().count() }
             }),
             // Addressed to whoever can act on it, like `decision_landing_hint`.
-            if crate::service::call_can_give_the_owners_word(&g) {
+            if self.call_can_give_the_owners_word(&g) {
                 "loop: one field moved — if the change is a settlement, set_decision_status carries the owner's word; loop_status says what else is owed"
             } else {
                 "loop: one field moved — if the change is a settlement, that is the owner's word and this call was made for nobody who owns this design: a question for the owner (ask_question), not your next call; loop_status says what else is owed"
@@ -4033,10 +4034,7 @@ impl ReflowService {
             .get("status")
             .and_then(Value::as_str)
             .map(str::to_string);
-        let hint = decision_landing_hint(
-            landed.as_deref(),
-            crate::service::call_can_give_the_owners_word(&g),
-        );
+        let hint = decision_landing_hint(landed.as_deref(), self.call_can_give_the_owners_word(&g));
         let name_open = crate::prose_currency::name_still_reads_open(
             node.properties.get("name").and_then(Value::as_str),
             landed.as_deref(),

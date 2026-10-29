@@ -123,8 +123,12 @@ loads it and it takes precedence over the served one of the same name.
 
 ## The loop
 
-0a. **On an existing design, orient first.** Start with `open_questions` — anything there was
-   already put to the user and is still waiting, so follow it up rather than asking again. Then,
+0a. **On an existing design, orient first: read `graph_report_markdown` first** — a few KB: what
+   the design holds, what is delivered, the top open gaps — before anything longer. If the design
+   keeps its own record of where things stand, `search_design` finds it ("current state",
+   "status as of"). This is the same first read the server's connect-time instructions and the
+   kit's session-start hook name. Then `open_questions` — anything there was already put to the
+   user and is still waiting, so follow it up rather than asking again. Then,
    if the graph holds a Project, run the **where-am-i** skill: read the graph and tell the user what the design
    says, what has been decided, and what is still open. They cannot see the graph — this is the
    only way they learn what a previous session concluded. Do it again whenever they ask "where
