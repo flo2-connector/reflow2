@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:1cb74f0ec445352572cc3529ff9dcd3a4c1c2bbe97423acfdb66745a64402f69",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-agree-and-reach-a-local-owner-2026-10-29",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 27,
+    "action": "modified",
+    "checksum_after": "sha256:822894c70c9db5faaefbbcb9af72e7ad75041b6c7b3e1d376ab52d0df6dd7fa4",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:tools-capture"
+}

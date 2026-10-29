@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fee7f1af137b4c8a12fce5cdbd94c7d7c2a979dfdad9b1e976900aee4b27334b",
+  "edge_type": "CAUSES",
+  "from_id": "art:service",
+  "properties": {
+    "basis": "correlational",
+    "evidence": "crates/reflow2-mcp/src/service.rs call_can_give_the_owners_word (af851306c) returned false on an empty WRITES_FOR before reading the design's owners and never consulted the engine's CallerRule; the new test a_local_call_made_for_nobody_is_offered_the_settling_call fails on that code and passes on the fix.",
+    "validation_status": "unvalidated"
+  },
+  "to_id": "fact:root-cause-the-settling-cue-read-an-unnamed-local-caller-as-not-the-owner-2026-10-29"
+}
