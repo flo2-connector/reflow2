@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:045a9275668f5adf15e6eb6610728c46ccd9552aefd3dad9192562342fe70dff",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:b56449055d04e3007c077b0c17b0372acb3dd5252053e98f42fe88b70c872e73"
+  },
+  "to_id": "art:fixture-proof-trial-rung-1-primes"
+}

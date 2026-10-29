@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:a377a0bb626ce22eff32ac37538b31af96f60aff5c16a3d3dd4f0570771788be",
+  "node_id": "snap:release-status:rel:v0931",
+  "node_type": "Snapshot",
+  "properties": {
+    "state": "{\"kind\":\"release_status_snapshot\",\"format\":1,\"release_id\":\"rel:v0931\",\"stored_as\":\"delta\",\"base_release\":\"rel:v0930\",\"base_snapshot\":\"snap:release-status:rel:v0930\",\"covers\":[\"Capability\",\"Decision\",\"Requirement\",\"Verification\"],\"set\":{\"Capability\":{\"cap:a-registry-raises-and-checks-its-open-file-limit-at-start\":{\"status\":\"realized\"},\"cap:readyz-reports-open-files-against-the-limit\":{\"status\":\"realized\"}},\"Decision\":{\"dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit\":{\"status\":\"proposed\"}},\"Requirement\":{\"req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open\":{\"status\":\"accepted\"},\"req:a-server-reports-its-open-file-headroom\":{\"status\":\"accepted\"}},\"Verification\":{\"ver:a-registry-checks-its-file-handles-and-readyz-says-the-headroom\":{\"status\":\"passing\"}}}}",
+    "target_id": "rel:v0931",
+    "target_type": "Release"
+  }
+}

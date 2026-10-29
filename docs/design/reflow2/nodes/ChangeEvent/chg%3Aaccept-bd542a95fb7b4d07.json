@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7cc5c0d3b96d8be5e99d12323009f0bfddfe133621f5f68940873d0aff431b5e",
+  "node_id": "chg:accept-bd542a95fb7b4d07",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-28",
+    "name": "v0.93.1 cut, step 2: the release line moves to v0.93.1; read against the release (its --registry-root line included), nothing on the page is made false by it. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

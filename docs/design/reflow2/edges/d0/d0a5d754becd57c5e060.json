@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:93c7baca6823ea8ea930534285d05783c6cd67bfa5fdd1656676d290c8633245",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:7c7cbc993dee038b80a307f18e17380a26fcba55b46f2a72d0b45391e413adac"
+  },
+  "to_id": "art:an-import-says-what-it-removed-test"
+}

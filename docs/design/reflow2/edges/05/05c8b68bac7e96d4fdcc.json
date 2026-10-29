@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2e629ca13de56f38b8a3c2c2c2dfbee2236b14d3ec0e68fbffce44a5335e0f65",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:0489079cbdaf12bd3252c2c16e56908730c98842114407e5d7f311c44370b4d1"
+  },
+  "to_id": "art:a-proof-says-what-it-assumes-test"
+}

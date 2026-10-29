@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:68f6a2f0bfeecee678d4193140f8b467abd3f89e058899ae388510c33fd710d1",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:b3365e489ac347107fdd11842ee9b14f18bf72f9348201305af62160015141f1"
+  },
+  "to_id": "art:fixture-proof-trial-brocard"
+}

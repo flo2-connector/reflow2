@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:259ea37dde46867f768a0b2490a7d777e149a50c81be114d100c27556a1947f6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:accept-1d4ac2cb8eb452ec",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 14,
+    "action": "modified",
+    "checksum_after": "sha256:35734f3c501a40935cf8b4d1463381805a416519b647eaa7b3b4fb2a2410e7c3",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:site-walkthrough-html"
+}

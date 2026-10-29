@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:65e28499fd44021092c364eb5f0059237c1dcc8bd94f43feebf2ee532c8cc3da",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:b9b43d0cb4b05848262d50d95a0c9c555bc76b0504984ca51a7ca3291b9933a9"
+  },
+  "to_id": "art:a-session-that-reads-and-never-writes-is-seen-test"
+}

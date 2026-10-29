@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:010be870e00987d27f49f1338fb45e92aa4fc80d45b20af70e7c4e0e717e8c3a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:0a6edbca7530f9de4c6c2fa02fd90beaa6c921f71b12dbdf967a195e85fe0784"
+  },
+  "to_id": "art:repair"
+}

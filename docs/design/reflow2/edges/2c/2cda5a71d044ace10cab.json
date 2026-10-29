@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:5090920e56c386b31596688db778453283a0a9dcb22e2ed6faeabf6ce4137264",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:aec8695d9899d73a394d72e9591f0fc8a8c55c1a437db24ad8d878d2baf7e423"
+  },
+  "to_id": "art:test-every-finding-that-reads-parking-names-it"
+}

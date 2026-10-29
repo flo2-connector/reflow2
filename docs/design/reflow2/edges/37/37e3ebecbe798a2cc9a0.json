@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:dffd67f2e8187a700d451773d1368f3bf570cf24a714bc63ca369a01d73330f8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:7b4421ce856878190416d032198877fa186f717cd657729a1791e05c5d45919e"
+  },
+  "to_id": "art:test-a-fixed-rule-violation-closes-through-its-typed-tool"
+}

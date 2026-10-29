@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:42d0d9bcc02108efb654103c9ed657aa70e1076e9070f85b58e5a45ca2db8bbe",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:ce863027a1090aafbce0cd3979a8e31b36ba504dc0789a570d9cb139cef30f05"
+  },
+  "to_id": "art:schema-budget-rs"
+}
