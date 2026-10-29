@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8b48ff6a97e19590b7e2cf023b64fbc02e363cdd357af9d41a5ded29307c411f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:a9717321fb1b8e897403bdb52c0006cc3c287027c8fdd22fcdb2f10773c5814a"
+  },
+  "to_id": "art:design-a-phenomenon-command"
+}

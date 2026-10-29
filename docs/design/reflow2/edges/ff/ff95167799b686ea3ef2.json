@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:db43ed21fe3717cdd0eaca5b8bdef3c8d47259b5324e0bc5068539441d870cd9",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:9ff4ca18076aa3a6e63537dea9acfd24fc19be04833642f5baf080b10f654e7b"
+  },
+  "to_id": "art:wall-check-served"
+}

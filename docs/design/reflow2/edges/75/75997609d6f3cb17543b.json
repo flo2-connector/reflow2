@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:72459d5413fc7442e607c0cac909f3ba3b7a0abc0800c159b3474b00925d1792",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:1f37336323046f1f428a2019b6f59946d5c9671dbc13d932690a159a5fddbffd"
+  },
+  "to_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test"
+}

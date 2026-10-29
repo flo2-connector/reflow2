@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:206886a0b748540e22aef13261c9c11b5d9ec9a9d6149595b114eaa8869ac2de",
+  "node_id": "chg:the-v0940-release-cut-2026-10-29",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-29",
+    "name": "The v0.94.0 release cut",
+    "rationale": "The owner said \"prepare the 0.94.0 release\" on 2026-10-29; the tag push stays his, and he sets epoch:planned-cues-reach-the-agent-and-are-counted arrived after the release publishes. Minor by CHANGELOG's Versioning table: since v0.93.1 main holds only #813, which changes served behaviour and the shape of results additively (search_design's output schema gains `excerpt`; replies gain _meta[\"reflow2/cues\"]; ledger lines gain `cues` and a kind:\"cue\" line; usage_report's tally gains a `cues` block; the connect-time instructions gain the first-read cue). Measured against the published 0.93.1 binary (linux-x86_64 archive sha256 bbf0ee12..., checked against checksums.txt): 199 tools on both, only search_design differs (output schema); 35 skills, none changed; get_instructions and describe_schema unchanged; the schema stamp equal but for its version (28 node, 69 edge types), so no upgrade doc is owed. Nothing is deprecated or removed, so no notice to the MCP users is owed. The In-your-setup lines were each checked on the 0.94.0 build beside 0.93.1, one process per --call; a --call names nobody it writes for, so its add_decision hint now reads \"a question for the owner\" even for the owner, which the release notes say plainly. The binary this box serves is rebuilt after the tag (step 9), not in this PR. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "subject": "system",
+    "summary": "reflow2 0.94.0 is cut in PR release/v0.94.0: every version claim moves 0.93.1 -> 0.94.0 (Cargo.toml, Cargo.lock, reflow2.toml, AGENTS.md's two lines, the five site pages), the one changelog.d fragment (#813) is assembled under [0.94.0] with the opening, surface, stamp and \"In your setup\" paragraphs, the schema snapshot is re-blessed (version line only), and site/setup.html's VS Code step says the session-start hook also names the first read (graph_report_markdown). rel:v0940 is recorded, pinned to epoch:v0940-cut with the increment's 1 ChangeEvent and the cut's 8 acceptances, deployed to env:ci, env:container and env:dev as rel:v0931 was, its manifest derived, and the four capabilities of epoch:planned-cues-reach-the-agent-and-are-counted included by name."
+  }
+}

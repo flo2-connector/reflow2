@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c88a4bb172d7fdaeb48fdb64706fae424841f504cb4c47c55681607e240c770a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:3629002faaaf08a4b7b1037677a07613277c6b7d05f656dad9c31f6c7c95285b"
+  },
+  "to_id": "art:one-composed-check-runs-over-several-designs-test"
+}

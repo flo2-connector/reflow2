@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0306b8baad1b9abacdb176055694306b7add91d5a1d9f9afdcd762617e6ef002",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:f96a2ec515488e0be86129c8804133f35e77d435bdfc2b0bbe3e24e07fc40269"
+  },
+  "to_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it"
+}

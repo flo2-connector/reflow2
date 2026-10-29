@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:6bbc3545746f1b0b94ac3e909b47fd08945e7d94fed07efe42e6226b568b817b",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:v0940-cut",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

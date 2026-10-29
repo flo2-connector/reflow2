@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8dae10637c43881891eba792033848e4b4a617ea244fa2800ecd8a923796c380",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:0ca6349f5cc5e5bb3cb71280ab042d651973c4ccb17955efc0c2cb379263a9cd"
+  },
+  "to_id": "art:fixture-proof-trial-heat-equation"
+}

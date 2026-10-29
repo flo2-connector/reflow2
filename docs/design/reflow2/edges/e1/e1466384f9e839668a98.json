@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ee7d7a319b2e6b8f2b82cad05ca43378e046bc8cfe740e34476a448071ab1e3b",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-v0940-release-cut-2026-10-29",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "epoch:v0940-cut"
+}

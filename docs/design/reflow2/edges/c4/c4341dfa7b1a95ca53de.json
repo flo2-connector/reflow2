@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8a9fc9a410cebb2682f7dad8ee67a391ca50f2fe640d60e474bcd4bc3e8f60af",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:d9c6404da02d15806f9385d4675b13162e312f7d0cd815729b4f48210478e68d"
+  },
+  "to_id": "art:test-a-change-ripples-across-uses-and-up-part-of-in-three-designs"
+}

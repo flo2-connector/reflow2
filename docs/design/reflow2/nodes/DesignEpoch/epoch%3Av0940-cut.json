@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c0c061c88a0a1ad644a07065d85e783b02b7c268b3a4013d0c8f6b669d7f1228",
+  "node_id": "epoch:v0940-cut",
+  "node_type": "DesignEpoch",
+  "properties": {
+    "description": "The minor in which every cue reflow2 gives carries an id and is counted by whether the agent acted on it, the connect-time instructions and the kit's session-start hooks name the first read for where a design stands, a \"settle it\" cue goes only to whoever can give the owner's word, and a nameless search hit shows an excerpt of its text. It carries #813 (increment 2 of epoch:planned-cognition-plus-memory, epoch:planned-cues-reach-the-agent-and-are-counted) and the cut itself (release/v0.94.0).\n\nPinned here: rel:v0940, the increment's ChangeEvents (found by diffing ids against the v0.93.1 tag's committed copy: 1, chg:cues-reach-the-agent-and-are-counted-2026-10-29), the cut's 8 drift acceptances and chg:the-v0940-release-cut-2026-10-29. The increment epoch itself is NOT set arrived here: the owner does that after the release publishes. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "epoch_type": "release_cut",
+    "name": "v0.94.0 release cut (2026-10-29)",
+    "sequence": 800,
+    "status": "arrived"
+  }
+}

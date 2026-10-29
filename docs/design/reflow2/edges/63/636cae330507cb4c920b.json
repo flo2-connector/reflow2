@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c711178a32d71ff458aacd2db9b313fb695c8d00ff8acbe948e04197bfc5163e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:20868c7d6d01a8a9c811fb369ff2d3188f98bcc6eab3f10c7b80e3a309eca809"
+  },
+  "to_id": "art:triage-command"
+}

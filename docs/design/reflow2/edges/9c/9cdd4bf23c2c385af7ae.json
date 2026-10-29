@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ce572cd335a05f8969ff5f9ab6dff272158b1a370c58d760b624cbe8919d7a31",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:b524b0460d31f93b68ec5e4e027df4b2e033accbbd68bef23469d23748a5802d"
+  },
+  "to_id": "art:a-cross-design-read-takes-the-other-design-by-graph-id-test"
+}
