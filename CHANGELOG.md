@@ -31,6 +31,105 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.94.0] — 2026-10-29
+
+**Minor. Every cue reflow2 gives now has an id and is counted by whether the agent acted on it, an
+agent is told before its first call which read says where the design stands, a "settle it" cue
+goes only to whoever can give the owner's word, and a search hit with no name shows an excerpt
+of its text.** It contains #813, increment 2 of the cognition-plus-memory plan
+(`epoch:planned-cues-reach-the-agent-and-are-counted`). In the recall pilot agents followed 4%
+of reflow2's cues within five calls, counted by hand from a wrapper's log; `usage_report` now
+counts it. **What to do:** nothing. Every change is additive, and a usage ledger written by an
+earlier release reads as before.
+
+**The MCP surface grows, additively**, measured against the published 0.93.1 binary (sha256
+`bbf0ee12…` for its linux-x86_64 archive, checked against `checksums.txt`): 199 tools on both,
+none added or removed. One tool changes: `search_design`'s output schema gains `excerpt`. Every
+other tool's name, description and argument schema is byte-equal. The 35 skills keep their names,
+metadata and words, and `get_instructions` and `list_skills` are unchanged. The connect-time
+instructions gain one sentence, the first-read cue (284 characters). Replies gain
+`_meta["reflow2/cues"]`; ledger lines gain `cues`, and a `kind: "cue"` line is new;
+`usage_report`'s tally gains a `cues` block. The text of two hints changes for a caller who does
+not own the design (below). Nothing is deprecated and nothing is removed, so no notice is owed
+to anyone who runs their own MCP server.
+
+- **The schema stamp does not move**: 28 node types and 69 edge types, the same enum
+  vocabularies and the same `describe_schema` answer as 0.93.1. No upgrade doc is owed, and a
+  store this release writes is a store 0.93.1 reads.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets every change but one. Checked on the 0.94.0 release build, one
+process per call, against a design on disk, beside the published 0.93.1 binary:
+- **cues are counted**: each `reflow2-mcp write`/`read` call writes its offered cue ids on its
+  ledger line (`add_requirement` → `loop_hint/detect_gaps`, `loop_hint/loop_status` …), and
+  `--call usage_report` shows the `cues` block, `loop_hint/loop_status` followed within 5 after
+  a `read loop_status`. The door's calls are followed as one sequence in ledger order. The door
+  prints the reply's structured content only, so the ids are in the ledger, not on screen
+  (`usage_report` is a write: run it with `write` or `--call`, not `read`). 0.93.1 wrote no
+  `cues` and its `usage_report` had no `cues` block;
+- **the first-read cue**: the door does not read the connect-time instructions, so it writes no
+  `kind: "cue"` line (checked: only `call` lines). The VS Code terminal route's session-start
+  hook carries the cue instead, naming `reflow2 read graph_report_markdown` and
+  `reflow2 read search_design '{"query": "current state"}'`; that copy is not counted, since a
+  hook knows no session. A stdio MCP session on the same design wrote one `kind: "cue"` line at
+  the handshake, and `usage_report` read `instructions/graph_report_markdown` as followed after
+  a `graph_report_markdown` call;
+- **the settle hint**: a `--call` names nobody it writes for, so `add_decision` there now answers
+  "settling it is the owner's word … it is a question for the owner, not your next call
+  (ask_question puts it to them)", even for the design's owner and even when the design names no
+  owner. 0.93.1 answered "only the owner's word moves it (set_decision_status)". The owner settles
+  as before, with `set_decision_status` and `approver`. In an MCP session, `writes_for` naming the
+  owner, or anyone on a design that names no owner, brings the old hint back;
+- **the excerpt**: `read search_design '{"query": "current state"}'` returned a nameless Fragment
+  with `name: ""` and `excerpt` holding its title (0.93.1: no `excerpt`).
+
+**Still needs a hosted gateway such as flo2.io:** nothing new, and flo2.io gets all four changes
+when its engine moves to 0.94.0. There the gateway names the caller on every call, so the owner
+gets `set_decision_status` and a member who is not the owner gets `ask_question`. **Through a
+hub's address the first-read cue is not seen being followed in a member**: the handshake's offer
+is written in the hub's ledger, while a call aimed at one member (`member`, or an id carrying its
+`<graph_id>:` prefix) is written in that member's ledger, under that member's seat, so neither
+ledger holds both. A read that fans out over the hub runs on the hub too, and that part is
+counted in the hub's ledger. As before, the hosted hub view and cross-design reads by graph id
+still need it. These lines get checked again on the published binary once the release is out.
+
+### Added
+
+- **Every cue reflow2 gives that names a next call now has an id, and `usage_report` counts whether the agent acted on it.**
+  A cue is a sentence in a reply's `loop_hint`, `hint`, `next`, `nudge` or
+  `next_step` that names a tool or skill. Its id is `<field>/<named call>`
+  (`loop_hint/set_decision_status`, `next/loop_status`), carried in the reply's
+  `_meta["reflow2/cues"]` and written on the call's line in the usage ledger.
+  `usage_report`'s tally gains a `cues` block: per cue, how often it was
+  offered, how often the same session made that call within its next five
+  calls or at all, and which tools offered it. Only reflow2's own words are
+  kept, never the sentence, a node id or an argument. In the recall pilot 4% of
+  cues were followed within five calls; this is how the next measurement is
+  read. Nothing to do: the field is additive, and a ledger written by an
+  earlier release reads as before.
+- **An agent is told, before its first call, which read says where the design stands.**
+  The server's connect-time instructions and the kit's session-start hooks
+  (Claude Code and the VS Code terminal route) now name `graph_report_markdown`
+  as the first read (a few KB: what the design holds, what is delivered, the
+  top open gaps), and `search_design` for the design's own record of where
+  things stand ("current state"). The connect-time offer is counted like any
+  other cue (`instructions/graph_report_markdown`). The hook text replaces
+  "call open_questions" as the first step; `open_questions` is unchanged.
+- **A search hit on a record with no name carries an `excerpt` of its text.**
+  A nameless Fragment or Question used to come back with `name: ""` and nothing
+  else. It now carries up to 160 characters of its title, statement, question,
+  summary or description. `name` is unchanged, and a named hit gets no excerpt.
+
+### Changed
+
+- **A Decision's "settle it" hint goes to whoever can give the owner's word.**
+  `add_decision` and `replace_text` used to tell every caller that
+  `set_decision_status` was the next step. When the call is made for nobody who
+  owns the design (no `writes_for`, or the design is `OWNED_BY` someone else),
+  the hint now says the settlement is a question for the owner and names
+  `ask_question`. A call made for the owner, or for a named person on a design
+  that names no owner, gets the hint as before.
+
 ## [0.93.1] — 2026-10-28
 
 **Patch. A server holding many designs raises its open-file limit as it starts, warns when its
