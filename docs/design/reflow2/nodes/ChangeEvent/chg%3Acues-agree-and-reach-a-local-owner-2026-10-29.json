@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:aa6f9f2c0a5ca1bca1a699bb54f6ede29cd945529dd4425beb9a3172fa141deb",
+  "node_id": "chg:cues-agree-and-reach-a-local-owner-2026-10-29",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "defect_fix",
+    "commits": "ab9ae9673",
+    "detected_at": "2026-10-29",
+    "name": "Cues agree, and the settling cue reaches a local owner",
+    "rationale": "Owner's word, Anthony 2026-10-29: \"Go with your recommendation and fix them first\". Fault 1: an agent reading the handshake and the served instructions got two first steps, and the recall pilot's re-run (increment 3 of epoch:planned-cognition-plus-memory) needs one; the_served_instructions_name_the_same_first_read now holds get_instructions to cues::INSTRUCTIONS_OFFER, so the two texts cannot drift apart unseen again. Fault 2, root-caused in fact:root-cause-the-settling-cue-read-an-unnamed-local-caller-as-not-the-owner-2026-10-29: the owner check returned false on an empty writes_for before reading owners and never consulted crate::caller::CallerRule, so absence of a name read as \"not the owner\"; the class is deciding who is calling outside the one place that says how this engine knows its caller, and the fix asks CallerRule (served_for_others). Both new tests failed on af851306c and pass at ab9ae9673; the gateway test passes on both, so flo2.io's owner/non-owner behaviour is unchanged. The released --call/stdio contract stays additive: no tool, field or schema changed (199 toolsnaps match); only hint wording on two replies and served instruction text. Note for the pilot re-run: run locally with no writes_for, it will again be offered set_decision_status unless its harness names the agent's contributor. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "rationale_basis": "contemporaneous",
+    "repair": "corrected_cause",
+    "subject": "system",
+    "summary": "Two faults in #813 fixed before v0.94.0 ships. (1) get_instructions' step 0a said \"Start with `open_questions`\" while the handshake and the session-start hooks named graph_report_markdown first; step 0a now reads graph_report_markdown first, names search_design (\"current state\", \"status as of\"), then open_questions, and the VS Code terminal route's session start begins with `reflow2 read graph_report_markdown`. (2) The settling hint on add_decision (proposed) and replace_text is now offered unless the caller is known (writes_for, or the gateway/bearer-named caller) and is not the owner; locally an unnamed caller (the owner alone, a --call) is offered set_decision_status, and on an engine served for others an unnamed caller still gets ask_question. Also AGENTS.md's schema re-bless command names `--test in_memory a_schema_narrowing_ships_its_migration`."
+  }
+}
