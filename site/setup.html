@@ -277,9 +277,11 @@ git status --short    # commit the design's export first; git keeps that copy</c
         <li>Designs live under <code>/data</code>. Keep it on a volume, and back that volume up.</li>
         <li>By default it serves one design, at the server's root address. Set
           <code>REFLOW2_REGISTRY_ROOT</code> to serve every design under a folder instead, each at
-          <code>/g/&lt;design id&gt;/</code>.</li>
+          <code>/g/&lt;design id&gt;/</code>. It then raises its open-file limit as far as the system
+          allows when it starts, and warns if its open designs could still run out of file handles.</li>
         <li>Readiness is <code>GET /readyz</code> (200 only while the design is served) and liveness is
-          <code>GET /healthz</code>.</li>
+          <code>GET /healthz</code>. The readiness answer also says how many files the server has open
+          against its open-file limit.</li>
         <li>Run one replica per store: a design has one writer. On a rolling update the new pod takes the
           store over when the old one lets go, and turns ready without a restart.</li>
         <li>Cap the log as above. Docker's default log has no size limit.</li>
@@ -342,7 +344,7 @@ docker exec reflow2 /usr/local/bin/reflow2-mcp --version</code></pre>
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
         Apache License 2.0 ·
-        Checked against reflow2 v0.93.0.
+        Checked against reflow2 v0.93.1.
       </p>
     </footer>
   </main>

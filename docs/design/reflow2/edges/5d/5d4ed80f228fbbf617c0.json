@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:186ea6bf4e822505766250cd988b970ec18241e32b97a7daa43a64ac8d0c1cde",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:cdde53516cfebf26bb34099201bc27548e3b301db254640e02ee1c0b1b3bdbd9"
+  },
+  "to_id": "art:every-prose-field-is-searched-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c844478577e66fea1d6c3276ead3bd4f772deec3557f7f290240f3582a0e8fed",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:264c6b1286bd0669bad60283214056cc180521916d8d5a1797c41205e3b0d414"
+  },
+  "to_id": "art:a-revising-write-says-what-it-removed-test"
+}

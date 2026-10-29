@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ebd16d4cb552e73cc9ac0ab0334fca1bd7710b888e111af278f3b2178b05ca01",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:6fc1792b7d51547b08b37f86c8a7590a41d2d9266a43dbc3ec0247631fc2dae9"
+  },
+  "to_id": "art:test-a-constructor-stores-the-status-it-was-given"
+}

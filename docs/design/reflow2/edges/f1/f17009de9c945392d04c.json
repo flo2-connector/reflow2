@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:51059378fe53482bc6b3b275c874e45a1dbb7837ff8408ae8a320bf4d4c00056",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:cd1a769e7a505f33dca4590430badf6b11ade9ce80940e672b7c3bb59d79614d"
+  },
+  "to_id": "art:test-reasoning-crosses-designs-within-a-hub"
+}

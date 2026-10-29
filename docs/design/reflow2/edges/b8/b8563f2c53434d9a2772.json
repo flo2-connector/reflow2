@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0b8bcd7b1932b9394099b42fa78a5b8f0b34c3d862ea7d52dd0e8c8c3e01d733",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:fbdd813bc97602227c6e39fed643134f96bcdee59feb059b39d5688b1f5403f4"
+  },
+  "to_id": "art:inference-ruling-rs"
+}

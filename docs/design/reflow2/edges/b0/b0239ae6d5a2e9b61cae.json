@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:af7f36084835ee20a6b068192cb9a6d24f632c0139000071f56028ae827d72b3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:2d59852c56176d6dead23db6f6b1bdc2972ab57aa29fb240da50fb0ab067af66"
+  },
+  "to_id": "art:test-a-degraded-server-recovers-when-its-cause-clears"
+}

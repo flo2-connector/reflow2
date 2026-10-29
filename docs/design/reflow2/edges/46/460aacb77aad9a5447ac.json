@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d7543503c06bde3834698d7732252770319afd424d1937b07be24a430965bbbc",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:b52525375709795bb24c1f576be4661a6a4e724b4ac3d69cb92124c1561a36ea"
+  },
+  "to_id": "art:fixture-proof-trial-four-colour"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9767c432c3834598fd32c8d9b2f65a5af3d6f5aed41e6855ed19fc7479c3fe77",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:f2919682cdd2a13ab557c29ffa881467dafa644d96484bfa7a7164e03abe08ce"
+  },
+  "to_id": "art:capture-intent-skill"
+}

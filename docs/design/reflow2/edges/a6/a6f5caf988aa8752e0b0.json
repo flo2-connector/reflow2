@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:81067d7c206c1a15a35228c73b15e2b0eb711d24dd051f10edc457c00f5fdd9e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0931",
+  "properties": {
+    "as_checksum": "sha256:5a1bad60349ef676d2c8722045bcd0f20d6302d39d567b6ccd83e9b56e6c2f3e"
+  },
+  "to_id": "art:test-a-revise-keeps-what-it-was-not-passed"
+}

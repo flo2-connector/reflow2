@@ -31,6 +31,76 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.93.1] — 2026-10-28
+
+**Patch. A server holding many designs raises its open-file limit as it starts, warns when its
+designs could still run out of file handles, and `/readyz` says how many files are open against
+the limit.** It contains #811. On 2026-10-28 flo2.io, moving to 0.93.0, opened all 64 of its
+designs and the last two failed with "Too many open files"; this is the fix. Nothing on the MCP
+surface moved. **What to do:** nothing where the hard open-file limit is high, as in Docker; where
+the new warning appears, follow what it names (below).
+
+**The MCP surface is unchanged**, measured against the published 0.93.0 binary (sha256
+`3a889ee7…` for its linux-x86_64 archive, checked against `checksums.txt`): 199 tools on both,
+none added, removed or changed (every tool's name, description and argument schema byte-equal).
+The 35 skills keep their names, metadata and words, and `get_instructions` is unchanged. Nothing
+is deprecated and nothing is removed, so no notice is owed to anyone who runs their own MCP server.
+
+- **The schema stamp does not move**: 28 node types and 69 edge types, the same enum
+  vocabularies and the same `describe_schema` answer as 0.93.0. No upgrade doc is owed, and a
+  store this release writes is a store 0.93.0 reads.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gains nothing and loses nothing: every change is in the HTTP server.
+Checked on the 0.93.1 release build: `reflow2-mcp write add_requirement` and `reflow2-mcp read
+get_node` on a design on disk answered as before, and `--call graph_report` named 0.93.1 as its
+server. If you run your own `--http` server, each line below was checked on the same build:
+- **`/readyz`** on a one-design `--http` server answered `200` with `ready: the design is served`
+  and a second line `open files: 19 of 1048576 allowed (1048557 left)`, and the headers
+  `x-reflow2-open-files: 19` and `x-reflow2-open-file-limit: 1048576`; 0.93.0 answered the first
+  line only;
+- **the raise**: a `--registry-root` server started with a soft limit of 256 and a hard limit of
+  4096 said `raised this server's open-file limit from 256 to 4096`, and its process limit read
+  4096 (0.93.0's stayed at 256);
+- **the warning**: with the limit held at 512 and `--registry-max-open 64`, it printed one
+  WARNING counting up to 4,896 files against 512 and naming what to raise or lower, and kept
+  serving (0.93.0 printed nothing).
+
+**Still needs a hosted gateway such as flo2.io:** nothing new in this release. flo2.io gets the fix
+when it moves its engine to 0.93.1. As before, the hosted hub view (a hub's address answering from
+every member live, `member` on a hosted member) and cross-design reads by graph id without your
+own `--registry-root` server. These lines get checked again on the published binary once the
+release is out.
+
+### Added
+
+- **`GET /readyz` reports the files open against the open-file limit.** Its
+  answer gains a second line, `open files: 1013 of 1024 allowed (11 left)`, and
+  two headers for a monitor to alarm on, `x-reflow2-open-files` and
+  `x-reflow2-open-file-limit`. The count is read from `/proc/self/fd` on Linux;
+  on other systems it reads `unknown`. The status code and the first line are
+  unchanged, so a probe that reads either is unaffected.
+
+### Fixed
+
+- **A server holding many designs raises its open-file limit at start, and warns
+  when its designs could still run out of file handles.** On 2026-10-28 flo2.io
+  opened all 64 of its designs and the last two failed with "Too many open
+  files": the container's soft limit was Docker's default of 1024 (hard 524288),
+  and nothing compared it with `--registry-max-open` and the 64 table files each
+  store may keep open. A `--registry-root` server now raises its soft
+  `RLIMIT_NOFILE` to the hard limit as it starts (on macOS, as far as
+  `kern.maxfilesperproc` and `OPEN_MAX` allow) and says so. It then checks
+  `--registry-max-open` × 76 files a design (64 table files plus 12 for its
+  write-ahead log, manifest, locks and full-text index) plus 32 of its own
+  against the limit. When they do not fit it prints one WARNING naming the three
+  numbers and what to change, and keeps running: small designs use far fewer
+  files than the worst case. **What to do:** nothing where the hard limit is
+  high, as in Docker. Where the warning appears, raise the open-file limit to
+  the number it names (`ulimit -n`, Docker's `--ulimit nofile=N:N`, or
+  `LimitNOFILE=` in a systemd unit), or lower `--registry-max-open` to the
+  number it names.
+
 ## [0.93.0] — 2026-10-28
 
 **Minor. An experiment's result refutes a claim only on its owner's signed ruling, a model's

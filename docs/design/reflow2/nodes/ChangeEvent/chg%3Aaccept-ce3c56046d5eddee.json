@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:fc6d7475d9f0ddc13f871dbd923d92d81e5bc2b769dd00cf20dc9fc1492e5753",
+  "node_id": "chg:accept-ce3c56046d5eddee",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "documentation",
+    "detected_at": "2026-10-28",
+    "name": "v0.93.1 cut, step 2: the release line moves to v0.93.1; the team-server section now says a REFLOW2_REGISTRY_ROOT server raises its open-file limit at start and warns when its designs could run out of file handles, and that /readyz also says the files open against the limit (#811). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}
