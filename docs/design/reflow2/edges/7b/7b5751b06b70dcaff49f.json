@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a941f6e51171796379e80e5313067441101c8de53716337b54b47f21b8e15f8d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:cues-agree-and-reach-a-local-owner-2026-10-29",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

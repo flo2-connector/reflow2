@@ -8433,46 +8433,59 @@ impl ReflowService {
     }
 }
 
-/// Whether the tool call now being served can give the design OWNER's word —
-/// settle a Decision, approve intent — so a cue asking for that word may be
-/// offered to it as its next call
-/// (`cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word`).
-///
-/// Yes when the call is made FOR a named contributor (`writes_for`: the
-/// request's `_meta`, else the session's declaration; behind a gateway, the
-/// verified caller) and, where the design names its owner (a Project
-/// `OWNED_BY` a Contributor), that contributor is one of them. A design that
-/// names no owner takes a named caller at their word: the approval itself is
-/// checked where it is written. No: a call made for nobody — a solo agent
-/// recording someone else's project, the recall pilot's case, where the cue
-/// "set_decision_status carries the owner's word" was offered 101 times and
-/// followed 5.
-///
-/// Advisory wording only: nothing is refused on this answer.
-pub(crate) fn call_can_give_the_owners_word(g: &DesignGraph) -> bool {
-    let Some(who) = WRITES_FOR
-        .try_with(Clone::clone)
-        .ok()
-        .flatten()
-        .map(|w| w.trim().to_string())
-        .filter(|w| !w.is_empty())
-    else {
-        return false;
-    };
-    let owners: Vec<String> = g
-        .scan_nodes(reflow2_core::nodes::node::PROJECT)
-        .unwrap_or_default()
-        .into_iter()
-        .flat_map(|p| {
-            g.outgoing(&p.node_id, Some(reflow2_core::nodes::edge::OWNED_BY))
-                .unwrap_or_default()
-        })
-        .map(|e| e.to_id)
-        .collect();
-    owners.is_empty()
-        || owners
-            .iter()
-            .any(|o| *o == who || who.ends_with(&format!(":{o}")))
+impl ReflowService {
+    /// Whether the tool call now being served can give the design OWNER's
+    /// word — settle a Decision, approve intent — so a cue asking for that
+    /// word may be offered to it as its next call
+    /// (`cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word`).
+    ///
+    /// THE RULE: yes, UNLESS the caller is known and is not the owner.
+    ///
+    /// · A KNOWN caller is the contributor the call is made for (`writes_for`:
+    ///   the request's `_meta`, else the session's declaration; behind a
+    ///   trusted gateway or a bearer gate, the caller the engine established).
+    ///   Where the design names its owner (a Project `OWNED_BY` a Contributor)
+    ///   the cue goes to them only if they are one of its owners; a design that
+    ///   names no owner takes a named caller at their word (the approval itself
+    ///   is checked where it is written).
+    /// · NOBODY NAMED, ON A LOCAL ENGINE (stdio, `--shared`, loopback `--http`,
+    ///   the `--call` door): the person running reflow2 on their own machine is
+    ///   the one who can give the word, so the cue is offered. Until this rule
+    ///   (2026-10-29), "nobody named" read as "not the owner", and the owner
+    ///   working alone was told settling was a question for the owner
+    ///   (`fact:root-cause-the-settling-cue-read-an-unnamed-local-caller-as-not-the-owner-2026-10-29`).
+    /// · NOBODY NAMED, ON AN ENGINE SERVED FOR OTHERS (`crate::caller`): no
+    ///   call there can sign without an established caller, so nobody unnamed
+    ///   can give the word, and the cue says it is a question for the owner.
+    ///   Behind flo2.io's gateway every call is named, so there the first rule
+    ///   decides, as it did before.
+    ///
+    /// Advisory wording only: nothing is refused on this answer.
+    pub(crate) fn call_can_give_the_owners_word(&self, g: &DesignGraph) -> bool {
+        let Some(who) = WRITES_FOR
+            .try_with(Clone::clone)
+            .ok()
+            .flatten()
+            .map(|w| w.trim().to_string())
+            .filter(|w| !w.is_empty())
+        else {
+            return !self.caller_rule.served_for_others();
+        };
+        let owners: Vec<String> = g
+            .scan_nodes(reflow2_core::nodes::node::PROJECT)
+            .unwrap_or_default()
+            .into_iter()
+            .flat_map(|p| {
+                g.outgoing(&p.node_id, Some(reflow2_core::nodes::edge::OWNED_BY))
+                    .unwrap_or_default()
+            })
+            .map(|e| e.to_id)
+            .collect();
+        owners.is_empty()
+            || owners
+                .iter()
+                .any(|o| *o == who || who.ends_with(&format!(":{o}")))
+    }
 }
 
 // ---- ServerHandler ----------------------------------------------------------

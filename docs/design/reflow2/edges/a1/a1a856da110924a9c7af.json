@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0224ac54ebbf9de78d6d28f542d02e274349c065a61dd76714e295c6c0cee80d",
+  "edge_type": "REALIZES",
+  "from_id": "art:vscode-terminal-route-instructions",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}

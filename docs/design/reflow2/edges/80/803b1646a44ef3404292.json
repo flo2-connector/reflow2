@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:89e14fa1a011a953d7eb4f0b7f997b5b0fbad550f97177a5ac88fcdc8429a9b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-agree-and-reach-a-local-owner-2026-10-29",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}

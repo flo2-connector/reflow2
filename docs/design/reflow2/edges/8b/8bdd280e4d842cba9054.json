@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:5f7ceeb68f106df2fd8b1f48291e7c86c97e5cb1abf545bde96a878f95a8105b",
+  "edge_type": "REALIZES",
+  "from_id": "art:kit-instructions",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}
