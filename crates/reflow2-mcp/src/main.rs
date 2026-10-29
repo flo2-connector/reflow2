@@ -1913,6 +1913,24 @@ async fn run() -> anyhow::Result<()> {
             );
         };
 
+        // FILE HANDLES FOR EVERY DESIGN IT MAY HOLD OPEN, before any is opened
+        // (req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open).
+        // flo2.io's 64 designs met Docker's soft limit of 1024 on 2026-10-28
+        // under a hard limit of 524288. Raise the soft limit as far as the host
+        // allows, then check the three numbers against it and say so when they
+        // do not fit — a warning, never a refusal (`reflow2_mcp::file_handles`).
+        let raised = reflow2_mcp::file_handles::raise_to_hard_limit();
+        if let Some(said) = raised.sentence() {
+            eprintln!("{said}");
+        }
+        if let Some(limit) = raised.limit()
+            && let Some(warning) =
+                reflow2_mcp::file_handles::Budget::for_registry(cli.registry_max_open)
+                    .warning(limit)
+        {
+            eprintln!("{warning}");
+        }
+
         let registry = reflow2_mcp::registry::Registry::discover(&root);
         let ids = registry.graph_ids();
         // SAY WHAT IS THERE BEFORE SERVING IT. An empty root is not an error —

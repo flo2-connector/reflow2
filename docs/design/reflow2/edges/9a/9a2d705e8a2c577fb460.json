@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:78bfede51256554bd1bf41b5cbdffcedeab8b697d9a8ba8417036874ebf30124",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open",
+  "properties": {
+    "approved_at": "2026-10-28",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

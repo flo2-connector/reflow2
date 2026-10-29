@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0015e429394c1051d60b3b241be2931020747405ced38ca067ad806fe75c0cc4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-registry-checks-its-file-handles-at-start-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:f0b5d9037e9a1d8ce34b402857a6150164632b47e2b768970f4c302024fa1b82",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:store-backend"
+}

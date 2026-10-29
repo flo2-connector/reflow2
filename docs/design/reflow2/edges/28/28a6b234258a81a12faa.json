@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3c4e6e84074f7705833042cc33c63b8ad28c3cbde8b136f1de22911486fb3b6e",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:a-registry-raises-and-checks-its-open-file-limit-at-start",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

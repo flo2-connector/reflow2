@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:6868e3654aa1290ee54abbf74982620a36d834fb245ab98fba13579550871ccf",
+  "node_id": "req:a-server-reports-its-open-file-headroom",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "nonfunctional",
+    "lineage": "original",
+    "name": "A server holding many designs reports its open files against its limit, so the shortfall shows before a design is refused",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-28: \"Go with your recommendation\" (option F of the open question on the three limits)",
+    "statement": "A server that holds many designs reports how many files it has open and its open-file limit on its readiness check, so the shortfall shows before a design is refused and whoever hosts it can be alerted on it.",
+    "status": "accepted"
+  }
+}

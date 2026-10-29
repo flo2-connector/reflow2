@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4da905665f4e777353ef786a104e658b4f391f8f06c098efd26ab78aee7be99f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-registry-checks-its-file-handles-at-start-2026-10-28",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 15,
+    "action": "modified",
+    "checksum_after": "sha256:d3f1e369b03c34ad5a5ca7668d97bac199a512f799178a2c331953575dc3b0f1",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:core-lib"
+}

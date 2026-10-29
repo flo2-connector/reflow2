@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:7871a5b0812a4dac40a1094165d028b6ce2edde0c82e279a08ca965e7e983507",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "cap:readyz-reports-open-files-against-the-limit",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

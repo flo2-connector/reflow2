@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c6ba98965ee5f575435ecfb19b4aa11b3824121fabc61af3d674af537bf4a511",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit",
+  "properties": {
+    "evidence": "Anthony kept options A (raise the limit at start) and B (check the three limits at start, warn) as intent on 2026-10-28: \"Go with your recommendation\". C, D and E stay recorded as considered."
+  },
+  "to_id": "req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open"
+}

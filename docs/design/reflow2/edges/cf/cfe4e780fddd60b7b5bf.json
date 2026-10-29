@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0609e204967f19ffe82da7cdf5d9bc18381046fb09452b5ce16e5337b10ccefa",
+  "edge_type": "REALIZES",
+  "from_id": "art:file-handles",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:a-registry-raises-and-checks-its-open-file-limit-at-start"
+}

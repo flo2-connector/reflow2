@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:27008c4c8c4475e17b703bc6c87a2b7beb869b5922d8ef704c1d7b910d7aed73",
+  "node_id": "art:test-a-registry-checks-its-file-handles-at-start",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "End-to-end tests (Unix; the limit is set with setrlimit in the child before exec) of req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open and req:a-server-reports-its-open-file-headroom on an empty registry root, so no store is opened and no RocksDB is needed. Soft 200 / hard 256 with 8 designs: the raise to 256 is logged, the warning names 8, 76, 640 against 256, says only the host can raise the hard limit, and says lower --registry-max-open to 2; /readyz is still 200 with its first line unchanged, x-reflow2-open-file-limit 256 and, on Linux, a counted x-reflow2-open-files and 'open files: N of 256 allowed' line. Soft 100 / hard 1024 with 2 designs: raised, and no warning.",
+    "location": "crates/reflow2-mcp/tests/a_registry_checks_its_file_handles_at_start.rs",
+    "name": "a_registry_checks_its_file_handles_at_start.rs — the real binary started under a chosen limit raises it, warns with the numbers when 8 designs cannot fit under a hard 256, keeps serving, and /readyz reports the headroom",
+    "status": "realized"
+  }
+}

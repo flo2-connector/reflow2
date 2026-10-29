@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:d2bdf76c344cd37668c31e0ee1be7f0a114d0fcf6d62b3955bc78c84bd235642",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit",
+  "properties": {
+    "evidence": "Options C and E extend that accepted memory requirement's principle (a number somebody chose, never the sum of defaults) to file handles. The idea stands without it, but E is the same shape.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:one-open-design-costs-a-deliberate-amount-of-memory"
+}

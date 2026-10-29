@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:91a41d6c4f3218a49d070691876a03492cde0853fcebc5aa63b8378d92fdddcc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:a-registry-checks-its-file-handles-at-start-2026-10-28",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:a-registry-raises-and-checks-its-open-file-limit-at-start"
+}

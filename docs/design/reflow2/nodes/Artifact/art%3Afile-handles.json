@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e8fe33daa7792dd612adb4ac84dd37ce940c4faff4133c4adf3d27330497e4ce",
+  "node_id": "art:file-handles",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "raise_to_hard_limit (soft RLIMIT_NOFILE to the hard limit; macOS falls back to kern.maxfilesperproc then OPEN_MAX 10240), Budget (max_open × (MAX_OPEN_FILES_PER_STORE + FIXED_FILES_PER_DESIGN 12) + PROCESS_OWN_FILES 32) and its one-line startup warning naming the numbers and the remedy, open_file_count (/proc/self/fd on Linux, None elsewhere) and headroom_line for /readyz. The 12 and 32 carry their measurement in code comments: 7 handles per design and 10 for the process, counted 2026-10-28 on the published 0.92.0 build.",
+    "location": "crates/reflow2-mcp/src/file_handles.rs",
+    "name": "file_handles.rs (reflow2-mcp) — a registry raises its open-file limit, checks max_open × files a design against it, and says the headroom",
+    "status": "realized"
+  }
+}

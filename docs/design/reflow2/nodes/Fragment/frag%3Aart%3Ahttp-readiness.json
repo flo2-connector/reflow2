@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:69181a72c5eafbf0ad7a7ba56a7b17014d09f03d82bf689a68d96753612286f0",
+  "node_id": "frag:art:http-readiness",
+  "node_type": "Fragment",
+  "properties": {
+    "fragment_type": "implementation",
+    "provenance": "authored",
+    "status": "ingested",
+    "title": "Registered readiness.rs (reflow2-mcp) — GET /readyz and /healthz on every HTTP surface, in front of the Host gate"
+  }
+}

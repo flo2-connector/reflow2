@@ -20,6 +20,14 @@
 //!   designs, each opened on demand; one it cannot serve is named on `GET /`
 //!   and in its startup log, and must not take every other design out of
 //!   service.
+//! · Both answers of `/readyz` carry a SECOND LINE, the files open now against
+//!   the open-file limit (`open files: 1013 of 1024 allowed (11 left)`), and the
+//!   same two numbers as the headers `x-reflow2-open-files` and
+//!   `x-reflow2-open-file-limit` for a monitor to alarm on
+//!   (`req:a-server-reports-its-open-file-headroom`, `crate::file_handles`).
+//!   Counted from `/proc/self/fd` on Linux; elsewhere the count reads
+//!   `unknown`, never a guess. Added 2026-10-28: the first line and the status
+//!   are unchanged, so a probe reading either reads what it always did.
 //!
 //! 🛑 WHY THE PROBES SIT IN FRONT OF THE HOST GATE (`crate::host_gate`), AND WHY
 //! THAT IS SAFE. An orchestrator probes by pod IP or pod name, neither of which
@@ -98,6 +106,36 @@ impl Readiness {
     }
 }
 
+/// What `/readyz` answers: the status, its first line as it always was, then
+/// the open-file headroom as a second line and as two headers.
+fn ready_answer(readiness: &Readiness, open: Option<u64>, limit: Option<u64>) -> BoxResponse {
+    let (status, mut body) = readiness.answer();
+    body.push_str(&crate::file_handles::headroom_line(open, limit));
+    body.push('\n');
+    let number = |n: Option<u64>| match n {
+        Some(u64::MAX) => "unlimited".to_string(),
+        Some(n) => n.to_string(),
+        None => "unknown".to_string(),
+    };
+    let mut response = plain(status, body);
+    for (name, value) in [
+        (OPEN_FILES_HEADER, number(open)),
+        (OPEN_FILE_LIMIT_HEADER, number(limit)),
+    ] {
+        if let Ok(v) = http::HeaderValue::from_str(&value) {
+            response.headers_mut().insert(name, v);
+        }
+    }
+    response
+}
+
+/// The header `/readyz` carries the count of open files in: a number, or
+/// `unknown` where it cannot be counted (anywhere but Linux).
+pub const OPEN_FILES_HEADER: &str = "x-reflow2-open-files";
+/// The header `/readyz` carries the soft open-file limit in: a number,
+/// `unlimited`, or `unknown` where there is none to read.
+pub const OPEN_FILE_LIMIT_HEADER: &str = "x-reflow2-open-file-limit";
+
 /// What a probe of a server that cannot serve its design YET is told.
 pub const HELD_ELSEWHERE: &str = "the design is held by another process; this server serves it as \
                                   soon as that process lets go, with no restart";
@@ -156,8 +194,9 @@ where
         let probe = matches!(*req.method(), Method::GET | Method::HEAD);
         match req.uri().path() {
             READY_PATH if probe => {
-                let (status, body) = self.readiness.answer();
-                Box::pin(async move { Ok(plain(status, body)) })
+                let (open, limit) = crate::file_handles::headroom();
+                let answer = ready_answer(&self.readiness, open, limit);
+                Box::pin(async move { Ok(answer) })
             }
             LIVE_PATH if probe => {
                 Box::pin(async move { Ok(plain(StatusCode::OK, "alive\n".to_string())) })
@@ -183,6 +222,60 @@ mod tests {
         assert_eq!(r.answer().0, StatusCode::OK);
         r.set_not_ready(CANNOT_OPEN);
         assert_eq!(r.answer().0, StatusCode::SERVICE_UNAVAILABLE);
+    }
+
+    #[test]
+    fn readyz_adds_the_open_file_headroom_and_keeps_its_first_line_and_status() {
+        let r = Readiness::ready();
+        let resp = ready_answer(&r, Some(1013), Some(1024));
+        assert_eq!(resp.status(), StatusCode::OK);
+        assert_eq!(resp.headers()[OPEN_FILES_HEADER], "1013");
+        assert_eq!(resp.headers()[OPEN_FILE_LIMIT_HEADER], "1024");
+        let body = body_of(resp);
+        assert_eq!(
+            body,
+            "ready: the design is served\nopen files: 1013 of 1024 allowed (11 left)\n"
+        );
+
+        // Not ready: the same second line under the 503's own first line.
+        let r = Readiness::not_ready(CANNOT_OPEN);
+        let resp = ready_answer(&r, None, Some(1024));
+        assert_eq!(resp.status(), StatusCode::SERVICE_UNAVAILABLE);
+        assert_eq!(resp.headers()[OPEN_FILES_HEADER], "unknown");
+        assert_eq!(resp.headers()[OPEN_FILE_LIMIT_HEADER], "1024");
+        let body = body_of(resp);
+        let mut lines = body.lines();
+        assert_eq!(
+            lines.next(),
+            Some(format!("not ready: {CANNOT_OPEN}").as_str())
+        );
+        assert_eq!(
+            lines.next(),
+            Some("open files: unknown on this platform (the open-file limit is 1024)")
+        );
+        assert_eq!(lines.next(), None);
+
+        let resp = ready_answer(&Readiness::ready(), Some(7), Some(u64::MAX));
+        assert_eq!(resp.headers()[OPEN_FILE_LIMIT_HEADER], "unlimited");
+    }
+
+    #[cfg(any(target_os = "linux", target_os = "android"))]
+    #[test]
+    fn on_linux_readyz_counts_the_files_this_process_holds() {
+        let (open, limit) = crate::file_handles::headroom();
+        let open = open.expect("Linux counts /proc/self/fd");
+        let limit = limit.expect("Linux has an open-file limit");
+        assert!(open > 0 && open <= limit, "{open} of {limit}");
+    }
+
+    fn body_of(resp: BoxResponse) -> String {
+        let bytes = tokio::runtime::Builder::new_current_thread()
+            .build()
+            .expect("a runtime to read the body on")
+            .block_on(resp.into_body().collect())
+            .expect("an infallible body")
+            .to_bytes();
+        String::from_utf8(bytes.to_vec()).unwrap()
     }
 
     #[test]

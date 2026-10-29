@@ -273,4 +273,4 @@ pub use crate::foundation::core::{DynoError, Schema, Value};
 pub use crate::foundation::store::{
     DEFAULT_STORE_MEMORY_BYTES, set_store_memory_budget, store_memory_usage,
 };
-pub use crate::foundation::store::{StoredEdge, StoredNode};
+pub use crate::foundation::store::{MAX_OPEN_FILES_PER_STORE, StoredEdge, StoredNode};

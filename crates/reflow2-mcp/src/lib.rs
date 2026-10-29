@@ -23,6 +23,7 @@ pub mod enum_schema;
 pub mod export_standing;
 pub mod export_write;
 pub mod field_terms;
+pub mod file_handles;
 pub mod find_relations;
 pub mod git;
 pub mod handshake;

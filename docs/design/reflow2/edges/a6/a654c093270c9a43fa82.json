@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:ab4038a00e18a36ea180f4c73f815a25e9ba18392c904eb6e64ce2fda0031e23",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-a-registry-checks-its-file-handles-at-start",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

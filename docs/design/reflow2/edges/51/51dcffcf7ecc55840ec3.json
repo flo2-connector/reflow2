@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4b0b4a49c7c1a725998c87ba4c104b1d906d59c0e8b2095cd4df5f3e9ad533f",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-registry-checks-its-file-handles-at-start",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-registry-checks-its-file-handles-and-readyz-says-the-headroom"
+}

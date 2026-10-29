@@ -89,8 +89,12 @@ const WRITE_BUFFER_PER_FAMILY: usize = 4 * 1024 * 1024;
 
 /// Table files one store keeps open. RocksDB's default is unlimited, which
 /// on a server holding many designs is a file-handle count nobody chose.
-#[cfg(feature = "rocksdb")]
-const MAX_OPEN_FILES_PER_STORE: i32 = 64;
+///
+/// Public, and declared without the `rocksdb` feature, because a server holding
+/// many designs checks its open-file limit against it at start
+/// (`reflow2_mcp::file_handles`, `req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open`):
+/// the number it checks must be the number the store is opened with.
+pub const MAX_OPEN_FILES_PER_STORE: i32 = 64;
 
 #[cfg(feature = "rocksdb")]
 static STORE_BUDGET: std::sync::OnceLock<StoreBudget> = std::sync::OnceLock::new();
