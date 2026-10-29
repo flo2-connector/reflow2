@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:e6f27cfa984db31a1bac4073bccb1904e871174d7d46af87831248c87e79e1eb",
+  "node_id": "dec:idea-what-makes-a-finished-proof-trustworthy-to-a-person",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "RECORDED AS BRAINSTORMING, NOT AS A PROPOSAL. Anthony's words, 2026-10-29: \"when done, because the agent did it through trial and error and wrote everything down in reflow2, you can see how exactly it arrived to the full solution ... so at the end, you have a documented proof that is much more easily scrutinized by a human.\"\n\nOPTIONS, none chosen:\n(a) THE TRAIL ITSELF: reflow2's check that each step follows from its premises, the failed routes beside the one that held, read back as an exposition a person can follow forward (Tao idea A), and a person's review.\n(b) A FORMAL CHECK OF EACH STEP: a proof-assistant helper (Lean, beside the calc helper) whose verdict on a step is recorded as a computed check.\n(c) INDEPENDENT RE-DERIVATION: a second agent, given only the statement and the hole list, re-derives the closing steps; the independence check compares the two.\n\nPUSHBACK:\n- reflow2 checks that a step's STRUCTURE follows (its premises, its rule), not that the mathematics inside a step is right. A fluent wrong step reads as well as a right one. (a) alone is scrutiny made easier, not correctness shown.\n- (b) is the largest by far: formalising analysis of the kind Riemann and Navier–Stokes need is a research effort of its own, and whether the formal statement says what the claim says is itself disputable (the Navier–Stokes map records exactly such a dispute).\n- (c) is cheap and catches some errors, but two agents from one model can share one blind spot.\n\nCOST (a finding): (a) mostly exists today; (c) small; (b) largest. flo2-calc's own design kept formal proof as considered, not chosen (2026-10-04).",
+    "kind": "exploratory",
+    "name": "OPEN — what makes a proof finished this way trustworthy to a person: the recorded trail alone, each step also checked formally, or the result re-derived by an agent that never saw the first?",
+    "rationale": "The end of Anthony's thesis: the human gets a documented proof they can scrutinise. Recorded apart from the working loop, because how a result is trusted is a different question from how it is found.\nSession: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "proposed"
+  }
+}

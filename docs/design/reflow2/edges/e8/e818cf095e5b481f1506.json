@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:49b350d1ca9e16d1aecfba3431604ef26aac236be4ae6cb5552a034cfc89a3f9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-recall-pilot-before",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

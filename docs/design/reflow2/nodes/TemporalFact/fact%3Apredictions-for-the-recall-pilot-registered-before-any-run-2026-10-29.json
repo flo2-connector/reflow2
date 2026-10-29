@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c88910d6cc50b9166a1b244a551a4a2335e31b36f008fc6d5f46b24f69cb062f",
+  "node_id": "fact:predictions-for-the-recall-pilot-registered-before-any-run-2026-10-29",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "forecast",
+    "fact_type": "finding",
+    "name": "PREDICTIONS, registered before any run (2026-10-29): the recall pilot, the same ordinary model working a 60-document project in six fresh rounds with a hand-forward summary (A), a notes file (B), reflow2 (C), against one agent that reads everything at once (D)",
+    "source": "Claude (this session), from the pilot protocol, before any run",
+    "statement": "THE PILOT. Material: a fictional village pumping-station retrofit told in 60 documents (6 batches of 10, ~15,600 words), 25 questions with a separate answer key (8 current-value, 5 why, 5 what-breaks-if, 4 contradiction, 3 sum/constraint). Each batch goes to a FRESH agent (Claude Sonnet) that sees only that batch and what the previous round left; a seventh fresh agent answers the 25 questions from the memory alone. All arms get the same words except for what memory they have, and the instruction not to copy documents verbatim.\n- A: a summary of at most 1,500 words, handed forward.\n- B: one Markdown notes file, any length.\n- C: a reflow2 design (published 0.93.1, local, through a logging wrapper), with the pointer a new project gets and nothing more.\n- D (ceiling and key check): one agent reads all 60 documents and answers.\nScored blind against the key (0, ½ or 1 per question) by an agent that does not know which arm wrote which answers. One run per arm: a pilot, so a difference under 3 points is noise.\n\nPREDICTIONS:\nP1. D scores at least 21 of 25.\nP2. C beats A by at least 4 points; A loses most on contradictions, the quietly dropped requirement and the sums.\nP3. C and B are within 3 points of each other overall (honest prior: on 15,600 words a disciplined notes file can hold nearly everything); if C leads anywhere it is on what-breaks-if and contradiction questions, where links between records matter.\nP4. Recall, C only: every round from the second on reads the design before writing; but the agents fetch a served skill unprompted in at most 2 of the 6 rounds, and follow fewer than half of the cues reflow2's replies offer (next call, loop hints). This is the \"before\" baseline for the agent-side cues and cue counting accepted today.\nP5. Cost: C spends at least 30% more tokens than B.\nSession: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject_id": "dec:the-cognition-plus-memory-thesis-is-tested-by-measurement-first",
+    "valid_from": "2026-10-29"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:fc0e07ddd787843a52b602cc947e19e791bd9b46c365db068e3a14c4153376fa",
+  "node_id": "art:test-a-settling-cue-goes-to-whoever-can-give-the-word",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "crates/reflow2-mcp/tests/a_settling_cue_goes_to_whoever_can_give_the_word.rs — add_decision's and replace_text's settling hint: a call made for nobody is told it is a question for the owner (ask_question, no set_decision_status); a named caller on a design naming no owner, and the named owner, are offered set_decision_status; a non-owner is not.",
+    "location": "crates/reflow2-mcp/tests/a_settling_cue_goes_to_whoever_can_give_the_word.rs",
+    "name": "a_settling_cue_goes_to_whoever_can_give_the_word.rs",
+    "status": "realized"
+  }
+}

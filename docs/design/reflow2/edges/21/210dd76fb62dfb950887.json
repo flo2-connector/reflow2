@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e247d164f593f1f1044d9f042ce76b8519b6bd682eb9f236d59e282def654b63",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-the-tool-surface-refined-from-the-counts",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

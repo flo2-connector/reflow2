@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:fbe2c3cb97e9dde8c9424f569618cd2f952e04221c0d637991c9f8f856e868a9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "frag:art:test-the-first-read-cue-reaches-the-agent-at-connect",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:78d22df44ea24592778aa13829bb72acb524f9d0e0a2365b1e9ffb5807fed1d8",
+  "node_id": "ver:the-first-read-cue-reaches-the-agent-before-its-first-call",
+  "node_type": "Verification",
+  "properties": {
+    "description": "the_first_read_cue_reaches_the_agent_at_connect.rs (the handshake instructions contain FIRST_READ_CUE, and every call it names is served) and tools/test_loop_nudge.py (Claude Code's SessionStart text names graph_report_markdown first and search_design for the current-state record; VS Code's names `reflow2 read graph_report_markdown`).",
+    "findings": "At 94ecdda9c: the Rust test passed in the in_memory program (1020 passed); python3 tools/test_loop_nudge.py ran 115 tests OK locally. Size of the named read: graph_report_markdown 6,288 bytes on the recall pilot's 422-node design, 8,700 bytes on reflow2's own design (8,404 nodes), published 0.93.1.",
+    "kind": "verification",
+    "last_run_at": "2026-10-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/the_first_read_cue_reaches_the_agent_at_connect.rs",
+    "method": "test",
+    "name": "The handshake and the session-start hooks carry the first-read cue",
+    "status": "passing"
+  }
+}

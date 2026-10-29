@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:01f538870401a060f5217a9fe99663b09b24d4294716c41d5d5eff23bd0081c4",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:an-agent-recalls-from-reflow2-what-it-needs-when-it-needs-it-and-the-recall-is-measured",
+  "properties": {
+    "evidence": "Delivering a discipline at the tool that triggers it is one way recall happens without a reminder.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:a-discipline-is-delivered-at-the-tool-not-in-a-catalogue"
+}

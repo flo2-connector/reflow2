@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:025d806c2f149cd6cdf50acb0e9b656fee94bb31147723d53af61568e5ebe9b4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-reach-the-agent-and-are-counted-2026-10-29",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c9652e67e22a1db21af10e7aa06fa3785b46147ea46eecaea3cefe409b153b01",
+  "edge_type": "REALIZES",
+  "from_id": "art:test-core-search",
+  "properties": {
+    "completeness": "complete",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-nameless-search-hit-shows-an-excerpt-of-its-text"
+}

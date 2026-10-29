@@ -29,6 +29,15 @@ pub struct SearchHit {
     pub score: f32,
     /// The node's `name` property at hit time (empty if it has none).
     pub name: String,
+    /// ONLY WHEN `name` IS EMPTY: a short excerpt of the node's own text, so a
+    /// nameless record (a Fragment, a Question) does not read blank in a hit
+    /// list. ADDED 2026-10-29 (`cap:a-nameless-search-hit-shows-an-excerpt-of-its-text`)
+    /// from `fact:root-cause-a-budget-limited-reader-was-not-cued-to-the-designs-current-state-record-2026-10-29`:
+    /// the record that said where a design stood was a nameless Fragment, and
+    /// search ranked it second and showed nothing. `name` itself is unchanged,
+    /// so no client reading it sees a difference. See [`excerpt_of`].
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub excerpt: Option<String>,
     /// The node's `status` (`accepted`, `proposed`, `realized`, …) when it has
     /// one, and a Decision's `kind` (`exploratory` / `choice`). ADDED 2026-10-06
     /// from the field log: the brainstorm skill says to search accepted intent
@@ -77,6 +86,43 @@ pub struct LinkedRecord {
 /// How many linked records a hit carries at most, so a heavily linked node
 /// cannot swamp the reply.
 pub const LINKED_PER_HIT: usize = 8;
+
+/// The longest excerpt a nameless hit carries, in characters.
+pub const EXCERPT_CHARS: usize = 160;
+
+/// The prose a nameless node is excerpted from, in this order: the fields a
+/// person reads as the record's own label or body first, then whatever other
+/// searched prose the type declares (`fulltext`, in the order given).
+const EXCERPT_FIELDS: [&str; 5] = ["title", "statement", "question", "summary", "description"];
+
+/// A short excerpt of a node's own text, for a hit whose `name` is empty: the
+/// first non-empty of [`EXCERPT_FIELDS`], then of `other_fields`, whitespace
+/// collapsed to single spaces, cut at [`EXCERPT_CHARS`] characters with `…`.
+/// `None` when the node holds no prose at all, so a hit never carries an
+/// empty excerpt.
+pub fn excerpt_of(
+    props: &std::collections::HashMap<String, crate::foundation::core::Value>,
+    other_fields: &[&str],
+) -> Option<String> {
+    EXCERPT_FIELDS
+        .iter()
+        .chain(other_fields.iter())
+        .filter_map(|f| {
+            props
+                .get(*f)
+                .and_then(crate::foundation::core::Value::as_str)
+        })
+        .map(|t| t.split_whitespace().collect::<Vec<_>>().join(" "))
+        .find(|t| !t.is_empty())
+        .map(|t| {
+            if t.chars().count() <= EXCERPT_CHARS {
+                t
+            } else {
+                let cut: String = t.chars().take(EXCERPT_CHARS - 1).collect();
+                format!("{}…", cut.trim_end())
+            }
+        })
+}
 
 impl DesignGraph {
     /// The records directly linked to `node_id` by a review relation or
@@ -216,6 +262,18 @@ impl DesignGraph {
         for h in raw {
             match self.get_node(&h.node_type, &h.node_id)? {
                 Some(node) => hits.push(SearchHit {
+                    excerpt: node
+                        .properties
+                        .get("name")
+                        .and_then(crate::foundation::core::Value::as_str)
+                        .is_none_or(|n| n.trim().is_empty())
+                        .then(|| {
+                            excerpt_of(
+                                &node.properties,
+                                &self.schema().fulltext_properties(&h.node_type),
+                            )
+                        })
+                        .flatten(),
                     name: node
                         .properties
                         .get("name")

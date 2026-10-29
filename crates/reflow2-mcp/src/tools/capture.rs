@@ -1095,8 +1095,23 @@ pub(crate) fn with_approval_and_settled_question(
 /// the node stands after this call, never about how it got there, because a
 /// merge over an already-accepted node is accepted without this call settling
 /// anything.
-pub(crate) fn decision_landing_hint(status: Option<&str>) -> String {
+///
+/// AND IT IS ADDRESSED TO WHOEVER CAN ACT ON IT
+/// (`cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word`).
+/// `owner_can_settle` is [`crate::service::call_can_give_the_owners_word`]:
+/// when this call was made for nobody who owns the design, settling the
+/// Decision is not the caller's next call, so the hint says it is a question
+/// for the owner and names the call that puts it to them, not the one that
+/// settles it. The recall pilot measured the old sentence offered 25 times by
+/// this tool to solo agents who could never give that word.
+pub(crate) fn decision_landing_hint(status: Option<&str>, owner_can_settle: bool) -> String {
     match status {
+        None | Some("proposed") if !owner_can_settle => {
+            "loop: a Decision lands `proposed` — settling it is the owner's word, and this call \
+             was made for nobody who owns this design: it is a question for the owner, not your \
+             next call (ask_question puts it to them)"
+                .to_string()
+        }
         None | Some("proposed") => "loop: a Decision lands `proposed` — only the owner's word \
                                     moves it (set_decision_status)"
             .to_string(),
@@ -1659,7 +1674,12 @@ impl ReflowService {
                 "edit": { "field": req.field, "mode": mode, "changed": true,
                           "chars_before": current.chars().count(), "chars_after": next.chars().count() }
             }),
-            "loop: one field moved — if the change is a settlement, set_decision_status carries the owner's word; loop_status says what else is owed",
+            // Addressed to whoever can act on it, like `decision_landing_hint`.
+            if crate::service::call_can_give_the_owners_word(&g) {
+                "loop: one field moved — if the change is a settlement, set_decision_status carries the owner's word; loop_status says what else is owed"
+            } else {
+                "loop: one field moved — if the change is a settlement, that is the owner's word and this call was made for nobody who owns this design: a question for the owner (ask_question), not your next call; loop_status says what else is owed"
+            },
             None,
             revision,
             None,
@@ -4013,7 +4033,10 @@ impl ReflowService {
             .get("status")
             .and_then(Value::as_str)
             .map(str::to_string);
-        let hint = decision_landing_hint(landed.as_deref());
+        let hint = decision_landing_hint(
+            landed.as_deref(),
+            crate::service::call_can_give_the_owners_word(&g),
+        );
         let name_open = crate::prose_currency::name_still_reads_open(
             node.properties.get("name").and_then(Value::as_str),
             landed.as_deref(),

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c42d9dd8236a2f8f4de938313cafaa58fa86078d573156878c1f6768136ccd39",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:cues-module",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:each-cue-carries-an-id-and-is-counted"
+}

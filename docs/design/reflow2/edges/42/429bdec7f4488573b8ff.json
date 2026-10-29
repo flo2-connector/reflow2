@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:af904c5a0b33a8da7c820d83db1ecef8c177bc249872afcaae018a26cd648029",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:in-the-recall-pilot-agents-followed-4-percent-of-reflow2s-cues-within-five-calls-2026-10-29",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -131,6 +131,17 @@ class LoopNudge(unittest.TestCase):
         self.assertIn("Orient first", r.stdout)
         self.assertIn("loop_status", r.stdout)
 
+    def test_session_start_names_the_first_read_for_where_the_design_stands(self):
+        """The agent-side cue (cap:the-first-read-cue-reaches-the-agent-before-
+        its-first-call): before its first call, the agent is told which read
+        says where the design stands, and where the design's own current-state
+        record is found. The server's instructions carry the same sentence."""
+        r = run_hook(self.project, {"hook_event_name": "SessionStart",
+                                    "session_id": "s1"})
+        self.assertIn("read graph_report_markdown first", r.stdout)
+        self.assertIn("search_design", r.stdout)
+        self.assertIn("current state", r.stdout)
+
     def test_session_start_names_both_doors_and_asserts_no_design(self):
         """A project set up minutes ago gets this line too.
 
@@ -1800,6 +1811,8 @@ class VsCodeHook(unittest.TestCase):
         self.assertEqual(spec["hookEventName"], "SessionStart")
         context = spec["additionalContext"]
         self.assertIn("reflow2 read", context, "the door's verbs, not MCP calls")
+        self.assertIn("reflow2 read graph_report_markdown", context,
+                      "the first read for where the design stands, in the door's verbs")
         self.assertIn("2 open gap(s) never put to the person", context,
                       "the loop_status reading itself reaches the model")
         self.assertIn(["--graph-path", ".reflow2/graph", "read", "loop_status"], self.calls())

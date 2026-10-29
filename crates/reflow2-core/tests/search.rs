@@ -291,4 +291,91 @@ mod featured {
         let result = g.search_design("persists", None, 10).expect("search");
         assert!(!result.hits.is_empty());
     }
+
+    /// A NAMELESS HIT CARRIES AN EXCERPT, AND A NAMED ONE DOES NOT
+    /// (`cap:a-nameless-search-hit-shows-an-excerpt-of-its-text`). Measured on
+    /// the recall pilot's design (0.93.1): the record that said where the
+    /// design stood ranked second for "current state" and rendered as
+    /// `name: ""`, so a reader with a reading budget never opened it.
+    #[test]
+    fn a_nameless_hit_shows_an_excerpt_and_a_named_one_keeps_its_name_alone() {
+        let mut g = thread();
+        let long = format!(
+            "Which battery bank does the current state of the pump house use? {}",
+            "Every word here is padding so the excerpt has to be cut. ".repeat(6)
+        );
+        g.upsert_node(
+            "Question",
+            "q:battery",
+            reflow2_core::nodes::Props::new()
+                .set("question", long.as_str())
+                .set("status", "asked"),
+        )
+        .expect("question");
+        let found = g.search_design("battery pump", None, 10).expect("search");
+        let hit = found
+            .hits
+            .iter()
+            .find(|h| h.node_id == "q:battery")
+            .expect("the question is found");
+        assert_eq!(hit.name, "", "name is unchanged: still empty");
+        let excerpt = hit
+            .excerpt
+            .as_deref()
+            .expect("a nameless hit carries an excerpt");
+        assert!(
+            excerpt.starts_with("Which battery bank does the current state"),
+            "{excerpt}"
+        );
+        assert!(
+            excerpt.ends_with('…'),
+            "cut text says it was cut: {excerpt}"
+        );
+        assert!(
+            excerpt.chars().count() <= reflow2_core::search::EXCERPT_CHARS,
+            "{excerpt}"
+        );
+
+        let named = g.search_design("persists", None, 10).expect("search");
+        let req = named
+            .hits
+            .iter()
+            .find(|h| h.node_id == "req:persist")
+            .expect("found");
+        assert!(req.excerpt.is_none(), "a named hit carries no excerpt");
+        let wire = serde_json::to_value(req).expect("serialise");
+        assert!(
+            wire.get("excerpt").is_none(),
+            "absent on the wire, not null: {wire}"
+        );
+    }
+
+    /// The excerpt reads the label first, collapses whitespace, and is never
+    /// an empty string.
+    #[test]
+    fn the_excerpt_prefers_the_label_and_is_never_empty() {
+        use reflow2_core::foundation::core::Value;
+        use std::collections::HashMap;
+        let mut p: HashMap<String, Value> = HashMap::new();
+        assert_eq!(reflow2_core::search::excerpt_of(&p, &[]), None);
+        p.insert(
+            "summary".into(),
+            Value::String("CURRENT   VALUES\n as of".into()),
+        );
+        assert_eq!(
+            reflow2_core::search::excerpt_of(&p, &[]).as_deref(),
+            Some("CURRENT VALUES as of")
+        );
+        p.insert("title".into(), Value::String("   ".into()));
+        assert_eq!(
+            reflow2_core::search::excerpt_of(&p, &[]).as_deref(),
+            Some("CURRENT VALUES as of"),
+            "a blank title is skipped"
+        );
+        p.insert("title".into(), Value::String("State as of 12 Nov".into()));
+        assert_eq!(
+            reflow2_core::search::excerpt_of(&p, &[]).as_deref(),
+            Some("State as of 12 Nov")
+        );
+    }
 }

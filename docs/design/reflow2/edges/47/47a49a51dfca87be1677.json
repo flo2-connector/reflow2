@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bcb7d0c95935aa183110d3f45e5f1ca11c64afcd0228c7ace94d7ade20135377",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-reach-the-agent-and-are-counted-2026-10-29",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 39,
+    "action": "modified",
+    "checksum_after": "sha256:3ddd0f5c7b1301823b4b531dc8828c6cf4311035c174ea096cd5acb92cb31256",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

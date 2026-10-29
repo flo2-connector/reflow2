@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:9b1241c3b4ea5d8fe50983fb40c96b7566b351e21242d2a5e2ce4c3dddaec8f5",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-cues-are-a-message-on-the-interface-between-reflow2-and-the-agent",
+  "properties": {
+    "evidence": "Option (c) kept by Anthony 2026-10-29, to do now."
+  },
+  "to_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:a58ac1880aa7e7f878b20b283876322037743c94ecdf3992a0bfff1a85e69266",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-size-sweep-where-structure-starts-to-matter",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

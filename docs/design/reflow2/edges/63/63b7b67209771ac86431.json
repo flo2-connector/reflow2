@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b04176cf47ccb01172efc920fd5d9e591ae0a7431d3c776cebba07b4dc98fae1",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-an-agent-works-one-proof-hole-at-a-time-and-writes-every-try-down",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

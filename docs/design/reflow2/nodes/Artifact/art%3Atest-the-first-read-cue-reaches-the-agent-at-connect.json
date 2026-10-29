@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f7460354a5b3605d56aaada2361e2ec591263fa6caa262db706953cf7720b285",
+  "node_id": "art:test-the-first-read-cue-reaches-the-agent-at-connect",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "crates/reflow2-mcp/tests/the_first_read_cue_reaches_the_agent_at_connect.rs — the handshake instructions carry the first-read cue sentence, and every call it names is served.",
+    "location": "crates/reflow2-mcp/tests/the_first_read_cue_reaches_the_agent_at_connect.rs",
+    "name": "the_first_read_cue_reaches_the_agent_at_connect.rs",
+    "status": "realized"
+  }
+}

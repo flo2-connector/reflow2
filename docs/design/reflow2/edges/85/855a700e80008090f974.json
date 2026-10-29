@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:67011c5a36c37db57adb6e8f849260180556efa9cff6602ddc29a23f0fb4a221",
+  "edge_type": "REALIZES",
+  "from_id": "art:tools-capture",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "verified"
+  },
+  "to_id": "cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word"
+}

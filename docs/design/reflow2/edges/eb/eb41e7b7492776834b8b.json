@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:78df54ef20f8474aae408bd5ca3d3c20db6b89016c46c79fafc77cd9b6b260cc",
+  "edge_type": "CHANGED",
+  "from_id": "chg:cues-reach-the-agent-and-are-counted-2026-10-29",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 55,
+    "action": "modified",
+    "checksum_after": "sha256:ba497c336adb7fcabb59dfbcc68c93fbb10c2567376d5d28262029222d638c27",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:service"
+}

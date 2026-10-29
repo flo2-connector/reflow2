@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:9bbfbfef07db2a1a0f16b7a92e4d848499eecbbf7d3a0065c0c737927a3f509f",
+  "node_id": "art:cues-module",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "code",
+    "description": "crates/reflow2-mcp/src/cues.rs — what a cue is (a reply's loop_hint/hint/next/nudge/next_step naming a served tool or skill), its derived id `<field>/<named call>`, the `_meta[\"reflow2/cues\"]` carrier, the per-session follow count usage_report reads, and the first-read cue sentence the handshake and hooks carry.",
+    "location": "crates/reflow2-mcp/src/cues.rs",
+    "name": "cues.rs",
+    "status": "realized"
+  }
+}

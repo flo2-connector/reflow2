@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:cbe3a6ae89574d7a2eacdfbbf9b4867b3b0d9d5c2b1bb4d8ca85e0d76641984d",
+  "edge_type": "SATISFIES",
+  "from_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed",
+  "properties": {},
+  "to_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it"
+}

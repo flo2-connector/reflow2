@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:048e7b467039cc5155823ffbf0573639a1074066cc3e2123ceeef976019f5095",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-agent-works-one-proof-hole-at-a-time-and-writes-every-try-down",
+  "properties": {
+    "evidence": "Writing down each failed try is exactly the failed-route record that idea asks for; the loop works without it but loses the trail in prose.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-failed-route-is-a-record-of-its-own"
+}

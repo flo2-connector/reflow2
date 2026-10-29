@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:02e39dcc1cb67c50b360d437acd9a3445ea9fa77bcc857a64faf3336248f5226",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-cues-reach-the-agent-and-are-counted"
+}

@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:064ca28ee0104e1e9840fec3ceda1b673358fd9f298cd38b1e193ba158d67fd6",
+  "node_id": "req:the-memory-measurement-scores-whether-a-person-can-trace-why-an-answer-is-right",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The memory measurement scores whether a person can trace why each answer is right, from the records and links that support it",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-29: \"Go with your recommendation is (b), (c) and (d) next, and (a)\" (option c)",
+    "statement": "Beside whether an answer is right, the measurement scores whether a person can trace WHY it is right from what the memory holds: which records support it and how they connect. In a notes arm the structure lives inside the model; in reflow2 it is on the record. Visibility is scored, not assumed.",
+    "status": "accepted"
+  }
+}

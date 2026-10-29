@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:7baff41273dcb8d3a30619232145766ab6620a0bb856df72a5e8fae1fd7763d7",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-makes-a-finished-proof-trustworthy-to-a-person",
+  "properties": {
+    "evidence": "A documented proof a person can scrutinise is the exposition read-back that idea asks for (Tao idea A).",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:idea-a-line-of-reasoning-is-read-back-as-an-exposition-a-person-can-follow-forward"
+}

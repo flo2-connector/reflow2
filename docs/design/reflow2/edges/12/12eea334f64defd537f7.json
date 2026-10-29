@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:99329a32210f4fbd27aaa4b508f31c3a7c508ba94929b074ccf5d4fc0dd6ee44",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:at-one-reading-budget-notes-beat-reflow2-unless-reflow2-was-cued-and-traceability-tied-2026-10-29",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

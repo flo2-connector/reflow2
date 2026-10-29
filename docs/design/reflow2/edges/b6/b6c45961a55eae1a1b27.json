@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:8409f1f7da747ed4b13117aa76b516d531794709a903f3a90a1aca5692a036d6",
+  "edge_type": "ANTICIPATES",
+  "from_id": "fact:predictions-for-the-recall-pilot-registered-before-any-run-2026-10-29",
+  "properties": {
+    "evidence": "Prediction P3 already expected the notes file and reflow2 to land within 3 points on 15,600 words because a notes file can hold nearly everything at that size."
+  },
+  "to_id": "dec:idea-measure-where-structure-starts-to-matter-size-against-context-and-graph-against-notes"
+}

@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:de0864be601b2be798d0b581425bb97e877a1a8eec359c3c45f542229570a5ca",
+  "node_id": "art:test-core-search",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "crates/reflow2-core/tests/search.rs — the core's search tests (the fulltext feature's absence fails loud; ranking; reindex), including the nameless-hit excerpt tests added 2026-10-29.",
+    "location": "crates/reflow2-core/tests/search.rs",
+    "name": "crates/reflow2-core/tests/search.rs",
+    "status": "realized"
+  }
+}

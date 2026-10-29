@@ -71,6 +71,14 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                             "type": "string",
                             "description": "The node's name at hit time; empty if it has none."
                         },
+                        "excerpt": {
+                            "type": "string",
+                            "description": "Present ONLY when `name` is empty: a short excerpt \
+                                            (at most 160 characters) of the node's own text — its \
+                                            title, statement, question, summary or description — \
+                                            so a nameless record such as a Fragment does not read \
+                                            blank."
+                        },
                         "score": { "type": "number", "description": "BM25 relevance." },
                         "design": {
                             "type": "string",

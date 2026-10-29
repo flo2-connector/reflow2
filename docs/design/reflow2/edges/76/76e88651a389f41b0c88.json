@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:2fd3c9ffe70cc7e6028956ad19bec4bcbf37cad96a6ce6d1a021ac7c3db14dba",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-a-person-an-agent-and-reflow2-can-close-proof-holes-without-a-frontier-model",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

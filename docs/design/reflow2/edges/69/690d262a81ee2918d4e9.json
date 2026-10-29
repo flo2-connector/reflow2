@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:ec14f08e861baaf57a183d4f093905ba7eca074de832bbdc709f93b7bdbdcb52",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:an-agent-recalls-from-reflow2-what-it-needs-when-it-needs-it-and-the-recall-is-measured",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-recall-pilot-after"
+}

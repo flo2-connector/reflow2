@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f48c19d33960daa3f180158035c36d3f70905d768d6a571b28dcb6d046bd323d",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:the-memory-measurement-sweeps-size-against-the-agents-context",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-29"
+  },
+  "to_id": "epoch:planned-size-sweep-where-structure-starts-to-matter"
+}

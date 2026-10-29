@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:19776725a2020b2414b749c03da2886cde0c8f8800254a95c3628f1f34c91c66",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:feedback-is-a-computed-tally-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:each-cue-carries-an-id-and-is-counted"
+}

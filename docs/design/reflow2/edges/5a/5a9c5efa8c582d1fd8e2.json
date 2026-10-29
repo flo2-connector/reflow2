@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c8e9a20ff0df836b985e69aa14ef26759112e4f2c3b0d4beb26592c33b1925b6",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:an-agent-recalls-from-reflow2-what-it-needs-when-it-needs-it-and-the-recall-is-measured",
+  "properties": {
+    "evidence": "Measuring unprompted recall needs a record of which skills and tools a session reached for; that requirement is still proposed.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:reflow2-can-say-which-of-its-own-skills-a-session-reached-for"
+}

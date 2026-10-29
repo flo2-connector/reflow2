@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c30c054742ff5bcc274173504c3eb7f9680aa83baf55f3fd90eb01d5c2c3ec01",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "epoch:planned-structure-against-notes-at-one-reading-budget",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

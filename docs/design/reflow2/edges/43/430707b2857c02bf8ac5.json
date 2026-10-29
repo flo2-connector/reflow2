@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:f4a366a1947b9442e215ac362855a6c522be8cfb3a9d2f0d3480b9823c84d49c",
+  "edge_type": "ALLOCATED_TO",
+  "from_id": "cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word",
+  "properties": {
+    "weight_basis": "estimated"
+  },
+  "to_id": "cmp:service"
+}

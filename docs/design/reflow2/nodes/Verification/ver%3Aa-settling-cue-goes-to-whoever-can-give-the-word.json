@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:d812ba2c3612f327c72ef182fd5d620bf37a855d809d9e131a021bc3ac71310e",
+  "node_id": "ver:a-settling-cue-goes-to-whoever-can-give-the-word",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Three tests driven through serving_for: nobody named → add_decision and replace_text say \"question for the owner\" and name ask_question, not set_decision_status; a named caller on a design naming no owner → set_decision_status offered; a design OWNED_BY who:bob → who:ann is told it is a question, who:bob is offered set_decision_status. a_loop_hint_says_where_the_node_landed.rs still passes (the \"lands `proposed`\" claim is kept).",
+    "findings": "At 94ecdda9c on ajs77: 3 passed, and the whole MCP in_memory program 1020 passed, 0 failed.",
+    "kind": "verification",
+    "last_run_at": "2026-10-29",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_settling_cue_goes_to_whoever_can_give_the_word.rs",
+    "method": "test",
+    "name": "The settling hint is offered as the next call only to a call made for the owner",
+    "status": "passing"
+  }
+}

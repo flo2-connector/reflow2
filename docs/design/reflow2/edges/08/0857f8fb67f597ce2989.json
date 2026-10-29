@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b31bf400ae7f53e1f1ac16b433843a83b42a208e2ad5a5e4827e667b6169c11d",
+  "edge_type": "YIELDED",
+  "from_id": "frag:art:cues-module",
+  "properties": {
+    "action": "created"
+  },
+  "to_id": "art:cues-module"
+}

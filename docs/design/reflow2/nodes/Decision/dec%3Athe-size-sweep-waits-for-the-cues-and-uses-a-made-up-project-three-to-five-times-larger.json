@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:04f1daf3f0d987a7cf40803d2f8ba78fd9bcdd6f3d38427d083baddd52b624d2",
+  "node_id": "dec:the-size-sweep-waits-for-the-cues-and-uses-a-made-up-project-three-to-five-times-larger",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "Anthony, 2026-10-29: \"Let's do c, then a.\" (c) Hold the sweep until increment 2's cues are built, so the sweep measures reflow2 with its cues working rather than the pilot's un-cued reader. Then (a) a made-up project with its own key, at a moderate size, three to five times the pilot's 60 documents, rather than ten times. Considered and not chosen: (b) a real design (SeattleArch copy or reflow2's own), whose key would have to be checked by hand.",
+    "kind": "choice",
+    "name": "SETTLED 2026-10-29: the size sweep (increment 9) waits until the cue build is in, then runs on a made-up project three to five times the pilot's size with its own answer key",
+    "rationale": "Increment 8 showed the deciding factor under a budget was whether the reader was cued to the current-state record (5.5 → 17.5 of 25 with one line), so a sweep before the cues exist would mostly re-measure that missing cue. A made-up corpus keeps a trustworthy key; three to five times keeps the cost bounded while still passing well beyond what a notes file can hold in one read.\nSession: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "accepted"
+  }
+}

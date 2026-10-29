@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:177f2aa842d86d50879771da056afd0766656ff8f6ae451456c30984d1c47429",
+  "edge_type": "ANTICIPATES",
+  "from_id": "xref:662c0b99b5d5a913:fact:flo2-usage-baseline-2026-10-25",
+  "properties": {
+    "evidence": "The usage baseline counted which tools were called; cue counting adds whether a tool was offered first, the half the baseline could not see (Anthony 2026-10-29: the earlier usage work is augmented by recall and cues)."
+  },
+  "to_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it"
+}

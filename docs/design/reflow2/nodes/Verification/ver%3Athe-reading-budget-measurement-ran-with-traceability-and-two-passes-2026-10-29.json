@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e638b1d1065491cce2e58160b8896410105b9318c8462df87590191c717fb977",
+  "node_id": "ver:the-reading-budget-measurement-ran-with-traceability-and-two-passes-2026-10-29",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Increment 8's measurement, run 2026-10-29 on the recall pilot's material: answering agents limited to 12,000 and 36,000 bytes through a counting reader (notes by grep and line ranges, reflow2 by read-only queries), blind-scored against the key; a separate scorer judged traceability of the pilot's answers in each memory; structuring and using costs taken from subagent usage per round. Harness: scratchpad recall-exp/budget/bin/budget.py (session 5c7a072b).",
+    "findings": "Ran as specified. Results: reflow2:fact:at-one-reading-budget-notes-beat-reflow2-unless-reflow2-was-cued-and-traceability-tied-2026-10-29; cause of reflow2's weak budgeted score: reflow2:fact:root-cause-a-budget-limited-reader-was-not-cued-to-the-designs-current-state-record-2026-10-29. Passing means the measurement was made, not that reflow2 won.",
+    "kind": "verification",
+    "last_run_at": "2026-10-29",
+    "level": "system",
+    "method": "measurement",
+    "name": "The memory measurement ran at one reading budget, scored traceability and costed the two passes",
+    "status": "passing"
+  }
+}

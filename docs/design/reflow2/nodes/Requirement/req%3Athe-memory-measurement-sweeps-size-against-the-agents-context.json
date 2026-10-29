@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:cd966cff05c99f9cf54d3c8c2fd6e2acb9e5f80b5fc45fd3444b4c57ea80006f",
+  "node_id": "req:the-memory-measurement-sweeps-size-against-the-agents-context",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "core",
+    "kind": "functional",
+    "lineage": "original",
+    "name": "The memory measurement sweeps the task's size against the agent's context, to find where structure starts to matter",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-29: \"Go with your recommendation is (b), (c) and (d) next, and (a)\" (option a, after b)",
+    "statement": "The same kind of task is run at several sizes against the answering agent's context (about a tenth, about equal, about ten times), so the size at which reflow2 starts to help shows as the point where the arms' curves cross. It follows the fixed-budget runs, which say how large a difference to look for.",
+    "status": "accepted"
+  }
+}
