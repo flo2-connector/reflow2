@@ -37,7 +37,9 @@ This file is the third view: *what changed, and when*.
 agent is told before its first call which read says where the design stands, a "settle it" cue
 goes only to whoever can give the owner's word, and a search hit with no name shows an excerpt
 of its text.** It contains #813, increment 2 of the cognition-plus-memory plan
-(`epoch:planned-cues-reach-the-agent-and-are-counted`). In the recall pilot agents followed 4%
+(`epoch:planned-cues-reach-the-agent-and-are-counted`), and #815, which makes the served
+instructions name the same first read and offers the owner working alone `set_decision_status`
+again. In the recall pilot agents followed 4%
 of reflow2's cues within five calls, counted by hand from a wrapper's log; `usage_report` now
 counts it. **What to do:** nothing. Every change is additive, and a usage ledger written by an
 earlier release reads as before.
@@ -46,11 +48,13 @@ earlier release reads as before.
 `bbf0ee12…` for its linux-x86_64 archive, checked against `checksums.txt`): 199 tools on both,
 none added or removed. One tool changes: `search_design`'s output schema gains `excerpt`. Every
 other tool's name, description and argument schema is byte-equal. The 35 skills keep their names,
-metadata and words, and `get_instructions` and `list_skills` are unchanged. The connect-time
-instructions gain one sentence, the first-read cue (284 characters). Replies gain
+metadata and words, and `list_skills` is unchanged. `get_instructions` changes in one place: step
+0a reads `graph_report_markdown` first, then `search_design` for a current-state record, then
+`open_questions` (35,921 → 36,288 bytes). The connect-time instructions gain one sentence, the
+first-read cue (9,677 → 9,961 characters). Replies gain
 `_meta["reflow2/cues"]`; ledger lines gain `cues`, and a `kind: "cue"` line is new;
-`usage_report`'s tally gains a `cues` block. The text of two hints changes for a caller who does
-not own the design (below). Nothing is deprecated and nothing is removed, so no notice is owed
+`usage_report`'s tally gains a `cues` block. The text of two hints changes for a caller known
+not to own the design (below). Nothing is deprecated and nothing is removed, so no notice is owed
 to anyone who runs their own MCP server.
 
 - **The schema stamp does not move**: 28 node types and 69 edge types, the same enum
@@ -58,8 +62,8 @@ to anyone who runs their own MCP server.
   store this release writes is a store 0.93.1 reads.
 
 **In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
-Code where MCP is blocked) gets every change but one. Checked on the 0.94.0 release build, one
-process per call, against a design on disk, beside the published 0.93.1 binary:
+Code where MCP is blocked) gets every change. Checked on the 0.94.0 release build, one process
+per call, against a design on disk, beside the published 0.93.1 binary:
 - **cues are counted**: each `reflow2-mcp write`/`read` call writes its offered cue ids on its
   ledger line (`add_requirement` → `loop_hint/detect_gaps`, `loop_hint/loop_status` …), and
   `--call usage_report` shows the `cues` block, `loop_hint/loop_status` followed within 5 after
@@ -69,23 +73,25 @@ process per call, against a design on disk, beside the published 0.93.1 binary:
   `cues` and its `usage_report` had no `cues` block;
 - **the first-read cue**: the door does not read the connect-time instructions, so it writes no
   `kind: "cue"` line (checked: only `call` lines). The VS Code terminal route's session-start
-  hook carries the cue instead, naming `reflow2 read graph_report_markdown` and
-  `reflow2 read search_design '{"query": "current state"}'`; that copy is not counted, since a
-  hook knows no session. A stdio MCP session on the same design wrote one `kind: "cue"` line at
+  hook and its instructions file ("Start of a session", step 1) carry the cue instead, naming
+  `reflow2 read graph_report_markdown` and `reflow2 read search_design '{"query": "current
+  state"}'`; that copy is not counted, since a hook knows no session. A stdio MCP session on the same design wrote one `kind: "cue"` line at
   the handshake, and `usage_report` read `instructions/graph_report_markdown` as followed after
   a `graph_report_markdown` call;
-- **the settle hint**: a `--call` names nobody it writes for, so `add_decision` there now answers
-  "settling it is the owner's word … it is a question for the owner, not your next call
-  (ask_question puts it to them)", even for the design's owner and even when the design names no
-  owner. 0.93.1 answered "only the owner's word moves it (set_decision_status)". The owner settles
-  as before, with `set_decision_status` and `approver`. In an MCP session, `writes_for` naming the
-  owner, or anyone on a design that names no owner, brings the old hint back;
+- **the settle hint**: unchanged for you. A `--call` names nobody it writes for, and a caller
+  nobody named is not taken for someone other than the owner, so `add_decision` answers "only the
+  owner's word moves it (set_decision_status)", as 0.93.1 did, on a design that names no owner and
+  on one `OWNED_BY` someone (checked on both). Only a caller named as someone else gets the new
+  hint: in an MCP session, `writes_for` naming a person who is not the owner made it answer "it is
+  a question for the owner, not your next call (ask_question puts it to them)", and `writes_for`
+  naming the owner kept `set_decision_status`;
 - **the excerpt**: `read search_design '{"query": "current state"}'` returned a nameless Fragment
   with `name: ""` and `excerpt` holding its title (0.93.1: no `excerpt`).
 
 **Still needs a hosted gateway such as flo2.io:** nothing new, and flo2.io gets all four changes
 when its engine moves to 0.94.0. There the gateway names the caller on every call, so the owner
-gets `set_decision_status` and a member who is not the owner gets `ask_question`. **Through a
+gets `set_decision_status` and a member who is not the owner gets `ask_question`; on an engine
+served for others a call that names nobody cannot sign, so it gets `ask_question` too. **Through a
 hub's address the first-read cue is not seen being followed in a member**: the handshake's offer
 is written in the hub's ledger, while a call aimed at one member (`member`, or an id carrying its
 `<graph_id>:` prefix) is written in that member's ledger, under that member's seat, so neither
@@ -123,12 +129,25 @@ still need it. These lines get checked again on the published binary once the re
 ### Changed
 
 - **A Decision's "settle it" hint goes to whoever can give the owner's word.**
-  `add_decision` and `replace_text` used to tell every caller that
-  `set_decision_status` was the next step. When the call is made for nobody who
-  owns the design (no `writes_for`, or the design is `OWNED_BY` someone else),
-  the hint now says the settlement is a question for the owner and names
-  `ask_question`. A call made for the owner, or for a named person on a design
-  that names no owner, gets the hint as before.
+  `add_decision` (landing `proposed`) and `replace_text` used to tell every
+  caller that `set_decision_status` was the next step. They still do, unless
+  the caller is known and is not the owner: named by `writes_for`, or by the
+  gateway or bearer token that serves the engine for others, on a design
+  `OWNED_BY` someone else. Then the hint says the settlement is a question for
+  the owner and names `ask_question`. The owner working alone, a local session
+  with no `writes_for`, and every `--call` are offered `set_decision_status` as
+  before. On an engine served for others, a call that names nobody cannot sign,
+  so it gets `ask_question`. On flo2.io the gateway names every caller: the
+  owner gets `set_decision_status` and other members get `ask_question`.
+- **The served instructions name the same first read as the handshake.**
+  `get_instructions` said "Start with `open_questions`" at step 0a, while the
+  connect-time instructions and the session-start hooks said to read
+  `graph_report_markdown` first, so an agent reading both was given two first
+  steps. Step 0a now reads `graph_report_markdown` first, names `search_design`
+  for the design's own record of where it stands ("current state", "status as
+  of"), and then `open_questions`. The VS Code terminal route's "Start of a
+  session" begins with the same read. Nothing to do: `open_questions` is
+  unchanged.
 
 ## [0.93.1] — 2026-10-28
 
