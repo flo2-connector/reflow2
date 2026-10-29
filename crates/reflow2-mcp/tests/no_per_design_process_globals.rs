@@ -49,6 +49,13 @@ use std::path::{Path, PathBuf};
 /// belongs on the design handle and this list is the wrong fix.
 const ALLOWED: &[(&str, &str, &str)] = &[
     (
+        "reflow2-mcp/src/service.rs",
+        "VOCABULARY",
+        "The words a cue may name (crate::cues): the names of the tools this binary serves and \
+         the skills it carries. A fact about this build's surface, the same for every design \
+         it serves; built once because reading it means listing every tool.",
+    ),
+    (
         "reflow2-core/src/heal.rs",
         "PARKS_ROUTE",
         "One sentence built from a compiled-in list (PARKING_READERS): the same text for \

@@ -57,6 +57,7 @@ fn call(at: u64, tool: &str, outcome: Outcome, refusal: Option<RefusalClass>) ->
         client_version: Some("1".into()),
         seat: Some("seat:test".into()),
         skill: None,
+        cues: Vec::new(),
     }
 }
 

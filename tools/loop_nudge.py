@@ -278,9 +278,22 @@ SKILL_OPS = {"get_skill"}
 # nothing. The same budget bit the tool-side arm — `add_change_event` sits at
 # 1494 chars against a 1500 limit and physically could not carry its demand.
 # Whatever mechanism wins, it wins inside a budget.
+# THE FIRST READ (cap:the-first-read-cue-reaches-the-agent-before-its-first-call,
+# 2026-10-29): the same cue the server's connect-time instructions carry
+# (crates/reflow2-mcp/src/cues.rs, FIRST_READ_CUE). It replaced "call
+# open_questions" as the first call: in the recall pilot open_questions was
+# cued 5 times and never followed, and a reader with a reading budget scored
+# 5.5/25 from a design that held the answers until one line told it where the
+# current state was kept (17.5/25). graph_report_markdown is the compact read
+# of where a design stands (6.3 KB on the pilot's 422-node design); reflow2
+# serves no compact read of the design's current VALUES, so the second half
+# points at the design's own record of them, when it keeps one.
 SESSION_START_TEXT = (
     "reflow2: this project has reflow2 installed. Orient first, before touching "
-    "code: call open_questions — if this design is empty, start it with the "
+    "code. To learn where the design stands, read graph_report_markdown first (a "
+    "few KB: what the design holds, what is delivered, the top open gaps); if the "
+    "design keeps its own record of where things stand, search_design finds it "
+    "(\"current state\", \"status as of\"). If this design is empty, start it with the "
     "genesis skill (new project) or the adopt skill (code that already exists); "
     "if it is not, read it back with the where-am-i skill. Skills are SERVED, "
     "not installed: get_skill fetches one, list_skills names them all, find_skills "
@@ -1561,6 +1574,9 @@ VSCODE_SESSION_START_TEXT = (
     "(`reflow2 read --list` says which). Wherever reflow2's instructions, a skill or "
     "a reply says to call X, run X one of those two ways. Read "
     ".github/instructions/reflow2.instructions.md before the first design action. "
+    "To learn where the design stands, run `reflow2 read graph_report_markdown` "
+    "first (a few KB); if the design keeps its own record of where things stand, "
+    "`reflow2 read search_design '{\"query\": \"current state\"}'` finds it. "
     "Skills are served: `reflow2 read get_skill '{\"name\": \"where-am-i\"}'` reads one "
     "and `reflow2 read list_skills` names them all. loop_status says what the "
     "coherence loop is owed; this project's Stop hook nudges once if design writes "

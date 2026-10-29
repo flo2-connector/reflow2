@@ -137,9 +137,11 @@ pub fn classify(message: &str) -> (Outcome, Option<RefusalClass>) {
     (Outcome::Refused, Some(class))
 }
 
-/// One line of the ledger. Two kinds share the file: a `call`, and a `report`
-/// marker that [`window`] uses as "since last time". Field names are short
-/// because a busy project writes thousands of these.
+/// One line of the ledger. Three kinds share the file: a `call`; a `report`
+/// marker that [`window`] uses as "since last time"; and a `cue`, the
+/// connect-time instructions' first-read cue offered to a session at its
+/// handshake ([`crate::cues`]). Field names are short because a busy project
+/// writes thousands of these.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UsageLine {
     /// Unix seconds. The file's own order is the tiebreak.
@@ -169,6 +171,13 @@ pub struct UsageLine {
     /// kept; no other argument is.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub skill: Option<String>,
+    /// The cue ids this line OFFERED the session — on a `call`, those its
+    /// reply carried; on a `cue` line, the handshake's. Ids only
+    /// (`<field>/<named call>`), reflow2's own words, never the sentence
+    /// ([`crate::cues`]). Absent on a line that offered none, so a ledger
+    /// written before cues were counted reads exactly as it did.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub cues: Vec<String>,
 }
 
 impl UsageLine {
@@ -185,6 +194,25 @@ impl UsageLine {
             client_version: None,
             seat: None,
             skill: None,
+            cues: Vec::new(),
+        }
+    }
+
+    /// The line a handshake leaves: these cues were offered to `seat` by the
+    /// connect-time instructions, before any call.
+    pub fn cue_offer(seat: &str, client: &str, cues: Vec<String>) -> Self {
+        UsageLine {
+            at: now_unix(),
+            kind: "cue".into(),
+            tool: None,
+            outcome: None,
+            refusal: None,
+            ms: None,
+            client: Some(client.to_string()),
+            client_version: None,
+            seat: Some(seat.to_string()),
+            skill: None,
+            cues,
         }
     }
 }
@@ -227,12 +255,17 @@ pub fn read_all(graph_path: &str) -> Vec<UsageLine> {
 /// everything at or after `since_unix` when a caller names a date. A named
 /// date wins over the marker, because a person asking "since the first of the
 /// month" must not be answered "since yesterday's report".
+///
+/// `call` lines and, since 2026-10-29, the handshake's `cue` lines, in ledger
+/// order — [`tally`] counts calls from the first and cues from both.
 pub fn window(lines: &[UsageLine], since_unix: Option<u64>) -> (Vec<&UsageLine>, WindowStart) {
+    let counted = |l: &&UsageLine| l.kind == "call" || l.kind == "cue";
     if let Some(since) = since_unix {
         return (
             lines
                 .iter()
-                .filter(|l| l.kind == "call" && l.at >= since)
+                .filter(counted)
+                .filter(|l| l.at >= since)
                 .collect(),
             WindowStart::NamedDate(since),
         );
@@ -240,11 +273,11 @@ pub fn window(lines: &[UsageLine], since_unix: Option<u64>) -> (Vec<&UsageLine>,
     let last_marker = lines.iter().rposition(|l| l.kind == "report");
     match last_marker {
         Some(i) => (
-            lines[i + 1..].iter().filter(|l| l.kind == "call").collect(),
+            lines[i + 1..].iter().filter(counted).collect(),
             WindowStart::LastReport(lines[i].at),
         ),
         None => (
-            lines.iter().filter(|l| l.kind == "call").collect(),
+            lines.iter().filter(counted).collect(),
             WindowStart::BeginningOfLedger,
         ),
     }
@@ -302,11 +335,17 @@ pub struct Tally {
     /// `name version` → count, every harness that wrote to the ledger.
     pub clients: BTreeMap<String, usize>,
     pub seats: usize,
+    /// Every cue offered in the window, by id, and whether the session acted
+    /// on it (`req:each-cue-is-counted-by-whether-the-agent-acted-on-it`,
+    /// [`crate::cues::tally`]).
+    pub cues: crate::cues::CueTally,
 }
 
 /// Aggregate a window. `served` is the surface as the server lists it now,
 /// so `never_called` is against the tools a session COULD have reached.
-pub fn tally(lines: &[&UsageLine], start: WindowStart, served: &[String]) -> Tally {
+pub fn tally(all: &[&UsageLine], start: WindowStart, served: &[String]) -> Tally {
+    let cues = crate::cues::tally(all);
+    let lines: Vec<&UsageLine> = all.iter().copied().filter(|l| l.kind == "call").collect();
     let mut by_tool: BTreeMap<String, usize> = BTreeMap::new();
     let mut refusals_by_class: BTreeMap<String, usize> = BTreeMap::new();
     let mut refusals_by_tool: BTreeMap<String, BTreeMap<String, usize>> = BTreeMap::new();
@@ -314,7 +353,7 @@ pub fn tally(lines: &[&UsageLine], start: WindowStart, served: &[String]) -> Tal
     let mut skills_fetched: BTreeMap<String, usize> = BTreeMap::new();
     let mut clients: BTreeMap<String, usize> = BTreeMap::new();
     let mut seats = std::collections::BTreeSet::new();
-    for l in lines {
+    for l in &lines {
         let tool = l.tool.clone().unwrap_or_else(|| "?".into());
         *by_tool.entry(tool.clone()).or_default() += 1;
         match l.outcome {
@@ -368,6 +407,7 @@ pub fn tally(lines: &[&UsageLine], start: WindowStart, served: &[String]) -> Tal
         skills_fetched,
         clients,
         seats: seats.len(),
+        cues,
     }
 }
 
@@ -387,6 +427,7 @@ mod tests {
             client_version: Some("0".into()),
             seat: Some("seat:a".into()),
             skill: None,
+            cues: Vec::new(),
         }
     }
 
@@ -402,6 +443,7 @@ mod tests {
             client_version: None,
             seat: None,
             skill: None,
+            cues: Vec::new(),
         }
     }
 

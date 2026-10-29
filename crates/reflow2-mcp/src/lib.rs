@@ -13,6 +13,7 @@ pub mod caller;
 pub mod client_measure;
 pub mod client_setup;
 pub mod content_policy;
+pub mod cues;
 pub mod degraded;
 pub mod deprecation;
 pub mod describe_tool;

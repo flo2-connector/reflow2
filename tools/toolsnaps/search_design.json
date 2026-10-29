@@ -70,6 +70,10 @@
               "description": "Present on a search over several designs (`tracked_designs`, or a hub's address): the graph_id of the design this hit is in.",
               "type": "string"
             },
+            "excerpt": {
+              "description": "Present ONLY when `name` is empty: a short excerpt (at most 160 characters) of the node's own text — its title, statement, question, summary or description — so a nameless record such as a Fragment does not read blank.",
+              "type": "string"
+            },
             "linked": {
               "description": "Records directly linked to this hit by a review relation or DECOMPOSES, at most 8. LINKED, not matched: they need not contain the query. Absent when nothing is linked.",
               "items": {

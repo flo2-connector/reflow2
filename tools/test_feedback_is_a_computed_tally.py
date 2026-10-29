@@ -36,6 +36,7 @@ Exits 0 when every pin holds, 1 otherwise. Standard library only.
 """
 
 import json
+import re
 import os
 import pathlib
 import shutil
@@ -131,6 +132,7 @@ def main() -> int:
             "add_requirement",
             {"id": SECRET_ID, "name": "The secret ingredient", "statement": SECRET_TEXT},
         )
+        first_reply = r
         check("the requirement write itself succeeded", "error" not in r and not r["result"].get("isError"), str(r)[:200])
         # 2 · refused / missing_argument — the deserialiser, before any handler
         r = s.call("get_node", {})
@@ -187,6 +189,29 @@ def main() -> int:
         check("the requirement's statement is nowhere in the ledger", "SECRET SAUCE" not in raw)
         check("no argument name of the write is in the ledger", "statement" not in raw and "The secret ingredient" not in raw)
 
+        # ---- the cues (cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed) ----
+        offers = [l for l in lines if l.get("kind") == "cue"]
+        check(
+            "the handshake offers the first-read cue to this session",
+            len(offers) == 1
+            and offers[0].get("cues") == ["instructions/graph_report_markdown", "instructions/search_design"]
+            and offers[0].get("seat") == calls[0].get("seat"),
+            str(offers),
+        )
+        cued = [c for l in calls for c in l.get("cues", [])]
+        check("a reply's cue ids are on its ledger line", bool(by_tool.get("add_requirement", {}).get("cues")), str(by_tool.get("add_requirement")))
+        check(
+            "a cue id is `<field>/<named call>`, reflow2's words only",
+            all(re.fullmatch(r"[a-z_]+/[a-z_]+(:[a-z-]+)?", c) for c in cued) and SECRET_ID not in json.dumps(cued),
+            str(cued),
+        )
+        meta = (first_reply.get("result") or {}).get("_meta") or {}
+        check(
+            "the reply carries the same ids in _meta",
+            meta.get("reflow2/cues") == by_tool.get("add_requirement", {}).get("cues"),
+            str(meta),
+        )
+
         # ---- the report ----
         r = s.call("usage_report", {})
         rep = structured(r)
@@ -205,6 +230,14 @@ def main() -> int:
                   str(env))
             check("the model is declared unknown to the server", "self-reported" in env.get("model", ""))
             check("the report left its marker", rep.get("marker_left") is True)
+            cues = t.get("cues") or {}
+            first = (cues.get("by_cue") or {}).get("instructions/graph_report_markdown") or {}
+            check(
+                "the report counts each cue offered and whether it was followed",
+                first.get("offered") == 1 and first.get("followed_at_all") == 0
+                and cues.get("follow_within_calls") == 5 and cues.get("offered", 0) >= 2,
+                str(cues)[:400],
+            )
             check("the secret is not in the report either", SECRET_ID not in json.dumps(rep) and "SECRET SAUCE" not in json.dumps(rep))
 
         # 5 · the window closed: a second report sees only the first report's own line
