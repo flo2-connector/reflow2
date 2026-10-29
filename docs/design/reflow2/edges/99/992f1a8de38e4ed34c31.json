@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5f828557be5736a69a43c7af7225392cb27b66cf46eab4b3981e4ea49b65bccc",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-v0940-cut-takes-in-815-2026-10-29",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

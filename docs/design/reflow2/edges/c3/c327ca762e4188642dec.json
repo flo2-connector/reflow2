@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e4149612168fadfe3da37f3f6439294f9fbdd94911079afda57e4af51e5c1c9a",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:4442416f7e574b16b4d54d0c67066804e5e508f35c7f7c60725e64e87bc5e32b"
+  },
+  "to_id": "art:a-loop-hint-says-where-the-node-landed-test"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:e120098340ea9d764e1f1b6d5d07dc4dc0894b59d18226ce4bd761124dc85a5e",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:2e140876c8add72acfffee42399199310fd8b2f2636e2b7d3038851e81d06c60"
+  },
+  "to_id": "art:a-bulk-write-says-no-near-match-check-ran-test"
+}

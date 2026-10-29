@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:9c75668a618fd9dcb4b514fcc506d66fd8b947b36bdcd41c8591d1a4fee4cd40",
+  "node_id": "chg:accept-3afd104c8fcb82d1",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-29",
+    "name": "v0.94.0 cut, step 2: the release line moves to v0.94.0; read against the release (cues, the first-read cue, the owner-aware hint, the search excerpt), nothing on the page is made false by it. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

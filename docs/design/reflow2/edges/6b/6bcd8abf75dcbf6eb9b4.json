@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bd1bdd8432f5b761467ef4e2ab1e48dcae617c8d66c5c851cf24f1298ed9c124",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:4badf80c87cd34417db2a82edacf574b64e585e7d61687b56efbf4e89ba43be4"
+  },
+  "to_id": "art:why-command"
+}

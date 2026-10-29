@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:c3988f33c0c14cc5cefb0e93fa15e0ab87337ee39e19b832cd730331c429bb99",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0940",
+  "properties": {
+    "as_checksum": "sha256:c6fa8964ea08a3579bf6e69ee87e946e0ed7f9c7476663c91d6295f0972050bf"
+  },
+  "to_id": "art:proofs-and-arguments-read-right-test"
+}
