@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:eaffe58d1a12a643f18c9f08497f368e13fc7a9f5ea6c723c1a11c9742e69821",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:feedback-is-a-computed-tally-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-batch-cue-is-offered-once-per-batch-and-a-process-names-its-step"
+}
