@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:20d16baf98f0a7c969472a1110615c3174a51dbe084d0a772f099174b5a6335b",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:ef5cf090bdbd24869222a32825d17a7242e392cd97886908bd1bf298b1692101"
+  },
+  "to_id": "art:test-a-registry-checks-its-file-handles-at-start"
+}

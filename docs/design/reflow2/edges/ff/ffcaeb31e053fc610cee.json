@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:bc65bc3fff01bc1aa0ca1313a9d768048510eff7d11c470851245ec949ef113f",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:0cbfce792580467270992225ab0587ca906ae0085577c4203070ab248f969b74"
+  },
+  "to_id": "art:test-behind-a-trusted-gateway-the-host-names-the-owner"
+}

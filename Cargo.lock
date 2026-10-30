@@ -1832,7 +1832,7 @@ dependencies = [
 
 [[package]]
 name = "reflow2-core"
-version = "0.94.0"
+version = "0.95.0"
 dependencies = [
  "lru 0.19.0",
  "proptest",
@@ -1852,7 +1852,7 @@ dependencies = [
 
 [[package]]
 name = "reflow2-mcp"
-version = "0.94.0"
+version = "0.95.0"
 dependencies = [
  "anyhow",
  "base64 0.23.1",

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:2bd3404d6950484d7e61955e6f972558d10d95337e9b79307c488d2205cc7594",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:74e9a49c62f2f814e795cc6633098b49a2a8728be46b2fc5dbf59b929deb3a7e"
+  },
+  "to_id": "art:tools-assure"
+}

@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:8111614169bd2f82bcd0a1ecf91c7c0d3f53af79f78b800cd1c0943ea583dadd",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:working-a-proof-hole-is-scored-on-its-preserved-search-as-well-as-its-result",
+  "properties": {
+    "approved_at": "2026-10-30",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:813b7bb764ac6f36b83749b49028bd40518be07ea504b37e7a35ee6a0742c8b3",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:1c0eb48baf2006121430b8de1a65f8aeba3177118fe70f3a1130ad882bb2f503"
+  },
+  "to_id": "art:a-composed-check-through-a-hubs-address-reads-its-members-live-test"
+}

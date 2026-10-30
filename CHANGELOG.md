@@ -31,6 +31,80 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.95.0] — 2026-10-30
+
+**Minor. A trusted gateway can now tell the engine who owns the design a call is on, and which
+caller's seat the call comes from, so the "settle it" cue reaches only the owner and the cue
+counts follow each caller.** It contains #816, the engine half of two flo2.io findings: flo2.io
+records no `OWNED_BY`, so a member a design was shared with was offered `set_decision_status`,
+and flo2.io carries every caller over one engine session per design, so every caller shared one
+seat in the usage ledger. Two request `_meta` keys are new, `reflow2/design_owners` and
+`reflow2/seat`, honoured only when the engine is served with `--http-trusted-gateway`.
+**What to do:** nothing, unless you run a gateway in front of reflow2; then send both keys on
+each call (below). On a local engine both keys are ignored.
+
+**The MCP surface does not change**, measured against the published 0.94.0 binary (sha256
+`58a68c57…` for its linux-x86_64 archive, checked against `checksums.txt`): 199 tools on both,
+none added, removed or changed. Every tool's name, description, annotations and schemas are
+byte-equal. The 35 skills, `list_skills`, `get_instructions` and `describe_schema` are
+byte-equal, and so are the connect-time instructions; only `serverInfo.version` moves. What is
+new is two inputs a trusted gateway may put in a request's `_meta`, which no tool schema
+carries. Nothing is deprecated and nothing is removed, so no notice is owed to anyone who runs
+their own MCP server.
+
+- **The schema stamp does not move**: 28 node types and 69 edge types, the same enum
+  vocabularies and the same `describe_schema` answer as 0.94.0. No upgrade doc is owed, and a
+  store this release writes is a store 0.94.0 reads.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) does not change. Checked on the 0.95.0 release build beside the
+published 0.94.0 binary, each on a fresh design on disk:
+- **the `--call` door has no way to send `_meta`**: a `_meta` put in `--args` is refused before
+  the call runs ("`_meta` is not a parameter of this tool"), and nothing is written. A plain
+  `add_decision` answers "only the owner's word moves it (set_decision_status)", as in 0.94.0,
+  and each ledger line carries the door's own seat;
+- **a stdio MCP session ignores both keys**, even with `REFLOW2_TRUSTED_GATEWAY` set in its
+  environment (stdio is local by construction): `add_decision` with `writes_for` naming a
+  member and `reflow2/design_owners` naming someone else gave the same hint as without the key
+  (`set_decision_status`), and every ledger line carried the session's seat, never the one
+  `reflow2/seat` named.
+
+**Behind a trusted gateway** (the release build served with `--http --http-trusted-gateway
+flo2.io`, one MCP session for two callers, as flo2.io runs it): on a design that records no
+`OWNED_BY`, a member named by `writes_for` was offered `set_decision_status` without the owner
+key and "a question for the owner … (ask_question puts it to them)" with
+`reflow2/design_owners: ["who:bob"]`, while `who:bob` himself kept `set_decision_status`; no
+`OWNED_BY` was written. Each call's ledger line carried the seat `reflow2/seat` named
+(`seat:ann`, `seat:bob`) in place of the session's. The published 0.94.0, served the same way,
+ignored both keys. **flo2.io gets this only after its engine moves to 0.95.0**: flo2 #205 (a
+draft pinned to 0.94.0) is re-pinned to 0.95.0 and deployed, with flo2 sending both keys. Until
+then flo2.io behaves as 0.94.0 does. As before, the hosted hub view and cross-design reads by
+graph id still need it, and a hub's view does not hand `reflow2/design_owners` on to a call it
+routes to a member: the owners it names are the hub's. These lines get checked again on the
+published binary once the release is out.
+
+### Added
+
+- **Behind a trusted gateway, the gateway can name who owns a design, and the settling cue
+  follows it.** A request's `_meta["reflow2/design_owners"]` (a list of Contributor ids) is the
+  host's word on who owns the design that one call is on, read the way `reflow2/writes_for` names
+  the caller. The cue after `add_decision` and `replace_text` then offers `set_decision_status` to
+  an owner it names and `ask_question` to anyone else, on a design that records no `OWNED_BY` at
+  all. Nothing is written into the design from it, and it grants nothing: who may sign is still
+  the caller alone. Until now the engine knew an owner only from `OWNED_BY`, which flo2.io never
+  writes, so on flo2.io a member a design was shared with was still offered the settling call.
+  **What to do:** a gateway in front of reflow2 sends the key on each call; nothing else changes.
+  Honoured only under `--http-trusted-gateway`; ignored on a local engine, behind a bearer gate,
+  and on a call a hub's view routes to a member (those owners are the hub's).
+- **Behind a trusted gateway, each caller gets its own seat in the usage ledger.** A request's
+  `_meta["reflow2/seat"]` (a handle of at most 128 printable characters, never a person's name)
+  is written on that call's ledger line in place of the engine session's seat, so `usage_report`
+  follows each cue per caller. A gateway that carries everyone over one engine session per design,
+  as flo2.io does, had every caller on one seat, and a cue offered to the owner read as followed
+  by a member's call. **What to do:** a gateway sends a stable seat per caller on each call.
+  Honoured only under `--http-trusted-gateway`; `claim_region` still takes its seat as an
+  argument.
+
 ## [0.94.0] — 2026-10-29
 
 **Minor. Every cue reflow2 gives now has an id and is counted by whether the agent acted on it, an

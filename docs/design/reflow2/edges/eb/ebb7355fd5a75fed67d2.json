@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:3bfc1f9277808ac3a5c658879b80ae3687c3dde203f73b3ccc3da9cd87a4a615",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:8670168b0336f237da42e141cad5535238ffbba36ea9d639821392b6a8318153"
+  },
+  "to_id": "art:test-the-whole-reasoning-walk-reaches-every-claim"
+}

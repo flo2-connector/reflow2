@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:f88ebaaebd7e9638b19080ce0bda75db370d86ced0d4ff513aa63f280f7a22f1",
+  "node_id": "chg:accept-33f6368add03758f",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-30",
+    "name": "v0.95.0 cut, step 1: AGENTS.md's two version lines move 0.94.0 -> 0.95.0; content otherwise unchanged. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

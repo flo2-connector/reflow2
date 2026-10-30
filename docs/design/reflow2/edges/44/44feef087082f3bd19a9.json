@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:d9797f89edec7fcf75a69337d8906c3873f6cf1742ba3e22ef6cdd19989e8234",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:8879f3748e5453615c7077e62c2ed2892f72e05d27f0f0777a814a41468464e6"
+  },
+  "to_id": "art:store-engine"
+}

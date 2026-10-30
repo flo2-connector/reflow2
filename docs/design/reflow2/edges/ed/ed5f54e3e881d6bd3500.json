@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:935afb2f348ad802be5eeced10d09b7c14afefda6e7d71cf684c159019e310cf",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-a-failed-route-is-a-record-of-its-own",
+  "properties": {
+    "evidence": "Promoted by Anthony 2026-10-30 as option (a) of the preserved-search brainstorm."
+  },
+  "to_id": "req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:052e25ec80f854eb24a5694e70b9b4fb7d4b31a84ceddc752932458f4cb1dae4",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:a1a6917c6724d680a70168a1de75c8b3806a0ec2bb50b36609b369b3781ba125"
+  },
+  "to_id": "art:reports-without-an-inference-fixture"
+}
