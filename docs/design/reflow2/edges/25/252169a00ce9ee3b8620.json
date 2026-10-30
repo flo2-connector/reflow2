@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:40b86bc644ef3105f1ed74e473dbcde6923b203c1fa07b6ef2f260fa5a6279ea",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:reflow2-reports-when-a-proof-attempts-statement-or-axioms-moved-during-it",
+  "properties": {
+    "evidence": "Built only if the calibration's with-and-without measurement shows the statement and axiom gates matter.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "req:the-proof-calibration-holds-the-agents-attempt-to-mechanical-gates-with-and-without"
+}

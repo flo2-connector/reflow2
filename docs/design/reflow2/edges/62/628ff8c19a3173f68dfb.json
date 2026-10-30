@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:d63c1d62bea074b8a518a817706ad05c14f913654085cb2d5fc3acedad01ddc9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:reflow2-reports-when-a-proof-attempts-statement-or-axioms-moved-during-it",
+  "properties": {
+    "approved_at": "2026-10-30",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

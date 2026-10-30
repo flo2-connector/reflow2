@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7372f714a2f21b5e465bda6f6a813bd8d924b047498440de90bafb95d73b9f9e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:fc0e4f7bbd97e2c6af6b03c605dbc91ebb9af56936a705757cb292a9ce5d9939",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-on-disk"
+}

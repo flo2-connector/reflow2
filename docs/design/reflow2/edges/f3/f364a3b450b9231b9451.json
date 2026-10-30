@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:02e5fd80f29344bf81315f5e95aca3966604e7851cc526db47fd7a0db55d9e00",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-what-makes-a-finished-proof-trustworthy-to-a-person",
+  "properties": {
+    "evidence": "That idea asked whether trust comes from the trail, a formal check of each step, or an independent re-derivation; this one proposes the gates and the second-agent audit as concrete answers."
+  },
+  "to_id": "dec:idea-an-agents-proof-attempt-is-held-to-gates-not-to-its-own-report"
+}

@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:6aa862befb4816ef2a0858744634fad9c82f652a55e9c67c96f4606b5520bc27",
+  "content_hash": "sha256:4a9cbdd2072eecd93c961f547ad9507ad3a38411d6bc4bcb19cb913d9633634e",
   "node_id": "epoch:planned-cues-reach-the-agent-and-are-counted",
   "node_type": "DesignEpoch",
+  "prev_item_hash": "sha256:6aa862befb4816ef2a0858744634fad9c82f652a55e9c67c96f4606b5520bc27",
   "properties": {
     "description": "Increment 2 of epoch:planned-cognition-plus-memory. Build, in a reflow2 release: cues placed on the agent's side of the interface (the kit's hooks at session start, before a tool and at stop, and the connect-time instructions), and an id on every cue with a count of whether the agent acted on it. Shaped by what increment 1's baseline shows. Not in it: renaming today's hints into one contract (increment 6).",
     "epoch_type": "milestone",
     "name": "PLANNED (2 of 6) — cues reach the agent before its first call, and every cue is counted by whether the agent acted on it",
     "sequence": 792,
-    "status": "planned"
+    "status": "arrived"
   }
 }

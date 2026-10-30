@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:f00c3d3c6b236c25f8f2a812e7732e64f6dcedaa3cda729ff2c2c1f7494c3b80",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:caller",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

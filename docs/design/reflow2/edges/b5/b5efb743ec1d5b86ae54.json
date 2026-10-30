@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:0d1cc1fde7aa81dd2571b7a7ac559c445eea50877bef13173b7906ee511c60ca",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-behind-a-trusted-gateway-the-host-names-the-owner",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:behind-a-trusted-gateway-the-host-names-the-owner"
+}

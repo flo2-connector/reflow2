@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:61ca8187c6db2c7521ceb6376a44ee9bfd570459b4b20ee7e30488a6a70082e9",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-behind-a-trusted-gateway-the-engine-can-learn-a-designs-owner-only-from-owned-by-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

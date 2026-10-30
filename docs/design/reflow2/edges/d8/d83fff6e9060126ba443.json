@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:27cdaa3e02dfff205fe4e0f82f8023ed20c29289187100a4a06e36e5b7ff2c16",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:predictions-for-the-recall-pilot-after-the-cues-registered-before-the-runs-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

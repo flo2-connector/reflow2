@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:fd50c696a56bf12dd2b8e84d26bf0a838d40a6fd6e06e221075683de1bde89a4",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:behind-a-trusted-gateway-each-caller-has-its-own-seat"
+}

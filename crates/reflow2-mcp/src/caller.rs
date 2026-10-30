@@ -121,6 +121,17 @@ impl CallerRule {
         !matches!(self, CallerRule::Local)
     }
 
+    /// Whether a request's `_meta` may name WHO OWNS THE DESIGN
+    /// (`service::DESIGN_OWNERS_META`) and WHICH SEAT the call is made from
+    /// (`service::SEAT_META`). Only behind a declared trusted gateway — the
+    /// one party the operator trusted to name the caller, which is the same
+    /// party that knows the owner and tells its callers apart. Everywhere else
+    /// both keys are ignored: a local caller, or a bearer token's holder, could
+    /// otherwise name themselves the owner or wear another caller's seat.
+    pub fn host_names_owner_and_seat(&self) -> bool {
+        matches!(self, CallerRule::TrustedGateway { .. })
+    }
+
     /// Who the call now arriving writes for. Local: the request's `_meta`,
     /// else the session's declaration (unchanged). Behind a trusted gateway:
     /// ONLY the name the gateway put on this request. Undeclared: unchanged —

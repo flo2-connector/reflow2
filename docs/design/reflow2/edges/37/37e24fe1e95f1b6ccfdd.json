@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:0c4336494374df404181836b5f358aa2a3839248511a7e0dd4bd92d97c3ee8d0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:behind-a-trusted-gateway-each-caller-has-its-own-seat",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

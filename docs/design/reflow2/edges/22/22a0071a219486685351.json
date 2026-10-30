@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:4faf853a61605917968a1414bdc3f4e80cde756116f40ff99702bef33e9cd1f0",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "ver:behind-a-trusted-gateway-the-host-names-the-owner",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

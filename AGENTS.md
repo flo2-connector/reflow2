@@ -666,8 +666,9 @@ answers alone and `view_note` says why the view was not served. Each call is the
   from every such string, the same tool runs on that member's own service
   (`RegistryHandle::member`, a fresh session on it for this one call), and the member's ids in the
   reply are prefixed back. The caller's `_meta` — `reflow2/writes_for`, `reflow2/acting_agent`,
-  the readable set — and the verified token ride along, so a write lands in the member credited
-  to the caller. **Ids of TWO members in one call are refused before anything runs:** *a write
+  the readable set, `reflow2/seat` — and the verified token ride along, so a write lands in the
+  member credited to the caller. `reflow2/design_owners` does NOT ride along: the owners the host
+  named are the hub's, so the member reads its own `OWNED_BY` (`view::forwarded`). **Ids of TWO members in one call are refused before anything runs:** *a write
   lands in one design; a relation across designs is a typed link record made in one of them — use
   `review_relations` with `other_design` and `other_id`.* A member outside the readable set is
   refused with `other_design`'s own sentence (`service::not_readable`): the id and the key,
@@ -755,6 +756,14 @@ exactly as flo2.io does:
 `tools/list` of a hub's own design, which is what makes the listing declare `member`. A member it leaves out of the view is
 simply not reached; one it names but leaves out of the readable set is reported `unreachable`
 and refused when routed to.
+
+**Two more per-call words a trusted gateway may send, on any design** (honoured only under
+`--http-trusted-gateway`, `CallerRule::host_names_owner_and_seat`; ignored everywhere else):
+`reflow2/design_owners`, the Contributor ids that own the design (`DESIGN_OWNERS_META`), which the
+settling cue reads in place of the design's `OWNED_BY` (`call_can_give_the_owners_word`) and which
+writes nothing; and `reflow2/seat`, the caller's seat (`SEAT_META`, a handle, never a person's
+name), which the usage ledger writes on that call's line so cues are followed per caller over one
+shared engine session (`record_usage`, `cues::tally`). Neither names a claim's owner.
 
 > 🧯 **BREAK GLASS: WHEN flo2.io CANNOT SERVE reflow2's DESIGN.** flo2.io's engine IS reflow2, so a
 > release that breaks opening designs also locks you out of the design you would read to fix it.

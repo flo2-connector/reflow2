@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8c9b86301d166b207023f4b7316d179bf66e5ce0f49ce2cc8ad1815589d93880",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:c2766acf6411e36392ce71d9d9a1e803f3966f6d1c23d05e7d306ad8797e9a36",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-behind-a-trusted-gateway-the-host-names-the-owner",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

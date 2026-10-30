@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:da1d361177e22ce6f7588e3b5e49d6af6c47072ee55d89c6e7f6dd30bc69d582",
+  "node_id": "fact:root-cause-the-usage-ledger-takes-its-seat-from-the-mcp-session-so-a-gateways-callers-share-one-2026-10-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "finding",
+    "name": "Root cause: the usage ledger takes every call's seat from the MCP session, so a gateway's callers on one session share one seat and follow each other's cues",
+    "statement": "Symptom (flo2's fact:on-flo2-io-cue-counts-are-per-design-not-per-agent-2026-10-29, design 1a97fc1f1de4d5d2). Measured 2026-10-30 on the published 0.94.0 binary served as on the droplet (registry, REFLOW2_TRUSTED_GATEWAY=flo2.io): one engine session carrying calls named for who:ajs and for who:emily wrote 7 ledger lines with ONE seat; a second session on the same design got a different seat; every line's client was `flo2-gateway`. Candidates: (a) ENGINE — record_usage writes `seat: self.seat` (the session's lease) and no per-call input can name another, and cues::tally groups by that seat: CONFIRMED. (b) GATEWAY — flo2 keeps one engine session per design for every caller (reflow2-client.ts): CONFIRMED, and deliberate (the engine holds at most 64 designs open, ~12+64 files each, so one session per caller is the costly fix). (c) The registry shares one ReflowService across sessions: REFUTED, the second session got its own seat. (d) OUTSIDE, the tally groups the gateway's calls as the --call door's one sequence: REFUTED, the client name is flo2-gateway, not the door's. CLASS: who made a call is named per request by the trusted host (writes_for), but the ledger's 'session' is still the transport's, so on any multiplexing host the ledger cannot tell callers apart. Fix (additive): a per-call _meta reflow2/seat, honoured only behind a trusted gateway, written on that call's ledger line, so cues are followed per caller seat.",
+    "subject_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed",
+    "valid_from": "2026-10-30"
+  }
+}
