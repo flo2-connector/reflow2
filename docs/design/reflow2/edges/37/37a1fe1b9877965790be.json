@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:4e576df44e489cda771ebcd37271c791ad7a2fbf4ccc041efd0a0f58affa808a",
+  "edge_type": "SCHEDULED_FOR",
+  "from_id": "req:a-cue-for-when-a-batch-lands-is-offered-once-per-batch-and-a-process-names-its-step",
+  "properties": {
+    "modality": "expected",
+    "recorded_at": "2026-10-30"
+  },
+  "to_id": "epoch:planned-the-tool-surface-refined-from-the-counts"
+}

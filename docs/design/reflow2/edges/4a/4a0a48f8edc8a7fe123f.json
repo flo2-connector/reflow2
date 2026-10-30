@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0266accd0e54e1bb26480e0e28e5f6bee5bb0376f33c8bba06df107592ec242e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:baseline-b684f549bc345cc3",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:c33435b17d352f741bd176069dbf210ae81bb51abcc705b77fed6692018637de",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-batch-cue-is-offered-once-per-batch"
+}

@@ -24,6 +24,7 @@
 //! file declared in no program compiles nowhere and runs nowhere.
 //! `every_test_file_runs_in_exactly_one_program` fails until it is declared.
 
+mod a_batch_cue_is_offered_once_per_batch;
 mod a_budget_says_how_it_composes;
 mod a_build_can_call_one_tool_from_the_shell;
 mod a_build_without_on_disk_storage_refuses_a_store_in_a_folder;

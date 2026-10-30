@@ -257,6 +257,16 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          own value.",
     ),
     (
+        "reflow2-mcp/src/cues.rs",
+        "WITHHELD",
+        "A tokio TASK-LOCAL beside TRANSPORT and CALL, and the same shape: it holds the \
+         batch cues the ONE tool call now being served does not offer, read by `call_tool` \
+         from the ledger of the design that call is on (its session's latest calls), set \
+         around that call's handler and gone when it returns. A second design open in the \
+         same process gets its own set on its own call, from its own ledger: two calls \
+         each see only their own value, so nothing about a design outlives the call.",
+    ),
+    (
         "reflow2-mcp/src/content_policy.rs",
         "OVERRIDE",
         "The operator's `--content-policy` / REFLOW2_CONTENT_POLICY, parsed once \

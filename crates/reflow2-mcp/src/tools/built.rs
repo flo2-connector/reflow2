@@ -894,10 +894,17 @@ impl ReflowService {
         if let Some(o) = out.as_object_mut() {
             o.insert("measurement".into(), measurement);
         }
+        // The loop_status clause is a batch cue (`crate::cues::BATCH_CUES`).
         with_loop_hint(
             out,
-            "loop: as-built moved — reconcile_artifacts confirms the design still describes \
-             what's on disk; loop_status says what else is owed",
+            &format!(
+                "loop: as-built moved — reconcile_artifacts confirms the design still describes \
+                 what's on disk{}",
+                crate::cues::batch_clause(
+                    &["loop_hint/loop_status"],
+                    "; loop_status says what else is owed"
+                )
+            ),
         )
     }
 

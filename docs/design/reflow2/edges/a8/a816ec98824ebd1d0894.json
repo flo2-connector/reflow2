@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:c1de4f52d8a1743c28ebe1ef5c1ed11568252f61a1ee0ac034a9428eab8d1240",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-batch-step-is-cued-once-per-batch-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step"
+}

@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:6bb60f4024136bd42ea6b4f5d0794bbb69bb8e53815a2892ce3381e5095d0f6b",
+  "edge_type": "REALIZES",
+  "from_id": "art:usage-ledger",
+  "properties": {
+    "completeness": "partial",
+    "conformance": "unchecked"
+  },
+  "to_id": "cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step"
+}

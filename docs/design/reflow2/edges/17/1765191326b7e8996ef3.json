@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:31e080904d84c10cd5d6582ecc4c2a8796a63684fc9333de159aa1d1ce21e03d",
+  "edge_type": "ANTICIPATES",
+  "from_id": "dec:idea-what-the-cue-count-counts-reference-hints-out-a-carried-pointer-in",
+  "properties": {
+    "evidence": "Increment 6 defines the one cue message; which fields count as cues is the first thing it must settle."
+  },
+  "to_id": "req:a-cue-is-one-named-kind-of-message-in-reflow2s-interface"
+}

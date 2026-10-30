@@ -325,8 +325,16 @@ impl ReflowService {
                 }
                 crate::tools::capture::with_capture_notes(
                     reply,
-                    "loop: a generic write is still a design change — run detect_gaps \
-                     (detect-and-ask) when the batch lands",
+                    // A batch cue (`crate::cues::BATCH_CUES`): 67 offers on
+                    // 0.94.0, none followed, so said once per batch of writes.
+                    crate::cues::batch_hint(
+                        &[
+                            "loop_hint/detect_gaps",
+                            "loop_hint/get_skill:detect-and-ask",
+                        ],
+                        "loop: a generic write is still a design change — run detect_gaps \
+                         (detect-and-ask) when the batch lands",
+                    ),
                     None,
                     revision,
                     // `create_node` is OUT OF SCOPE by design, not by omission.

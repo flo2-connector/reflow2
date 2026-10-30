@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:748cab265e06036760c6cd0dd117706d9a71f2a90d12c76a7c7bcca787358523",
+  "node_id": "dec:idea-the-steps-of-record-what-was-built-point-at-record-the-build",
+  "node_type": "Decision",
+  "properties": {
+    "decision": "PROPOSED FOR ANTHONY'S WORD. Measured 2026-10-30 (fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30): record_the_build, the one-call process for \"record what was built\" (cap:record-the-build-in-one-call), has no call anywhere, and it is not in flo2.io's hub tool list on 2026-10-30, while on flo2.io its steps were run separately: add_change_event 585 calls through the hub, set_artifact_checksums 389, add_verification 381, set_capability_status 88 runs (2026-09-24 to 10-30). Increment 7's PR makes add_change_event name its own next step (set_artifact_checksums) when the change touched a registered file; it does not name the process tool, so the two can be compared.\nOPTIONS: A. Leave it: the step cue is enough. B. When add_change_event or set_artifact_checksums is called within a few calls of add_verification in one session (the measured sequence), its `next_step` also says record_the_build does all four in one call next time. C. First find why flo2.io's hub does not list it (a version not yet deployed there, or a tool not served behind the gateway), since an agent working through the hub cannot call it at all. Recommendation: C first (it is a fact to find, not a choice), then B if the step cue alone leaves the steps run one by one.",
+    "kind": "exploratory",
+    "name": "OPEN — record_the_build was never called while its steps were run by hand hundreds of times: should the step tools' replies name it, and should flo2.io serve it?",
+    "rationale": "A process tool that is never found does not shorten anything (fact:the-processes-people-and-agents-repeat-most-2026-10-25 in integrated-flo: a parameter that exists, add_capability's satisfies, went unused too). Whether the hub's missing listing is the reason it was never called is not established, so it is option C, to be measured, and no cause is written here. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "status": "proposed"
+  }
+}

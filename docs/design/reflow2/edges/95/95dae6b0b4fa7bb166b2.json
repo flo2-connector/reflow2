@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:4f7cba91004d0b205a10a53cf296737f917c367d983f2c0733782be01329097a",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-what-the-cue-count-counts-reference-hints-out-a-carried-pointer-in",
+  "properties": {
+    "evidence": "Both counts (125 reference-hint offers, 38 of 38 carry_it follows) are read from that finding's sources.",
+    "optional": false,
+    "weight_basis": "measured"
+  },
+  "to_id": "fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30"
+}

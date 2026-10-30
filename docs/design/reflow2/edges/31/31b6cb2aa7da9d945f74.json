@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:1f65ab83e7e752e2cc7ffa2a3d08b30df1db04928be1d58e79afd91e7e05d439",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-batch-step-is-cued-once-per-batch-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "art:test-a-batch-cue-is-offered-once-per-batch"
+}

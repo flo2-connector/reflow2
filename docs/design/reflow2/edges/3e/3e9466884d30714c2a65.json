@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:dfb3ee607dc457bf5ce00d8735f50cccfd16a2313ccd151a73eaaf1b7d7cbb9c",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:add-capability-revised-with-status-only-says-wire-satisfies-when-its-satisfies-edge-is-already-drawn-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

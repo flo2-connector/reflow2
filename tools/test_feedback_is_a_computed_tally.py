@@ -253,6 +253,12 @@ def main() -> int:
         # 6 · in-memory: the binary has no in-memory mode, so that pin lives in
         #     crates/reflow2-mcp/tests/feedback_is_a_computed_tally.rs, which
         #     calls the handler on `ReflowService::in_memory()` directly.
+
+        # 7 · A BATCH CUE IS OFFERED ONCE PER BATCH, decided from this ledger
+        #     (crates/reflow2-mcp/src/cues.rs BATCH_CUES; increment 7 of
+        #     epoch:planned-cognition-plus-memory), and 8 · a process names its
+        #     step. A fresh store, so its ledger starts empty.
+        batch_check(check, work / "batch")
     finally:
         shutil.rmtree(work, ignore_errors=True)
 
@@ -261,6 +267,73 @@ def main() -> int:
         return 1
     print("\nOK: the ledger holds the verb and never the object, and the report renders it.")
     return 0
+
+
+# crates/reflow2-mcp/src/cues.rs WITHHELD_HINT, word for word.
+WITHHELD = ("loop: the step for when this batch lands was named earlier in the batch and is not "
+            "repeated on every write")
+
+
+def batch_check(check, work):
+    """On 0.94.0 detect_gaps was offered on 97 writes and followed on none, and
+    loop_status on 162 and followed only at the end of each round: the step for
+    when a batch lands is now offered on the batch's first write, withheld on
+    the next ones, and offered again once the session acts on it."""
+    work.mkdir(parents=True, exist_ok=True)
+    ledger = work / "graph.usage.jsonl"
+    s = Server("--graph-path", str(work / "graph"))
+    try:
+        def write(name, args):
+            r = s.call(name, args)
+            check(f"{name} {args.get('id') or args.get('node_id')} is answered",
+                  "error" not in r and not r["result"].get("isError"), str(r)[:300])
+            return structured(r) or {}
+
+        def ledger_cues():
+            lines = [json.loads(l) for l in ledger.read_text().splitlines() if l.strip()]
+            return [l.get("cues", []) for l in lines if l.get("kind") == "call"]
+
+        def req(i):
+            return {"id": f"req:batch-{i}", "name": f"Batch {i}", "statement": f"The pump starts within {i} s."}
+
+        h1 = write("add_requirement", req(1)).get("loop_hint", "")
+        h2 = write("add_requirement", req(2)).get("loop_hint", "")
+        h3 = write("add_requirement", req(3)).get("loop_hint", "")
+        check("the first write of a batch is offered the batch step", "detect_gaps" in h1 and "loop_status" in h1, h1)
+        check("the next writes of the batch are not offered it again, and are told so",
+              h2 == WITHHELD and h3 == WITHHELD, f"{h2!r} / {h3!r}")
+        cues = ledger_cues()
+        check("the ledger records the offer once, under the same id",
+              len(cues) == 3 and "loop_hint/detect_gaps" in cues[0]
+              and not any("loop_hint/detect_gaps" in c for c in cues[1:]), str(cues))
+        # Acting on it ends the batch: the next write is offered it again.
+        s.call("detect_gaps", {})
+        h4 = write("add_requirement", req(4)).get("loop_hint", "")
+        check("acting on the batch step ends the batch: offered again", "detect_gaps" in h4, h4)
+        # The loop_status half was just offered (by req 4); the settling half is
+        # the owner-only cue (0.94.0, 0.95.0) and is said on every call.
+        h5 = write("replace_text", {"node_id": "req:batch-1", "field": "statement",
+                                    "new": "The pump starts within 2 s."}).get("loop_hint", "")
+        check("replace_text keeps its settling clause and withholds only the batch step",
+              "set_decision_status" in h5 and "loop_status" not in h5, h5)
+
+        write("add_artifact", {"id": "art:batch-pump", "name": "pump.rs", "artifact_type": "code",
+                               "location": "src/pump.rs"})
+        base = {"change_type": "new_feature", "subject": "system", "summary": "Faster start.",
+                "detected_at": "2026-10-30"}
+        c1 = write("add_change_event", {"id": "chg:batch-file", "name": "file", **base,
+                                        "affected": [{"node_id": "art:batch-pump"}]})
+        check("a change that touched a registered file names the checksum step",
+              "set_artifact_checksums" in (c1.get("next_step") or ""), str(c1)[:400])
+        c2 = write("add_change_event", {"id": "chg:batch-words", "name": "words", **base,
+                                        "affected": [{"node_id": "req:batch-2"}]})
+        check("a change that touched no file names none", "next_step" not in c2, str(c2)[:400])
+        cues = ledger_cues()
+        check("the step cue is counted under its own id",
+              "next_step/set_artifact_checksums" in cues[-2] and "next_step/set_artifact_checksums" not in cues[-1],
+              str(cues[-2:]))
+    finally:
+        s.close()
 
 
 if __name__ == "__main__":

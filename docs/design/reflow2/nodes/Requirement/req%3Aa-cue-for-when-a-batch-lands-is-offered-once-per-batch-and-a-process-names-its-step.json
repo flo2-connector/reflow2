@@ -1,0 +1,19 @@
+{
+  "content_hash": "sha256:9fc36b5e71a7a9ce7149e55fbfe77a5607a7fe03c197074978fd2110e04c8a04",
+  "node_id": "req:a-cue-for-when-a-batch-lands-is-offered-once-per-batch-and-a-process-names-its-step",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "distinct_from": [
+      "req:the-measured-step-only-tools-are-listed-under-their-process-tool"
+    ],
+    "kind": "functional",
+    "lineage": "original",
+    "name": "A cue naming the step for when a batch of writes lands is offered once per batch, not on every write, and a process tool's reply names its own measured next step",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "increment 7 of epoch:planned-cognition-plus-memory, started at Anthony's word 2026-10-30 (\"Start step 7 alongside\")",
+    "statement": "A reply cue whose step is for when a batch of writes lands (run detect_gaps or detect_defects, read loop_status, link an accepted decision with governed_by) is offered on the first write of a batch and not repeated on the batch's later writes; the session acting on it, or the batch ending, makes it due again. Each cue keeps its id and its words when offered, so its counts compare across releases, and a reply that withholds one says so without naming a call. The owner-only settling cue is never withheld. A process tool whose next step the call log measured names that step in its reply when the step is owed: add_change_event names set_artifact_checksums when the change touched a registered file. Measured basis: fact:the-recall-pilot-after-the-cues-scored-25-full-16-kit-cued-at-12kb-3-uncued-2026-10-30 (detect_gaps 97 offered, 0 followed; loop_status 162 offered, followed only at round end) and fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30 (207 of 327 set_artifact_checksums runs right after add_change_event).",
+    "status": "proposed"
+  }
+}

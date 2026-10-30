@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:b9acaf53f6d01455a913b95d26e314b3ed0b0952a3f0d886086f9ce5c95a65ad",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-batch-step-is-cued-once-per-batch-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:31af1ccaebe7f75bb467d259902fbd974de5f23d6cfa1d31aeeca6c04998550a",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:usage-ledger"
+}

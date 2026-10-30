@@ -78,6 +78,124 @@ pub const FIRST_READ_CUE: &str = "TO LEARN WHERE THIS DESIGN STANDS, read `graph
      anything longer; if the design keeps its own record of where things stand, `search_design` \
      finds it (\"current state\", \"status as of\").";
 
+/// THE CUES OFFERED ONCE PER BATCH OF WRITES, not on every write
+/// (`epoch:planned-the-tool-surface-refined-from-the-counts`, increment 7).
+///
+/// Each names the step for when a batch of writes LANDS — run the gap or
+/// defect check, read what the loop owes, link a settled decision — and
+/// through 0.95.0 each was offered on every write of the batch. Measured on
+/// 0.94.0 (increment 3's writers): `loop_hint/detect_gaps` offered 97 times
+/// and followed 0, `loop_hint/get_skill:detect-and-ask` 75 and 0,
+/// `loop_hint/governed_by` 31 and 0, `loop_hint/detect_defects` and
+/// `loop_hint/get_skill:check-health` 17 and 0 each, `loop_hint/loop_status`
+/// 162 offered, 2 followed within five calls and all 162 only at the end of
+/// the round. The tools are called where they are needed (flo2.io's log,
+/// 2026-09-24 to 10-30: detect_gaps 211, loop_status 397, governed_by 226) —
+/// the cue was the problem, offered at the wrong moment, so its TIMING
+/// changes and its id and words do not.
+///
+/// `loop_hint/set_decision_status` is deliberately NOT here: it is the
+/// owner-only cue whose audience rule 0.94.0 and 0.95.0 fixed, and the one
+/// write cue the counts show followed (23 of 167 within five calls).
+pub const BATCH_CUES: [&str; 6] = [
+    "loop_hint/detect_gaps",
+    "loop_hint/get_skill:detect-and-ask",
+    "loop_hint/detect_defects",
+    "loop_hint/get_skill:check-health",
+    "loop_hint/loop_status",
+    "loop_hint/governed_by",
+];
+
+/// A batch cue offered within this many of the session's latest calls…
+pub const BATCH_CALLS: usize = 25;
+
+/// …and at most this many seconds ago, with nothing since acting on it, is
+/// not offered again: the batch it was offered for is still landing.
+pub const BATCH_SECS: u64 = 900;
+
+/// What a write's `loop_hint` says when every cue it carries was offered
+/// earlier in the same batch. It names no call, so it is not a cue and is not
+/// counted as one; it says the step was withheld rather than leaving the field
+/// silently absent.
+pub const WITHHELD_HINT: &str = "loop: the step for when this batch lands was named earlier in \
+     the batch and is not repeated on every write";
+
+/// How many bytes from the end of the usage ledger are read to decide what is
+/// withheld. A session whose last [`BATCH_CALLS`] calls lie further back than
+/// this (a ledger shared by many busy sessions) is simply offered every cue,
+/// as before.
+pub const BATCH_TAIL_BYTES: u64 = 256 * 1024;
+
+tokio::task_local! {
+    /// The batch cues withheld on the tool call now being served, set by
+    /// `call_tool` around the handler from the usage ledger. Absent outside a
+    /// served call and on a design with no ledger (in memory), where every cue
+    /// is offered exactly as before.
+    static WITHHELD: std::sync::Arc<BTreeSet<String>>;
+}
+
+/// Run `call` with `withheld` as the batch cues this call does not offer.
+pub async fn with_withheld<T>(
+    withheld: BTreeSet<String>,
+    call: impl std::future::Future<Output = T>,
+) -> T {
+    WITHHELD.scope(std::sync::Arc::new(withheld), call).await
+}
+
+/// Is this cue offered on the call now being served? Every cue is, except a
+/// [`BATCH_CUES`] id the ledger shows was offered earlier in this batch.
+pub fn due(cue_id: &str) -> bool {
+    WITHHELD.try_with(|w| !w.contains(cue_id)).unwrap_or(true)
+}
+
+/// `clause` when any of `ids` is due on this call, else nothing: the
+/// batch-end clause of a hint whose first half is about the node just
+/// written and is said every time.
+pub fn batch_clause(ids: &[&str], clause: &'static str) -> &'static str {
+    if ids.iter().any(|id| due(id)) {
+        clause
+    } else {
+        ""
+    }
+}
+
+/// `hint` when any of `ids` is due on this call, else [`WITHHELD_HINT`]: a
+/// hint that is nothing but a batch-end step.
+pub fn batch_hint(ids: &[&str], hint: &'static str) -> &'static str {
+    if ids.iter().any(|id| due(id)) {
+        hint
+    } else {
+        WITHHELD_HINT
+    }
+}
+
+/// The batch cues a session is NOT offered on its next call: each one this
+/// session was offered within its last [`BATCH_CALLS`] calls and
+/// [`BATCH_SECS`] seconds, with no call since acting on it. `lines` is the
+/// ledger's tail in ledger order; `session` is [`session_key`] of the call.
+/// Acting on a cue ends its batch, so the next write offers it again.
+pub fn withheld(lines: &[crate::usage::UsageLine], session: &str, now: u64) -> BTreeSet<String> {
+    let seq: Vec<&crate::usage::UsageLine> = lines
+        .iter()
+        .filter(|l| l.kind == "call" && session_of(l) == session)
+        .collect();
+    let recent = &seq[seq.len().saturating_sub(BATCH_CALLS)..];
+    BATCH_CUES
+        .iter()
+        .filter(|id| {
+            let target = target_of(id);
+            recent
+                .iter()
+                .rposition(|l| l.cues.iter().any(|c| c == *id))
+                .is_some_and(|i| {
+                    now.saturating_sub(recent[i].at) <= BATCH_SECS
+                        && !recent[i + 1..].iter().any(|x| acts_on(x, target))
+                })
+        })
+        .map(|id| id.to_string())
+        .collect()
+}
+
 /// The words a cue may name: the served tools and the served skills.
 #[derive(Debug, Clone, Default)]
 pub struct Vocabulary {
@@ -275,10 +393,17 @@ const NOTE: &str = "A cue is a sentence in a reply's loop_hint, hint, next, nudg
 /// call (`reflow2-mcp --call`) runs in a process of its own and so has a seat
 /// of its own — the door's calls are one sequence, in ledger order.
 fn session_of(line: &crate::usage::UsageLine) -> String {
-    if line.client.as_deref() == Some(crate::service::CALL_DOOR_CLIENT) {
+    session_key(line.client.as_deref(), line.seat.as_deref())
+}
+
+/// The session a call belongs to, from the client it came through and the
+/// seat it is recorded under — the key [`tally`] follows cues by, and
+/// [`withheld`] withholds them by.
+pub fn session_key(client: Option<&str>, seat: Option<&str>) -> String {
+    if client == Some(crate::service::CALL_DOOR_CLIENT) {
         return "door".to_string();
     }
-    line.seat.clone().unwrap_or_else(|| "unknown".to_string())
+    seat.unwrap_or("unknown").to_string()
 }
 
 /// Count every cue offered in `lines` (a window of `call` and `cue` lines, in
@@ -510,6 +635,105 @@ mod tests {
         let t = tally(&refs);
         let c = &t.by_cue["loop_hint/get_skill:detect-and-ask"];
         assert_eq!((c.followed_within_5, c.unattributable), (1, 0));
+    }
+
+    fn at(mut l: UsageLine, t: u64) -> UsageLine {
+        l.at = t;
+        l
+    }
+
+    /// A batch cue is offered on the first write of a batch and withheld on
+    /// the writes after it; the same session acting on it ends the batch, so
+    /// the next write offers it again.
+    #[test]
+    fn a_batch_cue_is_withheld_after_its_offer_until_the_session_acts_on_it() {
+        let gaps = "loop_hint/detect_gaps";
+        let mut lines = vec![at(line("call", "add_requirement", "s1", &[gaps]), 100)];
+        // The first write offered it: the second is not offered it again.
+        assert!(withheld(&lines, "s1", 110).contains(gaps));
+        // Another session was never offered it, so it is due there.
+        assert!(withheld(&lines, "s2", 110).is_empty());
+        // Writes that withheld it record no offer; it stays withheld.
+        for i in 0..5 {
+            lines.push(at(line("call", "add_requirement", "s1", &[]), 111 + i));
+        }
+        assert!(withheld(&lines, "s1", 120).contains(gaps));
+        // Acting on it ends the batch: due again.
+        lines.push(at(line("call", "detect_gaps", "s1", &[]), 121));
+        assert!(!withheld(&lines, "s1", 122).contains(gaps));
+    }
+
+    /// The batch ends on its own after BATCH_CALLS of the session's calls or
+    /// BATCH_SECS, so a long session is reminded again, not told once forever.
+    #[test]
+    fn a_batch_ends_after_its_calls_or_its_seconds() {
+        let status = "loop_hint/loop_status";
+        let mut lines = vec![at(line("call", "replace_text", "s1", &[status]), 100)];
+        assert!(withheld(&lines, "s1", 100 + BATCH_SECS).contains(status));
+        assert!(
+            withheld(&lines, "s1", 101 + BATCH_SECS).is_empty(),
+            "older than BATCH_SECS"
+        );
+        for i in 0..BATCH_CALLS as u64 {
+            lines.push(at(line("call", "replace_text", "s1", &[]), 101 + i));
+        }
+        assert!(
+            withheld(&lines, "s1", 200).is_empty(),
+            "the offer is no longer among the session's last BATCH_CALLS calls"
+        );
+    }
+
+    /// Only the batch cues are ever withheld — the owner-only settling cue
+    /// above all — and the door's calls are one session, as they are counted.
+    #[test]
+    fn only_batch_cues_are_withheld_and_the_door_is_one_session() {
+        let mut a = line(
+            "call",
+            "replace_text",
+            "p1",
+            &["loop_hint/set_decision_status", "loop_hint/loop_status"],
+        );
+        a.client = Some(crate::service::CALL_DOOR_CLIENT.into());
+        a.at = 100;
+        let w = withheld(
+            &[a],
+            &session_key(Some(crate::service::CALL_DOOR_CLIENT), Some("p2")),
+            101,
+        );
+        assert_eq!(w, ["loop_hint/loop_status".to_string()].into());
+        assert!(!BATCH_CUES.contains(&"loop_hint/set_decision_status"));
+    }
+
+    /// Outside a served call nothing is withheld; inside one, exactly the set
+    /// `call_tool` put there.
+    #[tokio::test]
+    async fn due_reads_the_set_the_call_was_served_with() {
+        assert!(due("loop_hint/detect_gaps"));
+        let set: BTreeSet<String> = ["loop_hint/detect_gaps".to_string()].into();
+        with_withheld(set, async {
+            assert!(!due("loop_hint/detect_gaps"));
+            assert!(due("loop_hint/loop_status"));
+            assert_eq!(
+                batch_hint(&["loop_hint/detect_gaps"], "run detect_gaps"),
+                WITHHELD_HINT
+            );
+            assert_eq!(
+                batch_clause(&["loop_hint/detect_gaps"], ", then detect_gaps"),
+                ""
+            );
+            assert_eq!(
+                batch_clause(
+                    &["loop_hint/detect_gaps", "loop_hint/loop_status"],
+                    "; both"
+                ),
+                "; both"
+            );
+        })
+        .await;
+        assert!(
+            vocab().named_calls(WITHHELD_HINT).is_empty(),
+            "the withheld hint names no call, so it is not a cue"
+        );
     }
 
     /// The instructions sentence names exactly the calls counted for it.

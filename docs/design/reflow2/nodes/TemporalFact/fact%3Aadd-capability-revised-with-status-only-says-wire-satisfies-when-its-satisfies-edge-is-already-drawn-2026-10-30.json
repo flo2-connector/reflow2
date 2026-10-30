@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:bdfe771b808658b3f7fb9fd91fd0a16e63a5f72b6d6c65c0d984410f4cfa72b7",
+  "node_id": "fact:add-capability-revised-with-status-only-says-wire-satisfies-when-its-satisfies-edge-is-already-drawn-2026-10-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "measured",
+    "fact_type": "defect",
+    "name": "add_capability revised with only `status` replies \"wire satisfies to the requirement this serves\" although its SATISFIES edge was drawn in the creating call",
+    "statement": "OBSERVED 2026-10-30 through flo2.io's hub (reflow2 design): add_capability on an existing capability (cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step) passing only `id` and `status: verified` replied loop_hint \"loop: wire satisfies to the requirement this serves, then run detect_gaps ...\", while the capability's SATISFIES edge to its requirement had been drawn by the creating call minutes before. Expected: the hint that says the thread is drawn. The hint's branch reads the call's `satisfies` argument and kept.moved_satisfies(), the same fixed-sentence class as chg:a-loop-hint-says-where-the-node-landed, on the revise path. Workaround: none needed; the hint was ignored. Not root-caused here (increment 7 left it); recorded per rule 11 as a to-do. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject_id": "art:tools-capture",
+    "valid_from": "2026-10-30"
+  }
+}

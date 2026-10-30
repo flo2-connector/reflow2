@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3eba3883a6eb3a6a6e3183dab8f4a6d20e08cedcfa751c6ec67987fd168b0b87",
+  "node_id": "fact:predictions-for-the-size-sweep-registered-before-the-runs-2026-10-30",
+  "node_type": "TemporalFact",
+  "properties": {
+    "basis": "forecast",
+    "fact_type": "finding",
+    "name": "Predictions for increment 9 (the size sweep), registered before any run",
+    "source": "req:the-memory-measurement-sweeps-size-against-the-agents-context",
+    "statement": "REGISTERED BEFORE ANY RUN, 2026-10-30, on Anthony's \"Step 9 go on the sweep\". MATERIAL: a made-up cold-store food hub retrofit, 240 documents (60,535 words, about 4x the pilot) in 12 batches of 20, with four 25-question sets answerable as of D060, D120, D180 and D240 (scratchpad sweep/, key in sweep-key/, built by a separate Opus agent; tangle quotas met: 221 value changes, 39 superseded decisions, 24 chains, 17 contradictions, 12 sums, 8 drops). PROTOCOL: two memories, a notes file (arm B) and a reflow2 design through the published 0.95.0 (arm C, logged), each kept by a fresh Sonnet writer per batch with the pilot's round prompt word for word; both memories frozen after B03, B06, B09, B12; at each freeze that quarter's 25 questions are answered four ways by fresh Sonnet agents: notes read in full, reflow2 read in full (read verb only), notes at a 12 KB reading budget, reflow2 at 12 KB with the kit's session-start cue; blind Opus scoring per quarter. PREDICTIONS: S1 reflow2 read in full scores >= 22/25 at every size. S2 notes read in full declines with size: its D240 score is at least 3 below its D060 score. S3 at 12 KB, reflow2 with the kit cue beats notes at every size, and the gap at D240 is larger than at D060. S4 notes at 12 KB declines with size (D240 below D060). S5 reflow2 at 12 KB with the cue stays within 4 points across the four sizes. S6 a notes writer's tokens per round grow with the file: round 12 at least 2x round 1. S7 a reflow2 writer's tokens per round stay within 1.5x from round 1 to round 12. KNOWN LIMIT: one run per cell, so differences of 2 points or less are within noise.",
+    "subject_id": "epoch:planned-size-sweep-where-structure-starts-to-matter",
+    "valid_from": "2026-10-30"
+  }
+}

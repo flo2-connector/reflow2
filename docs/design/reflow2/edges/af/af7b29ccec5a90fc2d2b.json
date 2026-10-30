@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:485d6d1f8b9a4a09870314d7448b9395c2adb19219551589eab37ca77ba1d009",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-steps-of-record-what-was-built-point-at-record-the-build",
+  "properties": {
+    "evidence": "It is about making that built capability reachable; it is worth nothing if the capability were withdrawn.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "cap:record-the-build-in-one-call"
+}
