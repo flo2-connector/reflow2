@@ -265,7 +265,7 @@ const NOTE: &str = "A cue is a sentence in a reply's loop_hint, hint, next, nudg
      connect-time instructions carry (`instructions/…`, offered once per session at the \
      handshake). Its id is `<field>/<named call>`. FOLLOWED means the same session made that call \
      later in the window: within its next 5 calls, or at all. A session is the seat that made the \
-     calls; every `reflow2-mcp --call` door call has a seat of its own, so the door's calls are \
+     calls (behind a trusted gateway, the seat the gateway named for that caller); every `reflow2-mcp --call` door call has a seat of its own, so the door's calls are \
      followed as one sequence in ledger order. UNATTRIBUTABLE: offered on a session that made no \
      other call in the window (a per-request seat), so nothing could follow it; not counted as \
      ignored. Not counted: the kit's session-start hook repeats the first-read cue outside the \

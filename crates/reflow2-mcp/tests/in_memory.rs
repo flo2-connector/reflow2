@@ -147,6 +147,7 @@ mod an_initialize_is_recorded_as_rmcp_answered_it;
 mod an_undated_change_event_says_so;
 mod an_unknown_field_refusal_names_the_nearest_parameter;
 mod an_upstream_export_is_read_without_being_imported;
+mod behind_a_trusted_gateway_the_host_names_the_owner;
 mod built_work_reads_as_built_on_the_wire;
 mod claims_and_shared_premises_on_the_wire;
 mod derived_relations_are_served;

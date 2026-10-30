@@ -34,6 +34,7 @@ mod a_spawned_daemon_inherits_nothing_it_should_not;
 mod a_store_an_older_reflow2_wrote_is_rechecked;
 mod a_stores_identity_follows_its_real_path;
 mod an_exposed_server_verifies_bearer_tokens;
+mod behind_a_trusted_gateway_each_caller_has_its_own_seat;
 mod design_identity;
 mod loop_status_says_what_is_not_exported;
 mod reasoning_crosses_designs_within_a_hub;

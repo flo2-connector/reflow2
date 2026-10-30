@@ -53,7 +53,8 @@ use rmcp::{ErrorData as McpError, RoleServer};
 use serde_json::{Map as JsonMap, Value as JsonValue, json};
 
 use super::{
-    ACTING_AGENT_META, READABLE_GRAPH_IDS_META, ReflowService, VIEW_GRAPH_IDS, VIEW_GRAPH_IDS_META,
+    ACTING_AGENT_META, DESIGN_OWNERS_META, READABLE_GRAPH_IDS_META, ReflowService, VIEW_GRAPH_IDS,
+    VIEW_GRAPH_IDS_META,
     json_result, not_readable, readable_graph_ids_in,
 };
 use crate::content_policy::ContentPolicy;
@@ -550,11 +551,15 @@ fn without_view(context: &RequestContext<RoleServer>) -> RequestContext<RoleServ
 /// verified token, all carried as they came, so authorship on the member is
 /// the caller's. An acting agent this hub session DECLARED (rather than sent)
 /// is carried too, since the member's session is new and knows nothing of it.
+/// WHO OWNS THE DESIGN is NOT carried (`DESIGN_OWNERS_META`): the host named
+/// the hub's owners, and a member's may be someone else, so the member reads
+/// its own record. The caller's seat is carried: it is the same caller.
 fn forwarded(
     hub: &ReflowService,
     context: &RequestContext<RoleServer>,
 ) -> RequestContext<RoleServer> {
     let mut ctx = without_view(context);
+    ctx.meta.0.0.remove(DESIGN_OWNERS_META);
     if !ctx.meta.0.0.contains_key(ACTING_AGENT_META)
         && let Some(agent) = hub
             .acting_agent

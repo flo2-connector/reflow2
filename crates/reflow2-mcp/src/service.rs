@@ -516,6 +516,62 @@ pub const READABLE_GRAPH_IDS_META: &str = "reflow2/readable_graph_ids";
 /// the view existed.
 pub const VIEW_GRAPH_IDS_META: &str = "reflow2/view_graph_ids";
 
+/// The request `_meta` key naming WHO OWNS THE DESIGN this one call is on, by
+/// Contributor id — the trusted host's word, exactly as [`WRITES_FOR_META`]
+/// names the caller, and read the same way: per call, never remembered. The
+/// value is a JSON array of Contributor id strings. Honoured ONLY behind a
+/// declared trusted gateway (`crate::caller::CallerRule::TrustedGateway`), and
+/// read only by [`ReflowService::call_can_give_the_owners_word`], the advisory
+/// rule that offers the settling cue to whoever can give the owner's word: a
+/// host such as flo2.io keeps each design's owner in its own records and writes
+/// no `OWNED_BY` into the design, and with this it need not. NOTHING IS WRITTEN
+/// from it, and it grants nothing: who may sign is still the caller alone.
+/// Absent, empty, or sent to any other engine, the design's own `OWNED_BY` is
+/// read, as before. A hub's view does not hand it on to a member: the owners
+/// named are the hub's (`view::forwarded`)
+/// (`fact:root-cause-behind-a-trusted-gateway-the-engine-can-learn-a-designs-owner-only-from-owned-by-2026-10-30`).
+pub const DESIGN_OWNERS_META: &str = "reflow2/design_owners";
+
+/// The request `_meta` key naming the SEAT one call is made from — the trusted
+/// host's handle for the caller (an agent, a person's app), never a person's
+/// name. A host that carries many callers over one engine session (flo2.io
+/// keeps one per design) names each caller's seat per call, and the usage
+/// ledger writes that seat on the call's line, so cues are followed per caller
+/// rather than per session (`crate::cues::tally`). Honoured ONLY behind a
+/// declared trusted gateway; at most [`MAX_HOST_SEAT_CHARS`] printable
+/// characters, else ignored. It names no claim's owner: `claim_region` still
+/// takes its seat as an argument
+/// (`fact:root-cause-the-usage-ledger-takes-its-seat-from-the-mcp-session-so-a-gateways-callers-share-one-2026-10-30`).
+pub const SEAT_META: &str = "reflow2/seat";
+
+/// The longest seat a host may name ([`SEAT_META`]).
+pub const MAX_HOST_SEAT_CHARS: usize = 128;
+
+/// The owners one request named ([`DESIGN_OWNERS_META`]): `None` when the key
+/// is absent or names nobody — a set with no owner in it is no word on
+/// ownership, so the design's own record decides.
+pub(crate) fn design_owners_in(value: Option<&JsonValue>) -> Option<Vec<String>> {
+    let owners: Vec<String> = value?
+        .as_array()?
+        .iter()
+        .filter_map(|x| x.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .map(String::from)
+        .collect();
+    (!owners.is_empty()).then_some(owners)
+}
+
+/// The seat one request named ([`SEAT_META`]): `None` when absent, blank, too
+/// long, or holding anything but printable characters.
+pub(crate) fn host_seat_in(value: Option<&JsonValue>) -> Option<String> {
+    let seat = value?.as_str()?.trim();
+    (!seat.is_empty()
+        && seat.chars().count() <= MAX_HOST_SEAT_CHARS
+        && seat.chars().all(|c| !c.is_control()))
+    .then(|| seat.to_string())
+}
+
 /// The readable set one request carried ([`READABLE_GRAPH_IDS_META`]): `None`
 /// when the key is absent, else the string entries of its array. A value that
 /// is not an array is a set with nothing in it — present and empty — so the
@@ -572,6 +628,11 @@ tokio::task_local! {
     /// around the handler and read by `write_lock`, which is how every write
     /// the handler makes is credited without 115 write sites knowing.
     static WRITES_FOR: Option<String>;
+    /// Who the trusted host says owns the design the tool call now being
+    /// served is on ([`DESIGN_OWNERS_META`]) — `None` when it said nothing, or
+    /// the engine is not behind a trusted gateway. Read only by
+    /// `call_can_give_the_owners_word`.
+    static DESIGN_OWNERS: Option<Vec<String>>;
     /// The agent the tool call now being served writes through — the
     /// request's `_meta`, else the session's declaration, else the Contributor
     /// matching the client's handshake name, else nobody. Read by
@@ -8459,6 +8520,13 @@ impl ReflowService {
     ///   can give the word, and the cue says it is a question for the owner.
     ///   Behind flo2.io's gateway every call is named, so there the first rule
     ///   decides, as it did before.
+    /// · WHO THE OWNER IS, behind a trusted gateway, is the host's word when it
+    ///   gave one (`DESIGN_OWNERS_META`, per call): a host that keeps a
+    ///   design's owner in its own records names them, and the design need
+    ///   hold no `OWNED_BY` for this rule to know them. Nothing is written
+    ///   from it. Without that word, or on any other engine, the design's own
+    ///   `OWNED_BY` is read, as before
+    ///   (`fact:root-cause-behind-a-trusted-gateway-the-engine-can-learn-a-designs-owner-only-from-owned-by-2026-10-30`).
     ///
     /// Advisory wording only: nothing is refused on this answer.
     pub(crate) fn call_can_give_the_owners_word(&self, g: &DesignGraph) -> bool {
@@ -8471,16 +8539,25 @@ impl ReflowService {
         else {
             return !self.caller_rule.served_for_others();
         };
-        let owners: Vec<String> = g
-            .scan_nodes(reflow2_core::nodes::node::PROJECT)
-            .unwrap_or_default()
-            .into_iter()
-            .flat_map(|p| {
-                g.outgoing(&p.node_id, Some(reflow2_core::nodes::edge::OWNED_BY))
-                    .unwrap_or_default()
-            })
-            .map(|e| e.to_id)
-            .collect();
+        // Set only where `call_tool` honoured it (behind a trusted gateway).
+        let named_by_host = DESIGN_OWNERS
+            .try_with(Clone::clone)
+            .ok()
+            .flatten()
+            .filter(|_| self.caller_rule.host_names_owner_and_seat());
+        let owners: Vec<String> = match named_by_host {
+            Some(owners) => owners,
+            None => g
+                .scan_nodes(reflow2_core::nodes::node::PROJECT)
+                .unwrap_or_default()
+                .into_iter()
+                .flat_map(|p| {
+                    g.outgoing(&p.node_id, Some(reflow2_core::nodes::edge::OWNED_BY))
+                        .unwrap_or_default()
+                })
+                .map(|e| e.to_id)
+                .collect(),
+        };
         owners.is_empty()
             || owners
                 .iter()
@@ -8536,6 +8613,10 @@ impl ReflowService {
         skill: Option<String>,
         known_class: Option<crate::usage::RefusalClass>,
         cues: Vec<String>,
+        // The seat the trusted host named for this call (`SEAT_META`), which
+        // the line carries in place of this session's: one session there
+        // carries many callers. `None` everywhere else.
+        host_seat: Option<String>,
     ) {
         // Counted for EVERY design, in memory included — the ledger below is
         // for a store on disk, but the reads-without-writes question is about
@@ -8579,7 +8660,7 @@ impl ReflowService {
                 ms: Some(took.as_millis() as u64),
                 client: Some(client),
                 client_version: Some(client_version).filter(|v| !v.is_empty()),
-                seat: Some(self.seat.id().to_string()),
+                seat: Some(host_seat.unwrap_or_else(|| self.seat.id().to_string())),
                 skill,
                 cues,
             },
@@ -9200,6 +9281,16 @@ impl ReflowService {
         // (`READABLE_GRAPH_IDS_META`): the request's own `_meta`, never the
         // session's — a set is handed over per call or not at all.
         let readable = readable_graph_ids_in(context.meta.get(READABLE_GRAPH_IDS_META));
+        // AND, BEHIND A TRUSTED GATEWAY ONLY, WHO OWNS THIS DESIGN AND WHICH
+        // SEAT THIS CALLER IS (`DESIGN_OWNERS_META`, `SEAT_META`): the host's
+        // word, per call. Anywhere else both are ignored.
+        let host_words = self.caller_rule.host_names_owner_and_seat();
+        let design_owners = host_words
+            .then(|| design_owners_in(context.meta.get(DESIGN_OWNERS_META)))
+            .flatten();
+        let host_seat = host_words
+            .then(|| host_seat_in(context.meta.get(SEAT_META)))
+            .flatten();
         // AND WHICH AGENT IT WRITES THROUGH (`reflow2_core::acting`): the
         // request's own `_meta`, else the session's declaration, else the
         // Contributor matching the name this client gave at handshake.
@@ -9298,11 +9389,14 @@ impl ReflowService {
                             acting,
                             WRITES_FOR.scope(
                                 writes_for,
-                                READABLE_GRAPH_IDS.scope(
-                                    readable,
-                                    crate::arguments::TRANSPORT.scope(
-                                        transport,
-                                        far::FarScoped::new(far, self.tool_router.call(tcc)),
+                                DESIGN_OWNERS.scope(
+                                    design_owners,
+                                    READABLE_GRAPH_IDS.scope(
+                                        readable,
+                                        crate::arguments::TRANSPORT.scope(
+                                            transport,
+                                            far::FarScoped::new(far, self.tool_router.call(tcc)),
+                                        ),
                                     ),
                                 ),
                             ),
@@ -9334,6 +9428,7 @@ impl ReflowService {
             skill_fetched,
             argument_class,
             cues.clone(),
+            host_seat,
         );
 
         // 🛑 A DESERIALISATION REFUSAL ARRIVES AS `Ok(Complete { is_error })`,
