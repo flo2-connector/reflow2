@@ -71,6 +71,14 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # 2026-10-30, when the retired reports' steps moved to tools that remain
+    # (req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-
+    # stubs-then-december-decides): get_node's `include_edges` and its
+    # `edge_types`, and graph_report's `format` value `markdown`.
+    "include_edges", "edge_types", "markdown",
+    # add_verification's `verifies` (the list of what a check checks): the
+    # tool of that name is a counted refusing stub, so the word is the field.
+    "verifies",
     # capture-intent (2026-10-24, dec:a-premise-says-whether-it-rests-on-
     # intent-or-delivery): add_inference's `as_intent` and `as_delivery`,
     # what a premise is read as.
@@ -585,7 +593,6 @@ NON_TOOL_TERMS = {
     "sequence",
     "deployed",
     "kind",
-    "min_level",
     "unreleased_component",
     "path",
     "base_path",
@@ -775,7 +782,6 @@ NON_TOOL_TERMS = {
     "deferred_derivation",
     "deferrals",
     "observed",
-    "resume_point",
     "flow_type",
     "method",
     "no_closure_criterion_stated",
@@ -1026,6 +1032,15 @@ def served_tools() -> set[str]:
     return tools
 
 
+def retired_stubs() -> set[str]:
+    """The COUNTED REFUSING STUBS (crates/reflow2-mcp/src/deprecation.rs,
+    `Deprecation::stub("<name>", …)`): served, so a call to the old name is
+    counted, and never what a skill points at — a skill that sent agents to a
+    stub would make the December re-count measure the skill, not the need."""
+    src = (SRC_DIR / "deprecation.rs").read_text(encoding="utf-8")
+    return set(re.findall(r'Deprecation::stub\(\s*"([a-z_]+)"', src))
+
+
 # `cap:tool-carries-convention` — the register of tools whose served description
 # must carry the one rule an agent would otherwise reconstruct wrongly or not at
 # all. The VALUE is a phrase that must appear verbatim, so a description can be
@@ -1102,9 +1117,9 @@ TOOL_CONVENTIONS: dict[str, str] = {
     # An existing id edits rather than resets — the opposite of the obvious guess.
     "create_node": "An existing id MERGES",
     # Silent accept is how a design erodes into fiction.
-    "set_artifact_checksum": "Silent accept does not exist",
+    "set_artifact_checksums": "Silent accept does not exist",
     # Two different acts on the same gap; conflating them loses the reason.
-    "acknowledge_gap": "recording WHY",
+    "acknowledge_gaps": "recording WHY",
     "answer_question": "not a substitute for the design",
     # `planned` is not evidence, and existing is not passing.
     "set_verification_status": "not confirmation",
@@ -1433,7 +1448,7 @@ LANGUAGE_HARDCODES = re.compile(
 # acknowledgement — in the same sentence as offering a preference. Those record
 # what the USER decided (`dec:certainty-derived`), and a skill that couples them
 # teaches the agent to sign on their behalf.
-USER_WORD_WRITES = ("set_requirement_status", "set_decision_status", "acknowledge_gap")
+USER_WORD_WRITES = ("set_requirement_status", "set_decision_status", "acknowledge_gaps")
 RECOMMEND_WORDS = ("recommend", "recommendation", "suggest")
 
 # A ceiling, not a target. Today's longest served description is ~1333 chars
@@ -1622,7 +1637,8 @@ def main() -> int:
     skill_dirs = sorted(d for d in SKILLS.iterdir() if d.is_dir())
     check("skills exist under getting-started/skills", bool(skill_dirs))
 
-    tools = served_tools()
+    # A skill names a survivor, never a counted refusing stub (retired_stubs).
+    tools = served_tools() - retired_stubs()
     seen_terms: set[str] = set()
 
     print(f"== {len(skill_dirs)} skills, {len(tools)} served tools ==")
@@ -1853,8 +1869,17 @@ def main() -> int:
 
         # A ceiling, not a target: context is paid on every session by every
         # consumer, and `cap:tool-search` exists because the surface is large.
+        #
+        # A COUNTED REFUSING STUB is held to the budget without its retirement
+        # mark: the mark goes before the tool's own description, which stays
+        # unchanged so find_tools' word weights do not move, and both leave at
+        # the re-count (crates/reflow2-mcp/src/deprecation.rs).
+        stubs = retired_stubs()
+        def unmarked(n, d):
+            return d.split("\n\n", 1)[1] if n in stubs and "\n\n" in d else d
         over = sorted(
-            (n, len(d)) for n, d in descriptions.items() if len(d) > MAX_DESCRIPTION_CHARS
+            (n, len(unmarked(n, d))) for n, d in descriptions.items()
+            if len(unmarked(n, d)) > MAX_DESCRIPTION_CHARS
         )
         check(
             f"no served description exceeds {MAX_DESCRIPTION_CHARS} chars",

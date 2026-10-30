@@ -92,7 +92,7 @@ ordinary gaps:
 - `kpp_contradicted` — an accepted Decision reaches what the KPP binds. Surfaced for review, not
   as a verdict; whether the choice really costs the KPP is a judgement, and it is the user's.
 
-Also run **impact-check** before any change that touches what a KPP binds — `propagate_change`
+Also run **impact-check** before any change that touches what a KPP binds — `propagate_from`
 reports a KPP crossing in the blast radius, which is worth knowing *before* the edit rather than
 after.
 

@@ -74,7 +74,7 @@ async fn seeded() -> ReflowService {
 #[tokio::test]
 async fn verifies_resolves_the_target_type_from_the_id() {
     let s = seeded().await;
-    let out = j!(s.verifies(Parameters(
+    let out = j!(s.verifies_kept(Parameters(
         serde_json::from_value(serde_json::json!({
             "verification_id": "ver:fast", "target_id": "req:fast"
         }))
@@ -103,7 +103,7 @@ async fn a_collision_is_refused_and_names_both_types() {
         "node_type": "Capability", "id": "req:fast", "props": {"name": "Impostor", "description": "same id"}
     })).unwrap())));
     let e = s
-        .verifies(Parameters(
+        .verifies_kept(Parameters(
             serde_json::from_value(serde_json::json!({
                 "verification_id": "ver:fast", "target_id": "req:fast"
             }))
@@ -117,7 +117,7 @@ async fn a_collision_is_refused_and_names_both_types() {
         "names both and the field to pass: {m}"
     );
     // Passing the type still works — that is the way through.
-    let out = j!(s.verifies(Parameters(
+    let out = j!(s.verifies_kept(Parameters(
         serde_json::from_value(serde_json::json!({
             "verification_id": "ver:fast", "target_type": "Requirement", "target_id": "req:fast"
         }))
@@ -130,7 +130,7 @@ async fn a_collision_is_refused_and_names_both_types() {
 async fn an_unknown_id_says_so_rather_than_guessing_a_type() {
     let s = seeded().await;
     let e = s
-        .verifies(Parameters(
+        .verifies_kept(Parameters(
             serde_json::from_value(serde_json::json!({
                 "verification_id": "ver:fast", "target_id": "req:nope"
             }))

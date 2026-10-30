@@ -71,7 +71,6 @@ pub const HELPERS: &[&str] = &[
     "depends_on",
     "deploy_to",
     "documents",
-    "gate_on",
     "governed_by",
     "imposes",
     "invalidates",
@@ -88,7 +87,6 @@ pub const HELPERS: &[&str] = &[
     "require_resource",
     "satisfies",
     "schedule_for",
-    "verifies",
     "violates_rule",
 ];
 
@@ -233,7 +231,6 @@ fn run_helper(
         "depends_on" => depends_on_on,
         "deploy_to" => deploy_to_on,
         "documents" => documents_on,
-        "gate_on" => gate_on_on,
         "governed_by" => governed_by_on,
         "imposes" => imposes_on,
         "invalidates" => invalidates_on,
@@ -250,7 +247,6 @@ fn run_helper(
         "require_resource" => require_resource_on,
         "satisfies" => satisfies_on,
         "schedule_for" => schedule_for_on,
-        "verifies" => verifies_on,
         "violates_rule" => violates_rule_on,
     }
 }
@@ -258,6 +254,14 @@ fn run_helper(
 /// One item, run: the helper's reply as the helper would send it, or its
 /// refusal in the helper's own words.
 pub(crate) fn draw_one(g: &mut DesignGraph, item: &DrawEdgeItem) -> Result<JsonValue, String> {
+    // A COUNTED REFUSING STUB draws nothing here either, and answers as its
+    // own call does (`crate::deprecation::stub_refusal`): `verifies` and
+    // `gate_on` were typed edge helpers until 2026-10-30.
+    if let Some(refusal) =
+        crate::deprecation::stub_refusal(crate::deprecation::REGISTRY, &item.tool, None)
+    {
+        return Err(refusal);
+    }
     let r = run_helper(g, &item.tool, item.arguments.clone()).map_err(|e| e.message.to_string())?;
     let text = || {
         r.content

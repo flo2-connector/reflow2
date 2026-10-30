@@ -221,9 +221,8 @@ def run_p3(s: Server, p: Probes, files: dict[str, pathlib.Path]) -> None:
 def run_p4(s: Server, p: Probes, files: dict[str, pathlib.Path]) -> None:
     print("\n== P4 · verification: does the design know what is actually proven? ==")
     s.call("add_verification", {"id": "ver:detect", "name": "detect.rs tests",
-                                "method": "test", "level": "unit"})
-    s.call("verifies", {"verification_id": "ver:detect",
-                        "target_type": "Capability", "target_id": "cap:detect"})
+                                "method": "test", "level": "unit",
+                                "verifies": [{"target_type": "Capability", "target_id": "cap:detect"}]})
     s.call("set_verification_status", {"verification_id": "ver:detect", "status": "passing"})
 
     # Probe 5 — a capability claiming to be verified with nothing verifying it.
@@ -244,9 +243,8 @@ def run_p4(s: Server, p: Probes, files: dict[str, pathlib.Path]) -> None:
 
     # Probe 6 — a verification that FAILED. Does it reach the requirement behind it?
     s.call("add_verification", {"id": "ver:drift", "name": "drift.rs tests",
-                                "method": "test", "level": "unit"})
-    s.call("verifies", {"verification_id": "ver:drift",
-                        "target_type": "Capability", "target_id": "cap:drift"})
+                                "method": "test", "level": "unit",
+                                "verifies": [{"target_type": "Capability", "target_id": "cap:drift"}]})
     s.call("set_verification_status", {"verification_id": "ver:drift", "status": "failing"})
     gaps = s.call("detect_gaps")["items"]
     named = any("ver:drift" in g.get("affected_ids", []) or "cap:drift" in g.get("affected_ids", [])

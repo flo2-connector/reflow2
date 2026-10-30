@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:4e552cd61be01be17ad11d4577730b03b8912856215a1db244718e9c5097c7d7",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:042dc6d0af1c579dbb1ff04da216a7518814fb77eca27edf8fa004206e51cd7d",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks"
+}

@@ -192,8 +192,8 @@ async fn add_inference_writes_the_step_in_one_call() {
     .await;
     let radius = s
         .ok(
-            "propagate_change",
-            json!({"change_event_id": "chg:it-did-not-rain"}),
+            "propagate_from",
+            json!({"seed_ids": ["chg:it-did-not-rain"]}),
         )
         .await;
     let r = Session::row(&radius, "inf:modus-ponens");

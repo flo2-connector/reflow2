@@ -221,7 +221,7 @@ The recovered design is a claim about the system; test it the way the trials tes
 1. Re-run the reconcile family — artifacts, verification, deployment. Everything should now
    agree; any divergence is the model wrong, not the system.
 2. Run `detect_gaps` and `detect_defects` and hold every finding to: **true of the system, or
-   an error in the model.** Fix the model where it is wrong; `acknowledge_gap` with the user's
+   an error in the model.** Fix the model where it is wrong; `acknowledge_gaps` with the user's
    reason where the system is genuinely like that; and what remains open is real work the
    system's owners now know about.
 3. **Measure what you did not model.** Sweep the tree yourself and hand the paths to
@@ -300,11 +300,10 @@ frontier query and a deferred-derivation marker"):
    `deferrals`). A deferral never makes a question disappear; it moves it to where it is counted.
 3. **Ask the region's questions with the region's scope**: `detect_gaps` with `scope` on the
    region's root (the default depth is one component's own thread; it was measured).
-4. **Resume with `frontier`.** It lists structure without intent, the deferrals oldest first, and
-   the most recent one as `resume_point` — you were here. Hand it the sweep (`observed`, derived
-   from `git ls-files`) and it also lists what is adjacent and NOT captured at all; without a
-   sweep it says that is not known rather than reading clean. That third leg is the breadth-first
-   payoff kept alive: the frontier keeps saying what you have not looked at.
+4. **Resume from what is owed.** `loop_status` lists the deferrals (`deferrals`) as owed, and
+   `coverage_report` with the sweep (`observed`, derived from `git ls-files`) lists what is NOT
+   captured at all; without a sweep it says that is not known rather than reading clean. That is
+   the breadth-first payoff kept alive: the design keeps saying what you have not looked at.
 5. **Settle a deferral** by recovering the intent (Phase 3) and closing the marker — `valid_to` on
    the fact, or `invalidates` from the record that answered it — which brings the finding back if
    the intent is still missing.

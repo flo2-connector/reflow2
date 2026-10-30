@@ -361,7 +361,8 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record work THIS SESSION did BY HAND that reflow2 already serves, or \
+        description = "WRITES ONE RECORD (manual_work_ledger READS them all): record work THIS \
+                       SESSION did BY HAND that reflow2 already serves, or \
                        should — the negative space. ⭐ IT IS A STRONGER SIGNAL THAN AN ABSENT \
                        CALL BECAUSE IT CARRIES INTENT: reflow2 can count which tools were never \
                        called, but `dec:bl-155` measured 40 of 132 unused and states outright \
@@ -416,7 +417,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
+        description = "READS THEM ALL (report_manual_work WRITES one): every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. Read it when deciding what to build or what to surface: a run of `tool_not_found` against a tool that exists is a discoverability repair, and a run of `tool_missing` is a feature nobody has written. Empty means nobody has reported any — which is NOT the same as nobody having done work by hand, and must not be read as it, since the signal depends on a session noticing and saying so. Ask for this when you want to know what sessions have had to script by hand because no tool did it.",
         title = "Manual Work Ledger",
         annotations(read_only_hint = true)
     )]
@@ -445,7 +446,7 @@ impl ReflowService {
     // ---- Temporal / CHANGE (deterministic, mutating) ----
 
     #[tool(
-        description = "Create or revise a `DesignEpoch` that HAS HAPPENED — a point on the time axis you are \
+        description = "Create or revise a `DesignEpoch` that HAS HAPPENED (THE PAST; plan_epoch is the future) — a point on the time axis you are \
                        recording, which is what an epoch has always meant here. NOTE THE \
                        STORED TYPE NAME is `DesignEpoch`, not `Epoch`: that is the string \
                        `get_node` and `scan_nodes` want. Lands `status: arrived` unless you \
@@ -504,7 +505,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create or revise an Epoch that has NOT happened yet — a claim about the future rather \
+        description = "Create or revise an Epoch that has NOT happened yet (THE FUTURE; add_epoch is the past) — a claim about the future rather \
                        than a record of the past, and the forward half of the time axis \
                        (req:epochs-can-be-planned). `epoch_type` still applies: KIND and TENSE are \
                        orthogonal, so a planned MILESTONE and a planned RELEASE CUT are both \
@@ -812,7 +813,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create or revise a ChangeEvent (seed for propagate_change). Pass `affected` to say in the same \
+        description = "Create or revise a ChangeEvent (a seed for propagate_from). Pass `affected` to say in the same \
                        call what it changed — a CHANGED edge is drawn to each entry, which is what makes the \
                        event propagatable. TWO QUESTIONS, NOT ONE: `change_type` says WHY, and `subject` says \
                        WHICH AXIS — `system` (the thing changed) or `record` (the thing did not change and only \

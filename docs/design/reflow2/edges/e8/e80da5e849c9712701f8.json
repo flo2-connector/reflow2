@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:f05803add268b147b569efc493861581b7cc3f17830b0e4a80842c421f01aca1",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 5,
+    "action": "modified",
+    "checksum_after": "sha256:9609378225b91d0b5235846aa21cd4380a0ef55f10d844872a1014af7c3141dd",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:smoke-mcp"
+}

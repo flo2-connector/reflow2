@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:cb0d829716c873b928d64ada9ba419c53d2e2e8e46e8b0a106f7146bff88623b",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:feedback-is-a-computed-tally-wire-test",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-retired-tool-is-a-counted-stub-and-its-survivor-does-its-job"
+}

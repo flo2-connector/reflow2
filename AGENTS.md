@@ -741,8 +741,8 @@ exactly as flo2.io does:
   node that is gone reads `stale`, and a far design the caller may not read (the readable set on
   THIS call), or any server that reaches no other design, reads `unreachable`: unknown, never
   holding. Readings are per call and never stored: two callers may read different designs.
-- **Through a hub, a change walk continues.** `propagate_from` and `propagate_change` called
-  through a hub's address carry the radius on into each design of the view (`WALK_AMONG`, set by
+- **Through a hub, a change walk continues.** `propagate_from` (from seed ids or one recorded
+  change's id) called through a hub's address carry the radius on into each design of the view (`WALK_AMONG`, set by
   `view::serve`: the hub and the readable members) holding a reference to a node the walk
   reached, and on from there, each design entered once. The references are named in
   `boundary_crossings` with their design's prefix and each radius comes back under
@@ -900,7 +900,7 @@ files):
 | Loop step | Module | Entry points |
 |---|---|---|
 | **CHANGE** (axis Z — never overwrite the past) | `src/temporal.rs` | `add_epoch`, `snapshot_node`, `add_change_event`, `record_change` |
-| **PROPAGATE** (blast radius along the golden thread) | `src/propagate.rs` | `propagate_change` (reactive), `propagate_from` (speculative) |
+| **PROPAGATE** (blast radius along the golden thread) | `src/propagate.rs` | `propagate_from` — from one ChangeEvent's id (reactive) or from seed ids (speculative) |
 | **DETECT** (find gaps to ask the human) | `src/detect.rs` | `detect_gaps` → `GapCandidate`s; `GapCandidate::to_prompt` (PROMPT half, via `LlmBackend`) |
 | **HEAL** (fix structure the machine can) | `src/heal.rs` (+ `src/structure.rs`) | `detect_defects`, `propose_heal`, `apply_heal` |
 | **LLM seam** | `src/llm.rs` | `LlmBackend` trait, `MockLlmBackend`, `complete_json` |

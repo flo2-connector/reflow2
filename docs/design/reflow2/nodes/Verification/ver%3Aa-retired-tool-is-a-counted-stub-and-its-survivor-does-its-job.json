@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e77a51b30b6309064b60b677516244a1cad6a88bcd0fec55a8edc4e0ed4ce949",
+  "node_id": "ver:a-retired-tool-is-a-counted-stub-and-its-survivor-does-its-job",
+  "node_type": "Verification",
+  "properties": {
+    "description": "a_retired_tool_is_a_counted_stub_and_its_survivor_does_its_job.rs (in_memory program, over a real MCP session): the fifteen stubs are listed with their RETIRED mark and read-only, each refuses an ordinary 0.95.0 call with \"REFUSED: ... RETIRED on 2026-10-30 ... What to do ... 2026-12-23\" and leaves every node and edge as it was, a fold's refusal carries the exact survivor call built from the caller's arguments, and find_tools never offers one; propagate_from with one ChangeEvent seed equals propagate_change_kept field for field plus seeded_by_change (and a change among several seeds is walked as a node, said); dimension_drifts with target_id and dimension equals dimension_drift_kept; graph_report format markdown equals graph_report_markdown_kept's document; add_verification with id and verifies keeps name, method, level, description, status, last_run_at, findings and location; one-item set_artifact_checksums and acknowledge_gaps do the one-item jobs. With it: tools/test_feedback_is_a_computed_tally.py 5b on the real binary (a stub call is in the ledger under its own name as a refusal; usage_report's retired_stubs counts it, the uncalled at 0), tools/smoke_mcp.py §7 and §7b2, no_served_text_names_a_tool_that_is_not_served (stubs unnamed in served text), every_tool_is_found_by_a_query_in_the_users_words (stubs never ranked).",
+    "findings": "At 2dbf887a3 on ajs77 (rustc 1.99.0, RocksDB build): in_memory 1037 passed, 0 failed, including the six tests of this file; core no-default 2118 passed after re-blessing reports_without_an_inference.json and readings_before_the_shared_evaluation.json (detect_gaps text only, acknowledge_gap -> acknowledge_gaps); clippy -D warnings clean (mcp all-targets with RocksDB, core no-default). Python gates on that binary: smoke_mcp ALL CHECKS PASSED, toolsnap, tool_confusability --validate 214/214 top-1, empty_speaks, refusal_speaks, every_tool_carries_a_title (199), replies_are_bounded, a_reply_is_sent_once, test_feedback_is_a_computed_tally, test_content_policy, vocabulary_reach --check, phase_trial, coherent_erosion_trial 9/9, model_the_loop, test_call_door, test_reflow2_check, stateless_seat_probe, test_loop_nudge, skill_lint, render_skills_and_tools --check, check_command_surface, test_init all OK. Not this change: on ajs77 two on_disk/lib tests (registry_http an_idle_design_is_closed..., a_routed_read_asked_at_n...) failed in its /tmp-quota-limited environment; CI is the authority.",
+    "kind": "verification",
+    "last_run_at": "2026-10-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/a_retired_tool_is_a_counted_stub_and_its_survivor_does_its_job.rs",
+    "method": "test",
+    "name": "A retired tool is a counted refusing stub, and its survivor does its job",
+    "status": "passing"
+  }
+}

@@ -188,6 +188,12 @@ schema_enum!(
     "dimension",
     req
 );
+schema_enum!(
+    dimension_assessment_dimension_opt,
+    "DimensionAssessment",
+    "dimension",
+    opt
+);
 schema_enum!(flow_tier_opt, "Flow", "tier", opt);
 schema_enum!(fragment_provenance_opt, "Fragment", "provenance", opt);
 schema_enum!(gated_on_kind_req, "GATED_ON", "kind", req);
@@ -319,6 +325,13 @@ pub fn review_link_basis_opt(_: &mut SchemaGenerator) -> Schema {
     }
     enum_of(values, true)
 }
+/// `graph_report`'s `format`: the two shapes its handler answers.
+pub const GRAPH_REPORT_FORMATS: &[&str] = &["json", "markdown"];
+
+pub fn graph_report_format_opt(_: &mut SchemaGenerator) -> Schema {
+    from_list(GRAPH_REPORT_FORMATS, true)
+}
+
 // Sets that live only in code — the same const the handler enforces.
 list_enum!(
     review_relation_req,

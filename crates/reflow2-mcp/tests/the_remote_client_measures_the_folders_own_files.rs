@@ -1,5 +1,5 @@
 //! The remote client measures the folder's own files for `link_artifact`,
-//! `set_artifact_checksum(s)` and `reconcile_artifacts`, because the server
+//! `set_artifact_checksums` and `reconcile_artifacts`, because the server
 //! cannot see this disk.
 //!
 //! `epoch:planned-local-files-are-measured-for-a-remote-design`;
@@ -12,7 +12,7 @@
 //! records what it is told — and a client started in a folder whose
 //! `.reflow2.toml` names that design, with a real file beside it:
 //!   · `link_artifact` without a checksum stores the sha256 of that file;
-//!   · `set_artifact_checksum(s)` without checksums are measured and stored;
+//!   · `set_artifact_checksums` without checksums are measured and stored;
 //!   · `reconcile_artifacts` with nothing observed reports the file's state;
 //!   · a location outside the root is refused locally with the server's
 //!     OutsideRoot wording and nothing is stored;
@@ -397,20 +397,35 @@ fn set_artifact_checksums_without_checksums_are_measured_and_stored() {
         sha256_of(&folder.join("src/b.rs"))
     );
 
-    // The single form, a first baseline.
+    // The retired one-artifact form (a counted refusing stub since
+    // 2026-10-30) is not measured here: it is forwarded as it came, so the
+    // server answers it and counts it under its own name, and nothing moves.
     std::fs::write(folder.join("src/c.rs"), b"fn c() {}\n").unwrap();
     client.ok(
         "add_artifact",
         json!({ "id": "art:c", "name": "c", "location": "src/c.rs", "description": "c" }),
     );
-    let out = client.ok(
+    let reply = client.call(
         "set_artifact_checksum",
         json!({ "artifact_id": "art:c", "disposition": "baseline_established" }),
     );
-    assert_eq!(out["measurement"]["measured_by"], "client", "{out}");
+    let msg = reply["error"]["message"].as_str().unwrap_or_default();
+    assert!(
+        msg.contains("RETIRED") && msg.contains("set_artifact_checksums"),
+        "the stub answers with the call that does its job: {reply}"
+    );
+    assert!(
+        client.artifact("art:c").get("checksum").is_none(),
+        "nothing moved"
+    );
+    // One artifact through the survivor, a one-item list.
+    let out = client.ok(
+        "set_artifact_checksums",
+        json!({ "accepts": [{ "artifact_id": "art:c", "disposition": "baseline_established" }] }),
+    );
     assert_eq!(
-        out["measurement"]["checksum"],
-        sha256_of(&folder.join("src/c.rs"))
+        out["measurements"][0]["measurement"]["measured_by"], "client",
+        "{out}"
     );
     assert_eq!(
         client.artifact("art:c")["checksum"],
@@ -481,8 +496,8 @@ fn a_location_outside_the_root_is_refused_locally_and_nothing_is_stored() {
 
     // Moving a baseline onto it is refused HERE, with the server's words.
     let reply = client.call(
-        "set_artifact_checksum",
-        json!({ "artifact_id": "art:out", "disposition": "baseline_established" }),
+        "set_artifact_checksums",
+        json!({ "accepts": [{ "artifact_id": "art:out", "disposition": "baseline_established" }] }),
     );
     let msg = reply["error"]["message"]
         .as_str()
@@ -537,8 +552,8 @@ fn a_client_with_no_root_measures_nothing_and_says_so() {
     );
 
     let reply = client.call(
-        "set_artifact_checksum",
-        json!({ "artifact_id": "art:a", "disposition": "baseline_established" }),
+        "set_artifact_checksums",
+        json!({ "accepts": [{ "artifact_id": "art:a", "disposition": "baseline_established" }] }),
     );
     let msg = reply["error"]["message"].as_str().unwrap_or_default();
     assert!(

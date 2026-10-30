@@ -1511,7 +1511,7 @@ pub(crate) const STRUCTURED_ONLY: &str = "This reply's payload is in `structured
      between an answer a client could read and one it refused outright. IF THIS SENTENCE IS ALL \
      YOU CAN SEE, your harness forwards only `content` and you cannot change that from where you \
      are standing — so do this instead: the PROSE tools return their whole document in this field \
-     (`graph_report_markdown`, `get_instructions`, `get_skill`, `list_skills`), and REFUSALS \
+     (`graph_report` with `format` `markdown`, `get_instructions`, `get_skill`, `list_skills`), and REFUSALS \
      arrive here in full, so a rejected call still tells you why; for anything else, call \
      `export_graph` with a `path` and read the file you just wrote. Then tell whoever runs this \
      server, because that file is a post-hoc check and not a read: it cannot replace \
@@ -1565,6 +1565,39 @@ pub(crate) fn json_result(v: JsonValue) -> Result<CallToolResult, McpError> {
     let mut result = CallToolResult::structured(v);
     result.content = vec![ContentBlock::text(STRUCTURED_ONLY)];
     Ok(result)
+}
+
+/// THE ANSWER OF A COUNTED REFUSING STUB (`crate::deprecation::stub_refusal`):
+/// a refusal that changed nothing and names the call that now does the job —
+/// `exact`, when the caller's own arguments map onto the survivor, is that
+/// call whole. Read from the build's registry, so the stub's words and its
+/// listed mark are one entry. The usage ledger writes the call under the
+/// stub's own name, as it writes every call (`ReflowService::record_usage`).
+pub(crate) fn stub_answer(
+    name: &str,
+    exact: Option<(&str, JsonValue)>,
+) -> Result<CallToolResult, McpError> {
+    let text = crate::deprecation::stub_refusal(
+        crate::deprecation::REGISTRY,
+        name,
+        exact.as_ref().map(|(t, v)| (*t, v)),
+    )
+    .unwrap_or_else(|| {
+        format!("REFUSED: `{name}` is a refusing stub, so this call changed nothing.")
+    });
+    Err(McpError::invalid_params(text, None))
+}
+
+/// An object of the given fields, leaving out every one that is null — the
+/// arguments a stub hands back as its survivor's call.
+pub(crate) fn present_fields(fields: &[(&str, JsonValue)]) -> JsonValue {
+    JsonValue::Object(
+        fields
+            .iter()
+            .filter(|(_, v)| !v.is_null())
+            .map(|(k, v)| ((*k).to_string(), v.clone()))
+            .collect(),
+    )
 }
 
 /// Return a prose document (Markdown) as the tool result: text content only,
@@ -1817,7 +1850,7 @@ pub(crate) fn reject_reserved_change_type(change_type: ChangeType) -> Result<(),
     if change_type == ChangeType::BaselineEstablished {
         return Err(McpError::invalid_params(
             "`baseline_established` is not a change and cannot be recorded as one. It is \
-             written only by set_artifact_checksum with disposition=baseline_established, \
+             written only by set_artifact_checksums with disposition=baseline_established, \
              where it means an artifact registered without a checksum is getting its first \
              one. To record an ordinary change, name what actually moved",
             None,
@@ -3132,7 +3165,7 @@ pub struct AddArtifactReq {
     /// A content hash of the file (`sha256:<hex>`) — the baseline that makes a later edit detectable.
     /// Supply it on creation, as `link_artifact` does: without one, `reconcile_artifacts` can say the file
     /// vanished but never that its contents changed. On a REVISE of an artifact that already carries one it
-    /// is REFUSED — moving a baseline is a drift disposition, which is `set_artifact_checksum`'s job.
+    /// is REFUSED — moving a baseline is a drift disposition, which is `set_artifact_checksums`' job.
     pub checksum: Option<String>,
     /// NAMED, NOT READ: a source named somewhere that nobody read. It never
     /// counts as citing — what it DOCUMENTS stays uncited — and a checksum on
@@ -3215,7 +3248,7 @@ pub struct RealizesReq {
     /// question from `completeness`, and from the Artifact's `checksum`, which
     /// says only that the file has not MOVED. Leave it off unless somebody
     /// actually checked: `unchecked` is the honest reading, and the count of
-    /// unchecked links is the point (`evidence_report`).
+    /// unchecked links is the point.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::realizes_conformance_opt")]
     pub conformance: Option<String>,
@@ -4005,7 +4038,7 @@ pub struct SetChecksumsReq {
     /// once and sent once instead of resent whole after each rejection.
     #[serde(default)]
     pub check_only: bool,
-    /// One accepted baseline per artifact — each `{artifact_id, checksum, disposition, change_type?, design_change_event_id?, note?, at?}`, the same fields `set_artifact_checksum` takes one at a time. Each item carries its OWN disposition; all-or-nothing.
+    /// One accepted baseline per artifact — each `{artifact_id, checksum, disposition, change_type?, design_change_event_id?, note?, at?}`; one item for one artifact. Each item carries its OWN disposition; all-or-nothing.
     pub accepts: Vec<ChecksumAcceptReq>,
 }
 
@@ -4048,7 +4081,7 @@ pub struct AcknowledgeGapsReq {
     /// once and sent once instead of resent whole after each rejection.
     #[serde(default)]
     pub check_only: bool,
-    /// The gaps to accept in one call — each `{gap_id, reason, affected_ids?, approver?}`, the same fields `acknowledge_gap` takes one at a time. Every item carries its OWN reason: a batch under one shared reason would be the silent bulk accept this refuses to be.
+    /// The gaps to accept in one call — each `{gap_id, reason, affected_ids?, approver?}`; one item for one gap. Every item carries its OWN reason: a batch under one shared reason would be the silent bulk accept this refuses to be.
     pub gaps: Vec<GapAckReq>,
 }
 
@@ -5458,13 +5491,13 @@ pub struct AcknowledgeDefectReq {
     /// acceptable. Draws `AUTHORED_BY role=approver` on the Decision this mints.
     ///
     /// OPTIONAL, and the absence is REPORTED rather than assumed, matching
-    /// `acknowledge_gap` exactly: a design that has modelled no Contributor
+    /// `acknowledge_gaps` exactly: a design that has modelled no Contributor
     /// would otherwise be unable to acknowledge anything. But an acknowledgement
     /// IS the owner's word by definition, and one with no name on it fails
     /// `check_intent_authority`.
     ///
     /// ⭐ THIS ARRIVED SIX DAYS AFTER ITS SIBLING, WHICH IS THE WHOLE POINT.
-    /// The capability was built 2026-08-23 for `acknowledge_gap` and never
+    /// The capability was built 2026-08-23 for gap acknowledgements and never
     /// reached here. Measured 2026-08-29: 168 gap acknowledgements, 51 with an
     /// approver; 12 defect acknowledgements, ZERO — because no parameter existed
     /// that could carry a name.
@@ -5826,6 +5859,15 @@ pub struct GraphReportReq {
     /// when you actually want the roll; `loop_status`'s `full_list` points here.
     #[serde(default)]
     pub include_verifications: bool,
+    /// `json` (the default): the report as an agent parses it. `markdown`: the
+    /// same report as a document a person reads (counts, requirement
+    /// certainty, the delivery line, top gaps, allocation, confirmation,
+    /// coverage, the maturity trajectory), which withholds the per-check roll
+    /// as the JSON does — the report's former Markdown tool, folded in here on
+    /// 2026-10-30, returned the same document.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::graph_report_format_opt")]
+    pub format: Option<String>,
     /// How many characters of JSON this reply may spend before prose is
     /// withheld to make it fit (default 30,000). Counts and ids are never
     /// budgeted away, and a trimmed reply says what it withheld at `budget`.
@@ -5965,6 +6007,11 @@ pub struct PropagateFromReq {
     /// Seed node ids to propagate impact from.
     /// Any node type — the blast radius is walked outward from these.
     /// Leave it empty with `arriving_from`, which works out the seeds itself.
+    /// ONE ChangeEvent's id, alone, reads that recorded change's blast radius:
+    /// the walk starts from the nodes it CHANGED, `stale_edge_evidence` names
+    /// edges whose prose still uses wording those nodes dropped, and the reply
+    /// says `seeded_by_change`. Among several seeds a ChangeEvent is walked as
+    /// a node, and the reply says so.
     #[serde(default)]
     pub seed_ids: Vec<String>,
     /// CARRY ON A RIPPLE FROM ANOTHER DESIGN: that design's id. This design's
@@ -6615,6 +6662,21 @@ pub struct ApplyHealReq {
 pub struct ProposeAllocationReq {
     /// Leiden resolution (higher = more, smaller clusters).
     pub resolution: f64,
+}
+
+/// `dimension_drifts`: the whole sweep, or narrowed. Both fields together read
+/// ONE node on one axis, as the retired `dimension_drift` did.
+#[derive(Debug, Default, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct DimensionDriftsReq {
+    /// Read only this node — with `dimension`, its observations on that axis
+    /// over time and whether the latest is worse (a null says which null).
+    #[serde(default)]
+    pub target_id: Option<String>,
+    /// Read only this quality dimension (e.g. `reliability`, `security`).
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::dimension_assessment_dimension_opt")]
+    pub dimension: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -8674,11 +8736,14 @@ impl ReflowService {
         static VOCABULARY: std::sync::OnceLock<crate::cues::Vocabulary> =
             std::sync::OnceLock::new();
         VOCABULARY.get_or_init(|| {
+            // A counted refusing stub is not a call a cue may offer: it is
+            // listed only so a call to its old name is counted.
             crate::cues::Vocabulary::new(
                 self.tool_router
                     .list_all()
                     .into_iter()
-                    .map(|t| t.name.to_string()),
+                    .map(|t| t.name.to_string())
+                    .filter(|n| !crate::deprecation::is_stub(crate::deprecation::REGISTRY, n)),
                 crate::skills::SKILLS.iter().map(|s| s.name.to_string()),
             )
         })
@@ -9732,7 +9797,7 @@ impl ServerHandler for ReflowService {
                 "{}{}reflow2 is the persistent, coherent design brain. The loop: capture intent as \
                  Requirements/Capabilities/Components via the add_* / create_* tools; run \
                  detect_gaps and ask the human the gaps (gap_to_prompt); build only what the \
-                 graph specifies; on any change, add_change_event + propagate_change to see the \
+                 graph specifies; on any change, add_change_event + propagate_from (the change's id) to see the \
                  blast radius BEFORE editing; use graph_report to decide what to look at. \
                  WHEN SOMETHING FAILS, search_design its exact error first; the moment you are \
                  about to write down WHY — in the design or in a reply — call `get_skill \
@@ -9958,12 +10023,12 @@ mod find_tools_scoring_invariants {
     }
 
     /// And the same rule for the name's parts — `starts_with` on a part is a
-    /// deliberate prefix match for typing (`prop` → `propagate_change`) and
+    /// deliberate prefix match for typing (`prop` → `propagate_from`) and
     /// stays; but a description substring must not score.
     #[test]
     fn name_prefix_matching_is_kept_and_description_substring_is_not() {
         let terms = [("prop", 1.0)];
-        let by_name = score_tool("propagate_change", "", &[], &terms);
+        let by_name = score_tool("propagate_from", "", &[], &terms);
         assert!(by_name > 0.0, "prefix on a name part is intentional");
         let by_desc = score_tool("x", "an improper value", &[], &terms);
         assert_eq!(by_desc, 0.0, "`prop` inside `improper` must not score");

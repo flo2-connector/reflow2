@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:3a3a37522e0ea339e8731db7c0d8d5f0acd3895af8f1da7cce5f3765b51accde",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:root-cause-brainstorms-in-a-hub-member-never-searched-the-hub-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-d82ad83a71"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

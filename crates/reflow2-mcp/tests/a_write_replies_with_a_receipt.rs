@@ -464,8 +464,6 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "depends_on",
         "documents",
         "external_dependency",
-        "forecast_readiness",
-        "gate_on",
         "governed_by",
         "invalidates",
         "link_artifact",
@@ -484,7 +482,6 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "replace_text",
         "require_resource",
         "satisfies",
-        "set_artifact_checksum",
         "set_artifact_checksums",
         "set_artifact_intent",
         "set_capability_delivery",
@@ -505,7 +502,6 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "set_verification_kind",
         "set_verification_status",
         "snapshot_before_change",
-        "verifies",
     ];
     // A fixed-size acknowledgement: the ids this call acted on, and a flag or a
     // status. Nothing stored comes back, so nothing can grow.
@@ -515,7 +511,6 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
         "receive_from_design",
         "send_to_design",
         "acknowledge_defect",
-        "acknowledge_gap",
         "answer_question",
         // 2026-10-17: names the Question it wrote, whom it was put to and the
         // ids it is about — what the caller sent, never the design's growth.

@@ -56,8 +56,8 @@ impl ReflowService {
                        says HOW you looked: test, analysis, inspection and demonstration are the \
                        four canonical ones, plus measurement, observation (watching it run in the \
                        field, unchanged), review and simulation. Answers the \
-                       `build_without_verification` and `unverified_capability` gaps. Pair it with \
-                       `verifies` to say what it checks. ⚠️ KEEP `name` SHORT — it is what a list \
+                       `build_without_verification` and `unverified_capability` gaps. Its `verifies` \
+                       list says what it checks, on a new check or an existing one. ⚠️ KEEP `name` SHORT — it is what a list \
                        renders. Put the account of what the check IS in `description`, and what a \
                        RUN FOUND in `findings` on set_verification_status. Measured on reflow2's \
                        own graph before those were reachable: median Verification name 76 words, \
@@ -312,10 +312,31 @@ impl ReflowService {
 
     #[tool(
         description = "Link a Verification to what it checks (VERIFIES) — a Capability, Component, Requirement or Artifact. This is the assurance half of the golden thread: a capability with no VERIFIES edge is raised as `unverified_capability`, one proven only at its component's granularity is reported as such, and delivery counts a capability only when its OWN check is passing. `add_verification` draws these in the same call via `verifies`. Recording the check is not running it — `set_verification_status` records the outcome, and a check left `planned` counts as no confirmation. Ask for this when you want to record that a test, analysis, inspection or demonstration covers a particular capability or part.",
-        title = "Link a Verification to What It Checks",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Link a Verification to What It Checks (Retired)",
+        annotations(read_only_hint = true)
     )]
     pub async fn verifies(
+        &self,
+        Parameters(req): Parameters<VerifiesReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "verifies",
+            Some((
+                "add_verification",
+                json!({
+                    "id": req.verification_id,
+                    "verifies": [present_fields(&[
+                        ("target_id", json!(req.target_id)),
+                        ("target_type", json!(req.target_type)),
+                    ])],
+                }),
+            )),
+        )
+    }
+
+    /// The handler `verifies` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here.
+    pub async fn verifies_kept(
         &self,
         Parameters(req): Parameters<VerifiesReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -330,8 +351,8 @@ impl ReflowService {
                        every time reads as full coverage while resting on one point of the \
                        space. Set on the VERIFIES edge, not the Verification, because scope is a \
                        fact about the CLAIM: one suite can cover one capability broadly and \
-                       touch another at a single point. `evidence_report` then names the \
-                       parameters every passing check pinned and none swept. Reported as a fact, \
+                       touch another at a single point. The report that read it was retired on \
+                       2026-10-30; the record stands. Reported as a fact, \
                        never a gap — pinning a seed is normal, and a detector that fired on it \
                        would punish correct work. The check must already verify the target.",
         title = "Set Evidence Scope",
@@ -366,8 +387,8 @@ impl ReflowService {
                        it for any empirically-calibrated value — a coefficient fitted to a \
                        published anchor, a constant tuned to a dataset, a model matched to a \
                        measurement. Agreement with that evidence afterwards is a FIT, NOT A \
-                       TEST, and `evidence_report` marks any check resting on it as consumed and \
-                       excludes it from independent evidence. This has to be recorded rather \
+                       TEST, so a check resting on it is consumed and does not count as \
+                       independent evidence. This has to be recorded rather \
                        than detected: no check inside a design can establish its own \
                        independence, so nothing can find the circularity by analysis. Also a \
                        traceability edge — correcting the anchor puts every value fitted to it \
@@ -577,10 +598,20 @@ impl ReflowService {
                        `reviewed` / `verified`) — registering a file and checking it are different acts. \
                        `with_unplaced_checks` and `with_unscoped_checks` count capabilities whose evidence \
                        names no environment and no swept parameters.",
-        title = "Evidence Report",
+        title = "Evidence Report (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn evidence_report(
+        &self,
+        Parameters(_req): Parameters<crate::reply_budget::BudgetReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("evidence_report", None)
+    }
+
+    /// The handler `evidence_report` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn evidence_report_kept(
         &self,
         Parameters(req): Parameters<crate::reply_budget::BudgetReq>,
     ) -> Result<CallToolResult, McpError> {

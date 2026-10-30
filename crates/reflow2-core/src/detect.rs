@@ -4248,7 +4248,7 @@ impl DesignGraph {
                  on the decision that says so, accept that decision, and link what it shapes with \
                  `governed_by`. \u{1f6d1} NOT KNOWING YET IS A FINE ANSWER, and the way to record \
                  it is a PROPOSED decision naming the candidate you lean toward — never \
-                 `acknowledge_gap`, which silences this permanently and for every capability \
+                 `acknowledge_gaps`, which silences this permanently and for every capability \
                  added afterwards, so a deferral accepted that way never comes back.",
                 if deferred {
                     "This design has weighed which quality attribute it is built for and has not \
@@ -4882,7 +4882,7 @@ impl DesignGraph {
                     "'{label}' was split into {n} child requirement(s), and delivery rolls UP: it \
                      counts as delivered exactly when all {n} are.{} What did '{label}' hold that \
                      none of its children hold? Write the answer into the design — a child \
-                     carrying what fell out — or acknowledge_gap with the reason it was left out \
+                     carrying what fell out — or acknowledge_gaps with the reason it was left out \
                      on purpose. A narrowing you intended and a drop nobody noticed look identical \
                      until one of them is written down.",
                     if delivered {
@@ -5900,7 +5900,7 @@ impl DesignGraph {
                      less than the design shows, so whoever reads the node, and anything that \
                      trusts its status, takes built work for work not begun. Move it: \
                      `set_capability_status` → `{to}`. If `planned` is deliberate — the file is a \
-                     stub, the check tests something else — say why not with `acknowledge_gap`, \
+                     stub, the check tests something else — say why not with `acknowledge_gaps`, \
                      and the reason stays on the record."
                 ),
                 affected_ids: vec![cap.node_id.clone()],
@@ -6062,7 +6062,7 @@ impl DesignGraph {
                      first: {}{more}. {posture} Move each one with `add_component` — its id and \
                      `status`: `in_progress` while some of its function is still unbuilt, \
                      `realized` once it all is. If `planned` is deliberate for one, say why not \
-                     with `acknowledge_gap`: this finding is keyed on the set, so an acknowledged \
+                     with `acknowledge_gaps`: this finding is keyed on the set, so an acknowledged \
                      set stays acknowledged and a component newly built behind a `planned` status \
                      asks again.",
                     top.join(", ")
@@ -6117,7 +6117,7 @@ impl DesignGraph {
                      takes a shipped release for one still to come. Move it with `add_release` — \
                      its id and `status: deployed` (or `built`). If the deployment is only \
                      intended, mark that DEPLOYED_TO edge `planned` instead; if `planned` is \
-                     deliberate, say why not with `acknowledge_gap`.",
+                     deliberate, say why not with `acknowledge_gaps`.",
                     deployed_to.join(", ")
                 ),
                 affected_ids: vec![rel.node_id.clone()],
@@ -8952,7 +8952,7 @@ impl DesignGraph {
                      capture cites the decision instead of re-deciding (the establish-taxonomy \
                      skill). An instance that carries its `{prop}` is encoded; one that carries \
                      nothing and cites nothing is what this names. If this design genuinely uses \
-                     no `{prop}` on {ty}, say so once with acknowledge_gap. First few: {}.",
+                     no `{prop}` on {ty}, say so once with acknowledge_gaps. First few: {}.",
                     sample.join(", ")
                 ),
                 affected_ids: ungoverned,
@@ -9010,7 +9010,7 @@ impl DesignGraph {
                      matters. Set `steps` on each (add_design_rule again with the same id) naming \
                      the skills — adopt, link-artifacts, root-cause, ci-gate — or the tools it \
                      concerns. A convention that bears on no served step at all (a shell command, \
-                     a CI job) is honestly delivered nowhere: acknowledge_gap it with that reason. \
+                     a CI job) is honestly delivered nowhere: acknowledge_gaps it with that reason. \
                      First few: {}.",
                     sample.join(", ")
                 ),
@@ -9076,7 +9076,7 @@ impl DesignGraph {
                  `document`) and `documents` to the Project with doc_kind `agent_instructions`. \
                  From then on the design can say the adapter exists and reconcile_artifacts \
                  notices when it drifts. If this design genuinely has no instruction file, say so \
-                 once with acknowledge_gap."
+                 once with acknowledge_gaps."
                 .to_string(),
             affected_ids: projects,
             suggested_depth: 1,

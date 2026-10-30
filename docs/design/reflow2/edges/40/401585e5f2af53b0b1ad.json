@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:337a78b560da85bd8473672474cc9046a6e093cc270115db0b1e77dcd870ccbe",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:219e216476c7e33e25216ad4d160083246f26fd6a48437157c462b78a42cf4ee",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-finding-or-refusal-names-the-route-that-works"
+}

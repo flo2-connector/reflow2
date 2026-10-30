@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a28b27ff3665861168b1a1574d92fc90fb5e3f1a6fbcee08ae36fabf3fb2b83c",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 7,
+    "action": "modified",
+    "checksum_after": "sha256:e0e3aec217de545f5bebd96ed3f08359d940139288c1bf48e63e7fdd08b6afee",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-every-writer-signs-as-the-caller-fixture"
+}

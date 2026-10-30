@@ -132,7 +132,7 @@ record, and saying otherwise is the one thing this skill must not do.
 ## 6. Experiments chosen because they discriminate; results recorded against predictions
 
 **An experiment** is a planned check: `add_verification` with `method` `measurement` (or
-`observation`, `simulation`), `verifies` the rival claims it bears on, and a `description` that
+`observation`, `simulation`), its `verifies` naming the rival claims it bears on, and a `description` that
 says what each rival predicts it will show and why the difference is measurable ("beam hardening
 predicts cupping that falls with added filtration and does not move with detector distance;
 scatter predicts the reverse"). An experiment both rivals predict the same outcome for tells

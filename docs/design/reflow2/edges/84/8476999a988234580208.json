@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:0b38181e0a6d3d1e11e8440760e9a884da4842d099d7d3b31ec242a1eb9d1c3b",
+  "edge_type": "CONTRADICTS",
+  "from_id": "dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december",
+  "properties": {
+    "alignment": "opposing",
+    "evidence": "Option A deletes without cross-project evidence or a stub release; B keeps the stub clause and amends only the across-projects clause. Both cannot hold as written."
+  },
+  "to_id": "dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first"
+}

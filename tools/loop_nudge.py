@@ -27,7 +27,7 @@ One script, three events, read from the hook's stdin JSON:
     the one the write count never sees.
 - **Stop** — the backstop, blocking ONCE with the reason the agent needs:
   - graph writes finished with no loop check → "call loop_status", or
-  - code was edited and a change recorded, and `propagate_change` was never
+  - code was edited and a change recorded, and `propagate_from` was never
     called → "the ChangeEvent is bookkeeping; run impact-check" (BL-163), or
   - the session never touched reflow2 at all and edited enough files → "the
     graph was never consulted; start with loop_status, impact-check before
@@ -101,7 +101,6 @@ EXTRA_WRITE_OPS = {
     "record_the_build", "release_includes", "require_resource", "satisfies", "send_to_design",
     "set_capability_status",
     "set_provenance", "set_requirement_status", "set_verification_status",
-    "verifies",
 }
 
 # The harness's own file-write tools — counted only for the total-bypass
@@ -149,8 +148,9 @@ CHANGE_OPS = {"snapshot_before_change", "record_change", "add_change_event"}
 # LOOKING at what the recorded change reaches. The distinction between this set
 # and CHANGE_OPS is the whole of BL-163, and it is worth stating plainly because
 # the two read as synonyms and are not: `add_change_event` and `record_change`
-# are RECORDING ops — they say a thing moved — while `propagate_change` and
-# `propagate_from` are the act of asking what the movement touches. impact-check
+# are RECORDING ops — they say a thing moved — while `propagate_from` (and,
+# until 2026-10-30, `propagate_change`) is the act of asking what the movement
+# touches. impact-check
 # is both, in that order.
 #
 # THE DEFECT THIS SET FIXES: the impact-check shape used to key on
@@ -170,11 +170,13 @@ CHANGE_OPS = {"snapshot_before_change", "record_change", "add_change_event"}
 # this family exists to avoid. Presence is the conservative proxy: it cannot
 # catch an agent who propagates late, and it never accuses one who did the work.
 # That limit is real and is stated rather than hidden.
-PROPAGATE_OPS = {"propagate_change", "propagate_from"}
+# `propagate_from` alone since 2026-10-30: the change-seeded form was folded
+# into it, and the old name is a refusing stub that computes nothing.
+PROPAGATE_OPS = {"propagate_from"}
 
 # Telling the design what is now on disk.
 ARTIFACT_OPS = {
-    "link_artifact", "set_artifact_checksum", "set_artifact_checksums",
+    "link_artifact", "set_artifact_checksums",
     "reconcile_artifacts",
 }
 
@@ -284,13 +286,13 @@ SKILL_OPS = {"get_skill"}
 # open_questions" as the first call: in the recall pilot open_questions was
 # cued 5 times and never followed, and a reader with a reading budget scored
 # 5.5/25 from a design that held the answers until one line told it where the
-# current state was kept (17.5/25). graph_report_markdown is the compact read
+# current state was kept (17.5/25). graph_report with format markdown is the compact read
 # of where a design stands (6.3 KB on the pilot's 422-node design); reflow2
 # serves no compact read of the design's current VALUES, so the second half
 # points at the design's own record of them, when it keeps one.
 SESSION_START_TEXT = (
     "reflow2: this project has reflow2 installed. Orient first, before touching "
-    "code. To learn where the design stands, read graph_report_markdown first (a "
+    "code. To learn where the design stands, read graph_report with format markdown first (a "
     "few KB: what the design holds, what is delivered, the top open gaps); if the "
     "design keeps its own record of where things stand, search_design finds it "
     "(\"current state\", \"status as of\"). If this design is empty, start it with the "
@@ -600,7 +602,7 @@ def claim_nudge(session_id: str) -> bool:
 # not know. Generated 2026-09-18, when `record_finding` — the one write the
 # reads-without-writes nudge exists to ask for — turned out not to be counted.
 WRITE_OPS = frozenset({
-    "acknowledge_defect", "acknowledge_gap", "acknowledge_gaps", "add_actor", "add_artifact",
+    "acknowledge_defect", "acknowledge_gaps", "add_actor", "add_artifact",
     "add_capability", "add_change_event", "add_component", "add_constraint", "add_contributor",
     "add_decision", "add_design_rule", "add_environment", "add_environment_rule", "add_epoch",
     "add_flow", "add_interface", "add_project", "add_readiness", "add_release",
@@ -612,20 +614,20 @@ WRITE_OPS = frozenset({
     # The bulk form of the typed edge helpers: every item is one of their writes.
     "draw_edges",
     "create_nodes", "decomposes", "delete_edge", "delete_node", "depends_on",
-    "deploy_to", "design_identity", "documents", "external_dependency", "forecast_readiness",
-    "gap_to_prompt", "gaps_to_prompts", "gate_on", "genesis", "governed_by",
+    "deploy_to", "design_identity", "documents", "external_dependency",
+    "gap_to_prompt", "gaps_to_prompts", "genesis", "governed_by",
     "import_graph", "imposes", "ingest_corpus_step", "ingest_step", "invalidates",
     "link_artifact", "mirror_surface", "move_component", "operates_in", "owned_by",
     "part_of_flow", "performed_in", "pin_at_epoch", "plan_epoch", "precedes",
     "provides", "realizes", "receive_from_design", "reconcile_artifacts", "reconcile_deployment", "reconcile_verification",
     "record_alias", "record_finding", "register_alternative", "release_claim", "release_includes", "reopen_choice",
     "release_includes_all", "replace_text", "report_manual_work", "require_resource", "review_relations",
-    "satisfies", "schedule_for", "send_to_design", "set_artifact_checksum", "set_artifact_checksums", "set_artifact_intent",
+    "satisfies", "schedule_for", "send_to_design", "set_artifact_checksums", "set_artifact_intent",
     "set_capability_delivery", "set_capability_signature", "set_capability_status", "set_closure_criterion", "set_decision_status",
     "set_epoch_status", "set_evidence_scope", "set_interface_designation", "set_interface_spec", "set_project_mode",
     "set_provenance", "set_quality_target", "set_requirement_designation", "set_requirement_lineage", "set_requirement_status",
     "set_verification_kind", "set_verification_status", "set_violation_status", "snapshot_before_change", "usage_report",
-    "verifies", "violates_rule", "withdraw_defect_acknowledgement", "withdraw_gap_acknowledgement", "withdraw_question"
+    "violates_rule", "withdraw_defect_acknowledgement", "withdraw_gap_acknowledgement", "withdraw_question"
 })
 
 
@@ -696,7 +698,7 @@ def match_shape(state: dict) -> str | None:
     #     Recording is not looking, and only PROPAGATE_OPS is looking.
     if edits > 0 and state.get("propagates", 0) == 0:
         return (
-            "impact-check — the change is recorded but propagate_change was "
+            "impact-check — the change is recorded but propagate_from was "
             "never called, so the ChangeEvent is bookkeeping and nothing "
             "computed the blast radius it exists to compute"
         )
@@ -1373,7 +1375,7 @@ def stop_reason(session: str) -> str | None:
 
     # EVERY BRANCH BELOW HERE MAKES A NEGATIVE CLAIM, and a tally rebuilt
     # from nothing cannot support one. "The graph was never consulted" and
-    # "propagate_change was never called" are both assertions that something
+    # "propagate_from was never called" are both assertions that something
     # did NOT happen, and the calls that would refute them are exactly what
     # an unreadable tally lost (BL-161). The write nudge above is positive
     # ("N writes went unchecked") and survives a restart honestly, which is
@@ -1419,7 +1421,7 @@ def stop_reason(session: str) -> str | None:
                 session,
                 f"reflow2: {state['edits']} file(s) edited and "
                 f"{state['changes']} change(s) recorded this session, and "
-                f"propagate_change was never called — so the ChangeEvent is "
+                f"propagate_from was never called — so the ChangeEvent is "
                 f"bookkeeping and nothing computed what the change reaches. "
                 f"Run impact-check (record the change, THEN propagate) "
                 f"before further edits; confirm with loop_status. "
@@ -1574,7 +1576,7 @@ VSCODE_SESSION_START_TEXT = (
     "(`reflow2 read --list` says which). Wherever reflow2's instructions, a skill or "
     "a reply says to call X, run X one of those two ways. Read "
     ".github/instructions/reflow2.instructions.md before the first design action. "
-    "To learn where the design stands, run `reflow2 read graph_report_markdown` "
+    "To learn where the design stands, run `reflow2 read graph_report '{\"format\": \"markdown\"}'` "
     "first (a few KB); if the design keeps its own record of where things stand, "
     "`reflow2 read search_design '{\"query\": \"current state\"}'` finds it. "
     "Skills are served: `reflow2 read get_skill '{\"name\": \"where-am-i\"}'` reads one "

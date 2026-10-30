@@ -266,7 +266,7 @@ async fn an_accept_without_a_checksum_measures_and_an_unreachable_one_is_refused
     }))
     .unwrap();
     let out = s
-        .set_artifact_checksum(Parameters(req))
+        .set_artifact_checksum_kept(Parameters(req))
         .await
         .expect("accept measures the new content")
         .structured_content
@@ -290,7 +290,7 @@ async fn an_accept_without_a_checksum_measures_and_an_unreachable_one_is_refused
     }))
     .unwrap();
     let err = s
-        .set_artifact_checksum(Parameters(req))
+        .set_artifact_checksum_kept(Parameters(req))
         .await
         .expect_err("cannot move a baseline to a guess");
     assert!(

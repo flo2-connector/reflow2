@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:c519bd71f25d40e747a3ca8a358b744421533f79d4753a9e390619cb7c9dbf6a",
+  "node_id": "req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides",
+  "node_type": "Requirement",
+  "properties": {
+    "concern": "usability",
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "The 2026-10-30 fold and removal candidates ship as counted refusing stubs in the next release; at the December re-count each stub nobody called is deleted and each one somebody called is restored",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony 2026-10-30, \"Yes, go with B\" on dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december",
+    "statement": "In the next reflow2 release, each of these names changes nothing when called and answers with the call that now does its job (or, for a retired report, that it was retired on 2026-10-30 and to say so if it was needed), and every call to it is counted in the usage ledger under its own name. FOLDS (the survivor carries the job, no capability lost): set_artifact_checksum → set_artifact_checksums; acknowledge_gap → acknowledge_gaps; dimension_drift → dimension_drifts; propagate_change → propagate_from (taking the change's id as its seed); verifies → add_verification (its `verifies`); graph_report_markdown and graph_report → one graph_report with a format. RETIRED REPORTS: evidence_report, forecast_readiness, frontier, ility_report, granularity_report, consumption_report, surprising_connections, readiness_report, gate_on. The pairs read alike (manual_work_ledger/report_manual_work, add_epoch/plan_epoch, scan_nodes/search_design) keep their names and get descriptions that tell them apart. Served skills, flo2's doors and skill text, and the docs name the survivors. At the re-count (about 2026-12-23), a stub with no calls is deleted and a stub with calls is restored as the tool it was.",
+    "status": "accepted"
+  }
+}

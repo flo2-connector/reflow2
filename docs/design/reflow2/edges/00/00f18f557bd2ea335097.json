@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:8607edd4de46470aa2fc0b6497ce9d5e5db2d1170bedd31a46283e64b939c071",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-size-sweep-full-reads-held-at-every-size-and-reflow2-at-12kb-led-then-collapsed-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

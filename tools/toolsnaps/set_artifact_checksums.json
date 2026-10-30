@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Accept MANY drift baselines in one call — the bulk form of set_artifact_checksum, which was 244 consecutive calls across 22 sessions of recorded usage. EACH ITEM CARRIES ITS OWN DISPOSITION, and that is the point rather than an inconvenience: a batch under one shared disposition would be exactly the silent bulk accept that erodes a design into fiction. The round trip collapses; the judgement stays per artifact. ALL OF IT OR NONE OF IT — every item is attempted so you learn every failure at once, and if anything failed no baseline moves. Ask for this to accept several files' new content at once.",
+  "description": "Accept artifacts' current content as their new drift baselines — one artifact or many in one call, a two-sided decision for each. EACH ITEM CARRIES ITS OWN DISPOSITION: `design_holds` (the change carries no design meaning; recorded as a dated claim) or `design_updated` (behaviour moved and the design moved with it; pass `design_change_event_id` from the snapshot_before_change that updated it, so code and design are one change). Silent accept does not exist: a batch under one shared disposition is how a design erodes into fiction while reporting zero gaps, and until you accept, the same checksum_change is reported on every reconcile. An artifact with NO checksum yet is READ as `baseline_established` — a first baseline, nothing moved. ALL OF IT OR NONE OF IT — every item is attempted so you learn every failure at once, and if anything failed no baseline moves. Ask for this to accept several files' new content at once.",
   "inputSchema": {
     "$defs": {
       "ChecksumAcceptReq": {
@@ -90,7 +90,7 @@
     "additionalProperties": false,
     "properties": {
       "accepts": {
-        "description": "One accepted baseline per artifact — each `{artifact_id, checksum, disposition, change_type?, design_change_event_id?, note?, at?}`, the same fields `set_artifact_checksum` takes one at a time. Each item carries its OWN disposition; all-or-nothing.",
+        "description": "One accepted baseline per artifact — each `{artifact_id, checksum, disposition, change_type?, design_change_event_id?, note?, at?}`; one item for one artifact. Each item carries its OWN disposition; all-or-nothing.",
         "items": {
           "$ref": "#/$defs/ChecksumAcceptReq"
         },
@@ -117,5 +117,5 @@
     "type": "object"
   },
   "name": "set_artifact_checksums",
-  "title": "Accept Many Artifact Checksums"
+  "title": "Accept Artifact Checksums"
 }

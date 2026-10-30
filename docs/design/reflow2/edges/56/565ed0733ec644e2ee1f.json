@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:cafc4258620c8f676ff839ad0cb91e45410b1cb62169e9f37761f679b86e5a44",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 8,
+    "action": "modified",
+    "checksum_after": "sha256:4dd799197642271da78ff28d0a039a289af1e2cbe1309fea3f3dcb8afa67ffbc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:find-tools-corpus-fixture"
+}

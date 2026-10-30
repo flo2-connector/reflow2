@@ -1,22 +1,12 @@
 {
   "annotations": {
-    "destructiveHint": false,
-    "readOnlyHint": false
+    "readOnlyHint": true
   },
-  "description": "Link a Verification to what it checks (VERIFIES) — a Capability, Component, Requirement or Artifact. This is the assurance half of the golden thread: a capability with no VERIFIES edge is raised as `unverified_capability`, one proven only at its component's granularity is reported as such, and delivery counts a capability only when its OWN check is passing. `add_verification` draws these in the same call via `verifies`. Recording the check is not running it — `set_verification_status` records the outcome, and a check left `planned` counts as no confirmation. Ask for this when you want to record that a test, analysis, inspection or demonstration covers a particular capability or part. MANY AT ONCE: `draw_edges` with `edges`: [{\"tool\": \"verifies\", \"arguments\": {…}}], same checks, all or nothing.",
+  "description": "RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. Call `add_verification` with the check's `id` and `verifies` (a list of `{\"target_id\": …}`), which keeps every field you leave out.\n\nLink a Verification to what it checks (VERIFIES) — a Capability, Component, Requirement or Artifact. This is the assurance half of the golden thread: a capability with no VERIFIES edge is raised as `unverified_capability`, one proven only at its component's granularity is reported as such, and delivery counts a capability only when its OWN check is passing. `add_verification` draws these in the same call via `verifies`. Recording the check is not running it — `set_verification_status` records the outcome, and a check left `planned` counts as no confirmation. Ask for this when you want to record that a test, analysis, inspection or demonstration covers a particular capability or part.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
-      "echo": {
-        "default": "receipt",
-        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
-        "enum": [
-          "receipt",
-          "node"
-        ],
-        "type": "string"
-      },
       "target_id": {
         "description": "The checked node; its type is `target_type`.",
         "type": "string"
@@ -41,5 +31,5 @@
     "type": "object"
   },
   "name": "verifies",
-  "title": "Link a Verification to What It Checks"
+  "title": "Link a Verification to What It Checks (Retired)"
 }

@@ -86,7 +86,7 @@ published bound) is ONE record, written one way:
    recalled to say"), never plain holds, and `loop_status` counts it under
    `unverified_citations`.
 3. **Once someone has checked it against its source**, register the source that was read as an
-   Artifact with a checksum (the PDF or the page: `add_artifact`, then `set_artifact_checksum`)
+   Artifact with a checksum (the PDF or the page: `add_artifact`, then `set_artifact_checksums`)
    and draw DOCUMENTS from it to the citation (`documents`). It then reads
    `cited`: not proved here, checked. A secondary source quoting the result is not its source.
 
@@ -213,7 +213,7 @@ configurations, a measured table — is a `proposition` taken as given, so it co
 
 A calculation (a value, a factorization, a finite check) is a Verification with `computed` and its
 calculator record registered as an Artifact with a checksum (`add_artifact`, then
-`set_artifact_checksum`), named in the check's `location`. Without that record it reads asserted,
+`set_artifact_checksums`), named in the check's `location`. Without that record it reads asserted,
 not passing, and holds nothing up. A computation at one value fixes that value: list it in `fixes`.
 Evidence for a conjecture beyond its cases (n² + n + 41 prime for n = 0 to 39) is corroboration,
 never a premise.
@@ -225,7 +225,7 @@ reads that record and never re-runs the statistic.
 
 1. **Design it before the data.** The hypothesis is a Requirement. α is a Constraint with a
    `limit` (`add_constraint`). The chosen test is a Decision. The check is planned with
-   `add_verification`, `verifies` the hypothesis, and `governed_by` the test's Decision.
+   `add_verification`, its `verifies` naming the hypothesis, and `governed_by` the test's Decision.
 2. **Compute it in flo2-calc** with α's `source` set to that Constraint (`{"design_node": "con:…"}`).
    Register the record as an Artifact with its checksum and name it in the check's `location`.
 3. **Attach the data in one call:** `add_verification` on the same check, with `status`,

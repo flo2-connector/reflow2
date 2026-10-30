@@ -89,7 +89,7 @@ nothing said; and a type where nobody has said anything is asked only once there
 artifact's `artifact_type` and a flow's `flow_type` default to a real value on every node, so
 they are decided here like the rest but not swept. It reports the mixed
 encoding and asks whether an encoding decision is owed; it never picks one. Where the design
-genuinely uses no discriminator for a type, say so: `acknowledge_gap` with the reason, once.
+genuinely uses no discriminator for a type, say so: `acknowledge_gaps` with the reason, once.
 
 ## Before moving on
 

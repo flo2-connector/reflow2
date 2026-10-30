@@ -345,9 +345,9 @@ async fn a_rerun_clears_its_record_and_owes_the_one_downstream() {
     // The calculator re-ran the food calc with 5: a new version, registered
     // again with what it used.
     s.ok(
-        "set_artifact_checksum",
-        json!({"artifact_id": "art:food-calc", "checksum": "sha256:food-2",
-               "disposition": "design_holds", "change_type": "resync"}),
+        "set_artifact_checksums",
+        json!({"accepts": [{"artifact_id": "art:food-calc", "checksum": "sha256:food-2",
+               "disposition": "design_holds", "change_type": "resync"}]}),
     )
     .await;
     s.ok(
@@ -366,9 +366,9 @@ async fn a_rerun_clears_its_record_and_owes_the_one_downstream() {
     assert_eq!(power["because"][0]["now"], "sha256:food-2");
 
     s.ok(
-        "set_artifact_checksum",
-        json!({"artifact_id": "art:power-calc", "checksum": "sha256:power-2",
-               "disposition": "design_holds", "change_type": "resync"}),
+        "set_artifact_checksums",
+        json!({"accepts": [{"artifact_id": "art:power-calc", "checksum": "sha256:power-2",
+               "disposition": "design_holds", "change_type": "resync"}]}),
     )
     .await;
     s.ok(

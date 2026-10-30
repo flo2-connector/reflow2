@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:9b9b6dede6fd3755a652fffb0fec60cc95c84455e4671b39ee6fa56fc237f093",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:7c848d52bf590e16bb88f35d452fbca0146958fb7261b44304742e74ab80d846",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:retire-from-design-skill"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:925961beec58bfb2225bf54aaa7ee13216980f6c36b81d3289e830971c98a22a",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:flo2-io-serves-record-the-build-and-this-sessions-tool-list-predates-it-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

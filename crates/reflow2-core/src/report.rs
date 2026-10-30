@@ -1248,7 +1248,7 @@ impl DesignGraph {
                  or check(s) rest on a stale number until they are re-run (listed in \
                  `owed_computations` and `resting_on_stale_numbers`, nearest first). Re-run each \
                  in its calculator, then register its new version with what it used \
-                 (set_artifact_checksum, then add_artifact `inputs`); propagate_from on the \
+                 (set_artifact_checksums, then add_artifact `inputs`); propagate_from on the \
                  changed input gives the whole redo list"
             ));
         }
@@ -1296,7 +1296,7 @@ impl DesignGraph {
         if undispositioned_drift > 0 {
             next.push(format!(
                 "{undispositioned_drift} recorded divergence(s) await a disposition \
-                 (set_artifact_checksum)"
+                 (set_artifact_checksums)"
             ));
         }
         if unexamined_claims > 0 {
@@ -2319,8 +2319,7 @@ impl GraphReport {
             let _ = writeln!(
                 m,
                 "\n_Not a defect and not a size judgement — the build holds as one thing what \
-                 the design holds as several. Which side is wrong is yours to say; \
-                 `granularity_report` carries the full reading._\n"
+                 the design holds as several. Which side is wrong is yours to say._\n"
             );
         }
 

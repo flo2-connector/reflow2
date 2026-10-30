@@ -12,7 +12,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Accept a structural defect the user has judged fine, recording WHY. It moves out of detect_defects into reviewed_defects — not deleted, not hidden — the mirror of acknowledge_gap, and for the same reason: a list that can never reach zero gets skimmed, so a genuine new defect must arrive into a list someone still reads. The reason becomes a real Decision node that outlives the session. Because a defect id hashes its category with its affected set, the review EXPIRES when that shape changes — the new shape has a new id nobody has accepted.",
+  "description": "Accept a structural defect the user has judged fine, recording WHY. It moves out of detect_defects into reviewed_defects — not deleted, not hidden — the mirror of acknowledge_gaps, and for the same reason: a list that can never reach zero gets skimmed, so a genuine new defect must arrive into a list someone still reads. The reason becomes a real Decision node that outlives the session. Because a defect id hashes its category with its affected set, the review EXPIRES when that shape changes — the new shape has a new id nobody has accepted.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -35,7 +35,7 @@
       },
       "approver": {
         "default": null,
-        "description": "WHOSE judgement this is — the `Contributor` who decided the defect is\nacceptable. Draws `AUTHORED_BY role=approver` on the Decision this mints.\n\nOPTIONAL, and the absence is REPORTED rather than assumed, matching\n`acknowledge_gap` exactly: a design that has modelled no Contributor\nwould otherwise be unable to acknowledge anything. But an acknowledgement\nIS the owner's word by definition, and one with no name on it fails\n`check_intent_authority`.\n\n⭐ THIS ARRIVED SIX DAYS AFTER ITS SIBLING, WHICH IS THE WHOLE POINT.\nThe capability was built 2026-08-23 for `acknowledge_gap` and never\nreached here. Measured 2026-08-29: 168 gap acknowledgements, 51 with an\napprover; 12 defect acknowledgements, ZERO — because no parameter existed\nthat could carry a name.\n\nA name that matches no Contributor is REFUSED, not ignored: a typo would\notherwise attach the owner's authority to somebody who does not exist.",
+        "description": "WHOSE judgement this is — the `Contributor` who decided the defect is\nacceptable. Draws `AUTHORED_BY role=approver` on the Decision this mints.\n\nOPTIONAL, and the absence is REPORTED rather than assumed, matching\n`acknowledge_gaps` exactly: a design that has modelled no Contributor\nwould otherwise be unable to acknowledge anything. But an acknowledgement\nIS the owner's word by definition, and one with no name on it fails\n`check_intent_authority`.\n\n⭐ THIS ARRIVED SIX DAYS AFTER ITS SIBLING, WHICH IS THE WHOLE POINT.\nThe capability was built 2026-08-23 for gap acknowledgements and never\nreached here. Measured 2026-08-29: 168 gap acknowledgements, 51 with an\napprover; 12 defect acknowledgements, ZERO — because no parameter existed\nthat could carry a name.\n\nA name that matches no Contributor is REFUSED, not ignored: a typo would\notherwise attach the owner's authority to somebody who does not exist.",
         "type": [
           "string",
           "null"

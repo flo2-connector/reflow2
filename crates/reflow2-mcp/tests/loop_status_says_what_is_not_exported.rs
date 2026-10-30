@@ -287,7 +287,7 @@ fn a_never_exported_design_is_told_through_the_call_door() {
     assert_eq!(report["export_standing"]["state"], "never_exported");
     // The Markdown rendering leads with it, under its title: the report's
     // first line stays its `#` heading (smoke_mcp's BL-48 check).
-    let md = f.call("graph_report_markdown", "{}");
+    let md = f.call("graph_report", r#"{"format": "markdown"}"#);
     let md = md.as_str().unwrap_or_default();
     assert!(md.starts_with('#'), "{}", &md[..md.len().min(200)]);
     let head: String = md.lines().take(4).collect::<Vec<_>>().join("\n");
@@ -329,12 +329,12 @@ fn a_design_kept_local_on_purpose_is_not_nagged_once_the_choice_is_recorded() {
     let f = Folder::new();
     f.call("add_project", PROJECT);
     f.call(
-        "acknowledge_gap",
-        &json!({
+        "acknowledge_gaps",
+        &json!({"gaps": [{
             "gap_id": GAP,
             "affected_ids": [],
             "reason": "A scratch design, kept on this machine on purpose."
-        })
+        }]})
         .to_string(),
     );
     let v = f.call("loop_status", "{}");

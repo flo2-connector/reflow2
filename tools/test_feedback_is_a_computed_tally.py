@@ -194,7 +194,7 @@ def main() -> int:
         check(
             "the handshake offers the first-read cue to this session",
             len(offers) == 1
-            and offers[0].get("cues") == ["instructions/graph_report_markdown", "instructions/search_design"]
+            and offers[0].get("cues") == ["instructions/graph_report", "instructions/search_design"]
             and offers[0].get("seat") == calls[0].get("seat"),
             str(offers),
         )
@@ -231,7 +231,7 @@ def main() -> int:
             check("the model is declared unknown to the server", "self-reported" in env.get("model", ""))
             check("the report left its marker", rep.get("marker_left") is True)
             cues = t.get("cues") or {}
-            first = (cues.get("by_cue") or {}).get("instructions/graph_report_markdown") or {}
+            first = (cues.get("by_cue") or {}).get("instructions/graph_report") or {}
             check(
                 "the report counts each cue offered and whether it was followed",
                 first.get("offered") == 1 and first.get("followed_at_all") == 0
@@ -248,6 +248,33 @@ def main() -> int:
         check("a peek leaves no marker", rep2 is not None and rep2.get("marker_left") is False)
         raw2 = ledger.read_text()
         check("peek wrote no marker line", raw2.count('"kind":"report"') == 1, str(raw2.count('"kind":"report"')))
+
+        # 5b · A COUNTED REFUSING STUB (crates/reflow2-mcp/src/deprecation.rs,
+        #      req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-
+        #      refusing-stubs-then-december-decides): a call to a retired name
+        #      changes nothing, answers with the call that does its job, and
+        #      lands in the ledger UNDER ITS OWN NAME — the count the December
+        #      re-count decides by.
+        r = s.call("set_artifact_checksum", {"artifact_id": "art:none", "disposition": "baseline_established"})
+        said = json.dumps(r)
+        check("a stub call is refused", "error" in r or (r.get("result") or {}).get("isError") is True, said[:300])
+        check("the stub names the call that does its job", "set_artifact_checksums" in said and "RETIRED" in said, said[:400])
+        stub_lines = [json.loads(l) for l in ledger.read_text().splitlines() if l.strip()]
+        stub_lines = [l for l in stub_lines if l.get("kind") == "call" and l.get("tool") == "set_artifact_checksum"]
+        check("the stub call is in the ledger under its own name, as a refusal",
+              len(stub_lines) == 1 and stub_lines[0].get("outcome") == "refused" and stub_lines[0].get("refusal") == "refused",
+              str(stub_lines))
+        r = s.call("usage_report", {"peek": True})
+        rep3 = structured(r) or {}
+        stubs = rep3.get("retired_stubs") or {}
+        check("usage_report counts each stub, the called one and the uncalled ones",
+              (stubs.get("counts") or {}).get("set_artifact_checksum") == 1
+              and (stubs.get("counts") or {}).get("evidence_report") == 0
+              and stubs.get("called") == 1 and stubs.get("re_count") == "2026-12-23",
+              str(stubs)[:400])
+        check("the stub's refusal is counted by tool",
+              (rep3.get("tally") or {}).get("refusals_by_tool", {}).get("set_artifact_checksum", {}).get("refused") == 1,
+              str((rep3.get("tally") or {}).get("refusals_by_tool")))
         s.close()
 
         # 6 · in-memory: the binary has no in-memory mode, so that pin lives in

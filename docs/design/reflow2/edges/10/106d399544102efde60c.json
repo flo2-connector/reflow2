@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:54aeb2f63d3719d4746309353ff548bc1f5f919a411c7af09395e3ab11ee1091",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

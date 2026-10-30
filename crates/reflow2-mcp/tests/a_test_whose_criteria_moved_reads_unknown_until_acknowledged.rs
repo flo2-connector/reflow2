@@ -216,8 +216,8 @@ async fn a_criterion_moved_after_the_data_stops_the_test_counting_until_acknowle
     // The owner acknowledges the change with a reason: it reads as before.
     let gap = criteria_gap(&s).await.expect("the criteria gap is raised");
     s.ok(
-        "acknowledge_gap",
-        json!({"gap_id": gap, "reason": "α was set wrongly in the plan; 0.1 was agreed before unblinding"}),
+        "acknowledge_gaps",
+        json!({"gaps": [{"gap_id": gap, "reason": "α was set wrongly in the plan; 0.1 was agreed before unblinding"}]}),
     )
     .await;
     assert_eq!(status(&s).await, "supported");

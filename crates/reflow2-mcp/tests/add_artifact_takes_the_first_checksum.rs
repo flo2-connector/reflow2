@@ -86,7 +86,7 @@ async fn a_revise_that_would_move_the_baseline_is_refused() {
         .await
         .expect_err("moving a baseline through the constructor must be refused");
     assert!(
-        err.contains("set_artifact_checksum"),
+        err.contains("set_artifact_checksums"),
         "the refusal names the door that records WHY a baseline moved: {err}"
     );
 }

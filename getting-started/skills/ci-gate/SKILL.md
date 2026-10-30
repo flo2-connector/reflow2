@@ -35,7 +35,7 @@ mentions them:
   export, so red means the two-sided accept was skipped. That is the gate's whole reason to
   exist.
 - **An open anchored gap at/above the threshold** (default severity 0.8). Gaps the team accepted
-  via `acknowledge_gap` are not open, so they do not fail the build.
+  via `acknowledge_gaps` are not open, so they do not fail the build.
 
 Phase nudges and sub-threshold gaps print as notes and never gate. Exit 2 means the gate could
 not run (no export, no binary) — also loud, never a silent pass.
@@ -104,12 +104,12 @@ not run (no export, no binary) — also loud, never a silent pass.
   this gate exists to catch, and here it also discards the only warning that your backup would
   not restore.
 - **DRIFT on an artifact** — the code moved and nobody said what it meant. Run the
-  **link-artifacts** reconcile flow: rehash, then `set_artifact_checksum` with a disposition
+  **link-artifacts** reconcile flow: rehash, then `set_artifact_checksums` with a disposition
   (`design_holds` or `design_updated` + its ChangeEvent), then **re-export and commit the
   export**. Never "fix" a red gate by re-exporting without the accept — that is laundering the
   drift the gate exists to catch.
 - **GAP at/above threshold** — either close it (the detect-and-ask flow) or, if it is a
-  conscious trade-off, `acknowledge_gap` with the reason on the record, then re-export. The
+  conscious trade-off, `acknowledge_gaps` with the reason on the record, then re-export. The
   acknowledgement IS the fix as far as the gate is concerned; a reason-free acknowledgement to
   silence CI is the same laundering.
 - **Tune, don't mute.** `--gap-threshold` moves the bar; there is no flag to skip the drift

@@ -446,7 +446,7 @@ impl ReflowService {
     #[tool(
         description = "Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an \
                        enabling technology — the input fact a derived roadmap is computed from (BL-68). CONVENTION: this is an observation, not a plan. A level you \
-                       EXPECT a technology to reach later is forecast_readiness, never this — \
+                       EXPECT a technology to reach later is a forecast, never this — \
                        recording a projection as an observation puts a fiction inside the \
                        machinery the roadmap is computed from, where it propagates. A rung \
                        outside 1-9 is refused rather than clamped. \
@@ -503,10 +503,20 @@ impl ReflowService {
                        reports 'ungated', never 'ready' — silence about a gate is not evidence \
                        there is none. \
                        Ask for this when this release cannot ship until that technology is mature enough.",
-        title = "Gate an Increment on Readiness",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Gate an Increment on Readiness (Retired)",
+        annotations(read_only_hint = true)
     )]
     pub async fn gate_on(
+        &self,
+        Parameters(_req): Parameters<GateOnReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("gate_on", None)
+    }
+
+    /// The handler `gate_on` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn gate_on_kept(
         &self,
         Parameters(req): Parameters<GateOnReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -524,10 +534,20 @@ impl ReflowService {
                        appetite. The epoch must already exist — plan_epoch it first. \
                        Ask for this when you want to put on record when a technology is expected to reach a maturity or readiness level (a TRL) by some date. \
                        Ask for this to record when we expect a technology to reach the maturity we need.",
-        title = "Forecast a Readiness Level",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Forecast a Readiness Level (Retired)",
+        annotations(read_only_hint = true)
     )]
     pub async fn forecast_readiness(
+        &self,
+        Parameters(_req): Parameters<ForecastReadinessReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("forecast_readiness", None)
+    }
+
+    /// The handler `forecast_readiness` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn forecast_readiness_kept(
         &self,
         Parameters(req): Parameters<ForecastReadinessReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -568,10 +588,20 @@ impl ReflowService {
                        optimistic date built by ignoring the inconvenient evidence). \
                        Ask for this when you want to know when a release can ship given the technology maturity it depends on. \
                        Ask for this to learn when a release can ship, given the technology it depends on.",
-        title = "Readiness Report",
+        title = "Readiness Report (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn readiness_report(
+        &self,
+        Parameters(_req): Parameters<ReadinessReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("readiness_report", None)
+    }
+
+    /// The handler `readiness_report` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn readiness_report_kept(
         &self,
         Parameters(req): Parameters<ReadinessReportReq>,
     ) -> Result<CallToolResult, McpError> {

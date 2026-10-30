@@ -40,6 +40,15 @@
 //! - **A removed tool**, anywhere, as a whole word: every tool in the
 //!   deprecation registry that the served list no longer carries. This is the
 //!   class the five fell in, and it needs no guessing about what is a tool.
+//! - **A counted refusing stub** (`deprecation::stub_names`): served, so a
+//!   call to its old name is counted, and for that reason never named by
+//!   served text — text that pointed agents at a stub would make the re-count
+//!   measure the text rather than the need. A stub whose name carries an
+//!   underscore is matched as a whole word, as a removed tool is; one that is
+//!   an ordinary English word (`verifies`, `frontier`) only where text says to
+//!   call or run it, in backticks — `verifies` is also an argument of
+//!   `add_verification`, which text names as such. Served text names the
+//!   survivor instead.
 //! - **A call to a name nothing serves**: in tool descriptions and the kit, a
 //!   backticked name right after "call" (or "Call", "calls") that looks like a
 //!   tool (lower-case, with an underscore) and is not on the served list.
@@ -49,7 +58,7 @@
 //! a misspelt tool name from any other word. Graph text (what a design holds)
 //! is data and is not read.
 
-use reflow2_mcp::deprecation::{Item, REGISTRY};
+use reflow2_mcp::deprecation::{Item, REGISTRY, stub_names};
 use reflow2_mcp::service::ReflowService;
 use serde_json::Value;
 use std::collections::BTreeSet;
@@ -205,6 +214,43 @@ fn names(text: &str, name: &str) -> bool {
     false
 }
 
+/// Does `text` hold `name` as a whole word that is not a code path — after
+/// `::` (`readiness.rs::gate_on`) or `function: ` (a schema file naming the
+/// core function a rule reads), where it names the computation, which stays,
+/// and not the tool?
+fn names_as_tool(text: &str, name: &str) -> bool {
+    let b = text.as_bytes();
+    let mut from = 0;
+    while let Some(at) = text[from..].find(name).map(|i| from + i) {
+        let end = at + name.len();
+        let before = at == 0 || !is_ident(b[at - 1]);
+        let after = end >= b.len() || !is_ident(b[end]);
+        let path = text[..at].ends_with("::") || text[..at].ends_with("function: ");
+        if before && after && !path {
+            return true;
+        }
+        from = end;
+    }
+    false
+}
+
+/// Text that names a counted refusing stub and is served ONLY inside that
+/// stub's own retired computation's reply, so nothing serves it while the
+/// stub stands: (file, name, why). `ility_report` labels each signal with the
+/// report it came from.
+const SERVED_ONLY_BY_A_RETIRED_COMPUTATION: &[(&str, &str, &str)] = &[
+    (
+        "crates/reflow2-core/src/ility.rs",
+        "surprising_connections",
+        "a signal's source label in ility_report's reply, retired with it",
+    ),
+    (
+        "crates/reflow2-core/src/ility.rs",
+        "granularity_report",
+        "a signal's source label in ility_report's reply, retired with it",
+    ),
+];
+
 /// The backticked names right after "call" in `text` that look like a tool.
 fn called(text: &str) -> Vec<&str> {
     let mut out = Vec::new();
@@ -308,6 +354,11 @@ async fn no_served_text_names_a_tool_that_is_not_served() {
             _ => None,
         })
         .collect();
+    let stubs: Vec<&str> = stub_names(REGISTRY);
+    assert!(
+        stubs.iter().all(|s| served.contains(*s)),
+        "a counted refusing stub is served: {stubs:?}"
+    );
     let mut found = Vec::new();
     let mut calls_read = 0;
     for (place, text, prose) in &texts {
@@ -316,10 +367,35 @@ async fn no_served_text_names_a_tool_that_is_not_served() {
                 found.push(format!("{place}: names `{name}`, which was removed"));
             }
         }
+        for name in &stubs {
+            // A literal that IS the name is the code's key for the stub (its
+            // handler answering under it), not text a reader follows.
+            if text == name {
+                continue;
+            }
+            if SERVED_ONLY_BY_A_RETIRED_COMPUTATION
+                .iter()
+                .any(|(file, n, _)| n == name && place.starts_with(&format!("{file}:")))
+            {
+                continue;
+            }
+            let named = if name.contains('_') {
+                names_as_tool(text, name)
+            } else {
+                ["call `", "Call `", "calls `", "run `", "Run `", "runs `"]
+                    .iter()
+                    .any(|lead| text.contains(&format!("{lead}{name}`")))
+            };
+            if named {
+                found.push(format!(
+                    "{place}: names `{name}`, a counted refusing stub — name its survivor"
+                ));
+            }
+        }
         if *prose {
             for name in called(text) {
                 calls_read += 1;
-                if !served.contains(name) {
+                if !served.contains(name) || stubs.contains(&name) {
                     found.push(format!(
                         "{place}: says to call `{name}`, which nothing serves"
                     ));

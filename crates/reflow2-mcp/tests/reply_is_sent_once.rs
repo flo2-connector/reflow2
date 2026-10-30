@@ -149,7 +149,13 @@ async fn a_prose_tool_still_returns_its_document_in_the_text_block() {
     // carrier. graph_report_markdown declares no structured output at all, so
     // a signpost there would replace the answer with a note about the answer.
     let s = seeded().await;
-    let result = s.graph_report_markdown().await.expect("tool ok");
+    let result = s
+        .graph_report(Parameters(GraphReportReq {
+            format: Some("markdown".into()),
+            ..Default::default()
+        }))
+        .await
+        .expect("tool ok");
 
     assert!(
         result.structured_content.is_none(),

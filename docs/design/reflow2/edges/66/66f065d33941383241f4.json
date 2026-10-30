@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:b828b283b51e84a81bc737acc80705dc981351b6b8fc0e249799946efce68413",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:coherence-gate-test",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

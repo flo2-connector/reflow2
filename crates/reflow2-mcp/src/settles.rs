@@ -187,14 +187,9 @@ pub const SETTLES: &[Settles] = &[
         approver: "approver",
         unsigned: Unsigned::RecordedWithNote,
     },
-    // An acknowledgement mints an accepted Decision.
-    Settles {
-        tool: "acknowledge_gap",
-        argument: None,
-        when: When::Always,
-        approver: "approver",
-        unsigned: Unsigned::RecordedWithNote,
-    },
+    // An acknowledgement mints an accepted Decision. (The one-gap form,
+    // retired on 2026-10-30 into `acknowledge_gaps`, settles nothing: its
+    // stub changes nothing.)
     Settles {
         tool: "acknowledge_defect",
         argument: None,

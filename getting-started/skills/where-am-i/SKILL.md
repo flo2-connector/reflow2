@@ -22,7 +22,7 @@ you. The standing rule is in AGENTS.md.
   `compare_designs` with that file as `base_path` first — it says exactly how the live graph
   and the committed record have diverged, node by node, instead of leaving you to guess from
   counts. Identical is one line; a divergence is something to tell the user about.
-- `graph_report_markdown` — snapshot, top gaps, allocation health, **and the delivery line**:
+- `graph_report` with `format` `markdown` — snapshot, top gaps, allocation health, **and the delivery line**:
   *"Delivered: N of M requirement(s)"*, computed from the thread rather than from a status field.
   **That line is the answer to the question most users actually arrive with**, and step 3 below
   exists because a session once read it here, never said it, and recomputed the same number by

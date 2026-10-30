@@ -8,7 +8,7 @@
 //! # The class this closes
 //!
 //! Since 2026-09-18 a server that holds the project tree measures a registered
-//! file itself (`crate::measure`): `link_artifact`, `set_artifact_checksum(s)`
+//! file itself (`crate::measure`): `link_artifact`, `set_artifact_checksums`
 //! and `reconcile_artifacts` called without a checksum hash the file under the
 //! root and record `checksum_basis: measured`. A design served from a registry
 //! or from flo2.io holds no tree, so the same call there was either refused by
@@ -26,8 +26,7 @@
 //!    checksum injected. A location that cannot be measured is forwarded as
 //!    it came — the server registers the artifact with no baseline, exactly as
 //!    it does for its own unmeasurable locations — and the reply names why.
-//! 2. `set_artifact_checksum`, and every checksum-less item of
-//!    `set_artifact_checksums`: the artifact's stored `location` is read with
+//! 2. Every checksum-less item of `set_artifact_checksums`: the artifact's stored `location` is read with
 //!    an internal `get_node` on the same session, measured, and the checksum
 //!    injected. An unmeasurable one is REFUSED HERE with the server's own
 //!    wording (`crate::measure::NotMeasured::reason`) and nothing is sent: an
@@ -114,8 +113,6 @@ pub enum Rewrite {
         id: Value,
         outcome: Result<Measurement, NotMeasured>,
     },
-    /// `set_artifact_checksum`: the one measurement injected.
-    Checksum { id: Value, measured: Measurement },
     /// `set_artifact_checksums`: the measurements injected, by artifact id.
     Checksums {
         id: Value,
@@ -129,7 +126,6 @@ pub enum Rewrite {
 
 /// The tools whose checksum-less calls this fills in.
 const LINK: &str = "link_artifact";
-const SET_ONE: &str = "set_artifact_checksum";
 const SET_MANY: &str = "set_artifact_checksums";
 const RECONCILE: &str = "reconcile_artifacts";
 
@@ -153,7 +149,7 @@ impl ClientMeasure {
     pub fn banner(&self) -> String {
         match &self.root {
             Some((root, source)) => format!(
-                "files named by {LINK}, {SET_ONE}, {SET_MANY} and {RECONCILE} are measured on \
+                "files named by {LINK}, {SET_MANY} and {RECONCILE} are measured on \
                  this machine under {} ({}); the server cannot see this disk and records each \
                  value as asserted",
                 root.display(),
@@ -164,7 +160,7 @@ impl ClientMeasure {
             ),
             None => format!(
                 "no root to measure files under: this session was started with no \
-                 .reflow2.toml folder and no --tree-root, so {LINK}, {SET_ONE}, {SET_MANY} and \
+                 .reflow2.toml folder and no --tree-root, so {LINK}, {SET_MANY} and \
                  {RECONCILE} called without a checksum are sent as they came and the reply says \
                  nothing was measured here. The current directory is never guessed."
             ),
@@ -175,7 +171,7 @@ impl ClientMeasure {
     pub fn notice(&self) -> Option<String> {
         self.root.as_ref().map(|(root, _)| {
             format!(
-                "📏 FILES ARE MEASURED HERE. {LINK}, {SET_ONE}, {SET_MANY} and {RECONCILE} \
+                "📏 FILES ARE MEASURED HERE. {LINK}, {SET_MANY} and {RECONCILE} \
                  called without a checksum hash the folder's own files on this machine under {} \
                  (sha256, never content) and send the result; the server cannot see this disk and \
                  records each value as asserted, and the reply's `measurement` block says so. \
@@ -212,7 +208,7 @@ impl ClientMeasure {
             .unwrap_or_default();
 
         let wants = match name.as_str() {
-            LINK | SET_ONE => lacks(&args, "checksum"),
+            LINK => lacks(&args, "checksum"),
             SET_MANY => args
                 .get("accepts")
                 .and_then(Value::as_array)
@@ -240,11 +236,6 @@ impl ClientMeasure {
             LINK => match self.link(root, args, &id, up).await {
                 Some(x) => x,
                 None => return unchanged(),
-            },
-            SET_ONE => match self.set_one(root, args, &id, up).await {
-                Ok(Some(x)) => x,
-                Ok(None) => return unchanged(),
-                Err(refusal) => return Prepared::Answer(vec![refusal_message(&id, &refusal)]),
             },
             SET_MANY => match self.set_many(root, args, &id, up).await {
                 Ok(x) => x,
@@ -293,34 +284,6 @@ impl ClientMeasure {
                 outcome,
             },
         ))
-    }
-
-    /// `set_artifact_checksum`: measure the artifact's stored location and
-    /// inject the checksum; refused by name when it cannot be measured.
-    async fn set_one<F: Forwarder>(
-        &self,
-        root: &Path,
-        mut args: Map<String, Value>,
-        id: &Value,
-        up: &F,
-    ) -> Result<Option<(Map<String, Value>, Rewrite)>, String> {
-        let Some(artifact_id) = args
-            .get("artifact_id")
-            .and_then(Value::as_str)
-            .map(str::to_string)
-        else {
-            // No artifact named: the server refuses the shape itself.
-            return Ok(None);
-        };
-        let measured = self.measure_stored(root, &artifact_id, up).await?;
-        args.insert("checksum".into(), Value::String(measured.checksum.clone()));
-        Ok(Some((
-            args,
-            Rewrite::Checksum {
-                id: id.clone(),
-                measured,
-            },
-        )))
     }
 
     /// `set_artifact_checksums`: every checksum-less item measured; ALL OF IT
@@ -614,7 +577,6 @@ impl ClientMeasure {
         };
         let (id, is_error) = match after {
             Rewrite::Link { id, .. }
-            | Rewrite::Checksum { id, .. }
             | Rewrite::Checksums { id, .. }
             | Rewrite::Reconcile { id, .. } => (id, false),
             Rewrite::NoRoot { id, .. } => (id, v.get("error").is_some()),
@@ -672,18 +634,6 @@ impl ClientMeasure {
                     }),
                 };
                 payload.insert("measurement".into(), block);
-            }
-            Rewrite::Checksum { measured, .. } => {
-                let server = payload.remove("measurement").unwrap_or(Value::Null);
-                payload.insert(
-                    "measurement".into(),
-                    json!({
-                        "basis": "asserted", "measured_by": "client",
-                        "checksum": measured.checksum, "bytes": measured.bytes,
-                        "measured_path": measured.measured_path,
-                        "root": root, "server": server, "note": note,
-                    }),
-                );
             }
             Rewrite::Checksums { measured, .. } => {
                 if let Some(list) = payload
@@ -975,15 +925,15 @@ mod tests {
         let cm = ClientMeasure::new(Some((d.path().to_path_buf(), RootSource::PointerFolder)));
         let up = table(vec![("art:a", Some("src/a.rs"))]);
         let line = call(
-            SET_ONE,
-            json!({ "artifact_id": "art:a", "disposition": "baseline_established" }),
+            SET_MANY,
+            json!({ "accepts": [{ "artifact_id": "art:a", "disposition": "baseline_established" }] }),
         );
         let Prepared::Forward { body, after } = cm.prepare(&line, &up).await else {
             panic!("forwarded");
         };
         let sent: Value = serde_json::from_str(&body).unwrap();
         let want = measure(d.path(), "src/a.rs", None).unwrap().checksum;
-        assert_eq!(sent["params"]["arguments"]["checksum"], want);
+        assert_eq!(sent["params"]["arguments"]["accepts"][0]["checksum"], want);
         let internal = up.sent.lock().unwrap().clone();
         assert_eq!(internal.len(), 1);
         let lookup: Value = serde_json::from_str(&internal[0]).unwrap();
@@ -995,7 +945,7 @@ mod tests {
                 .starts_with("reflow2-client-measure-"),
             "an internal call carries the client's own id: {lookup}"
         );
-        assert!(matches!(after, Some(Rewrite::Checksum { .. })));
+        assert!(matches!(after, Some(Rewrite::Checksums { .. })));
     }
 
     #[tokio::test]
@@ -1020,8 +970,8 @@ mod tests {
         ] {
             let up = table(artifacts);
             let line = call(
-                SET_ONE,
-                json!({ "artifact_id": "art:a", "disposition": "baseline_established" }),
+                SET_MANY,
+                json!({ "accepts": [{ "artifact_id": "art:a", "disposition": "baseline_established" }] }),
             );
             let Prepared::Answer(replies) = cm.prepare(&line, &up).await else {
                 panic!("refused locally: {says}");
@@ -1178,8 +1128,8 @@ mod tests {
         let cm = ClientMeasure::new(None);
         let up = table(vec![("art:a", Some("src/a.rs"))]);
         let line = call(
-            SET_ONE,
-            json!({ "artifact_id": "art:a", "disposition": "baseline_established" }),
+            SET_MANY,
+            json!({ "accepts": [{ "artifact_id": "art:a", "disposition": "baseline_established" }] }),
         );
         let Prepared::Forward { body, after } = cm.prepare(&line, &up).await else {
             panic!("forwarded as it came");

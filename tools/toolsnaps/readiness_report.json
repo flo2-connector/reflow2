@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "The DERIVED roadmap for one increment (BL-68): the earliest epoch by which every technology it is GATED_ON clears the level demanded of it, with the reason named — 'cannot deliver before 2035, because the converter is TRL 3 today, projected 7 at 2035, and this increment needs 7'. The answer is the max over per-gate clearing epochs, because an increment waits for its slowest dependency. Four verdicts, and two of them are refusals: `ungated` (no threshold stated — NOT ready), `achievable_now`, `gated_until`, and `indeterminate` (a gate has no level and no clearing forecast, so no date can be derived — reported loudly rather than dropped from the max, which would return an optimistic date built by ignoring the inconvenient evidence). Ask for this when you want to know when a release can ship given the technology maturity it depends on. Ask for this to learn when a release can ship, given the technology it depends on.",
+  "description": "RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. Nothing replaces it: it was retired on 2026-10-30 at the owner's word and nothing was computed, so if you needed it, say so to the person you work for (report-friction records it), because a retired tool somebody called is restored at the re-count.\n\nThe DERIVED roadmap for one increment (BL-68): the earliest epoch by which every technology it is GATED_ON clears the level demanded of it, with the reason named — 'cannot deliver before 2035, because the converter is TRL 3 today, projected 7 at 2035, and this increment needs 7'. The answer is the max over per-gate clearing epochs, because an increment waits for its slowest dependency. Four verdicts, and two of them are refusals: `ungated` (no threshold stated — NOT ready), `achievable_now`, `gated_until`, and `indeterminate` (a gate has no level and no clearing forecast, so no date can be derived — reported loudly rather than dropped from the max, which would return an optimistic date built by ignoring the inconvenient evidence). Ask for this when you want to know when a release can ship given the technology maturity it depends on. Ask for this to learn when a release can ship, given the technology it depends on.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -18,5 +18,5 @@
     "type": "object"
   },
   "name": "readiness_report",
-  "title": "Readiness Report"
+  "title": "Readiness Report (Retired)"
 }

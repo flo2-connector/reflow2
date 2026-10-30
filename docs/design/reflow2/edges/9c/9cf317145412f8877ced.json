@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:ae5d81e33b86614f5e34488d07cf5b9e6ad102a2ec526636f2b53999bcfa8132",
+  "edge_type": "IMPLEMENTS",
+  "from_id": "art:test-a-retired-tool-is-a-counted-stub-and-its-survivor-does-its-job",
+  "properties": {
+    "covers": "whole"
+  },
+  "to_id": "ver:a-retired-tool-is-a-counted-stub-and-its-survivor-does-its-job"
+}

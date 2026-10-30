@@ -1031,7 +1031,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "List nodes of a type. Answers with as many as fit in one reply and says what it left out \
+        description = "List every node of one TYPE (search_design finds nodes by what they SAY). Answers with as many as fit in one reply and says what it left out \
                        — `total` is how many exist, `omitted` how many did not come back, `next_offset` where \
                        to resume, and `capped_by` why it stopped (`size` when the payload was full, `limit` \
                        when you asked for fewer). A cap is never silent, but it is also never a surprise: pass \
@@ -1209,6 +1209,14 @@ impl ReflowService {
             .into_iter()
             .map(crate::arguments::published)
             .collect();
+        // A COUNTED REFUSING STUB is never OFFERED
+        // (`crate::deprecation::stub_names`): it is listed so a call to its old
+        // name is counted, and a catalogue that ranked it for the job it now
+        // refuses would make the count measure the catalogue, not the need. It
+        // stays in the corpus the words are weighed over, with its own
+        // description unchanged (the retirement mark is added at list time), so
+        // every other tool ranks exactly as it did.
+        let stub = |name: &str| crate::deprecation::is_stub(&self.deprecations, name);
         let searched = all.len();
         // Document frequency over the whole served surface, computed per call
         // rather than cached: the surface is fixed at startup but small enough
@@ -1227,6 +1235,7 @@ impl ReflowService {
 
         let mut scored: Vec<(f64, JsonValue)> = all
             .iter()
+            .filter(|tool| !stub(tool.name.as_ref()))
             .filter_map(|tool| {
                 let name = tool.name.as_ref();
                 let description = tool.description.as_deref().unwrap_or("");
@@ -1259,6 +1268,9 @@ impl ReflowService {
         // the terms live in the schema and reach find_tools' index only.
         let index = crate::field_terms::index(&all);
         for (tool, (raw, homes)) in crate::field_terms::hits(&terms, &index, &corpus) {
+            if stub(&tool) {
+                continue;
+            }
             let Some(t) = all.iter().find(|t| t.name == tool.as_str()) else {
                 continue;
             };
@@ -1315,7 +1327,9 @@ impl ReflowService {
                 continue;
             }
             for tool in crate::revise_route::constructors_of(&ty, &all) {
-                creates.entry(tool).or_insert_with(|| ty.clone());
+                if !stub(&tool) {
+                    creates.entry(tool).or_insert_with(|| ty.clone());
+                }
             }
         }
         if !creates.is_empty() {
@@ -1404,7 +1418,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Find design nodes by what they say, when you don't know their ids — \
+        description = "Find design nodes by WHAT THEY SAY, when you don't know their ids (scan_nodes lists every node of one TYPE) — \
                        'what does the design say about persistence?', 'is there already a \
                        requirement about latency?'. BM25 keyword search over every field a node's \
                        prose is written in (name, statement, description, a rationale, a \

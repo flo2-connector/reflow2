@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:2a2c9c57918722a4bba8762f6a36455174b41154768cd6fd5ac215a08957eb5f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:bb5be52305cceafb230c9ec965506bface967c9127bf688bc4a0627ba1a06aac",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:the-remote-client-measures-the-folders-own-files-test"
+}

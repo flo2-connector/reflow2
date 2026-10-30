@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:99a219f22f8a57411aebf6a08e0ac089a601d6ead5e044ec736b528f46d2f44f",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call"
+}

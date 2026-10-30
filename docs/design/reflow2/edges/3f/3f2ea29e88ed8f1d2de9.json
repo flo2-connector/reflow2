@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a507e14cf587adb30a48b6187ad3d01c1065850e5955b15f692b18b2bcfa89c3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:00aba8de741e3c4c8afe1aa95498554bdcf2821c7d64be78f8637eaf57ea8a09",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:reflow2-measures-a-registered-file-and-never-reads-it-test"
+}

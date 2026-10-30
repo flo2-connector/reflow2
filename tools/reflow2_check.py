@@ -26,7 +26,7 @@ The build FAILS (exit 1) when:
     skipped, which is exactly the erosion this gate exists to catch; or
   - an **anchored** gap (one that names design nodes) at or above
     `--gap-threshold` (default 0.8) is open. Gaps the team has consciously
-    accepted via `acknowledge_gap` are not reported by `detect_gaps`, so
+    accepted via `acknowledge_gaps` are not reported by `detect_gaps`, so
     acknowledging — with a reason, on the record — is the sanctioned way to go
     green without fixing. Phase-level nudges ("what comes next") never fail
     the build; they are advice, not defects.
@@ -1512,7 +1512,7 @@ def main() -> int:
                 if kind == "missing_artifact" or (kind == "checksum_change" and rng is None):
                     failures.append(
                         f"DRIFT  {what} — the build no longer matches the committed design. "
-                        f"Reconcile and accept two-sided (set_artifact_checksum), then re-export."
+                        f"Reconcile and accept two-sided (set_artifact_checksums), then re-export."
                     )
                 elif kind == "checksum_change" and art in covered:
                     continue  # judged above, against this change
@@ -1609,7 +1609,7 @@ def main() -> int:
                 line = f"{gap.get('id')} [{severity:.2f}] {gap.get('title')}"
                 if anchored and severity >= opts.gap_threshold:
                     failures.append(
-                        f"GAP    {line} — fix it, or accept it on the record (acknowledge_gap)."
+                        f"GAP    {line} — fix it, or accept it on the record (acknowledge_gaps)."
                     )
                 else:
                     notes.append(f"gap: {line}" + ("" if anchored else " (phase nudge)"))

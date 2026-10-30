@@ -2,10 +2,40 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. `dimension_drift` (singular) reads one node. Ask for this when you want to know what in the design is getting worse. Ask for this to see which quality measures are sliding across the whole design.",
+  "description": "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. Pass `target_id` and `dimension` to read ONE node on one axis (its observations over time, and whether the latest is worse; a null says which null), or either alone to narrow the sweep. Ask for this when you want to know what in the design is getting worse. Ask for this to see which quality measures are sliding across the whole design.",
   "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "properties": {},
+    "properties": {
+      "dimension": {
+        "default": null,
+        "description": "Read only this quality dimension (e.g. `reliability`, `security`).",
+        "enum": [
+          "reliability",
+          "performance",
+          "maintainability",
+          "security",
+          "scalability",
+          "observability",
+          "testability",
+          "coupling",
+          "maturity",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "target_id": {
+        "default": null,
+        "description": "Read only this node — with `dimension`, its observations on that axis\nover time and whether the latest is worse (a null says which null).",
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
     "type": "object"
   },
   "name": "dimension_drifts",

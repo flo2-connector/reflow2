@@ -3074,7 +3074,7 @@ impl ReflowService {
                        contract. `from_id` is the consumer, `to_id` the Interface. An Actor outside the \
                        design using a published interface is a consumer too, and is accepted: the type is \
                        resolved from the id. Once both sides are \
-                       recorded, `propagate_change` on either Component reaches the other, and `detect_gaps` \
+                       recorded, `propagate_from` on either Component reaches the other, and `detect_gaps` \
                        reports a contract that is consumed but never provided. Ask for this when you want to \
                        record that a component uses, calls or depends on an interface.",
         title = "Record a Consumed Interface",
@@ -3408,7 +3408,7 @@ impl ReflowService {
             obj.insert(
                 "loop".into(),
                 json!(
-                    "the step is checked from now on: propagate_change from a changed premise \
+                    "the step is checked from now on: propagate_from a changed premise \
                      says whether it is BROKEN or WEAKENED, and detect_gaps reports a \
                      conclusion whose status claims more than its steps support"
                 ),

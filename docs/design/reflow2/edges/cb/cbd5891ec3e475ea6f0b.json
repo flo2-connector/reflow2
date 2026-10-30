@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:f9b8f2dda817268372f5c3f97da62c0cb7cf7bbfa6a37833beb1e6e8171c619d",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "modified"
+  },
+  "to_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it"
+}
