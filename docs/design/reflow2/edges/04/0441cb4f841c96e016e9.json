@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fd91b47cd3c6bc55c1e938fe27e50089dc8ac292087ec9cc1be84700c4bc8704",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:287632ae78880de1f57d8338712fa6d730d857eee246fccf5d0e277cb5ddef60",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-blast-radius-of-a-change-is-read-whole-in-pages"
+}

@@ -1,13 +1,18 @@
 {
-  "content_hash": "sha256:e4d217222564554416978a5d4c21d22836afb310113ae69693607ad824d5132d",
+  "content_hash": "sha256:63313ccee10cf668b12d82ce7f5df123d90b7773b8ede002cda0616425b5d598",
   "edge_type": "AUTHORED_BY",
   "from_id": "dec:idea-what-the-cue-count-counts-reference-hints-out-a-carried-pointer-in",
+  "prev_item_hash": "sha256:e4d217222564554416978a5d4c21d22836afb310113ae69693607ad824d5132d",
   "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
     "authored_via": [
       "who:agent-8d84cd1476"
     ],
     "roles": [
-      "author"
+      "author",
+      "approver"
     ]
   },
   "to_id": "who:ajs"

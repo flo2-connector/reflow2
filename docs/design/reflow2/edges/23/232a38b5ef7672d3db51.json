@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:0e21f15dd8e508f1c9cfb72c5bce4ed73f4b1c1974dd602ee978fcbcf37deb97",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 4,
+    "action": "modified",
+    "checksum_after": "sha256:d7e705d8e90c9f6e4dbfc4ad7f514f671c4686a2c7e529d3beef6b947b22f08c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-phenomenon-skill"
+}

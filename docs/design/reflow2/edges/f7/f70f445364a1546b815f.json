@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:6640736c59e7b3a5163309ed2bfc27979e123b60132a16e70e67cab029ebac5e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 2,
+    "action": "modified",
+    "checksum_after": "sha256:ba59d611228a3ba49036d074823154ebfc79844c623a8ccca3c7f546c574d956",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-the-frontier-is-served-and-a-deferral-is-a-recorded-finding"
+}

@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:21e8e66381951b7a3837a01d2059bdac217256c7984b13230446e81de24e5941",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-the-frontier-is-served-and-a-deferral-is-a-recorded-finding",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:d91bdc77fe3fed8614db6c445a1f2c3760caf5477ddb63863196e60a8a7591c5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:f9a688d8f4b216af77850f4231671b423a41a17e13d7a149beec6e1706a7e91e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:where-am-i-skill"
+}

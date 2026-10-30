@@ -1,0 +1,18 @@
+{
+  "content_hash": "sha256:b419bbd5afc47b064476cccf6bbb307ab39963da264bcafdee5cee6d2482f965",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides",
+  "properties": {
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

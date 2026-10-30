@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:40ef2b80e81c5599d8632ca30a080d548cea2bea6e3a913cac6ba233efc8543d",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "art:test-served-skills",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

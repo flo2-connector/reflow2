@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:e61b9e9e76965ef8ffc22d84ac74c38ab9090cb6f4976ca58c7c43d60b06744e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:352a75dde8a82dc950157a7aece0440bbd172d3cf0547f28ae68b14105cf00fc",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-write-records-the-agent-beside-the-principal"
+}

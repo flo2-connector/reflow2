@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:7c53d3ca1bd85a69ae7c1f9dfa9f26e990cb9d7adfc3bd7d799656386846980a",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:58a9d5d6a6766bf5b180a8984aaa217c1120eb7360d91457f1b824da8af4ab0c",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words"
+}

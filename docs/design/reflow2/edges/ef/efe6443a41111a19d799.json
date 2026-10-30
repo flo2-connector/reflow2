@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:a5ed70a536f77da6b4d68e5a02fbceae53b6ce4386a92764cc59877f4cc473b5",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 17,
+    "action": "modified",
+    "checksum_after": "sha256:f52bbcf67ac5f20241c2afb22d59f459c7dddd8c0ca8ee5d0ea4c8731694613f",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:design-a-proof-skill"
+}

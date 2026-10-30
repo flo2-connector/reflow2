@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:5b6ee53e662c13c6feba54225699343d7fec3dcfa2cde6ef3c070f4d91780014",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 42,
+    "action": "modified",
+    "checksum_after": "sha256:c35a8aa296d603ca39f10b78cab71b66e6d5e098218db04f7fbccc2d9dc5679e",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:mcp-test-program-in-memory"
+}

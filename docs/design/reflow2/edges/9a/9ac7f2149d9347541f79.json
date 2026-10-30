@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:3e8ba7b1e8c5d72334915b23e604ee7195545ed4aa6021d8b096859ea3bfe5d6",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-2026-10-30-candidates-ship-as-counted-refusing-stubs-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:7a33d117368a7b81facbfaedb464a705fff5e59d3dbc667e59448e5bc8316113",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:kpp-proposal-skill"
+}
