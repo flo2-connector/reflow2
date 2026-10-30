@@ -1,0 +1,20 @@
+{
+  "content_hash": "sha256:0f33915797f7971d7774776ed573b7779b357d5b3b64659db1471fff2190d3d8",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-preserved-search-is-a-deliverable-of-working-a-proof-hole",
+  "properties": {
+    "approved_at": "2026-10-30",
+    "approved_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "authored_at": "2026-10-30",
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author",
+      "approver"
+    ]
+  },
+  "to_id": "who:ajs"
+}

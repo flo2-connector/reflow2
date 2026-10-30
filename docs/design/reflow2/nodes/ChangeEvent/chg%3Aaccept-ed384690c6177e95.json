@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:5f0d5294bd080a1f68f888d3395da55bee185d51a0433972a0838d3e40c43c5d",
+  "node_id": "chg:accept-ed384690c6177e95",
+  "node_type": "ChangeEvent",
+  "properties": {
+    "change_type": "resync",
+    "detected_at": "2026-10-30",
+    "name": "v0.95.0 cut, step 2: the release line moves to v0.95.0; nothing on the page is changed by this release (its owner's-word line stays true). Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "subject": "system"
+  }
+}

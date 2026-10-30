@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:6a9fe08d93b4a05ad3e4941b59a2925089ad7e03174bb345ebdc8ba9a7df1855",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:b6151e231672bdc1414c4186585dfb21236238204e2b083ba2ddb51745905a5a"
+  },
+  "to_id": "art:fixture-proof-trial-pi-plus-e"
+}

@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:58ed8fc95ba2d3d6d9719707e64847c263da2772e11b891882c74ef3d5690ac8",
+  "edge_type": "INCLUDES",
+  "from_id": "rel:v0950",
+  "properties": {
+    "as_checksum": "sha256:527782fbf88685984e045ea80a06f180ff8a654d7b26e692ce0722a83dd5c5f2"
+  },
+  "to_id": "art:tool-confusability"
+}

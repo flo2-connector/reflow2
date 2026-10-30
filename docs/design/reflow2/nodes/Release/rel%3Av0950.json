@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:c846ec002ee2f48bad7221dd92f0b50038f0044fccf003b76eac7e6137e1658a",
+  "node_id": "rel:v0950",
+  "node_type": "Release",
+  "properties": {
+    "description": "Cut 2026-10-30 on Anthony's word (\"Merge 816, then prepare the release\"), in PR release/v0.95.0. The tag push stays his. A minor carrying #816: two request _meta keys honoured only when the engine is served with --http-trusted-gateway (CallerRule::host_names_owner_and_seat). _meta[\"reflow2/design_owners\"] (Contributor ids) is the gateway's word on who owns the design; call_can_give_the_owners_word reads it in place of OWNED_BY for the settle hint after add_decision and replace_text, writes nothing and grants nothing; a hub's view does not hand it on to a member call. _meta[\"reflow2/seat\"] (a handle, at most 128 printable characters) is written on that call's usage-ledger line in place of the session's seat, so usage_report follows cues per caller. Both ignored on a local engine (stdio, --call, loopback --http without the flag) and behind a bearer gate.\n\nMeasured against the published 0.94.0 binary (linux-x86_64 archive sha256 58a68c57..., checked against checksums.txt), over stdio on a fresh store, on the 0.95.0 release build: 199 tools on both, none added, removed or changed (byte-equal); toolsnap: all 199 match. Skills 35, every get_skill reply and list_skills byte-equal. get_instructions, describe_schema and the connect-time instructions byte-equal; only serverInfo.version moves. Schema stamp equal but for reflow2_version (28 node, 69 edge types), so no upgrade doc is owed. Nothing deprecated or removed. In the --call setup nothing changes: the door cannot send _meta (a _meta in --args is refused), a stdio session ignores both keys. Behind --http-trusted-gateway (checked on that build): the owner key moves a member's settle hint to ask_question and keeps set_decision_status for the named owner, no OWNED_BY written; the seat key lands on the ledger line; 0.94.0 served the same way ignored both. flo2.io gets it once flo2 #205 is re-pinned to 0.95.0 and deployed. Session: https://claude.ai/code/session_018ibUbMKCS1yK5W17cncp9P",
+    "name": "v0.95.0 — a trusted gateway names the design's owner and each caller's seat",
+    "status": "deployed",
+    "unit_type": "binary",
+    "version": "0.95.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:e0db7e4802bd952763e7b051be59bd947feb23a6f8ad68300f1758d70bd73ea8",
+  "node_id": "req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "A failed route is a record of its own (the approach tried, the step where it fails, and why), findable and read back with the reasoning — in place before a proof hole is worked",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-30 (\"Go with your recommendations\", option (a) of dec:idea-the-preserved-search-is-a-deliverable-of-working-a-proof-hole, promoting idea (D) of 2026-10-22)",
+    "statement": "An approach that was tried and failed is recorded as a record of its own, not as prose: what was tried, the step at which it fails, the reason it fails there, and what it rests on. It is read back as part of the line of reasoning it belongs to (with the reasoning's read-back and with search), so a later reader, person or agent, sees the space a failure has ruled out without re-trying it. It is in place before increment 5 works a hole.",
+    "status": "accepted"
+  }
+}

@@ -1,12 +1,13 @@
 {
-  "content_hash": "sha256:f2062ee9baca277243aea1e60dcf4229b57aff726ea0367fecee6e363cee478c",
+  "content_hash": "sha256:4e4c7b387f47da87d2885e6ae6e70fcd1ed2eb76003d98f5734a75aa3bafac14",
   "node_id": "epoch:planned-recall-pilot-after",
   "node_type": "DesignEpoch",
+  "prev_item_hash": "sha256:f2062ee9baca277243aea1e60dcf4229b57aff726ea0367fecee6e363cee478c",
   "properties": {
     "description": "Increment 3 of epoch:planned-cognition-plus-memory. The same material, protocol and model as increment 1, on the release from increment 2, with predictions registered again first. Compares recall (cues followed, skills fetched unprompted) and scores before and after. Not in it: a new task set, which would make before and after incomparable.",
     "epoch_type": "milestone",
     "name": "PLANNED (3 of 6) — the recall pilot re-run, AFTER numbers: did the new cues improve recall?",
     "sequence": 793,
-    "status": "planned"
+    "status": "arrived"
   }
 }
