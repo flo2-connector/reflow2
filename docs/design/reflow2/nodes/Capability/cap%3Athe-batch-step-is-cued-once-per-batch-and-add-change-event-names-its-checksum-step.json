@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:1afd396ec79a688707a98c1e1e4bfcd880aa913ffbc4a65c1d20a1f2a27ee614",
+  "node_id": "cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step",
+  "node_type": "Capability",
+  "properties": {
+    "description": "BUILT 2026-10-30 on branch feat/the-tool-surface-refined-from-the-counts, increment 7 of epoch:planned-cognition-plus-memory. crates/reflow2-mcp/src/cues.rs: BATCH_CUES (loop_hint/detect_gaps, loop_hint/get_skill:detect-and-ask, loop_hint/detect_defects, loop_hint/get_skill:check-health, loop_hint/loop_status, loop_hint/governed_by), withheld() over the usage ledger's tail per session (seat, or the --call door as one sequence): withheld while offered within the session's last 25 calls and 15 minutes with no call since acting on it; due()/batch_hint()/batch_clause() read the set call_tool scopes around the handler (task-local, writes only, empty with no ledger). usage.rs read_tail (last 256 KB, torn first line dropped). Emit sites: add_requirement, create_node, add_component, add_design_rule (whole hint -> WITHHELD_HINT, which names no call); replace_text, add_capability, add_constraint, accepted add_decision, link_artifact, the provides/consumes component hint (only the batch clause dropped). set_decision_status's owner-only cue is never withheld. temporal_tools.rs: add_change_event's `next_step` names set_artifact_checksums (design_updated, this change's id) when an Artifact not removed is among `affected`; process.rs drops a step's next_step inside record_the_build's receipts. Ids and words unchanged when offered.",
+    "name": "The step for when a batch of writes lands is cued once per batch, and add_change_event names set_artifact_checksums when it touched a registered file",
+    "provenance": "authored",
+    "status": "verified",
+    "tier": "operational"
+  }
+}

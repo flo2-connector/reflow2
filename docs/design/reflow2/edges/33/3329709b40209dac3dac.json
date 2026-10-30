@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:5343bcf32dd53cb6f8250c6b7f7b27e61ec0f71c541b60e3e07878c03d29084f",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

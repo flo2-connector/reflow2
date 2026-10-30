@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:c0f8360213e6f651a8d1d46d999558ea639cbcfc15eaa28350e8a7315e69b820",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-fold-and-removal-candidates-from-the-2026-10-30-counts",
+  "properties": {
+    "evidence": "Every candidate and every count is read from that measured finding.",
+    "optional": false,
+    "weight_basis": "measured"
+  },
+  "to_id": "fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30"
+}

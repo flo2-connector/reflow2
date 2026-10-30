@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:ef6915cd1f233ab7f193b7bd88f8d3447aa093a2ef7910a23892f3f27449c20e",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-the-steps-of-record-what-was-built-point-at-record-the-build",
+  "properties": {
+    "evidence": "The zero calls and the hand-run step counts are that finding's.",
+    "optional": false,
+    "weight_basis": "measured"
+  },
+  "to_id": "fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30"
+}

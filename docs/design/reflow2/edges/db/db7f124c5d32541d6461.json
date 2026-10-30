@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:68fcf62a7673d8def6edd025a60127d00111ff8d3586161c248c9b26de1df93f",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "req:the-measured-step-only-tools-are-listed-under-their-process-tool",
+  "properties": {
+    "evidence": "Which tools are step-only, and which are not, is read from that finding's class D.",
+    "optional": false,
+    "weight_basis": "measured"
+  },
+  "to_id": "fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30"
+}

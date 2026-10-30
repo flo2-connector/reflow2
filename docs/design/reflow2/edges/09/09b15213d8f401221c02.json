@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:6418b16d83412c6a6f5fc80a522053faa9943395dca31fbf09c4bf865bc28ed8",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-fold-and-removal-candidates-from-the-2026-10-30-counts",
+  "properties": {
+    "evidence": "No candidate here moves until that rule's two conditions hold: usage evidence across projects and a refusing stub for one release.",
+    "optional": false,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first"
+}

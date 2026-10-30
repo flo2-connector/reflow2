@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:eaf7cc556dffa2a90521f741d0acbd5d1f91ed1d01ad9a006d29fdeaf352d5cb",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "dec:idea-the-steps-of-record-what-was-built-point-at-record-the-build",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

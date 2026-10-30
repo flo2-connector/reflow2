@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fe6f5cca432f2c0d40a5f81fadf03995ad3d34b7cf0652cca477b4e7ad108b8e",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-batch-step-is-cued-once-per-batch-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 3,
+    "action": "modified",
+    "checksum_after": "sha256:c243373199c0da19640c86c41770ea89eb65596f8e7a8b987de0a3e68cfcdbe8",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:cues-module"
+}

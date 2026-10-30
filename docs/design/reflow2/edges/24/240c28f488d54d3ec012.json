@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:85f1ac529d57cc2805d85171b6746f0309b1aa3607164977a1cad665fec23e83",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:a-batch-cue-is-offered-once-per-batch-and-a-process-names-its-step",
+  "properties": {},
+  "to_id": "cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step"
+}

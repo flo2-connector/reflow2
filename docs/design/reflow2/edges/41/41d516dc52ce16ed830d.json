@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:573284028c4f06f69e0d86ba446b37f033b9f7b5487092e5af896eaabc17d5ff",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "req:the-measured-step-only-tools-are-listed-under-their-process-tool",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

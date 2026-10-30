@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:a6c01e156448e40560ade4fcade688c1a7e8950c47e72e291627fd52d9b7e5f6",
+  "edge_type": "AT_EPOCH",
+  "from_id": "snap:epoch:preserved-on-write:cap:the-batch-step-is-cued-once-per-batch-and-add-change-event-names-its-checksum-step",
+  "properties": {},
+  "to_id": "epoch:preserved-on-write"
+}
