@@ -735,7 +735,7 @@ async fn reconcile_surfaces_a_code_change_back_to_the_design() {
     // change_type is refused, because the old default (`test_failure_fix`) put
     // every reconcile pass into the fix population that
     // fix_without_recorded_cause asks about.
-    j!(s.set_artifact_checksum(Parameters(SetChecksumReq {
+    j!(s.set_artifact_checksum_kept(Parameters(SetChecksumReq {
         artifact_id: "art:flight".into(),
         checksum: Some("sha256:v2".into()),
         disposition: "design_holds".into(),
@@ -786,7 +786,7 @@ async fn the_surface_can_say_that_nothing_moved() {
     // An accept on a checksum-less artifact is READ as the first baseline it
     // can only be, and the record says so — no longer refused (2026-09-07:
     // refused inside a batch, one such item discarded the rest).
-    let first = j!(s.set_artifact_checksum(Parameters(SetChecksumReq {
+    let first = j!(s.set_artifact_checksum_kept(Parameters(SetChecksumReq {
         artifact_id: "art:flight".into(),
         checksum: Some("sha256:v1".into()),
         disposition: "design_holds".into(),
@@ -805,7 +805,7 @@ async fn the_surface_can_say_that_nothing_moved() {
     // `change_type` alongside it is refused rather than ignored: a parameter
     // silently dropped teaches the caller it was accepted.
     assert!(
-        s.set_artifact_checksum(Parameters(SetChecksumReq {
+        s.set_artifact_checksum_kept(Parameters(SetChecksumReq {
             artifact_id: "art:flight".into(),
             checksum: Some("sha256:v1".into()),
             disposition: "baseline_established".into(),
@@ -819,7 +819,7 @@ async fn the_surface_can_say_that_nothing_moved() {
         "baseline_established is not a change, so naming a change type is a mistake"
     );
 
-    j!(s.set_artifact_checksum(Parameters(SetChecksumReq {
+    j!(s.set_artifact_checksum_kept(Parameters(SetChecksumReq {
         artifact_id: "art:flight".into(),
         checksum: Some("sha256:v1".into()),
         disposition: "baseline_established".into(),
@@ -945,7 +945,7 @@ async fn the_write_side_can_answer_what_detect_asks_for() {
         }
         .into()
     )));
-    j!(s.verifies(Parameters(VerifiesReq {
+    j!(s.verifies_kept(Parameters(VerifiesReq {
         verification_id: "ver:flight".into(),
         target_type: Some("Capability".into()),
         target_id: "cap:flight".into(),
@@ -1653,7 +1653,7 @@ async fn asking_a_gap_records_the_question_it_asked() {
     assert_eq!(a[0]["answer"], "The physics engine.");
 
     // Acknowledging the gap is what settles it; then there is nothing left.
-    j!(s.acknowledge_gap(Parameters(AcknowledgeGapReq {
+    j!(s.acknowledge_gap_kept(Parameters(AcknowledgeGapReq {
         gap_id: gap_id.clone(),
         affected_ids: gap_affected.clone(),
         reason: "the physics engine owns it".into(),
@@ -1962,7 +1962,13 @@ async fn create_node_on_an_existing_id_merges_instead_of_resetting() {
 #[tokio::test]
 async fn markdown_report_is_text_content_with_no_structured_payload() {
     let s = seeded().await;
-    let result = s.graph_report_markdown().await.expect("tool ok");
+    let result = s
+        .graph_report(Parameters(GraphReportReq {
+            format: Some("markdown".into()),
+            ..Default::default()
+        }))
+        .await
+        .expect("tool ok");
     assert!(
         result.structured_content.is_none(),
         "a Markdown document has no structure to declare"
@@ -2558,13 +2564,9 @@ async fn change_event_declares_what_it_changed_atomically() {
     );
 
     // The point of the edges: the event is propagatable as recorded.
-    let brief = j!(s.propagate_change(Parameters(PropagateChangeReq {
-        change_event_id: "chg:wind".into(),
-        max_depth: None,
-        full: None,
-        budget_chars: None,
-        offset: None,
-    })));
+    let brief = j!(s.propagate_from(Parameters(
+        serde_json::from_value(serde_json::json!({"seed_ids": ["chg:wind"]})).unwrap()
+    )));
     let seeds = brief["seeds"].as_array().expect("seeds");
     assert!(
         seeds.iter().any(|v| v == "req:physics") && seeds.iter().any(|v| v == "cap:flight"),
@@ -2718,7 +2720,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         proposal.is_object(),
         "propose_allocation returns clusters: {proposal}"
     );
-    let surprises = j!(s.surprising_connections());
+    let surprises = j!(s.surprising_connections_kept());
     assert!(
         surprises.get("count").is_some() && surprises.get("items").is_some(),
         "surprising_connections returns a {{count, items}} envelope: {surprises}"
@@ -2726,7 +2728,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
 
     // --- dimension drift: no observations seeded (no MCP tool writes them), so
     //     the tools must report an honest "nothing to trend", never error. ---
-    let drift = j!(s.dimension_drift(Parameters(DimensionDriftReq {
+    let drift = j!(s.dimension_drift_kept(Parameters(DimensionDriftReq {
         target_id: "cap:flight".into(),
         dimension: "reliability".into(),
     })));
@@ -2734,7 +2736,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
         drift.is_object(),
         "dimension_drift returns a result even with no data: {drift}"
     );
-    let drifts = jl!(s.dimension_drifts());
+    let drifts = jl!(s.dimension_drifts(Parameters(Default::default())));
     assert!(
         drifts.as_array().unwrap().is_empty(),
         "no observations → no drifts: {drifts}"
@@ -3268,10 +3270,10 @@ async fn the_tool_catalogue_finds_a_tool_by_the_job_it_does() {
 
     // An exact tool name is not a guess: it must rank first.
     let exact = j!(s.find_tools(Parameters(FindToolsReq {
-        query: "propagate_change".into(),
+        query: "propagate_from".into(),
         limit: Some(3),
     })));
-    assert_eq!(exact["items"][0]["tool"], "propagate_change");
+    assert_eq!(exact["items"][0]["tool"], "propagate_from");
 
     // A query matching nothing says so rather than returning the surface.
     let empty = j!(s.find_tools(Parameters(FindToolsReq {

@@ -246,8 +246,8 @@ def run(binary: str, graph_path: str) -> int:
         "contain_component", "set_requirement_status", "open_questions", "answer_question",
         "export_graph", "import_graph", "compare_designs", "loop_status",
         "add_interface", "provides", "consumes",
-        "link_artifact", "reconcile_artifacts", "set_artifact_checksum",
-        "add_verification", "verifies", "add_release", "add_environment",
+        "link_artifact", "reconcile_artifacts", "set_artifact_checksums",
+        "add_verification", "add_release", "add_environment",
         "deploy_to", "add_decision", "governed_by",
         "reconcile_deployment", "reconcile_verification", "add_constraint", "constrains", "budget_report",
         "detect_defects", "propose_heal", "describe_schema",
@@ -653,7 +653,7 @@ def run(binary: str, graph_path: str) -> int:
     c.ok("add_change_event draws its CHANGED edges (BL-50)",
          [e["node_id"] for e in ev["changed"]] == ["cmp:board"]
          and ev["changed"][0]["action"] == "modified", ev.get("changed"))
-    rad = s.call("propagate_change", {"change_event_id": "chg:smoke-affected"})
+    rad = s.call("propagate_from", {"seed_ids": ["chg:smoke-affected"]})
     c.ok("and the event propagates from what it declared",
          rad["seeds"] == ["cmp:board"], rad.get("seeds"))
     ghost = s.call_expect_error("add_change_event", {
@@ -692,9 +692,9 @@ def run(binary: str, graph_path: str) -> int:
     # The acknowledge → reviewed round trip, including the JSON an agent reads.
     # Nothing covered this before, and BL-6b changed the shape of a ReviewedGap.
     ack_gap = gaps[0]
-    s.call("acknowledge_gap", {"gap_id": ack_gap["id"],
-                               "affected_ids": ack_gap["affected_ids"],
-                               "reason": "deliberate for v1"})
+    s.call("acknowledge_gaps", {"gaps": [{"gap_id": ack_gap["id"],
+                                          "affected_ids": ack_gap["affected_ids"],
+                                          "reason": "deliberate for v1"}]})
     open_ids = {g["id"] for g in gaps_of(s)}
     c.ok("an acknowledged gap leaves the open list", ack_gap["id"] not in open_ids)
     reviewed = s.call("reviewed_gaps")
@@ -705,8 +705,8 @@ def run(binary: str, graph_path: str) -> int:
     # An acknowledgement whose detector no longer exists must still be listed,
     # marked retired — a reviewed list that shrinks unexplained is the dishonesty
     # the split exists to avoid.
-    s.call("acknowledge_gap", {"gap_id": "gap:deadbeefdeadbeef",
-                               "affected_ids": [], "reason": "coupling is the product"})
+    s.call("acknowledge_gaps", {"gaps": [{"gap_id": "gap:deadbeefdeadbeef",
+                                          "affected_ids": [], "reason": "coupling is the product"}]})
     retired = [r for r in s.call("reviewed_gaps") if r.get("retired")]
     c.ok("an acknowledgement outliving its detector is still reported",
          len(retired) == 1 and "gap" not in retired[0], retired)
@@ -804,8 +804,8 @@ def run(binary: str, graph_path: str) -> int:
 
     s.call("add_verification", {"id": "ver:flight", "name": "Ball flight tests",
                                 "method": "test", "level": "unit"})
-    s.call("verifies", {"verification_id": "ver:flight",
-                        "target_type": "Capability", "target_id": "cap:flight"})
+    s.call("add_verification", {"id": "ver:flight",
+                                "verifies": [{"target_type": "Capability", "target_id": "cap:flight"}]})
     s.call("add_release", {"id": "rel:v1", "name": "Smoke v1", "version": "1.0.0"})
     s.call("add_environment", {"id": "env:prod", "name": "Production",
                                "env_type": "production"})
@@ -941,26 +941,33 @@ def run(binary: str, graph_path: str) -> int:
     # The third option — accept the file, leave the design alone, say nothing —
     # is the one that erodes a design into fiction, so it does not exist.
     c.ok("a silent accept is refused",
-         s.call_expect_error("set_artifact_checksum",
-                             {"artifact_id": "art:flight", "checksum": "sha256:v2"}) is not None)
+         s.call_expect_error("set_artifact_checksums",
+                             {"accepts": [{"artifact_id": "art:flight", "checksum": "sha256:v2"}]}) is not None)
     c.ok("claiming 'the design was updated' with nothing behind it is refused",
-         s.call_expect_error("set_artifact_checksum",
-                             {"artifact_id": "art:flight", "checksum": "sha256:v2",
-                              "disposition": "design_updated",
-                              "design_change_event_id": "chg:phantom"}) is not None)
+         s.call_expect_error("set_artifact_checksums",
+                             {"accepts": [{"artifact_id": "art:flight", "checksum": "sha256:v2",
+                                           "disposition": "design_updated",
+                                           "design_change_event_id": "chg:phantom"}]}) is not None)
     # It says WHY the code moved: since 2026-09-14 a design_holds accept on a
     # baselined artifact with no change_type is refused — the old default
     # (`test_failure_fix`) filed every reconcile pass as a fix owing a cause.
     c.ok("a design_holds accept that does not say why the code moved is refused",
-         s.call_expect_error("set_artifact_checksum",
-                             {"artifact_id": "art:flight", "checksum": "sha256:v2",
-                              "disposition": "design_holds"}) is not None)
-    acc = s.call("set_artifact_checksum",
-                 {"artifact_id": "art:flight", "checksum": "sha256:v2",
-                  "disposition": "design_holds",
-                  "change_type": "test_failure_fix",
-                  "note": "edge-case fix; behaviour unchanged",
-                  "at": "2026-07-19T12:00:00Z"})
+         s.call_expect_error("set_artifact_checksums",
+                             {"accepts": [{"artifact_id": "art:flight", "checksum": "sha256:v2",
+                                           "disposition": "design_holds"}]}) is not None)
+    # The retired one-artifact form is a counted refusing stub: it changes
+    # nothing and answers with the call that does its job.
+    stub = s.call_expect_error("set_artifact_checksum",
+                               {"artifact_id": "art:flight", "checksum": "sha256:v2",
+                                "disposition": "design_holds", "change_type": "test_failure_fix"})
+    c.ok("the retired one-artifact accept refuses and names the call that does its job",
+         stub is not None and "set_artifact_checksums" in stub and "RETIRED" in stub, stub)
+    acc = s.call("set_artifact_checksums",
+                 {"accepts": [{"artifact_id": "art:flight", "checksum": "sha256:v2",
+                               "disposition": "design_holds",
+                               "change_type": "test_failure_fix",
+                               "note": "edge-case fix; behaviour unchanged",
+                               "at": "2026-07-19T12:00:00Z"}]})["items"][0]
     c.ok("an accept leaves its claim on axis Z",
          acc.get("change_event_id", "").startswith("chg:accept-"), acc)
     c.ok("and the claim is a real ChangeEvent",
@@ -985,7 +992,7 @@ def run(binary: str, graph_path: str) -> int:
     # same binary.
     init_version = (s.handshake_result or {}).get("result", {}).get(
         "serverInfo", {}).get("version")
-    md = s.call_text("graph_report_markdown")
+    md = s.call_text("graph_report", {"format": "markdown"})
     c.ok("the Markdown report arrives as text a client accepts (BL-48)",
          md.lstrip().startswith("#"), md[:80])
 
@@ -1021,35 +1028,35 @@ def run(binary: str, graph_path: str) -> int:
                              {"release_id": "rel:v1", "target_type": "Requirement",
                               "target_id": "req:physics"}) is not None)
 
-    print("\n== 7b2. readiness gates the roadmap, and refuses to invent one (BL-68) ==")
+    print("\n== 7b2. readiness levels are observations, and the retired gate tools change nothing (BL-68) ==")
     # Driven over real stdio because every other layer is a client we wrote, and
     # the refusal is the half most likely to be quietly softened by a wrapper.
-    rr0 = s.call("readiness_report", {"subject_id": "rel:v1"})
-    c.ok("an increment with NO stated threshold is ungated, never ready",
-         rr0["verdict"] == "ungated", rr0["verdict"])
     s.call("add_readiness", {"id": "trl:engine", "target_type": "Component",
                              "target_id": "cmp:physics", "kind": "TRL", "level": 3,
                              "evidence": "breadboard"})
-    s.call("gate_on", {"subject_type": "Release", "subject_id": "rel:v1",
-                       "target_type": "Component", "target_id": "cmp:physics",
-                       "kind": "TRL", "min_level": 7,
-                       "rationale": "fielded hardware needs a qualified engine"})
-    rr1 = s.call("readiness_report", {"subject_id": "rel:v1"})
-    c.ok("a gate with no clearing forecast is indeterminate, not optimistic",
-         rr1["verdict"] == "indeterminate", rr1["verdict"])
     s.call("plan_epoch", {"id": "epoch:2035", "name": "2035",
                           "epoch_type": "milestone", "sequence": 900})
-    s.call("forecast_readiness", {"id": "fc:engine-2035", "target_type": "Component",
-                                  "target_id": "cmp:physics", "kind": "TRL", "level": 7,
-                                  "epoch_id": "epoch:2035", "confidence": 0.4})
-    rr2 = s.call("readiness_report", {"subject_id": "rel:v1"})
-    c.ok("with a forecast the delivery epoch is DERIVED",
-         rr2["verdict"].get("gated_until", {}).get("epoch_id") == "epoch:2035",
-         rr2["verdict"])
-    c.ok("and the answer names the technology that decided it",
-         rr2["deciding_target_id"] == "cmp:physics", rr2["deciding_target_id"])
-    c.ok("and says why, in words a reader can argue with",
-         "TRL 3" in rr2["summary"] and "needs TRL 7" in rr2["summary"], rr2["summary"])
+    # gate_on, forecast_readiness and readiness_report were retired on
+    # 2026-10-30 as counted refusing stubs: each still answers its old name,
+    # changes nothing, and says it was retired (the computation stays in the
+    # core and is tested there, crates/reflow2-core/tests/readiness.rs).
+    for tool, args in (
+        ("gate_on", {"subject_type": "Release", "subject_id": "rel:v1",
+                     "target_type": "Component", "target_id": "cmp:physics",
+                     "kind": "TRL", "min_level": 7,
+                     "rationale": "fielded hardware needs a qualified engine"}),
+        ("forecast_readiness", {"id": "fc:engine-2035", "target_type": "Component",
+                                "target_id": "cmp:physics", "kind": "TRL", "level": 7,
+                                "epoch_id": "epoch:2035", "confidence": 0.4}),
+        ("readiness_report", {"subject_id": "rel:v1"}),
+    ):
+        said = s.call_expect_error(tool, args)
+        c.ok(f"the retired `{tool}` refuses, changes nothing and says it was retired",
+             said is not None and "RETIRED" in said and "changed nothing" in said, said)
+    rel = s.call("get_node", {"id": "rel:v1", "include_edges": True})
+    rel_edges = rel.get("edges") or (rel.get("node") or {}).get("edges") or {}
+    c.ok("and the refused gate drew no edge",
+         "GATED_ON" not in json.dumps(rel_edges.get("by_type")), rel_edges.get("by_type"))
     c.ok("a rung outside 1-9 is refused, never clamped",
          s.call_expect_error("add_readiness",
                              {"id": "trl:bad", "target_type": "Component",
@@ -1383,9 +1390,9 @@ def run(binary: str, graph_path: str) -> int:
     # Acknowledging is what settles an answered question — done after the
     # determinism check above, which has to compare an unmutated graph.
     ack_target = [g for g in gaps_of(s) if g["id"] == answered_gap][0]
-    s.call("acknowledge_gap", {"gap_id": answered_gap,
-                               "affected_ids": ack_target["affected_ids"],
-                               "reason": "deliberate for v1"})
+    s.call("acknowledge_gaps", {"gaps": [{"gap_id": answered_gap,
+                                          "affected_ids": ack_target["affected_ids"],
+                                          "reason": "deliberate for v1"}]})
     c.ok("acknowledging the gap leaves nothing outstanding",
          s.call("open_questions") == [])
 

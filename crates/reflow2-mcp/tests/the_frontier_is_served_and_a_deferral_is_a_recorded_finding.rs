@@ -1,3 +1,5 @@
+//! RETIRED 2026-10-30: `frontier` is a counted refusing stub; these tests hold
+//! its kept computation (`frontier_kept`) until the December re-count decides.
 //! The incremental-adopt primitives reach the served surface: `frontier` is a
 //! tool, a deferral is `record_finding` with `fact_type: deferred_derivation`,
 //! and `loop_status` lists open deferrals
@@ -42,7 +44,7 @@ async fn seeded() -> ReflowService {
 #[tokio::test]
 async fn the_frontier_is_served_and_says_when_no_sweep_was_handed_in() {
     let s = seeded().await;
-    let f = j!(s.frontier(req(serde_json::json!({}))));
+    let f = j!(s.frontier_kept(req(serde_json::json!({}))));
     assert_eq!(
         f["structure_without_intent"][0]["node_id"], "cap:archive",
         "{f:?}"
@@ -52,7 +54,7 @@ async fn the_frontier_is_served_and_says_when_no_sweep_was_handed_in() {
         "id": "art:scanner", "name": "scanner.py", "artifact_type": "code",
         "location": "src/scanner.py"
     }))));
-    let f = j!(s.frontier(req(serde_json::json!({
+    let f = j!(s.frontier_kept(req(serde_json::json!({
         "observed": [
             {"path": "src/scanner.py", "mass": 10},
             {"path": "src/archive/writer.py", "mass": 30}
@@ -76,7 +78,7 @@ async fn a_deferral_is_a_recorded_finding_that_the_boundary_lists_and_the_fronti
     let ls = j!(s.loop_status(req(serde_json::json!({}))));
     assert_eq!(ls["deferrals_open"], 1, "{ls:?}");
     assert_eq!(ls["deferrals"][0]["subject_id"], "cap:archive");
-    let f = j!(s.frontier(req(serde_json::json!({}))));
+    let f = j!(s.frontier_kept(req(serde_json::json!({}))));
     assert_eq!(f["resume_point"]["subject_id"], "cap:archive", "{f:?}");
     assert!(
         f["structure_without_intent"].as_array().unwrap().is_empty(),

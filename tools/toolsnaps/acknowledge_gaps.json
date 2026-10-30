@@ -12,7 +12,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Acknowledge MANY gaps in one call — the bulk form of acknowledge_gap. EACH GAP CARRIES ITS OWN REASON, which is the point: a batch of acknowledgements under one shared reason is exactly the erosion the ask-don't-repair rule exists to prevent, and would make a bulk form worse than the loop it replaces. The round trip collapses; the judgement stays per gap. ALL OF IT OR NONE OF IT — every item is attempted so you learn every failure at once, and if anything failed nothing is acknowledged.",
+  "description": "Accept gaps the user has judged fine, recording WHY — one gap or many in one call. Each moves out of `detect_gaps` into `reviewed_gaps` — not deleted, not hidden — and its reason is stored as a real Decision node, so it outlives this session; if a gap's affected nodes later change, the review expires and the gap returns for a fresh judgement. EACH GAP CARRIES ITS OWN REASON: acknowledgements under one shared reason are exactly the erosion the ask-don't-repair rule exists to prevent, and would make one call worse than the loop it replaces. ALL OF IT OR NONE OF IT — every item is attempted so you learn every failure at once, and if anything failed nothing is acknowledged.",
   "inputSchema": {
     "$defs": {
       "GapAckReq": {
@@ -77,7 +77,7 @@
         "type": "string"
       },
       "gaps": {
-        "description": "The gaps to accept in one call — each `{gap_id, reason, affected_ids?, approver?}`, the same fields `acknowledge_gap` takes one at a time. Every item carries its OWN reason: a batch under one shared reason would be the silent bulk accept this refuses to be.",
+        "description": "The gaps to accept in one call — each `{gap_id, reason, affected_ids?, approver?}`; one item for one gap. Every item carries its OWN reason: a batch under one shared reason would be the silent bulk accept this refuses to be.",
         "items": {
           "$ref": "#/$defs/GapAckReq"
         },
@@ -90,5 +90,5 @@
     "type": "object"
   },
   "name": "acknowledge_gaps",
-  "title": "Acknowledge Many Gaps"
+  "title": "Acknowledge Gaps"
 }

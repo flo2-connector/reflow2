@@ -45,6 +45,10 @@
 //!   `deprecations` ([`mark_vocabulary`], [`listing`]).
 //! - THE NOTICE, on a call that uses one ([`used_by`], [`attach_notice`]).
 //! - The stub refusal for a tool that went ([`removed_tool`]).
+//! - The answer of a COUNTED REFUSING STUB ([`stub_refusal`]): a tool still
+//!   listed under its name that changes nothing and answers with the call that
+//!   now does its job, its every call counted in the usage ledger under its
+//!   own name (below).
 //!
 //! A deprecated item still works exactly as before. With the registry empty,
 //! nothing here changes a byte of tools/list or of any reply — every function
@@ -95,6 +99,29 @@
 //! note, Anthony sends it, and the release waits for his word that he has
 //! (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`).
 //! Nothing in this module sends anything.
+//!
+//! # A counted refusing stub: retired, still listed, and counted
+//!
+//! `req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides`
+//! (Anthony, 2026-10-30, "Yes, go with B" on
+//! `dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december`).
+//! An entry with [`Deprecation::stub_since`] names a tool this build still
+//! LISTS, whose handler is a stub: it changes nothing and refuses with the
+//! call that now does its job ([`stub_refusal`]) — or, for a retired report,
+//! that it was retired and to say so if it was needed. It is listed rather
+//! than gone because absence is silent: an agent that does not find a tool
+//! works around it and says nothing, while a call to a listed stub is a line
+//! in the usage ledger under the stub's own name (`crate::usage`), which
+//! `usage_report` counts per stub (`retired_stubs`, [`stub_counts`]). That
+//! count is the whole point: at the re-count ([`RE_COUNT`]) a stub nobody
+//! called is deleted and one somebody called is restored. The computing code
+//! stays in place until then, so restoring is re-pointing the handler.
+//!
+//! A stub is never offered by `find_tools`, and served text names its
+//! survivor instead of it, so the count measures demand rather than the
+//! instructions' own pointing. Its `#[tool]` description stays the tool's own:
+//! the mark ([`mark_tools`]) goes before it at list time, and find_tools weighs
+//! its words over the router's descriptions, so no other tool's ranking moves.
 
 use std::borrow::Cow;
 
@@ -186,6 +213,13 @@ pub struct Deprecation {
     /// The mark and the refusal still say `deprecated_in`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub announced_in: Option<Text>,
+    /// For a TOOL still listed as a COUNTED REFUSING STUB: the date it was
+    /// retired (`YYYY-MM-DD`). Absent for every other entry. The stub changes
+    /// nothing, refuses with [`Deprecation::what_to_do`] ([`stub_refusal`]),
+    /// and its calls are counted under its own name until the re-count
+    /// ([`RE_COUNT`]).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stub_since: Option<Text>,
 }
 
 impl Deprecation {
@@ -201,6 +235,7 @@ impl Deprecation {
             what_to_do: Cow::Borrowed(what_to_do),
             decision: Cow::Borrowed(decision),
             announced_in: None,
+            stub_since: None,
         }
     }
 
@@ -229,7 +264,34 @@ impl Deprecation {
             what_to_do: Cow::Borrowed(what_to_do),
             decision: Cow::Borrowed(decision),
             announced_in: Some(Cow::Borrowed(announced_in)),
+            stub_since: None,
         }
+    }
+
+    /// A served tool that is now a COUNTED REFUSING STUB, retired on
+    /// `retired_on` (see [`Deprecation::stub_since`]).
+    pub const fn stub(
+        tool: &'static str,
+        deprecated_in: &'static str,
+        retired_on: &'static str,
+        what_to_do: &'static str,
+        decision: &'static str,
+    ) -> Self {
+        Self {
+            item: Item::Tool {
+                tool: Cow::Borrowed(tool),
+            },
+            deprecated_in: Cow::Borrowed(deprecated_in),
+            what_to_do: Cow::Borrowed(what_to_do),
+            decision: Cow::Borrowed(decision),
+            announced_in: None,
+            stub_since: Some(Cow::Borrowed(retired_on)),
+        }
+    }
+
+    /// Is this entry a counted refusing stub?
+    pub fn is_stub(&self) -> bool {
+        self.stub_since.is_some()
     }
 
     /// A served tool.
@@ -341,11 +403,23 @@ impl Deprecation {
     }
 
     /// THE MARK: "DEPRECATED in 0.85.0, removed in the next release: <what to do>".
+    /// A counted refusing stub's says what it is instead: "RETIRED on
+    /// 2026-10-30 (0.96.0): a refusing stub, changes nothing, every call
+    /// counted; ... <what to do>".
     pub fn mark(&self) -> String {
-        format!(
-            "DEPRECATED in {}, removed in the next release: {}",
-            self.deprecated_in, self.what_to_do
-        )
+        match &self.stub_since {
+            Some(on) => format!(
+                "RETIRED on {on} ({}): a refusing stub that changes nothing, and every call to \
+                 it is counted; at the re-count (about {RE_COUNT}) it is deleted if nobody called \
+                 it and restored if somebody did. {}.",
+                self.deprecated_in,
+                capitalised(&self.what_to_do)
+            ),
+            None => format!(
+                "DEPRECATED in {}, removed in the next release: {}",
+                self.deprecated_in, self.what_to_do
+            ),
+        }
     }
 
     /// The whole sentence: what it is, then the mark.
@@ -409,7 +483,229 @@ pub const REGISTRY: &[Deprecation] = &[
         "call `manual_work_ledger`, which takes the same arguments",
         "dec:the-two-renamed-stubs-are-removed-in-the-next-release",
     ),
+    // THE 2026-10-30 FOLD AND REMOVAL CANDIDATES, each a COUNTED REFUSING STUB
+    // for 0.96.0 (req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides,
+    // Anthony 2026-10-30, "Yes, go with B"). Still listed, changing nothing,
+    // every call counted under its own name; at the re-count (RE_COUNT) a stub
+    // nobody called is deleted and one somebody called is restored. The
+    // handlers keep the old bodies beside the stubs (`<tool>_kept`), so a
+    // restore re-points the handler.
+    //
+    // FOLDS: the survivor carries the job.
+    Deprecation::stub(
+        "set_artifact_checksum",
+        "0.96.0",
+        RETIRED_ON,
+        "call `set_artifact_checksums` with a one-item `accepts` list, which takes the same fields per item",
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "acknowledge_gap",
+        "0.96.0",
+        RETIRED_ON,
+        "call `acknowledge_gaps` with a one-item `gaps` list, which takes the same fields per item",
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "dimension_drift",
+        "0.96.0",
+        RETIRED_ON,
+        "call `dimension_drifts` with `target_id` and `dimension`, which reads that one node's drift exactly as this did",
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "propagate_change",
+        "0.96.0",
+        RETIRED_ON,
+        "call `propagate_from` with the ChangeEvent's id as its one seed (`seed_ids`), which reads that change's blast radius exactly as this did",
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "verifies",
+        "0.96.0",
+        RETIRED_ON,
+        "call `add_verification` with the check's `id` and `verifies` (a list of `{\"target_id\": …}`), which keeps every field you leave out",
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "graph_report_markdown",
+        "0.96.0",
+        RETIRED_ON,
+        "call `graph_report` with `format` `markdown`, which returns the same Markdown",
+        STUB_DECISION,
+    ),
+    // RETIRED REPORTS: nothing replaces them.
+    Deprecation::stub(
+        "evidence_report",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "forecast_readiness",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "frontier",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "ility_report",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "granularity_report",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "consumption_report",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "surprising_connections",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "readiness_report",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
+    Deprecation::stub(
+        "gate_on",
+        "0.96.0",
+        RETIRED_ON,
+        RETIRED_REPORT,
+        STUB_DECISION,
+    ),
 ];
+
+/// The day the 2026-10-30 candidates became counted refusing stubs.
+pub const RETIRED_ON: &str = "2026-10-30";
+
+/// When the stubs are re-counted and each is deleted (nobody called it) or
+/// restored (somebody did): the 90-day re-run of the flo2.io usage baseline.
+pub const RE_COUNT: &str = "2026-12-23";
+
+/// The Decision that retired them.
+const STUB_DECISION: &str =
+    "dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december";
+
+/// What a retired report's stub says to do: nothing replaces it.
+const RETIRED_REPORT: &str = "nothing replaces it: it was retired on 2026-10-30 at the owner's \
+     word and nothing was computed, so if you needed it, say so to the person you work for \
+     (report-friction records it), because a retired tool somebody called is restored at the \
+     re-count";
+
+/// `text` with its first letter upper-cased, so a what-to-do reads as a sentence.
+fn capitalised(text: &str) -> String {
+    let mut c = text.chars();
+    match c.next() {
+        Some(f) => f.to_uppercase().chain(c).collect(),
+        None => String::new(),
+    }
+}
+
+/// Every tool `entries` serve as a counted refusing stub, in registry order.
+pub fn stub_names(entries: &[Deprecation]) -> Vec<&str> {
+    entries
+        .iter()
+        .filter(|d| d.is_stub())
+        .filter_map(|d| match &d.item {
+            Item::Tool { tool } => Some(tool.as_ref()),
+            _ => None,
+        })
+        .collect()
+}
+
+/// Is `name` a counted refusing stub in `entries`?
+pub fn is_stub(entries: &[Deprecation], name: &str) -> bool {
+    stub_names(entries).contains(&name)
+}
+
+/// THE STUB'S ANSWER: when `name` is a counted refusing stub, the refusal its
+/// call gets — that it changed nothing, what to do, and, when the caller's own
+/// arguments map onto it, `exact_call`: the survivor's name and the arguments
+/// that do the same job. It opens with `REFUSED` so the usage ledger classes
+/// it as a refusal by the tool's own rule (`crate::usage::classify`); the
+/// line is written under the stub's name like any other call's.
+pub fn stub_refusal(
+    entries: &[Deprecation],
+    name: &str,
+    exact_call: Option<(&str, &Value)>,
+) -> Option<String> {
+    let d = entries
+        .iter()
+        .find(|d| d.is_stub() && matches!(&d.item, Item::Tool { tool } if tool == name))?;
+    let exact = exact_call
+        .map(|(tool, args)| format!(" The exact call: `{tool}` with {args}."))
+        .unwrap_or_default();
+    Some(format!(
+        "REFUSED: `{name}` was RETIRED on {} and is a refusing stub, so this call changed \
+         nothing. What to do: {}.{exact} This call is counted under `{name}` in the usage \
+         ledger: at the re-count (about {RE_COUNT}) a stub nobody called is deleted and one \
+         somebody called is restored ({}).",
+        d.stub_since.as_deref().unwrap_or(RETIRED_ON),
+        d.what_to_do,
+        d.decision
+    ))
+}
+
+/// `usage_report`'s `retired_stubs`: every counted refusing stub with its
+/// calls in the report's window, a zero included — the count the re-count
+/// decides by. `None` when `entries` hold no stub, so the reply is unchanged.
+pub fn stub_counts(
+    entries: &[Deprecation],
+    by_tool: &std::collections::BTreeMap<String, usize>,
+) -> Option<Value> {
+    let names = stub_names(entries);
+    if names.is_empty() {
+        return None;
+    }
+    let counts: serde_json::Map<String, Value> = names
+        .iter()
+        .map(|n| {
+            (
+                (*n).to_string(),
+                json!(by_tool.get(*n).copied().unwrap_or(0)),
+            )
+        })
+        .collect();
+    let called = counts.values().filter(|v| v.as_u64() != Some(0)).count();
+    Some(json!({
+        "counts": counts,
+        "called": called,
+        "not_called": names.len() - called,
+        "re_count": RE_COUNT,
+        "note": format!(
+            "Each tool here is a counted refusing stub retired on {RETIRED_ON}: it changed \
+             nothing when called and answered with the call that does its job. At the re-count \
+             (about {RE_COUNT}) a stub with no calls is deleted and one with calls is restored \
+             as the tool it was. The counts are for this report's window: pass `since` \
+             {RETIRED_ON} to count every call since they were retired."
+        ),
+    }))
+}
 
 // ---- the mark ------------------------------------------------------------------------
 
@@ -797,8 +1093,23 @@ pub fn validate(entries: &[Deprecation], served: &[Tool], vocabulary: &Value) ->
         if entries[..i].iter().any(|e| e.item == d.item) {
             problems.push(format!("{at}: named twice"));
         }
+        if let Some(on) = &d.stub_since
+            && reflow2_core::dates::parse_day(on).is_none()
+        {
+            problems.push(format!(
+                "{at}: stub_since `{on}` is not a date (YYYY-MM-DD)"
+            ));
+        }
         match &d.item {
-            Item::Tool { .. } => {}
+            Item::Tool { tool: t } => {
+                if d.is_stub() && tool(t).is_none() {
+                    problems.push(format!(
+                        "{at}: a counted refusing stub stays LISTED for its release, and `{t}` \
+                         is not served"
+                    ));
+                }
+            }
+            _ if d.is_stub() => problems.push(format!("{at}: only a tool can be a refusing stub")),
             Item::Argument { tool: t, path } => match tool(t) {
                 None => problems.push(format!("{at}: `{t}` is not served")),
                 Some(t) => {

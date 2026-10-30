@@ -23,7 +23,7 @@
 //! # The id, derived rather than assigned
 //!
 //! `<field>/<target>`: `loop_hint/set_decision_status`, `next/loop_status`,
-//! `hint/get_skill:detect-and-ask`, `instructions/graph_report_markdown`.
+//! `hint/get_skill:detect-and-ask`, `instructions/graph_report`.
 //! Derived at the one place every reply passes, from words that are reflow2's
 //! own vocabulary, rather than hand-assigned at the ~40 places a hint is
 //! written: an id each emit site had to remember would be the one a new hint
@@ -64,18 +64,22 @@ pub const MAX_PER_REPLY: usize = 24;
 /// cue ids a handshake offers. Kept beside [`FIRST_READ_CUE`] so the sentence
 /// and what is counted for it cannot drift apart unseen: a test holds the
 /// sentence to these names.
-pub const INSTRUCTIONS_OFFER: [&str; 2] = [
-    "instructions/graph_report_markdown",
-    "instructions/search_design",
-];
+///
+/// THE FIRST ID CHANGED ON 2026-10-30, from `instructions/graph_report_markdown`
+/// to `instructions/graph_report`: `graph_report_markdown` became a counted
+/// refusing stub, folded into `graph_report` with `format: "markdown"`, and a
+/// cue id names the call (`<field>/<named call>`), never its arguments. A
+/// count compared across that day compares the two ids as one cue.
+pub const INSTRUCTIONS_OFFER: [&str; 2] =
+    ["instructions/graph_report", "instructions/search_design"];
 
 /// The agent-side cue itself: the sentence the connect-time instructions
 /// carry, and the kit's session-start hooks repeat (`tools/loop_nudge.py`).
 /// It names what reflow2 already serves; reflow2 serves no compact read of a
 /// design's CURRENT VALUES, which is recorded as a finding, not built here.
-pub const FIRST_READ_CUE: &str = "TO LEARN WHERE THIS DESIGN STANDS, read `graph_report_markdown` \
-     first (a few KB: what the design holds, what is delivered, the top open gaps) before \
-     anything longer; if the design keeps its own record of where things stand, `search_design` \
+pub const FIRST_READ_CUE: &str = "TO LEARN WHERE THIS DESIGN STANDS, read `graph_report` with \
+     `format` `markdown` first (a few KB: what the design holds, what is delivered, the top open \
+     gaps) before anything longer; if the design keeps its own record of where things stand, `search_design` \
      finds it (\"current state\", \"status as of\").";
 
 /// THE CUES OFFERED ONCE PER BATCH OF WRITES, not on every write
@@ -565,8 +569,8 @@ mod tests {
     #[test]
     fn a_cue_is_counted_by_whether_its_session_acted_on_it() {
         let mut lines = vec![
-            line("cue", "", "s1", &["instructions/graph_report_markdown"]),
-            line("call", "graph_report_markdown", "s1", &[]),
+            line("cue", "", "s1", &["instructions/graph_report"]),
+            line("call", "graph_report", "s1", &[]),
             line(
                 "call",
                 "add_decision",
@@ -588,7 +592,7 @@ mod tests {
         let refs: Vec<&UsageLine> = lines.iter().collect();
         let t = tally(&refs);
 
-        let first = &t.by_cue["instructions/graph_report_markdown"];
+        let first = &t.by_cue["instructions/graph_report"];
         assert_eq!(
             (
                 first.offered,
@@ -740,7 +744,7 @@ mod tests {
     #[test]
     fn the_first_read_sentence_names_what_the_handshake_counts() {
         let v = Vocabulary::new(
-            ["graph_report_markdown", "search_design"].map(String::from),
+            ["graph_report", "search_design"].map(String::from),
             Vec::<String>::new(),
         );
         let named: Vec<String> = v

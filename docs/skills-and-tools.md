@@ -165,8 +165,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | tool | | what it does |
 |---|---|---|
 | `acknowledge_defect` | **write** | Accept a structural defect the user has judged fine, recording WHY. |
-| `acknowledge_gap` | **write** | Accept a gap the user has judged fine, recording WHY. |
-| `acknowledge_gaps` | **write** | Acknowledge MANY gaps in one call — the bulk form of acknowledge_gap. |
+| `acknowledge_gap` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
+| `acknowledge_gaps` | **write** | Accept gaps the user has judged fine, recording WHY — one gap or many in one call. |
 | `apply_heal` | **write** | Apply a reviewed HealProposal atomically (rigid mode = no-op). |
 | `confirmation_ledger` | read | The confirmation ledger (BL-35): for every capability with built artifacts, when was its claim last checked against reality, and what was the answer — drift events and whether each was resolved, accept claims split into design_holds vs design_updated, first baselines counted apart from both (they are not accepts), clean-reconcile confirmations with when they last happened, design edits on the record, and a state per capability: drifting (an observed divergence is unanswered), confirmed (examined, with the claim history visible), or unexamined (nobody has ever looked — NOT the same as confirmed) |
 | `consumption_report` | read | What did this design BUILD that it records no consumer for? |
@@ -194,35 +194,35 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `vocabulary_coverage` | read | Which of the design VOCABULARY this design has ever actually used — node types, edge types, and properties on the types that have instances |
 | `what_next` | read | Which decisions to settle next — a rough guide, not an ordering, for a design with more open questions than anyone can hold at once |
 | `withdraw_defect_acknowledgement` | **write** | Withdraw a defect's acknowledgement, returning it to the open list. |
-| `withdraw_gap_acknowledgement` | **write** | Withdraw a gap's acceptance: the Decision `acknowledge_gap` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. |
+| `withdraw_gap_acknowledgement` | **write** | Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. |
 | `confirmation_ledger` | **read** | The confirmation ledger (BL-35): for every capability with built artifacts, when was its claim last checked against reality, and what was the answer — drift events and whether each was resolved, accept claims split into design_holds vs design_updated, first baselines counted apart from both (they are not accepts), clean-reconcile confirmations with when they last happened, design edits on the record, and a state per capability: drifting (an observed divergence is unanswered), confirmed (examined, with the claim history visible), or unexamined (nobody has ever looked — NOT the same as confirmed). |
-| `consumption_report` | **read** | What did this design BUILD that it records no consumer for? |
+| `consumption_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `design_regions` | **read** | What parts this design has, so a session that holds NOTHING can pick where to stand. |
 | `detect_defects` | **read** | Detect structural defects the machine can repair (HEAL). |
 | `detect_gaps` | **read** | Find gaps in the design to ask the human about (DETECT). |
-| `dimension_drift` | **read** | Quality-dimension drift for ONE target node: the recorded observations of a single `-ility` (reliability, performance, maintainability …) on that node over time, and whether the latest reading is worse than the one before. |
+| `dimension_drift` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `dimension_drifts` | **read** | All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. |
 | `evaluate_allocation` | **read** | Evaluate how capabilities are allocated across components: the coupling each ALLOCATED_TO grouping carries, where cross-component dependencies concentrate, and a modularity score over the partition. |
-| `granularity_report` | **read** | Does the BUILD separate what the DESIGN separates? |
+| `granularity_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `graph_report` | **read** | The 'what should I look at?' rollup report (SYNTHESIZE). |
-| `graph_report_markdown` | **read** | The graph report rendered as Markdown — `graph_report`'s computed snapshot (counts, requirement certainty, the delivery line, top gaps, allocation, confirmation, coverage, the maturity trajectory) as prose a person reads rather than JSON an agent parses; the substance is documented on `graph_report`. |
+| `graph_report_markdown` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `hierarchy_issues` | **read** | Decomposition and hierarchy issues — the matryoshka checks over Component.level and the CONTAINS spine: a part with two parents, a child at a level not finer than its parent's, a level that is not on this design's declared ladder (`unknown_level`), and a spine that skips a rung. |
-| `ility_report` | **read** | What can this design's graph actually SAY about the quality axes — the 'ilities'? |
+| `ility_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `loop_status` | **read** | The coherence loop's outstanding debt, cheaply: what capture→detect→ask→decide steps are owed now, computed from graph state, never run history. |
 | `maturity_report` | **read** | Where does this design sit on the trajectory from FUNCTION to STRUCTURE? |
-| `propagate_change` | **read** | Blast radius of a recorded ChangeEvent along the golden thread. |
+| `propagate_change` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `propagate_from` | **read** | Speculative blast radius from seed node ids — what would touching these reach? |
 | `propose_allocation` | **read** | Propose a capability→component allocation by Leiden clustering over the DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never applied; `allocate` records what you actually decide. |
 | `propose_heal` | **read** | Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. |
 | `reviewed_defects` | **read** | Structural defects that were reviewed and accepted, each with the reason given. |
-| `reviewed_gaps` | **read** | Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gap` writes, kept as a Decision node so it outlives the session. |
+| `reviewed_gaps` | **read** | Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gaps` writes, kept as a Decision node so it outlives the session. |
 | `seam_coverage` | **read** | Which boundaries between parts are covered by a contract — ANSWERED AT THE ALTITUDE YOU ASK AT. |
-| `surprising_connections` | **read** | Coupling edges that tie together parts the design otherwise keeps apart (DETECT). |
+| `surprising_connections` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `sync_status` | **read** | Has the SHARED RECORD moved since this graph last looked? |
 | `vocabulary_coverage` | **read** | Which of the design VOCABULARY this design has ever used — node types, edge types, and properties on the types that have instances. |
 | `what_next` | **read** | Which decisions to settle next — a rough guide, not an ordering, for a design with more open questions than anyone can hold at once. |
 | `closure_report` | **read** | DOES THE DESIGN CLOSE? |
-| `frontier` | **read** | WHERE DID I LEAVE OFF? |
+| `frontier` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `derived_report` | **read** | WHAT DOES reflow2 DERIVE, AND HOW MUCH? |
 
 ### Query — read the design back
@@ -243,8 +243,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `describe_schema` | **read** | Discover the design vocabulary before writing to it: which node types exist, which properties they require, and which edge types may join two given types. |
 | `find_tools` | **read** | Find the reflow2 tool for a job you can describe but cannot name — 'how do I record that a file implements a capability?', 'what shows me the blast radius?'. |
 | `get_node` | **read** | Fetch one node by id and read everything recorded about it: its properties and, with `include_edges`, its edges — every link to and from it, each with its type, direction, the node at the other end (id, type, name) and the edge's own properties, evidence included. |
-| `scan_nodes` | **read** | List nodes of a type. |
-| `search_design` | **read** | Find design nodes by what they say, when you don't know their ids — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
+| `scan_nodes` | **read** | List every node of one TYPE (search_design finds nodes by what they SAY). |
+| `search_design` | **read** | Find design nodes by WHAT THEY SAY, when you don't know their ids (scan_nodes lists every node of one TYPE) — 'what does the design say about persistence?', 'is there already a requirement about latency?'. |
 | `topic_report` | **read** | WHAT THE DESIGN HOLDS ABOUT ONE SUBJECT, read-only, in one call — the /topic view: 'show me something about X'. |
 | `draw_edges` | **write** | The bulk form of the typed edge tools. |
 | `reasoning_report` | **read** | READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. |
@@ -262,9 +262,9 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `set_evidence_scope` | **write** | Record what a check HELD FIXED and what it VARIED for one claim — the input scope of its evidence. |
 | `set_verification_kind` | **write** | Set a Verification's kind: `verification` (built right — checks the spec) or `validation` (the right thing — checks the operational intent). |
 | `set_verification_status` | **write** | Set a Verification's outcome (planned/passing/failing/skipped/blocked), preserving what the check is. |
-| `verifies` | **write** | Link a Verification to what it checks (VERIFIES) — a Capability, Component, Requirement or Artifact. |
+| `verifies` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `coverage_report` | **read** | What has the design never been told about? |
-| `evidence_report` | **read** | Where did each capability's evidence actually come from? |
+| `evidence_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `invalidated_findings` | **read** | Every finding some record CLAIMS to have answered, and whether a re-run is owed (the read half of `invalidates`). |
 | `invalidates` | **write** | Say that work you just did ANSWERED a finding, so the finding stops proposing work already done (INVALIDATES). |
 | `relation_coverage` | **read** | Of your N things of kind X, how many carry relation R? |
@@ -284,8 +284,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `realizes` | **write** | Link an Artifact to the Capability or Component it REALIZES — the file, drawing or binary that implements it, as opposed to one that merely describes it (`documents`). |
 | `reconcile_artifacts` | **write** | Check the design against what was actually built. |
 | `reconcile_dependencies` | read | Check the declared dependencies against what the build ACTUALLY resolves, and return the reflow2.toml manifest |
-| `set_artifact_checksum` | **write** | Accept an artifact's current content as the new drift baseline — a two-sided decision. |
-| `set_artifact_checksums` | **write** | Accept MANY drift baselines in one call — the bulk form of set_artifact_checksum, which was 244 consecutive calls across 22 sessions of recorded usage. |
+| `set_artifact_checksum` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
+| `set_artifact_checksums` | **write** | Accept artifacts' current content as their new drift baselines — one artifact or many in one call, a two-sided decision for each. |
 | `set_artifact_intent` | **write** | Declare what an Artifact node stands for and how its content behaves — the two things only its author can say. |
 | `external_dependency` | **write** | Declare which version of ANOTHER DESIGN this one depends on — the pin a seam analysis is taken AS OF. |
 | `reconcile_dependencies` | **read** | Check the declared dependencies against what the build ACTUALLY resolves, and return the reflow2.toml manifest. |
@@ -297,20 +297,20 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `add_change_event` | **write** | Create or revise a ChangeEvent (seed for propagate_change). |
-| `add_epoch` | **write** | Create or revise a `DesignEpoch` that HAS HAPPENED — a point on the time axis you are recording, which is what an epoch has always meant here. |
+| `add_change_event` | **write** | Create or revise a ChangeEvent (a seed for propagate_from). |
+| `add_epoch` | **write** | Create or revise a `DesignEpoch` that HAS HAPPENED (THE PAST; plan_epoch is the future) — a point on the time axis you are recording, which is what an epoch has always meant here. |
 | `arrival_delta` | read | What was PLANNED for an epoch or release against what was actually DELIVERED — the planned-versus-delivered delta (dec:arrival-delta) |
 | `changelog_view` | read | Derive a Keep a Changelog-shaped DRAFT between two moments of THIS design — compare_designs' sibling: that one compares two as-designed records, this one compares two moments of one design and renders the difference in the format the industry already reads |
 | `pin_at_epoch` | **write** | Pin any node to a DesignEpoch (AT_EPOCH) — e.g. |
-| `plan_epoch` | **write** | Create or revise an Epoch that has NOT happened yet — a claim about the future rather than a record of the past, and the forward half of the time axis (req:epochs-can-be-planned). |
+| `plan_epoch` | **write** | Create or revise an Epoch that has NOT happened yet (THE FUTURE; add_epoch is the past) — a claim about the future rather than a record of the past, and the forward half of the time axis (req:epochs-can-be-planned). |
 | `precedes` | **write** | Order one DesignEpoch after another (earlier PRECEDES later) — the chain axis Z exists to record. |
 | `schedule_for` | **write** | Schedule a Requirement, Capability, QUESTION, Verification or Decision against the moment it is DUE — the satisfaction schedule, which is what makes a roadmap answerable (req:epochs-can-be-planned). |
 | `set_epoch_status` | **write** | Move an Epoch between `planned` and `arrived`. |
 | `arrival_delta` | **read** | What was PLANNED for an epoch or release against what was actually DELIVERED — the planned-versus-delivered delta (dec:arrival-delta). |
 | `changelog_view` | **read** | Derive a Keep a Changelog-shaped DRAFT between two moments of THIS design — compare_designs' sibling: that one compares two as-designed records, this one compares two moments of one design and renders the difference in the format the industry already reads. |
 | `record_finding` | **write** | Create or revise a dated finding or defect as a TemporalFact — what was observed, about which node, on what date. |
-| `report_manual_work` | **write** | Record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
-| `manual_work_ledger` | **read** | Every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |
+| `report_manual_work` | **write** | WRITES ONE RECORD (manual_work_ledger READS them all): record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
+| `manual_work_ledger` | **read** | READS THEM ALL (report_manual_work WRITES one): every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |
 | `snapshot_before_change` | **write** | Record a change to a node in an epoch (snapshots the prior state). |
 
 ### Operate — releases, environments, resources, readiness
@@ -322,8 +322,8 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `add_release` | **write** | Create or revise a Release record — a packaged, operable version: a container image, a published package, a manufactured build. |
 | `add_resource` | **write** | Create or revise a Resource the built thing needs — a database, a queue, a secret, a GPU, power. |
 | `deploy_to` | **write** | Deploy a Release to an Environment (DEPLOYED_TO), with the deployment's state — `planned`, `active` or `rolled_back`. |
-| `forecast_readiness` | **write** | Record a PROJECTED readiness level valid from a future epoch — 'this converter reaches TRL 7 in 2035' — as a TemporalFact marked basis=forecast (BL-68). |
-| `gate_on` | **write** | State that an increment cannot deliver until an enabling technology reaches a given readiness level — the JUDGEMENT half of BL-68, and the one reflow2 will never make for you. |
+| `forecast_readiness` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
+| `gate_on` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `readiness_report` | read | The DERIVED roadmap for one increment (BL-68): the earliest epoch by which every technology it is GATED_ON clears the level demanded of it, with the reason named — 'cannot deliver before 2035, because the converter is TRL 3 today, projected 7 at 2035, and this increment needs 7' |
 | `reconcile_deployment` | **write** | Compare what is observed RUNNING against what DEPLOYED_TO declares — the as-fielded reconcile, sibling of reconcile_artifacts one phase later (BL-9). |
 | `release_includes` | **write** | Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. |
@@ -334,7 +334,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `complies_with` | **write** | Record that a design element SATISFIES an EnvironmentRule (COMPLIES_WITH). |
 | `imposes` | **write** | Record that an Environment imposes an EnvironmentRule (IMPOSES) — the codes, standards and physical laws a place holds the design to, one edge per rule. |
 | `operates_in` | **write** | Record that a Project's result must function in an Environment (OPERATES_IN). |
-| `readiness_report` | **read** | The DERIVED roadmap for one increment (BL-68): the earliest epoch by which every technology it is GATED_ON clears the level demanded of it, with the reason named — 'cannot deliver before 2035, because the converter is TRL 3 today, projected 7 at 2035, and this increment needs 7'. |
+| `readiness_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `release_report` | **read** | The as-released view (BL-34): what a Release actually shipped — artifacts with their frozen cut-time checksums, components, the capabilities that build covers, the built capabilities it leaves out, and where it is deployed. |
 | `set_violation_status` | **write** | Triage a flagged violation. |
 | `violates_rule` | **write** | Flag that a design element CONTRADICTS an EnvironmentRule (VIOLATES_RULE). |

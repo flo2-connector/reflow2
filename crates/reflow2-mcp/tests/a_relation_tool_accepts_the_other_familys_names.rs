@@ -324,7 +324,7 @@ async fn the_handoff_lands_end_to_end() {
     j!(s.add_verification(Parameters(
         serde_json::from_value(json!({"id": "ver:rain", "name": "rain test"})).unwrap()
     )));
-    let e = j!(s.verifies(Parameters(
+    let e = j!(s.verifies_kept(Parameters(
         serde_json::from_value(json!({"from_id": "ver:rain", "to_id": "cap:seal"})).unwrap()
     )));
     assert_eq!(e["edge_type"], "VERIFIES");

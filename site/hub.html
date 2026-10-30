@@ -111,7 +111,7 @@
           the member a question points at rather than reading every design into the conversation.
           A search hit lists the records linked to it, including ones in another design.</li>
         <li><b>Carry a change's impact from one member to the next.</b> A blast radius
-          (<code>propagate_change</code>) stops at the edge of the design it runs in and says where it
+          (<code>propagate_from</code> with the change's id) stops at the edge of the design it runs in and says where it
           left: <code>continue_in</code> names each member to carry on in. There, the skill calls
           <code>propagate_from</code> with <code>arriving_from</code> and the interfaces the ripple
           reached, and the member's own pins say where it enters. You get one radius per design
@@ -215,7 +215,7 @@
         member reads that record's truth and proof status there, at the moment you ask. A premise
         whose record is gone reads <b>stale</b>, and one in a design you cannot read reads
         <b>unreachable</b>; neither counts as holding. A change walk (<code>propagate_from</code>,
-        <code>propagate_change</code>) carries on into every member that cites what it reached,
+        from seed ids or a recorded change) carries on into every member that cites what it reached,
         names each crossing (<code>boundary_crossings</code>), and gives each design's radius under
         <code>across_designs</code>.
       </p>

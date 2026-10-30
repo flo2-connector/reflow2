@@ -1,11 +1,10 @@
 {
-  "_what": "The rank ratchet for find_tools (dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set, 2026-09-18). not_first: served tools NOT ranked first for their own corpus query \u2014 each beaten on a name match by a tool whose name carries the query's word at five times a description hit. mutual: pairs where each tool lands in the other's top 5 for its own query. Both lists may only SHRINK: a new tool must rank first for its job and must not enter a mutual pair, and an entry here that has become first (or a pair that has come apart) must be removed. Regenerate with tools/tool_confusability.py --baseline after a description pass. The in-memory ranker is the authority: it may find a pair the offline replica misses (tie-breaking), and such a pair stays listed by hand.",
+  "_what": "The rank ratchet for find_tools (dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set, 2026-09-18). not_first: served tools NOT ranked first for their own corpus query \u2014 each beaten on a name match by a tool whose name carries the query's word at five times a description hit. mutual: pairs where each tool lands in the other's top 5 for its own query. Both lists may only SHRINK: a new tool must rank first for its job and must not enter a mutual pair, and an entry here that has become first (or a pair that has come apart) must be removed. Regenerate with tools/tool_confusability.py --baseline after a description pass. The in-memory ranker is the authority: it may find a pair the offline replica misses (tie-breaking), and such a pair stays listed by hand. 2026-10-30: eight pairs were added when the fifteen counted refusing stubs (crates/reflow2-mcp/src/deprecation.rs) left find_tools' replies, on the owner's word (req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides): in each, one tool was sixth for the other's query and entered the top 5 when a stub ranked above it was no longer offered. No tool's score moved: the stubs stay in the corpus the words are weighed over, and tools/tool_confusability.py shows both top-5 lists, before and after. They leave the list when the re-count deletes or restores the stubs.",
   "not_first": [
     "add_artifact",
     "add_capability",
     "add_change_event",
     "add_environment_rule",
-    "add_requirement",
     "add_verification",
     "alternatives_for",
     "analyze_alternatives",
@@ -37,10 +36,6 @@
       "withdraw_defect_acknowledgement"
     ],
     [
-      "acknowledge_gap",
-      "withdraw_gap_acknowledgement"
-    ],
-    [
       "acknowledge_gaps",
       "reviewed_gaps"
     ],
@@ -51,6 +46,10 @@
     [
       "add_change_event",
       "invalidated_findings"
+    ],
+    [
+      "add_change_event",
+      "snapshot_before_change"
     ],
     [
       "add_design_rule",
@@ -79,6 +78,14 @@
     [
       "add_interface",
       "provides"
+    ],
+    [
+      "add_interface",
+      "seam_report"
+    ],
+    [
+      "add_project",
+      "genesis"
     ],
     [
       "add_project",
@@ -125,6 +132,10 @@
       "recall_resolutions"
     ],
     [
+      "authored_by",
+      "review_relations"
+    ],
+    [
       "contain_component",
       "move_component"
     ],
@@ -153,16 +164,12 @@
       "operates_in"
     ],
     [
-      "dimension_drift",
-      "dimension_drifts"
-    ],
-    [
-      "dimension_drift",
+      "dimension_drifts",
       "set_quality_target"
     ],
     [
       "evaluate_allocation",
-      "ility_report"
+      "wall_check"
     ],
     [
       "export_surface",
@@ -175,18 +182,6 @@
     [
       "external_dependency",
       "upstream_status"
-    ],
-    [
-      "gate_on",
-      "readiness_report"
-    ],
-    [
-      "graph_report_markdown",
-      "set_requirement_designation"
-    ],
-    [
-      "graph_report_markdown",
-      "set_requirement_status"
     ],
     [
       "invalidated_findings",
@@ -217,10 +212,6 @@
       "set_epoch_status"
     ],
     [
-      "propagate_change",
-      "snapshot_before_change"
-    ],
-    [
       "release_includes",
       "release_includes_all"
     ],
@@ -241,8 +232,12 @@
       "set_interface_spec"
     ],
     [
-      "set_artifact_checksum",
-      "set_artifact_checksums"
+      "set_capability_signature",
+      "set_capability_status"
+    ],
+    [
+      "set_interface_designation",
+      "set_interface_spec"
     ],
     [
       "set_interface_designation",

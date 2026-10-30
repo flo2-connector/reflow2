@@ -60,8 +60,7 @@ first), counts what it cannot read rather than scoring it clean, and never write
 coupling, not a contract, so the report is evidence for *your* `consumes` call, never the call itself.
 
 Also worth a look, and read the same way: `hierarchy_issues` (decomposition — a level skipped or
-mismatched), `surprising_connections` (coupling that crosses otherwise-distant parts of the
-design), `dimension_drifts` (quality trending down over time), and `graph_report` for the
+mismatched), `dimension_drifts` (quality trending down over time), and `graph_report` for the
 overall picture.
 
 If `detect_defects` returns nothing, the design's shape is sound — say so and move on.
@@ -177,15 +176,13 @@ the candidates from the design before naming one.
 
 ## 4b. Say what the defects MEAN, not just how many there are
 
-`ility_report`. It reads the same sweep you just ran and maps the findings onto quality axes —
-a dependency cycle counts against maintainability and testability, a single point of failure
-against reliability. **A count of 58 defects tells the user nothing they can act on; "your
-reliability signal comes entirely from three single points of failure you have already accepted"
-does.**
+Map the sweep you just ran onto the quality axes yourself — a dependency cycle counts against
+maintainability and testability, a single point of failure against reliability. **A count of 58
+defects tells the user nothing they can act on; "your reliability signal comes entirely from three
+single points of failure you have already accepted" does.**
 
-⚠️ It reports only what the DEFECT rules can see. Axes with no detector behind them come back
-named and empty rather than scored, which is the honest answer and must be passed on as one — an
-absent axis is unmeasured, never good.
+⚠️ The sweep reports only what the DEFECT rules can see. Say which axes no detector speaks to:
+an absent axis is unmeasured, never good.
 
 ## 5. Confirm
 

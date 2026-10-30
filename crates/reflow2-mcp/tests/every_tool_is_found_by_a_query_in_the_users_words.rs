@@ -50,10 +50,12 @@ const CORPUS: &str = include_str!("fixtures/find_tools_corpus.json");
 /// corpora — a 4-char floor on the name-prefix rule (neutral: 177/36) and a
 /// gentler length normalisation (worse: 174/34) — and both were reverted,
 /// because a change the corpus does not reward is noise.
-/// Served names that are refusing STUBS for a renamed tool: they carry no
-/// query and rank for nothing. None since the two renamed on 2026-09-18 were
-/// removed (dec:the-two-renamed-stubs-are-removed-in-the-next-release).
-const DEPRECATED: &[&str] = &[];
+/// Served names that are COUNTED REFUSING STUBS (`deprecation::stub_names`):
+/// they carry no query and rank for nothing, because find_tools never offers
+/// them. Read from the registry, so this test and the server agree.
+fn deprecated() -> Vec<&'static str> {
+    reflow2_mcp::deprecation::stub_names(reflow2_mcp::deprecation::REGISTRY)
+}
 
 const RANK_BASELINE: &str = include_str!("fixtures/find_tools_rank_baseline.json");
 
@@ -87,7 +89,7 @@ async fn top5(s: &ReflowService, query: &str) -> Vec<String> {
 }
 
 fn is_deprecated(name: &str) -> bool {
-    DEPRECATED.contains(&name)
+    deprecated().contains(&name)
 }
 
 fn served() -> Vec<String> {

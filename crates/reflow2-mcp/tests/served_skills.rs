@@ -268,7 +268,7 @@ fn every_byte_of_the_instructions_is_reachable_by_some_section() {
 fn the_structured_only_signpost_gives_the_agent_something_it_can_actually_do() {
     let stub = reflow2_mcp::service::structured_only_signpost();
 
-    for route in ["graph_report_markdown", "export_graph"] {
+    for route in ["graph_report", "export_graph"] {
         assert!(
             stub.contains(route),
             "the signpost must name {route}, which the agent CAN reach: {stub}"
@@ -329,7 +329,7 @@ fn the_root_cause_skill_forces_the_steps_that_stop_a_premature_fix() {
     // "think of three" invites two real ones and a filler that exists to satisfy
     // the instruction. The bones are what make the third one evidence.
     assert!(
-        body_lower.contains("granularity_report") && body_lower.contains("coverage_report"),
+        body_lower.contains("include_edges") && body_lower.contains("coverage_report"),
         "the skill must name the calls that turn the design into candidate causes"
     );
 

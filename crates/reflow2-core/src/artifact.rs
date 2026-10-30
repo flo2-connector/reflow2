@@ -385,7 +385,7 @@ impl DesignGraph {
                 property: "checksum".into(),
                 message: format!(
                     "'{artifact_id}' already has a baseline; moving it is a drift disposition — \
-                     use set_artifact_checksum, which records why it moved"
+                     use set_artifact_checksums, which records why it moved"
                 ),
             });
         }

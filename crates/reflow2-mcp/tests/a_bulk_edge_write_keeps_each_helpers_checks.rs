@@ -367,7 +367,6 @@ const NOT_DRIVEN_BY_A_PAIR: &[&str] = &[
     "review_relations",
     "move_component",
     "release_includes_all",
-    "gate_on",
     "authored_by",
     "answers",
     "pin_at_epoch",

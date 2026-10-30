@@ -228,12 +228,6 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
             }
             json!({"decision_id": id, "winner_id": format!("art:alt-{n}-a")})
         }
-        "acknowledge_gap" => {
-            if !settling {
-                return Ok(None);
-            }
-            json!({"gap_id": format!("gap:fixture-{n}"), "affected_ids": ["req:seed"], "reason": format!("{word} reason")})
-        }
         "acknowledge_defect" => {
             if !settling {
                 return Ok(None);

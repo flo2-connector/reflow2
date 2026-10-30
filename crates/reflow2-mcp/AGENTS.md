@@ -101,3 +101,11 @@ input schema from the request struct. So a new tool is:
   so never hand-write "deprecated" into a description. A tool keeps its entry for the release
   that removes it, so its old name answers with what to do. `tests/the_mcp_surface_only_grows.rs`
   fails a removal the last release did not announce. See the root AGENTS.md.
+- **A COUNTED REFUSING STUB** (`Deprecation::stub`, since 2026-10-30) is a tool still LISTED whose
+  handler is `stub_answer`: it changes nothing, refuses with the call that does its job, and every
+  call lands in the usage ledger under its own name (`usage_report`'s `retired_stubs`). Its
+  `#[tool]` description stays the tool's own (the mark is added at list time, so find_tools'
+  word weights do not move), find_tools never offers it, and served text names its survivor
+  (`no_served_text_names_a_tool_that_is_not_served`). The old body is kept beside it as
+  `<tool>_kept`: at the re-count (`deprecation::RE_COUNT`) a stub nobody called is deleted with
+  its `_kept` body, and one somebody called is restored by pointing the tool back at `_kept`.

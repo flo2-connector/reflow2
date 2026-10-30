@@ -40,7 +40,7 @@ What a call's exit code means:
 
 ## Start of a session
 
-1. `reflow2 read graph_report_markdown` says where the design stands, in a few KB: what it holds,
+1. `reflow2 read graph_report '{"format": "markdown"}'` says where the design stands, in a few KB: what it holds,
    what is delivered, the top open gaps. Read it first, before anything longer. If the design keeps
    its own record of where things stand,
    `reflow2 read search_design '{"query": "current state"}'` finds it.

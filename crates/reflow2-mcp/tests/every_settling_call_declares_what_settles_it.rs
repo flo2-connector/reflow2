@@ -120,6 +120,12 @@ async fn every_tool_that_takes_an_approver_declares_what_settles_it() {
     let mut problems = Vec::new();
     let mut declared = 0;
     for (tool, schema, decl) in served(&c).await {
+        // A COUNTED REFUSING STUB keeps its old schema so a call to its old
+        // name reaches it and is counted, and it settles nothing: it changes
+        // nothing (`reflow2_mcp::deprecation::stub_names`).
+        if reflow2_mcp::deprecation::is_stub(reflow2_mcp::deprecation::REGISTRY, &tool) {
+            continue;
+        }
         let paths = approver_paths(&schema);
         match (paths.is_empty(), decl) {
             (true, None) => {}
@@ -259,12 +265,6 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
                 ok(call(c, "register_alternative", json!({"decision_id": id, "artifact_id": format!("art:alt-{n}-{side}"), "name": format!("{word} option {side}"), "location": format!("alt/{n}/{side}.md")})).await, "alternative");
             }
             json!({"decision_id": id, "winner_id": format!("art:alt-{n}-a")})
-        }
-        "acknowledge_gap" => {
-            if !settling {
-                return Ok(None);
-            }
-            json!({"gap_id": format!("gap:fixture-{n}"), "affected_ids": ["req:seed"], "reason": format!("{word} reason")})
         }
         "acknowledge_defect" => {
             if !settling {

@@ -187,8 +187,8 @@ async fn propagate_change_full_fits_its_budget_and_pages_to_the_whole_radius() {
     let s = a_core_with_ninety_dependents().await;
     let whole = s
         .ok(
-            "propagate_change",
-            json!({"change_event_id": "chg:core-moves", "full": true, "budget_chars": 10_000_000}),
+            "propagate_from",
+            json!({"seed_ids": ["chg:core-moves"], "full": true, "budget_chars": 10_000_000}),
         )
         .await;
     let all: BTreeSet<String> = impacted_ids(&whole).into_iter().collect();
@@ -202,16 +202,16 @@ async fn propagate_change_full_fits_its_budget_and_pages_to_the_whole_radius() {
     // The default holds it to the budget a gateway holds every reply to.
     let held = s
         .ok(
-            "propagate_change",
-            json!({"change_event_id": "chg:core-moves", "full": true}),
+            "propagate_from",
+            json!({"seed_ids": ["chg:core-moves"], "full": true}),
         )
         .await;
     assert!(chars(&held) <= 30_000, "{}", chars(&held));
 
     let paged = read_in_pages(
         &s,
-        "propagate_change",
-        json!({"change_event_id": "chg:core-moves"}),
+        "propagate_from",
+        json!({"seed_ids": ["chg:core-moves"]}),
         6_000,
     )
     .await;
@@ -242,8 +242,8 @@ async fn an_offset_without_full_is_refused_by_name() {
     let s = a_core_with_ninety_dependents().await;
     let refused = s
         .call(
-            "propagate_change",
-            json!({"change_event_id": "chg:core-moves", "offset": 10}),
+            "propagate_from",
+            json!({"seed_ids": ["chg:core-moves"], "offset": 10}),
         )
         .await
         .expect_err("the summary has no rows to page");
@@ -276,8 +276,8 @@ async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
     .await;
     let whole = s
         .ok(
-            "propagate_change",
-            json!({"change_event_id": "chg:every-unit-refits", "budget_chars": 10_000_000}),
+            "propagate_from",
+            json!({"seed_ids": ["chg:every-unit-refits"], "budget_chars": 10_000_000}),
         )
         .await;
     let silent = &whole["stale_edge_evidence_silent_on"];
@@ -306,8 +306,8 @@ async fn a_change_touching_every_part_fits_and_names_its_silent_seeds_once() {
     for full in [false, true] {
         let r = s
             .ok(
-                "propagate_change",
-                json!({"change_event_id": "chg:every-unit-refits", "full": full,
+                "propagate_from",
+                json!({"seed_ids": ["chg:every-unit-refits"], "full": full,
                        "budget_chars": 4_000}),
             )
             .await;

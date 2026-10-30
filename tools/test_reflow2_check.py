@@ -831,10 +831,10 @@ class UnmodelledSource(unittest.TestCase):
             s.call("add_project", {"id": "proj:1", "name": "T"})
             s.call("add_artifact", {"id": "art:known", "name": "known.rs",
                                     "artifact_type": "code", "location": "src/known.rs"})
-            s.call("set_artifact_checksum", {
+            s.call("set_artifact_checksums", {"accepts": [{
                 "artifact_id": "art:known",
                 "checksum": "sha256:" + hashlib.sha256((src / "known.rs").read_bytes()).hexdigest(),
-                "disposition": "baseline_established"})
+                "disposition": "baseline_established"}]})
             path = self.tmp / "design.json"
             s.call("export_graph", {"path": str(path), "overwrite": True})
             return path
@@ -941,10 +941,10 @@ class UnmodelledSourceScopedToThisChange(unittest.TestCase):
             s.call("add_project", {"id": "proj:1", "name": "T"})
             s.call("add_artifact", {"id": "art:known", "name": "known.rs",
                                     "artifact_type": "code", "location": "src/known.rs"})
-            s.call("set_artifact_checksum", {
+            s.call("set_artifact_checksums", {"accepts": [{
                 "artifact_id": "art:known",
                 "checksum": "sha256:" + hashlib.sha256((src / "known.rs").read_bytes()).hexdigest(),
-                "disposition": "baseline_established"})
+                "disposition": "baseline_established"}]})
             path = self.tmp / "design.json"
             s.call("export_graph", {"path": str(path), "overwrite": True})
             return path
@@ -1009,10 +1009,10 @@ class UnmodelledSourceScopedToThisChange(unittest.TestCase):
             s.call("add_project", {"id": "proj:1", "name": "T"})
             s.call("add_artifact", {"id": "art:known", "name": "known.rs",
                                     "artifact_type": "code", "location": "src/known.rs"})
-            s.call("set_artifact_checksum", {
+            s.call("set_artifact_checksums", {"accepts": [{
                 "artifact_id": "art:known",
                 "checksum": "sha256:" + hashlib.sha256((src / "known.rs").read_bytes()).hexdigest(),
-                "disposition": "baseline_established"})
+                "disposition": "baseline_established"}]})
             export = root / "design.json"
             s.call("export_graph", {"path": str(export), "overwrite": True})
         finally:

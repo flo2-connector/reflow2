@@ -95,10 +95,10 @@ candidates arrive as evidence rather than as imagination.
 |---|---|---|
 | **Precedent** | Has this exact thing been seen and explained before? | `search_design` on the raw error (step ②) |
 | **Intent** | Was the need ever stated — or stated wrong? | the capability's `SATISFIES`; a requirement still `proposed` is one nobody confirmed |
-| **Allocation** | Is the function in the part you think it is in? | `ALLOCATED_TO`; `granularity_report` — a file realizing many capabilities is where defects concentrate |
+| **Allocation** | Is the function in the part you think it is in? | `ALLOCATED_TO`; `get_node` with `include_edges` on the file — one realizing many capabilities is where defects concentrate |
 | **Contract** | Is the seam unstated, or stated and unchecked? | `seam_report`; an Interface with an empty spec cannot be violated *or* honoured |
 | **Implementation** | Has the build drifted from what the design says? | `reconcile_artifacts` — a changed checksum nobody accepted is a live candidate |
-| **Assurance** | Is there a check at all, and did it ever run? | `coverage_report`, `evidence_report`; a Verification that never ran proves nothing |
+| **Assurance** | Is there a check at all, and did it ever run? | `coverage_report`; a Verification that never ran proves nothing |
 | **Change** | What moved near this, and when? | `propagate_from` on recent ChangeEvents touching the same subject |
 | **Governance** | Does this violate a Decision, DesignRule or Constraint already settled? | `detect_defects`; a `CONTRADICTS` edge is a cause somebody already predicted |
 | **Staleness** | Is a record here describing a world that has moved? | `invalidated_findings` — a finding that outlived its fix sends you down a dead path |

@@ -581,10 +581,10 @@ impl ReflowService {
         description = "What this project's sessions actually asked reflow2 to do, and where reflow2 declined — \
                        computed from the usage ledger the server keeps beside the design \
                        (`<graph>.usage.jsonl`), never from an agent's memory. Calls by tool, the served tools \
-                       NEVER called in the window, refusals by class and by tool (near_match, missing_argument, \
-                       unknown_argument, unresolved_reference, refused, other), errors, skills fetched, the \
+                       NEVER called in the window, refusals by class and by tool, errors, skills fetched, the \
                        harnesses that connected, and the metadata the server knows without asking: reflow2's \
                        version, OS and architecture, the negotiated protocol revision, the design's node count. \
+                       `retired_stubs` counts the calls to each retired tool, zeros included. \
                        THE LEDGER HOLDS THE VERB, NEVER THE OBJECT — no argument, no node id, no message is \
                        ever recorded (req:telemetry-carries-usage-never-design-content), so this report can \
                        leave the machine without carrying the design. The window is SINCE THE PREVIOUS REPORT \
@@ -633,12 +633,15 @@ impl ReflowService {
             .map(|t| t.name.to_string())
             .collect();
         let tally = crate::usage::tally(&window, start, &served);
+        // THE COUNT THE RE-COUNT DECIDES BY: every counted refusing stub with
+        // its calls in this window, a zero included (`crate::deprecation`).
+        let retired_stubs = crate::deprecation::stub_counts(&self.deprecations, &tally.by_tool);
         let node_count = self.graph.read().await.count_all_nodes().unwrap_or(0);
         let handshake = crate::handshake::Handshake::read(graph_path);
         if !req.peek {
             crate::usage::append(graph_path, &crate::usage::UsageLine::report_marker());
         }
-        structured(json!({
+        let mut reply = json!({
             "ledger": crate::usage::usage_path(graph_path).display().to_string(),
             "window_described": start.describe(),
             "tally": tally,
@@ -657,7 +660,11 @@ impl ReflowService {
             "marker_left": !req.peek,
             "not_seen": "Anything outside reflow2's own tool calls: shell, git, CI. report-friction \
                          remains the form for those.",
-        }))
+        });
+        if let (Some(stubs), Some(obj)) = (retired_stubs, reply.as_object_mut()) {
+            obj.insert("retired_stubs".into(), stubs);
+        }
+        structured(reply)
     }
 }
 

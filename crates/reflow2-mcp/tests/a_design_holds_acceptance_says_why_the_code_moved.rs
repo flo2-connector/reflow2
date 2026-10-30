@@ -98,7 +98,7 @@ fn accept(change_type: Option<&str>) -> SetChecksumReq {
 async fn a_baselined_artifact_accepted_without_a_reason_is_refused() {
     let s = seeded(Some("sha256:v1")).await;
     let err = s
-        .set_artifact_checksum(Parameters(accept(None)))
+        .set_artifact_checksum_kept(Parameters(accept(None)))
         .await
         .expect_err("design_holds with no change_type on a baselined artifact must be refused");
     let msg = format!("{err:?}");
@@ -114,7 +114,7 @@ async fn a_baselined_artifact_accepted_without_a_reason_is_refused() {
 #[tokio::test]
 async fn a_stated_reason_is_recorded_as_given() {
     let s = seeded(Some("sha256:v1")).await;
-    let out = j!(s.set_artifact_checksum(Parameters(accept(Some("refactor")))));
+    let out = j!(s.set_artifact_checksum_kept(Parameters(accept(Some("refactor")))));
     let id = out["change_event_id"]
         .as_str()
         .expect("event id")
@@ -135,7 +135,7 @@ async fn a_stated_reason_is_recorded_as_given() {
 #[tokio::test]
 async fn a_repair_may_still_be_accepted_as_a_repair() {
     let s = seeded(Some("sha256:v1")).await;
-    let out = j!(s.set_artifact_checksum(Parameters(accept(Some("defect_fix")))));
+    let out = j!(s.set_artifact_checksum_kept(Parameters(accept(Some("defect_fix")))));
     assert!(out["change_event_id"].as_str().is_some(), "{out}");
 }
 
@@ -145,7 +145,7 @@ async fn a_repair_may_still_be_accepted_as_a_repair() {
 #[tokio::test]
 async fn a_first_baseline_needs_no_reason() {
     let s = seeded(None).await;
-    let out = j!(s.set_artifact_checksum(Parameters(accept(None))));
+    let out = j!(s.set_artifact_checksum_kept(Parameters(accept(None))));
     assert!(
         out["change_event_id"]
             .as_str()

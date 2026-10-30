@@ -117,7 +117,7 @@ there are dependency edges, whoever calls them.
      🛑 **"I don't know yet" is a real answer, and it has a shape.** Record a **proposed**
      Decision naming the candidate they lean toward, and leave it proposed. The gap then reports
      *"still being weighed"* rather than *"unstated"*, at a lower severity, and comes back until
-     they settle it. **Never `acknowledge_gap` a deferral** — that finding is aggregate-keyed, so
+     they settle it. **Never `acknowledge_gaps` a deferral** — that finding is aggregate-keyed, so
      accepting it once silences it permanently and for every capability added afterwards, which
      is the opposite of deferring.
 

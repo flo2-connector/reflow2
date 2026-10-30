@@ -123,7 +123,7 @@ loads it and it takes precedence over the served one of the same name.
 
 ## The loop
 
-0a. **On an existing design, orient first: read `graph_report_markdown` first** — a few KB: what
+0a. **On an existing design, orient first: read `graph_report` with `format` `markdown` first** — a few KB: what
    the design holds, what is delivered, the top open gaps — before anything longer. If the design
    keeps its own record of where things stand, `search_design` finds it ("current state",
    "status as of"). This is the same first read the server's connect-time instructions and the
@@ -278,7 +278,7 @@ loads it and it takes precedence over the served one of the same name.
 2. **DETECT gaps and ask.** Run `detect_gaps`. For each gap, call `gap_to_prompt` to turn it
    into a plain question (see the handshake below), ask the **user**, then write their answer
    back as a Requirement or a node property. Do this **before** building. If the user judges a
-   gap acceptable, record that with `acknowledge_gap` (+ their reason) so it moves to
+   gap acceptable, record that with `acknowledge_gaps` (+ their reason) so it moves to
    `reviewed_gaps` — the open list must keep meaning "still needs attention".
 
    ⏸️ **DETECTING IS NOT ASKING, AND THE DIFFERENCE IS A TIMING RULE.** Run the detection
@@ -312,7 +312,8 @@ loads it and it takes precedence over the served one of the same name.
    (`review_relations`), and leave the idea's status for the owner: closing it is their word, and
    the edge is what lets `detect_gaps` put it to them.
 4. **On ANY change or new idea, check impact first.** Record it with `add_change_event`, then
-   `propagate_change` (or `propagate_from` for a speculative "what would this touch?"). Update
+   `propagate_from` with the change's id as its seed (or with seed node ids for a speculative
+   "what would this touch?"). Update
    **only** the impacted capabilities/components/tests the blast radius names — then re-run
    `detect_gaps` to confirm nothing rotted.
 5. **Keep it healthy.** After any structural change, and before a build push, run the
@@ -321,8 +322,8 @@ loads it and it takes precedence over the served one of the same name.
    failure, disconnected clusters, duplicates. Only `duplicate` is machine-fixable; everything
    else is a design decision `propose_heal` leaves in `generated_content` for the user, so read
    `requires_human_review` and `skipped_operations` before acting. `graph_report` answers "what
-   should I look at?"; `hierarchy_issues`, `surprising_connections`, `dimension_drifts` surface
-   decomposition, coupling, and quality drift.
+   should I look at?"; `hierarchy_issues` and `dimension_drifts` surface decomposition and
+   quality drift.
 
 ## Restoring a design
 
@@ -420,10 +421,10 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   `{"node_type": "X"}` for one type's properties and the edges it can carry, or
   `{"from": "X", "to": "Y"}` for what may join them. Call it before writing anything unusual;
   it is cheaper than a guess and far cheaper than a wrong edge.
-- **Detect / analyze:** `detect_gaps`, `propagate_change`, `propagate_from`, `graph_report`,
-  `graph_report_markdown`, `detect_defects`, `propose_heal`, `evaluate_allocation`,
-  `propose_allocation`, `hierarchy_issues`, `surprising_connections`, `dimension_drifts`,
-  `dimension_drift`, `flow_report` (a process read back as facts — steps, roled transitions,
+- **Detect / analyze:** `detect_gaps`, `propagate_from` (from seed ids, or one recorded change's
+  id), `graph_report` (`format` `markdown` for a document), `detect_defects`, `propose_heal`,
+  `evaluate_allocation`, `propose_allocation`, `hierarchy_issues`, `dimension_drifts` (the whole
+  design, or one node on one dimension), `flow_report` (a process read back as facts — steps, roled transitions,
   cycles reported never judged), `budget_report` (a budget rolled up honestly — total, worst
   dependency path, and `incomplete` when any contribution is unstated).
 - **Decomposition:** `contain_component` nests one Component inside another (the assembly
@@ -434,7 +435,7 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   bear on something open, with the wording they saw. **Read it before `detect_gaps` at the start
   of a session.** Two kinds: `status: asked` — they have not replied, so follow it up rather than
   asking again; `status: answered` — they replied but the gap is still open, so either write their
-  answer into the design or `acknowledge_gap` if they judged it fine as it stands. Their reply
+  answer into the design or `acknowledge_gaps` if they judged it fine as it stands. Their reply
   comes back with it. `answer_question` records what they said, and in the same call who said it
   (`answered_by`) and the record it became (`record`, which draws `answers`); `withdraw_question`
   retires one overtaken by events. `gap_to_prompt` records the question itself, so you do not have
@@ -472,10 +473,11 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   `distinct_from` for a replacement leaves the old node reading as unbuilt work. The
   **capture-intent** skill has the detail.
 - **As-built:** `link_artifact`, `add_artifact`, `realizes`, `reconcile_artifacts`,
-  `set_artifact_checksum` — the last is a **two-sided accept**: `disposition` is required
+  `set_artifact_checksums` — the last is a **two-sided accept**: `disposition` is required
   (`design_holds`, or `design_updated` naming the `snapshot_before_change` event behind it), because a
   silent accept is how a design erodes into fiction. See the **link-artifacts** skill.
-- **Verify & operate:** `add_verification`, `verifies`, `set_verification_status`, `add_release`,
+- **Verify & operate:** `add_verification` (its `verifies` says what it checks),
+  `set_verification_status`, `add_release`,
   `add_environment`, `add_resource`, `deploy_to`, `require_resource`, `release_includes`,
   `release_report`, `reconcile_verification`, `reconcile_deployment` — the last two feed
   *reality* back in: what a real test run reported per check, and what you observed running per
@@ -485,9 +487,9 @@ reflow2 phrases the question; **you** are the language model that fills it in:
   believed forever is how a design erodes into fiction.
 - **Decisions:** `add_decision`, `governed_by` — record why a choice was made, not just what.
 - **Change over time:** `add_epoch`, `add_change_event`, `snapshot_before_change`.
-- **Ask the user:** `gap_to_prompt`, `acknowledge_gap`, `reviewed_gaps`,
+- **Ask the user:** `gap_to_prompt`, `acknowledge_gaps`, `reviewed_gaps`,
   `withdraw_gap_acknowledgement`.
-- **Report back:** `graph_report`, `graph_report_markdown` — raw material for the
+- **Report back:** `graph_report`, as JSON or with `format` `markdown` — raw material for the
   **where-am-i** summary; rewrite it in the user's words rather than pasting it.
 
 Tool results are the payload directly (no wrapper). Partial-success fields (`unknown_seeds`,

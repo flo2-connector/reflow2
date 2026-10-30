@@ -496,10 +496,34 @@ impl ReflowService {
                        design erodes into fiction over N fix cycles while reporting zero gaps. \
                        Until you accept, the same checksum_change is reported on every reconcile. \
                        An artifact with NO checksum yet has exactly one legal disposition, so whatever you pass for it is READ as `baseline_established` — a first baseline, nothing moved, the design takes no position — and the reply's change_event_id (`chg:baseline-…`) says so; no CHANGED edge is drawn. Refused inside a batch, that case used to discard the rest (2026-09-07).",
-        title = "Accept an Artifact Checksum",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Accept an Artifact Checksum (Retired)",
+        annotations(read_only_hint = true)
     )]
     pub async fn set_artifact_checksum(
+        &self,
+        Parameters(req): Parameters<SetChecksumReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "set_artifact_checksum",
+            Some((
+                "set_artifact_checksums",
+                json!({ "accepts": [present_fields(&[
+                    ("artifact_id", json!(req.artifact_id)),
+                    ("checksum", json!(req.checksum)),
+                    ("disposition", json!(req.disposition)),
+                    ("change_type", json!(req.change_type)),
+                    ("design_change_event_id", json!(req.design_change_event_id)),
+                    ("note", json!(req.note)),
+                    ("at", json!(req.at)),
+                ])] }),
+            )),
+        )
+    }
+
+    /// The handler `set_artifact_checksum` had until it was retired on
+    /// 2026-10-30, kept so that restoring it at the re-count is re-pointing
+    /// the tool here (`crate::deprecation`, counted refusing stubs).
+    pub async fn set_artifact_checksum_kept(
         &self,
         Parameters(req): Parameters<SetChecksumReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -572,16 +596,21 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Accept MANY drift baselines in one call — the bulk form of \
-                       set_artifact_checksum, which was 244 consecutive calls across 22 sessions \
-                       of recorded usage. EACH ITEM CARRIES ITS OWN DISPOSITION, and that is the \
-                       point rather than an inconvenience: a batch under one shared disposition \
-                       would be exactly the silent bulk accept that erodes a design into fiction. \
-                       The round trip collapses; the judgement stays per artifact. ALL OF IT OR \
+        description = "Accept artifacts' current content as their new drift baselines — one \
+                       artifact or many in one call, a two-sided decision for each. EACH ITEM \
+                       CARRIES ITS OWN DISPOSITION: `design_holds` (the change carries no design \
+                       meaning; recorded as a dated claim) or `design_updated` (behaviour moved \
+                       and the design moved with it; pass `design_change_event_id` from the \
+                       snapshot_before_change that updated it, so code and design are one \
+                       change). Silent accept does not exist: a batch under one shared \
+                       disposition is how a design erodes into fiction while reporting zero gaps, \
+                       and until you accept, the same checksum_change is reported on every \
+                       reconcile. An artifact with NO checksum yet is READ as \
+                       `baseline_established` — a first baseline, nothing moved. ALL OF IT OR \
                        NONE OF IT — every item is attempted so you learn every failure at once, \
                        and if anything failed no baseline moves. \
                        Ask for this to accept several files' new content at once.",
-        title = "Accept Many Artifact Checksums",
+        title = "Accept Artifact Checksums",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn set_artifact_checksums(

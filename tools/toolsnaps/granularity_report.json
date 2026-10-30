@@ -2,12 +2,12 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "Does the BUILD separate what the DESIGN separates? Reports one fact and refuses a verdict: an artifact realizing N capabilities the design distinguishes is the build holding as one thing what the design holds as N. IT NEVER SAYS 'monolith', 'too big' or 'split it', carries NO severity, and rules on NEITHER side — N capabilities in one file may mean the file should be N files, or that the design over-decomposed, or that it is right for this phase (dec:report-dont-judge). THERE IS NO SIZE THRESHOLD: artifacts are compared against THIS design's own distribution, so an early-phase design where everything lives in one file has no outlier and is told nothing — a uniformly coarse design is not a broken one. Both cutoffs travel with the answer so they can be argued with, and `not_observed_about` names what it cannot see: unregistered artifacts, size of any kind, and outliers that mask each other. Pure arithmetic over REALIZES edges — no file I/O.",
+  "description": "RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. Nothing replaces it: it was retired on 2026-10-30 at the owner's word and nothing was computed, so if you needed it, say so to the person you work for (report-friction records it), because a retired tool somebody called is restored at the re-count.\n\nDoes the BUILD separate what the DESIGN separates? Reports one fact and refuses a verdict: an artifact realizing N capabilities the design distinguishes is the build holding as one thing what the design holds as N. IT NEVER SAYS 'monolith', 'too big' or 'split it', carries NO severity, and rules on NEITHER side — N capabilities in one file may mean the file should be N files, or that the design over-decomposed, or that it is right for this phase (dec:report-dont-judge). THERE IS NO SIZE THRESHOLD: artifacts are compared against THIS design's own distribution, so an early-phase design where everything lives in one file has no outlier and is told nothing — a uniformly coarse design is not a broken one. Both cutoffs travel with the answer so they can be argued with, and `not_observed_about` names what it cannot see: unregistered artifacts, size of any kind, and outliers that mask each other. Pure arithmetic over REALIZES edges — no file I/O.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "type": "object"
   },
   "name": "granularity_report",
-  "title": "Granularity Report"
+  "title": "Granularity Report (Retired)"
 }

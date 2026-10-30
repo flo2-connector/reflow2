@@ -119,7 +119,7 @@ actually fixed. Ratios are the usual shape, because both halves are slowed equal
 If a check must run in a specific state, give it a file of its own so nothing else can warm the
 thing it is measuring.
 
-Record it as a `Verification` and point it at the Constraint with `verifies`, so the budget has
+Record it as a `Verification` and point it at the Constraint with its `verifies`, so the budget has
 something holding it rather than sitting in the design as decoration.
 
 ## 8. When a rule refuses your change, pay it — do not weaken it

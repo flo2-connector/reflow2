@@ -199,8 +199,8 @@ async fn a_check_on_a_ruling_is_refused_with_governed_by_and_its_tool() {
     .await;
     let refusal = s
         .call(
-            "verifies",
-            json!({"verification_id": "ver:check", "target_id": "dec:ruling"}),
+            "add_verification",
+            json!({"id": "ver:check", "verifies": [{"target_id": "dec:ruling"}]}),
         )
         .await
         .expect_err("VERIFIES does not model a Decision target");
@@ -232,10 +232,6 @@ const NOT_DRIVEN_BY_A_PAIR: &[(&str, &str)] = &[
     (
         "release_includes_all",
         "takes a release and a SET of artifacts, not one pair",
-    ),
-    (
-        "gate_on",
-        "demands a readiness level on the edge; the readiness suite drives it",
     ),
     (
         "authored_by",

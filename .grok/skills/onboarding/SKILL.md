@@ -56,8 +56,8 @@ Deriving it returns leaves nobody wired to a parent, which is a different set an
 wrong one: measured on reflow2's own design, by level the top tier is 8 subsystems, by spine
 position it is 2 leaves. Both look reasonable and they disagree.
 
-Then narrow: `design_regions` for the neighbourhoods the design already has,
-`granularity_report` for the parts that hold more than they look like they do. **A file realizing
+Then narrow: `design_regions` for the neighbourhoods the design already has, and `get_node` with
+`include_edges` on a candidate's file for how many capabilities it REALIZES. **A file realizing
 many capabilities is where new work lands badly** — it is already carrying more than its name
 suggests, and adding to it is how a part becomes a god-component.
 

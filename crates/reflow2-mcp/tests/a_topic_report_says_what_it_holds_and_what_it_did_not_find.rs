@@ -61,7 +61,7 @@ async fn rainfall_design() -> ReflowService {
         )
         .unwrap()
     )));
-    j!(s.verifies(Parameters(
+    j!(s.verifies_kept(Parameters(
         serde_json::from_value(
             json!({"verification_id": "ver:rain-drop", "target_id": "cap:rain-sum"})
         )

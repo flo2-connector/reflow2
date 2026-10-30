@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "WHERE DID I LEAVE OFF? The worklist and resume point of an incremental, region-by-region adopt: `structure_without_intent` (capabilities no requirement asks for, leaf components nothing is allocated to — the same rules the detectors apply), `deferred` (parts whose intent was deliberately left for later, recorded with record_finding fact_type `deferred_derivation`, oldest first), `uncaptured` (the unclaimed regions of the sweep you hand in as `observed`), and `resume_point` (the most recent deferral — you were here). A deferral QUIETS the intent findings on its subject and is LISTED AS OWED here and in loop_status, so it is never a way to make a question disappear; closing it (`valid_to`, or `invalidates` from the record that answered it) brings the finding back. WITHOUT A SWEEP `uncaptured` is absent, not empty: what you have not looked at is not known until you look, which is the breadth-first warning kept honest. Never a verdict. Ask for this when you are resuming an adopt, working one region at a time, or want to know what has been captured without its intent.",
+  "description": "RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. Nothing replaces it: it was retired on 2026-10-30 at the owner's word and nothing was computed, so if you needed it, say so to the person you work for (report-friction records it), because a retired tool somebody called is restored at the re-count.\n\nWHERE DID I LEAVE OFF? The worklist and resume point of an incremental, region-by-region adopt: `structure_without_intent` (capabilities no requirement asks for, leaf components nothing is allocated to — the same rules the detectors apply), `deferred` (parts whose intent was deliberately left for later, recorded with record_finding fact_type `deferred_derivation`, oldest first), `uncaptured` (the unclaimed regions of the sweep you hand in as `observed`), and `resume_point` (the most recent deferral — you were here). A deferral QUIETS the intent findings on its subject and is LISTED AS OWED here and in loop_status, so it is never a way to make a question disappear; closing it (`valid_to`, or `invalidates` from the record that answered it) brings the finding back. WITHOUT A SWEEP `uncaptured` is absent, not empty: what you have not looked at is not known until you look, which is the breadth-first warning kept honest. Never a verdict. Ask for this when you are resuming an adopt, working one region at a time, or want to know what has been captured without its intent.",
   "inputSchema": {
     "$defs": {
       "ObservedPathReq": {
@@ -49,5 +49,5 @@
     "type": "object"
   },
   "name": "frontier",
-  "title": "Where I Left Off"
+  "title": "Where I Left Off (Retired)"
 }

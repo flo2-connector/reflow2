@@ -54,14 +54,21 @@ exist for and on those they must not take.
 """
 import functools, json, glob, math, os, re, sys
 
-# Refusing stubs for renamed tools: find_tools never offers them, so the
-# replica leaves them out too. None since the two renamed on 2026-09-18 were
-# removed (dec:the-two-renamed-stubs-are-removed-in-the-next-release).
-DEPRECATED = set()
+# COUNTED REFUSING STUBS: find_tools never OFFERS them, so the replica ranks
+# without them; they stay in the corpus the words are weighed over, as in
+# find_tools, with the retirement mark (added at list time) taken back off. Read from the one registry that declares them
+# (crates/reflow2-mcp/src/deprecation.rs, `Deprecation::stub("<name>", …)`),
+# so the replica and the server cannot disagree on which they are.
+_REGISTRY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
+                         "crates", "reflow2-mcp", "src", "deprecation.rs")
+DEPRECATED = set(re.findall(r'Deprecation::stub\(\s*"([a-z_]+)"', open(_REGISTRY).read()))
 
 # What tools/list adds to a router tool's description at list time, and
 # find_tools therefore never scores. Each pattern names where it is added.
 LISTED_ONLY_TEXT = [
+    # deprecation.rs mark_tools: a counted refusing stub's mark, put first and
+    # followed by a blank line ("RETIRED on <date> (<version>): …\n\n").
+    re.compile(r"\ARETIRED on \d{4}-\d{2}-\d{2} \([0-9.]+\): .*?\n\n", re.S),
     # bulk_edges.rs name_the_bulk_route: " MANY AT ONCE: `draw_edges` with
     # `edges`: [{"tool": "<name>", "arguments": {…}}], same checks, all or
     # nothing." (the argument's name is read from DrawEdgesReq's schema).
@@ -84,8 +91,6 @@ def load_tools(snapdir="tools/toolsnaps", overrides=None):
     for f in glob.glob(snapdir + "/*.json"):
         d = json.load(open(f))
         name = d["name"]
-        if name in DEPRECATED:
-            continue
         desc = d.get("description") or ""
         params = list((d.get("inputSchema", {}) or {}).get("properties", {}).keys())
         tools[name] = router_view(desc, params)
@@ -202,7 +207,7 @@ def rank(query, tools, limit=5):
     gains = term_gains(query, tools, terms_for(tools))
     scored = [(score(n, d, p, w) + gains.get(n, 0.0) / math.log(2.0 + len(d.lower()) / 200.0), n)
               for n, (d, p) in tools.items()]
-    scored = [(s, n) for s, n in scored if s > 0]
+    scored = [(s, n) for s, n in scored if s > 0 and n not in DEPRECATED]
     scored.sort(key=lambda x: (-x[0], x[1]))
     return scored[:limit]
 

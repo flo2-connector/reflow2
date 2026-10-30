@@ -81,7 +81,7 @@
         ]
       },
       "checksum": {
-        "description": "A content hash of the file (`sha256:<hex>`) — the baseline that makes a later edit detectable.\nSupply it on creation, as `link_artifact` does: without one, `reconcile_artifacts` can say the file\nvanished but never that its contents changed. On a REVISE of an artifact that already carries one it\nis REFUSED — moving a baseline is a drift disposition, which is `set_artifact_checksum`'s job.",
+        "description": "A content hash of the file (`sha256:<hex>`) — the baseline that makes a later edit detectable.\nSupply it on creation, as `link_artifact` does: without one, `reconcile_artifacts` can say the file\nvanished but never that its contents changed. On a REVISE of an artifact that already carries one it\nis REFUSED — moving a baseline is a drift disposition, which is `set_artifact_checksums`' job.",
         "type": [
           "string",
           "null"

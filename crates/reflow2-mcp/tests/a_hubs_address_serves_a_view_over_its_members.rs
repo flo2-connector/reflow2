@@ -843,7 +843,7 @@ fn with_no_view_meta_every_reply_is_what_it_was() {
         ("loop_status", json!({})),
         ("detect_gaps", json!({})),
         ("claim_report", json!({})),
-        ("graph_report_markdown", json!({})),
+        ("graph_report", json!({"format": "markdown"})),
     ];
 
     // The gateway's server, no view on any call.

@@ -305,10 +305,14 @@
       }
     ],
     [
-      "verifies",
+      "add_verification",
       {
-        "verification_id": "ver:v",
-        "target_id": "cmp:a"
+        "id": "ver:v",
+        "verifies": [
+          {
+            "target_id": "cmp:a"
+          }
+        ]
       }
     ],
     [
@@ -328,22 +332,21 @@
       }
     ],
     [
-      "acknowledge_gap",
+      "acknowledge_gaps",
       {
-        "gap_id": "gap:acked-before",
-        "reason": "Known.",
-        "approver": "who:alice"
+        "gaps": [
+          {
+            "gap_id": "gap:acked-before",
+            "reason": "Known.",
+            "approver": "who:alice"
+          }
+        ]
       }
     ]
   ],
   "writers": {
     "acknowledge_defect": {
       "defect_id": "defect:fixture",
-      "reason": "Known and accepted.",
-      "approver": "who:alice"
-    },
-    "acknowledge_gap": {
-      "gap_id": "gap:fixture-one",
       "reason": "Known and accepted.",
       "approver": "who:alice"
     },
@@ -658,13 +661,6 @@
       "source": "crates.io",
       "version": "1.0.0"
     },
-    "forecast_readiness": {
-      "id": "fc:x",
-      "target_id": "cmp:a",
-      "kind": "TRL",
-      "level": 6,
-      "epoch_id": "epoch:e2"
-    },
     "gap_to_prompt": {
       "gap": "$GAP",
       "asked_of": "who:alice",
@@ -678,12 +674,6 @@
         }
       ],
       "asked_of": "who:alice"
-    },
-    "gate_on": {
-      "subject_id": "epoch:e2",
-      "target_id": "cmp:a",
-      "kind": "TRL",
-      "min_level": 5
     },
     "genesis": {
       "project_id": "prj:gen",
@@ -929,11 +919,6 @@
       "to_node_id": "req:there-piece",
       "kind": "piece"
     },
-    "set_artifact_checksum": {
-      "artifact_id": "art:f",
-      "disposition": "design_holds",
-      "checksum": "sha256:00"
-    },
     "set_artifact_checksums": {
       "accepts": [
         {
@@ -1040,10 +1025,6 @@
       "action": "modified"
     },
     "usage_report": {},
-    "verifies": {
-      "verification_id": "ver:v",
-      "target_id": "cap:c"
-    },
     "violates_rule": {
       "element_id": "cmp:b",
       "rule_id": "erule:x"

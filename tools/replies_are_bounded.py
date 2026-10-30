@@ -195,7 +195,9 @@ def main() -> int:
             # overflows and is held, not that it merely fits.
             argument_cases.append(("get_skill", {"name": "root-cause"}))
             argument_cases.append(("propagate_from", {"seed_ids": ["proj:reflow2"], "full": True}))
-            # propagate_change TAKES A REQUIRED ID, so ② never fired it, and
+            # A CHANGE'S RADIUS (propagate_change until 2026-10-30, now
+            # propagate_from with the change's id as its one seed) takes a
+            # required id, so ② never fired it, and
             # its full radius had no bound while its sibling's had one
             # (fact:propagate-change-full-has-no-budget-or-paging-so-the-door-
             # withholds-it-whole-2026-10-26: 38,395 characters on a 35-seed
@@ -203,10 +205,10 @@ def main() -> int:
             # the design itself: the recorded change that touched the most.
             widest = widest_change(export)
             if widest:
-                argument_cases.append(("propagate_change", {"change_event_id": widest, "full": True}))
+                argument_cases.append(("propagate_from", {"seed_ids": [widest], "full": True}))
             else:
                 failures.append(
-                    "propagate_change: the seeded design records no ChangeEvent with a CHANGED "
+                    "propagate_from (a change's id): the seeded design records no ChangeEvent with a CHANGED "
                     "edge, so its radius could not be measured — seed from a real export."
                 )
             for name, args in argument_cases:

@@ -214,8 +214,8 @@ pub fn assess(seen: Seen<'_>) -> Option<ExportStanding> {
         ),
     };
     let local_only = format!(
-        "If this design is meant to stay on this machine only, acknowledge_gap with gap_id \
-         \"{NEVER_EXPORTED_GAP_ID}\", affected_ids [] and your reason, and this stops."
+        "If this design is meant to stay on this machine only, acknowledge_gaps with one gap, \
+         gap_id \"{NEVER_EXPORTED_GAP_ID}\", affected_ids [] and your reason, and this stops."
     );
     let records_gone: Vec<String> = seen.debts.iter().map(|d| d.path.clone()).collect();
     let (state, message) = if records_gone.is_empty() {

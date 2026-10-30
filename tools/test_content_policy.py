@@ -124,7 +124,7 @@ def main() -> int:
 
     # 5. Only the signpost shape is rewritten. A prose tool and a refusal reach
     #    grok exactly as they reach everyone.
-    r = raw_result("grok-shell-reflow2", "graph_report_markdown")
+    r = raw_result("grok-shell-reflow2", "graph_report", {"format": "markdown"})
     check("grok: a prose tool's text is untouched", (text_of(r) or "").lstrip().startswith("#"), (text_of(r) or "")[:80])
     r = raw_result("grok-shell-reflow2", "get_node", {"node_type": "Decision"})
     check("grok: a refusal still arrives in full as text", r.get("isError") is True and "id" in (text_of(r) or ""), (text_of(r) or "")[:120])

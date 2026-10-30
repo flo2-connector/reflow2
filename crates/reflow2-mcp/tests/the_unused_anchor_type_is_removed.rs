@@ -185,6 +185,11 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
     // the rest of the served text holds to the rule below.
     if let Some(going) = all.as_object_mut().and_then(|o| o.remove("deprecations")) {
         for d in going.as_array().into_iter().flatten() {
+            // A COUNTED REFUSING STUB is listed on purpose (2026-10-30): its
+            // mark says it was RETIRED, never "removed in the next release".
+            if d.get("stub_since").is_some_and(|s| !s.is_null()) {
+                continue;
+            }
             let tool = d["item"]["tool"].as_str().unwrap_or_default();
             assert!(
                 !tool.is_empty() && !tools.iter().any(|t| t.name == tool),

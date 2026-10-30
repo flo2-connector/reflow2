@@ -65,21 +65,18 @@ with the first. If you want to know what actually landed, compute it — do not 
    guesses is a plan nobody made.
 3. **Order what genuinely has an order.** `precedes` between epochs. Do not impose sequence on
    items that are merely listed one after another; a list is not a dependency.
-4. **Gate what is blocked on something immature.** `gate_on` with a `kind` (TRL/MRL) and an
-   explicit `min_level` — the threshold is REQUIRED and never defaulted, because "below 5 is not
-   buildable" is a risk-appetite policy and it is the user's to state.
-5. **Say what is NOT in it.** An increment defined only by what it contains cannot be argued with.
+4. **Say what is NOT in it.** An increment defined only by what it contains cannot be argued with.
    The theme should make the exclusions obvious.
 
-## 3b. Check what the plan is GATED ON before you commit to an order
+## 3b. Ask what the plan waits on before you commit to an order
 
-`readiness_report` on any enabling technology an increment depends on. A `GATED_ON` edge carries
-the rung an increment demands (`kind` TRL or MRL, `min_level`), so a plan that ignores it is a
-date nobody can hold. **The threshold is the user's judgement and the level is an observation** —
-report the gap between them and let them decide, rather than reordering the plan yourself.
-
-Silent on most designs, and that silence is information: no `GATED_ON` edges means nothing here
-has been said to depend on an immature technology, not that nothing does.
+If an increment cannot ship until an enabling technology is mature enough, ask the user for the
+threshold — it is their risk-appetite judgement, never a default — and record it as a Constraint
+the increment is governed by. **The threshold is the user's judgement and the level is an
+observation** — report the gap between them and let them decide, rather than reordering the plan
+yourself. The tools that recorded readiness gates and derived a delivery date from them were
+retired on 2026-10-30; if this plan needs them, say so to the person you work for and file a
+**report-friction**, because a retired tool somebody needed is restored at the December re-count.
 
 ## 4. When the increment arrives
 

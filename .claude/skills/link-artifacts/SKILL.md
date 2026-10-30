@@ -91,7 +91,7 @@ changed outside the loop (someone edited by hand, a merge landed, you refactored
    This is the loop the original Reflow never closed: a change made in code reaching the intent
    that justified it.
 7. **Record the outcome — the accept is two-sided, and the tool insists.**
-   `set_artifact_checksum` requires a `disposition`:
+   `set_artifact_checksums` requires a `disposition`:
    - `design_holds` — the change carries no design meaning (a refactor, a fix restoring intended
      behaviour). Your claim is recorded as a dated ChangeEvent; say why in `note`.
    - `design_updated` — the behaviour moved, so the design moved with it. Update the design

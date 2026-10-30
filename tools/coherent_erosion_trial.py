@@ -116,14 +116,15 @@ def main() -> int:
             # Accept the new baseline, answering the second question: cycle 4
             # ties the code accept to the design edit above (one change, both
             # sides); the rest claim design_holds, dated and on the record.
-            s.call("set_artifact_checksum", {"artifact_id": "art:charge",
-                                             "checksum": sha(code),
-                                             **({"disposition": "design_updated",
-                                                 "design_change_event_id": f"chg:cap{i}"}
-                                                if widens else
-                                                {"disposition": "design_holds",
-                                                 "change_type": "test_failure_fix",
-                                                 "note": f"fix {i}: no behaviour change"})})
+            s.call("set_artifact_checksums", {"accepts": [{
+                "artifact_id": "art:charge",
+                "checksum": sha(code),
+                **({"disposition": "design_updated",
+                    "design_change_event_id": f"chg:cap{i}"}
+                   if widens else
+                   {"disposition": "design_holds",
+                    "change_type": "test_failure_fix",
+                    "note": f"fix {i}: no behaviour change"})}]})
 
         print("\n== release, cut as its own epoch ==")
         s.call("add_epoch", {"id": "epoch:release", "name": "v1.0 release",
@@ -172,12 +173,12 @@ def main() -> int:
         tools = [t["name"] for t in s.rpc("tools/list", {})["result"]["tools"]]
         # Genuine since BL-33: the accept path itself poses the second question,
         # so the design update is demanded at the exact moment it is needed.
-        refused = s.call_expect_error("set_artifact_checksum",
-                                      {"artifact_id": "art:charge",
-                                       "checksum": "sha256:probe"})
+        refused = s.call_expect_error("set_artifact_checksums",
+                                      {"accepts": [{"artifact_id": "art:charge",
+                                                    "checksum": "sha256:probe"}]})
         note("anything PROMPTED the capability update (vs the developer volunteering it)",
              refused is not None,
-             "set_artifact_checksum refuses a silent accept: disposition is required, "
+             "set_artifact_checksums refuses a silent accept: disposition is required, "
              "and design_updated must name the ChangeEvent behind it")
         # Genuine since BL-34/36-adjacent: pin the release to its cut epoch and
         # record what it shipped, then read both back.

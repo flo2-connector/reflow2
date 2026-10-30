@@ -1,9 +1,6 @@
 {
   "_about": "WHICH SERVED TOOL WRITES WHICH PART OF THE VOCABULARY, in ONE place. Read by the server (describe_schema's `written_by` and `drawn_by`, and every invalid-edge refusal's alternatives) and by tools/vocabulary_reach.py (its per-type parameter reach). Until 2026-09-29 the node-type half lived only in that script, so the schema could not say \"record_finding writes a TemporalFact\" to an agent asking about the type (fact:root-cause-describe-schema-never-names-the-typed-tool-that-writes-a-type-and-the-map-lives-in-a-repo-script-2026-09-29). Every tool named here must be served and every type named must be declared; crates/reflow2-mcp/tests/a_finding_or_refusal_names_the_route_that_works.rs checks both, and that each edge tool really draws every pair its schema models.",
   "writes_node_type": {
-    "acknowledge_gap": [
-      "Question"
-    ],
     "acknowledge_gaps": [
       "Question"
     ],
@@ -85,9 +82,6 @@
     "external_dependency": [
       "Resource"
     ],
-    "forecast_readiness": [
-      "ReadinessAssessment"
-    ],
     "gap_to_prompt": [
       "Question"
     ],
@@ -140,9 +134,6 @@
     ],
     "reopen_choice": [
       "Decision"
-    ],
-    "set_artifact_checksum": [
-      "Artifact"
     ],
     "set_artifact_checksums": [
       "Artifact"
@@ -252,9 +243,6 @@
     "documents": [
       "DOCUMENTS"
     ],
-    "gate_on": [
-      "GATED_ON"
-    ],
     "governed_by": [
       "GOVERNED_BY"
     ],
@@ -320,9 +308,6 @@
     ],
     "schedule_for": [
       "SCHEDULED_FOR"
-    ],
-    "verifies": [
-      "VERIFIES"
     ],
     "violates_rule": [
       "VIOLATES_RULE"

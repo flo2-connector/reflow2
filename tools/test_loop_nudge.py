@@ -138,7 +138,7 @@ class LoopNudge(unittest.TestCase):
         record is found. The server's instructions carry the same sentence."""
         r = run_hook(self.project, {"hook_event_name": "SessionStart",
                                     "session_id": "s1"})
-        self.assertIn("read graph_report_markdown first", r.stdout)
+        self.assertIn("read graph_report with format markdown first", r.stdout)
         self.assertIn("search_design", r.stdout)
         self.assertIn("current state", r.stdout)
 
@@ -366,7 +366,7 @@ class SkillTriggers(unittest.TestCase):
         # are ordered earliest-first in the loop and PROPAGATE precedes the
         # as-built reconcile, so this ordering is the file's own stated rule
         # rather than a new one.
-        run_hook(self.project, post_tool("mcp__reflow2__propagate_change"))
+        run_hook(self.project, post_tool("mcp__reflow2__propagate_from"))
         reason = self._stop_reason()
         self.assertIn("link-artifacts", reason)
         self.assertNotIn("impact-check", reason)
@@ -418,7 +418,7 @@ class SkillTriggers(unittest.TestCase):
         used to have, and requires it to fire.
         """
         run_hook(self.project, edit_tool())
-        for op in ("record_change", "propagate_change", "link_artifact",
+        for op in ("record_change", "propagate_from", "link_artifact",
                    "add_requirement", "detect_gaps"):
             run_hook(self.project, post_tool(f"mcp__reflow2__{op}"))
         self.assertIsNone(self._stop_reason(), "correct work must be met with silence")
@@ -438,7 +438,7 @@ class SkillTriggers(unittest.TestCase):
             run_hook(self.project, post_tool(f"mcp__reflow2__{op}"))
         reason = self._stop_reason()
         self.assertIsNotNone(reason, "bookkeeping-after must no longer read as clean")
-        self.assertIn("propagate_change was never called", reason)
+        self.assertIn("propagate_from was never called", reason)
         self.assertIn("impact-check", reason)
 
     def test_shapes_never_arm_the_hook_by_themselves(self):
@@ -451,7 +451,7 @@ class SkillTriggers(unittest.TestCase):
 
     def test_an_ordinary_code_edit_is_not_a_rendering(self):
         run_hook(self.project, edit_tool(path="crates/reflow2-core/src/heal.rs"))
-        for op in ("record_change", "propagate_change", "link_artifact", "add_capability"):
+        for op in ("record_change", "propagate_from", "link_artifact", "add_capability"):
             run_hook(self.project, post_tool(f"mcp__reflow2__{op}"))
         run_hook(self.project, post_tool("mcp__reflow2__detect_gaps"))
         run_hook(self.project, post_tool("mcp__reflow2__add_capability"))
@@ -460,7 +460,7 @@ class SkillTriggers(unittest.TestCase):
 
     def test_a_stored_rendering_gets_no_nudge(self):
         run_hook(self.project, edit_tool(path="docs/x.svg"))
-        for op in ("record_change", "propagate_change", "link_artifact",
+        for op in ("record_change", "propagate_from", "link_artifact",
                    "add_capability"):
             run_hook(self.project, post_tool(f"mcp__reflow2__{op}"))
         run_hook(self.project, post_tool("mcp__reflow2__detect_gaps"))
@@ -525,7 +525,7 @@ class PropagatePrecedes(unittest.TestCase):
         self._worked("record_change", "loop_status")
         reason = self._stop_reason()
         self.assertIsNotNone(reason)
-        self.assertIn("propagate_change was never called", reason)
+        self.assertIn("propagate_from was never called", reason)
         self.assertIn("impact-check", reason)
         self.assertIn("Bookkeeping is not the loop", reason)
 
@@ -535,14 +535,14 @@ class PropagatePrecedes(unittest.TestCase):
         self._worked("add_change_event", "loop_status")
         reason = self._stop_reason()
         self.assertIsNotNone(reason)
-        self.assertIn("propagate_change was never called", reason)
+        self.assertIn("propagate_from was never called", reason)
 
     # --- clause 1: `propagates == 0`. THE COUNTERWEIGHT THE ROW DEMANDED ----
 
     def test_THE_COUNTERWEIGHT_a_session_that_propagated_gets_nothing(self):
         """The case to pin first (BL-23, BL-42): a trigger that fires on correct
         work is the failure this whole family exists to avoid."""
-        self._worked("record_change", "propagate_change", "loop_status")
+        self._worked("record_change", "propagate_from", "loop_status")
         self.assertIsNone(self._stop_reason(),
                           "a session that looked at the blast radius did the work")
 
@@ -592,10 +592,10 @@ class PropagatePrecedes(unittest.TestCase):
         """Two sessions, because the once-only claim is per session and a second
         stop on the same one would be silent for the wrong reason."""
         env = {"REFLOW2_LOOP_NUDGE_PROPAGATE_THRESHOLD": "2"}
-        self._worked("record_change", "propagate_change", "loop_status", session="s1")
+        self._worked("record_change", "propagate_from", "loop_status", session="s1")
         self.assertIsNotNone(self._stop_reason(session="s1", env=env),
                              "one propagate is under a threshold of two")
-        self._worked("record_change", "propagate_change", "propagate_change",
+        self._worked("record_change", "propagate_from", "propagate_from",
                      "loop_status", session="s2")
         self.assertIsNone(self._stop_reason(session="s2", env=env),
                           "two propagates meet the threshold")
@@ -1811,7 +1811,7 @@ class VsCodeHook(unittest.TestCase):
         self.assertEqual(spec["hookEventName"], "SessionStart")
         context = spec["additionalContext"]
         self.assertIn("reflow2 read", context, "the door's verbs, not MCP calls")
-        self.assertIn("reflow2 read graph_report_markdown", context,
+        self.assertIn("reflow2 read graph_report ", context,
                       "the first read for where the design stands, in the door's verbs")
         self.assertIn("2 open gap(s) never put to the person", context,
                       "the loop_status reading itself reaches the model")

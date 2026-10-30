@@ -56,7 +56,7 @@ import design_io  # noqa: E402  (the one reader of a saved design, either form)
 # wire by the absence of `structuredContent`, so this list is documentation
 # rather than control flow — it exists so a reader knows the shape is expected.
 DOCUMENT_SHAPED = {
-    "graph_report_markdown": "Markdown has no structure to declare (BL-48).",
+    "graph_report": "with `format` `markdown`, Markdown has no structure to declare (BL-48).",
 }
 
 # Two of the six tools that drifted require an argument, so a no-argument sweep

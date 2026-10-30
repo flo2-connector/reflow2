@@ -158,7 +158,7 @@
         "req:parent",
         "req:receipt"
       ],
-      "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gap with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
+      "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gaps with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
       "evidence": "Requirement carrying incoming DECOMPOSES edge(s), with no coverage answer on record: req:parent <- req:card, req:receipt. Rolled-up delivery: not yet delivered.",
       "gap_source": "decomposition_coverage",
       "id": "gap:da440f116a9528cb",
@@ -232,7 +232,7 @@
     },
     {
       "affected_ids": [],
-      "description": "No accepted decision records which quality attribute this system is built for, and the answer changes how it should be structured. Ask it EARLY — asking is cheap, and the cost of asking late is reworking services that are already built. The four pull apart: performance wants the least chatter across boundaries; reliability wants no single part everything depends on, and may deliberately put the same function in two places; maintainability wants the things that change together to live together; security wants boundaries that follow trust and data classification rather than coupling. Grouping the parts without answering this silently optimises for performance. Record the answer with `set_quality_target` on the decision that says so, accept that decision, and link what it shapes with `governed_by`. 🛑 NOT KNOWING YET IS A FINE ANSWER, and the way to record it is a PROPOSED decision naming the candidate you lean toward — never `acknowledge_gap`, which silences this permanently and for every capability added afterwards, so a deferral accepted that way never comes back.",
+      "description": "No accepted decision records which quality attribute this system is built for, and the answer changes how it should be structured. Ask it EARLY — asking is cheap, and the cost of asking late is reworking services that are already built. The four pull apart: performance wants the least chatter across boundaries; reliability wants no single part everything depends on, and may deliberately put the same function in two places; maintainability wants the things that change together to live together; security wants boundaries that follow trust and data classification rather than coupling. Grouping the parts without answering this silently optimises for performance. Record the answer with `set_quality_target` on the decision that says so, accept that decision, and link what it shapes with `governed_by`. 🛑 NOT KNOWING YET IS A FINE ANSWER, and the way to record it is a PROPOSED decision naming the candidate you lean toward — never `acknowledge_gaps`, which silences this permanently and for every capability added afterwards, so a deferral accepted that way never comes back.",
       "evidence": "0 accepted Decision(s) carry a `quality_target`; 0 proposed one(s) do. Project has 2 capability(ies) and 4 requirement(s). The property has NO DEFAULT, so absence counts designs nobody asked rather than designs that answered; a proposed target counts as WEIGHED BUT NOT SETTLED, which is why this reads differently from silence.",
       "gap_source": "quality_target_unstated",
       "id": "gap:5e690a94ea4c365c",
@@ -437,7 +437,7 @@
           "req:parent",
           "req:receipt"
         ],
-        "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gap with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
+        "description": "'Checkout' was split into 2 child requirement(s), and delivery rolls UP: it counts as delivered exactly when all 2 are. What did 'Checkout' hold that none of its children hold? Write the answer into the design — a child carrying what fell out — or acknowledge_gaps with the reason it was left out on purpose. A narrowing you intended and a drop nobody noticed look identical until one of them is written down.",
         "evidence": "Requirement carrying incoming DECOMPOSES edge(s), with no coverage answer on record: req:parent <- req:card, req:receipt. Rolled-up delivery: not yet delivered.",
         "gap_source": "decomposition_coverage",
         "id": "gap:da440f116a9528cb",

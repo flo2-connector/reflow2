@@ -647,7 +647,7 @@ pub fn certify_preservation(
              is made of, so interface changes read as structure — but a published contract \
              whose payload changed can break a consumer without touching a single Capability. \
              Every one is listed under `structural_changes`; read them, and check the \
-             consuming side with propagate_change."
+             consuming side with propagate_from."
                 .to_string(),
         ],
         notes,

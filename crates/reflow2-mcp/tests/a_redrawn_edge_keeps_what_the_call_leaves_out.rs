@@ -224,15 +224,10 @@ const ROWS: &[Row] = &[
         "doc_kind",
         || json!("readme"),
     ),
-    (
-        "gate_on",
-        || json!({"subject_id": "cap:a", "target_id": "epoch:a", "kind": "TRL", "min_level": 4}),
-        "GATED_ON",
-        "cap:a",
-        "epoch:a",
-        "rationale",
-        || json!("kept"),
-    ),
+    // `gate_on` and `verifies` were typed helpers until 2026-10-30, when each
+    // became a counted refusing stub; `draw_edges` runs neither. VERIFIES is
+    // drawn by `add_verification`'s `verifies`, through the same core write
+    // these rows held (`DesignGraph::verifies`).
     (
         "governed_by",
         || json!({"from_id": "req:a", "to_id": "dec:a"}),
@@ -322,15 +317,6 @@ const ROWS: &[Row] = &[
         "epoch:a",
         "recorded_at",
         || json!("2026-10-01"),
-    ),
-    (
-        "verifies",
-        || json!({"verification_id": "ver:a", "target_id": "cap:a"}),
-        "VERIFIES",
-        "ver:a",
-        "cap:a",
-        "coverage",
-        || json!("partial"),
     ),
     (
         "violates_rule",

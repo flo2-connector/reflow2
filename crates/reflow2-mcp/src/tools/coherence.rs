@@ -987,12 +987,36 @@ impl ReflowService {
                        together with one `coverage_note` saying the check was SILENT about their edges rather than clean on them. \
                        Ask for this when you want to know what a change will break downstream — the blast \
                        radius of a change you recorded.",
-        title = "Blast Radius of a Change",
+        title = "Blast Radius of a Change (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn propagate_change(
         &self,
         Parameters(req): Parameters<PropagateChangeReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "propagate_change",
+            Some((
+                "propagate_from",
+                present_fields(&[
+                    ("seed_ids", json!([req.change_event_id])),
+                    ("max_depth", json!(req.max_depth)),
+                    ("full", json!(req.full)),
+                    ("offset", json!(req.offset)),
+                    ("budget_chars", json!(req.budget_chars)),
+                ]),
+            )),
+        )
+    }
+
+    /// The handler `propagate_change` had until it was retired on 2026-10-30:
+    /// a ChangeEvent's blast radius, seeded by the nodes it CHANGED, with the
+    /// stale edge prose read beside it. `propagate_from` runs it when its one
+    /// seed is a ChangeEvent; `tool` names the caller in a refusal.
+    pub async fn propagate_change_kept(
+        &self,
+        Parameters(req): Parameters<PropagateChangeReq>,
+        tool: &str,
     ) -> Result<CallToolResult, McpError> {
         let opts = PropagateOptions {
             max_depth: req.max_depth.unwrap_or(5),
@@ -1049,7 +1073,7 @@ impl ReflowService {
             }
         }
 
-        let mut out = crate::service::radius_value(&radius, full, req.offset, "propagate_change")?;
+        let mut out = crate::service::radius_value(&radius, full, req.offset, tool)?;
         if !edge_prose.is_empty()
             && let Some(obj) = out.as_object_mut()
         {
@@ -1081,7 +1105,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Speculative blast radius from seed node ids — what would touching these reach? Walks the traceability edges outward and returns a SUMMARY by default: counts by distance, the distance-1 ring, and the risk and boundary crossings (an edge that leaves a component or crosses a published interface). Pass `full=true` for every impacted node with its hop chain; the default withholds it because on a large design the full dump overflows what a session can read, and every band is still counted. `max_depth` bounds the walk (default 5) and the reply says what it truncated beyond it. AN EMPTY RADIUS SAYS WHICH EMPTY — an unknown seed is reported in `unknown_seeds`, never silently walked as nothing. This is the read half of impact-check; `propagate_change` records the change as well. ACROSS DESIGNS: every radius names its `design`, a row that belongs to another design names that one, and `continue_in` names the member designs to carry it on in, from this design's pins. In each of those, or in any member whose pins name this design, call this with `arriving_from` (this design's id) and `interfaces` (this radius's `interfaces_reached`) instead of seeds. Ask for this when you want to know what depends on this part — show the blast radius — before you change it.",
+        description = "Speculative blast radius from seed node ids — what would touching these reach? Walks the traceability edges outward and returns a SUMMARY by default: counts by distance, the distance-1 ring, and the risk and boundary crossings (an edge that leaves a component or crosses a published interface). Pass `full=true` for every impacted node with its hop chain; the default withholds it because on a large design the full dump overflows what a session can read, and every band is still counted. `max_depth` bounds the walk (default 5) and the reply says what it truncated beyond it. AN EMPTY RADIUS SAYS WHICH EMPTY — an unknown seed is reported in `unknown_seeds`, never silently walked as nothing. One ChangeEvent's id as the seed reads that recorded change's blast radius. ACROSS DESIGNS: every radius names its `design`, a row that belongs to another design names that one, and `continue_in` names the member designs to carry it on in, from this design's pins. In each of those, or in any member whose pins name this design, call this with `arriving_from` (this design's id) and `interfaces` (this radius's `interfaces_reached`) instead of seeds. Ask for this when you want to know what depends on this part — show the blast radius — before you change it.",
         title = "Blast Radius From a Node",
         annotations(read_only_hint = true)
     )]
@@ -1150,6 +1174,48 @@ impl ReflowService {
                 None,
             ));
         }
+        // A RECORDED CHANGE AS THE ONE SEED reads that change's blast radius:
+        // the walk starts from the nodes it CHANGED, and the edge prose they
+        // left stale is read beside it — what `propagate_change` answered until
+        // it was folded in here on 2026-10-30
+        // (req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides).
+        let changes: Vec<&str> = req
+            .seed_ids
+            .iter()
+            .map(String::as_str)
+            .filter(|id| {
+                g.get_node(reflow2_core::nodes::node::CHANGE_EVENT, id)
+                    .ok()
+                    .flatten()
+                    .is_some()
+            })
+            .collect();
+        if let [change] = changes[..]
+            && req.seed_ids.len() == 1
+        {
+            let change = change.to_string();
+            drop(g);
+            let mut answer = self
+                .propagate_change_kept(
+                    Parameters(PropagateChangeReq {
+                        change_event_id: change.clone(),
+                        max_depth: req.max_depth,
+                        full: req.full,
+                        budget_chars: req.budget_chars,
+                        offset: req.offset,
+                    }),
+                    "propagate_from",
+                )
+                .await?;
+            if let Some(obj) = answer
+                .structured_content
+                .as_mut()
+                .and_then(JsonValue::as_object_mut)
+            {
+                obj.insert("seeded_by_change".into(), json!(change));
+            }
+            return Ok(answer);
+        }
         let seeds: Vec<&str> = req.seed_ids.iter().map(String::as_str).collect();
         let radius = g.propagate_from(&seeds, opts).map_err(dyno_err)?;
         // Across designs only after this design's guard is dropped.
@@ -1160,6 +1226,19 @@ impl ReflowService {
             req.offset,
             "propagate_from",
         )?;
+        if !changes.is_empty()
+            && let Some(obj) = out.as_object_mut()
+        {
+            obj.insert(
+                "change_seeds_walked_as_nodes".into(),
+                json!({
+                    "ids": changes,
+                    "note": "Among several seeds a ChangeEvent is walked as a node, as any seed is. \
+                             Pass one ChangeEvent's id alone to read that change's blast radius from \
+                             the nodes it CHANGED, with its stale edge prose.",
+                }),
+            );
+        }
         self.carry_walk_on(&radius, opts, &mut out).await;
         // HELD TO ITS BUDGET (fact:the-rocket-equation-rung-ran-on-0-90-0-…,
         // finding (b)): at max_depth 2 the inference walk still reached
@@ -1214,7 +1293,8 @@ impl ReflowService {
                        session makes to ask what to look at, spent on a list that says \
                        \"196 passing, 1 planned\". What comes back instead is the same digest \
                        `loop_status` returns: counts by status, how many never ran, and every \
-                       check NOT currently passing, in full. \
+                       check NOT currently passing, in full. `format` `markdown` returns the \
+                       same report as a document a person reads. \
                        Ask for this when you want the overall health summary of the design — how healthy it is right now, how the project is doing. \
                        Ask for this to give me the overall health of the design in one read.",
         title = "Graph Report",
@@ -1224,6 +1304,33 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<GraphReportReq>,
     ) -> Result<CallToolResult, McpError> {
+        // THE SAME REPORT AS A DOCUMENT a person reads, on `format: "markdown"`
+        // — what `graph_report_markdown` returned until it was folded in here
+        // on 2026-10-30. Omitted, the reply is the JSON it always was.
+        match req.format.as_deref() {
+            None | Some("json") => {}
+            Some("markdown") => {
+                if req.include_verifications || req.budget_chars.is_some() {
+                    return Err(McpError::invalid_params(
+                        "graph_report: `format: \"markdown\"` is the report as a document, \
+                         which withholds the per-check roll and is not budgeted; \
+                         `include_verifications` and `budget_chars` shape the JSON report. Pass \
+                         either, or `format: \"markdown\"` alone. Nothing was read.",
+                        None,
+                    ));
+                }
+                return self.graph_report_markdown_kept().await;
+            }
+            Some(other) => {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "graph_report: `format` is `json` (the default) or `markdown`; got \
+                         {other:?}."
+                    ),
+                    None,
+                ));
+            }
+        }
         let g = self.graph.read().await;
         let full = g.graph_report().map_err(dyno_err)?;
         let roll = full.verifications.clone();
@@ -1274,10 +1381,20 @@ impl ReflowService {
     #[tool(
         description = "The graph report rendered as Markdown — `graph_report`'s computed snapshot (counts, requirement certainty, the delivery line, top gaps, allocation, confirmation, coverage, the maturity trajectory) as prose a person reads rather than JSON an agent parses; the substance is documented on `graph_report`. Withholds the per-check roll for the same reason it does. Ask for this when you want the design's health and status as readable prose — a plain-English rundown of how the project is doing. \
                        Ask for this to give me the status as prose.",
-        title = "Graph Report as Markdown",
+        title = "Graph Report as Markdown (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn graph_report_markdown(&self) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "graph_report_markdown",
+            Some(("graph_report", json!({ "format": "markdown" }))),
+        )
+    }
+
+    /// `graph_report` with `format: "markdown"`: the report rendered as a
+    /// document — the handler `graph_report_markdown` had until it was folded
+    /// into `graph_report` on 2026-10-30, so the document is unchanged.
+    pub async fn graph_report_markdown_kept(&self) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
         let report = g.graph_report().map_err(dyno_err)?;
         let mut md = report.to_markdown();
@@ -1350,7 +1467,7 @@ impl ReflowService {
     #[tool(
         description = "Accept a structural defect the user has judged fine, recording WHY. It \
                        moves out of detect_defects into reviewed_defects — not deleted, not \
-                       hidden — the mirror of acknowledge_gap, and for the same reason: a list \
+                       hidden — the mirror of acknowledge_gaps, and for the same reason: a list \
                        that can never reach zero gets skimmed, so a genuine new defect must \
                        arrive into a list someone still reads. The reason becomes a real Decision \
                        node that outlives the session. Because a defect id hashes its category \
@@ -1511,10 +1628,17 @@ impl ReflowService {
                        hidden coupling worth removing, or a creative link the design leans on. Ask for this \
                        when you want to see unexpected or surprising couplings between parts that should be \
                        separate — cross-community links the design did not intend.",
-        title = "Surprising Connections",
+        title = "Surprising Connections (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn surprising_connections(&self) -> Result<CallToolResult, McpError> {
+        stub_answer("surprising_connections", None)
+    }
+
+    /// The handler `surprising_connections` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn surprising_connections_kept(&self) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
         ok_json_or_why(
             g.surprising_connections().map_err(dyno_err)?,
@@ -1523,25 +1647,73 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. `dimension_drift` (singular) reads one node. Ask for this when you want to know what in the design is getting worse. \
+        description = "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. Pass `target_id` and `dimension` to read ONE node on one axis (its observations over time, and whether the latest is worse; a null says which null), or either alone to narrow the sweep. Ask for this when you want to know what in the design is getting worse. \
                        Ask for this to see which quality measures are sliding across the whole design.",
         title = "All Quality Drifts",
         annotations(read_only_hint = true)
     )]
-    pub async fn dimension_drifts(&self) -> Result<CallToolResult, McpError> {
+    pub async fn dimension_drifts(
+        &self,
+        Parameters(req): Parameters<DimensionDriftsReq>,
+    ) -> Result<CallToolResult, McpError> {
+        // ONE NODE ON ONE AXIS is what `dimension_drift` answered until it was
+        // retired on 2026-10-30 into this tool; it runs that handler's body,
+        // so the reply is the one it gave.
+        if let (Some(target_id), Some(dimension)) = (&req.target_id, &req.dimension) {
+            return self
+                .dimension_drift_kept(Parameters(DimensionDriftReq {
+                    target_id: target_id.clone(),
+                    dimension: dimension.clone(),
+                }))
+                .await;
+        }
+        let dim: Option<Dimension> = match &req.dimension {
+            Some(d) => Some(parse_enum(d, "dimension")?),
+            None => None,
+        };
         let g = self.graph.read().await;
-        ok_json_or_why(
-            g.dimension_drifts().map_err(dyno_err)?,
-            "no node carries two dated DimensionObservation scores on any one dimension, so no decline can be seen — a zero here is the absence of a series, not a steady design",
-        )
+        let drifts: Vec<_> = g
+            .dimension_drifts()
+            .map_err(dyno_err)?
+            .into_iter()
+            .filter(|d| req.target_id.as_deref().is_none_or(|t| d.target_id == t))
+            .filter(|d| dim.is_none_or(|x| d.dimension == x))
+            .collect();
+        let why = match (&req.target_id, &req.dimension) {
+            (Some(t), _) => format!(
+                "{t:?} carries no two dated DimensionObservation scores on any one dimension (or \
+                 is not in this design), so no decline can be seen on it"
+            ),
+            (None, Some(d)) => format!(
+                "no node carries two dated DimensionObservation scores on `{d}`, so no decline \
+                 can be seen on it"
+            ),
+            (None, None) => "no node carries two dated DimensionObservation scores on any one dimension, so no decline can be seen — a zero here is the absence of a series, not a steady design".to_string(),
+        };
+        ok_json_or_why(drifts, &why)
     }
 
     #[tool(
         description = "Quality-dimension drift for ONE target node: the recorded observations of a single `-ility` (reliability, performance, maintainability …) on that node over time, and whether the latest reading is worse than the one before. A NULL VALUE SAYS WHICH NULL: the reply distinguishes a legal dimension with no observations recorded on this node, a node that does not exist, and a dimension name the schema does not declare — three facts that used to share `{\"value\": null}`. `dimension_drifts` (plural) sweeps the whole design worst-first. Ask for this when you want to know whether one part of the design is getting worse on one quality axis.",
-        title = "Quality Drift of One Node",
+        title = "Quality Drift of One Node (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn dimension_drift(
+        &self,
+        Parameters(req): Parameters<DimensionDriftReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "dimension_drift",
+            Some((
+                "dimension_drifts",
+                json!({ "target_id": req.target_id, "dimension": req.dimension }),
+            )),
+        )
+    }
+
+    /// The handler `dimension_drift` had until it was retired on 2026-10-30;
+    /// `dimension_drifts` with `target_id` and `dimension` now runs it.
+    pub async fn dimension_drift_kept(
         &self,
         Parameters(req): Parameters<DimensionDriftReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -1595,10 +1767,32 @@ impl ReflowService {
                        The reason is stored as a real Decision node in the graph, so it outlives \
                        this session. If the gap's affected nodes later change, the review \
                        expires and the gap returns for a fresh judgement.",
-        title = "Acknowledge a Gap",
-        annotations(read_only_hint = false, destructive_hint = false)
+        title = "Acknowledge a Gap (Retired)",
+        annotations(read_only_hint = true)
     )]
     pub async fn acknowledge_gap(
+        &self,
+        Parameters(req): Parameters<AcknowledgeGapReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer(
+            "acknowledge_gap",
+            Some((
+                "acknowledge_gaps",
+                json!({ "gaps": [present_fields(&[
+                    ("gap_id", json!(req.gap_id)),
+                    ("affected_ids", json!(req.affected_ids)),
+                    ("reason", json!(req.reason)),
+                    ("approver", json!(req.approver)),
+                    ("acted_at", json!(req.acted_at)),
+                ])] }),
+            )),
+        )
+    }
+
+    /// The handler `acknowledge_gap` had until it was retired on 2026-10-30,
+    /// kept so that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn acknowledge_gap_kept(
         &self,
         Parameters(req): Parameters<AcknowledgeGapReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -1621,8 +1815,8 @@ impl ReflowService {
         // Settles by being made (crate::settles); an unsigned one is recorded
         // and said, never refused — the declared policy for this tool.
         let unsigned = crate::settles::gate(
-            "acknowledge_gap",
-            crate::settles::rule("acknowledge_gap").settles_value(None),
+            "acknowledge_gaps",
+            crate::settles::rule("acknowledge_gaps").settles_value(None),
             req.approver.as_deref(),
             "an acknowledgement",
         )?
@@ -1643,14 +1837,17 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Acknowledge MANY gaps in one call — the bulk form of acknowledge_gap. \
-                       EACH GAP CARRIES ITS OWN REASON, which is the point: a batch of \
-                       acknowledgements under one shared reason is exactly the erosion the \
-                       ask-don't-repair rule exists to prevent, and would make a bulk form worse \
-                       than the loop it replaces. The round trip collapses; the judgement stays \
-                       per gap. ALL OF IT OR NONE OF IT — every item is attempted so you learn \
-                       every failure at once, and if anything failed nothing is acknowledged.",
-        title = "Acknowledge Many Gaps",
+        description = "Accept gaps the user has judged fine, recording WHY — one gap or many in \
+                       one call. Each moves out of `detect_gaps` into `reviewed_gaps` — not \
+                       deleted, not hidden — and its reason is stored as a real Decision node, so \
+                       it outlives this session; if a gap's affected nodes later change, the \
+                       review expires and the gap returns for a fresh judgement. EACH GAP \
+                       CARRIES ITS OWN REASON: acknowledgements under one shared reason are \
+                       exactly the erosion the ask-don't-repair rule exists to prevent, and would \
+                       make one call worse than the loop it replaces. ALL OF IT \
+                       OR NONE OF IT — every item is attempted so you learn every failure at \
+                       once, and if anything failed nothing is acknowledged.",
+        title = "Acknowledge Gaps",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
     pub async fn acknowledge_gaps(
@@ -1711,7 +1908,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gap` writes, kept as a Decision node so it outlives the session. Worth re-reading when the design shifts: an acknowledgement is keyed on the gap's SHAPE and expires by construction when the affected nodes change, and an entry whose gap no current detector raises is reported as such rather than silently kept. THE REPLY IS BOUNDED: measured 2026-09-11 at 292,947 characters across 188 entries, which harnesses refuse outright, so over `budget_chars` (default 30,000) each reason is trimmed to its first sentences and the gap detail dropped — the COUNTS never change. Ask for this when you want to know what was raised and consciously accepted, and why.",
+        description = "Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gaps` writes, kept as a Decision node so it outlives the session. Worth re-reading when the design shifts: an acknowledgement is keyed on the gap's SHAPE and expires by construction when the affected nodes change, and an entry whose gap no current detector raises is reported as such rather than silently kept. THE REPLY IS BOUNDED: measured 2026-09-11 at 292,947 characters across 188 entries, which harnesses refuse outright, so over `budget_chars` (default 30,000) each reason is trimmed to its first sentences and the gap detail dropped — the COUNTS never change. Ask for this when you want to know what was raised and consciously accepted, and why.",
         title = "Reviewed Gaps",
         annotations(read_only_hint = true)
     )]
@@ -1728,7 +1925,7 @@ impl ReflowService {
         if chars <= budget {
             return ok_json_or_why(
                 full,
-                "no gap has been accepted with acknowledge_gap; open ones are in detect_gaps",
+                "no gap has been accepted with acknowledge_gaps; open ones are in detect_gaps",
             );
         }
         // Over budget: keep every row and every id, trim the PROSE. The counts
@@ -1773,7 +1970,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gap` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. Withdrawing an acknowledgement that does not exist returns `withdrawn: false` and names that, exactly as documented; it does not invent one to withdraw. Ask for this when a review turns out to have been wrong and a parked gap needs attention again. \
+        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. Withdrawing an acknowledgement that does not exist returns `withdrawn: false` and names that, exactly as documented; it does not invent one to withdraw. Ask for this when a review turns out to have been wrong and a parked gap needs attention again. \
                        Ask for this to reopen a gap you previously accepted.",
         title = "Withdraw a Gap Acknowledgement",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -1812,10 +2009,20 @@ impl ReflowService {
                        something against. That is a disagreement between two records, and reflow2 \
                        rules on neither. \
                        Ask for this to see how my design scores on reliability and the other qualities.",
-        title = "Quality Attributes Report",
+        title = "Quality Attributes Report (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn ility_report(
+        &self,
+        Parameters(_req): Parameters<crate::reply_budget::BudgetReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("ility_report", None)
+    }
+
+    /// The handler `ility_report` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn ility_report_kept(
         &self,
         Parameters(req): Parameters<crate::reply_budget::BudgetReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -1939,10 +2146,20 @@ impl ReflowService {
                        until you look, which is the breadth-first warning kept honest. Never a \
                        verdict. Ask for this when you are resuming an adopt, working one region \
                        at a time, or want to know what has been captured without its intent.",
-        title = "Where I Left Off",
+        title = "Where I Left Off (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn frontier(
+        &self,
+        Parameters(_req): Parameters<FrontierReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("frontier", None)
+    }
+
+    /// The handler `frontier` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn frontier_kept(
         &self,
         Parameters(req): Parameters<FrontierReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -1975,10 +2192,20 @@ impl ReflowService {
                        `not_observed_about` names what it cannot see: unregistered artifacts, \
                        size of any kind, and outliers that mask each other. Pure arithmetic over \
                        REALIZES edges — no file I/O.",
-        title = "Granularity Report",
+        title = "Granularity Report (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn granularity_report(
+        &self,
+        Parameters(_req): Parameters<GranularityReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("granularity_report", None)
+    }
+
+    /// The handler `granularity_report` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn granularity_report_kept(
         &self,
         Parameters(_req): Parameters<GranularityReportReq>,
     ) -> Result<CallToolResult, McpError> {
@@ -2071,10 +2298,20 @@ impl ReflowService {
                        file I/O. Ask for this when you want to know what has been built that nothing actually \
                        uses — capabilities with no consumer, unused work. \
                        Ask for this to see what we have built that nothing actually uses.",
-        title = "Consumption Report",
+        title = "Consumption Report (Retired)",
         annotations(read_only_hint = true)
     )]
     pub async fn consumption_report(
+        &self,
+        Parameters(_req): Parameters<ConsumptionReportReq>,
+    ) -> Result<CallToolResult, McpError> {
+        stub_answer("consumption_report", None)
+    }
+
+    /// The handler `consumption_report` had until it was retired on 2026-10-30, kept so
+    /// that restoring it at the re-count is re-pointing the tool here
+    /// (`crate::deprecation`, counted refusing stubs).
+    pub async fn consumption_report_kept(
         &self,
         Parameters(_req): Parameters<ConsumptionReportReq>,
     ) -> Result<CallToolResult, McpError> {

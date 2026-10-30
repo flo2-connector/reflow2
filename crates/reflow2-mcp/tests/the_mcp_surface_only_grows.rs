@@ -606,11 +606,35 @@ fn under(path: &str, prefix: &str) -> bool {
 
 impl Announced {
     fn from_record(record: &Value) -> Self {
-        let deprecations = match record.get("deprecations") {
+        let mut deprecations: Vec<Deprecation> = match record.get("deprecations") {
             None => Vec::new(),
             Some(d) => serde_json::from_value(d.clone())
                 .unwrap_or_else(|e| panic!("the record's deprecations do not read ({e}): {d}")),
         };
+        // THE OWNER'S APPROVED STUBS (`owner_approved_stubs`): a tool he
+        // retired as a COUNTED REFUSING STUB with no deprecating release before
+        // it — the stub release is the notice
+        // (dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december,
+        // Anthony 2026-10-30, "Yes, go with B"). Each is read as announced: it
+        // stays listed, refuses the calls the release answered, and reads as
+        // changing nothing. Its approval is named in the record, with the
+        // decision, as a deliberate break the owner approved must be.
+        for s in record["owner_approved_stubs"]
+            .as_array()
+            .into_iter()
+            .flatten()
+        {
+            let tool = s["tool"].as_str().expect("an approved stub names its tool");
+            deprecations.push(
+                serde_json::from_value(serde_json::json!({
+                    "item": {"kind": "tool", "tool": tool},
+                    "deprecated_in": s["stub_in"],
+                    "what_to_do": s["what_to_do"],
+                    "decision": s["decision"],
+                }))
+                .unwrap_or_else(|e| panic!("an approved stub does not read ({e}): {s}")),
+            );
+        }
         Self { deprecations }
     }
 
