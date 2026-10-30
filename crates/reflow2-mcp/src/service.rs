@@ -9330,6 +9330,25 @@ impl ReflowService {
             tool: tool_name.as_str().into(),
             unit: unit.clone(),
         };
+        // THE BATCH CUES THIS CALL WITHHOLDS (`crate::cues::BATCH_CUES`): a
+        // write is not offered a batch-end step this session was offered
+        // earlier in the same batch, read from the ledger's tail. Only a write
+        // offers one, and only a design with a ledger can say; anywhere else
+        // the set is empty and every cue is offered as before.
+        let withheld = match (unit.is_some(), self.sidecar_path_for_writes()) {
+            (true, Some(path)) => {
+                let session = crate::cues::session_key(
+                    Some(client.as_str()),
+                    Some(host_seat.as_deref().unwrap_or_else(|| self.seat.id())),
+                );
+                crate::cues::withheld(
+                    &crate::usage::read_tail(path, crate::cues::BATCH_TAIL_BYTES),
+                    &session,
+                    crate::usage::now_unix(),
+                )
+            }
+            _ => std::collections::BTreeSet::new(),
+        };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
             // A NAME NOTHING SERVES is refused as rmcp refuses it — the same
@@ -9382,8 +9401,9 @@ impl ReflowService {
                 // call for its length. Nothing, at no cost, where this design
                 // names none or this server reaches no other design.
                 let far = self.far_readings(readable.as_deref()).await;
-                scope
-                    .run(SIGNER.scope(
+                crate::cues::with_withheld(
+                    withheld,
+                    scope.run(SIGNER.scope(
                         signer,
                         ACTING.scope(
                             acting,
@@ -9401,8 +9421,9 @@ impl ReflowService {
                                 ),
                             ),
                         ),
-                    ))
-                    .await
+                    )),
+                )
+                .await
             }
         };
         let answer = match unit {

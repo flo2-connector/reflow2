@@ -251,6 +251,29 @@ pub fn read_all(graph_path: &str) -> Vec<UsageLine> {
         .collect()
 }
 
+/// The lines in the last `max_bytes` of the file, in file order — what a call
+/// reads to decide which batch cues it withholds ([`crate::cues::withheld`]),
+/// without reading a long ledger whole on every write. The first line of the
+/// tail is skipped when the read starts mid-file, since it is torn there.
+/// Nothing (an empty list) when there is no ledger, as with [`read_all`].
+pub fn read_tail(graph_path: &str, max_bytes: u64) -> Vec<UsageLine> {
+    use std::io::{Read, Seek, SeekFrom};
+    let Ok(mut f) = std::fs::File::open(usage_path(graph_path)) else {
+        return Vec::new();
+    };
+    let len = f.metadata().map(|m| m.len()).unwrap_or(0);
+    let start = len.saturating_sub(max_bytes);
+    let mut buf = Vec::new();
+    if f.seek(SeekFrom::Start(start)).is_err() || f.read_to_end(&mut buf).is_err() {
+        return Vec::new();
+    }
+    let text = String::from_utf8_lossy(&buf);
+    text.lines()
+        .skip(usize::from(start > 0))
+        .filter_map(|l| serde_json::from_str::<UsageLine>(l).ok())
+        .collect()
+}
+
 /// The lines a report covers: everything after the LAST `report` marker, or
 /// everything at or after `since_unix` when a caller names a date. A named
 /// date wins over the marker, because a person asking "since the first of the
@@ -577,6 +600,36 @@ mod tests {
         append(gp, &call(3, "b", Outcome::Ok, None));
         let all = read_all(gp);
         assert_eq!(all.len(), 2, "{all:?}");
+        std::fs::remove_dir_all(&d).ok();
+    }
+
+    /// The tail holds the last lines whole: a read that starts mid-line drops
+    /// that torn line, never a whole one, and no ledger reads as empty.
+    #[test]
+    fn the_tail_is_the_last_whole_lines() {
+        let d = std::env::temp_dir().join(format!("reflow2-usage-tail-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&d);
+        std::fs::create_dir_all(&d).unwrap();
+        let gp_buf = d.join("graph");
+        let gp = gp_buf.to_str().unwrap();
+        assert!(read_tail(gp, 1024).is_empty(), "no ledger, nothing");
+        for i in 0..10 {
+            append(gp, &call(i, &format!("tool_{i}"), Outcome::Ok, None));
+        }
+        let one = serde_json::to_string(&call(9, "tool_9", Outcome::Ok, None)).unwrap();
+        // A little more than three lines from the end: the fourth is torn.
+        let tail = read_tail(gp, 3 * (one.len() as u64 + 1) + 5);
+        assert_eq!(
+            tail.iter()
+                .map(|l| l.tool.clone().unwrap())
+                .collect::<Vec<_>>(),
+            vec!["tool_7", "tool_8", "tool_9"]
+        );
+        assert_eq!(
+            read_tail(gp, 1 << 20).len(),
+            10,
+            "a short ledger is read whole"
+        );
         std::fs::remove_dir_all(&d).ok();
     }
 }

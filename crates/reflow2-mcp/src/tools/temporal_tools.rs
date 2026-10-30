@@ -969,6 +969,7 @@ impl ReflowService {
             })
             .map_err(dyno_err)?;
         let mut changed = Vec::new();
+        let mut touched_files = 0usize;
         let mut edges = crate::drawn_edges::DrawnEdges::new();
         for a in &affected {
             let a_type = crate::service::resolve_node_type(
@@ -1014,6 +1015,9 @@ impl ReflowService {
             )
             .map_err(dyno_err)?;
             changed.push(json!({ "node_id": a.node_id, "action": action }));
+            if a_type == reflow2_core::nodes::node::ARTIFACT && action != "removed" {
+                touched_files += 1;
+            }
         }
         // INVALIDATES to each finding it answered, dated by the change.
         let at = event
@@ -1078,6 +1082,21 @@ impl ReflowService {
         });
         if answers.is_some() {
             out["answers"] = json!(answered_out);
+        }
+        // THE PROCESS NAMES ITS STEP (`epoch:planned-the-tool-surface-refined-
+        // from-the-counts`): a change that touched registered files is
+        // followed by accepting their checksums against it. Measured on
+        // flo2.io, 2026-09-24 to 10-30: 227 of set_artifact_checksums' 327 runs
+        // came within two writes of add_change_event, 207 of them right after
+        // it, and nothing in this reply named that step. Said only when an
+        // Artifact is among `affected`, the case the step is owed for.
+        if touched_files > 0 {
+            out["next_step"] = JsonValue::String(format!(
+                "this change touched {touched_files} registered file(s): accept their checksums \
+                 against it with set_artifact_checksums (disposition `design_updated`, \
+                 `design_change_event_id` {:?}), so the files and the change are one record",
+                req.id
+            ));
         }
         edges.attach(&mut out);
         if let Some(am) = crate::tools::capture::absorbed_markup(&[

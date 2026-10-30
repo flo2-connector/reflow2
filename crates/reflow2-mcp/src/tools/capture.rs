@@ -1116,9 +1116,16 @@ pub(crate) fn decision_landing_hint(status: Option<&str>, owner_can_settle: bool
         None | Some("proposed") => "loop: a Decision lands `proposed` — only the owner's word \
                                     moves it (set_decision_status)"
             .to_string(),
-        Some("accepted") => "loop: this Decision stands `accepted` — it reads back as what was \
-                             decided; link what it shapes with governed_by"
-            .to_string(),
+        // The governed_by clause is a batch cue (`crate::cues::BATCH_CUES`):
+        // offered 31 times on 0.94.0 and followed none, it is said once per
+        // batch of writes rather than on every accepted decision.
+        Some("accepted") => format!(
+            "loop: this Decision stands `accepted` — it reads back as what was decided{}",
+            crate::cues::batch_clause(
+                &["loop_hint/governed_by"],
+                "; link what it shapes with governed_by"
+            )
+        ),
         Some("deferred") => "loop: this Decision stands `deferred` — set aside by the owner's \
                              word, so it counts as no debt until someone takes it up"
             .to_string(),
@@ -1676,11 +1683,22 @@ impl ReflowService {
                           "chars_before": current.chars().count(), "chars_after": next.chars().count() }
             }),
             // Addressed to whoever can act on it, like `decision_landing_hint`.
-            if self.call_can_give_the_owners_word(&g) {
-                "loop: one field moved — if the change is a settlement, set_decision_status carries the owner's word; loop_status says what else is owed"
-            } else {
-                "loop: one field moved — if the change is a settlement, that is the owner's word and this call was made for nobody who owns this design: a question for the owner (ask_question), not your next call; loop_status says what else is owed"
-            },
+            // The settlement clause is said on every call; the loop_status
+            // clause is a batch cue (`crate::cues::BATCH_CUES`), said once per
+            // batch of writes: on 0.94.0 it rode 153 replace_text replies and
+            // was followed only at the end of each round.
+            &format!(
+                "{}{}",
+                if self.call_can_give_the_owners_word(&g) {
+                    "loop: one field moved — if the change is a settlement, set_decision_status carries the owner's word"
+                } else {
+                    "loop: one field moved — if the change is a settlement, that is the owner's word and this call was made for nobody who owns this design: a question for the owner (ask_question), not your next call"
+                },
+                crate::cues::batch_clause(
+                    &["loop_hint/loop_status"],
+                    "; loop_status says what else is owed"
+                )
+            ),
             None,
             revision,
             None,
@@ -2016,8 +2034,16 @@ impl ReflowService {
         let reply = crate::service::with_source_note(reply, &g, &req.id, req.source.is_some())?;
         with_capture_notes(
             reply,
-            "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
-             loop_status says what's owed",
+            // Every cue here is a batch cue: said once per batch of writes.
+            crate::cues::batch_hint(
+                &[
+                    "loop_hint/detect_gaps",
+                    "loop_hint/get_skill:detect-and-ask",
+                    "loop_hint/loop_status",
+                ],
+                "loop: when this capture batch lands, run detect_gaps (detect-and-ask) — \
+                 loop_status says what's owed",
+            ),
             found,
             revision,
             // No observed instance on this tool yet, and the check is a
@@ -2170,13 +2196,26 @@ impl ReflowService {
         // settled earlier is not asked again. Same fixed-sentence class as
         // add_decision's "lands proposed" (fact:root-cause-add-decisions-lands-
         // proposed-hint-recurred-on-the-one-call-settle-path-2026-09-29).
+        // The detect_gaps step is a batch cue (`crate::cues::BATCH_CUES`).
+        let gaps = [
+            "loop_hint/detect_gaps",
+            "loop_hint/get_skill:detect-and-ask",
+        ];
         let hint = if node.properties.contains_key("enforced") {
-            "loop: a rule the project follows, its power stated — run detect_gaps \
-             (detect-and-ask)"
+            crate::cues::batch_hint(
+                &gaps,
+                "loop: a rule the project follows, its power stated — run detect_gaps \
+                 (detect-and-ask)",
+            )
+            .to_string()
         } else {
-            "loop: a rule the project follows — if breaking it should stop the build, say so \
-             with `enforced` (governance-proposal); then run detect_gaps (detect-and-ask)"
+            format!(
+                "loop: a rule the project follows — if breaking it should stop the build, say so \
+                 with `enforced` (governance-proposal){}",
+                crate::cues::batch_clause(&gaps, "; then run detect_gaps (detect-and-ask)")
+            )
         };
+        let hint = hint.as_str();
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
@@ -2368,13 +2407,32 @@ impl ReflowService {
         // The hint used to tell every caller to "wire satisfies", including the
         // caller who had just passed `satisfies` — the same fixed-sentence
         // class as add_decision's "lands proposed".
+        //
+        // The satisfies clause is this tool naming its own STEP and is said
+        // every time it is owed: on flo2.io 42 of satisfies' 54 runs came
+        // within two writes of add_capability (2026-09-24 to 10-30). The
+        // detect_gaps clause is a batch cue (`crate::cues::BATCH_CUES`).
+        let gaps = [
+            "loop_hint/detect_gaps",
+            "loop_hint/get_skill:detect-and-ask",
+        ];
         let hint = if req.satisfies.is_some() || kept.moved_satisfies() {
-            "loop: the thread to its requirement is drawn in this call — run detect_gaps when \
-             the capture batch lands (detect-and-ask)"
+            crate::cues::batch_hint(
+                &gaps,
+                "loop: the thread to its requirement is drawn in this call — run detect_gaps when \
+                 the capture batch lands (detect-and-ask)",
+            )
+            .to_string()
         } else {
-            "loop: wire satisfies to the requirement this serves, then run detect_gaps when \
-             the capture batch lands (detect-and-ask)"
+            format!(
+                "loop: wire satisfies to the requirement this serves{}",
+                crate::cues::batch_clause(
+                    &gaps,
+                    ", then run detect_gaps when the capture batch lands (detect-and-ask)"
+                )
+            )
         };
+        let hint = hint.as_str();
         let mut reply = serde_json::to_value(node).map_err(ser_err)?;
         edges.attach(&mut reply);
         kept.attach(&mut reply)?;
@@ -2679,7 +2737,15 @@ impl ReflowService {
         kept.attach(&mut reply)?;
         with_capture_notes(
             reply,
-            "loop: structural change — run detect_defects (check-health) when the batch lands",
+            // A batch cue (`crate::cues::BATCH_CUES`): offered 17 times on
+            // 0.94.0 and followed none, so said once per batch of writes.
+            crate::cues::batch_hint(
+                &[
+                    "loop_hint/detect_defects",
+                    "loop_hint/get_skill:check-health",
+                ],
+                "loop: structural change — run detect_defects (check-health) when the batch lands",
+            ),
             found,
             revision,
             // No observed instance on this tool yet, and the check is a
@@ -2880,8 +2946,17 @@ impl ReflowService {
         let revision = revision_of(&g, prior.as_ref(), &node);
         with_capture_notes(
             node,
-            "loop: structural change — wire provides/consumes, then run detect_defects \
-             (check-health) when the batch lands",
+            // The detect_defects clause is a batch cue (`crate::cues::BATCH_CUES`).
+            &format!(
+                "loop: structural change — wire provides/consumes{}",
+                crate::cues::batch_clause(
+                    &[
+                        "loop_hint/detect_defects",
+                        "loop_hint/get_skill:check-health"
+                    ],
+                    ", then run detect_defects (check-health) when the batch lands"
+                )
+            ),
             found,
             revision,
             // No observed instance on this tool yet, and the check is a
@@ -3179,7 +3254,11 @@ impl ReflowService {
         let reply = crate::service::with_source_note(reply, &g, &req.id, req.source.is_some())?;
         with_capture_notes(
             reply,
-            "loop: a Constraint binds what it CONSTRAINS — wire it, then run detect_gaps",
+            // The detect_gaps clause is a batch cue (`crate::cues::BATCH_CUES`).
+            &format!(
+                "loop: a Constraint binds what it CONSTRAINS — wire it{}",
+                crate::cues::batch_clause(&["loop_hint/detect_gaps"], ", then run detect_gaps")
+            ),
             found,
             revision,
             // No observed instance on this tool yet, and the check is a

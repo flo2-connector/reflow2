@@ -243,7 +243,17 @@ fn receipt_of(
                 .join(" ");
             Err(refused(n, step, tool, &text))
         }
-        Ok(r) => Ok(r.structured_content.unwrap_or(JsonValue::Null)),
+        Ok(r) => {
+            let mut v = r.structured_content.unwrap_or(JsonValue::Null);
+            // A step's `next_step` names the step after it — which this
+            // process runs itself (add_change_event's names
+            // set_artifact_checksums, this process's `files` step), so it is
+            // not repeated inside the receipt as a call still owed.
+            if let Some(o) = v.as_object_mut() {
+                o.remove("next_step");
+            }
+            Ok(v)
+        }
     }
 }
 
