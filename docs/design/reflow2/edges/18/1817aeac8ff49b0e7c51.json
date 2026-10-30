@@ -1,0 +1,11 @@
+{
+  "content_hash": "sha256:1fcd91c364144ee6b5fb2dabc524dcd93ecf5a055b3ba2bba8af601c050cac74",
+  "edge_type": "DEPENDS_ON",
+  "from_id": "dec:idea-an-agents-proof-attempt-is-held-to-gates-not-to-its-own-report",
+  "properties": {
+    "evidence": "Whether gates help is measured in the proof calibration (increment 4) of that accepted plan, with and without them, before anything is built.",
+    "optional": true,
+    "weight_basis": "estimated"
+  },
+  "to_id": "dec:the-cognition-plus-memory-thesis-is-tested-by-measurement-first"
+}

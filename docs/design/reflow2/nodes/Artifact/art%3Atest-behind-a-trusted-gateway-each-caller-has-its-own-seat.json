@@ -1,0 +1,12 @@
+{
+  "content_hash": "sha256:f98b41da22f4b16b6f94f3f864fea43a935f9a1724469e00f65614c36346ad5c",
+  "node_id": "art:test-behind-a-trusted-gateway-each-caller-has-its-own-seat",
+  "node_type": "Artifact",
+  "properties": {
+    "artifact_type": "test",
+    "description": "On a store in a folder, one MCP session as a gateway keeps per design: behind a trusted gateway each call's ledger line carries the seat named in _meta reflow2/seat, and a cue offered on the owner's call is not followed by the member's call; on a local engine the key is ignored and the session's seat is on every line.",
+    "location": "crates/reflow2-mcp/tests/behind_a_trusted_gateway_each_caller_has_its_own_seat.rs",
+    "name": "behind_a_trusted_gateway_each_caller_has_its_own_seat.rs",
+    "status": "realized"
+  }
+}

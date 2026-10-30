@@ -1,0 +1,10 @@
+{
+  "content_hash": "sha256:8a51eed8d2ec50f0b8a727f12cc064537997323ad8a48adfc4c07a72ea472b31",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": false,
+    "action": "added"
+  },
+  "to_id": "ver:behind-a-trusted-gateway-the-host-names-the-owner"
+}

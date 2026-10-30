@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:898add53b80e25fe726a3f995dcf599d8416eb92e51c06cd1f6b795f8cf885f3",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 1,
+    "action": "modified",
+    "checksum_after": "sha256:0cbfce792580467270992225ab0587ca906ae0085577c4203070ab248f969b74",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:test-behind-a-trusted-gateway-the-host-names-the-owner"
+}

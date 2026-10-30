@@ -1,0 +1,15 @@
+{
+  "content_hash": "sha256:c5b9f85bd442f5e2e6df463499fa431ca4d1f7f21dc01633ae361b7b6a433692",
+  "node_id": "req:the-proof-calibration-holds-the-agents-attempt-to-mechanical-gates-with-and-without",
+  "node_type": "Requirement",
+  "properties": {
+    "kind": "functional",
+    "lineage": "derived",
+    "name": "The proof calibration holds the agent's attempt to mechanical gates, read from the record and never from the agent's report, and measures the method with and without them",
+    "priority": "medium",
+    "provenance": "authored",
+    "source": "Anthony Sligar, 2026-10-30 (\"Go with your recommendation\", option 1(a) of dec:idea-an-agents-proof-attempt-is-held-to-gates-not-to-its-own-report), after CryptoProver (arxiv 2608.00965)",
+    "statement": "In the proof calibration on a problem whose answer is known (increment 4 of the cognition-plus-memory plan), the harness, not the agent, judges each round by mechanical gates read from the design and any checker's record: the statement being proved is unchanged since the attempt began; no new axiom or given was added; at least one open step was closed in the round; steps already closed still hold. The agent's own account of its progress is never counted. The calibration is run with and without the gates, so their effect is measured, not assumed.",
+    "status": "accepted"
+  }
+}

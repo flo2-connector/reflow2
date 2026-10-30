@@ -1,0 +1,14 @@
+{
+  "content_hash": "sha256:e9629b6465063a52837403c2720c8dfe0a7e2b60e2cd42eaa38f3e408c5fb895",
+  "edge_type": "AUTHORED_BY",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "authored_via": [
+      "who:agent-8d84cd1476"
+    ],
+    "roles": [
+      "author"
+    ]
+  },
+  "to_id": "who:ajs"
+}

@@ -1,0 +1,13 @@
+{
+  "content_hash": "sha256:fa977f79fc618686455b86aa0aefd6f490db5f8ccf6f65bf2179ff3c924cd1c2",
+  "edge_type": "CHANGED",
+  "from_id": "chg:the-gateway-names-the-owner-and-each-callers-seat-2026-10-30",
+  "properties": {
+    "accepted_baseline": true,
+    "accepted_seq": 49,
+    "action": "modified",
+    "checksum_after": "sha256:0868c8479ecb0d74f1a7ad43d2acb9be6dbfc8fcec6d7d98bb9ae16d694107a0",
+    "checksum_basis": "asserted"
+  },
+  "to_id": "art:agent-instructions"
+}

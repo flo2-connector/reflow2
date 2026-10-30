@@ -1,0 +1,7 @@
+{
+  "content_hash": "sha256:bd95c467bd9849e44329b189e4e38e5b864347d8cfa93495dce3cd8000f73d2e",
+  "edge_type": "VERIFIES",
+  "from_id": "ver:behind-a-trusted-gateway-each-caller-has-its-own-seat",
+  "properties": {},
+  "to_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed"
+}

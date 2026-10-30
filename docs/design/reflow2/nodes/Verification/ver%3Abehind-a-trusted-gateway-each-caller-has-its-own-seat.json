@@ -1,0 +1,16 @@
+{
+  "content_hash": "sha256:e1c4f6a7f1a01572ae1ab12ad8c73464b54fcb617b3e2850fe9f31ebd38c4ffd",
+  "node_id": "ver:behind-a-trusted-gateway-each-caller-has-its-own-seat",
+  "node_type": "Verification",
+  "properties": {
+    "description": "Two tests on a store in a folder, ONE MCP session as flo2 keeps per design. Behind CallerRule::TrustedGateway: the owner (seat:owner) add_requirement offers loop_hint/detect_gaps, the member (seat:member) calls detect_gaps, the owner calls graph_report, then usage_report peek (seat:reader): the cue is offered 1, followed_at_all 0, unattributable 0, and the ledger's call lines carry seat:owner, seat:member, seat:owner, seat:reader. On CallerRule::Local the same calls with the same keys: every line carries the session's own seat and the cue reads followed (1).",
+    "findings": "At d09ee3830 on ajs77 (rust 1.98.1, RocksDB build): 2 passed, and the whole on_disk program passed. With the host's seat disabled on the ledger line two_callers_on_one_session_are_counted_on_their_own_seats FAILED (followed_at_all 1), so the test pins the fault. flo2's real-engine test against this build: the member's call no longer follows the owner's cue at either door.",
+    "kind": "verification",
+    "last_run_at": "2026-10-30",
+    "level": "integration",
+    "location": "crates/reflow2-mcp/tests/behind_a_trusted_gateway_each_caller_has_its_own_seat.rs",
+    "method": "test",
+    "name": "Behind a trusted gateway, each caller's cues are counted on the seat the host names",
+    "status": "passing"
+  }
+}

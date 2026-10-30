@@ -1,0 +1,9 @@
+{
+  "content_hash": "sha256:b4b6f21bb8e0677f947ec00bc0be8a1682bf349934a660ce44e9ef6417ab2f27",
+  "edge_type": "EVOLVES_INTO",
+  "from_id": "dec:idea-an-agents-proof-attempt-is-held-to-gates-not-to-its-own-report",
+  "properties": {
+    "evidence": "Option (b) kept by Anthony 2026-10-30, conditional on the calibration's measurement."
+  },
+  "to_id": "req:reflow2-reports-when-a-proof-attempts-statement-or-axioms-moved-during-it"
+}
