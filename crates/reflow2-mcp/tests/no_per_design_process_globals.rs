@@ -155,6 +155,17 @@ const ALLOWED: &[(&str, &str, &str)] = &[
     ),
     (
         "reflow2-mcp/src/service.rs",
+        "DESIGN_OWNERS",
+        "A tokio TASK-LOCAL beside WRITES_FOR and READABLE_GRAPH_IDS, and the same shape: it \
+         holds the owners the trusted gateway named for the ONE tool call now being served \
+         (`_meta[\"reflow2/design_owners\"]`), set by `call_tool` around that call's handler \
+         and gone when it returns. It is the host's word about one call, never a property \
+         of a design or the process: a second design served in the same process sees only \
+         its own call's owners. Read in one place, \
+         `ReflowService::call_can_give_the_owners_word`.",
+    ),
+    (
+        "reflow2-mcp/src/service.rs",
         "VIEW_GRAPH_IDS",
         "A tokio TASK-LOCAL beside READABLE_GRAPH_IDS, and the same shape: it holds the \
          hub's members, by graph_id, the trusted host named for the ONE tool call now \

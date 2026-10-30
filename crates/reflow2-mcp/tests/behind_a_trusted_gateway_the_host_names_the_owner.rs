@@ -140,9 +140,7 @@ fn gateway() -> CallerRule {
 #[tokio::test]
 async fn a_named_member_on_a_design_with_no_owned_by_is_told_to_ask_the_owner() {
     let c = connect(gateway()).await;
-    says_it_is_a_question_for_the_owner(
-        &decision_hint(&c, "dec:a", MEMBER, Some(&[OWNER])).await,
-    );
+    says_it_is_a_question_for_the_owner(&decision_hint(&c, "dec:a", MEMBER, Some(&[OWNER])).await);
     offers_the_settling_call(&decision_hint(&c, "dec:b", OWNER, Some(&[OWNER])).await);
     says_it_is_a_question_for_the_owner(&replace_hint(&c, "dec:a", MEMBER, &[OWNER]).await);
     offers_the_settling_call(&replace_hint(&c, "dec:b", OWNER, &[OWNER]).await);
@@ -178,10 +176,7 @@ async fn behind_the_gateway_with_no_owner_named_the_design_record_decides() {
 /// owner — by sending it.
 #[tokio::test]
 async fn the_owner_key_is_ignored_when_the_engine_is_not_behind_a_trusted_gateway() {
-    for rule in [
-        CallerRule::Local,
-        CallerRule::for_serving(true, &[], None),
-    ] {
+    for rule in [CallerRule::Local, CallerRule::for_serving(true, &[], None)] {
         let c = connect(rule).await;
         offers_the_settling_call(&decision_hint(&c, "dec:a", MEMBER, Some(&[OWNER])).await);
         // And where the design DOES record its owner there, the key cannot

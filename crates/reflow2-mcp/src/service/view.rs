@@ -54,8 +54,7 @@ use serde_json::{Map as JsonMap, Value as JsonValue, json};
 
 use super::{
     ACTING_AGENT_META, DESIGN_OWNERS_META, READABLE_GRAPH_IDS_META, ReflowService, VIEW_GRAPH_IDS,
-    VIEW_GRAPH_IDS_META,
-    json_result, not_readable, readable_graph_ids_in,
+    VIEW_GRAPH_IDS_META, json_result, not_readable, readable_graph_ids_in,
 };
 use crate::content_policy::ContentPolicy;
 use crate::registry_http::{Refusal, RegistryHandle};

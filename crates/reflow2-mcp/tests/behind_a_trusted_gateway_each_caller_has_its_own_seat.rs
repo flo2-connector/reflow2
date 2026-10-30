@@ -104,7 +104,10 @@ async fn owner_offered_member_followed(rule: CallerRule) -> (Value, Vec<String>)
     )
     .await;
     assert!(
-        w["loop_hint"].as_str().unwrap_or("").contains("detect_gaps"),
+        w["loop_hint"]
+            .as_str()
+            .unwrap_or("")
+            .contains("detect_gaps"),
         "the owner's write offers detect_gaps: {w}"
     );
     call(&c, "detect_gaps", json!({}), MEMBER, "seat:member").await;
@@ -155,7 +158,9 @@ async fn the_seat_key_is_ignored_when_the_engine_is_not_behind_a_trusted_gateway
     let (cue, seats) = owner_offered_member_followed(CallerRule::Local).await;
     assert_eq!(cue["followed_at_all"], json!(1), "{cue}");
     assert!(
-        seats.iter().all(|s| s == &seats[0] && !s.starts_with("seat:")),
+        seats
+            .iter()
+            .all(|s| s == &seats[0] && !s.starts_with("seat:")),
         "one session, one seat of the engine's own: {seats:?}"
     );
 }
