@@ -214,8 +214,10 @@ fn value(r: &mut Rng, prop: &str, spec: &PropertyDef, i: usize) -> J {
         }
         PropertyType::Bool => json!(i.is_multiple_of(2)),
         PropertyType::Int => {
-            let (lo, hi) = spec.range.unwrap_or((0.0, 1000.0));
-            let span = ((hi - lo) as i64).max(0) + 1;
+            // Small, as a real design's counts and depths are (the Python twin
+            // says why: a claim's `depth` of 500 walks the whole design).
+            let (lo, hi) = spec.range.unwrap_or((0.0, 4.0));
+            let span = ((hi - lo) as i64).clamp(0, 4) + 1;
             json!(lo as i64 + (i as i64 % span))
         }
         PropertyType::Float => {

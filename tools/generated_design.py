@@ -100,6 +100,13 @@ EDGE_FLOOR = 4
 LOCAL_SHARE = 0.85
 WINDOW = 12
 
+# HOW FULL A NODE IS. reflow2's own design averaged about five properties a node
+# and one an edge; a schema type declares up to thirty. The first node of each
+# type carries every property it declares (so each is somewhere), and the rest
+# carry what they must and this share of what they may.
+OPTIONAL_SHARE = 0.15
+EDGE_OPTIONAL_SHARE = 0.1
+
 # The typed-id convention (crates/reflow2-core/src/nodes.rs, ID_PREFIXES).
 PREFIX = {
     "Project": "proj", "Requirement": "req", "Constraint": "con", "DesignRule": "rule",
@@ -167,8 +174,11 @@ class _Gen:
         if kind == "bool":
             return i % 2 == 0
         if kind == "int":
-            lo, hi = (spec.get("range") or (0, 1000))
-            return int(lo) + (i % max(1, int(hi) - int(lo) + 1))
+            # SMALL, as a real design's counts and depths are. An int with no
+            # declared range read as anything up to 1,000 once made a claim's
+            # `depth` 500, and a region walked to depth 500 is the whole design.
+            lo, hi = spec.get("range") or (0, 4)
+            return int(lo) + (i % max(1, min(int(hi) - int(lo), 4) + 1))
         if kind == "float":
             lo, hi = (spec.get("range") or (0.0, 100.0))
             return round(float(lo) + (float(hi) - float(lo)) * ((i % 97) / 96), 3)
@@ -202,14 +212,55 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
             for p, spec in sorted(props.items()):
                 spec = spec or {}
                 # The first node of a type carries EVERY property, so each
-                # declared property is somewhere; the rest carry what they must
-                # and about half of what they may.
-                if spec.get("required") or i == 0 or g.r.random() < 0.5:
+                # declared property is somewhere (see OPTIONAL_SHARE).
+                if spec.get("required") or i == 0 or g.r.random() < OPTIONAL_SHARE:
                     body[p] = g.value(p, spec, i)
             if t == "Contributor" and i % 3 == 0:
                 body["kind"] = "person"  # a person is what the owner-scoped reads ask after
             nodes.append({"node_id": node_id, "node_type": t, "properties": body})
             ids.append(node_id)
+
+    # A PROPERTY THAT NAMES A NODE NAMES A REAL ONE. `node_ref` properties and
+    # the ones an edge mirrors (`twin_of`) held text such as "subject_id 7",
+    # which named nothing: the import then repaired thousands of mirrored edges
+    # and reported every dangling name, and the readers that resolve references
+    # did work no real design asks of them. Each now names an existing node of a
+    # type its edge allows, its type property agrees, and a mirrored property's
+    # edge is drawn from it, so the document is already in the form an export has.
+    twin_edges: set[str] = set()
+    for t in all_types:
+        for p, spec in ((node_types[t] or {}).get("properties") or {}).items():
+            twin = (spec or {}).get("twin_of") or {}
+            if twin.get("edge"):
+                twin_edges.add(twin["edge"])
+    twin_drawn: list[tuple[str, str, str, str, str]] = []
+    for n in nodes:
+        t = n["node_type"]
+        for p, spec in ((node_types[t] or {}).get("properties") or {}).items():
+            spec = spec or {}
+            twin = spec.get("twin_of") or {}
+            if not (spec.get("node_ref") or twin):
+                continue
+            if p not in n["properties"]:
+                continue
+            edge_def = edge_types.get(twin.get("edge", "")) or {}
+            side = "from" if twin.get("names") == "source" else "to"
+            allowed = [x for x in _endpoints(edge_def.get(side), all_types) if by_type.get(x)] or [
+                x for x in all_types if by_type.get(x)
+            ]
+            other_t = allowed[g.r.randrange(len(allowed))]
+            other = g.r.choice(by_type[other_t])
+            if other == n["node_id"]:
+                n["properties"].pop(p)
+                continue
+            n["properties"][p] = other
+            if twin.get("type_property"):
+                n["properties"][twin["type_property"]] = other_t
+            if twin.get("edge"):
+                if twin.get("names") == "source":
+                    twin_drawn.append((twin["edge"], other, n["node_id"], other_t, t))
+                else:
+                    twin_drawn.append((twin["edge"], n["node_id"], other, t, other_t))
 
     edges: list[dict] = []
     seen: set[tuple[str, str, str]] = set()
@@ -239,8 +290,11 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
             ps = ps or {}
             if p in ACCEPTANCE and et == "CHANGED":
                 continue
-            if ps.get("required") or len(seen) % 7 == 0 or g.r.random() < 0.3:
-                props[p] = g.value(p, ps, len(seen))
+            if ps.get("required") or len(seen) % 7 == 0 or g.r.random() < EDGE_OPTIONAL_SHARE:
+                if ps.get("node_ref"):
+                    props[p] = g.r.choice(nodes)["node_id"]
+                else:
+                    props[p] = g.value(p, ps, len(seen))
         if et == "CHANGED" and tt == "Artifact" and g.r.random() < 0.5:
             seq += 1
             props["checksum_after"] = f"sha256:{seq:064x}"
@@ -259,7 +313,13 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
         j = min(len(tos) - 1, max(0, centre + g.r.randint(-WINDOW, WINDOW)))
         return froms[i], tos[j]
 
+    # The mirrored edges, drawn from the properties they mirror (see above).
+    for et, frm, to, ft, tt in twin_drawn:
+        add(et, frm, to, ft, tt)
+
     for et, ft, tt, n in EDGE_MIX:
+        if et in twin_edges:
+            continue  # drawn from the property it mirrors, above
         if et not in edge_types or ft not in by_type or tt not in by_type:
             continue
         want = max(1, round(n * scale))
@@ -272,6 +332,8 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
             add(et, frm, to, ft, tt)
             made += len(edges) - before
     for et in sorted(edge_types):
+        if et in twin_edges:
+            continue
         spec = edge_types[et] or {}
         froms = [t for t in _endpoints(spec.get("from"), all_types) if t in by_type]
         tos = [t for t in _endpoints(spec.get("to"), all_types) if t in by_type]
