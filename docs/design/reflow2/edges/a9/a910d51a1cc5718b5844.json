@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:820af03144f4df0883f9409dcd5161dc20e6b19090edc8d6f079089ecb364f98",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs:r2"
-}

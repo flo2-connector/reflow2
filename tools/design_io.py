@@ -40,8 +40,11 @@ NODES_DIR = "nodes"
 EDGES_DIR = "edges"
 _MAX_NAME_BYTES = 150
 
-# This repository's own saved design, in both forms. The directory wins when it
-# exists: during the overlap a stale single file may still sit beside it.
+# Where this repository's own design is read from by the tools that default to
+# it, in both forms (the directory wins when both exist). SINCE 2026-10-30 NOTHING
+# IS COMMITTED THERE: the design is hosted on flo2.io and private, and the copy
+# retired. The path holds a design only when someone exports one locally for an
+# instrument or the nightly check; `/docs/design/` is git-ignored so it stays out.
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITEMS_REL = os.path.join("docs", "design", "reflow2")
 FILE_REL = os.path.join("docs", "design", "reflow2.json")
@@ -83,7 +86,8 @@ def recorded_export(root) -> str | None:
 
 def default_export(root: str = REPO) -> str:
     """This project's saved design: `docs/design/reflow2/` when the item layout
-    is there, else `docs/design/reflow2.json`."""
+    is there, else `docs/design/reflow2.json`. Neither is committed any more (see
+    ITEMS_REL above), so a caller must cope with neither existing."""
     items = os.path.join(root, ITEMS_REL)
     if os.path.isdir(items):
         return items

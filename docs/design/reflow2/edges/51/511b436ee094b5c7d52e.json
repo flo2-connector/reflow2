@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ea027bb2816ed8b944c551227b9a602d30f2a7ab163188bcf4f34742049a1872",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-is-there-a-feedback-intake-skill-and-is-it-a-router",
-  "properties": {
-    "evidence": "/triage is a served skill that routes each item, issues to root-cause and ideas to brainstorm. Evidence: cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it is realized, ver:the-two-feedback-rules-ride-the-triage-skill-and-the-root-cause-step passing, realized by art:triage-command. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:triage-feedback-is-a-served-step-and-the-feedback-rules-are-delivered-on-it"
-}

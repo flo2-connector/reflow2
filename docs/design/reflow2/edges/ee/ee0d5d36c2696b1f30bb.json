@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:caf6a474db6290848b4338ccee614fa3c5f40266c9f198955604d2db453365a9",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:9ae3988503f5ae9eeda2976e581c07940731443adf178e141c41ccd54f34ae27"
-  },
-  "to_id": "art:test-the-blast-radius-of-a-change-is-read-whole-in-pages"
-}

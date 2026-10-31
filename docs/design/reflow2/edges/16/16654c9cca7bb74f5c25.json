@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:318a08f043cfa5e8647e72d83a10688703cef14f0af4d12b380adc00710af92c",
-  "edge_type": "REALIZES",
-  "from_id": "art:propagate",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-what-if-from-a-statement-never-fans-down-a-sibling-decomposes"
-}

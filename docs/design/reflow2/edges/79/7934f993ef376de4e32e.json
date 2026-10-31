@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:17dc0fd588b60acb851b677a44a7349d0a054c9159739ef3f2fa6a41f2029a46",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0880",
-  "properties": {
-    "as_checksum": "sha256:1f20c3b35e3e4e8f0ea5dcf0d3bdde47074b59c79da14fbe66bb6ed127be663b"
-  },
-  "to_id": "art:the-unused-anchor-type-is-removed-test"
-}

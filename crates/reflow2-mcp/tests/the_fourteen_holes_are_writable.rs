@@ -78,15 +78,15 @@ async fn an_actor_can_be_created_and_says_what_kind_it_is() {
     let s = ReflowService::in_memory().expect("service");
     let out = j!(s.add_actor(Parameters(
         serde_json::from_value(json!({
-            "id": "act:beamline-scientist",
-            "name": "Beamline scientist",
+            "id": "act:lab-scientist",
+            "name": "Lab scientist",
             "actor_type": "operator",
             "description": "Runs the experiment and reads the detector output."
         }))
         .unwrap()
     )));
     let p = props(&out);
-    assert_eq!(p["name"], "Beamline scientist");
+    assert_eq!(p["name"], "Lab scientist");
     assert_eq!(p["actor_type"], "operator");
     assert_eq!(
         p["description"], "Runs the experiment and reads the detector output.",
@@ -204,8 +204,8 @@ async fn a_project_states_its_own_decomposition_ladder() {
     let s = ReflowService::in_memory().expect("service");
     let out = j!(s.add_project(Parameters(
         serde_json::from_value(json!({
-            "id": "proj:beamline",
-            "name": "Beamline",
+            "id": "proj:instrument",
+            "name": "Instrument",
             "description": "the endstation and its control stack",
             "decomposition_levels": ["component", "subsystem", "system", "facility"]
         }))

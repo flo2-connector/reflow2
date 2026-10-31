@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:43b178f2599c59ca339b71c78af04b6ac96811dd6874e6c480764b1f66732c78",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0820",
-  "properties": {
-    "as_checksum": "sha256:1591a72d8a6b7b589fc9487bfd1a2cf1307f2dd874576a1924bb931a5a69fade"
-  },
-  "to_id": "art:docker-image-release-notes-script"
-}

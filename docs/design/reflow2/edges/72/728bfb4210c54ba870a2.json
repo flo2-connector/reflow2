@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:287f6b3036e6f9584263118d69872b7e92f9697ae4350b660985a7a8945d4584",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:b4e6bd717c2a0739ab9f6ec316850fe86c24a4e7a06decc083f5970894fc3b47"
-  },
-  "to_id": "art:test-readings-before-the-shared-evaluation"
-}

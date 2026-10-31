@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:d5f6030ddc8034ef18c751345a438c8c9fe0133dfe2e9573592047ff51d59c75",
-  "edge_type": "AT_EPOCH",
-  "from_id": "snap:epoch:preserved-on-write:chg:everyday-builds-run-without-rocksdb-and-the-servers-tests-are-four-programs:r2",
-  "properties": {},
-  "to_id": "epoch:preserved-on-write"
-}

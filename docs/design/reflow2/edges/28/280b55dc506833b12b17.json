@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4acc5e7ecc9754a572cec102ab5a4e68952dd6ce1a85f2c3fade61bda9c058f0",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:3da6797c22ecd72a70a5ef9dbe41f5d7542724337ceb4a0d5425abbd10f0627c"
-  },
-  "to_id": "art:fixture-proof-map-riemann"
-}

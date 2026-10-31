@@ -96,7 +96,7 @@ in the mission page.
 The scientific fork (`scientific-reflow/`) inverted the value system — "Treats knowledge gaps as
 DESIRED FEATURES (not bugs)" — and never ran its inference: "IF we implement … THEN Scientific
 Reflow WOULD infer: Exciton Energy ~1.47 eV" (`nips3_rixs_validation/docs/gap_closure_analysis.md`).
-Its three-beamline "3/3 PASS" checks four structural booleans and no physics.
+Its three-instrument "3/3 PASS" checks four structural booleans and no physics.
 
 ---
 
@@ -234,7 +234,7 @@ Fifteen proposals, all adopted, one made reflow smaller. Every restructuring cit
 4. same — "Tools built for human use, not agent/automation use … All tools must work in non-interactive mode by default"
 5. `nips3_rixs_validation/docs/gap_closure_analysis.md` — "IF we implement … THEN Scientific Reflow WOULD infer: Exciton Energy ~1.47 eV" (never inferred)
 6. `AGENT_A_META_ANALYSIS.md` — "Most users/agents would give up or incorrectly blame themselves for these tool failures. … You are NOT doing it wrong."
-7. `VALIDATION_RESULTS_THREE_BEAMLINES.md` — "Differences are configuration parameters, NOT different system types!"
+7. the validation-results file for three instruments — "Differences are configuration parameters, NOT different system types!"
 8. TC-003 `AGENT_A_META_ANALYSIS.md` — "WORKFLOW VALIDATED, TOOLING NEEDED … Tooling gap is the only blocker."
 9. `scientific-reflow/docs/MASTER_INDEX.md` — the preconditions for inference, and "Potentially under-constrained ⚠️" on 3 unknowns / 1 observable
 10. `tests/fixtures/knowledge_gaps/README.md` — "Total Tests: 2/6 implemented (33%)"; TC-004 — "~46% of execution time" lost to friction

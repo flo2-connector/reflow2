@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:38e97880a6096055201506325044d9f159c950a203e1407f4f98eaa4161acf08",
-  "edge_type": "REALIZES",
-  "from_id": "art:tools-built",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-source-named-but-not-read-never-cites-and-a-source-carries-evidences-grade"
-}

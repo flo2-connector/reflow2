@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:78fd132995e8379d84b811bb7a3a9b54c32a939dc43576ea3fa7c7b7d476f580",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:a-prediction-reads-whether-it-was-stated-before-the-result-it-is-tested-by",
-  "properties": {
-    "note": "How the order is established (server-recorded times) and that it is said, not enforced."
-  },
-  "to_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28"
-}

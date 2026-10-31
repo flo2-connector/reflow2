@@ -52,7 +52,7 @@ async fn export_of(dir: &std::path::Path, graph_id: &str, ids: &[&str]) -> Strin
         call!(
             m,
             add_component,
-            json!({"id": id, "name": id, "description": "an ansible role"})
+            json!({"id": id, "name": id, "description": "an deploy role"})
         );
     }
     let path = dir.join(format!("{graph_id}.json"));
@@ -107,37 +107,37 @@ fn findings_for<'a>(status: &'a Value, xref: &str) -> Vec<&'a str> {
 #[tokio::test]
 async fn every_link_into_an_exported_design_reads_present_stale_or_unreachable() {
     let dir = scratch("class");
-    let ansible = export_of(
+    let deploy = export_of(
         &dir,
-        "ansible",
-        &["cmp:role-nftables", "cmp:role-pdfstream"],
+        "deploy",
+        &["cmp:role-nftables", "cmp:role-datastream"],
     )
     .await;
-    let tiled = export_of(&dir, "tiled", &["cmp:plugin"]).await;
+    let storage = export_of(&dir, "storage", &["cmp:plugin"]).await;
     let s = hub().await;
-    pin(&s, "ansible", &ansible).await;
-    pin(&s, "tiled", &tiled).await;
-    link(&s, "req:fw", "ansible", "cmp:role-nftables").await;
-    link(&s, "req:stream", "ansible", "cmp:role-pdfstream").await;
-    link(&s, "req:other", "tiled", "cmp:plugin").await;
+    pin(&s, "deploy", &deploy).await;
+    pin(&s, "storage", &storage).await;
+    link(&s, "req:fw", "deploy", "cmp:role-nftables").await;
+    link(&s, "req:stream", "deploy", "cmp:role-datastream").await;
+    link(&s, "req:other", "storage", "cmp:plugin").await;
 
     // Upstream, the nftables role is removed and the member re-exported; the
-    // tiled plugins' export goes missing.
-    export_of(&dir, "ansible", &["cmp:role-pdfstream"]).await;
-    std::fs::remove_file(&tiled).expect("remove");
+    // storage plugins' export goes missing.
+    export_of(&dir, "deploy", &["cmp:role-datastream"]).await;
+    std::fs::remove_file(&storage).expect("remove");
 
     let status = j!(s.upstream_status(Parameters(UpstreamStatusReq {})));
-    let gone = findings_for(&status, "xref:ansible:cmp:role-nftables");
+    let gone = findings_for(&status, "xref:deploy:cmp:role-nftables");
     assert!(
         gone.contains(&"link_far_end_stale"),
         "a far node gone from the export reads stale: {status}"
     );
-    let kept = findings_for(&status, "xref:ansible:cmp:role-pdfstream");
+    let kept = findings_for(&status, "xref:deploy:cmp:role-datastream");
     assert!(
         !kept.contains(&"link_far_end_stale") && !kept.contains(&"link_far_end_unreachable"),
         "a far node the export still holds is not stale: {status}"
     );
-    let lost = findings_for(&status, "xref:tiled:cmp:plugin");
+    let lost = findings_for(&status, "xref:storage:cmp:plugin");
     assert!(
         lost.contains(&"link_far_end_unreachable"),
         "a link into a design whose export is missing reads unreachable: {status}"
@@ -150,7 +150,7 @@ async fn every_link_into_an_exported_design_reads_present_stale_or_unreachable()
         .and_then(|f| f["detail"].as_str())
         .unwrap();
     assert!(
-        detail.contains("cmp:role-nftables") && detail.contains(&ansible),
+        detail.contains("cmp:role-nftables") && detail.contains(&deploy),
         "{detail}"
     );
 }
@@ -158,13 +158,13 @@ async fn every_link_into_an_exported_design_reads_present_stale_or_unreachable()
 #[tokio::test]
 async fn a_link_to_a_node_the_pinned_export_does_not_hold_is_refused_and_nothing_is_written() {
     let dir = scratch("drawn");
-    let ansible = export_of(&dir, "ansible", &["cmp:role-pdfstream"]).await;
+    let deploy = export_of(&dir, "deploy", &["cmp:role-datastream"]).await;
     let s = hub().await;
-    pin(&s, "ansible", &ansible).await;
+    pin(&s, "deploy", &deploy).await;
     let refused = s
         .review_relations(Parameters(
             serde_json::from_value(json!({"node_id": "req:fw", "links": [{
-                "relation": "DEPENDS_ON", "other_design": "ansible",
+                "relation": "DEPENDS_ON", "other_design": "deploy",
                 "other_id": "cmp:role-nftables", "evidence": "the fix is in this role"}]}))
             .unwrap(),
         ))
@@ -175,13 +175,13 @@ async fn a_link_to_a_node_the_pinned_export_does_not_hold_is_refused_and_nothing
         Ok(r) => panic!("a link to a node the pinned export does not hold is refused: {r:?}"),
     };
     assert!(
-        message.contains("cmp:role-nftables") && message.contains(&ansible),
+        message.contains("cmp:role-nftables") && message.contains(&deploy),
         "the refusal names the node and the export it was checked against: {message}"
     );
-    let xref = call!(s, get_node, json!({"id": "xref:ansible:cmp:role-nftables"}));
+    let xref = call!(s, get_node, json!({"id": "xref:deploy:cmp:role-nftables"}));
     assert_eq!(xref["node"], Value::Null, "nothing was written: {xref}");
 
     // The node the export does hold links as before.
-    let ok = link(&s, "req:stream", "ansible", "cmp:role-pdfstream").await;
+    let ok = link(&s, "req:stream", "deploy", "cmp:role-datastream").await;
     assert_eq!(ok["drawn"].as_array().map(Vec::len), Some(1), "{ok}");
 }

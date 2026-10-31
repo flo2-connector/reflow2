@@ -33,9 +33,9 @@ async fn svc() -> ReflowService {
 fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
     AddArtifactReq {
         id: id.into(),
-        name: Some("beamline.json".into()),
+        name: Some("instrument.json".into()),
         artifact_type: Some("spec".into()),
-        location: Some("beamline.json".into()),
+        location: Some("instrument.json".into()),
         description: None,
         status: status.map(Into::into),
         checksum: None,
@@ -49,7 +49,7 @@ fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
 #[tokio::test]
 async fn an_artifact_registered_with_no_status_carries_none() {
     let s = svc().await;
-    let out = j!(s.add_artifact(Parameters(artifact("art:beamline-json", None).into())));
+    let out = j!(s.add_artifact(Parameters(artifact("art:instrument-json", None).into())));
     assert!(
         out["properties"].get("status").is_none(),
         "absent means nobody said — never `realized` on a file nobody has produced: {out:?}"
@@ -71,7 +71,7 @@ async fn a_file_read_off_disk_is_realized_on_first_registration_and_a_relink_kee
     s.add_capability(Parameters(
         CapabilityReq {
             id: "cap:trace".into(),
-            name: Some("Trace the beamline".into()),
+            name: Some("Trace the instrument".into()),
             description: Some("Runs the ray trace.".into()),
             status: None,
             distinct_from: None,

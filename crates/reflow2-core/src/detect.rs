@@ -209,7 +209,7 @@ pub enum GapSource {
     /// Gated twice: releases must exist, and at least one `INCLUDES` edge must
     /// exist somewhere — i.e. release contents are actually being modelled.
     /// Without the second gate every built component would fire the day the
-    /// first Release node appeared, which is the mid-construction flood ophyd
+    /// first Release node appeared, which is the mid-construction flood the instrument-control trial
     /// A14 warns about: a graph whose release manifest simply has not been
     /// entered yet is not a graph full of unshipped work.
     UnreleasedComponent,
@@ -1548,7 +1548,7 @@ pub struct GapCandidate {
     /// DEFAULTED, AND THE DEFAULT IS THE WHOLE POINT. This field is what broke
     /// the replay contract this struct's own `description` comment promises —
     /// *"a compact row handed straight back to `gap_to_prompt` has to
-    /// deserialize"*. Reported from the field (hxm_program, 2026-08-26): a
+    /// deserialize"*. Reported from the field (a work hub, 2026-08-26): a
     /// budgeted `detect_gaps` was replayed into `gaps_to_prompts` exactly as the
     /// docs instruct (*"REPLAY EACH GAP OBJECT UNCHANGED"*) and was refused with
     /// `invalid GapCandidate: missing field 'suggested_depth'`. **The budget
@@ -1902,7 +1902,7 @@ impl GapCandidate {
         //
         // WHY IT MATTERED MORE THAN ITS SIZE: this is the single point where a
         // detector's vocabulary becomes a human's. "No jargon" flattens a
-        // beamline scientist, a flight-test engineer and an acquisitions officer
+        // lab scientist, a flight-test engineer and an acquisitions officer
         // toward one generic default, producing a question that is easy to read
         // and impossible to answer precisely — put to the one person who could
         // have answered it precisely. A persona is a VOCABULARY SWAP, not a
@@ -3235,7 +3235,7 @@ impl DesignGraph {
             });
         };
 
-        // The pure brownfield starting state (BL-27, ophyd finding 1): a graph
+        // The pure brownfield starting state (BL-27, the instrument-control trial finding 1): a graph
         // seeded from what exists holds capabilities and components and not
         // one requirement — and before this fired nothing at all, because
         // `unmotivated_capability` is gated on requirements > 0 to avoid one
@@ -3500,7 +3500,7 @@ impl DesignGraph {
     ///
     /// # Why severity reads `provenance`
     ///
-    /// The ophyd trial asked for this to outrank `unsatisfied_requirement`
+    /// The instrument-control trial asked for this to outrank `unsatisfied_requirement`
     /// *"on a brownfield graph"* — and a fixed number cannot honour that
     /// qualifier, because the same structure means different things on the two
     /// paths. An `authored` capability nothing asked for is a half-finished
@@ -5823,14 +5823,14 @@ impl DesignGraph {
     /// Measured 2026-09-30 over nine design exports before any of this was
     /// written. Per CAPABILITY the rule is small and every hit genuine —
     /// 5 of 342 on reflow2's own design (each realized by a file at `realized`
-    /// and three with a passing check), 4 of 40 on hxm, 0 elsewhere — so it is
+    /// and three with a passing check), 4 of 40 on a work hub, 0 elsewhere — so it is
     /// one finding per capability, like its overstatement mirror.
     ///
     /// Per COMPONENT it floods, and the WHY is the default nobody moves: 79 of
     /// 109 on reflow2 (2 of 109 components carry any status but `planned`),
     /// 11 of 21 on flo2 (0 of 21), 6 of 8 on a third local design (0 of 8) —
     /// and 0 on the three designs that keep the field (every component
-    /// moved), 3 on hxm (8 of 15 moved).
+    /// moved), 3 on a work hub (8 of 15 moved).
     /// Every hit is true, and a per-node flood of true findings is still read
     /// as noise and acknowledged in bulk (BL-73), so the components are ONE
     /// finding naming the practice and listing every component, keyed on the

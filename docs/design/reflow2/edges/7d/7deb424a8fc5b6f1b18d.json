@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f6311426c0b08125c3d38134946b6354f6b9160203574820d2e376ec2e21e124",
-  "edge_type": "REALIZES",
-  "from_id": "art:tools-claims",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:every-served-tool-carries-a-title-and-every-writer-says-whether-it-destroys"
-}

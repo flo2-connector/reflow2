@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:60d093462d4e1cfef9c443496cc0cab5d65ac07c16c7701657a17bc1fd3fbc93",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-step-can-be-an-immediate-grasp-not-an-inference",
-  "properties": {},
-  "to_id": "req:a-step-can-say-it-is-not-an-inference"
-}

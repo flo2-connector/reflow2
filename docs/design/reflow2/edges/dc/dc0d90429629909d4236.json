@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:61941a815f577fe73488caaebf5df057f43d110482681f3fcf914c095405225c",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:idea-the-no-export-line-names-every-source-the-resolver-reads-reflow2-toml-first",
-  "properties": {
-    "evidence": "It answers the root cause: the line would be generated from the resolver it describes."
-  },
-  "to_id": "fact:root-cause-the-no-export-hint-was-written-before-reflow2-toml-became-a-source-and-nothing-holds-it-to-the-resolver-2026-10-19"
-}

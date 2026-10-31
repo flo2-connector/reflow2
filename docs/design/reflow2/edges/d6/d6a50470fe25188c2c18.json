@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:1aec318ff437ad1e36ddaa7796b4433d2a1c7ed7d693dbb7acc69e034e0cb4a9",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y",
-  "properties": {},
-  "to_id": "fact:root-cause-a-relation-with-no-typed-tool-cannot-be-found-by-find-tools-2026-10-25"
-}

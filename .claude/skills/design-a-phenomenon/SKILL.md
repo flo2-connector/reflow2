@@ -46,7 +46,7 @@ another name.
 - **Each idealization is its own premise**, never folded into the model's text: one Constraint per
   assumption (a monochromatic beam, no scatter, a parallel beam, an ideal detector, a stationary
   sample, a known axis). Its statement says WHERE IT HOLDS AND WHERE IT FAILS, and what failing
-  looks like ("holds for a filtered synchrotron beam; fails for a broad tube spectrum, where
+  looks like ("holds for a filtered monochromatic beam; fails for a broad tube spectrum, where
   hardening cups a uniform object"). Each is taken up in `assumed` with `held_as` `model` on every
   step that relies on it, so a reader sees which predictions die with it.
 

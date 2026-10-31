@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9d723b76942ce5820c5ec8f78632912877561f0c9dd03b334c54e74aa157fb31",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:34ab4a993e9d2338071ba7e5b7a792757821bf311585ea3bc8ac5100322cc6c7"
-  },
-  "to_id": "art:test-the-reasoning-walks-keep-their-own-stack"
-}

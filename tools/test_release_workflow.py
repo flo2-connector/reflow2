@@ -695,12 +695,12 @@ def test_the_site_is_published_from_main_and_never_from_a_tag() -> None:
         "pages.yml must keep workflow_dispatch: it is how the release republishes the site on main")
     assert set(on) <= {"push", "workflow_dispatch"}, (
         f"pages.yml gained a trigger that may run off main: {sorted(set(on) - {'push', 'workflow_dispatch'})}")
-    # The dispatched run reads every release tag, as a push to main does: the counts
-    # are taken from the design committed at each one (tools/site_counts.py).
+    # Until 2026-10-30 the run also had to fetch every release tag, because the
+    # home page's counts were read from the design committed at each one. The
+    # copy retired (the design is hosted and private), and the counts with it.
     deploy = [s for j in read_workflow(PAGES)["jobs"].values() for s in steps(j)]
-    checkouts = [s for s in deploy if "actions/checkout" in str(s.get("uses", ""))]
-    assert checkouts and all((s.get("with") or {}).get("fetch-depth") == 0 for s in checkouts), (
-        "the site's checkout must keep fetch-depth: 0 — site_counts.py reads every release tag")
+    assert not any("site_counts" in str(s.get("run", "")) for s in deploy), (
+        "pages.yml counts reflow2's own design again, but no copy of it is committed to count")
 
 
 def site_dispatch_jobs() -> list[tuple[str, dict]]:

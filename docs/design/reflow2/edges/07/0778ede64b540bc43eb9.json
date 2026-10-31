@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3102d3b3b638a91c51f80a239586731485f6b101c6af8d8f8089e397571e0e89",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back"
-}

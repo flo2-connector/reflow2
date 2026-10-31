@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3957b232736968dab65d772b02223c51be0bdc537d0678fbcd759a9ef7f8be11",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0900",
-  "properties": {
-    "as_checksum": "sha256:08ee6419d4814fe34e943c0b21f98d0dc1e9b8555bad44207a69d8c0221b5c9b"
-  },
-  "to_id": "art:small-faults-and-one-formula-test"
-}

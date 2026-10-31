@@ -1178,7 +1178,7 @@ fn annotate_hubs(issues: &mut [HealIssue]) {
 /// because a merge keeps only the survivor's properties, so this choice decides
 /// whose words are kept and whose go to `discarded`. `authored` and `planned`
 /// are things a person actually said; `imported` came through a found document
-/// (trusted per the ophyd caution — its PDR omitted the system's central
+/// (trusted per the instrument-control trial caution — its PDR omitted the system's central
 /// invariant); `reconciled` was written back from observed reality by a
 /// machine; `inferred` is the machine's guess from the implementation; `healed`
 /// is machine-generated fill. The machine's guess must never delete the
@@ -2507,7 +2507,7 @@ impl DesignGraph {
         // `SATISFIES`-ing it used to be reported here *as well as* by
         // `unallocated_capability` and `unsatisfied_requirement` — the same
         // finding twice, in two lists, in two vocabularies. Four independent
-        // trials complained (ophyd 15, 3dtictactoe 10, the self-host run, and
+        // trials complained (the instrument-control trial 15, 3dtictactoe 10, the self-host run, and
         // storyflow where it became **20 of 31 defects** — the dominant noise
         // source in the output, BL-42).
         //
@@ -2827,7 +2827,7 @@ impl DesignGraph {
             // settle, and treating 'not yet accepted' as 'no longer intended'
             // would hide exactly the disagreements a brainstorm is supposed to
             // surface." That is right, and it is the opposite conclusion from
-            // hxm_program's field report on 2026-08-26.
+            // a work hub's field report on 2026-08-26.
             //
             // They are not actually in conflict, because they are different
             // shapes. The field case was proposed-vs-PROPOSED — two brainstormed
@@ -3182,7 +3182,7 @@ impl DesignGraph {
     /// `status == "proposed"` alone cannot tell an IDEA BEING TURNED OVER from a
     /// CHOICE somebody actually faced and has not settled. `Decision.kind` is
     /// exactly that distinction and did not exist when this predicate was
-    /// written. Reported by ophyd-service, whose proposed discriminator —
+    /// written. Reported by an instrument-control service, whose proposed discriminator —
     /// key on an open `kind: exploratory` Decision — is better than anything
     /// available in August.
     ///
@@ -3202,12 +3202,12 @@ impl DesignGraph {
     /// `kind: choice`, so no finding moved here. Correct in shape, deferred in
     /// effect — said plainly rather than reported as a fix.
     ///
-    /// 📌 THIS DOES NOT GIVE OPHYD WHAT THEY ASKED FOR, and must not be read as
+    /// 📌 THIS DOES NOT GIVE THE INSTRUMENT-CONTROL TRIAL WHAT IT ASKED FOR, and must not be read as
     /// having done so. Suppressing a contradiction whenever the SOURCE is
     /// exploratory — even against settled design — would overturn
     /// `dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it`,
     /// accepted 2026-08-26, which `proj:bhome` independently called correct on
-    /// the same day ophyd objected. Two field reports disagree and the settled
+    /// the same day the instrument-control trial objected. Two field reports disagree and the settled
     /// rule stands; `an_idea_against_settled_design_still_reports` pins it so
     /// the reversal cannot happen as a side effect of sharpening this.
     fn is_parked_idea(&self, index: &HashMap<String, String>, id: &str) -> bool {
@@ -3410,7 +3410,7 @@ impl DesignGraph {
                 // AN ISLAND OF PARKED THOUGHTS IS A BRAINSTORM, NOT A SEVERED
                 // LIMB. Ideas related to each other and not yet wired to the
                 // design is the SHAPE the brainstorm skill produces — so
-                // reporting it punished the skill for working (hxm_program,
+                // reporting it punished the skill for working (a work hub,
                 // 2026-08-26: defects 2 -> 7 over a day of doing the right
                 // thing).
                 //

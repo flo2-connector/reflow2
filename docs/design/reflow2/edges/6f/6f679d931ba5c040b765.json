@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ce4cd89231be32cb2fbb2564d5067c2b6d3b14dd3b74e8938ddfe57137765e6b",
-  "edge_type": "REALIZES",
-  "from_id": "art:design-a-proof-skill",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-steps-rule-is-a-node-of-its-own-never-a-premise"
-}

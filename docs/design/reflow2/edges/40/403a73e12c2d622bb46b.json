@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3e3ec0f7aa32c91de91fe9946b276894c138950a1a89fc36d5e3c3e531e7eac7",
-  "edge_type": "REALIZES",
-  "from_id": "art:nulls",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-null-unsets-at-every-typed-constructor"
-}

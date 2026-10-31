@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d5753e9b4a77f88a98402b91bca6f37ca2c5bf0369baface339bc182e40ce547",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:852a3f4584062b2ace376b061826c4b07a459f3477d37429daacda55221ef559"
-  },
-  "to_id": "art:a-constructor-names-every-edge-it-drew-test"
-}

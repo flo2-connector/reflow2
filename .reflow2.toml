@@ -5,8 +5,11 @@
 # here is refused.
 #
 # reflow2's own design moved onto flo2.io on 2026-10-10, keeping its id (phase 2
-# of dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local). CI reads
-# the copy at docs/design/reflow2/, which tools/reflow2_design_copy.py refreshes.
+# of dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local). It is
+# private there, and since 2026-10-30 no copy of it is committed here: the copy
+# CI used to read at docs/design/reflow2/ retired, and its design checks come
+# back as a nightly run on flo2.io's box against the hosted design (accepted,
+# not built yet). See AGENTS.md, "reflow2's own design is hosted on flo2.io".
 [design]
 id      = "reflow2"
 address = "https://api.flo2.io/g/reflow2/mcp"

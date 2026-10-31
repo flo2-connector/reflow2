@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9e2b79623fe79e9729b9fec48b4c61abff22e62a078f42be362316b69f14500b",
-  "edge_type": "REALIZES",
-  "from_id": "art:design-a-phenomenon-skill",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it"
-}

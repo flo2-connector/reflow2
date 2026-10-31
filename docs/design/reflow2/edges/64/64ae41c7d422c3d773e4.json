@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:55d7542bfe5a3f09db019e015df05523239895b071dc1b86acc40bd5eeaf33c8",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0831",
-  "properties": {
-    "as_checksum": "sha256:1e003aa54b1cccc455474f1a2a37bc4c927f3195563118b25ce717e270965b31"
-  },
-  "to_id": "art:test-a-spawned-daemon-inherits-nothing-it-should-not"
-}

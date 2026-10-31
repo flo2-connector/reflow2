@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:ef98bf45de05c83a5ab6514e2ad1d08cdef53fcb241d05185b9f5f321921b044",
-  "edge_type": "AT_EPOCH",
-  "from_id": "snap:epoch:preserved-on-write:req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter",
-  "properties": {},
-  "to_id": "epoch:preserved-on-write"
-}

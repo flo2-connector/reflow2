@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:81ea3e2d30eaad719bdce17de981edf20708341b7f738d6946790b8f9904ba9f",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:reports-without-an-inference-fixture",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:an-inference-says-how-premises-support-a-conclusion"
-}

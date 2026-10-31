@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5098b71b780a3f6b42980d887e94e09950862c762e41627184150c1dd8da3674",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-hubs-address-serves-a-view",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-hubs-address-serves-a-view-over-its-members"
-}

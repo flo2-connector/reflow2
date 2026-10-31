@@ -136,7 +136,7 @@ Nothing had ever called it, and the backlog row had spent days asserting the opp
 Five practices, each earned:
 
 1. **Inject probes; do not wait for divergence.** The highest-value findings in the whole record —
-   ophyd's unmotivated capability, 3dtictactoe's orphan, the failing-test probe — came from seeding
+   the instrument-control trial's unmotivated capability, 3dtictactoe's orphan, the failing-test probe — came from seeding
    a defect *on purpose* and checking whether the tool noticed. Observation inside a short trial
    finds almost nothing.
 2. **Pre-register what you expect, then score it.** A live golden thread makes specific claims that
@@ -231,7 +231,8 @@ so the regimen degenerates without them. Two constraints follow:
 > **Amendment, 2026-08-04 — one class of self-host generator does surprise, and it is worth naming
 > because it is cheap.** The claim above is right about *asking reflow2 about itself*: a tool that
 > goes quiet cannot surprise you. It is not right about **diffing two artifacts this project
-> maintains separately and expects to agree** — `schema/*.yaml`, `docs/design/reflow2.json`, and the
+> maintains separately and expects to agree** — `schema/*.yaml`, `docs/design/reflow2.json` (since
+> 2026-10-30 a local, git-ignored export of the hosted design: the committed copy retired), and the
 > request structs under `crates/reflow2-mcp/src/`. None of those three consults the instrument under
 > test, so none can be answered by silence. Run against each other they produced [BL-198] through
 > [BL-203] in one sitting, and [BL-199] is the reason to trust the method: it found that **this

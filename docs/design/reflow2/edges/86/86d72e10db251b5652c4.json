@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d70be2a623742a656fd4a6bf23b36d8a77935681d712008b3aa8bf3145b012fb",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:6a5714753b4035926ca39c6456bff363c22c1faba93f968def0788a600c94c88"
-  },
-  "to_id": "art:test-a-registered-artifact-asserts-nothing-it-was-not-told"
-}

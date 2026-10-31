@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fe91adcfd36d868ebcadf899e3d36518770a48afbf44192c1241568919712ab2",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {
-    "as_checksum": "sha256:482dd7e1d31e15b0244d73721a377f95cccc503e555696a35063b993cbef32c3"
-  },
-  "to_id": "art:deprecation"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:063a5fa7d3b2e5033e0441f97c6439f350bf79c8e6b362d28ce2a3e3a98c0f44",
-  "edge_type": "REALIZES",
-  "from_id": "art:bulk-edges",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-write-that-turns-a-claim-refuted-says-so-in-its-reply"
-}

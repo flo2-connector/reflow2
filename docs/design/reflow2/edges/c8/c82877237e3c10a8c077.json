@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c0d4b613df69e808b2741774fae9d8c0b725a9f973a0f4b1c4725d5313ba87c0",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:small-faults-and-one-formula-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:small-faults-and-one-formula-tests"
-}

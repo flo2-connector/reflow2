@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:08dcec69c25eb491a29f12e33c2a52c5ae0edaac93a3bb2b9be9f5f8501cd25c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0831",
-  "properties": {
-    "as_checksum": "sha256:964ededa654d3d3803e1c38eedf74eaafb1cac95cfaf6adbfd4086b5359b02f0"
-  },
-  "to_id": "art:every-edge-type-declares-what-it-means-test"
-}

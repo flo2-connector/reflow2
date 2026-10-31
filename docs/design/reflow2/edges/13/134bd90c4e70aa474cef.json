@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:bf59c542f1be5f09cbf43c859e36d1837c65789b32d416679d72745e0dfd064f",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:runtime",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:runtime"
-}

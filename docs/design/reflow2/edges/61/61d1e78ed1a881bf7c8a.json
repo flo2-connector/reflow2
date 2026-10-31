@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1fb740d7068850d3147f6ab4a05301e31428ec6e659888ffd1b7cba0f539e72f",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:790249210cc1cc783abf568c18c593d99e6f9d76833b4ecb4d5c41d44c8e3771"
-  },
-  "to_id": "art:test-a-question-is-put-to-a-person"
-}

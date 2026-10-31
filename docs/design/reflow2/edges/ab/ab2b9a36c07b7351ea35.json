@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:a85cf9efce2cd784b569fd370513eed47e06f6c33e2c17789996997edf3b4441",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:record-the-build-in-one-call",
-  "properties": {},
-  "to_id": "req:the-mcp-surface-is-sized-for-tokens-per-task"
-}

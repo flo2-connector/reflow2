@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9d5e81f7ff2a01e7e197cede75f543a52ea98b1f88dc23e12a9ea07feeebcd7c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:bb9cab534f6637fddf3e6fa08268d9f15eeb14b82f75a57bf57c89069d71e32d"
-  },
-  "to_id": "art:a-stored-twin-has-one-authority-test"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:48d3c8a61fc12894f11be5b806a2a59caee652b4d60e9ee6524bef72c931455c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:c0de23db5ca1094b0471e47bc04772080690c7ec672fb842dcd11d1e02bd785e"
-  },
-  "to_id": "art:reasoning-rs"
-}

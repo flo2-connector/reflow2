@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:276a634a3d038fc67cf5c5bce6d36c172ad3492dc4f0f26830e35dcd04c59d8f",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported",
-  "properties": {},
-  "to_id": "req:a-test-whose-criteria-moved-after-its-data-reads-unknown-until-acknowledged"
-}

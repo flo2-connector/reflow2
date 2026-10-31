@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:75c1f1593c132ebf68df9b9c91afb777c8ec64030513f283b1da9c8b4d656e0b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:d8ec580e578072b6abbcd6a47a58ec373f59fcfbde4c1be7d392975cd41172bb"
-  },
-  "to_id": "art:test-a-limit-each-part-meets-on-its-own"
-}

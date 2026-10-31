@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:06da842f750d6d792557729c8c002745b82139b1f7a6f646adb95ffec5c7f822",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-local-hub-searches-its-pinned-designs-through-the-door-test",
-  "properties": {
-    "covers": "partial"
-  },
-  "to_id": "ver:a-tracked-designs-search-names-each-designs-hits-and-each-it-could-not-reach"
-}

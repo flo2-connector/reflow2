@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8775f1715a463766f24925c756e84c1424dfbda74892316dc439a1bd395ab3d1",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:1ac8b3b1f55172bdeae3f17eb78c427af5f5eda975ef337b71f53fc9fa2f9b97"
-  },
-  "to_id": "art:a-proof-says-what-it-assumes-on-the-wire-test"
-}

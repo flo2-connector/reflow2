@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:45526e8d2c9d31c24c140a88890b9c10f39782f1c81a8f924516687b23cc6692",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-reasoning-report-keeps-to-a-small-budget",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:reasoning-is-evaluated-once-per-report"
-}

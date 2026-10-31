@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d6f20000ce6a3acda9433c95c7e310d43dc98f4a5950d628bcc485ca76daf7ff",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-no-served-text-names-a-tool-that-is-not-served",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:no-served-text-names-a-tool-that-is-not-served"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7b4e900bd86895412f19556b2cc978ada86751ad55635bb0cfb5c7bd5d39ae0d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:95f7ea43bf028ce0ac8e9bb9fbe0b6b0f511c6d677f72b7d22050d1e8a0f8530"
-  },
-  "to_id": "art:test-intent-flows-down-by-move-piece-or-derived-and-binds-on-acceptance"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:46dc199810a886407ad41ccf83aa8b2b30a293f962294d5a7c1f8e5fd9634606",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain",
-  "properties": {
-    "evidence": "It settled the agent's half on 2026-10-14 (the agent's recommendation as an inference chain); this asks for the owner's half, his reason for choosing."
-  },
-  "to_id": "dec:idea-the-owners-choice-of-a-recommendation-is-recorded-as-a-line-of-reasoning"
-}

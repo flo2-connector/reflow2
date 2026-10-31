@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ae41c17f5f3f9a89a41a9c2c61f7fd2bd35da68d07f151946b58f4e4e0eea2c5",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:the-site-explains-how-to-make-a-hub-or-project-brain",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:docs"
-}

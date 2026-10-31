@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:58aab00a80a1d684b13d3feb1d6ade7e541f30a87bbe48390ee8e9015b542b9d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0834",
-  "properties": {
-    "as_checksum": "sha256:c1a44e6d0dee7e89092b36d47c2b08e2bd6504bba664dcc0d6682e7b302f239d"
-  },
-  "to_id": "art:test-the-confirmation-ledger-reads-each-history-once"
-}

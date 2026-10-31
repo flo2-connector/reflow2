@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3e432f94895ff197c8521227151bfaad02f3bc0f0cd1599b053472698b33ddac",
-  "edge_type": "REALIZES",
-  "from_id": "art:claims-and-shared-premises-test",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:two-lines-stated-independent-are-checked-against-their-shared-premises"
-}

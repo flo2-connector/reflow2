@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6b4ae805ab5abafd4ecef3bc34f4ef2c05c4a3c3f83af5ef676a91ea61ab983b",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-fold-and-removal-candidates-from-the-2026-10-30-counts",
-  "properties": {
-    "note": "The candidates this idea listed became the requirement chosen through dec:idea-make-the-tool-changes-now-after-a-snapshot-and-restore-what-is-missed-in-december (B); built on feat/the-fold-and-removal-candidates-ship-as-counted-stubs. Closing the idea is the owner's word."
-  },
-  "to_id": "req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-stubs-then-december-decides"
-}

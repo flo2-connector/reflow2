@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9e36e7ad5c5a6027e794feabd5f38147eed87c86ad4dc5d1b02f0f71624f1b0a",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-the-owners-choice-of-a-recommendation-is-recorded-as-a-line-of-reasoning",
-  "properties": {
-    "evidence": "Anthony kept option (c) on 2026-10-16 (\"Keep both, build after A2\"); this requirement is that option, promoted."
-  },
-  "to_id": "req:a-choice-that-rests-on-checkable-premises-is-recorded-as-a-chain"
-}

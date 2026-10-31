@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5172e924296bd6597c49f050feb9f8e68b27383554a7d2a4ad743edd6b2a4f92",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:2c010a8657bd025249efea1b5321a5ca842b5094fe7f0b7381aaf817a69bee86"
-  },
-  "to_id": "art:prediction-order-rs"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6d4876b4873324676cebaaf81d4f05dbc0d18c6a08e23025150a8e7f95cedc08",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-loop-status-says-whether-an-export-is-owed-on-a-hosted-design",
-  "properties": {
-    "evidence": "loop_status says when a design was never exported and whose work is unexported (chg:loop-status-says-a-design-was-never-exported-and-whose-work-is-unexported-2026-10-05). Evidence: cap:loop-status is verified, ver:loop-status passing, realized by art:export-standing. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:loop-status"
-}

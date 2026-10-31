@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:67a04075f2837eee9d8a1224dde55b1651fabd7554b8dab5e86a1699b8262f23",
-  "edge_type": "REALIZES",
-  "from_id": "art:detect",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:two-lines-stated-independent-are-checked-against-their-shared-premises"
-}

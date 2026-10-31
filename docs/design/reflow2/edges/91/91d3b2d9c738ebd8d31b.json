@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:831a08a4653beb7cdc1738ecc14c61033beee268c25bd82995eb49e925c67804",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes",
-  "properties": {
-    "evidence": "On 2026-10-12 Anthony asked for checks on the in-memory BTreeMap backend; deferred for CI, it named the local RocksDB build as the cost really paid and 'whether reflow2-mcp builds at all without RocksDB' as unknown. This decision takes the local half."
-  },
-  "to_id": "dec:rocksdb-is-a-default-on-feature-of-the-server-crate-and-its-tests-share-a-few-programs"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:ccad629c1f429562831c85d0d029648479f8f0ec8ec261b4a51827dad38f0341",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:changelog-view-carries-a-balance-line",
-  "properties": {},
-  "to_id": "req:a-changelog-shows-what-was-taken-away-beside-what-was-added"
-}

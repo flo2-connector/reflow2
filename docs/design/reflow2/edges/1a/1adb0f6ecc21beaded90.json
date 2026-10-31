@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:771c54c2997da63aa58e5c517d26405904f8f0f09cc9bee2a619fce6aa5b221b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0835",
-  "properties": {
-    "as_checksum": "sha256:33dcb73ee856487bd482d90334f9959e4042bf2fdfc72fd762f82d80fa38f3a0"
-  },
-  "to_id": "art:test-a-bulk-edge-write-keeps-each-helpers-checks"
-}

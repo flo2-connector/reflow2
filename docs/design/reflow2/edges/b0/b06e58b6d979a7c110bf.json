@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:409c50806c418ed92ffd47294aed07678d03ea9bdecb19c9d5422130318043ee",
-  "edge_type": "REALIZES",
-  "from_id": "art:closure",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source"
-}

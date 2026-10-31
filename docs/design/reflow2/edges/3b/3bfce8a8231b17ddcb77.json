@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f5496b34236d0d781d36616243c76eec09ac49f7e253d0ae9d6327a21e7e5ecc",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:compose-and-analyse-takes-several-designs-at-once",
-  "properties": {
-    "note": "The ruling places the cross-design check at the hub, the one process that can read every design it tracks; the composed check runs there, over the hub's pins."
-  },
-  "to_id": "dec:until-designs-share-a-server-the-cross-design-check-runs-at-the-hub"
-}

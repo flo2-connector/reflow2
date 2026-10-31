@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e79d2868361855f9ac66e8d51f336e4ddffa5ed624333d8b9d7e0570f46ec4ba",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:each-cue-carries-an-id-and-is-counted-by-whether-it-was-followed",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:service"
-}

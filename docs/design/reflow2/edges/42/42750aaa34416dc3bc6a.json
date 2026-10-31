@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:16ac9063dbab1594af8c6cc804493563698ea531f054fe4832dadbf1ac875539",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:6698b1123dfedf59eade5b063d90030495c540d3219f951187362ffa693dda94"
-  },
-  "to_id": "art:hypothesis-rs"
-}

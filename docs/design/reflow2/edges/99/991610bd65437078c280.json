@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:68f5abdde9293a7321f0f1fb8747bd30aaa06633cbe728a6f9f4aca71c837d92",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:a-batch-cue-is-offered-once-per-batch-and-a-process-names-its-step",
-  "properties": {},
-  "to_id": "req:a-cue-for-when-a-batch-lands-is-offered-once-per-batch-and-a-process-names-its-step"
-}

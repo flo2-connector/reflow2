@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:918ef2eec23653551c2344ad0723d9c959d13b7e1598356c5ab2ae58cc4a427c",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-what-did-the-agent-infer-provenance-per-field-per-type-and-as-a-report",
-  "properties": {
-    "evidence": "Showing what the agent filled in apart from what the person said is the settled first step; showing how the agent reasoned is the next."
-  },
-  "to_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain"
-}

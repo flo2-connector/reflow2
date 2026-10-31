@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f2d8a8ec2a4892ae7b0b3fdcda33a9a1caa698f077a758e8630a5f4d9d348c1e",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:92ca1c0d429ecf3f1b4d8fe67cf894a79b4cdbbbf09d65d2be4d821d6fd226f4"
-  },
-  "to_id": "art:opencode-loop-nudge-plugin"
-}

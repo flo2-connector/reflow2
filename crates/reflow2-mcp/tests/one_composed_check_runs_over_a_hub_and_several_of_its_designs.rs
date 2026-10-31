@@ -2,7 +2,7 @@
 //! `req:one-composed-check-runs-over-a-hub-and-several-of-its-designs`
 //! (phase 7, step 3).
 //!
-//! WHAT FAILED. hxm_program's hub pins fourteen member designs by their
+//! WHAT FAILED. A work hub pins fourteen member designs by their
 //! committed exports and is reached only through the `--call` door. An effort
 //! there spans three to six designs, and `compose_and_analyse` took ONE other
 //! design: measured 2026-10-21 on 0.90.0, `designs` and `tracked_designs` were
@@ -156,8 +156,8 @@ async fn member_export(dir: &std::path::Path, graph_id: &str) -> String {
 
 struct Hub {
     c: Client,
-    ansible: String,
-    tiled: String,
+    deploy: String,
+    storage: String,
     other: String,
 }
 
@@ -165,8 +165,8 @@ struct Hub {
 /// members among them — plus a code dependency that names no design.
 async fn hub(name: &str) -> Hub {
     let dir = scratch(name);
-    let ansible = member_export(&dir, "ansible").await;
-    let tiled = member_export(&dir, "tiled").await;
+    let deploy = member_export(&dir, "deploy").await;
+    let storage = member_export(&dir, "storage").await;
     let other = member_export(&dir, "other").await;
     let garbled = dir.join("garbled.json");
     std::fs::write(&garbled, "this is not a design").expect("garbled");
@@ -174,8 +174,8 @@ async fn hub(name: &str) -> Hub {
     call(
         &c,
         "add_requirement",
-        json!({"id": "req:pdf-firewall", "name": "PDF firewall fix",
-               "statement": "The PDF firewall admits the stream."}),
+        json!({"id": "req:instrument-firewall", "name": "instrument firewall fix",
+               "statement": "The instrument firewall admits the stream."}),
     )
     .await;
     call(
@@ -193,8 +193,8 @@ async fn hub(name: &str) -> Hub {
         p
     };
     for p in [
-        pin("ansible", json!({"design_export": ansible})),
-        pin("tiled", json!({"design_export": tiled})),
+        pin("deploy", json!({"design_export": deploy})),
+        pin("storage", json!({"design_export": storage})),
         pin(
             "gone",
             json!({"design_export": dir.join("gone.json").to_string_lossy()}),
@@ -215,8 +215,8 @@ async fn hub(name: &str) -> Hub {
     }
     Hub {
         c,
-        ansible,
-        tiled,
+        deploy,
+        storage,
         other,
     }
 }
@@ -321,22 +321,22 @@ async fn a_composed_check_over_every_pinned_design_attributes_each_finding_and_n
     .await;
     assert_eq!(
         composed["designs_composed"],
-        json!(["hub", "ansible", "tiled"]),
+        json!(["hub", "deploy", "storage"]),
         "this design first, then every readable pin in order: {composed}"
     );
-    assert_eq!(composed["read_from"]["ansible"], json!(h.ansible));
-    assert_eq!(composed["read_from"]["tiled"], json!(h.tiled));
+    assert_eq!(composed["read_from"]["deploy"], json!(h.deploy));
+    assert_eq!(composed["read_from"]["storage"], json!(h.storage));
     assert_attributed(&h.c, &composed).await;
     // Each member's own findings are its own, and the seam between the two
     // members is there although neither is the design calling.
-    for d in ["hub", "ansible", "tiled"] {
+    for d in ["hub", "deploy", "storage"] {
         assert!(
             composed["counts"]["by_design"][d].as_u64().unwrap_or(0) > 0,
             "{d} has findings of its own: {composed}"
         );
     }
     assert!(
-        composed["by_pair"]["ansible×tiled"]
+        composed["by_pair"]["deploy×storage"]
             .as_array()
             .is_some_and(|l| !l.is_empty()),
         "a seam between two members, neither of them the hub: {composed}"
@@ -403,16 +403,15 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
     let one = call(
         &h.c,
         "compose_and_analyse",
-        json!({"other_graph_ids": ["ansible"]}),
+        json!({"other_graph_ids": ["deploy"]}),
     )
     .await;
     assert_attributed(&h.c, &one).await;
-    let export: Value =
-        serde_json::from_str(&std::fs::read_to_string(&h.ansible).unwrap()).unwrap();
+    let export: Value = serde_json::from_str(&std::fs::read_to_string(&h.deploy).unwrap()).unwrap();
     let pairwise = call(
         &h.c,
         "compose_and_analyse",
-        json!({"design": export, "namespace": "ansible"}),
+        json!({"design": export, "namespace": "deploy"}),
     )
     .await;
     let titles = |list: &Value| -> Vec<String> {
@@ -432,12 +431,12 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
     ours.sort();
     assert_eq!(ours, titles(&pairwise["our_findings"]), "ours: {one}");
     assert_eq!(
-        titles(&one["by_design"]["ansible"]),
+        titles(&one["by_design"]["deploy"]),
         titles(&pairwise["their_findings"]),
         "theirs: {one}"
     );
     assert_eq!(
-        titles(&one["by_pair"]["hub×ansible"]),
+        titles(&one["by_pair"]["hub×deploy"]),
         titles(&pairwise["seam_findings"]),
         "the seam: {one}"
     );
@@ -448,7 +447,7 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
     let two = call(
         &h.c,
         "compose_and_analyse",
-        json!({"other_graph_ids": ["ansible", "tiled"]}),
+        json!({"other_graph_ids": ["deploy", "storage"]}),
     )
     .await;
     assert_attributed(&h.c, &two).await;
@@ -479,10 +478,10 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
     let with_missing = call(
         &h.c,
         "compose_and_analyse",
-        json!({"other_graph_ids": ["ansible", "gone"]}),
+        json!({"other_graph_ids": ["deploy", "gone"]}),
     )
     .await;
-    assert_eq!(with_missing["designs_composed"], json!(["hub", "ansible"]));
+    assert_eq!(with_missing["designs_composed"], json!(["hub", "deploy"]));
     assert_eq!(with_missing["not_composed"][0]["state"], json!("missing"));
 
     // NONE: a design that pins nothing composes itself alone, and says so.
@@ -513,13 +512,13 @@ async fn one_two_and_several_designs_are_composed_alike_and_one_finds_what_the_p
 async fn composing_writes_nothing_to_this_design_or_any_export() {
     let h = hub("writes-nothing").await;
     let read = |p: &str| std::fs::read(p).expect("export");
-    let before = (read(&h.ansible), read(&h.tiled), read(&h.other));
+    let before = (read(&h.deploy), read(&h.storage), read(&h.other));
     let hash = |v: Value| v["content_hash"].as_str().unwrap().to_string();
     let hub_before = hash(call(&h.c, "export_graph", json!({})).await);
     for args in [
         json!({"tracked_designs": true}),
-        json!({"other_graph_ids": ["tiled", "ansible"]}),
-        json!({"other_graph_ids": ["ansible"], "budget_chars": 2000}),
+        json!({"other_graph_ids": ["storage", "deploy"]}),
+        json!({"other_graph_ids": ["deploy"], "budget_chars": 2000}),
     ] {
         call(&h.c, "compose_and_analyse", args).await;
     }
@@ -529,7 +528,7 @@ async fn composing_writes_nothing_to_this_design_or_any_export() {
         "this design's export content hash is the same afterwards"
     );
     assert_eq!(
-        (read(&h.ansible), read(&h.tiled), read(&h.other)),
+        (read(&h.deploy), read(&h.storage), read(&h.other)),
         before,
         "no member's export is written"
     );
@@ -538,8 +537,7 @@ async fn composing_writes_nothing_to_this_design_or_any_export() {
 #[tokio::test]
 async fn the_one_other_design_call_keeps_its_exact_reply_across_its_old_shapes() {
     let h = hub("old-shapes").await;
-    let export: Value =
-        serde_json::from_str(&std::fs::read_to_string(&h.ansible).unwrap()).unwrap();
+    let export: Value = serde_json::from_str(&std::fs::read_to_string(&h.deploy).unwrap()).unwrap();
     // The success: exactly the core's report, under exactly its old keys,
     // whatever spelling of "not several" the call uses.
     let doc: reflow2_core::GraphExport = serde_json::from_value(export.clone()).unwrap();
@@ -550,12 +548,12 @@ async fn the_one_other_design_call_keeps_its_exact_reply_across_its_old_shapes()
             serde_json::from_value(call(&h.c, "export_graph", json!({})).await).unwrap();
         let mut g = g;
         g.import_graph(&held).unwrap();
-        serde_json::to_value(g.compose_and_analyse(&doc, "ansible").unwrap()).unwrap()
+        serde_json::to_value(g.compose_and_analyse(&doc, "deploy").unwrap()).unwrap()
     };
     for args in [
-        json!({"design": export, "namespace": "ansible"}),
-        json!({"design": export, "namespace": "ansible", "tracked_designs": false}),
-        json!({"design": export, "namespace": "ansible", "tracked_designs": null,
+        json!({"design": export, "namespace": "deploy"}),
+        json!({"design": export, "namespace": "deploy", "tracked_designs": false}),
+        json!({"design": export, "namespace": "deploy", "tracked_designs": null,
                "other_graph_ids": null}),
     ] {
         let got = call(&h.c, "compose_and_analyse", args.clone()).await;
@@ -609,7 +607,7 @@ async fn the_one_other_design_call_keeps_its_exact_reply_across_its_old_shapes()
             "a namespace is required with an inline design",
         ),
         (
-            json!({"other_graph_id": "ansible"}),
+            json!({"other_graph_id": "deploy"}),
             "is served only by a registry server",
         ),
         (json!({"tracked_designs": false}), "nothing to compose"),
@@ -622,27 +620,26 @@ async fn the_one_other_design_call_keeps_its_exact_reply_across_its_old_shapes()
 #[tokio::test]
 async fn several_designs_are_refused_in_any_shape_that_cannot_say_which_and_nothing_runs() {
     let h = hub("refusals").await;
-    let export: Value =
-        serde_json::from_str(&std::fs::read_to_string(&h.ansible).unwrap()).unwrap();
+    let export: Value = serde_json::from_str(&std::fs::read_to_string(&h.deploy).unwrap()).unwrap();
     for (args, words) in [
         (
             json!({"tracked_designs": true, "design": export, "namespace": "x"}),
             "`design` composes ONE other design",
         ),
         (
-            json!({"other_graph_ids": ["ansible"], "other_graph_id": "tiled"}),
+            json!({"other_graph_ids": ["deploy"], "other_graph_id": "storage"}),
             "`other_graph_id` composes ONE other design",
         ),
         (
-            json!({"other_graph_ids": ["ansible"], "namespace": "x"}),
+            json!({"other_graph_ids": ["deploy"], "namespace": "x"}),
             "`namespace` composes ONE other design",
         ),
         (
-            json!({"other_graph_ids": ["ansible"], "tracked_designs": true}),
+            json!({"other_graph_ids": ["deploy"], "tracked_designs": true}),
             "not both",
         ),
         (json!({"other_graph_ids": []}), "names no design"),
-        (json!({"other_graph_ids": ["ansible", "ansible"]}), "twice"),
+        (json!({"other_graph_ids": ["deploy", "deploy"]}), "twice"),
         (json!({"other_graph_ids": ["hub"]}), "this design itself"),
         (json!({"other_graph_ids": [" "]}), "empty graph_id"),
     ] {
@@ -659,7 +656,7 @@ async fn several_designs_are_refused_in_any_shape_that_cannot_say_which_and_noth
     )
     .await;
     assert!(
-        why.contains("does not pin") && why.contains("ansible") && why.contains("tiled"),
+        why.contains("does not pin") && why.contains("deploy") && why.contains("storage"),
         "a design not pinned is refused naming the pinned ones: {why}"
     );
 }

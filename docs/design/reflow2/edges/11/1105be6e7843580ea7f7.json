@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3cb72ce9e41d0827b7ca2d86c9a404e5f3f93a61ade75526f901b7dd23912bf6",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0835",
-  "properties": {
-    "as_checksum": "sha256:f2e20163a85cb339c77790a3526e9e06d4cf1ed2a5a24c0b2814a675607619fe"
-  },
-  "to_id": "art:test-a-requirement-is-sent-down-and-received-through-the-tools"
-}

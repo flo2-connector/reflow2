@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b9211b7a00c1b6d04d576ac200b36737ce6b1800cfdea6407871a972a83f9c19",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0880",
-  "properties": {
-    "as_checksum": "sha256:0d9890992542455fa22e00676b355202d491f9ef477a6b3e88a5912f60b2628e"
-  },
-  "to_id": "art:test-a-link-into-another-design-is-recorded-and-checked"
-}

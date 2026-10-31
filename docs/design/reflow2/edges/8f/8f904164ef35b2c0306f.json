@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e2516e24790d3f45acb6c65f90cd85f906adcecd7ddc07ba84249708a36ff00c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0840",
-  "properties": {
-    "as_checksum": "sha256:7934835206ad6d3307d2ef6e31dff477fd55a28c44bb33cc08dd3543e840cc01"
-  },
-  "to_id": "art:link-artifacts-skill"
-}

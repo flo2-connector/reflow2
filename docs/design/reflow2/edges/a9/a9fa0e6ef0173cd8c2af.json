@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:49d2a9a031b3d31cfed6c61df1ffc931d4224208235a37ed594a990b05af98f4",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0833",
-  "properties": {
-    "as_checksum": "sha256:d7ad0005715563e4089ca5a4f2ff2a4a2cb2b07c8feafd611610cb278c9cf468"
-  },
-  "to_id": "art:test-a-session-with-no-seed-can-find-one"
-}

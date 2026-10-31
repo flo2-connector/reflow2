@@ -16,7 +16,7 @@
 //! # The measured cases, as fixtures
 //!
 //! Exported read-only from flo2.io's engine on 2026-10-18 (0.87.0), the way
-//! `tools/reflow2_design_copy.py` reads a design:
+//! the design-copy tool of the time (retired 2026-10-30) read a design:
 //!
 //! - π+e (082888103637f0e7): its supposition `req:suppose-both-algebraic`,
 //!   discharged by `inf:reductio`, was listed under `unsupported`;

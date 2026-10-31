@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6a3e2a7a41aa091d0583b1bed1103e735384a8df533f4671840576c1bef70ddd",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:2bd64a3bbeda02997ac2b0c89947d7dac16fb91e7cb8f09301186ef2fa0a40c0"
-  },
-  "to_id": "art:every-deprecation-is-announced-in-the-changelog-test"
-}

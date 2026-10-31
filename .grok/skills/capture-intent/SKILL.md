@@ -21,7 +21,7 @@ with `authored_by` — whose word each one is. This is the structured "who" behi
 summary written on the way out is the one the busy session never gets to write.
 
 **Establish what KIND of thing this is before you name any part of it.** A data model, a machine
-shop, a beamline and a hiring process are not the same kind of object, and the parts worth
+shop, a lab instrument and a hiring process are not the same kind of object, and the parts worth
 capturing differ. Ask about the thing, in their words:
 
 - What must be true of it when it works?

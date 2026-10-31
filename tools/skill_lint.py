@@ -2019,7 +2019,7 @@ def main() -> int:
     )
 
     # THE TRIGGER CONTRACT — same shape as ASK_CONTRACT, same reason. Field
-    # report 2026-09-14 (hxm_program): asked for a progress deck for
+    # report 2026-09-14 (a work hub): asked for a progress deck for
     # management, an agent asserted the project's status from a checklist file
     # and its own recent writes, never reading the design; challenged, one read
     # gave it twenty hits across nine node types. The orientation skill's

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ee400502820c1015b9152bfd7c172dd783070c89c2443120a5704345b4cbe99e",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-an-open-breach-reaches-the-loop",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-fixed-rule-violation-closes-through-its-typed-tool"
-}

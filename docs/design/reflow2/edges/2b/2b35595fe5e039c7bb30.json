@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a7a7150bd624d6e0b6b3d5e0f21b0cf4e3fc50815d3bb95a17a239ad28bc580e",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-reasoning-is-attached-to-the-structure-it-justifies",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:reasoning-is-attached-to-the-structure-it-justifies-tests"
-}

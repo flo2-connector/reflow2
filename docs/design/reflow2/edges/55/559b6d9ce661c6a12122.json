@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:66cac2a2882c9787aa393a37bdc3b01b710949078d13f156bfeae99eb9e27ce5",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:a-prediction-reads-whether-it-was-stated-before-its-result-tests",
-  "properties": {},
-  "to_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it"
-}

@@ -16,9 +16,11 @@ someone without the tool; the graph holds what the tool can compute.**
 
 ## For agents reading this
 
-**Before anything else: `git pull --rebase`.** Claims travel in the committed design
-(`docs/design/reflow2/`, one file per node and per edge), so a graph you haven't pulled is a claim board from the past — same trap as
-before, same fix.
+**Before anything else: `git pull --rebase`.** Claims live in the design itself, which is hosted on
+flo2.io (and private) since 2026-10-10, so every session reads the same board. Nothing of the
+design is committed here any more: the copy at `docs/design/reflow2/` retired on 2026-10-30, and
+the entries below that mention it are history. The design's checks against the code come back as
+a nightly run on flo2.io's box (accepted, not built yet); see AGENTS.md.
 
 **Before starting work:** `claim_report`. If someone holds the region, or holds something that
 touches it, pick something else or say so — don't quietly work in parallel. Overlaps are ranked
@@ -97,7 +99,7 @@ table carried, re-made through `claim_region` as the first real use of the claim
 here, because releasing someone else's claim on their behalf is the one move this file has always
 forbidden:
 
-- Brownfield trial on ophyd-service — @ajs — since 2026-07-18 — `docs/trials-private/2026-07-18-brownfield-ophyd-service.md` (private) (findings log; no code yet)
+- Brownfield trial on an instrument-control service — @ajs — since 2026-07-18 — a record in `docs/trials-private/` (private) (findings log; no code yet)
 - Greenfield trial on aidrone — @ajs — since 2026-07-18 — `docs/trials-private/2026-07-18-greenfield-aidrone.md` (private) (running findings log; design lives in `~/projects/aidrone`)
 
 Both are 17 days old, which the old stale-claims rule would have made fair game. Neither has an
@@ -396,7 +398,7 @@ Trimmed periodically; the durable history is [CHANGELOG.md](CHANGELOG.md) and `g
   (197n/370e, stamp 0.5.0). 5 findings about reflow2 itself → BL-46..BL-50;
   trial: docs/trials/2026-07-20-self-adopt-live.md — @ajs — 2026-07-20 — (this commit)
 
-- **HISTORY REWRITTEN 2026-07-20 (@bro: action needed)** — repo went public (Apache-2.0); five real-system trial records (storyflow x2, ophyd-service, aidrone, 3dtictactoe) were scrubbed from ALL history before anyone cloned. Every SHA changed; tags moved. Update your clone with: `git fetch origin && git checkout main && git reset --hard origin/main` (stash local work first), or re-clone. Private trial records now live in gitignored docs/trials-private/ (ask @ajs for copies); public trials (self-host, erosion, phase-coverage, weather-station) stay — @ajs — 2026-07-20 — (this commit)
+- **HISTORY REWRITTEN 2026-07-20 (@bro: action needed)** — repo went public (Apache-2.0); five real-system trial records (storyflow x2, an instrument-control service, aidrone, 3dtictactoe) were scrubbed from ALL history before anyone cloned. Every SHA changed; tags moved. Update your clone with: `git fetch origin && git checkout main && git reset --hard origin/main` (stash local work first), or re-clone. Private trial records now live in gitignored docs/trials-private/ (ask @ajs for copies); public trials (self-host, erosion, phase-coverage, weather-station) stay — @ajs — 2026-07-20 — (this commit)
 
 - v0.5.0 cut (user approved): surface changed shape (`documents`), CHANGELOG section moved out of Unreleased, no schema change so no upgrade doc; the tag push is the first live run of release.yml — binaries + kit for the no-checkout path. NOTE for next session: served_by will say 0.5.0 now, not 0.4.0 — @ajs — 2026-07-20 — (this commit)
 
@@ -445,7 +447,7 @@ Trimmed periodically; the durable history is [CHANGELOG.md](CHANGELOG.md) and `g
 - BL-27: 3 of 5 adopt blockers (capability status, provenance, gap ranking) — @ajs — 2026-07-18 — `83da659`, `3c157ab`
 - BL-28 typed tool params (fixes the ask half of DETECT from Claude Code) — @ajs — 2026-07-18 — `6dfdd61`
 - Self-host GENESIS trial; BL-28 raised, BL-27 widened — @ajs — 2026-07-18 — `2ea0db1` + revision
-- Brownfield trial on 3dtictactoe; BL-27 raised from it and ophyd — @ajs — 2026-07-18 — `84aacb6`
+- Brownfield trial on 3dtictactoe; BL-27 raised from it and the instrument-control trial — @ajs — 2026-07-18 — `84aacb6`
 - Self-host: consumer kit installed into reflow2 itself — @ajs — 2026-07-18 — `98baf40`
 - **v0.2.0 released and tagged** — @ajs — 2026-07-18 — `b69dc28`; frozen for real-use feedback
 - BL-20 export/import; BL-19 backup+backfill; BL-18 staleness check — @ajs — 2026-07-18 — `79f5d42`, `3a618e3`, `21e9e11`
@@ -495,7 +497,7 @@ to keep both, not to choose.
 |---|---|
 | `changelog.d/*.md` | Never conflicts: each pull request writes its own fragment file, and the cut assembles them into `CHANGELOG.md` ([changelog.d/README.md](changelog.d/README.md)). Nobody edits `CHANGELOG.md`'s `[Unreleased]` by hand any more — `tools/changelog_fragments.py --check` fails a PR that does. |
 | `COORD.md`, `CHANGELOG.md` | Resolved automatically — `.gitattributes` marks them `merge=union`, so both sides' lines are kept. If you *still* see a conflict, you both edited the same line: keep both meanings and tidy the wording. |
-| `docs/design/reflow2/` (the item layout) | **Merged by git's ordinary merge** — one file per node and one per edge, so two people editing different parts of the design touch different files and merge with no conflict and no driver, on GitHub too (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). A conflict is a REAL one: the same node or edge changed differently on both sides, shown as one small file named after the item. Decide what that item should say; take one side of that one file so the layout reads (`git checkout --theirs -- <file>`), import the layout into your store, write what the item should say, and export, during the merge or after it — the exporter rewrites the file with the right `prev_item_hash`. Never resolve it with `--ours`/`--theirs` without reading both sides; that discards what the other person wrote. |
+| A committed design in the item layout (reflow2's own retired on 2026-10-30; this row is for a project that commits one) | **Merged by git's ordinary merge** — one file per node and one per edge, so two people editing different parts of the design touch different files and merge with no conflict and no driver, on GitHub too (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). A conflict is a REAL one: the same node or edge changed differently on both sides, shown as one small file named after the item. Decide what that item should say; take one side of that one file so the layout reads (`git checkout --theirs -- <file>`), import the layout into your store, write what the item should say, and export, during the merge or after it — the exporter rewrites the file with the right `prev_item_hash`. Never resolve it with `--ours`/`--theirs` without reading both sides; that discards what the other person wrote. |
 | `docs/backlog.md`, `docs/requirements-coverage.md` | Usually you each touched different rows — keep both. If it's the **same** row, someone's status is newer than yours; check `git log -p` on that file and ask rather than overwriting. |
 | `docs/trials/*` | Append-only evidence. Keep both; never edit someone else's trial record. |
 | Source and tests | A real conflict here means the claims didn't work — two people edited the same module. Reconcile the *intent*, not just the text, and re-run the full gates before pushing. |

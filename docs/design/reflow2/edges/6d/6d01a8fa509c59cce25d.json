@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0341748b5464d04ff4a1c3c1a18fa517e1701fa0c7dafe62180c58f2f1f34a03",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-two-designs-are-compared-on-one-topic-on-demand",
-  "properties": {
-    "evidence": "In the same answer he went from comparing flo2's OAuth with StoryFlow's to having StoryFlow take that chunk and inherit it; the comparison is the step before the taking."
-  },
-  "to_id": "dec:idea-a-design-takes-a-chunk-of-another-design-and-inherits-it"
-}

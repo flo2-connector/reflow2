@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1b84770e7431de6d8c31fccc8353c384a2c0207b5619f128cea37a867425a1e2",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0832",
-  "properties": {
-    "as_checksum": "sha256:c36a3f4561bbf3b1983b25c21514f27ee335e04a81d0109175ea78c01179f602"
-  },
-  "to_id": "art:reflow2-mcp-launch"
-}

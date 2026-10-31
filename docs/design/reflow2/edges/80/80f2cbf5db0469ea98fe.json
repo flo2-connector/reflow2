@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:be880159c8ce206999e9ad2f7a9d64c66f18e306439b5d823ba5ecb1530ceffe",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-core-search",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-nameless-search-hit-shows-an-excerpt"
-}

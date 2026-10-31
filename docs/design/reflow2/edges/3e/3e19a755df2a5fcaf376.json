@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b6ca7ed13e25db755a0d5e5686ccaf608aa8c32373a8f0809516838c2079bde1",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:062c1682b832952af474200bd28a7e046146cc8a2eefaca17dd42bfcecfc288d"
-  },
-  "to_id": "art:session-debt-test"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:cd558828b28823ed923469fe477aef36bee7fa9f3ddde0d77da74de9e59e048c",
-  "edge_type": "REALIZES",
-  "from_id": "art:tools-capture",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-steps-rule-is-a-node-of-its-own-never-a-premise"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1f9b2a9967c995cab83b56a3be0c354366c33b4b3d43d1910e18601262bd8ca5",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:record-the-build-in-one-call",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:service"
-}

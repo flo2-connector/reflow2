@@ -268,7 +268,7 @@ impl ReflowService {
         // oversight: `skill_lint` caps a description at 1500 chars and this one
         // was already at 1494. Documenting the field there would have cost 380
         // chars of EVERY session's context to announce something that announces
-        // itself — the payload weight ophyd-service filed as friction #8. When
+        // itself — the payload weight the instrument-control trial filed as friction #8. When
         // it matters it is in `next`, which is the part a reader acts on.
         //
         // IS THE SERVER ANSWERING THIS THE CODE ON DISK? `served_by.stale` has

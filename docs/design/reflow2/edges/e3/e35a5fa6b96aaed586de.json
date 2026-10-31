@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:dd5bb6856cb8fe9e41d875d54eda8e3d0a42e6f58275e3b85b19af243e4e19ad",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:626895b1382f68fdc9b4dac1d8cd358574700904aeedc36d200359edeaf21e09"
-  },
-  "to_id": "art:test-an-exposed-server-verifies-bearer-tokens"
-}

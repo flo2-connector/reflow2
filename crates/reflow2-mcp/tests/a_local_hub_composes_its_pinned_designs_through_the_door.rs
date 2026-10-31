@@ -3,7 +3,7 @@
 //! `tests/one_composed_check_runs_over_a_hub_and_several_of_its_designs.rs`
 //! (`req:one-composed-check-runs-over-a-hub-and-several-of-its-designs`).
 //!
-//! hxm_program's hub (fifteen designs, organisation policy blocking MCP) has
+//! A work hub (fifteen designs, organisation policy blocking MCP) has
 //! `reflow2 read|write` and nothing else: no registry, no hub server. Measured
 //! 2026-10-21 on 0.90.0, `reflow2 read compose_and_analyse` with
 //! `tracked_designs` was refused by the schema, and `other_graph_id` is served
@@ -59,7 +59,7 @@ fn a_hub_composes_itself_with_its_pinned_exports_through_the_door_and_writes_not
 
     // Two members, each a store of its own with its committed export.
     let mut members: Vec<(String, std::path::PathBuf, Vec<u8>)> = Vec::new();
-    for name in ["ansible", "tiled"] {
+    for name in ["deploy", "storage"] {
         let store = dir.path().join(format!("{name}/.reflow2/graph"));
         let export = dir.path().join(format!("{name}/design.json"));
         for (tool, args) in [
@@ -95,8 +95,8 @@ fn a_hub_composes_itself_with_its_pinned_exports_through_the_door_and_writes_not
             &hub,
             "write",
             "add_requirement",
-            &json!({"id": "req:pdf-firewall", "name": "PDF firewall fix",
-                    "statement": "The PDF firewall admits the stream."}),
+            &json!({"id": "req:instrument-firewall", "name": "instrument firewall fix",
+                    "statement": "The instrument firewall admits the stream."}),
         ),
         "the hub's requirement",
     );
@@ -212,21 +212,21 @@ fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_check
     let mut ids: Vec<String> = Vec::new();
     for (name, extra) in [
         (
-            "ansible",
-            json!({"node_type": "Artifact", "id": "art:pdf-tasks",
-                   "props": {"name": "pdfstream role tasks",
-                             "location": "roles/pdfstream/tasks/main.yml"}}),
+            "deploy",
+            json!({"node_type": "Artifact", "id": "art:datastream-tasks",
+                   "props": {"name": "datastream role tasks",
+                             "location": "roles/datastream/tasks/main.yml"}}),
         ),
         (
-            "pdf",
+            "lab",
             json!({"node_type": "Artifact", "id": "art:role",
                    "props": {"name": "the role it runs",
-                             "location": "./roles/pdfstream/tasks/main.yml"}}),
+                             "location": "./roles/datastream/tasks/main.yml"}}),
         ),
         (
-            "tiled",
+            "storage",
             json!({"node_type": "Interface", "id": "ifc:stream",
-                   "props": {"name": "Tiled stream", "medium": "REST"}}),
+                   "props": {"name": "Storage stream", "medium": "REST"}}),
         ),
     ] {
         let store = dir.path().join(format!("{name}/.reflow2/graph"));
@@ -260,15 +260,15 @@ fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_check
             "write",
             "create_node",
             &json!({"node_type": "Interface", "id": "ifc:stream",
-                    "props": {"name": "tiled streams", "medium": "REST"}}),
+                    "props": {"name": "storage streams", "medium": "REST"}}),
         ),
         "the hub's interface",
     );
     let repo = |name: &str| match name {
-        "tiled" => "https://github.com/bluesky/bluesky-tiled-plugins",
-        _ => "https://github.com/NSLS2/ansible",
+        "storage" => "https://github.com/example/storage",
+        _ => "https://github.com/Example/deploy",
     };
-    for (i, name) in ["ansible", "pdf", "tiled"].iter().enumerate() {
+    for (i, name) in ["deploy", "lab", "storage"].iter().enumerate() {
         ok(
             &run(
                 &home,
@@ -310,7 +310,7 @@ fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_check
     assert!(
         got["computed_links"].as_array().unwrap().iter().any(|l| {
             l["evidence"] == json!("same_location")
-                && l["from_id"] == json!(format!("{a}:art:pdf-tasks"))
+                && l["from_id"] == json!(format!("{a}:art:datastream-tasks"))
                 && l["to_id"] == json!(format!("{p}:art:role"))
                 && l["drawn"] == json!(true)
         }),
@@ -331,11 +331,11 @@ fn through_the_door_a_hub_is_told_where_its_designs_touch_and_what_was_not_check
         json!(1),
         "{ls}"
     );
-    // The hub's own interface and tiled's: a candidate, not a link.
+    // The hub's own interface and storage's: a candidate, not a link.
     assert!(
         entry("candidates_only", format!("{hub_id}×{t}")).is_null()
             && !entry("linked", format!("{hub_id}×{t}")).is_null(),
-        "the hub pins tiled, so that pair is linked by the pin: {ls}"
+        "the hub pins storage, so that pair is linked by the pin: {ls}"
     );
     assert!(
         got["candidates"]

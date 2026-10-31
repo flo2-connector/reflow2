@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:31fc307426d98f8aec51daf091c83ef89326de29240a5aa66ea59433995fd7bf",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:a-fix-names-the-findings-it-answers-in-the-same-call",
-  "properties": {},
-  "to_id": "fact:root-cause-a-fix-rarely-records-what-it-answered-because-it-is-a-separate-call-2026-10-25"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d4ac75d8b3bfed09cdcf0f4566867af897fbf78d4e1bac2cd9aeb91f2e883329",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
-}

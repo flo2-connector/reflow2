@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7f772aa628e8697b8ead8bb0934b9c294cf96c8cce00d900455df3b9c6932fad",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:b4e9a4f29ac34ea624fd2ab33ffc04645ab8ac3415f99fac9a18380fced2ca9d"
-  },
-  "to_id": "art:a-served-item-is-removed-only-after-a-release-that-announced-it-test"
-}

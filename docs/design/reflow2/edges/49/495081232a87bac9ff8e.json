@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:27f6febda10b4af47bb17be2b1ef8cf510fccd9a0933ddbf9b3a162b0fa4741a",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:the-vocabulary-is-served-in-a-fields-own-terms",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:tools-query"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:9ff7df3a889306703699caca3063187a28a3c42cefcab755d9839c0c547c8be3",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:compare-and-compose-take-the-other-design-by-graph-id",
-  "properties": {},
-  "to_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:29a50feb514409f004eb0db3867d43c13f1860632ca564eaaa83da54e05ab677",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-an-action-owed-by-an-outside-party-is-recorded-with-who-and-by-when",
-  "properties": {
-    "evidence": "The idea describes exactly the record this designer lacked: an act owed by an outside party with who and by when; its absence produced six OWED-by planned checks."
-  },
-  "to_id": "fact:recurrence-a-designer-filed-six-acts-owed-by-outside-trades-as-planned-checks-2026-10-26"
-}

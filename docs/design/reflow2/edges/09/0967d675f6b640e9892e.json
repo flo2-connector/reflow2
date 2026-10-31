@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:97586becd8f49b90c6a0ce93d9b35950d30d1fed7702571774c663dbb65e8305",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0820",
-  "properties": {
-    "as_checksum": "sha256:87ca1374933c9471a8a6ae48502cb2a3fa818c089fe8ead9d03def8122431b07"
-  },
-  "to_id": "art:test-a-refused-write-stores-nothing"
-}

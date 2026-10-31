@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d2a902b42e7ad69c17f62234aee75580a3442fcbef1f1a231794029a1381a3b1",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:f2919682cdd2a13ab557c29ffa881467dafa644d96484bfa7a7164e03abe08ce"
-  },
-  "to_id": "art:claude-capture-intent-skill-mirror"
-}

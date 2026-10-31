@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b1eee2536480e0b4c21945e3d274009eef7c56f1670bfff223145f061ef01579",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0880",
-  "properties": {
-    "as_checksum": "sha256:4d0783bbb657970305906ae38eb8a51badd40b1229881929e81026149478dd80"
-  },
-  "to_id": "art:migrate-backlog"
-}

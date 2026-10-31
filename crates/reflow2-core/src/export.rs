@@ -426,7 +426,7 @@ pub struct ImportReport {
     /// default) removes what a document leaves out; this is where that is
     /// said, so a partial document can never silently wipe data.
     ///
-    /// Measured 2026-10-20 in hxm_program: 454 Artifacts imported as
+    /// Measured 2026-10-20 in a work hub: 454 Artifacts imported as
     /// `{name, location}` lost `checksum`, `checksum_basis` and `status`, and
     /// the reply said `nodes_written: 454` and nothing else
     /// (`req:an-import-says-what-it-removed-and-merges-only-when-asked`).

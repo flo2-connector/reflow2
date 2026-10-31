@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d2de0ce521b0801e556930a2ce2e588ce14c90db9b222e0ddc8d4adf52a8b2d6",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:6868cb809dd11d9a5b202671115abbff89d229c29ae86eeef6d1673dbd7fdf50"
-  },
-  "to_id": "art:a-session-names-who-it-writes-for-test"
-}

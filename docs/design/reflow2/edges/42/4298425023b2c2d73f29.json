@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:7a03cca822d9aac5f8cf218154f6005692a7118d9ad85dfb33dd0555cdcc51ca",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-family-of-tests-spends-alpha-through-the-budget-rollup",
-  "properties": {},
-  "to_id": "req:alpha-is-spent-like-a-budget-across-a-family-of-tests"
-}

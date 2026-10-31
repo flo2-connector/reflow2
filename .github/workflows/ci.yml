@@ -13,6 +13,23 @@
 #   (exit non-zero on regression). erosion_trial is deliberately absent: it
 #   exits non-zero BY DESIGN until the ledger-judgement decision changes.
 #
+# - `private-terms` keeps the public repository from naming a private work
+#   program: every tracked file, the pull request's title and body, and its
+#   commit messages, against a pattern held in the PRIVATE_TERMS repository
+#   secret. It prints where, never what (tools/check_private_terms.py).
+#
+# reflow2's own design is hosted on flo2.io and private. The copy that was
+# committed at docs/design/reflow2/ retired on 2026-10-30, and with it every
+# gate that read it: the design coherence gate (reflow2_check.py --export),
+# self-host-uses-documents, intent authority, consumer reach, the verification
+# ratchet, the served-surface-names-no-real-person check, the copy's own test
+# and the site's counts. Each tool's hermetic suite still runs here, because the
+# tools are product. The design-against-code check comes back as a nightly run on
+# flo2.io's box against the hosted design
+# (req:a-nightly-check-on-the-box-runs-reflow2s-client-against-the-hosted-design-and-the-copy-retires,
+# accepted, not built yet). Until it is built, nothing checks the code against
+# the design.
+#
 # ubuntu-22.04 to match release.yml, not -latest.
 
 name: ci
@@ -26,6 +43,32 @@ permissions:
   contents: read
 
 jobs:
+  private-terms:
+    name: no private names (files, PR text, commit messages)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Every commit of the pull request must be here for its messages to be
+          # read, so the whole history (the job does nothing else).
+          fetch-depth: 0
+      - name: Private-terms guard suite (hermetic — made-up terms; it prints where, never what)
+        run: python3 tools/test_check_private_terms.py
+      - name: Nothing tracked, no PR title or body, and no commit message names a private work program
+        # 🛑 THE TITLE, THE BODY AND THE RANGE REACH THE SCRIPT THROUGH `env`,
+        # NEVER `${{ }}` INSIDE `run`: a pull request's title is written by
+        # whoever opens it, and an expression in a run line is pasted into the
+        # shell before it runs. The pattern comes from the repository secret
+        # PRIVATE_TERMS; a fork's pull request has none, and the check then
+        # passes with a notice (the push to main runs with it).
+        env:
+          PRIVATE_TERMS: ${{ secrets.PRIVATE_TERMS }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          COMMIT_RANGE: ${{ github.event_name == 'pull_request' && format('{0}..{1}', github.event.pull_request.base.sha, github.event.pull_request.head.sha) || format('{0}..{1}', github.event.before, github.sha) }}
+        run: python3 tools/check_private_terms.py --pr-title-env PR_TITLE --pr-body-env PR_BODY --commits-env COMMIT_RANGE
+
   core:
     name: core gates (no RocksDB)
     runs-on: ubuntu-22.04
@@ -115,8 +158,6 @@ jobs:
         run: python3 tools/render_skills_and_tools.py --check
       - name: Doc-version checker suite (hermetic)
         run: python3 tools/test_check_doc_versions.py
-      - name: The site's counts of reflow2's own design (hermetic - the manifest is counted apart, both design layouts read alike, a tag with no design is named)
-        run: python3 tools/test_site_counts.py
       - name: Release workflow shape (hermetic — arm64 built natively, each image smoked before any push, both platforms in one index, a dry run writes nothing)
         # release.yml runs on a tag, so a tag used to be the first thing to test
         # it. This reads its jobs and drives the scripts they call
@@ -193,19 +234,10 @@ jobs:
         run: cargo clippy -p reflow2-mcp --all-targets -- -D warnings
       - name: Build the served binary
         run: cargo build -p reflow2-mcp
-      - name: Design coherence gate (reflow2 on itself — self-model matches the build)
-        # reflow2's own consumer CI gate (BL-66), run on reflow2's own committed
-        # self-model: re-hashes registered artifacts, reconciles, detect_gaps.
-        # Fails the build on unaccepted drift (a code change that didn't reconcile
-        # the design) or a serious open gap. MUST live in this job, not core: it
-        # spawns the reflow2-mcp binary (built just above), which the no-RocksDB
-        # core job does not build — placed there it FileNotFounded on every push,
-        # so the gate silently never ran in CI (found cutting v0.10.0).
-        run: python3 tools/reflow2_check.py --export docs/design/reflow2/
+      - name: PyYAML for the generated design (the reply gates below seed from it)
+        run: python3 -m pip install --quiet pyyaml
       - name: Coherence-gate suite (hermetic — the gate's own regression net, BL-88)
         run: python3 tools/test_reflow2_check.py
-      - name: The copy of reflow2's hosted design, and its one-PR guard (real binary — a hold never reaches the copy, another branch's hold refuses it)
-        run: python3 tools/test_reflow2_design_copy.py --bin target/debug/reflow2-mcp
       - name: The server and the CI gate give one answer about every artifact location (real binary)
         run: python3 tools/test_one_meaning_for_an_artifact_location.py
       - name: A git diff is read as a design change, and an unmapped file is reported loudly (hermetic)
@@ -232,40 +264,10 @@ jobs:
         run: python3 tools/vocabulary_reach.py --check
       - name: Reachability instrument's own regression net
         run: python3 tools/test_vocabulary_reach.py
-      - name: Self-host still exercises DOCUMENTS (BL-199 — the canary for BL-176)
-        # Guards the RECORD, not the code. reflow2 attached 32 of its 35 document
-        # artifacts with REALIZES, against its own served skill, so it never did
-        # the thing that fires BL-176 and could not find that bug on itself for
-        # eleven releases. This fails if the design record drifts back to
-        # REALIZES-only and silently loses the ability to catch that regression.
-        run: python3 tools/self_host_uses_documents.py docs/design/reflow2/
-      - name: Design intent moves only on the owner's word
-        # The one ENFORCED rule this project has that actually enforces. Anthony
-        # marked it gate-blocking on 2026-08-09 ("stop the build") and nothing
-        # checked it for twelve days, because an honest check would have gone red
-        # against 57% of the settled design on the day it landed. His answer was
-        # to grandfather: guard what is settled from here, do not reopen what
-        # came before. The boundary lives in the graph on
-        # dec:the-authority-check-guards-forward-not-backward, not in the script,
-        # so silencing a finding means editing the design where a review sees it.
-        run: python3 tools/check_intent_authority.py docs/design/reflow2/
       - name: Intent-authority suite (hermetic — it must never pass quietly)
         run: python3 tools/test_check_intent_authority.py
-      - name: A capability that claims reach beyond this repo is realized by something a consumer gets
-        # The wall check was built here, generalised in code to "any project", and reached
-        # a consumer through nothing — this checkout has the script, so it could not feel
-        # the absence. The gate reads the export; the class is "realized only by tools/".
-        run: python3 tools/check_consumer_reach.py docs/design/reflow2/
       - name: Consumer-reach gate suite
         run: python3 tools/test_check_consumer_reach.py
-      - name: A capability does not NEWLY claim a check nothing can re-run
-        # Measured 2026-09-22: 241 of 291 capabilities read "verified" and 21 of
-        # those had a check anything IMPLEMENTS. The tests were real; the record
-        # of them was not. The 220 already in that state are grandfathered by id
-        # on dec:a-capability-may-not-newly-reach-verified-on-a-claim-alone and
-        # the set may only shrink — a SET and not a count, because a count stays
-        # still while one claim is earned and another is introduced.
-        run: python3 tools/check_verification_ratchet.py docs/design/reflow2/
       - name: Verification-ratchet suite (hermetic — it must never pass quietly)
         run: python3 tools/test_check_verification_ratchet.py
       - name: Command surface agrees with itself
@@ -277,15 +279,6 @@ jobs:
         # table was written to fix. Verified to FAIL on all three drift shapes
         # before being wired here, not merely to pass on a clean tree.
         run: python3 tools/check_command_surface.py
-      - name: Nothing reflow2 serves names a real person from its own design
-        # Anthony asked 2026-09-20 whether he was turning up in other people's
-        # reflow2 projects by default. The shipped kit contains his id zero
-        # times and the server never invents a Contributor — and the binary
-        # carried `who:ajs` in four served places anyway, the worst being the
-        # only worked example on add_contributor's `id`, which is what an agent
-        # reads at the moment it invents one. The gate also caught a second
-        # person's first name in two schema files and two skill bodies.
-        run: python3 tools/the_served_surface_names_no_real_person.py
       - name: The item layout merges under git's ordinary merge (real binary, real branches, no driver)
         # req:the-saved-design-merges-correctly-under-gits-ordinary-merge: two PRs'
         # records and fragments merge in either order, the merge equals a
@@ -376,10 +369,13 @@ jobs:
         # bounded and nine exceeded the 30,000-char default, because each of the
         # three had been fixed by hand after somebody personally met it.
         #
-        # ⚠️ IT SEEDS A REAL DESIGN FROM THE COMMITTED EXPORT AND FAILS IF
-        # NOTHING OVERFLOWED. On an empty graph every reply is small and the
-        # gate would pass having checked nothing — "no tool overflowed" and "I
-        # could not make any tool overflow" must not share an exit code.
+        # ⚠️ IT SEEDS A DESIGN OF REALISTIC SIZE AND FAILS IF NOTHING
+        # OVERFLOWED. On an empty graph every reply is small and the gate would
+        # pass having checked nothing — "no tool overflowed" and "I could not
+        # make any tool overflow" must not share an exit code. Since 2026-10-30
+        # the design is GENERATED (tools/generated_design.py: reflow2's own
+        # design's size and mix, every type and edge type the schema declares),
+        # because the committed copy it used to read retired.
         run: python3 tools/replies_are_bounded.py
       - name: A reply carries its payload once, on every tool (the class, not one tool)
         # The invariant was pinned in tests/reply_is_sent_once.rs on ONE tool
@@ -394,8 +390,8 @@ jobs:
         # was inert on exactly those six, and OpenCode's empty-block fallback
         # never fired on the tools carrying the instructions and the skills.
         #
-        # ⚠️ IT SEEDS A REAL DESIGN FROM THE COMMITTED EXPORT AND FAILS IF IT
-        # MEASURED NOTHING, for the same reason as the gate above.
+        # ⚠️ IT SEEDS THE SAME GENERATED DESIGN AND FAILS IF IT MEASURED
+        # NOTHING, for the same reason as the gate above.
         run: python3 tools/a_reply_is_sent_once.py
       - name: Seat identity survives every transport (one client, one seat)
         run: python3 tools/stateless_seat_probe.py

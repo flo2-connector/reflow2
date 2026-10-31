@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9da757d024ab28c8db3300369fc27b94e623924594670fb3041968707bfa6738",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-silence-is-reported-not-inferred",
-  "properties": {
-    "evidence": "Sweeps name their scope and scoped answers say when they did not narrow. Evidence: cap:a-scoped-answer-says-whether-it-narrowed is verified, ver:a-scoped-answer-actually-narrows passing, realized by art:scope. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:a-scoped-answer-says-whether-it-narrowed"
-}

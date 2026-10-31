@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c3d9bde4cffb047fc295de1d1fd7c77ec19c7cf38c359ac4d5c4c1653a4dc082",
-  "edge_type": "REALIZES",
-  "from_id": "art:service-view",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-search-names-the-pinned-designs-it-did-not-search"
-}

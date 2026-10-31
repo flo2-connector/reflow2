@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5c77a57714ef8780080e616883456ff013e04ea9a554e2bb39d4693323f26285",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:5cf91c278506bde2f4a865edebf16f8503e9b991e934f941192c50229961da89"
-  },
-  "to_id": "art:test-a-quantity-says-how-it-was-obtained"
-}

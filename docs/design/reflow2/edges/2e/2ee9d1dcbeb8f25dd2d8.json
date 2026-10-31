@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:713740a074bd5519ae638c3c03f8799d1a44c9c7ffed7ca55d6c26486bdec359",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:938bc5e47ab159e49a65a6b438c20d2ca5feafc362821d829f335108b86d6005"
-  },
-  "to_id": "art:test-the-first-read-cue-reaches-the-agent-at-connect"
-}

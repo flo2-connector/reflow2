@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:49c574701336bb57a90ed6f102467154de9d6dfdf22ce4d721fa344b3e1e461f",
-  "edge_type": "ANTICIPATES",
-  "from_id": "cap:seam-incompatibility",
-  "properties": {
-    "evidence": "That capability already says when two linked designs disagree at a boundary; this idea asks the same of designs that never declared the boundary, and on one topic at a time."
-  },
-  "to_id": "dec:idea-two-designs-are-compared-on-one-topic-on-demand"
-}

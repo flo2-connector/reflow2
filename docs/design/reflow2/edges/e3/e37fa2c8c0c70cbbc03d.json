@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7cc3fce1a29c91370fbea3f64c5398e62f38b274ab6a5f361d1d7d6b52bdd999",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:idea-describe-schema-brief-form-inlines-nested-shapes-and-both-forms-share-one-key-path",
-  "properties": {
-    "evidence": "It answers what the measurement left real: hand-resolved $refs and two key paths."
-  },
-  "to_id": "fact:observation-describe-schema-brief-form-does-carry-defs-limitation-24-did-not-reproduce-2026-10-19"
-}

@@ -36,8 +36,9 @@
 #
 # THE SITE REPUBLISHES FROM MAIN, AFTER THE RELEASE. The last job, `site`,
 # dispatches .github/workflows/pages.yml on main once `publish` has made the
-# release live, so the home page's counts (tools/site_counts.py, read from the
-# design committed at each release tag) take in the release just cut. It is a
+# release live, so the site republishes from main as of the release just cut
+# (until 2026-10-30 that also recounted reflow2's own design for the home page;
+# the counts retired with the committed design copy). It is a
 # dispatch on main and not a tag trigger because the `github-pages` environment
 # admits main alone, on purpose: v0.84.0's tag run was refused
 # (pages run 38555276998). It is a job of its own, after `publish`, holding only
@@ -480,8 +481,9 @@ jobs:
     name: republish the site
     # ⭐ AFTER `publish`, IN A JOB OF ITS OWN, AND NOTHING WAITS ON IT. When this
     # starts the release is live and its tag exists, so the dispatched pages run
-    # (fetch-depth 0) counts it. Main's own pages run at the cut's merge started
-    # before the tag was pushed and may not have. If this job fails the run goes
+    # publishes the site as main stands after it. (Until 2026-10-30 that run also
+    # counted the release's design, which main's own run at the merge could miss.)
+    # If this job fails the run goes
     # red here, beside a release that is already published and untouched.
     needs: publish
     if: github.event_name == 'push' || inputs.dry_run == false

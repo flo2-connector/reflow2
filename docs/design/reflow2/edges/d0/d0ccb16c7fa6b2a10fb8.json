@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3dce9b7a09de19e0b0d2573e71626d90ee0b75e7e403c6213daefcd247d75567",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0850",
-  "properties": {
-    "as_checksum": "sha256:848ca1aa1407d3ff7450b843033646dddfede1084add0a74512c06e39c74c11b"
-  },
-  "to_id": "art:the-argument-check-agrees-with-the-deserialiser-test"
-}

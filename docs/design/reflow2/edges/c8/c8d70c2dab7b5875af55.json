@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c27ef27ad2fb6b8906fbc3bed5f5fa2ec6d7c93369c50ea01308fa42d62a19b6",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0840",
-  "properties": {
-    "as_checksum": "sha256:54215cd682f9718cfb5ffc833215dd66711f6052fa4b47ef0c176978e9b87a44"
-  },
-  "to_id": "art:flowdown"
-}

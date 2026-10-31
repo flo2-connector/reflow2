@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b88a2d1ce035312604dc6598b2fb19e4d8b2b5fe5b2e8374003c2d3668a66389",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0833",
-  "properties": {
-    "as_checksum": "sha256:aebba1838f05f94814436f109dbccc9d562d1aaeff665054233703e797a412af"
-  },
-  "to_id": "art:test-call-door"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:184c5de004c18791f413d913d169b02ed971a5b2f8ca925796261a1ab91e67ec",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-detect-vocabulary-that-nothing-reaches",
-  "properties": {
-    "evidence": "vocabulary_coverage reports the vocabulary a design never used, grouped by domain, parkable. Evidence: cap:a-design-says-which-vocabulary-it-has-never-used is verified, ver:vocabulary-coverage-keeps-the-four-trial-decisions passing, realized by art:schema. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:a-design-says-which-vocabulary-it-has-never-used"
-}

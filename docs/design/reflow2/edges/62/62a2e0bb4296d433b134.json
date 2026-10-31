@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8370d1ab3e743e7c4cb2fed2472da2956bfdb52589bf016d4a9f3f9520009580",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:35bd149e47e2a2669241c63df99a4c7b31d1120dd1bb857779376464f39b9bcc"
-  },
-  "to_id": "art:test-check-kit-manifest"
-}

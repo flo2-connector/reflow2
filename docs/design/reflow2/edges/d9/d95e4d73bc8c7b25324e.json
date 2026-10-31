@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ab3b890bdebfb4b65dd1b2828dddb06a4e547fec480d4edc1d3f5859336866a9",
-  "edge_type": "SCHEDULED_FOR",
-  "from_id": "req:designs-are-shown-where-they-already-touch-before-anyone-declares-it",
-  "properties": {
-    "modality": "expected"
-  },
-  "to_id": "epoch:planned-p7-a-hub-on-one-machine"
-}

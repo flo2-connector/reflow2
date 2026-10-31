@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:642e155697622fb41c7e64664a8852a0ba26d54b892d62f0bd38fccaf22a72b0",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-what-should-the-reply-shape-be-for-a-client-nobody-has-measured",
-  "properties": {
-    "evidence": "Built as option (a): the fallback flipped from signpost to duplicate (chg:an-unmeasured-client-gets-the-payload-not-a-signpost, art:content-policy). Evidence: cap:a-reply-takes-the-shape-its-client-can-read is realized, ver:a-reply-is-sent-once-on-every-tool passing, realized by art:a-reply-is-sent-once-gate. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:a-reply-takes-the-shape-its-client-can-read"
-}

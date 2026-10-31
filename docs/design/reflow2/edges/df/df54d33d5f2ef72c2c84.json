@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:01d3ef869227fb839edbcfe1385daa95740fae654319975d936e01ae3f4f8ce3",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:313f196aec4f1b731f7c1d0c8729058938b95f10bab905098b37494e8dd38353"
-  },
-  "to_id": "art:core-test-program-in-memory"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:b089f1afad062a549e0622abd95844acf268d3f0e7dc27705a2c9ad51077708a",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:fact:the-target-dir-reached-263-gib-of-this-projects-own-test-binaries:r2"
-}

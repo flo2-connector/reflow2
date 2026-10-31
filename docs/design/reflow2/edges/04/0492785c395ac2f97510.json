@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6337e2937a48b3da3e25f3ca88fa57b0956ebef5902582baf6189d5c00c5576a",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:efc39ae90394766bfa4003d145d6c4091f3ffb1bf2c63750ef94c9fa9d8f906f"
-  },
-  "to_id": "art:test-a-served-description-names-only-arguments-its-tool-takes"
-}

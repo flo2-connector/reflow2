@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a674f77fe1ca037832279a994a17b81ec254fa90c7f51499a289bad58904a1c4",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-a-team-runs-one-reflow2-on-its-own-cloud-server-and-nobody-installs-it",
-  "properties": {
-    "evidence": "Alex's team runs one reflow2 on its own server: remote sessions are served on purpose, and an exposed server verifies bearer tokens to the OAuth 2.1 floor (art:github-issue-616-oauth-resource-server). Evidence: cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled is verified, ver:an-exposed-server-verifies-bearer-tokens-to-the-oauth-2-1-floor passing, realized by art:bearer. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:an-exposed-server-establishes-who-is-calling-before-intent-can-be-settled"
-}

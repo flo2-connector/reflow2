@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:5b80826165291e09c26bceed28126db16d7a5522c43b79caae16b648fc3a694a",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-dispute-kept-open-is-read-from-the-claim-and-from-the-question",
-  "properties": {},
-  "to_id": "req:the-read-back-under-a-claim-shows-a-dispute-kept-open-and-the-owners-chosen-reading"
-}

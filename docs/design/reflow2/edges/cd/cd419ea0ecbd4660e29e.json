@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:abd6e10f78764d0a6525cec2df7e9cce85eea797fd05e3fc0305510db492d749",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-node-is-named-by-its-id-and-the-type-is-optional",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:delete-node-takes-the-id-prefix-tests"
-}

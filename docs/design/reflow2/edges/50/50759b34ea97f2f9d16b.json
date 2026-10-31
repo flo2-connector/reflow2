@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b3c3ca2a07cf252da63aead088a820bee2441fdf2cf619eaf22bc30bb1f20c97",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:a-line-of-reasoning-reads-back",
-  "properties": {
-    "note": "The read-back lists disputes kept open by a contested Decision apart from points still contested."
-  },
-  "to_id": "dec:contested-by-design-is-a-decision-status"
-}

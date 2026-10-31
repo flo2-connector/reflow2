@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:27b38030ddbae45edd3638877cb2545d09dc30a08c5be2ff58f2fab9241ee507",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:the-remote-client-measures-the-folders-own-files",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:proxy"
-}

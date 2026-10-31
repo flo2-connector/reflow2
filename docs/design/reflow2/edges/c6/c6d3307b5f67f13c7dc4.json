@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:58eb63f92a0362157099449d1d1cf998f297c4757cc976201f414446ce4b3e28",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-behind-a-trusted-gateway-each-caller-has-its-own-seat",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:behind-a-trusted-gateway-each-caller-has-its-own-seat"
-}

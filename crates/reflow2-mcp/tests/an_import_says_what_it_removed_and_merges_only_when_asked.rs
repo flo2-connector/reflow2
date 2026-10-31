@@ -4,7 +4,7 @@
 //! governed by `dec:import-merges-or-demands-whole-nodes`, accepted
 //! 2026-10-21: whole nodes by default, merge only when asked).
 //!
-//! WHAT FAILED. hxm_program kept a member design in step by importing 454
+//! WHAT FAILED. A work hub kept a member design in step by importing 454
 //! Artifacts as `{name, location}`. The import replaces a node whole, so
 //! `checksum`, `checksum_basis` and `status` were dropped on all 454, and the
 //! reply said `nodes_written: 454` and nothing else. Reproduced on 0.89.0:

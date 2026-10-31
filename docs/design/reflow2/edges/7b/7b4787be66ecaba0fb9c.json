@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:bb1110e27a9aa6a1b9b53680eb0f85d6af77c3c37237c370580729878ad0323b",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source",
-  "properties": {},
-  "to_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed"
-}

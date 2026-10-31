@@ -108,14 +108,8 @@ fn an_automated_agent_is_never_counted_as_someone_to_speak_to() {
 #[test]
 fn a_contributor_with_no_kind_is_treated_as_a_person() {
     let mut g = graph();
-    g.add_contributor(
-        "who:old",
-        "Old Record",
-        None,
-        None,
-        Some("Beamline scientist."),
-    )
-    .unwrap();
+    g.add_contributor("who:old", "Old Record", None, None, Some("Lab scientist."))
+        .unwrap();
 
     let lens = g.reader_lens().unwrap();
 

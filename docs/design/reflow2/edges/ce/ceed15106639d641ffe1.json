@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:94abe95f9578b88bc5235e316f32cf223a7c5d380a4baa5300ca47792658b83d",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:file-handles",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:file-handles"
-}

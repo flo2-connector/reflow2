@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4c3d6e004fa6ac2b28f85601dc9d9fafbb8e3e6d8f48bd241e412143d78b7991",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:how-an-argument-reads-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:how-an-argument-reads-tests"
-}

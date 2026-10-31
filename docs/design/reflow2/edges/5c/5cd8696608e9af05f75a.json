@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b916fb0ac7cb8b966e73cb24adb5fa556c6ec71de39606a1c0ceb5452acda14c",
-  "edge_type": "REALIZES",
-  "from_id": "art:core-lib",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "sys:coherence-loop"
-}

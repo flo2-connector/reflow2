@@ -513,8 +513,8 @@ fn ranking_is_stable_across_runs() {
 fn a_capability_nothing_asked_for_is_reported() {
     // 3dtictactoe's probe, verbatim in shape: the code detects draws but no
     // requirement in description.txt ever asks for it. Four gaps came back and
-    // none was about the orphan. Ophyd ran the same probe on a service graph
-    // (cap:qserver-auth, no SATISFIES) and got 13 unsatisfied_requirement gaps
+    // none was about the orphan. The instrument-control trial ran the same probe on a service graph
+    // (cap:queue-auth, no SATISFIES) and got 13 unsatisfied_requirement gaps
     // and silence about the dangling capability.
     let mut g = DesignGraph::open_in_memory().unwrap();
     g.add_requirement("req:play", "Play a game", "two players take turns")
@@ -538,7 +538,7 @@ fn a_capability_nothing_asked_for_is_reported() {
 
 #[test]
 fn an_inferred_orphan_outranks_an_unsatisfied_requirement() {
-    // Ophyd asked for this to outrank unsatisfied_requirement "on a brownfield
+    // The instrument-control trial asked for this to outrank unsatisfied_requirement "on a brownfield
     // graph". A capability read out of running code that no requirement
     // justifies is a feature in production nobody asked for; that is the
     // highest-value thing an adoption pass surfaces, so it leads the list.

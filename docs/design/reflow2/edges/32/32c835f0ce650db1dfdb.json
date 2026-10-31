@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:32a1534a663367dc39c38b45501a980f9ab27e16293db64c11dc4d987baf91e9",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:38b9a0cfb0377cadb6cabd44db1f1ab5d0b97d560ecce5acea370c18bb15bb99"
-  },
-  "to_id": "art:test-release-workflow"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6563c65281ec728058bb578e83a1fbd3a56e76837027b87dc024a3af34110fb2",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:idea-how-does-the-site-show-what-reflow2-is-for-one-design-by-itself",
-  "properties": {
-    "evidence": "The finding is that the site never shows one design by itself; every option here answers that gap."
-  },
-  "to_id": "fact:the-home-pages-headline-describes-a-hub-and-project-brain-names-both-2026-10-12"
-}

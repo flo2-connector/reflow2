@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:588b22988bcce46d494020449960c78a24078070f7f1f22565a2bed937bea4ec",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-two-designs-are-compared-on-one-topic-on-demand",
-  "properties": {
-    "evidence": "Anthony kept option (b) on 2026-10-10; the requirement is that option as intent."
-  },
-  "to_id": "req:two-or-more-designs-are-compared-on-one-topic-on-demand"
-}

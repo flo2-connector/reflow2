@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:47488f36ccaf0e4ea822f057039e7f988bd5cbaff562dece382a3ce6a924dcce",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:a-limit-a-measurement-breaks-reads-broken-and-reaches-the-loop",
-  "properties": {},
-  "to_id": "dec:every-recorded-breach-still-standing-is-one-open-breach"
-}

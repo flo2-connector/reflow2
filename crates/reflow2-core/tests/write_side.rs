@@ -517,7 +517,7 @@ fn many_files_under_a_verified_capability_raise_no_gaps() {
 // The graph has to be able to say two things a greenfield design never needs:
 // *this capability already ships*, and *I read this back out of the code rather
 // than being told it*. Both were unsayable, so an adoption pass produced a graph
-// that asserted a production system was entirely unbuilt (ophyd, 15 capabilities)
+// that asserted a production system was entirely unbuilt (the instrument-control trial, 15 capabilities)
 // and smuggled `[EXTERNAL — …]` into statement text because provenance had
 // nowhere to go.
 

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8a697aabc1edf24ddf16f2de25db1323141a8d481b86d8bc54c092a2925ec73e",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "chg:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-release-2026-10-26",
-  "properties": {
-    "note": "Builds the decision's option 1: announced_in on the entry, and the check reads the last release (from CHANGELOG.md's newest dated section, since CI's checkout has no tags)."
-  },
-  "to_id": "dec:a-deprecation-says-where-it-was-announced-and-the-check-reads-the-last-tag"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b583131fcf56ff7f9514502c0cd564f46048c38aa9ec5786bc76fdc82ce3c382",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-proof-states-what-it-really-does-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-proof-states-what-it-really-does-tests"
-}

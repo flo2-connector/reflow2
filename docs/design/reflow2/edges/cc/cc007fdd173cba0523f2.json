@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:df0922c2817c4d6580d5b40a87c1b53f8abf64688a1145fa7559b6c37904c6fb",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:f90f9247f55d800e0fd8f04464e57ea3b20e3af39e92b09b0fa1dc969107dd25"
-  },
-  "to_id": "art:claude-brainstorm-skill-mirror"
-}

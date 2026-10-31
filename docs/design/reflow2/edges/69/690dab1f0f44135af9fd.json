@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8d37dcbe2bda4be7247fd4549c6801cc8a760e7f95f2a4b1f03102451aea5b20",
-  "edge_type": "CONSTRAINS",
-  "from_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
-  "properties": {
-    "note": "B's unsupported-premise gap fires only inside a drawn inference chain, aggregated."
-  },
-  "to_id": "req:a-design-can-be-a-proof"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0d04112c8ce26442fd1be3d638cfdba8eb156ef894aca2c45a596104ce9c6a8a",
-  "edge_type": "REALIZES",
-  "from_id": "art:node-edges",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:reasoning-is-attached-to-the-structure-it-justifies"
-}

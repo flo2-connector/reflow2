@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c340c01be63769a0f6bba3b16c45620e3fc1752e30f03039617a3542de08f572",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-cues-are-a-message-on-the-interface-between-reflow2-and-the-agent",
-  "properties": {
-    "evidence": "Option (d) kept by Anthony 2026-10-29, to do now with (c)."
-  },
-  "to_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it"
-}

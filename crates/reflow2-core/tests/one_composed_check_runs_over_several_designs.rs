@@ -97,10 +97,10 @@ fn with<'a>(designs: &[(&'a str, &'a reflow2_core::GraphExport)]) -> Vec<Compose
 #[test]
 fn with_one_other_design_the_findings_are_the_two_design_compositions() {
     let ours = design("hub", "hub");
-    let theirs = design("ansible", "ansible").export_graph().unwrap();
-    let pairwise = ours.compose_and_analyse(&theirs, "ansible").unwrap();
-    let many = ours.compose_many(&with(&[("ansible", &theirs)])).unwrap();
-    assert_attributed(&many, &["ansible"]);
+    let theirs = design("deploy", "deploy").export_graph().unwrap();
+    let pairwise = ours.compose_and_analyse(&theirs, "deploy").unwrap();
+    let many = ours.compose_many(&with(&[("deploy", &theirs)])).unwrap();
+    assert_attributed(&many, &["deploy"]);
     let side = |f: &AttributedFinding| match f.designs.as_slice() {
         [] => Side::Ours,
         [d] if d == "hub" => Side::Ours,
@@ -132,14 +132,14 @@ fn with_one_other_design_the_findings_are_the_two_design_compositions() {
 #[test]
 fn with_several_designs_each_finding_is_filed_under_the_designs_it_names() {
     let hub = design("hub", "hub");
-    let a = design("ansible", "ansible").export_graph().unwrap();
-    let b = design("tiled", "tiled").export_graph().unwrap();
+    let a = design("deploy", "deploy").export_graph().unwrap();
+    let b = design("storage", "storage").export_graph().unwrap();
     let r = hub
-        .compose_many(&with(&[("ansible", &a), ("tiled", &b)]))
+        .compose_many(&with(&[("deploy", &a), ("storage", &b)]))
         .unwrap();
-    assert_attributed(&r, &["ansible", "tiled"]);
+    assert_attributed(&r, &["deploy", "storage"]);
     // Every design's own finding is there.
-    for d in ["hub", "ansible", "tiled"] {
+    for d in ["hub", "deploy", "storage"] {
         assert!(
             r.findings.iter().any(|f| f.designs == [d]),
             "{d} has a finding of its own: {r:?}"
@@ -153,7 +153,7 @@ fn with_several_designs_each_finding_is_filed_under_the_designs_it_names() {
         .collect();
     let types: BTreeSet<&str> = ids
         .iter()
-        .filter_map(|i| i.strip_prefix("tiled:"))
+        .filter_map(|i| i.strip_prefix("storage:"))
         .filter_map(|i| i.split(':').next())
         .collect();
     assert!(
@@ -171,14 +171,16 @@ fn a_seam_between_two_other_designs_is_filed_under_that_pair() {
     let mut hub = DesignGraph::open_in_memory_as("hub").unwrap();
     hub.add_requirement("req:fix", "fix", "the fix lands")
         .unwrap();
-    let a = design("ansible", "ansible").export_graph().unwrap();
-    let b = design("tiled", "tiled").export_graph().unwrap();
+    let a = design("deploy", "deploy").export_graph().unwrap();
+    let b = design("storage", "storage").export_graph().unwrap();
     let r = hub
-        .compose_many(&with(&[("ansible", &a), ("tiled", &b)]))
+        .compose_many(&with(&[("deploy", &a), ("storage", &b)]))
         .unwrap();
-    assert_attributed(&r, &["ansible", "tiled"]);
+    assert_attributed(&r, &["deploy", "storage"]);
     assert!(
-        r.findings.iter().any(|f| f.designs == ["ansible", "tiled"]),
+        r.findings
+            .iter()
+            .any(|f| f.designs == ["deploy", "storage"]),
         "a finding naming both members and not the design calling: {r:?}"
     );
 }
@@ -200,9 +202,9 @@ fn with_no_other_design_every_finding_is_this_designs_or_the_wholes() {
 fn composing_several_writes_nothing() {
     let hub = design("hub", "hub");
     let before = hub.export_graph().unwrap();
-    let a = design("ansible", "ansible").export_graph().unwrap();
-    let b = design("tiled", "tiled").export_graph().unwrap();
-    hub.compose_many(&with(&[("ansible", &a), ("tiled", &b)]))
+    let a = design("deploy", "deploy").export_graph().unwrap();
+    let b = design("storage", "storage").export_graph().unwrap();
+    hub.compose_many(&with(&[("deploy", &a), ("storage", &b)]))
         .unwrap();
     let after = hub.export_graph().unwrap();
     assert_eq!(before.content_hash, after.content_hash);
@@ -212,8 +214,8 @@ fn composing_several_writes_nothing() {
 #[test]
 fn a_name_that_would_collide_is_refused() {
     let hub = design("hub", "hub");
-    let a = design("ansible", "ansible").export_graph().unwrap();
-    for names in [vec![" "], vec!["hub"], vec!["ansible", "ansible"]] {
+    let a = design("deploy", "deploy").export_graph().unwrap();
+    for names in [vec![" "], vec!["hub"], vec!["deploy", "deploy"]] {
         let pairs: Vec<(&str, &reflow2_core::GraphExport)> =
             names.iter().map(|d| (*d, &a)).collect();
         assert!(hub.compose_many(&with(&pairs)).is_err(), "{names:?}");

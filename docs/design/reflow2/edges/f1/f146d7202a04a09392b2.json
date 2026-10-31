@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:7e5fb75666a5693c5b732b098fd74b0f5afc152bec7da04947cda61d2d453a02",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-step-that-only-restates-its-gap-reads-circular",
-  "properties": {},
-  "to_id": "req:two-statements-can-be-recorded-as-proven-equivalent"
-}

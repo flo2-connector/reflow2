@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:61950c99d2746062f3fdca54d2510224a4cc1b520cf92dbc1b4f4bfcc26d7343",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "rule:before-a-structural-addition-ask-what-could-be-taken-away",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:rule:before-a-structural-addition-ask-what-could-be-taken-away"
-}

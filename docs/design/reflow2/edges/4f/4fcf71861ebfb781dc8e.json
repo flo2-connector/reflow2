@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5c8b8f95d3829e6b5969c935fb3e4cce3d6213912b3cf35bcdaa36ebd64d0781",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0820",
-  "properties": {
-    "as_checksum": "sha256:8e5af9fd122fc56d39472920dc28410b6a157ed889964b4c01eed80fb8cd52aa"
-  },
-  "to_id": "art:seat-liveness-shared-test"
-}

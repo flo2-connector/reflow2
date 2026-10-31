@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:eeeb5abedd4818cf115179bd12856c395b78b65ffd910c92e68c79dbd9f10425",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-line-of-reasoning-reads-back",
-  "properties": {
-    "coverage": "partial"
-  },
-  "to_id": "req:a-design-holds-a-line-of-reasoning"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:dbab5b4e1c3b48f4bf78a3bf83cb623929da313862971611c97e87da9896e412",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-an-ablation-reports-which-premises-a-conclusion-actually-needs",
-  "properties": {
-    "evidence": "The single-premise ablation table is the first rung of the minimal-cut-sets idea; that idea is where it grows."
-  },
-  "to_id": "dec:idea-reflow2-computes-a-conclusions-minimal-cut-sets-of-premises"
-}

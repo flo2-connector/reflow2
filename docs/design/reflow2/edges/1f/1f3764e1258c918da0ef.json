@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1fc18542d125f2df9f533c0d7efb1bc8b787080878118310290fce06f17a3cf5",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:c0d483833e98d2765e121c0524021c673262b01faf6fff513790c9f766507a24"
-  },
-  "to_id": "art:test-loop-status-says-what-is-not-exported"
-}

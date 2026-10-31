@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:698032d8fd9d41e67064ac627e7f2cd9142a158119080c0321c5c893ab763127",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:2758d120c64e699caf195194197cc670483702529b9d63150d675427661858c8"
-  },
-  "to_id": "art:service-composed"
-}

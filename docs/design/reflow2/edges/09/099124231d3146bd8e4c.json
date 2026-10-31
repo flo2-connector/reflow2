@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:a4c3322f7b9dc2de8f598b19b3672415937628af061380b75bec34363cde100a",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-project-can-remove-its-kit-and-update-never-brings-it-back",
-  "properties": {},
-  "to_id": "req:a-project-can-remove-its-kit-and-update-never-brings-a-removed-kit-back"
-}

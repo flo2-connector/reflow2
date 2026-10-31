@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c73ee70334365abaf754cfcad494ccc47ef3a77b4119d899c6de8d21ae68447f",
-  "edge_type": "REALIZES",
-  "from_id": "art:inference-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims"
-}

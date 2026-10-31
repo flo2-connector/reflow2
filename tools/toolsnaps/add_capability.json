@@ -68,7 +68,7 @@
       },
       "satisfies": {
         "default": null,
-        "description": "THE REQUIREMENT THIS CAPABILITY SATISFIES — draws the SATISFIES edge in\nthis call. The golden thread's first half, and the reason it is here:\n`add_verification` already takes `verifies` and `add_decision` already\ntakes `related_to`, while the busiest constructor on the thread took\nneither of its two edges and cost three calls where one would do\n(hxm_program F-02).\n\nAn id naming no Requirement is REFUSED and NOTHING IS WRITTEN, the same\nposture `approver` takes on the settling constructors: a typo must not\nleave a capability behind carrying half a thread to something that does\nnot exist.",
+        "description": "THE REQUIREMENT THIS CAPABILITY SATISFIES — draws the SATISFIES edge in\nthis call. The golden thread's first half, and the reason it is here:\n`add_verification` already takes `verifies` and `add_decision` already\ntakes `related_to`, while the busiest constructor on the thread took\nneither of its two edges and cost three calls where one would do\n(a work hub's field report, F-02).\n\nAn id naming no Requirement is REFUSED and NOTHING IS WRITTEN, the same\nposture `approver` takes on the settling constructors: a typo must not\nleave a capability behind carrying half a thread to something that does\nnot exist.",
         "type": [
           "string",
           "null"

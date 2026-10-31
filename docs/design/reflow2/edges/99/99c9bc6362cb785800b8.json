@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d42f461ea3daf8c6f2eb040644a2fddc96027b4786e8f7bab71014eb65516b14",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:compose-and-analyse-takes-several-designs-at-once",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:compose"
-}

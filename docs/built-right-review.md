@@ -11,6 +11,10 @@ and the discipline it holds itself to is the project's own: **measured, not asse
 below is reproducible from two files this project maintains separately — `schema/*.yaml` and
 `docs/design/reflow2.json` — with the commands given at the end.
 
+> **Since 2026-10-30 the second file is not in the repository.** reflow2's design is hosted on
+> flo2.io and private, and the committed copy retired. To re-run the commands, export the hosted
+> design locally to that path (it is git-ignored) and never commit it.
+
 **The one-line answer: the vocabulary is roughly twice the size of what anything writes, and the
 gap is not evenly spread — it falls almost entirely on the half of the product that reflow2 does
 not use on itself.** Nothing here is a crisis; most of it is the ordinary residue of a design that

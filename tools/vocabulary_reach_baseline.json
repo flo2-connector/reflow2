@@ -41,6 +41,92 @@
       "written_by": "(the core never reads the system time)"
     },
     {
+      "property": "DimensionAssessment.assessed_at",
+      "kind": "unused",
+      "reason": "Declared, and written by nothing: rollup_assessment does not set it and no served tool takes it. Nobody has asked for it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
+    },
+    {
+      "property": "DimensionAssessment.confidence",
+      "kind": "unused",
+      "reason": "Declared, and written by nothing: rollup_assessment does not set it and no served tool takes it. Nobody has asked for it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
+    },
+    {
+      "property": "DimensionAssessment.description",
+      "kind": "unused",
+      "reason": "Declared, and written by nothing: rollup_assessment does not set it and no served tool takes it. Nobody has asked for it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
+    },
+    {
+      "property": "DimensionAssessment.dimension",
+      "kind": "machine_written",
+      "reason": "rollup_assessment computes the assessment from the target's observations and writes this; a caller-set value would forge a computed rollup. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "rollup_assessment (crates/reflow2-core/src/dimensions.rs), a core operation no served tool calls yet"
+    },
+    {
+      "property": "DimensionAssessment.evidence",
+      "kind": "unused",
+      "reason": "Declared, and written by nothing: rollup_assessment does not set it and no served tool takes it. Nobody has asked for it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
+    },
+    {
+      "property": "DimensionAssessment.evidence_count",
+      "kind": "machine_written",
+      "reason": "rollup_assessment computes the assessment from the target's observations and writes this; a caller-set value would forge a computed rollup. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "rollup_assessment (crates/reflow2-core/src/dimensions.rs), a core operation no served tool calls yet"
+    },
+    {
+      "property": "DimensionAssessment.score",
+      "kind": "machine_written",
+      "reason": "rollup_assessment computes the assessment from the target's observations and writes this; a caller-set value would forge a computed rollup. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "rollup_assessment (crates/reflow2-core/src/dimensions.rs), a core operation no served tool calls yet"
+    },
+    {
+      "property": "DimensionAssessment.target_id",
+      "kind": "machine_written",
+      "reason": "rollup_assessment computes the assessment from the target's observations and writes this; a caller-set value would forge a computed rollup. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "rollup_assessment (crates/reflow2-core/src/dimensions.rs), a core operation no served tool calls yet"
+    },
+    {
+      "property": "DimensionAssessment.target_type",
+      "kind": "machine_written",
+      "reason": "rollup_assessment computes the assessment from the target's observations and writes this; a caller-set value would forge a computed rollup. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "rollup_assessment (crates/reflow2-core/src/dimensions.rs), a core operation no served tool calls yet"
+    },
+    {
+      "property": "DimensionObservation.dimension",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
+      "property": "DimensionObservation.observed_at",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
+      "property": "DimensionObservation.score",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
+      "property": "DimensionObservation.source_fragment_id",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
+      "property": "DimensionObservation.target_id",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
+      "property": "DimensionObservation.target_type",
+      "kind": "unused",
+      "reason": "Only the core's add_dimension_observation writes it, and no served tool calls that yet, so no design reached through the surface has carried an observation. Unused rather than a hole: nobody has asked for dimension observations over MCP. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it.",
+      "written_by": "add_dimension_observation (crates/reflow2-core/src/dimensions.rs), not served"
+    },
+    {
       "property": "DriftEvent.drift_type",
       "kind": "machine_written",
       "reason": "Minted by the reconcile pass that detected the drift.",
@@ -69,6 +155,16 @@
       "kind": "machine_written",
       "reason": "The finding's own message, written by the reconcile pass that detected the drift. A caller-set summary would describe a drift nobody observed.",
       "written_by": "reconcile_verification (verify.rs), reconcile_deployment (fielded.rs)"
+    },
+    {
+      "property": "EnvironmentRule.effects",
+      "kind": "unused",
+      "reason": "add_environment_rule takes no parameter for what the rule grants or forbids, and nobody has asked for one: no design reached through the surface has needed it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
+    },
+    {
+      "property": "EnvironmentRule.priority",
+      "kind": "unused",
+      "reason": "add_environment_rule takes no parameter for the ordering when two rules conflict, and nobody has asked for one: no design reached through the surface has needed it. Classified 2026-10-30, when --check began reading the surface alone: reflow2's own design holds no node of this type, so the corpus-filtered list never carried it."
     },
     {
       "property": "Fragment.created_at",
@@ -209,6 +305,12 @@
       "written_by": "record_change (temporal.rs)"
     },
     {
+      "property": "Verification.criteria_at_data",
+      "kind": "machine_written",
+      "reason": "The criteria lock: what a hypothesis test's criteria said at the write that first attached its data. A caller-set value would let anyone move the lock and erase the very change it exists to report.",
+      "written_by": "add_verification with hypothesis_block (hypothesis.rs::record_hypothesis_test)"
+    },
+    {
       "property": "Verification.last_failed_run_at",
       "kind": "machine_written",
       "reason": "reconcile_verification with record_events stamps the date of a run that reported the check FAILED, and a later pass does not clear it. A caller-set value would assert a run nobody fed back \u2014 the exact thing the stamp exists to tell apart from a typed claim (dec:a-reconcile-stamps-every-check-it-compared).",
@@ -225,12 +327,6 @@
       "kind": "machine_written",
       "reason": "reconcile_verification with record_events stamps what the real run REPORTED, agreeing or not. A caller-set value would assert a run nobody fed back \u2014 the exact thing the stamp exists to tell apart from a typed claim (dec:a-reconcile-stamps-every-check-it-compared).",
       "written_by": "reconcile_verification (verify.rs)"
-    },
-    {
-      "property": "Verification.criteria_at_data",
-      "kind": "machine_written",
-      "reason": "The criteria lock: what a hypothesis test's criteria said at the write that first attached its data. A caller-set value would let anyone move the lock and erase the very change it exists to report.",
-      "written_by": "add_verification with hypothesis_block (hypothesis.rs::record_hypothesis_test)"
     }
   ]
 }

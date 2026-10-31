@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6e5dcaa26039e9b53a8ad288042f88d30614afad4e1ce0a0f31fc9fa681d2329",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported",
-  "properties": {
-    "evidence": "The criteria lock for a statistical test is the same shape as spec-drift for a proof: what is judged must not move after the work began."
-  },
-  "to_id": "dec:idea-an-agents-proof-attempt-is-held-to-gates-not-to-its-own-report"
-}

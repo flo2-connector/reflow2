@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b870c04124d393fa5d05ebc974f331f837061cfae7062eb4deefa1ad84f5b06e",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-batch-cue-is-offered-once-per-batch",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-batch-cue-is-offered-once-per-batch-and-a-process-names-its-step"
-}

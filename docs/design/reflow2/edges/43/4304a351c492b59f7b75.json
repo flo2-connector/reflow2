@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:058356b8de5e1f96639b93ed6af85cdfd8d6351a5e99f5e35340b89f9592b1b4",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-missing-edge-prediction",
-  "properties": {
-    "evidence": "relation_candidates offers likely neighbours by shared neighbours and rare shared terms, and never draws them. Evidence: cap:relation-candidates-are-offered-never-drawn is realized, ver:candidates-are-offered-never-drawn passing. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:relation-candidates-are-offered-never-drawn"
-}

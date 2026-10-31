@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:97580c080312b28f95decb8a2fa9b18c2f91c892dea09f38ed4e254656560681",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:7c7cbc993dee038b80a307f18e17380a26fcba55b46f2a72d0b45391e413adac"
-  },
-  "to_id": "art:an-import-says-what-it-removed-test"
-}

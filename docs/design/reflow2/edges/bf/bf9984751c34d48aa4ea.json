@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:d25dc86a30df7a8c36ee4490b4e1e8f755aa446dff6733bbb23181030f37ee01",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back",
-  "properties": {},
-  "to_id": "req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed"
-}

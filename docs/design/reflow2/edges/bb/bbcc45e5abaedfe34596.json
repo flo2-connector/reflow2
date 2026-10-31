@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b9031180ed948d5acab2e165830104314de47feb95abc080f49372951763dfe5",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "ver:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack",
-  "properties": {
-    "note": "The decision asks for the walks to be pinned by a deep-chain test on a 2 MiB thread; this is that test."
-  },
-  "to_id": "dec:deep-reasoning-walks-keep-their-own-stack-and-the-runtime-gets-headroom"
-}

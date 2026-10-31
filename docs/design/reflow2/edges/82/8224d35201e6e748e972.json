@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:af1df55e05ae49d17dc8f9c6b2e6565ba4dc31f34212dba733d74f32412fb8fd",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-hub-view-names-the-pinned-designs-outside-it-test",
-  "properties": {
-    "covers": "partial"
-  },
-  "to_id": "ver:a-search-names-every-pinned-design-it-did-not-search-tests"
-}

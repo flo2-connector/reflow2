@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c47358fa8ee05920f206608eb2fec51966851460e4bbff94286b61e23a9642e5",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "dec:idea-navier-stokes-as-a-trial-of-designing-a-proof",
-  "properties": {
-    "note": "The idea's source is two articles about a published claim, not a need met in use; the advisory rule's default is to wait for a real use. Anthony may still choose to build it."
-  },
-  "to_id": "rule:an-idea-from-reading-waits-for-a-real-use-before-it-is-built"
-}

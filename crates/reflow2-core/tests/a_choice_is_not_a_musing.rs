@@ -2,7 +2,7 @@
 //!
 //! # The report
 //!
-//! ophyd-service, 2026-08-31 (`fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met`,
+//! An instrument-control service, 2026-08-31 (`fact:the-fork-ask-is-a-deferred-branch-whose-reopening-condition-is-now-met`,
 //! item ③). They objected that a `CONTRADICTS` from an exploratory idea lands in
 //! the defect count, and proposed keying on *"a CONTRADICTS whose source is an
 //! OPEN `kind: exploratory` Decision"* rather than on `status` alone.
@@ -15,7 +15,7 @@
 //!
 //! # 🛑 What this does NOT do, said first because it is the likelier misreading
 //!
-//! It does not give ophyd what they asked for. Their ask — suppress a
+//! It does not give the instrument-control trial what it asked for. Their ask — suppress a
 //! contradiction whenever the SOURCE is exploratory, even against a settled
 //! decision — would overturn
 //! `dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it`,
@@ -147,7 +147,7 @@ fn an_accepted_exploratory_decision_is_not_parked() {
 /// one parked side against one settled side still reports, because a parked
 /// idea conflicting with settled design is a real thing to settle
 /// (`dec:idea-a-proposed-decision-asserts-nothing-so-what-may-a-structural-detector-say-about-it`).
-/// This is the assertion ophyd asked to have reversed; it is pinned here so the
+/// This is the assertion the instrument-control trial asked to have reversed; it is pinned here so the
 /// reversal cannot happen by accident while sharpening the predicate.
 #[test]
 fn an_idea_against_settled_design_still_reports() {

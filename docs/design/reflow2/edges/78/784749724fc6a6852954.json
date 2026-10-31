@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ed83b2698ab03279cb768d4ed8a97a76fe98d770cdedcdae2213bf2f576b24fd",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0850",
-  "properties": {
-    "as_checksum": "sha256:51c5f07c34b7149425c9847ee87ebf8e446617b4d24c696fb8b3c40da250fc7a"
-  },
-  "to_id": "art:test-a-detector-consults-what-the-graph-already-holds"
-}

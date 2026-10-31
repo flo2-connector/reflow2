@@ -2,8 +2,10 @@
 #
 # AN ACTIONS DEPLOY, NOT A BRANCH OR /docs, because the repository root is a Rust
 # workspace and req:reflow2-has-a-public-page-anyone-can-read asked for the HTML to
-# stay out of it. Only site/ is uploaded. One file is made here: site/counts.json,
-# reflow2's own design counted at each release tag by tools/site_counts.py.
+# stay out of it. Only site/ is uploaded, as committed. Until 2026-10-30 one file
+# was made here, site/counts.json, reflow2's own design counted at each release
+# tag; the design is hosted on flo2.io and private now, its committed copy
+# retired, and the counts with it, so the site claims no numbers it cannot read.
 #
 # The repository's Pages source must be "GitHub Actions" (Settings -> Pages) for the
 # deploy step to have a site to publish to.
@@ -13,9 +15,9 @@
 # runs this: #741 tried (`tags: ["v*"]`), and v0.84.0's tag run 38555276998 was
 # refused with "Tag "v0.84.0" is not allowed to deploy to github-pages due to
 # environment protection rules." Instead release.yml's last job, `site`, dispatches
-# this workflow ON MAIN once the release is published. That run counts the release
-# just cut. Main's own run at a cut's merge cannot be relied on for it: the merge
-# comes before its tag, so that run can start before the tag exists.
+# this workflow ON MAIN once the release is published, so the site goes out as
+# main stands after the release. (Until 2026-10-30 that run also counted the
+# release just cut, which main's own run at the merge could miss.)
 name: pages
 
 on:
@@ -24,10 +26,9 @@ on:
     paths:
       - "site/**"
       - ".github/workflows/pages.yml"
-      - "tools/site_counts.py"
   # Also how each release republishes the site: release.yml dispatches this on main
-  # after publishing (`gh workflow run pages.yml --ref main`), so the home page's
-  # counts take in the release just cut. Never add a tag trigger: see the header.
+  # after publishing (`gh workflow run pages.yml --ref main`), so the site that goes
+  # out is main's as of the release just cut. Never add a tag trigger: see the header.
   workflow_dispatch:
 
 permissions:
@@ -48,16 +49,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
-        with:
-          # Every release tag, because the home page's counts of reflow2's own
-          # design are read from the copy committed at each one
-          # (req:the-site-shows-why-linked-decisions-are-more-than-a-record).
-          # 0 fetches all history for all branches and tags, on a push to main and
-          # on the release's dispatch alike; the dispatch comes after the release,
-          # so its tag is there to fetch.
-          fetch-depth: 0
-      - name: Count reflow2's own design at each release (site/counts.json)
-        run: python3 tools/site_counts.py --out site/counts.json
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

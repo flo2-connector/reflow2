@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e071945c84202464090ccc4ee8da2577f3eacdc8317ef51e4d50718e7c017796",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0832",
-  "properties": {
-    "as_checksum": "sha256:c40e70866ffac209a61f78cf3c8518f303fe72344e7773fb016a59a4bfd3831b"
-  },
-  "to_id": "art:test-the-cli-describes-a-tool-with-its-schema-and-lessons"
-}

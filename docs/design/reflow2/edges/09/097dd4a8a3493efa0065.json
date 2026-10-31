@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7ca74591d1082815d6a686dadab14abc1ab5f9ac83a893a9c2df3302d6903366",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:2a2729f4077c0f08f966fde19d0313ab98cf5eade96305ab81eb62e4b3bb7dc8"
-  },
-  "to_id": "art:test-graph-construction-is-setup"
-}

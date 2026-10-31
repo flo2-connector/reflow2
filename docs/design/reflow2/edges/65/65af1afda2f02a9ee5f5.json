@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:cfee3c734d75dc7c4e12fac43009b85c337b8d00a63718d27d2a0a20968dfe76",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-a-design-takes-a-chunk-of-another-design-and-inherits-it",
-  "properties": {
-    "evidence": "Anthony kept option (a) on 2026-10-10; the requirement is that option as intent."
-  },
-  "to_id": "req:a-design-takes-a-chunk-of-another-as-copies-with-provenance-and-a-watch"
-}

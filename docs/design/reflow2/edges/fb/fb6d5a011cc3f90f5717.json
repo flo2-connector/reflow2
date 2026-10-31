@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9e7988e6a01aee28f70b3f35776f7992ce52e0e699a5783a8fe3dc58deed2385",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-deep-reasoning-chain-is-answered-on-a-2-mib-worker",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack"
-}

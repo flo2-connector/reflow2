@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:e83202be74b4e64d1cc033f3744521af0e78c6c6bea8aa3b517e664be769a6fd",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:every-path-taking-read-takes-the-other-design-by-graph-id",
-  "properties": {},
-  "to_id": "cap:every-cross-design-read-takes-the-other-design-by-graph-id-and-no-registry-reads-a-host-path"
-}

@@ -1,13 +1,13 @@
 //! `add_capability` draws the golden thread in the call that creates the node.
 //!
-//! F-02, hxm_program: *"An `add_capability(satisfies=req:X)` parameter that
+//! F-02, a work hub's field report: *"An `add_capability(satisfies=req:X)` parameter that
 //! draws the SATISFIES edge would remove the retry AND the separate edge call."*
 //!
 //! ⚠️ HALF OF F-02 WAS ALREADY FIXED AND THIS DOES NOT RE-FIX IT. The report's
 //! headline complaint was the duplicate guard refusing every capability written
 //! after its requirement — six times in one session. `PRESCRIBED_LAYER_PAIRS`
 //! landed 2026-08-31 with `("Requirement","Capability")` as its FIRST entry and
-//! `("Requirement","Decision")` beside it, so both cases hxm named are exempt
+//! `("Requirement","Decision")` beside it, so both cases the report named are exempt
 //! and the refusal is gone. What remains is the ergonomics half: the thread
 //! still costs three calls where the constructor could draw it in one.
 //!

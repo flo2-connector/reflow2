@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:76f3ef639226c2018af5c6e849f72a11b809dfc0416560f355ceef254c4c3375",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:e308149faf7cac98fb3ece1411adc34a02579d4d5fd7a194f6d68c0b97a176a9"
-  },
-  "to_id": "art:cargo-aliases"
-}

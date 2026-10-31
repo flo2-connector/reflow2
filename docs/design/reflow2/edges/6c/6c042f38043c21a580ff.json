@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b7c9a192028538f0a6c2eb1b1beee69e204531f823bd457e3099ecbebf2cc20d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:3430b65dd1b1c99966c29e55d4e1566a9b46e47514cf9bfb360255cd4cea35f5"
-  },
-  "to_id": "art:test-a-deep-reasoning-chain-is-answered-on-a-2-mib-worker"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:2b16c12686a418b9a36e3d084f40e825b5c1fbc9f1f0b235dacc678240b6b903",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:e78d48df7ffff1500ba3b6f6314b4eff0fa0d4f20d58986c17a897c5fe8011d4"
-  },
-  "to_id": "art:dependencies-workflow"
-}

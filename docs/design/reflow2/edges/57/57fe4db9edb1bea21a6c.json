@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1cad43e8659c2e56b7e362ca39679512977c730251fe4db594f0cd0629d3e98d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0900",
-  "properties": {
-    "as_checksum": "sha256:e8268c312343dcc9a5ee6a7965d2aca26382d03b194623a202434aa278fdfad8"
-  },
-  "to_id": "art:a-proof-counts-what-it-should-on-the-wire-test"
-}

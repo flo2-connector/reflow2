@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:3da6345dbe1a01db2250950c435962b5486c0817bc4d89bd425a80f1315e23c3",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {},
-  "to_id": "cmp:rocksdb-backend"
-}

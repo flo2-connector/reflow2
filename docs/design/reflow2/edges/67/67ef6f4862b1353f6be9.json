@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:73d47e7b07769f35d3f8a24f9b23b3de6aab019102c7e97aec649ed5abbc4761",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:b451ff69a3ee9950707d32ee212796be7a43e8f7013045be99d6ec3f5e0f5f86"
-  },
-  "to_id": "art:test-a-run-is-fed-back-by-file"
-}

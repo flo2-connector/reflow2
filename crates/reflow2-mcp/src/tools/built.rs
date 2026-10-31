@@ -258,8 +258,8 @@ impl ReflowService {
             // the only honest place to say "this is what it looked like".
             //
             // A pointer at nothing readable is RECORDED ANYWAY, not refused: the
-            // upstream may not have exported yet, which is the normal state the
-            // hxm_program report measured (zero of seven siblings had an export).
+            // upstream may not have exported yet, which is the normal state a
+            // work hub's field report measured (zero of seven siblings had an export).
             // It comes back as `missing` on the next read, which is a finding
             // rather than a wall.
             design_export_hash,

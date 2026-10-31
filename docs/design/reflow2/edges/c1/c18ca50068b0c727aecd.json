@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:63f0a570282ccb35976f03d206a10c76c528196816ae306bfc8094d29e56e94b",
-  "edge_type": "REALIZES",
-  "from_id": "art:schema-core",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-constraint-can-be-a-setpoint-and-name-its-source"
-}

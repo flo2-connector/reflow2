@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0e61876f0651e223d6591c673ce67e6dc2af24e9415ce3aad3c73f5c128379d1",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:the-navier-stokes-map-rung-ran-on-0-90-0-and-a-claim-reads-as-a-claim-but-reflow2-has-no-claimed-reading-2026-10-22",
-  "properties": {
-    "evidence": "Finding (a) of the NS map: no 'claimed by a third party' reading; this requirement is that finding, accepted 2026-10-23."
-  },
-  "to_id": "req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed"
-}

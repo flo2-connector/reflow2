@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5b6327ae976d40eeb038c9f1ae5c7f123ea12c2196a1e5f6d620051d45abf0e1",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:0ab4a0413cbfc32711b2c2eb9be106bf6b806b652317c28a0d0b3efa6b9ed367"
-  },
-  "to_id": "art:test-a-registry-names-every-store-it-cannot-serve"
-}

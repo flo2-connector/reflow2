@@ -34,7 +34,7 @@ every domain; they map onto the loop like this:
 | *(reflow2 addition)* — ripple along the golden thread | PROPAGATE | [impact-propagation.md](impact-propagation.md) | detailed |
 | **DIAGNOSE → PROMPT** — find weaknesses, ask the user | DETECT + SURFACE | [gap-surfacing.md](gap-surfacing.md) | detailed |
 | **HEAL** — detect & repair structural defects | RESOLVE/HEAL | [heal-process.md](heal-process.md) | detailed |
-| **SYNTHESIZE** — graph → artifacts (docs, diagrams, as-built) | reporting side-output | [viewpoints.md](viewpoints.md) | the graph report (`report` module), and **projected viewpoints** (`tools/render_views.py` → [design/views.html](design/views.html)): ten DoDAF-informed views — functional, operational flow, structural, traceability, as-released, decisions, evolution (axis Z), provenance, as-fielded, measures — drawn purely from the graph, with everything the graph cannot supply confessed — a renderer fill-in is a defect signal, not a job for the agent (BL-40, [sharpening.md](sharpening.md) §3.5); the catalogue and the rules for adding a view live in [viewpoints.md](viewpoints.md) |
+| **SYNTHESIZE** — graph → artifacts (docs, diagrams, as-built) | reporting side-output | [viewpoints.md](viewpoints.md) | the graph report (`report` module), and **projected viewpoints** (`tools/render_views.py` → `docs/design/views.html`, written locally; not committed since 2026-10-30): ten DoDAF-informed views — functional, operational flow, structural, traceability, as-released, decisions, evolution (axis Z), provenance, as-fielded, measures — drawn purely from the graph, with everything the graph cannot supply confessed — a renderer fill-in is a defect signal, not a job for the agent (BL-40, [sharpening.md](sharpening.md) §3.5); the catalogue and the rules for adding a view live in [viewpoints.md](viewpoints.md) |
 
 ## Reading order
 
@@ -90,8 +90,9 @@ Three records, three questions — kept separate on purpose:
 - [loop-dag.html](loop-dag.html) — the coherence loop drawn as a DAG: the six phases, the backward
   feedback edges, and what reflow2 can do about each. Generated with [loop-model.json](loop-model.json)
   by `tools/model_the_loop.py`.
-- [design/reflow2.json](design/reflow2.json) — reflow2's own functional design as a reflow2 graph
-  (~215 nodes), the durable record behind `tools/build_design_graph.py`.
+- reflow2's own design — hosted on flo2.io, where it is private. A copy was committed here (first
+  `design/reflow2.json`, then the item layout `design/reflow2/`) until 2026-10-30, when it retired;
+  `tools/build_design_graph.py` and the other instruments read a local, git-ignored export now.
 
 ### 3⅛ · Scoped, not built — *what a piece of work would actually take*
 - [scope-corpus-ingest.md](scope-corpus-ingest.md) — pointing reflow2 at a folder of documents: the

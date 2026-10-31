@@ -30,7 +30,7 @@ async fn seeded() -> ReflowService {
     let s = svc().await;
     j!(s.add_project(req(serde_json::json!({ "id": "proj:p", "name": "P" }))));
     j!(s.add_requirement(req(serde_json::json!({
-        "id": "req:scan", "name": "Scan a sample", "statement": "The beamline scans a sample."
+        "id": "req:scan", "name": "Scan a sample", "statement": "The instrument scans a sample."
     }))));
     j!(s.add_capability(req(serde_json::json!({
         "id": "cap:scan", "name": "Scan", "description": "runs a scan", "satisfies": "req:scan"

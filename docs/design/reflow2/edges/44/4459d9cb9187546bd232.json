@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:dd5d9410e777d052130713e729df9880e8a3d6d9247d327826fcdbb0bbfa672b",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:the-primes-trial-rung-1-ran-on-flo2-io-and-its-friction-names-what-counts-2026-10-17",
-  "properties": {
-    "evidence": "Friction item 5 (F6, F7), accepted on 2026-10-17 with \"A premise role\" and \"Declared and checked\"."
-  },
-  "to_id": "req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable"
-}

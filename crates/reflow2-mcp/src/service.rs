@@ -2449,7 +2449,7 @@ pub struct CapabilityReq {
     /// `add_verification` already takes `verifies` and `add_decision` already
     /// takes `related_to`, while the busiest constructor on the thread took
     /// neither of its two edges and cost three calls where one would do
-    /// (hxm_program F-02).
+    /// (a work hub's field report, F-02).
     ///
     /// An id naming no Requirement is REFUSED and NOTHING IS WRITTEN, the same
     /// posture `approver` takes on the settling constructors: a typo must not

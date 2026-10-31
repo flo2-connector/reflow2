@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4151a8ccc67d85d8b76a6230d03b5e7012c0ee625b89d157fe72f2cc84637df5",
-  "edge_type": "REALIZES",
-  "from_id": "art:service-view",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:compose-and-analyse-takes-several-designs-at-once"
-}

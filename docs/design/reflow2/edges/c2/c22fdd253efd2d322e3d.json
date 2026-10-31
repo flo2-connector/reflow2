@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fa9d711296381c3ef9c6c7303df14422c4d6fbfa267649e020ebbe4bad2e8833",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:fbe0fadfdcf435aea7b370f2eda6db69260dbf929868783e23fb2ffccf5d6af6"
-  },
-  "to_id": "art:merge-driver-test"
-}

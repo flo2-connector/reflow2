@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e655e2b01d2768cff9c341cb57773b88219f50678ef6d0af2f78a92c8bcb0a96",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-composed-reply-holds-its-budget-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-composed-reply-holds-its-budget-in-every-shape"
-}

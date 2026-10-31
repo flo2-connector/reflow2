@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1c76792a9ffe51ff034d8c2633a5279b11ef6b2a3ee54f446a90b210870dc026",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:28c454049a828b00a6d52d7af4a5136af2650291bb9084e3bd7d9cc23ab34d5c"
-  },
-  "to_id": "art:find-tools-rank-baseline"
-}

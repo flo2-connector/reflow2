@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:ff4f887468875b6e80f7dd2c4cbb0ad0f1884f30db0359be3db5ee74361c2158",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply"
-}

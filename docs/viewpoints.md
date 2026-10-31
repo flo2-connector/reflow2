@@ -15,7 +15,7 @@ a *confession* — a modelling gap, a reflow2 gap, or a true design gap, printed
 rendered into the page. The first run of the seed renderer confessed exactly BL-37 (no ordered
 process was expressible) before that item had a fix; a confession list is a work list.
 
-The standing renderer is `tools/render_views.py` → [design/views.html](design/views.html).
+The standing renderer is `tools/render_views.py` → `docs/design/views.html`, written locally from the export you give it (reflow2's own design is hosted on flo2.io and private, so neither its copy nor its views are committed since 2026-10-30).
 
 ```bash
 python3 tools/render_views.py                          # the committed design export

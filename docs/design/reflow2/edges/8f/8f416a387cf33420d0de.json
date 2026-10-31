@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:cb394c1e8ca4b9af5e8b5ec833eabf391ae1a16915b994173b4eb036ec4bde27",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:everyday-development-builds-and-tests-without-rocksdb-and-the-shipped-server-keeps-it",
-  "properties": {},
-  "to_id": "dec:rocksdb-is-a-default-on-feature-of-the-server-crate-and-its-tests-share-a-few-programs"
-}

@@ -3,7 +3,7 @@
 //!
 //! # The class, not the instance
 //!
-//! hxm_program F-19 reported one field: `Requirement.concern` taught its eleven
+//! A work hub's field report (F-19) named one field: `Requirement.concern` taught its eleven
 //! values by REFUSING a wrong one, while its neighbour `priority` on the same
 //! request struct published them. That was fixed on its own. This is the class
 //! behind it — wiring is one macro line plus one attribute per field, done by

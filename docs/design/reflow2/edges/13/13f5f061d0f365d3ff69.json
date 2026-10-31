@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b8a7e8587f64df60e82216051c046699b49fa846cd4966b416179e362cf38cfa",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time",
-  "properties": {
-    "note": "The stamps are the server-recorded times that decision chose."
-  },
-  "to_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28"
-}

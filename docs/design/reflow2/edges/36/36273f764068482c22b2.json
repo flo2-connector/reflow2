@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d92cd99f42cbc756f22122bacffb85415f4f0eaf3de1e1509d40fd269d38fd5c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:052b6122b23d202ae2bd82b06477836e0d7001e4207254329d81a4c1093e5d4e"
-  },
-  "to_id": "art:a-hypothesis-tests-verdict-reads-supported-at-alpha-test"
-}

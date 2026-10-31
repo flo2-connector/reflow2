@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c3257a6aaefd682390069d5ecca2f89c7346dd0ac9a67a088160987a84c65d74",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:af8cb8117c86da1d776ef9beebc31ac2c7c505e9d01c0aea6ed2870cbaffb07f"
-  },
-  "to_id": "art:a-check-that-could-not-run-is-blocked-test"
-}

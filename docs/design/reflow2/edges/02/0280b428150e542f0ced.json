@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:be2dfb436c3e00301dad7d87a049e0a9ded0a0615dd5658fc6ead60a143e25dc",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it",
-  "properties": {
-    "evidence": "Counting cues followed is one of the measures of recall that requirement asks for."
-  },
-  "to_id": "req:an-agent-recalls-from-reflow2-what-it-needs-when-it-needs-it-and-the-recall-is-measured"
-}

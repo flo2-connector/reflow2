@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ec33867f06f84578715092bcfbd2dd065424fb28d56f7bf22b44d802517c4bf7",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:the-trolley-trial-ran-on-flo2-io-and-rival-positions-have-no-honest-form-but-a-contested-decision-2026-10-19",
-  "properties": {
-    "evidence": "Finding 4 of the trolley trial, captured as a requirement."
-  },
-  "to_id": "req:a-claim-with-several-lines-reads-each-lines-assumptions"
-}

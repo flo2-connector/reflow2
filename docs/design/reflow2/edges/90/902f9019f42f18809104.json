@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fd2b9fa6a4e53034cdd2aa117931a770d1a3efb5af198f5c4899e74b49bf74e4",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:an-import-says-what-it-removed-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:an-import-says-what-it-removed-tests"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4f601c8e9bae7405e85e5cdbf6e60ac593c73e4400a078b2a0ed2647635eb7a5",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:arrival",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:arrival"
-}

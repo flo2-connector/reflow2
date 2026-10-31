@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e69d7947592c7ba12ecf0f6f317ea6064776ea3484a8ba0095f24505bfe1c005",
-  "edge_type": "DEPLOYED_TO",
-  "from_id": "rel:v0834",
-  "properties": {
-    "status": "active"
-  },
-  "to_id": "env:dev"
-}

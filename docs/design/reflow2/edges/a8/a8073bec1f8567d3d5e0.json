@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:36a6014b81bae8681e1e0ec2431632f8f534e175154b9238471931d354cb2ec9",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:the-open-defect-findings-are-triaged-once",
-  "properties": {},
-  "to_id": "fact:root-cause-a-fix-rarely-records-what-it-answered-because-it-is-a-separate-call-2026-10-25"
-}

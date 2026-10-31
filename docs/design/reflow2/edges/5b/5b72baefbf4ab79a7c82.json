@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:05cf8f108d23c2bdda0bdba0eb0ffdc7a20b5d959da804c1f26d3acb7252fee1",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-the-id-prefix-table-covers-every-stated-convention",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:delete-node-takes-the-id-prefix-tests"
-}

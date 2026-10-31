@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5253716224134c931fdad600d7301956a6b7be8aa593fc88f060becd7481f1bc",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-reply-through-a-hub-fits-its-budget-test",
-  "properties": {
-    "covers": "partial"
-  },
-  "to_id": "ver:replies-fit-tests"
-}

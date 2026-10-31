@@ -1107,7 +1107,7 @@ impl ReflowService {
         ]) {
             out["absorbed_markup"] = serde_json::to_value(am).map_err(ser_err)?;
         }
-        // AN UNDATED EVENT SAYS SO. F-06, hxm_program: nine events in one day,
+        // AN UNDATED EVENT SAYS SO. F-06, a work hub's field report: nine events in one day,
         // every date in the prose and none in the field, so nothing downstream
         // could order them. This project's standing posture is that an absent
         // property means NOBODY SAID and is REPORTED rather than defaulted —

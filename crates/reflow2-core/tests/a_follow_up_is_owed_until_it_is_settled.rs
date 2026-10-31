@@ -7,8 +7,8 @@
 //! (`dec:idea-a-one-word-capture-for-something-to-come-back-to`). This is the
 //! other half: `loop_status` lists every open follow-up at the boundary, and
 //! stops listing one only when it is SETTLED — closed by a record that answered
-//! it (INVALIDATES), or lapsed with a `valid_to`. Anthony, 2026-09-16, from a
-//! beamline: "I just want to go to that project and type /log-issue ... so
+//! it (INVALIDATES), or lapsed with a `valid_to`. Anthony, 2026-09-16, away from
+//! the desk: "I just want to go to that project and type /log-issue ... so
 //! that it gets included in the design as something to follow up on."
 //!
 //! Pinned from both sides: the open one is owed and named, and each way of
@@ -20,8 +20,8 @@ use std::collections::HashMap;
 
 fn design_with_a_service() -> DesignGraph {
     let mut g = DesignGraph::open_in_memory().unwrap();
-    g.add_project("prj:beamline", "Beamline").unwrap();
-    g.add_component("cmp:queueservice", "queueservice", "runs the queue", None)
+    g.add_project("prj:instrument", "Instrument").unwrap();
+    g.add_component("cmp:jobqueue", "jobqueue", "runs the queue", None)
         .unwrap();
     g
 }
@@ -46,18 +46,18 @@ fn an_open_follow_up_is_owed_and_named() {
     let mut g = design_with_a_service();
     follow_up(
         &mut g,
-        "fact:follow-up-queueservice-misbehaving",
-        "cmp:queueservice",
-        "walked past the beamline; queueservice was having an issue — look later",
+        "fact:follow-up-jobqueue-misbehaving",
+        "cmp:jobqueue",
+        "walked past the lab; jobqueue was having an issue — look later",
         "2026-09-16",
     );
     let s = g.loop_status().unwrap();
     assert_eq!(s.follow_ups_open, 1);
     assert_eq!(
         s.follow_ups[0].fact_id,
-        "fact:follow-up-queueservice-misbehaving"
+        "fact:follow-up-jobqueue-misbehaving"
     );
-    assert_eq!(s.follow_ups[0].subject_id, "cmp:queueservice");
+    assert_eq!(s.follow_ups[0].subject_id, "cmp:jobqueue");
     assert_eq!(s.follow_ups[0].captured_on.as_deref(), Some("2026-09-16"));
     assert!(
         s.next
@@ -75,7 +75,7 @@ fn a_record_that_answered_it_settles_it() {
     follow_up(
         &mut g,
         "fact:follow-up-queue",
-        "cmp:queueservice",
+        "cmp:jobqueue",
         "queue stalls on restart",
         "2026-09-16",
     );
@@ -112,7 +112,7 @@ fn a_lapsed_follow_up_with_a_valid_to_is_settled() {
     follow_up(
         &mut g,
         "fact:follow-up-old",
-        "cmp:queueservice",
+        "cmp:jobqueue",
         "old note",
         "2026-09-01",
     );
@@ -134,7 +134,7 @@ fn an_ordinary_finding_is_not_a_follow_up() {
         Props::new()
             .set("name", "latency measured")
             .set("statement", "p50 latency 120 ms")
-            .set("subject_id", "cmp:queueservice")
+            .set("subject_id", "cmp:jobqueue")
             .set("fact_type", "finding")
             .set("basis", "measured")
             .set("valid_from", "2026-09-16"),
@@ -154,14 +154,14 @@ fn follow_ups_come_back_oldest_first() {
     follow_up(
         &mut g,
         "fact:follow-up-b",
-        "cmp:queueservice",
+        "cmp:jobqueue",
         "second",
         "2026-09-16",
     );
     follow_up(
         &mut g,
         "fact:follow-up-a",
-        "cmp:queueservice",
+        "cmp:jobqueue",
         "first",
         "2026-09-10",
     );

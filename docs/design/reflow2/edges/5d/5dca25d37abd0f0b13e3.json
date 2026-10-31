@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:b2257f9a97a9fee9d8e04bffec5a81b3cfe26ef7d576baf302728e4bd109ab2b",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:a-changed-quantity-names-every-kept-computation-that-used-it",
-  "properties": {},
-  "to_id": "cap:a-change-returns-its-redo-list"
-}

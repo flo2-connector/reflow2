@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:61903d016bf345d9cdf3050e4a1e88a48ee383373bd6c2e1e247e17c1067493c",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-proof-says-what-it-assumes-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-proof-says-what-it-assumes-tests"
-}

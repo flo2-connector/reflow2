@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:af23d622e0dedb10ca70bc5692d07ee30c0367958a93d27640fbe2a7a8ea6b3b",
-  "edge_type": "REALIZES",
-  "from_id": "art:kept-record-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed"
-}

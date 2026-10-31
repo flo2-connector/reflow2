@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:def85dd09e644bac2c81e6fe274121cf6f4dd129dff21d2655595cde8acc6885",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:reflow2-stamps-the-server-time-on-each-node-creation-and-content-change",
-  "properties": {
-    "note": "The stamp is the server-recorded time this decision chose; the prediction-order reading is its first reader."
-  },
-  "to_id": "dec:prediction-order-is-read-from-server-recorded-times-and-said-not-enforced-2026-10-28"
-}

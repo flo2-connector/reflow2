@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e8252819e459f4cfd62c5596b602dd9fc231f19736e3ab304fdeb5acf411a264",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-design-holds-a-line-of-reasoning",
-  "properties": {
-    "evidence": "The accepted requirement names a legal case as a line of reasoning; who said what, when, is a facet of holding one."
-  },
-  "to_id": "dec:idea-testimony-has-a-witness-and-its-own-dates"
-}

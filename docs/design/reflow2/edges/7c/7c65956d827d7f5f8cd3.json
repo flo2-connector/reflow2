@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:85b6ff2dcc6daa6683f3736c0b11c4ef9ed9662f11df43a31001772f13be4867",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-tracked-search-reaches-a-design-at-its-address",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:upstream"
-}

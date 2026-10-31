@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e902be94ca2f1983d94eeddcca9db98f6d8763909cae3fa800c9b999f85ee843",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:tools-process",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:tools-process"
-}

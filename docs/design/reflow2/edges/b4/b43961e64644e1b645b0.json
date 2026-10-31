@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:b73ee574b77dffcb39d89497937bd8eddf7468604df1ef1ab6358841dd17b825",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:the-first-read-cue-reaches-the-agent-before-its-first-call",
-  "properties": {},
-  "to_id": "req:reflow2-places-cues-on-the-agents-side-so-they-reach-an-agent-before-its-first-call"
-}

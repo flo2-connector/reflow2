@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5d6dd4c9dd01a7fb0b6a74d1acce5ff525424ebd800c5af248bdd49fcb299d1d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {
-    "as_checksum": "sha256:c577bc0ad1a2cb5313c09b6817be5e7bc9e5b35310108ecc94d48674064b1ad3"
-  },
-  "to_id": "art:test-a-build-without-on-disk-storage-refuses-a-store-in-a-folder"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:79aba1be8558061dd4c096b6458d7b78c38be94a9a5b0a0b2cb11889da98b56b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0833",
-  "properties": {
-    "as_checksum": "sha256:e98acddcd00111ff3d412b9b8ff1bf9c5240e8ad8551f125a4e3566d495b9dc6"
-  },
-  "to_id": "art:the-remote-client-measures-the-folders-own-files-test"
-}

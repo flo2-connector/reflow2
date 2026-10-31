@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c126297034714c8f82a5c2076f625e22f6eb632ed44959a395b0ed3c917bfef3",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:bl-155",
-  "properties": {
-    "evidence": "BL-155 asked how to tell unused from unreachable; the cue counts tell them apart (class B vs class C) and part (3) is its answer for the never-reached ones."
-  },
-  "to_id": "dec:idea-fold-and-removal-candidates-from-the-2026-10-30-counts"
-}

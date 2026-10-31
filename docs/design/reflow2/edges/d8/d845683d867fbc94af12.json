@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b5b88cd9f468acb63a394a84513cc22922f59a482cc4f93f626061b02857b32d",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-flo2-holds-a-proof-as-a-design-reflow2-records-the-equations-and-a-model-reasons-the-steps",
-  "properties": {
-    "evidence": "Anthony promoted the idea on 2026-10-14: \"I want to expand reflow2/flo2 to be able to do ... the graph is the proof ...\""
-  },
-  "to_id": "req:a-design-can-be-a-proof"
-}

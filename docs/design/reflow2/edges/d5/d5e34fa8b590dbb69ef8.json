@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:5f479b6eda7bc372a5d5b92df29185ff48e6a209defd5b453c05110daf069ced",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:delete-node-takes-the-id-prefix-tests",
-  "properties": {},
-  "to_id": "cap:delete-node-takes-the-id-prefix-as-the-stated-type"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:35145dffedd4bd8c8b50b649a94863db6571859f549a0259e3fc980edd61d483",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:the-no-export-line-is-generated-from-the-sources-find-reads",
-  "properties": {},
-  "to_id": "req:the-no-export-line-names-every-source-a-writing-call-reads"
-}

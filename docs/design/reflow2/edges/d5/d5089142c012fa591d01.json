@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f8a531d5c7e485311ef78e4161b52b02d8eaae04c57361752e5e77f585c9f37f",
-  "edge_type": "REALIZES",
-  "from_id": "art:inference-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-test-whose-criteria-moved-supports-nothing-until-acknowledged"
-}

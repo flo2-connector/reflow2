@@ -24,8 +24,9 @@ and the skills. Grok was served correctly by accident.
 
 ⚠️ AND A DETECTOR WITH NOTHING TO RUN ON READS EXACTLY LIKE ONE THAT RAN CLEAN.
 On an empty graph most replies are trivial and a shape check still passes while
-checking almost nothing, so this seeds a real design from the committed export
-and STATES how many replies it actually measured. Zero measured is a FAILURE,
+checking almost nothing, so this seeds a design of realistic size (generated
+since 2026-10-30, tools/generated_design.py, when the committed copy of
+reflow2's own design retired) and STATES how many replies it actually measured. Zero measured is a FAILURE,
 not a pass.
 
 Usage (from the repo root, after `cargo build -p reflow2-mcp`):
@@ -50,6 +51,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from smoke_mcp import Server  # noqa: E402  (path set above)
 from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 import design_io  # noqa: E402  (the one reader of a saved design, either form)
+import generated_design  # noqa: E402  (the design of realistic size it seeds from)
 
 # Tools that answer with a DOCUMENT rather than a record: the text block is the
 # answer and there is no structured half to point at. They are recognised on the
@@ -89,11 +91,24 @@ def payload_is_duplicated(text: str, structured) -> bool:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--bin", default=None, help="reflow2-mcp binary (default: $REFLOW2_BIN, else this checkout's debug build)")
-    ap.add_argument("--export", default=design_io.default_export())
+    ap.add_argument(
+        "--export",
+        default=None,
+        help="a saved design to seed from (default: a generated one of realistic size, "
+        "tools/generated_design.py)",
+    )
     a = ap.parse_args()
     a.bin = a.bin or default_bin()
 
-    export = pathlib.Path(a.export)
+    if a.export is None:
+        # GENERATED, since 2026-10-30: the committed copy of reflow2's own design
+        # this used to read retired (the design is hosted and private). The
+        # generated one has its size and mix, and every type and edge type the
+        # schema declares; see tools/generated_design.py.
+        made = pathlib.Path(tempfile.mkdtemp(prefix="generated-design-")) / "design.json"
+        export = generated_design.write(made)
+    else:
+        export = pathlib.Path(a.export)
     if not export.exists():
         print(f"FAIL: no export at {export} to seed a realistic design from.", file=sys.stderr)
         print("      Without it this gate would check an empty graph and pass vacuously.", file=sys.stderr)

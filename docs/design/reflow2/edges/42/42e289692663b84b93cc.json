@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c1e2bd2500b8648cb7b6d64009b5139a9894e9414e9d9a92398508cfafc31c6d",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:find-tools-finds-relations",
-  "properties": {
-    "note": "This capability is what the decision chose: options a and b, no new tool."
-  },
-  "to_id": "dec:find-tools-also-finds-relations-and-points-to-what-joins-x-to-y"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9226f0c84419cbed65b28a9ffecd2aeae4bc2de34894388ece2a19003658860c",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-reflow2-does-fewer-things-and-does-them-really-well",
-  "properties": {
-    "evidence": "Job 1 (one shared record of what was decided, by whom and why) and job 3 (a model's judgement is not a check) are the settled intent this idea gives a structure to."
-  },
-  "to_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain"
-}

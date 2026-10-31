@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7b71530b885e059549121e537accf2f948ce84566981de3f32a10870a45f2634",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0831",
-  "properties": {
-    "as_checksum": "sha256:17b83a804c981faa10588f232ec1977b89ad6fa2e839a8c123745c122e0e7be1"
-  },
-  "to_id": "art:test-every-client-mode-honours-read-only"
-}

@@ -19,13 +19,13 @@ fn graph() -> DesignGraph {
 fn watched(hash: Option<&str>) -> DependencyDeclaration {
     DependencyDeclaration {
         id: "dep:sim".into(),
-        name: "beamline-sim".into(),
-        source: "https://github.com/example/beamline-sim.git".into(),
+        name: "instrument-sim".into(),
+        source: "https://github.com/example/instrument-sim.git".into(),
         version: "v2.1.0".into(),
         components: vec![],
         features: vec![],
         declared_in: Some("Cargo.toml".into()),
-        graph_id: Some("beamline_sim".into()),
+        graph_id: Some("instrument_sim".into()),
         design_export: Some("/somewhere/sim/docs/design/reflow2.json".into()),
         design_export_hash: hash.map(str::to_string),
         design_export_seen_at: Some("2026-08-20".into()),
@@ -67,7 +67,7 @@ fn an_upstream_that_has_not_moved_says_so_plainly() {
     g.declare_external_dependency(&watched(Some("sha256:aaa")))
         .expect("declare");
     let report = g
-        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("instrument_sim"))])
         .expect("reconcile");
     assert_eq!(report.findings.len(), 1);
     assert_eq!(report.findings[0].kind, "unchanged");
@@ -84,7 +84,7 @@ fn an_upstream_that_moved_is_reported_with_the_pin_it_is_declared_against() {
     g.declare_external_dependency(&watched(Some("sha256:aaa")))
         .expect("declare");
     let report = g
-        .reconcile_upstream(&[seen("read", Some("sha256:bbb"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("read", Some("sha256:bbb"), Some("instrument_sim"))])
         .expect("reconcile");
     assert_eq!(report.findings[0].kind, "moved");
     assert!(report.findings[0].is_actionable());
@@ -104,7 +104,7 @@ fn reading_never_updates_the_baseline_so_a_move_keeps_being_reported() {
     let mut g = graph();
     g.declare_external_dependency(&watched(Some("sha256:aaa")))
         .expect("declare");
-    let moved = [seen("read", Some("sha256:bbb"), Some("beamline_sim"))];
+    let moved = [seen("read", Some("sha256:bbb"), Some("instrument_sim"))];
     for _ in 0..3 {
         assert_eq!(kinds(&g, &moved), vec!["moved"]);
     }
@@ -124,7 +124,7 @@ fn re_declaring_takes_a_new_baseline_and_the_report_goes_quiet() {
     let mut g = graph();
     g.declare_external_dependency(&watched(Some("sha256:aaa")))
         .expect("declare");
-    let moved = [seen("read", Some("sha256:bbb"), Some("beamline_sim"))];
+    let moved = [seen("read", Some("sha256:bbb"), Some("instrument_sim"))];
     assert_eq!(kinds(&g, &moved), vec!["moved"]);
 
     g.declare_external_dependency(&watched(Some("sha256:bbb")))
@@ -138,7 +138,7 @@ fn a_readable_export_nobody_has_ever_recorded_is_never_seen_not_unchanged() {
     g.declare_external_dependency(&watched(None))
         .expect("declare");
     let report = g
-        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("instrument_sim"))])
         .expect("reconcile");
     assert_eq!(report.findings[0].kind, "never_seen");
     // Not actionable — it says nobody has LOOKED, which is a fact about this
@@ -171,7 +171,7 @@ fn an_export_belonging_to_a_different_design_is_named_as_that_and_not_as_movemen
         .expect("reconcile");
     assert_eq!(report.findings[0].kind, "graph_id_mismatch");
     assert!(report.findings[0].detail.contains("vision_rig"));
-    assert!(report.findings[0].detail.contains("beamline_sim"));
+    assert!(report.findings[0].detail.contains("instrument_sim"));
 }
 
 /// SILENCE IS REPORTED, NEVER ASSUMED. A dependency that names another design
@@ -256,7 +256,7 @@ fn the_targets_a_caller_should_open_come_from_the_committed_manifest() {
         .expect("declare");
     let targets = g.upstream_targets().expect("targets");
     assert_eq!(targets.len(), 1);
-    assert_eq!(targets[0].graph_id.as_deref(), Some("beamline_sim"));
+    assert_eq!(targets[0].graph_id.as_deref(), Some("instrument_sim"));
     assert_eq!(
         targets[0].design_export.as_deref(),
         Some("/somewhere/sim/docs/design/reflow2.json")
@@ -326,7 +326,7 @@ fn a_design_watched_at_its_address_reads_unchanged_and_moved_like_an_export() {
         .expect("declare");
 
     let report = g
-        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("read", Some("sha256:aaa"), Some("instrument_sim"))])
         .expect("reconcile");
     let f = &report.findings[0];
     assert_eq!(f.kind, "unchanged");
@@ -339,7 +339,7 @@ fn a_design_watched_at_its_address_reads_unchanged_and_moved_like_an_export() {
     assert_eq!(report.watched, 1);
 
     let report = g
-        .reconcile_upstream(&[seen("read", Some("sha256:bbb"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("read", Some("sha256:bbb"), Some("instrument_sim"))])
         .expect("reconcile");
     assert_eq!(report.findings[0].kind, "moved");
     assert!(report.findings[0].is_actionable());
@@ -473,7 +473,7 @@ fn an_unknown_observation_state_is_reported_not_read_as_agreement() {
     g.declare_external_dependency(&at_address(Some("sha256:aaa")))
         .expect("declare");
     let report = g
-        .reconcile_upstream(&[seen("sideways", Some("sha256:aaa"), Some("beamline_sim"))])
+        .reconcile_upstream(&[seen("sideways", Some("sha256:aaa"), Some("instrument_sim"))])
         .expect("reconcile");
     assert_eq!(report.findings[0].kind, "unreadable");
     assert!(report.findings[0].detail.contains("sideways"));
