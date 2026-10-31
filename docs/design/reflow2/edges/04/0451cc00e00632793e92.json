@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8d17174f0c4b14491d05bd80841c0190a0e590f3daa087448dd55c99a91bec1d",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:root-cause-a-design-choice-read-its-requirements-by-delivery-because-the-premise-truth-reused-the-delivery-line-2026-10-24",
-  "properties": {
-    "evidence": "Anthony chose the root cause's first-ranked option and its default on 2026-10-24."
-  },
-  "to_id": "dec:a-premise-says-whether-it-rests-on-intent-or-delivery"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:eb1d44c8ad7f35d3d0f451a285856d62872f70555aacd0fad68ba275c8a82e2f",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "req:every-oversized-reply-offers-a-bound",
-  "properties": {
-    "evidence": "The older, still-proposed requirement asked only that an oversized reply OFFER a bound; this one makes every reply fill its budget and page, checked on every tool."
-  },
-  "to_id": "req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d165a83e5a09bd95598352b0a2fbab4d940e2fc1aab2095660a98ba1fb302122",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:53cfcd7ebf376ab905f6a31f5ff0630a536818152b6e18508f3ab140e209bac3"
-  },
-  "to_id": "art:test-a-procedural-boundary-has-a-word"
-}

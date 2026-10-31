@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:60283ce295d8e117fc31f78a7cbbe9dfe1a1dc706bd123659b3cbf162c768329",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:e5c9e5eb91659591534409bd724decc2c71743c62bd6f5871d86edc248c0b347"
-  },
-  "to_id": "art:a-scoped-loop-status-fits-its-budget-test"
-}

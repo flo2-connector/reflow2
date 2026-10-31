@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:192a853822fd908c6fa1597a0a5673a824262277daff2e64e6ef083c0e743580",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:service-far",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:service-far"
-}

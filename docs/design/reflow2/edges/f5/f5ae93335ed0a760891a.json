@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:7fd7cfcb8356f5929e191e0b16d32953fecc8269f0bb444c90a8b6fab1ad3a9c",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:the-trials-small-read-back-and-write-faults-are-fixed",
-  "properties": {},
-  "to_id": "req:small-read-back-faults-from-the-cogito-trial-are-fixed"
-}

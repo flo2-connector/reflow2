@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:561f5bdce0956b3583fcfba268d49f61bdd6904e0b48767f76b19eba4bf546e6",
-  "edge_type": "REALIZES",
-  "from_id": "art:export",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:an-import-says-what-it-removed-and-merges-only-when-asked"
-}

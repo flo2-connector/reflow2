@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b0acee745366f19bc4c4181e8698c46790f4354a5a83a034f0c1557674537b3c",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-reasoning-is-evaluated-once-per-report",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:reasoning-is-evaluated-once-per-report"
-}

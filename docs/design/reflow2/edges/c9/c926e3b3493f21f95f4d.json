@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b710b94d321a2e2ff6c6c05e2f084e76c1ad713a28dcdce60399356994107aa8",
-  "edge_type": "REALIZES",
-  "from_id": "art:inference-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-step-reads-how-it-holds-and-lines-through-one-citation-are-not-independent"
-}

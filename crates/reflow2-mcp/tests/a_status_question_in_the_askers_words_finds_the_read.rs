@@ -1,6 +1,6 @@
 //! A status question, asked the way a person asks it, finds a tool that READS.
 //!
-//! FIELD REPORT, 2026-09-14 (hxm_program): asked for a progress deck for
+//! FIELD REPORT, 2026-09-14 (a work hub): asked for a progress deck for
 //! management, an agent asserted the project's status from a checklist file
 //! and its own recent writes and never read the design. Challenged, one
 //! `topic_report` call on the project's name gave it twenty hits across nine

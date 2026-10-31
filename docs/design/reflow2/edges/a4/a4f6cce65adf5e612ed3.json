@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d532b48ac05bac8fd026fd3ab7c3cfa9e7ea4388ac0f4a756e5d37210ebd3bac",
-  "edge_type": "REALIZES",
-  "from_id": "art:claims-and-shared-premises-on-the-wire-test",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:two-lines-stated-independent-are-checked-against-their-shared-premises"
-}

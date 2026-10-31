@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:811f76ed0a0c193f26d63329492f12f803dfca87c94998547814a975c5b11d3e",
-  "edge_type": "REALIZES",
-  "from_id": "art:a-reply-through-a-hub-fits-its-budget-test",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-hubs-address-serves-a-view-over-its-members"
-}

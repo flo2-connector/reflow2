@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d9d2c58f43a6f26556854f6591a206d4aaa985b420582a889b261a723fa6216d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:bdaeb03167f64edd28c6abc0d108d0d1e7def1b0cc20c367d06587dbd81cac57"
-  },
-  "to_id": "art:a-node-is-named-by-the-key-the-last-tool-used-test"
-}

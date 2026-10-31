@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:cdb399e9a28bce6661f7af4fdd41b60d72dcea18904d33d1bd7206c6fd32393b",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-registry-raises-and-checks-its-open-file-limit-at-start",
-  "properties": {},
-  "to_id": "req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open"
-}

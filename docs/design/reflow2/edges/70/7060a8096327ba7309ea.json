@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:91c306b7a5de0339484c4ac75a75b9074bcd9d45d44d8f0232d846abb911242d",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "xref:83d2b0775fe79af6:dec:idea-process-steps-are-not-stand-alone-tools",
-  "properties": {
-    "evidence": "The accepted 'd then b': d (measure which tools are steps from the call log) is done in the 2026-10-30 finding, and this requirement is b on that measurement."
-  },
-  "to_id": "req:the-measured-step-only-tools-are-listed-under-their-process-tool"
-}

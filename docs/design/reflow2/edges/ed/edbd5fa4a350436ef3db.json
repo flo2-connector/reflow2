@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4f32b4259815cd29f436d4ae81d444d1a1636cf9f24d576320b878ddba9c9f5c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0850",
-  "properties": {
-    "as_checksum": "sha256:5ff6fdf48d9e032830a1efa25adfd88cadab1ef97b9e6fdf970394bd73c4a1c8"
-  },
-  "to_id": "art:agent-instructions"
-}

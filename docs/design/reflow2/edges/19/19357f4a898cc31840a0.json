@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1f7c5fcbf92d0ace54be2ca0b02c6cbee96fda40663b07cd22cbc6693a8fbf79",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it"
-}

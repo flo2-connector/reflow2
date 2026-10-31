@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:916d89e16ba2ff525fc958425dffcac4bb8675936e4ed9ae58b4ca5492df477e",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes",
-  "properties": {
-    "evidence": "If the checks a wording change needs (skill lint, findability, design gate) run on the in-memory backend, a small change gets a fast and complete gate instead of a fast partial one, which is the cost pressure that question records."
-  },
-  "to_id": "dec:idea-should-the-gate-set-be-selected-per-diff"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ae7dbd89310aa73aa89cc24c95a0225b99a9f7665a9db3bb7e06cbde0d2aaa1f",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0900",
-  "properties": {
-    "as_checksum": "sha256:e5ccaadd4e59894e7b24e9f4012677bc16af2ece6b71968c1f779d519185f1d0"
-  },
-  "to_id": "art:hub-command"
-}

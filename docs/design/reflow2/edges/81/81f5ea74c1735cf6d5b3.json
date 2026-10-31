@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:14a09e478f1a1f04dfe3308a6bbb48f8fd26fba2266ca49b8f8a93659ae50ca1",
-  "edge_type": "MITIGATES",
-  "from_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit",
-  "properties": {
-    "evidence": "Every option answers the root cause recorded there: the three limits are never compared."
-  },
-  "to_id": "fact:root-cause-a-registry-at-its-open-limit-runs-out-of-file-handles-2026-10-28"
-}

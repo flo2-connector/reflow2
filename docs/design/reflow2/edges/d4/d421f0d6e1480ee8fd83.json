@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:55b4c5290cfc6a5bbba5d4de17523b82580003fab5726dbdbe6866b54df05b98",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:e72349256e954de03a979e5db2fe08686a7d859c0bb29e44a6c0d8154606d976"
-  },
-  "to_id": "art:neighbourhood"
-}

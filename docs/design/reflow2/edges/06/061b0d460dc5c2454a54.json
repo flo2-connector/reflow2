@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:cb7160e3240daca30a2bb9623d7f213035bce5e90946a0d0427c652ada777e77",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:main"
-}

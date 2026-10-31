@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f0f7dc8ec9e10266a9eff68d31b691788197b0daaf5e84390795b6406d07fb72",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:the-remote-client-measures-the-folders-own-files-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:the-remote-client-measures-the-folders-own-files"
-}

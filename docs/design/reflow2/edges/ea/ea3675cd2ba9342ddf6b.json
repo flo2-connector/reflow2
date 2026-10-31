@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:20b42c0364b8267df2aec9130d8941dfde7ef4abf951744a22939554eb4efd35",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-constructor-stores-the-status-it-was-given",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-constructor-stores-the-status-it-was-given-tests"
-}

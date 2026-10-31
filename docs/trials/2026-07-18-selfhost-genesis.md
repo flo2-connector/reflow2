@@ -25,14 +25,14 @@ inflates the evidence base that BL items are argued from.
 ```
 18 nodes · 3 gaps · 14 structural defects
 
-  0.70  concept_without_design      ← artifact of seeding order (known: ophyd 1, 3dtictactoe 0+3)
+  0.70  concept_without_design      ← artifact of seeding order (known: the instrument-control trial 1, 3dtictactoe 0+3)
   0.65  build_without_verification  ← same class, second detector (new detail)
   0.60  unsatisfied_requirement     ← on a deploy-context requirement (known: grok finding 9)
 
-   7  orphan_node (capability not allocated)  ← known: ophyd finding 14
-   3  disconnected_community                  ← known: ophyd finding 14
+   7  orphan_node (capability not allocated)  ← known: the instrument-control trial finding 14
+   3  disconnected_community                  ← known: the instrument-control trial finding 14
    3  single_point_of_failure                 ← known: BL-5
-   1  orphan_node (requirement unsatisfied)   ← double-count of gap 3 (known: ophyd 15, 3dtictactoe 10)
+   1  orphan_node (requirement unsatisfied)   ← double-count of gap 3 (known: the instrument-control trial 15, 3dtictactoe 10)
 ```
 
 Nothing in the list was actionable. See §6.
@@ -41,7 +41,7 @@ Nothing in the list was actionable. See §6.
 
 ## 1. NEW — every `JsonValue` parameter on the tool surface is unusable from this client
 
-The input-side twin of the bug class ophyd found on the output side (findings 10 and 22) and the
+The input-side twin of the bug class the instrument-control trial found on the output side (findings 10 and 22) and the
 grok trial found on array responses (its finding 1). Nobody has looked at the parameters.
 
 Five tool parameters are declared `JsonValue` in `service.rs`. `JsonValue`'s `JsonSchema` impl
@@ -79,7 +79,7 @@ match one of the four supported harnesses.
 fields as those structs; `props` as an explicit map type. Do **not** make the server also accept a
 JSON string — that is a silent fallback and violates `req:no-silent-fallback`.
 
-**Test:** ophyd finding 22 already proposes a smoke test asserting every tool's *response* envelope
+**Test:** the instrument-control trial finding 22 already proposes a smoke test asserting every tool's *response* envelope
 validates. That proposal does not cover this: these are request schemas, and the failure is in the
 client's marshalling, not the server's output. The check that would have caught it is static —
 assert no advertised `inputSchema` property lacks a type — and it needs writing separately.
@@ -96,22 +96,22 @@ reintroduced. Two behavioural layers stayed green throughout the bug's life: the
 Python dicts, and the Rust integration tests call the handlers as Rust fns and never cross the JSON
 boundary at all.
 
-## 2. CONFIRMS ophyd finding 14 — HEAL contradicts GENESIS, now at 18 nodes
+## 2. CONFIRMS the instrument-control trial finding 14 — HEAL contradicts GENESIS, now at 18 nodes
 
 Seven of the 14 defects are `Capability 'X' is not allocated to any component`, one per seeded
 capability, caused entirely by GENESIS step 2's bolded **do not create Components yet**.
 
-[Ophyd finding 14](2026-07-18-brownfield-ophyd-service.md) already reports this precisely — 15 of
+The instrument-control trial's finding 14 (a private trial record) already reports this precisely — 15 of
 its 35 defects were the same detector restating "0 Components exist," and it already draws the
 conclusion that following `check-health` literally would fabricate Components via `generate_owner`.
 It proposes suppressing allocation-orphan defects when Component count is 0, or having
 `graph_report` label the phase.
 
-What this run adds is only scale and sequencing: it reproduces at **18 nodes** (ophyd was 52), and
+What this run adds is only scale and sequencing: it reproduces at **18 nodes** (the instrument-control trial was 52), and
 it reproduces on the *greenfield* path, so finding 14's proposed fix should not be scoped to
 brownfield. The natural skill order genesis → check-health produces it on any project, day one.
 
-One detail ophyd finding 14 could not see, because it declined to run `propose_heal`: on this graph
+One detail the instrument-control trial finding 14 could not see, because it declined to run `propose_heal`: on this graph
 `propose_heal(balanced)` returns **0 structural operations and 14 awaiting generation**, all
 `requires_human_review: true`. Generation is gated on the deferred LLM backends. So
 `check-health`'s promise to "apply only the mechanical fixes" has, here, nothing whatever to apply
@@ -120,7 +120,7 @@ One detail ophyd finding 14 could not see, because it declined to run `propose_h
 ## 3. CONFIRMS BL-27 — third target, and a second detector in the same class
 
 The `concept_without_design` at 0.70 outranking the real gap at 0.60 is [BL-27](../backlog.md),
-already established by [ophyd finding 1](2026-07-18-brownfield-ophyd-service.md) and [3dtictactoe
+already established by the instrument-control trial's finding 1 (a private trial record) and [3dtictactoe
 finding 3](2026-07-18-brownfield-3dtictactoe.md), which together already upgraded it from an
 observation to a property of the path. A third sighting adds little; recording it only because the
 target is reflow2 itself.
@@ -135,11 +135,11 @@ about the *graph* while false about the *system* — 3dtictactoe finding 3's arg
 detector across. The consequence for BL-27 is narrow but real: a fix scoped to
 `concept_without_design` alone still leaves the top two-thirds of the first gap list unactionable.
 
-## 4. CONFIRMS aidrone finding 1 and ophyd finding 11 — and closes the last workaround
+## 4. CONFIRMS aidrone finding 1 and the instrument-control trial finding 11 — and closes the last workaround
 
 [Aidrone finding 1](2026-07-18-greenfield-aidrone.md) reports "No way to set node properties at
-creation" (everything lands `priority=medium, kind=functional, status=proposed`) and [ophyd finding
-11](2026-07-18-brownfield-ophyd-service.md) reports `add_capability` hardcoding `status: planned`.
+creation" (everything lands `priority=medium, kind=functional, status=proposed`) and the instrument-control trial's finding
+11 (a private trial record) reports `add_capability` hardcoding `status: planned`.
 Both reproduced exactly: all 10 requirements landed `priority: medium`, all 7 capabilities
 `planned` — for capabilities that ship in the binary the client is talking to.
 
@@ -169,7 +169,7 @@ already satisfies, so every articulation point elsewhere reports. Nothing here r
 only to record that it still fires post-BL-5-fix at this size.
 
 The 1 remaining `orphan_node` (requirement satisfied by nothing) is the same fact as gap 3 in HEAL
-vocabulary — [ophyd finding 15 / 3dtictactoe finding
+vocabulary — [the instrument-control trial finding 15 / 3dtictactoe finding
 10](2026-07-18-brownfield-3dtictactoe.md), DETECT/HEAL
 double-counting, reproducing a third time.
 
@@ -208,7 +208,7 @@ including the ask half of the loop. It was invisible to every prior trial becaus
 over real MCP ran on grok build, whose marshalling happens to work.
 
 The rest of this session is evidence that the existing findings reproduce. That is worth something
-— ophyd finding 14 and BL-27 both gain a sighting on a third target — but it is not new
+— the instrument-control trial finding 14 and BL-27 both gain a sighting on a third target — but it is not new
 information, and the first draft of this document presented it as though it were.
 
 ## Repro

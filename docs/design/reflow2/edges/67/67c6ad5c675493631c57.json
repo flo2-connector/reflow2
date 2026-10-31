@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e345e5550138c78aeffa1bc016cc087e326ca1cd38b80f06372cb59f100b0f62",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:43efb3dd59d17efa2aab4c25c5dc57495077f8d6fd31b1743e0bc8fa5df201fe"
-  },
-  "to_id": "art:doc-impact-propagation"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:68d8078da8c77a2b4e9a1aaf0329fb696d3bb1983232aae46455b04da86783d7",
-  "edge_type": "REALIZES",
-  "from_id": "art:inference-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-check-whose-conditions-lose-support-reads-stale"
-}

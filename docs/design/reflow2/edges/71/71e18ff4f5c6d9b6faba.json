@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e29879179bb62cd1f26098d11cbebae6fec29cc8e9b48f229c9762004db7414b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:6d1391f7f64697c73f74341425532e465ee20a8bc42ae6a5991d9eeac9782f5f"
-  },
-  "to_id": "art:test-a-field-term-finds-the-type-that-holds-it"
-}

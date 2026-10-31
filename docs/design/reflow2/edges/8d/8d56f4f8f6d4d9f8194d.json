@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ecf63c62650ff4f13938f2e517ca81a9c0ce9d3125ebdc30f1437b81543237aa",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0831",
-  "properties": {
-    "as_checksum": "sha256:5ac0043f099a6a5e11453bb2a5a51430d391be66f419456ccdf3c4bac848505c"
-  },
-  "to_id": "art:find-tools-corpus-fixture"
-}

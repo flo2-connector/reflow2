@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d84c69e257fadfe78247e55fe130bf7a17ac29eb5bc47442ebf05a5e7a54c716",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:832c667dd08f73abb248f0630d704c4b395d2194dd922901990ba42d97b1bcb1"
-  },
-  "to_id": "art:test-a-hubs-address-serves-a-view"
-}

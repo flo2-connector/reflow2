@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9255fe77e3cda018ab47e295f70354ba9c5ea275e396514c0630fd1c23646cef",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:what-pins-a-snapshot",
-  "properties": {
-    "evidence": "The 2026-07-30 question of what identifies an arrived epoch's snapshot saw this coming; a release keeping a status snapshot is one concrete answer to part of it (identity by content hash, address by tag)."
-  },
-  "to_id": "dec:how-the-changelog-balance-is-counted"
-}

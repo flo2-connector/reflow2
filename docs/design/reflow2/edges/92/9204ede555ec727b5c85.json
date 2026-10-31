@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b3349b55ef66ab8b621979cb0ff973801b0d7cd641c283c4af5282332564876d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:7f97173c6b706b9176e09510ba589460938aeee070f5ac1c40aea0e7d8c609fd"
-  },
-  "to_id": "art:test-ephemeral-says-so"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d4fef3d0ef30e40e1a57cecc0175329527e592380d464ca7b3a7a3df8e6d96ce",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:the-four-colour-rung-ran-on-0-90-0-and-one-broken-step-falls-alone-but-a-status-over-time-is-never-read-2026-10-23",
-  "properties": {
-    "evidence": "Finding (a) of the four colour rung: a status held for a period (Kempe accepted 1879-1890) is never read back; folded into this requirement's withdrawn-with-period clause."
-  },
-  "to_id": "req:a-claim-made-by-a-named-party-and-not-yet-verified-reads-claimed"
-}

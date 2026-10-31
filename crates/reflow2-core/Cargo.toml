@@ -24,7 +24,15 @@ serde = { version = "1", features = ["derive"] }
 # Snapshots store a node's property bag as a JSON string (temporal.yaml's
 # `Snapshot.state`); `Value` is serde-serializable (untagged), so this renders
 # clean JSON rather than an opaque debug blob.
-serde_json = "1"
+#
+# `float_roundtrip`: a saved number must read back as the same number. Without
+# it serde_json parses some shortest-form floats one unit in the last place off
+# (11/96 is written `0.11458333333333333` and read back `0.11458333333333331`),
+# so a design nobody touched read as tampered in the item layout and failed its
+# own content hash in a single file. Found 2026-10-30 by the generated design;
+# pinned by tests/a_saved_number_reads_back_as_the_number_it_was.rs. Cargo
+# unifies features, so this one line covers every reader in the build.
+serde_json = { version = "1", features = ["float_roundtrip"] }
 # The export's content hash (tamper evidence + lineage chain,
 # dec:export-hash-chain). FNV-1a serves the deterministic *ids*; a fingerprint
 # meant to detect edits needs a real cryptographic hash.

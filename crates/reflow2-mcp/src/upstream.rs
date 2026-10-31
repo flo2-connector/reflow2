@@ -504,7 +504,7 @@ fn failed(e: anyhow::Error) -> NotFingerprinted {
 /// half of `req:one-search-reaches-every-design-a-hub-tracks`, so a search on
 /// a hub that answers "nothing found" never reads as nothing found anywhere.
 ///
-/// Measured 2026-10-21 on 0.89.0 in hxm_program's hub, which pins fourteen
+/// Measured 2026-10-21 on 0.89.0 in a work hub, which pins fourteen
 /// member designs by their committed exports and is reached only through the
 /// --call door: a search for a word only a member held answered from the hub
 /// alone, with nothing saying fourteen designs were never looked in.

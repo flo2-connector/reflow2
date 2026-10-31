@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5b26c5e33f5573fd1a880d4a99af94c634a57e749e8911a8b5ac6830c313042c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:6f30deaf0592b86f0d5f73db875695aa9e1af0d43fb92111127db79408a69cae"
-  },
-  "to_id": "art:store-engine-stamps-rs"
-}

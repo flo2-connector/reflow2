@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:0b1b5670d13fe63bb69e40f8485be1772f850ce850922b32e91a33e63df5206e",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-settling-cue-goes-to-the-owner-not-to-an-agent-who-cannot-give-the-word",
-  "properties": {},
-  "to_id": "req:each-cue-is-counted-by-whether-the-agent-acted-on-it"
-}

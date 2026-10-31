@@ -5480,7 +5480,7 @@ schema version 1). The only vocabulary addition is the values of the new
 ### Added
 
 - **`/log-issue` — something to come back to is captured with one word, and the loop lists it until
-  it is settled.** Anthony, from a beamline: a service he had deployed was misbehaving, and back at
+  it is settled.** Anthony, away from the desk: a service he had deployed was misbehaving, and back at
   the desk he wanted to type one word so it entered the design as a follow-up. The served `log-issue`
   skill and its command take the sentence as given, find the subject from the user's noun (the Project
   when nothing matches), and `record_finding` with `fact_type: follow_up` — no cause, no node type,
@@ -5710,7 +5710,7 @@ schema version 1). The only vocabulary addition is the values of the new
   reply field grew a name in parentheses; no shape or schema change.
 - **The status claim is the trigger: orientation fires when the agent is about to assert a
   project's status to anyone, and a status question in the asker's words finds the read.** Field
-  report, 2026-09-14 (hxm_program, a hub design over many projects): asked for a progress deck
+  report, 2026-09-14 (a work hub, a hub design over many projects): asked for a progress deck
   for management, an agent asserted the project's status from a checklist file and its own
   recent writes and never read the design; challenged, one `topic_report` call gave it twenty hits
   across nine node types, and it had known six of forty-one change events. Root-caused, not
@@ -5996,7 +5996,7 @@ enum values. 28 node types, 65 edge types, unchanged.
   stays, the release profile ships, the server guarantees the export, lineage chains from `main`,
   an engine swap is rejected with a named trigger.
 - rmcp 3.1.2 → 3.3.0 (#488); the base router is declared empty on purpose (`allow_empty`).
-- Three capture-surface fixes from the hxm_program field report (#472); the `plan_epoch` revise
+- Three capture-surface fixes from a work hub's field report (#472); the `plan_epoch` revise
   path no longer resets an arrived epoch to `planned` (#493).
 - The v0.51.0 unknown-field interception, dead since the day it shipped, now fires on the wire
   (#480). `tools/toolsnap.py --update` refuses to bless a surface that violates an invariant.
@@ -7307,7 +7307,7 @@ It immediately found **eight skills that mint concept nodes and never said to se
 
 **Minor.** No schema change: the stamp is unmoved at 29 node types / 64 edge types / schema_version 1, diffed field by field against v0.40.0. **No upgrade doc is owed.**
 
-**hxm_program followed the `brainstorm` skill exactly and was punished for it.** Ideas recorded as `proposed` Decisions, linked with `CONTRADICTS` / `ANTICIPATES` / `DEPENDS_ON` exactly as step 4 instructs — and `detect_defects` read every one of those edges as a commitment. **Their defect count went 2 → 7 over a day of doing the prescribed thing**, repeated at every hand-off. reflow2's own session hit the same class the same day, neither knowing about the other.
+**A work hub followed the `brainstorm` skill exactly and was punished for it.** Ideas recorded as `proposed` Decisions, linked with `CONTRADICTS` / `ANTICIPATES` / `DEPENDS_ON` exactly as step 4 instructs — and `detect_defects` read every one of those edges as a commitment. **Their defect count went 2 → 7 over a day of doing the prescribed thing**, repeated at every hand-off. reflow2's own session hit the same class the same day, neither knowing about the other.
 
 **A `proposed` Decision asserts nothing, and three finding kinds now read that.** One predicate, `is_parked_idea`, and each kind states how it combines it — because the combinations differ and the difference is the content:
 
@@ -7327,7 +7327,7 @@ It immediately found **eight skills that mint concept nodes and never said to se
 
 So the deliverable is the guard: `every_category_states_whether_it_reads_proposed` is an exhaustive match over `HealCategory`, and a new category **cannot compile** until its author has written down where it stands. Both answers are legitimate; an unconsidered category is not.
 
-**Also fixed:** a gap replayed into `gaps_to_prompts` exactly as documented was refused with `missing field 'suggested_depth'` (hxm_program, F-01). The cause was not the field — `GapCandidate` stated a replay contract in its own doc comment and enforced it field by field, so it held for the fields somebody remembered. The pin is the **round trip**, so any future field added without a default fails it.
+**Also fixed:** a gap replayed into `gaps_to_prompts` exactly as documented was refused with `missing field 'suggested_depth'` (a work hub's field report, F-01). The cause was not the field — `GapCandidate` stated a replay contract in its own doc comment and enforced it field by field, so it held for the fields somebody remembered. The pin is the **round trip**, so any future field added without a default fails it.
 
 ### Added — a surface that can refuse every write, and a session that can say what it went without
 
@@ -9929,7 +9929,7 @@ see the first Changed entry.
   it on its own design (eight open decisions, `detect_gaps` returning nothing about any of them,
   `loop_status` with no field that could); it was then reproduced deliberately here while
   capturing flo2's proposal (11 gaps, **zero** referencing the assigned decision); and
-  [BL-215]'s hxm_program field report hit the same shape from a different project — *"every
+  [BL-215]'s work-hub field report hit the same shape from a different project — *"every
   captured decision was ALSO hand-copied into markdown for teammates"*. A design brain that holds
   the open decisions but cannot report them pushes its users into keeping a shadow list, which is
   the precise failure reflow2 exists to prevent.
@@ -13621,7 +13621,7 @@ everything after rides here.
   (`unsatisfied_requirement`, `unallocated_capability`), they were never repairable — each mapped
   to a `generate_owner` stub `apply_heal` can never apply — and the docs' own division puts
   meaning in gap-surfacing and structure in HEAL. Four independent trials complained about this
-  double-count (ophyd 15, 3dtictactoe 10, the self-host run, and storyflow where it was **20 of
+  double-count (the instrument-control trial 15, 3dtictactoe 10, the self-host run, and storyflow where it was **20 of
   31 defects**). The Artifact orphan stays: DETECT has no counterpart for a file that realizes
   nothing. Closing the gap also required teaching `unallocated_capability` that a `Flow` is
   structure (BL-37), or a loose capability on a process-only graph would have gone silent
@@ -13823,7 +13823,7 @@ binaries, loudly. See [docs/upgrading-to-v0.3.0.md](docs/upgrading-to-v0.3.0.md)
   description to move it invites drift. Nothing hardcoded `planned`; the constructor simply never
   set the property, so every capability took the schema default. On the greenfield path that
   default is right and stays untouched — a new capability really is planned. On the brownfield
-  path it is unusable: ophyd's 15 shipped, under-test capabilities all landed `planned`, so the
+  path it is unusable: the instrument-control trial's 15 shipped, under-test capabilities all landed `planned`, so the
   graph asserted that a production system was entirely unbuilt. Settable **at creation** because
   correcting it afterwards is two writes per node, which is what an adoption pass does least well.
 
@@ -13834,7 +13834,7 @@ binaries, loudly. See [docs/upgrading-to-v0.3.0.md](docs/upgrading-to-v0.3.0.md)
   `import_graph` carries it at create time, which is the path an adopt pass should actually use.
   `inferred` is the value that earns the property: a Requirement backed out of the code that
   implements it is satisfied by construction, so it can never contradict anything and a graph full
-  of them says nothing — but only if a reader can tell. Ophyd had nowhere to put that and wrote
+  of them says nothing — but only if a reader can tell. The instrument-control trial had nowhere to put that and wrote
   `[EXTERNAL — …]` into the statement text, which is not queryable.
 
   Adding properties leaves the node and edge type counts at 27/53, so `GraphStamp` does not move
@@ -13872,8 +13872,8 @@ binaries, loudly. See [docs/upgrading-to-v0.3.0.md](docs/upgrading-to-v0.3.0.md)
 
 - **`unmotivated_capability` — the direction DETECT was blind in** (BL-27, the fourth of five
   blockers). `detect_gaps` walked Requirement→Capability only, so a Capability satisfying no
-  Requirement was never reported. Both brownfield trials ran the probe deliberately — ophyd seeded
-  `cap:qserver-auth` with no `SATISFIES` and got 13 `unsatisfied_requirement` gaps and silence
+  Requirement was never reported. Both brownfield trials ran the probe deliberately — the instrument-control trial seeded
+  `cap:queue-auth` with no `SATISFIES` and got 13 `unsatisfied_requirement` gaps and silence
   about the orphan; 3dtictactoe did the same with `cap:draw-detection` and got four gaps, none
   about it.
 
@@ -13883,7 +13883,7 @@ binaries, loudly. See [docs/upgrading-to-v0.3.0.md](docs/upgrading-to-v0.3.0.md)
   and one nothing justifies is either a requirement nobody wrote down or dead code.
 
   Severity reads `Capability.provenance` rather than being fixed — 0.55 authored, 0.70 `inferred`.
-  Ophyd asked for this to outrank `unsatisfied_requirement` "on a brownfield graph", and no fixed
+  The instrument-control trial asked for this to outrank `unsatisfied_requirement` "on a brownfield graph", and no fixed
   number can honour that qualifier; provenance is what tells the two readings apart, so the gap
   leads the list exactly where the trial wanted it to and sits below the requirement gaps
   otherwise. This is the first thing to consume the property added above.

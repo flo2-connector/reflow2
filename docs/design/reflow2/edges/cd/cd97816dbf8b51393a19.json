@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a1cf44696f8e8e6ffab56691a7ed2474ec812e1550072d5131ba938e05087fdd",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:the-server-stamps-each-node-creation-and-content-change-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:the-server-stamps-each-node-creation-and-content-change-tests"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:33f7f233403948bed581bb5064ca0c3f95c5992158f3eb2e0c82657fc978dc3d",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
-  "properties": {},
-  "to_id": "req:the-mcp-server-keeps-working-as-is-and-door-improvements-are-additive-or-opt-in"
-}

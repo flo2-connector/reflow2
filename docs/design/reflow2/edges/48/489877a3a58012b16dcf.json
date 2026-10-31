@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:22839720ba5565f834a97940ee20848ab68a0786fcfdf0a44a789b0c9a2543b4",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:aa313d614d3042cfad62491a0fb5cac56fb8b959306385a1aaf7f57307e5eb2c"
-  },
-  "to_id": "art:small-faults-are-fixed-on-the-wire-test"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:de631db99cea77ac87bb106a0d96f4aa24495e0c4d9aad34b978c312339a039a",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-an-explicit-inference-step-and-a-check-that-it-follows-improve-every-design",
-  "properties": {
-    "evidence": "Anthony promoted the idea on 2026-10-14: \"I want to expand reflow2/flo2 to be able to do ... inference steps for every design.\""
-  },
-  "to_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows"
-}

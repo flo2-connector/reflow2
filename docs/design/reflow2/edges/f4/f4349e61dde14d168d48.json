@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9b4f2fe8010abab2589764be81ab164671387f5362a0d9017e84985a54d0ce12",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-changed-quantity-names-every-kept-computation-that-used-it",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-part-documented-by-a-drawing-and-a-model-is-on-its-redo-list"
-}

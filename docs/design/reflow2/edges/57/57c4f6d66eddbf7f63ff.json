@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3aa88a120273a4b670f545989f4c8868bb2eca05cc06e7f6f681606aebba8e59",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0850",
-  "properties": {
-    "as_checksum": "sha256:fe0d50b43931b50a48fcb9e6741bd192d7cbe6f41b6caba385f5697987a45560"
-  },
-  "to_id": "art:skill-lint-test"
-}

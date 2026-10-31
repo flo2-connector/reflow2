@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3ad7dc8b56e9386a0b3c6ef48d69924c048a605068f4e4cc59e4fcfff78c7c9e",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-write-is-credited-to-who-it-was-for",
-  "properties": {
-    "coverage": "full"
-  },
-  "to_id": "req:a-write-carries-who-made-it-and-the-server-records-that-it-happened"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:a21520d6155ce712577649ac77d0d642a7e7d0d215e442d7f865615de38be306",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:an-import-says-what-it-removed-and-merges-only-when-asked",
-  "properties": {},
-  "to_id": "dec:import-merges-or-demands-whole-nodes"
-}

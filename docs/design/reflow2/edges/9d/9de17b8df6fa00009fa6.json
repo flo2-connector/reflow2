@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:84c5aa9d8e9ff414438a0f8918a086a32916dc0e9d91f7939c90ceea58ae873b",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-hint-names-its-next-call",
-  "properties": {
-    "evidence": "A hint naming its next call is one of the cue types this would bring under one name."
-  },
-  "to_id": "req:a-cue-is-one-named-kind-of-message-in-reflow2s-interface"
-}

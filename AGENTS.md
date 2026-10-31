@@ -16,8 +16,8 @@
 >
 > **Before you start:** run **`git pull --rebase`**, then run **`claim_report`** and claim what you
 > take with **`claim_region`** — the board moved into the graph on 2026-08-04
-> (`dec:coord-board-in-graph`), so claims travel in the committed design (`docs/design/reflow2/`) and a graph
-> you haven't pulled is out of date. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
+> (`dec:coord-board-in-graph`), so claims live in the design itself, which is hosted on flo2.io (and
+> private), and every session reads the same board. **[COORD.md](COORD.md)** keeps the handles, the conventions, and
 > resolving merge conflicts without discarding anyone's work.
 > **The graph** has what is open and why: the graph — `loop_status` for what the loop owes, `detect_gaps` for the open questions, `search_design` to find a past finding by its words. `docs/backlog.md` was retired 2026-08-07 (`dec:backlog-is-retired`); its open rows are nodes now.
 
@@ -111,8 +111,8 @@ python3 tools/test_init.py
 #
 # IN THIS REPOSITORY, `.reflow2/graph` IS REFUSED: since 2026-10-10 `.reflow2.toml`
 # names reflow2's design on flo2.io, and a one-shot command never opens the store
-# the move left behind. Point --graph-path at a store you imported from
-# docs/design/reflow2/ (the import below), or reach the design itself over MCP.
+# the move left behind. Point --graph-path at a store you imported from a
+# local export (the import below), or reach the design itself over MCP.
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call graph_report
 ./target/release/reflow2-mcp --graph-path .reflow2/graph --call budget_report --args '{"constraint_id":"con:mass"}'
 # The same door with the read/write split in the command text, for a terminal
@@ -142,14 +142,14 @@ EOF
 # on one machine pipes into an import on another. The graph is single-writer:
 # stop any running MCP server first, and the error says so if you forget. In
 # this repository, import into a path outside `.reflow2/` (see above).
-./target/release/reflow2-mcp --graph-path /tmp/reflow2-local/.reflow2/graph --import docs/design/reflow2/
+./target/release/reflow2-mcp --graph-path /tmp/reflow2-local/.reflow2/graph --import <an export>/
 # (--import, import_graph, --diff and compare_designs take either saved form: the
-# item layout's directory, or a single-file export such as docs/design/reflow2.json.)
+# item layout's directory, or a single-file export such as design.json.)
 
-# reflow2's own functional design, as a reflow2 graph. The committed design at
-# docs/design/reflow2/ (one file per node and per edge) is the durable record — .reflow2/ is gitignored, so
-# the committed files are what gets reviewed and diffed. Rebuild it after a design
-# change; --analyse-only re-imports the committed design and re-runs the analysis.
+# reflow2's own functional design, as a reflow2 graph — the 2026-07 builder. The
+# design is hosted on flo2.io now and nothing of it is committed here, so these
+# read a copy you exported locally to docs/design/reflow2/ (git-ignored, never
+# committed; see "reflow2's own design is hosted on flo2.io" below).
 python3 tools/build_design_graph.py
 python3 tools/build_design_graph.py --analyse-only
 
@@ -190,7 +190,7 @@ python3 tools/coherent_erosion_trial.py
 # traceability / as-released / decisions, DoDAF-informed (docs/viewpoints.md).
 # Pure projections: anything a view needs that the graph cannot supply is
 # CONFESSED, and every confession is a finding (BL-40). Also a probe.
-python3 tools/render_views.py                        # the committed design export
+python3 tools/render_views.py <an export>            # a saved design (reflow2's own: a local, git-ignored export)
 python3 tools/render_views.py --graph-path <dir>     # a live graph (stop the server first)
 
 # Process-model probe — can reflow2 hold its own operating model, a Flow whose
@@ -358,11 +358,13 @@ you hit one.
 
 **Branches.** `feat/<short-name>` off `main`, one per claimed item where practical.
 
-**No merge driver to set up.** The committed design is the item layout — one file per node and
-one per edge — so git's ORDINARY merge merges it: two people editing different parts of the
-design touch different files and merge with no conflict, on GitHub as anywhere
+**No design files to merge here.** reflow2's own design is hosted on flo2.io and none of it is
+committed (since 2026-10-30), so a pull request in this repository carries code, docs and
+CHANGELOG fragments only. For a project that does commit its design, the item layout — one file
+per node and one per edge — is what git's ORDINARY merge merges: two people editing different
+parts of the design touch different files and merge with no conflict, on GitHub as anywhere
 (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`). The `.gitattributes` line that pointed
-the single file at `merge=reflow2` came out on 2026-10-03. `reflow2-mcp --merge-driver` still
+reflow2's old single file at `merge=reflow2` came out on 2026-10-03. `reflow2-mcp --merge-driver` still
 exists for a project whose design is still a single file, and is optional there. A real conflict
 is one item both sides changed, shown as that item's file. **Never resolve a design conflict
 with `--ours`/`--theirs` without reading both sides**: for code that drops a hunk, for a design
@@ -426,13 +428,9 @@ python3 tools/test_latent_promotion.py                  # the latent server prom
 python3 tools/test_content_policy.py                    # a reply takes the shape its client can read (per-client content policy, on the wire)
 python3 tools/test_opencode_plugin.py                   # the OpenCode loop-nudge plugin, driven as OpenCode drives it (node)
 python3 tools/test_call_door.py                         # the --call door and the VS Code terminal route, driven as an agent drives them (real binary)
-python3 tools/reflow2_check.py --export docs/design/reflow2/   # design vs build per change, and per-item integrity and lineage
-python3 tools/check_intent_authority.py docs/design/reflow2/    # settled intent carries the owner's name
-python3 tools/check_consumer_reach.py docs/design/reflow2/     # a capability claiming reach beyond this repo is realized by something a consumer gets
-python3 tools/check_verification_ratchet.py docs/design/reflow2/ # a capability does not NEWLY claim a passing check nothing can re-run
 python3 tools/vocabulary_reach.py --check                # a NEW declared property the surface cannot write
 python3 tools/check_command_surface.py                   # the skill/command copies still agree
-python3 tools/the_served_surface_names_no_real_person.py   # no served text names a real person from this design
+PRIVATE_TERMS_FILE=<the pattern file> python3 tools/check_private_terms.py   # no tracked file names a private work program (prints where, never what)
 python3 tools/changelog_fragments.py --check             # every CHANGELOG fragment is well formed, and nobody wrote into [Unreleased] directly
 python3 tools/test_item_layout_merges.py                 # two PRs' design records merge with plain git in either order, lineage stays one hop (real binary, real branches)
 python3 tools/launch_serves_release.py                   # the launcher serves release and builds nothing there
@@ -443,11 +441,11 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > and the Python suites — `phase_trial`, `coherent_erosion_trial`, `model_the_loop`,
 > `stateless_seat_probe`, `test_init`, `test_shared_sessions`, `test_merge_driver`,
 > `test_degraded_server`, `test_nudge_path`, `test_loop_nudge`, `test_render_views`,
-> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`, `test_site_counts`,
-> `test_skill_lint`, `self_host_uses_documents`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
+> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
+> `test_skill_lint`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
 > `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments`,
-> `test_reflow2_design_copy` — so **green here is not green
+> `test_check_private_terms`, `check_private_terms` — so **green here is not green
 > there**, and *"believe CI"* below is not a figure of speech. Run the ones your change touches;
 > [docs/sharpening.md](docs/sharpening.md) says which instrument covers what.
 >
@@ -461,75 +459,78 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > `ci.yml` means adding it here — to the block if a developer should run it every time, to the
 > sentence above if not. Both answers are honest; silence is the one that is not.
 
-**The design record: one file per node and per edge, exported as often as you like.** Since
-2026-10-03 (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`,
-`dec:the-designs-lineage-is-kept-per-item`, Anthony) the committed design is the ITEM LAYOUT at
-`docs/design/reflow2/`: `nodes/<Type>/<escaped-id>.json`, `edges/<xx>/<hash>.json`, and a small
-`design.json` holding only `graph_id`, `schema_version` and `migrated_from`. It replaced
-`docs/design/reflow2.json`, whose whole-file header (`content_hash`, `prev_content_hash`,
-`taken_at`) every export rewrote — so every pair of concurrently open PRs conflicted on it (46 of
-46 in #640–#668, 39 of them on nothing else), and a queue of approved PRs landed one at a time.
+**reflow2's own design is hosted on flo2.io, and it is private.** It moved there on 2026-10-10
+(phase 2 of `dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local`, option c1). The one live
+design is `reflow2` on flo2.io; `.reflow2.toml` names it, and an MCP session started here attaches
+to it. **Nothing of it is committed to this repository any more.** Until 2026-10-30 a copy sat at
+`docs/design/reflow2/` for CI, refreshed by a copy tool that also held the design for one PR at a
+time. It retired that day, on the owner's word
+(`req:reflow2s-public-repository-names-no-private-work-program-and-ci-refuses-one`,
+`dec:idea-reflow2-becomes-a-plain-code-repo-and-the-design-check-moves-to-the-box`): the
+repository is public, and the design's text is not. `/docs/design/` is git-ignored, so a copy you
+export there for local work cannot be committed by accident.
 
-What that means for a pull request:
+**What retired with the copy, and what replaces it.** The CI gates that read it: the design
+coherence gate (`reflow2_check.py --export`), `self_host_uses_documents`, `check_intent_authority`,
+`check_consumer_reach`, `check_verification_ratchet`, `the_served_surface_names_no_real_person`, the
+copy's own test, and the site's counts of reflow2's design. Each tool stays, and each hermetic suite
+still runs in CI, because the tools are product. **The design is not checked against the code until
+the nightly check on flo2.io's box is built**
+(`req:a-nightly-check-on-the-box-runs-reflow2s-client-against-the-hosted-design-and-the-copy-retires`,
+accepted, not built yet): it will run reflow2's own client against the hosted design and record what
+it finds where `loop_status` shows it. Until then, when your change could move what one of those gates
+guards, run it yourself against a local export, which stays out of git:
 
-- **Export as often as you like, in any commit.** `export_graph` with a path ending in `/`, or
-  `--export-to docs/design/reflow2/` on each `--call` write, rewrites only the files whose item
-  changed. There is no "once, last" rule and no `chained_from` to read.
-- **Lineage is per item, and anchored for you.** A changed item records, in `prev_item_hash`, its
-  hash at the merge-base with the default branch; an unchanged item keeps main's file byte for
-  byte. A squash-merge lands each changed item one hop, and an export taken mid-merge anchors
-  where the merge will land (the merge-base of main with `HEAD` and `MERGE_HEAD`), so it cannot
-  mis-chain the way #571's fourth CI failure did. Every export also re-checks the lineage of the
-  items the branch has already changed, so re-exporting repairs one a merge left stale. The gate
-  checks it (`LINEAGE`, per item).
-- **To bring main in: `git merge origin/main`.** No rebuild, no replay onto main's export. Two PRs
-  that changed different items merge in either order with no conflict. A conflict is one small
-  file named after an item both sides changed — a real conflict. A file with conflict markers in
-  it is not an item, so first take one side of THAT file (`git checkout --theirs -- <file>`, after
-  reading both), then import the layout into your store, write what the item should say, and
-  export — before or after committing the merge.
-- **An accepted checksum rides the change that accepted it** — `checksum_after` on the change's
-  CHANGED edge, numbered by `accepted_seq` — so two PRs that edit one file each write their OWN
-  edge (decision 3 of `dec:item-13-checksums-move-to-change-edges-and-main-converts-in-one-pr`).
-  `set_artifact_checksums` is called exactly as before. The gate's design-vs-build check is
-  git-aware: on a PR, every registered file the PR changed must be covered by an acceptance in
-  the PR that matches the file at the PR head; on main, every registered file a commit changed
-  must be covered by an acceptance in that commit. A file two PRs both edited is the merge of two
-  accepted changes: the gate notes it, and the server's own reconcile reports it until somebody
-  accepts the merged content.
-- **A PR need not be up to date with main to merge** (decision 4). Main's push CI catches a bad
-  combination, as it does for code.
-- **`taken_at` lives in `docs/design/reflow2/taken_at.json`, which the layout git-ignores**
-  (decision 5). The whole-design content hash is computed on read and equals what the single file
-  stated for the same design, so watch baselines and release pins survive the move.
-- **The CHANGELOG entry is a fragment**, `changelog.d/<slug>.md` ([changelog.d/README.md](changelog.d/README.md)).
-  The cut assembles them with `tools/changelog_fragments.py --cut`.
+```bash
+python3 tools/reflow2_check.py --export docs/design/reflow2/        # design vs build, per item
+python3 tools/check_intent_authority.py docs/design/reflow2/
+python3 tools/check_consumer_reach.py docs/design/reflow2/
+python3 tools/check_verification_ratchet.py docs/design/reflow2/
+```
 
-**One release of overlap.** Every reader takes either form — `--import`, `import_graph`,
-`--diff`/`compare_designs`, `--merge`, the upstream watch, `fork_point`, and every Python gate
-and tool through the one loader, `tools/design_io.py`. A `.json` path is still written as the
-single file, whose chain anchors at the same merge-base and whose gate checks are unchanged.
+Two surface gates needed a LARGE design rather than reflow2's in particular
+(`replies_are_bounded`, `a_reply_is_sent_once`), and two core tests did too (the item-layout round
+trip and the hydrate measurement). They now read a GENERATED design of reflow2's own size and mix,
+made from the schema: `tools/generated_design.py`, and its Rust twin in
+`crates/reflow2-core/tests/a_generated_design_stands_in_for_a_real_one.rs`.
+`vocabulary_reach.py --check` reads the surface alone; `--export` adds the adoption columns.
 
-> ⚠️ **The claim board's old tension is gone with the layout.** A claim is graph state, and the
-> single file could only be written once per PR, last — so a claim made before the work was
-> invisible until the PR merged (`dec:a-graph-claim-cannot-be-published-before-its-pr`). In the
-> item layout a claim is one more item: export it in the PR's first commit and push.
+**Write through flo2.io.** Your writes are live at once, before anyone reviews the PR. Undoing one is
+a new write, not a closed PR. What a ship records: the capability's status, the new files as
+Artifacts, the check that passed, the ChangeEvent. **And when the shipped work answers a recorded
+idea** (a `proposed` exploratory Decision), draw `EVOLVES_INTO` from that idea to the requirement or
+capability it became, and leave the idea's status for the owner: closing it is Anthony's word, and
+the edge is what lets `decision_overtaken_by_promotion` put it to him. Measured 2026-10-13, 47 of the
+59 open ideas found already built carried no such edge
+(`fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13`).
 
-**Since 2026-09-12 the server also keeps the committed design current on its own** —
-`--export-to <PATH>` (a directory ending in `/` for the item layout, a `.json` file for the single
-form), which this repo's `.mcp.json` and every project `reflow2_init.py` installs now pass. After each
-change the write-through waits for two seconds of quiet (ten at the outside, so a steady stream of
-writes cannot starve it) and exports once, so a burst of thirty writes costs one export and a
-forgotten export stops being a class of loss. The guarantee lives in the server because **the
-session is the thing that might not come back**: the Stop hook that used to carry it fires once and
-exists in one harness.
+- **Say what you are working on.** `claim_region` on `proj:reflow2`, depth 0, note
+  `design PR: <your branch>`, before your first design write, and `release_claim` when the PR is
+  merged or abandoned. Claims are advisory (`crates/reflow2-core/src/claims.rs`); with no copy to
+  keep apart, design-writing PRs no longer wait for each other.
+- **A record that needs schema only your branch's build knows** cannot be written on flo2.io until
+  a release carrying that schema reaches flo2.io. Record that part afterwards.
+- **flo2.io does not serve every tool.** `wall_check` and the tools that open another design by
+  path run locally, against a local export. Two of the cross-design tools no longer need a path
+  there — see the next section.
+- **An outside contributor cannot write the hosted design.** Their PR changes code; a maintainer
+  records its design change on flo2.io.
+- **Name no private work in this repository.** Files, commit messages and PR text are checked
+  against a pattern held in the `PRIVATE_TERMS` repository secret (`tools/check_private_terms.py`,
+  the `private-terms` CI job); it prints where, never what. Use neutral examples: a work hub, a
+  lab instrument, a deploy repository.
 
-**Since 2026-10-03 a writing `--call` does the same before it exits**
-(`req:a-writing-call-keeps-the-committed-export-current`): the door installs the same
-write-through with no background task and runs it once after a successful write, on the file
+**The saved-design layout is still product.** A project that commits its design keeps it as the
+ITEM LAYOUT (`dec:how-the-saved-design-is-laid-out-so-git-merges-it`,
+`dec:the-designs-lineage-is-kept-per-item`): `nodes/<Type>/<escaped-id>.json`,
+`edges/<xx>/<hash>.json`, and a small `design.json`, so git's ordinary merge merges two people's
+design changes; an accepted checksum rides the change that accepted it (`checksum_after` on its
+CHANGED edge, numbered by `accepted_seq`), and lineage is per item, anchored at the merge-base.
+[docs/collaborating.md](docs/collaborating.md) is the guide. **The server keeps such a record current
+on its own**: `--export-to <PATH>` (a directory ending in `/` for the item layout, a `.json` file for
+the single form) exports after two seconds of quiet (ten at the outside), and a writing `--call`
+does the same before it exits (`req:a-writing-call-keeps-the-committed-export-current`), on the file
 `--export-to` names or, without it, the one the project's MCP configuration names for that store.
-A worktree has no MCP configuration (it is git-ignored), so pass `--export-to docs/design/reflow2/`
-on each `--call` write there, or `export_graph` to that path when you are done.
 
 > 🛑 **IT WILL NOT OVERWRITE A HAND EDIT, AND THAT MEANS IT CAN STOP.** If the file no longer
 > matches what reflow2 last wrote — you edited it, or a merge left it unparseable — the
@@ -537,55 +538,6 @@ on each `--call` write there, or `export_graph` to that path when you are done.
 > Resolve the file and it resumes. Your own `export_graph` never looks like tampering: the baseline
 > moves at the shared file-write seam, so a deliberate export is still yours to make whenever you
 > want one. A read-only server is refused the write-through outright.
-
-**Since 2026-10-10 reflow2's design is on flo2.io: write there, copy last, one design PR at a
-time.** It moved in phase 2 of `dec:idea-reflow2s-own-design-moves-onto-flo2-io-or-stays-local`
-(option c1, Anthony 2026-10-09). The one live design is `reflow2` on flo2.io. The paragraphs above
-still describe the committed copy: its layout, its per-item lineage, and how it merges. The local
-store and write-through they describe are now the break-glass path at the end of this section.
-`docs/design/reflow2/` is a copy of the live design for CI, refreshed by
-`tools/reflow2_design_copy.py`:
-
-1. **Hold the design before your first design write.** Run `python3 tools/reflow2_design_copy.py hold`
-   on your branch. It compares the hosted design with main's copy and says whether you may begin.
-   Then claim it as it tells you: `claim_region` on `proj:reflow2`, depth 0, note
-   `design PR: <your branch>`. While you hold it, every other branch's `hold` and `copy` refuse.
-2. **Write through flo2.io.** Your writes are live at once, before anyone reviews the PR. Undoing
-   one is a new write, not a closed PR. What a ship records: the capability's status, the new
-   files as Artifacts, the check that passed, the ChangeEvent. **And when the shipped work answers
-   a recorded idea** (a `proposed` exploratory Decision), draw `EVOLVES_INTO` from that idea to the
-   requirement or capability it became, and leave the idea's status for the owner: closing it is
-   Anthony's word, and the edge is what lets `decision_overtaken_by_promotion` put it to him.
-   Measured 2026-10-13, 47 of the 59 open ideas found already built carried no such edge
-   (`fact:root-cause-built-work-stays-open-because-its-record-is-kept-by-hand-and-the-ship-moves-only-the-capability-2026-10-13`).
-3. **Copy last.** Run `git merge origin/main`, then `python3 tools/reflow2_design_copy.py copy`, and
-   commit `docs/design/reflow2/`. It prints what your copy carries; read it.
-   - It refuses while another branch holds the design.
-   - It refuses while writes nobody holds are in flight. `--adopt` takes them into your PR
-     deliberately.
-   - It refuses until your branch contains main.
-   - If you write again after copying (a CI fix, say), copy again.
-4. **After the merge there is nothing to release.** Nothing is in flight, so your hold is stale
-   and the next PR may hold.
-
-What the choice costs, accepted with it:
-
-- **One design-writing PR at a time.** No stacked design work. Code-only PRs are unaffected.
-- **A write nobody holds rides in the next copy.** Intent written outside a PR (a hub session's
-  ideas, a requirement added from claude.ai) belongs to no branch and is harmless to carry.
-  `hold` and `copy` name it, so it is carried knowingly. Implementation facts, such as an accepted
-  checksum or an artifact's location, belong to one branch's files; those are what the hold
-  protects.
-- **The guard binds only whoever runs it.** Claims are advisory (`crates/reflow2-core/src/claims.rs`),
-  and the design records who wrote, not on which branch. A session that writes without holding
-  is the one gap the guard cannot close.
-- **A record that needs schema only your branch's build knows** cannot be written on flo2.io until
-  a release carrying that schema reaches flo2.io. Record that part afterwards, or locally (below).
-- **flo2.io does not serve every tool.** `wall_check` and the tools that open another design by
-  path run locally, against the committed copy. Two of the cross-design tools no longer need a
-  path there — see the next section.
-- **An outside contributor cannot write the hosted design.** Their PR changes code. A maintainer
-  records its design change on flo2.io and copies it in a follow-up PR.
 
 ### Cross-design reads by graph_id, and what a registry server refuses
 
@@ -769,14 +721,14 @@ shared engine session (`record_usage`, `cues::tally`). Neither names a claim's o
 > release that breaks opening designs also locks you out of the design you would read to fix it.
 > Bringing flo2.io back is flo2's operator work (flo2's `ops/README.md`). Meanwhile:
 >
-> 1. **Work locally from the newest committed copy**, as before the move:
->    `./target/release/reflow2-mcp --graph-path <a fresh path> --import docs/design/reflow2/`.
->    Everything merged is there.
-> 2. **Writes made on flo2.io since the last merged copy are not in git.** They are in flo2.io's
->    nightly backup, which archives every hosted design's store and is pulled hourly to the
->    operator's machine. Restore the store from the tarball (`designs/reflow2/` in flo2's
->    `ops/README.md`, "Restore"), export it with the binary flo2.io last ran, and
->    `python3 tools/reflow2_design_copy.py copy --from <that export>` brings it into a branch.
+> 1. **Work locally from flo2.io's nightly backup.** Nothing of the design is in git any more (the
+>    committed copy retired on 2026-10-30). The backup archives every hosted design's store and is
+>    pulled hourly to the operator's machine. Restore the store from the tarball (`designs/reflow2/`
+>    in flo2's `ops/README.md`, "Restore"), export it with the binary flo2.io last ran, and import
+>    that export into a fresh local store:
+>    `./target/release/reflow2-mcp --graph-path <a fresh path> --import <that export>`.
+>    Keep the export out of git (`/docs/design/` is ignored for that).
+> 2. **Writes made since the last backup are not in it.** Say so to whoever relies on them.
 > 3. **When flo2.io serves the design again, local writes are not on it.** Write them again
 >    through flo2.io, using the local record's ChangeEvents as the list. Replacing the hosted
 >    store with a local one stops flo2.io's engine, so it is an operator act and needs Anthony's go.
@@ -971,12 +923,10 @@ joined by *traceability* edges) for HEAL's topology detectors.
   binary after the version bump and before the export, and export LAST because it costs the
   session its MCP access.
   - **Since reflow2's design moved onto flo2.io (2026-10-10), the cut writes its record there,**
-    while flo2.io still runs the PREVIOUS release. Step 6 becomes the copy, taken by the cut's own freshly built binary,
-    so the stamp and each item's lineage are the new release's:
-    `REFLOW2_BIN=target/release/reflow2-mcp python3 tools/reflow2_design_copy.py copy`. Nothing is
-    stopped and no session loses MCP. The cut is a design PR like any other, so hold the design
-    first. Measured 2026-10-10 on the real design: an export from 0.81.0, imported and exported by
-    0.81.1, came back with the identical content hash.
+    while flo2.io still runs the PREVIOUS release. Since 2026-10-30 step 6, the export, has nothing
+    to do: no copy of the design is committed (the copy retired, see "reflow2's own design is hosted
+    on flo2.io"). Nothing is stopped and no session loses MCP. Claim `proj:reflow2` for the cut as
+    for any design PR.
   - **The release notes say what is going and what has gone** (step 2, beside the changelog's
     assembly, `cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone`; the retirement
     rule is `cap:a-served-item-is-removed-only-after-a-release-that-announced-it`).

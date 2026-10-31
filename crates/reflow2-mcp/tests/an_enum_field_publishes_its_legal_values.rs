@@ -95,7 +95,7 @@ fn a_required_enum_field_is_not_nullable_and_a_code_only_set_reuses_the_handlers
     assert_eq!(enum_strings(&item_rel), want, "{item_rel}");
 }
 
-/// F-19, hxm_program 2026-09-09→10: *"`Requirement.concern` enum is only
+/// F-19, a work hub's field report, 2026-09-09→10: *"`Requirement.concern` enum is only
 /// discoverable by being refused — `concern: "operability"` → validation error
 /// listing the eleven allowed values. One retry. The parameter description
 /// names the property but not the set."*

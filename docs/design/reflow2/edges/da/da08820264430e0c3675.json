@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5db4cb21be08778d540b5d0120000b778823a17848fde4f3cff8b22accbb43de",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-change-to-a-tests-criteria-after-its-data-arrived-is-reported",
-  "properties": {
-    "evidence": "The requirement asks that the change be reported and nothing refused; this asks whether the report should also move the reading."
-  },
-  "to_id": "dec:idea-should-a-criterion-changed-after-the-data-move-the-tests-reading"
-}

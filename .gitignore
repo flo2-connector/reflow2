@@ -19,7 +19,7 @@ target/
 /.vscode/mcp.json
 
 
-# Trial records about real systems (storyflow, ophyd-service, personal projects)
+# Trial records about real systems (other people's projects and personal ones)
 # stay out of the public repo: they describe designs that are not reflow2's to
 # publish. Kept locally; the public evidence base is the reflow2-self trials.
 /docs/trials-private/
@@ -43,5 +43,9 @@ docs/feedback/
 # Local operator notes — machine names, accounts, paths. PUBLIC REPO: never commit.
 docs/local/
 
-# Written by tools/site_counts.py when the site is published (pages.yml); never committed.
-site/counts.json
+# reflow2's own design is hosted on flo2.io and is private. A copy exported here
+# for local work (or by the nightly design check on the box) stays out of git:
+# the committed copy was retired on 2026-10-30, and a public repository must not
+# carry it again. Other projects' exports are not affected: this path is only the
+# root's docs/design/.
+/docs/design/

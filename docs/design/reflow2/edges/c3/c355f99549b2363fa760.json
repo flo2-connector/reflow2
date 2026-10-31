@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:260526fa7ddf2dece423f662fc25d27e339ea0d758a5ce4c2302f7e289be3da2",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:b200686fdfcf00cbcb38e422ef0c6e62e8231f1fdb6c7716d0561051263c7ab6"
-  },
-  "to_id": "art:a-reply-is-sent-once-gate"
-}

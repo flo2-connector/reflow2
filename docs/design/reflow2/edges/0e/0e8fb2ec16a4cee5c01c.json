@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:601e51c9ef7dd5a0af978927a2eb3f9582e38c9989db06a3df6a95747bcc9a24",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:ae8f0136dfcdd5a9e713bb9862e9cd561e96300d2373b0a511862c3f3c8f2d80"
-  },
-  "to_id": "art:test-a-fields-own-terms-have-one-home"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:5e7d1650b1e72f8df3d2d516a96497d2d9720e6d5db732668c91c7c78b82b6ae",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:a-proof-says-what-it-assumes-on-the-wire-tests",
-  "properties": {},
-  "to_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it"
-}

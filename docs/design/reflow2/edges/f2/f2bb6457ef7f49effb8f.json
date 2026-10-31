@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:a617954c1a00244655e6febb2d780bb8bec462ae77e3022925778c62684379ea",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:served-text-tells-agents-when-to-record-inference-chains",
-  "properties": {},
-  "to_id": "req:an-agent-records-a-consequential-recommendation-as-an-inference-chain"
-}

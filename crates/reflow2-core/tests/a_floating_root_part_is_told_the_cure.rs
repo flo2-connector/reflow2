@@ -16,18 +16,24 @@ use reflow2_core::HierarchyIssueKind;
 
 fn design() -> DesignGraph {
     let mut g = DesignGraph::open_in_memory().unwrap();
-    g.add_project("prj:demo", "xrt-demo").unwrap();
+    g.add_project("prj:demo", "instrument-demo").unwrap();
     g.add_component(
-        "cmp:beamline",
-        "The beamline",
+        "cmp:instrument",
+        "The instrument",
         "the designed thing",
         Some("system"),
     )
     .unwrap();
-    g.add_component("cmp:dcm", "DCM", "selects the energy", Some("subsystem"))
+    g.add_component(
+        "cmp:filter",
+        "Filter",
+        "selects the band",
+        Some("subsystem"),
+    )
+    .unwrap();
+    g.contain_component("cmp:instrument", "cmp:filter").unwrap();
+    g.contains("prj:demo", "Component", "cmp:instrument")
         .unwrap();
-    g.contain_component("cmp:beamline", "cmp:dcm").unwrap();
-    g.contains("prj:demo", "Component", "cmp:beamline").unwrap();
     // One indivisible top-level part: no children, and — the reporter's
     // state — not contained by the Project.
     g.add_component(

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:2b537297e6d8ceca03ce3eca5b6fae1ed06756238b2193fd5beae9f8b219dcd4",
-  "edge_type": "REALIZES",
-  "from_id": "art:export",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
-}

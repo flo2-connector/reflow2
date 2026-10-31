@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b8e90d31810af9fb9c894e048f8769e84da0d87e340cc5c8aca38f463655b27d",
-  "edge_type": "ANTICIPATES",
-  "from_id": "xref:0bee0c00b35845f6:dec:idea-flo2-calc-builds-and-checks-a-proof",
-  "properties": {
-    "evidence": "On 2026-10-04 Anthony asked flo2-calc for \"design me a proof of some mathematical expression\" and set it aside (\"maybe a proof is too advanced for now\"); its options (c) checked derivations and (e) a proof-assistant helper are the ones this idea revisits."
-  },
-  "to_id": "dec:idea-flo2-holds-a-proof-as-a-design-reflow2-records-the-equations-and-a-model-reasons-the-steps"
-}

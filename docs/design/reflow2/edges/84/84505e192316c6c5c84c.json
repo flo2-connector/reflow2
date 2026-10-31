@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8de48971817492fc92b7749a3ac6a0bc7d7987643d1ac2f31774295b16d77692",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:bda41f9c8b83751722b1f3d10a9908b11ff2acbe518bd11b74f448d662c49671"
-  },
-  "to_id": "art:fixture-proof-map-navier-stokes"
-}

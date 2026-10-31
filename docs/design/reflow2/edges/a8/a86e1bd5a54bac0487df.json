@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:52af21a132343ae195512602393d97b2e99ef56a93ae9319ca7501a3c2f389d3",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:the-agent-learns-who-it-is-talking-to",
-  "properties": {
-    "evidence": "That accepted requirement has the agent speak in the reader's vocabulary; this serves the schema itself in a field's vocabulary so the agent can map the reader's words onto types."
-  },
-  "to_id": "req:the-vocabulary-is-served-in-a-fields-own-terms"
-}

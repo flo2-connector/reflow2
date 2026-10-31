@@ -20,8 +20,12 @@ use reflow2_core::{DesignGraph, GapSource};
 fn region() -> DesignGraph {
     let mut g = DesignGraph::open_in_memory().unwrap();
     g.add_project("proj:p", "P").unwrap();
-    g.add_requirement("req:scan", "Scan a sample", "The beamline scans a sample.")
-        .unwrap();
+    g.add_requirement(
+        "req:scan",
+        "Scan a sample",
+        "The instrument scans a sample.",
+    )
+    .unwrap();
     g.set_requirement_status("req:scan", "accepted").unwrap();
     g.add_capability("cap:scan", "Scan", "runs a scan", Some("realized"))
         .unwrap();

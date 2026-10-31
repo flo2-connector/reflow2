@@ -7,7 +7,7 @@
 //! its members, each under its own namespace, showed a seam only where a
 //! check happened to read two designs at once. Nothing read the evidence the
 //! records already hold — the same file in two designs, a pin in one naming
-//! the other — so in hxm_program's hub of fifteen designs the seam bucket
+//! the other — so in a 15-member work hub the seam bucket
 //! stayed empty exactly where the cross-design bugs are, and an empty answer
 //! read like agreement.
 //!
@@ -129,16 +129,16 @@ impl Kind {
     fn repositories(self) -> (&'static str, &'static str) {
         match self {
             Kind::SameLocation => (
-                "https://github.com/NSLS2/ansible",
-                "https://github.com/NSLS2/ansible.git",
+                "https://github.com/Example/deploy",
+                "https://github.com/Example/deploy.git",
             ),
             Kind::PinByRepository => (
-                "https://github.com/NSLS2/ansible",
-                "git@github.com:bluesky/bluesky-tiled-plugins.git",
+                "https://github.com/Example/deploy",
+                "git@github.com:example/storage.git",
             ),
             _ => (
-                "https://github.com/NSLS2/ansible",
-                "https://github.com/bluesky/bluesky-tiled-plugins",
+                "https://github.com/Example/deploy",
+                "https://github.com/example/storage",
             ),
         }
     }
@@ -213,7 +213,7 @@ async fn evidence(c: &Client, kind: Kind, me: &str, other: &str, is_p: bool) {
             call(
                 c,
                 "add_artifact",
-                art("art:tasks", "./roles/pdfstream/tasks/main.yml", None),
+                art("art:tasks", "./roles/datastream/tasks/main.yml", None),
             )
             .await;
             call(
@@ -265,14 +265,14 @@ async fn evidence(c: &Client, kind: Kind, me: &str, other: &str, is_p: bool) {
             call(
                 c,
                 "external_dependency",
-                json!({"id": "dep:tiled-plugins", "name": "tiled plugins", "version": "v1",
-                       "source": "https://github.com/bluesky/bluesky-tiled-plugins"}),
+                json!({"id": "dep:storage-plugins", "name": "storage plugins", "version": "v1",
+                       "source": "https://github.com/example/storage"}),
             )
             .await;
             call(
                 c,
                 "create_edge",
-                json!({"edge_type": "DEPENDS_ON", "from_id": "cmp:role", "to_id": "dep:tiled-plugins"}),
+                json!({"edge_type": "DEPENDS_ON", "from_id": "cmp:role", "to_id": "dep:storage-plugins"}),
             )
             .await;
         }
@@ -297,9 +297,9 @@ async fn evidence(c: &Client, kind: Kind, me: &str, other: &str, is_p: bool) {
         }
         Kind::NameOnly => {
             let name = if is_p {
-                "Tiled stream feed"
+                "Storage stream feed"
             } else {
-                "tiled stream feeds"
+                "storage stream feeds"
             };
             call(
                 c,

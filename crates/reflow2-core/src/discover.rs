@@ -9,7 +9,7 @@
 //! ## Why it exists
 //!
 //! Measured on a real repo, 2026-08-05: a session opened at the root of
-//! `hxm_program` was told "this directory has no design yet" and minted a THIRD
+//! A work hub was told "this directory has no design yet" and minted a THIRD
 //! graph, while two populated designs sat one and two directories down. Nothing
 //! could say what they were without opening a session against each. One listing
 //! would have prevented it.

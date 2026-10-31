@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c922f53d0ec8841cfdfd26855151b9e7fdf02ccdf2141feca5d595a69a1a7ee4",
-  "edge_type": "OBSOLETES",
-  "from_id": "dec:anchor-retire-or-implement",
-  "properties": {
-    "note": "Removed 2026-10-17 with the Anchor type: the deprecating half's test has nothing left to check, and crates/reflow2-mcp/tests/the_unused_anchor_type_is_removed.rs checks the removing half."
-  },
-  "to_id": "art:the-unused-anchor-type-is-announced-for-removal-test"
-}

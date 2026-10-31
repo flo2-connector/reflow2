@@ -6,7 +6,7 @@
 //! `external_dependency` per member, naming the member's `graph_id` and the
 //! committed export the hub watches it by. On a hub's address on a registry
 //! (flo2.io) the host hands the view its members and `super::view` serves it.
-//! Here there is no registry, no gateway and often no MCP at all (hxm_program's
+//! Here there is no registry, no gateway and often no MCP at all (a work
 //! hub of fifteen designs, reached only through `reflow2 read|write`), so the
 //! design's OWN pins are the list, and each pinned design's committed export is
 //! loaded READ-ONLY into memory for the one call:

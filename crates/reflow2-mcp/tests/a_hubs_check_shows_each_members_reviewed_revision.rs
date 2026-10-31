@@ -2,11 +2,11 @@
 //! last reviewed it at beside the state of the member's design record
 //! (`req:a-hubs-check-shows-each-members-reviewed-revision`).
 //!
-//! WHAT FAILED. A hub keeping a fast-moving member in step (NSLS2/ansible
+//! WHAT FAILED. A hub keeping a fast-moving member in step (Example/deploy
 //! merges 2-5 PRs a day) needs to see, per member, "reviewed at X, its design
 //! record reads Y". The pin already carries the revision (`version`, required),
 //! but measured 2026-10-21 on 0.89.0 `upstream_status` printed it only inside
-//! the `moved` sentence, so hxm_program kept a `fact:<member>-reviewed-revision`
+//! the `moved` sentence, so the hub kept a `fact:<member>-reviewed-revision`
 //! convention of its own. reflow2 still fetches nothing; the hub's tooling
 //! does, and re-declares the pin.
 //!

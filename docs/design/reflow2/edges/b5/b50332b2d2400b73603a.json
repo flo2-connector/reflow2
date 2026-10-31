@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:eec765e0ee6738803b8d71ec75b15c0769b9fe26db5682e9781ed788a65b82d5",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:a-cuts-release-notes-say-what-is-going-and-what-has-gone",
-  "properties": {
-    "note": "The decision says who tells the MCP users at this step, and how: the cutting agent drafts the note from the release's Deprecated and Removed lines, Anthony sends it, and the tag waits for his word."
-  },
-  "to_id": "dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships"
-}

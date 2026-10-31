@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:301d0d8b9c869440d9242c33be694b56bcb8ea3d764131c2e8bbd7f04901a9ea",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:fact:a-stop-hook-export-that-failed-once-warns-on-every-later-turn-and-what-the-hook-said-is-kept-nowhere-2026-10-09:r3"
-}

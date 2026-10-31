@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c7e920a919a9999339d8b57b5ce5cade64a4c391406e4a2e6a8e3d17aa121068",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:prediction-order-rs",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:prediction-order-rs"
-}

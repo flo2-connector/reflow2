@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4c53dac661bc60dbde1c8613a23ddd863b772efb4cf356d164245f809157cc6c",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:fbeffccb169e423918e32f7b8c5e008bcfe6838690d0599889d99f14b7008499"
-  },
-  "to_id": "art:a-composed-reply-holds-its-budget-test"
-}

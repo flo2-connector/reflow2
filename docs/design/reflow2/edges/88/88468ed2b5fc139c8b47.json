@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1c55bcdf2afcf67277fe2b04b051297aa40f93db90fa65342b525565a1af4959",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:test-a-registry-checks-its-file-handles-at-start",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:test-a-registry-checks-its-file-handles-at-start"
-}

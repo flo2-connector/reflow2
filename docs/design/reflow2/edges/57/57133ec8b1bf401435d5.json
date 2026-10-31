@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:20a783321cd5e6b091a89728ef0b34bcd29b2e8ab972092c960f01239d9b4973",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:a-served-item-is-removed-only-after-a-release-that-announced-it",
-  "properties": {
-    "note": "Built consistently with the tool rule. Its refusing stub \"for one release\" is what removal means for a TOOL under the amendment's two releases: deprecate (still works, marked), then remove (the registry entry stays one more release and the old name is refused with what to do), then the entry comes out. The surface check asserts the stub. Its usage-evidence precondition is the retiring decision's to record; nothing here checks it."
-  },
-  "to_id": "dec:a-tool-is-never-deleted-without-usage-evidence-across-projects-and-never-without-a-refusing-stub-first"
-}

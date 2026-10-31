@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:dda279fb21f4a475672362970b426ef563c819643710910f70e2556bbe1ec1ab",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0833",
-  "properties": {
-    "as_checksum": "sha256:086f26e60d1b035d411ab0e1b4dffc80c697e5b74b6472e5b458e5ad1b1722da"
-  },
-  "to_id": "art:test-the-compliance-layer-is-whole"
-}

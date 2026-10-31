@@ -134,7 +134,7 @@ async fn the_lens_reports_what_the_design_holds_never_who_is_present() {
 #[tokio::test]
 async fn the_catalogue_carries_the_lens_as_well() {
     let s = service().await;
-    described(&s, "who:ann", "person", Some("Beamline scientist.")).await;
+    described(&s, "who:ann", "person", Some("Lab scientist.")).await;
 
     let out = j!(s.list_skills(Parameters(ListSkillsReq { budget_chars: None })));
     assert!(

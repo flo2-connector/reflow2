@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:dd77be20d7fbb6f877add99d2dbbf293c6904bd0f4eca1696dafe74f6671d7e0",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:0e2cb75461beea5a06a6918c47be2c2ef0d16785fb2b9a86c0dbf61318450d3e"
-  },
-  "to_id": "art:test-a-redrawn-edge-keeps-what-the-call-leaves-out"
-}

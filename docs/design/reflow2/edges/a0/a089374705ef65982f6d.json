@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a680839985e9f57d7c934842036bf129f8de22b5ca4db7a6ecf50875df420b79",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:45b439b0f6f8252ed33c84e642097f5f0da987fdc05a7731335a66355b48a28b"
-  },
-  "to_id": "art:site-draw-js"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:daa540fe9d3bff93d5fc5e9c4273e2af2e57ce190a827e22e11a97ce6b272dc0",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-computed-check-holds-a-premise-only-through-its-kept-record",
-  "properties": {},
-  "to_id": "req:a-computed-fact-counts-only-through-its-kept-record"
-}

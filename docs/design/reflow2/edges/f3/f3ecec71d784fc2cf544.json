@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0b6536df82221d57e245a7e231f0878cbddc8d3491caa26b3f414a89c3681ada",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:through-a-hub-every-tool-runs-on-one-named-member",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:service"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:9782b8823bb8277e5eed599d10f985668608899f3e9d238d7139f4cc93099940",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:dec:idea-ci-tests-on-the-in-memory-backend-unless-the-store-changes"
-}

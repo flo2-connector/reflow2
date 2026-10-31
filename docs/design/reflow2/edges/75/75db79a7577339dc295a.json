@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:03f0f087876973f098e123866e036f138a6148499a597cd72e39b5aacf730905",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-case-split-names-its-cases-and-holds-only-when-they-are-declared-exhaustive",
-  "properties": {},
-  "to_id": "req:a-proof-can-state-a-contradiction-cases-suppositions-and-cited-theorems"
-}

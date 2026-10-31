@@ -10,12 +10,13 @@
 COORD.md    merge=union
 CHANGELOG.md merge=union
 
-# The committed design needs NO merge driver: it is saved one file per node and
-# one per edge (docs/design/reflow2/, dec:how-the-saved-design-is-laid-out-so-git-merges-it),
-# so git's ordinary merge — the one GitHub runs — merges disjoint design changes
-# with no conflict. The `docs/design/reflow2.json merge=reflow2` line that
-# pointed the old single file at reflow2's --merge-driver came out on 2026-10-03;
-# the driver stays available, optional, for a project still on a single file.
+# No design is committed here: reflow2's own design is hosted on flo2.io and
+# private, and the copy that sat at docs/design/reflow2/ retired on 2026-10-30.
+# (While it was here it needed no merge driver either: saved one file per node
+# and one per edge, dec:how-the-saved-design-is-laid-out-so-git-merges-it, git's
+# ordinary merge merged disjoint design changes. The old single file's
+# `merge=reflow2` line came out on 2026-10-03; the driver stays available,
+# optional, for a project still on a single file.)
 
 # Content-store blobs are immutable and content-addressed: an "edit" is a NEW file
 # with a new name, so git never needs to diff one. Marking them binary stops it

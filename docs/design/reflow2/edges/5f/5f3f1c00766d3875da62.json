@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:e2217114601d381013e277cc3b77f02b0bace05d2fa0ef35d946a4784b71a966",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-write-that-turns-a-claim-refuted-says-so-in-its-reply",
-  "properties": {},
-  "to_id": "req:a-write-that-makes-a-claim-read-refuted-says-so-in-its-reply"
-}

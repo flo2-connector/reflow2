@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:573d005df4e45ba2608e38b96b365bf44635d2e816c9c5a05249562efca933ea",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-proof-step-assumes-a-premise-and-a-later-step-discharges-it",
-  "properties": {},
-  "to_id": "req:a-proof-can-discharge-an-assumption-and-generalize-over-a-variable"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7b9dba9e6d183c8d0d79c8227be9f212ead78cc14b317be1d8524cd877c9b4b9",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:becdb9f092cf5299a1a01567d6de9bed1c0712362e930a07ffbff297808ae732"
-  },
-  "to_id": "art:test-a-fork-point-finds-its-address-in-git"
-}

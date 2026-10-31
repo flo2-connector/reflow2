@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6366ad5f2eca61cde17743704197c5751ae11170ffb1e851f1b23e3ee96eae59",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:7b0896e5f743c7946d1073b0028fb17186b15f818494caae652e67eaa2be7f1c"
-  },
-  "to_id": "art:cues-module"
-}

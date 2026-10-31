@@ -295,7 +295,7 @@ fn a_budget_smaller_than_the_empty_reply_is_not_a_panic() {
 #[test]
 fn a_budgeted_row_replays_into_the_handshake_it_was_meant_for() {
     // THE CONTRACT THE BUDGET WAS BREAKING, reported from the field
-    // (hxm_program, 2026-08-26). `gap_to_prompt`'s docs say "REPLAY EACH GAP
+    // (a work hub, 2026-08-26). `gap_to_prompt`'s docs say "REPLAY EACH GAP
     // OBJECT UNCHANGED", and `GapCandidate::description` promises in its own
     // comment that "a compact row handed straight back to `gap_to_prompt` has to
     // deserialize". It could not: `suggested_depth` carried no serde default, so

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3cd305d6e54cfad87f9096d3405492336e445715cf156a6c319225c8741bdf28",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:01482062dbbd0a0c3772fe27722281255c8288bc3337a750c9ab9faa13915f88"
-  },
-  "to_id": "art:test-a-premise-has-a-truth-and-a-proof-reads-correct"
-}

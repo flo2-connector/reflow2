@@ -8,7 +8,7 @@ far stops at or before P2, so the whole evidence base is drawn from the phases
 reflow1 was already good at.
 
 Method — deliberate probes, not observation. The two highest-value findings in
-the trial record (ophyd's unmotivated capability, 3dtictactoe's orphan) came
+the trial record (the instrument-control trial's unmotivated capability, 3dtictactoe's orphan) came
 from seeding a defect on purpose and checking whether the tool noticed. This
 does that for P3/P4/P5: build a realistic graph of reflow2's own repo, inject
 the divergences each phase is supposed to catch, and score whether the graph

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8649d57fec21d53b01a5a0b8290119137e605104a883b1a215c3c1a9d195af5f",
-  "edge_type": "REALIZES",
-  "from_id": "art:schema-core",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:evidence-is-cited-as-evidence-with-its-grade-and-what-rests-on-it-reads-supported"
-}

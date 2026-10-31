@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:11df9af4052785b8e096f59e16a736b48307ab3377d2d3cfc4e0bfedaa3203c6",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "dec:idea-a-change-runs-its-full-gate-set-once-locally-or-in-ci-not-both",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:dec:idea-a-change-runs-its-full-gate-set-once-locally-or-in-ci-not-both:r2"
-}

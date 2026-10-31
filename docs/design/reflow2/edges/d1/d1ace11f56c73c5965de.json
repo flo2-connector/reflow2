@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:1c322763269a9a73e5b4e5a6200d31677e1e3c7fb41d90f013a71efa0aa9b308",
-  "edge_type": "VERIFIES",
-  "from_id": "ver:a-prediction-reads-whether-it-was-stated-before-its-result-tests",
-  "properties": {},
-  "to_id": "cap:reflow2-stamps-each-node-write-with-its-own-sealed-time"
-}

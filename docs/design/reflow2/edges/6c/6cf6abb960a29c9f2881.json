@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:cfb81d94c8d89a7b573bb95b2a595f6d1d73fdf146dce7cf650e5995bd312a65",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:b7b0935c31a72da6624117777083ee244f647f90b0f7d198c1d2bb999c1ffde3"
-  },
-  "to_id": "art:test-through-a-hub-every-tool-runs-on-one-named-member"
-}

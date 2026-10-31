@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e1fdf282007dc6b5570fd5de167e15cd2511b0f8600f7288e8be7a867e686de9",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {
-    "as_checksum": "sha256:bc81788091a62abc8a647109fecc6bdf9c3b92c982f543e2bcf0bc56dc61dfb3"
-  },
-  "to_id": "art:test-the-design-is-saved-one-file-per-item"
-}

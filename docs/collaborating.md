@@ -112,7 +112,7 @@ The single most useful thing to understand: **your design graph is not the share
 
 - `.reflow2/graph` is your own local database. It is **gitignored** and machine-local, like a
   build directory. It never travels.
-- `docs/design/reflow2.json` is the **exported design** — the shared, human-readable, merge-able
+- `docs/design/<project>.json` is the **exported design** — the shared, human-readable, merge-able
   record. That is what travels in git.
 
 So the rhythm is: work in your graph → export → commit → push. And the reverse on the way in.
@@ -120,7 +120,7 @@ So the rhythm is: work in your graph → export → commit → push. And the rev
 | File | What happens when you both change it |
 |---|---|
 | `docs/design/<project>/` (the item layout) | **Git merges it**, file by file — one file per node and per edge, so you each touch your own files. Only both of you changing *the same item* conflicts, on that item's file. |
-| `docs/design/reflow2.json` (one file) | **reflow2 merges it** per node and per property against the common ancestor. You add a requirement, they add a decision — merges silently. Only both of you editing *the same property* stops for a human. |
+| `docs/design/<project>.json` (one file) | **reflow2 merges it** per node and per property against the common ancestor. You add a requirement, they add a decision — merges silently. Only both of you editing *the same property* stops for a human. |
 | `COORD.md`, `CHANGELOG.md` | Both sides' lines are kept automatically. A duplicate line is visible and trivial to tidy; a lost claim is not. |
 | `docs/backlog.md`, coverage matrix | **Deliberately manual.** A clash here usually means you both changed the same item's status, which genuinely needs a person. |
 | Source and tests | Ordinary git. A real conflict here means you were both editing the same module — a coordination miss, not a git problem. |
@@ -140,7 +140,7 @@ git pull --rebase
 git add -A && git commit -m "..."
 
 # 4. Export the design if you changed it, then publish.
-#    (In your agent: export_graph path=docs/design/reflow2.json overwrite=true)
+#    (In your agent: export_graph path=docs/design/<project>.json overwrite=true)
 git pull --rebase && git push
 ```
 
@@ -434,7 +434,7 @@ one question: *would this drop anything the file already holds?*
 So the only time it stops you is the only time you were about to lose something. When it does:
 
 ```text
-REFUSED: writing this design over docs/design/reflow2.json would DELETE 2 node(s)
+REFUSED: writing this design over docs/design/<project>.json would DELETE 2 node(s)
 and 1 edge(s) that the file holds and your graph does not …
   1. git pull --rebase
   2. import_graph from that path (or compare_designs against it first)
@@ -465,7 +465,7 @@ Every failure mode here is a version of one thing: **divergence you allowed to g
 | `push` rejected, *non-fast-forward* | They published while you worked. Working as intended. | `git pull --rebase` then push again |
 | Conflict in `reflow2.json` on every pull | The merge driver is not configured on this clone | Re-run the two `git config` lines above |
 | Your agent shows no reflow2 tools, or one called `reflow2_unavailable` | Usually a config without `--shared`: every session after the first is launching its own reflow2 and losing the store lock. Or the graph was written by a different reflow2 | Call that tool — it names the reason. Then check the config carries `--shared` (step 2) |
-| The design in the repo does not match what your agent says | Your graph and the committed export have diverged | `compare_designs` against `docs/design/reflow2.json` |
+| The design in the repo does not match what your agent says | Your graph and the committed export have diverged | `compare_designs` against `docs/design/<project>.json` |
 | Your agent's skills seem out of date | They are served by the server now, so they cannot be | Update reflow2 itself; nothing in the project needs changing |
 | `REFUSED: … would DELETE n node(s)` on export | Their work reached the file and your graph never caught up — reflow2 stopping real data loss | `git pull --rebase`, `import_graph` from the file, export again |
 | The `--http` server will not start: the graph is held | A session is still launching its own reflow2 instead of connecting to the server | Switch every session's MCP config to the `http` URL and restart them (step 2 above) |

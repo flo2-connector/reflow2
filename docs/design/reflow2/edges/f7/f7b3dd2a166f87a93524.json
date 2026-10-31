@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:63b20a6b8575a1a96a8b016447a4bcc3607618462fad94dac874d54246b65cd0",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:an-argument-reads-as-it-is-written-on-the-wire-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:an-argument-reads-as-it-is-written-on-the-wire-tests"
-}

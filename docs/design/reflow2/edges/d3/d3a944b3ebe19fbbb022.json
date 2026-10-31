@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0cf847836441d7036bde5cb22f0c4e6b4f4569a8a8988e57e5ea6cd99d880836",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-prediction-reads-whether-it-came-before-the-result-that-tests-it",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:inference"
-}

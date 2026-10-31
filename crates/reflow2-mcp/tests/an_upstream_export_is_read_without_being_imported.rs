@@ -36,7 +36,7 @@ fn upstream_export(dir: &std::path::Path, graph_id: &str, extra_node: Option<&st
 fn target(path: &str, graph_id: &str, baseline: Option<&str>) -> UpstreamTarget {
     UpstreamTarget {
         id: "dep:sim".into(),
-        name: "beamline-sim".into(),
+        name: "instrument-sim".into(),
         design_export: Some(path.into()),
         design_address: None,
         graph_id: Some(graph_id.into()),
@@ -47,13 +47,14 @@ fn target(path: &str, graph_id: &str, baseline: Option<&str>) -> UpstreamTarget 
 #[test]
 fn a_real_export_is_read_and_names_the_design_it_belongs_to() {
     let dir = scratch("read-names-design");
-    let path = upstream_export(dir.as_path(), "beamline_sim", None);
+    let path = upstream_export(dir.as_path(), "instrument_sim", None);
 
-    let (observed, not_read) = upstream::observe_upstreams(&[target(&path, "beamline_sim", None)]);
+    let (observed, not_read) =
+        upstream::observe_upstreams(&[target(&path, "instrument_sim", None)]);
     assert!(not_read.is_none());
     assert_eq!(observed.len(), 1);
     assert_eq!(observed[0].state, "read");
-    assert_eq!(observed[0].graph_id.as_deref(), Some("beamline_sim"));
+    assert_eq!(observed[0].graph_id.as_deref(), Some("instrument_sim"));
     assert!(observed[0].content_hash.is_some());
     assert!(observed[0].nodes.unwrap() > 0);
 }
@@ -65,18 +66,18 @@ fn a_real_export_is_read_and_names_the_design_it_belongs_to() {
 #[test]
 fn reading_an_upstream_does_not_pull_a_single_node_into_this_design() {
     let dir = scratch("no-import");
-    let path = upstream_export(dir.as_path(), "beamline_sim", Some("cmp:sim-only"));
+    let path = upstream_export(dir.as_path(), "instrument_sim", Some("cmp:sim-only"));
 
     let mut mine = DesignGraph::open_in_memory_as("mine").expect("graph");
     mine.declare_external_dependency(&DependencyDeclaration {
         id: "dep:sim".into(),
-        name: "beamline-sim".into(),
+        name: "instrument-sim".into(),
         source: path.clone(),
         version: "v2.1.0".into(),
         components: vec![],
         features: vec![],
         declared_in: None,
-        graph_id: Some("beamline_sim".into()),
+        graph_id: Some("instrument_sim".into()),
         design_export: Some(path.clone()),
         design_export_hash: upstream::baseline_hash(&path),
         design_export_seen_at: Some("2026-08-26".into()),
@@ -117,22 +118,22 @@ fn reading_an_upstream_does_not_pull_a_single_node_into_this_design() {
 #[test]
 fn a_real_change_upstream_is_seen_and_keeps_being_seen() {
     let dir = scratch("keeps-being-seen");
-    let path = upstream_export(dir.as_path(), "beamline_sim", None);
+    let path = upstream_export(dir.as_path(), "instrument_sim", None);
     let baseline = upstream::baseline_hash(&path).expect("hash");
 
     // The upstream exports again, with more in it.
-    let _ = upstream_export(dir.as_path(), "beamline_sim", Some("cmp:new-work"));
+    let _ = upstream_export(dir.as_path(), "instrument_sim", Some("cmp:new-work"));
 
     let mut mine = DesignGraph::open_in_memory_as("mine").expect("graph");
     mine.declare_external_dependency(&DependencyDeclaration {
         id: "dep:sim".into(),
-        name: "beamline-sim".into(),
+        name: "instrument-sim".into(),
         source: path.clone(),
         version: "v2.1.0".into(),
         components: vec![],
         features: vec![],
         declared_in: None,
-        graph_id: Some("beamline_sim".into()),
+        graph_id: Some("instrument_sim".into()),
         design_export: Some(path.clone()),
         design_export_hash: Some(baseline),
         design_export_seen_at: Some("2026-08-26".into()),
@@ -160,7 +161,7 @@ fn a_real_change_upstream_is_seen_and_keeps_being_seen() {
 #[test]
 fn a_stale_self_stamp_does_not_hide_a_real_change() {
     let dir = scratch("stale-stamp");
-    let path = upstream_export(dir.as_path(), "beamline_sim", None);
+    let path = upstream_export(dir.as_path(), "instrument_sim", None);
     let baseline = upstream::baseline_hash(&path).expect("hash");
 
     // Append a node by hand WITHOUT restamping — exactly the shape a merge
@@ -181,7 +182,7 @@ fn a_stale_self_stamp_does_not_hide_a_real_change() {
         "the point of this test is that the file's own stamp did NOT move"
     );
 
-    let (observed, _) = upstream::observe_upstreams(&[target(&path, "beamline_sim", None)]);
+    let (observed, _) = upstream::observe_upstreams(&[target(&path, "instrument_sim", None)]);
     assert_ne!(
         observed[0].content_hash.as_deref(),
         Some(baseline.as_str()),
@@ -196,10 +197,10 @@ fn a_pointer_at_nothing_and_a_pointer_at_rubbish_are_told_apart() {
     std::fs::write(&junk, "this is not JSON at all").expect("write");
 
     let (observed, _) = upstream::observe_upstreams(&[
-        target("/no/such/path/reflow2.json", "beamline_sim", None),
+        target("/no/such/path/reflow2.json", "instrument_sim", None),
         UpstreamTarget {
             id: "dep:junk".into(),
-            ..target(&junk.to_string_lossy(), "beamline_sim", None)
+            ..target(&junk.to_string_lossy(), "instrument_sim", None)
         },
     ]);
     assert_eq!(observed[0].state, "missing");
@@ -207,7 +208,7 @@ fn a_pointer_at_nothing_and_a_pointer_at_rubbish_are_told_apart() {
 }
 
 /// A declaration whose pointer resolves to nothing must still be RECORDABLE —
-/// the upstream may not have exported yet, which the hxm_program report measured
+/// the upstream may not have exported yet, which a work hub's field report measured
 /// as the normal state (zero of seven siblings had one). It becomes a finding on
 /// the next read rather than a wall at declaration time.
 #[test]
@@ -217,13 +218,13 @@ fn declaring_a_watch_on_an_export_that_does_not_exist_yet_is_allowed() {
     let mut mine = DesignGraph::open_in_memory_as("mine").expect("graph");
     mine.declare_external_dependency(&DependencyDeclaration {
         id: "dep:sim".into(),
-        name: "beamline-sim".into(),
-        source: "https://github.com/example/beamline-sim.git".into(),
+        name: "instrument-sim".into(),
+        source: "https://github.com/example/instrument-sim.git".into(),
         version: "v2.1.0".into(),
         components: vec![],
         features: vec![],
         declared_in: None,
-        graph_id: Some("beamline_sim".into()),
+        graph_id: Some("instrument_sim".into()),
         design_export: Some("/no/such/path/reflow2.json".into()),
         design_export_hash: None,
         design_export_seen_at: None,
@@ -249,12 +250,12 @@ fn declaring_a_watch_on_an_export_that_does_not_exist_yet_is_allowed() {
 #[test]
 fn a_bounded_pass_says_what_it_left_unopened() {
     let dir = scratch("bounded");
-    let path = upstream_export(dir.as_path(), "beamline_sim", None);
+    let path = upstream_export(dir.as_path(), "instrument_sim", None);
     let many: Vec<UpstreamTarget> = (0..upstream::MAX_UPSTREAMS_READ + 3)
         .map(|i| UpstreamTarget {
             id: format!("dep:{i}"),
             name: format!("sibling-{i}"),
-            ..target(&path, "beamline_sim", None)
+            ..target(&path, "instrument_sim", None)
         })
         .collect();
 
@@ -278,7 +279,7 @@ fn a_json_file_that_names_no_design_is_unreadable_and_takes_no_baseline() {
     std::fs::write(&not_a_design, r#"{"hello": "world"}"#).expect("write");
     let path = not_a_design.to_string_lossy().into_owned();
 
-    let (observed, _) = upstream::observe_upstreams(&[target(&path, "beamline_sim", None)]);
+    let (observed, _) = upstream::observe_upstreams(&[target(&path, "instrument_sim", None)]);
     assert_eq!(observed[0].state, "unreadable");
     assert_eq!(
         upstream::baseline_hash(&path),

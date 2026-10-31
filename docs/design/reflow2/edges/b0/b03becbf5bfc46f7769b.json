@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:bfe42c4670a6e503419e1b1d0642fad9cee44b8f0b795dcf4c484d3d9112abf6",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-the-reasoning-walks-keep-their-own-stack",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-reasoning-chain-of-any-depth-is-walked-in-a-fixed-stack"
-}

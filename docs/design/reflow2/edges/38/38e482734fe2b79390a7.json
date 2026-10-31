@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:08ea7b91649121e4e0092f0d3fcac6e5eae24fab87ab6cc49bf7b8adee2273d6",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:1d2f27dd77eeeb9f7527da3bc94809fb19d5aea84424a1de5ca18362b3705fa7"
-  },
-  "to_id": "art:test-a-search-hit-carries-its-linked-records"
-}

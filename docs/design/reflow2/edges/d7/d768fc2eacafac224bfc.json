@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ac2455ad21523a0dec145aa6263b74bbc615093f009723023317f6bd040f2b7f",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0833",
-  "properties": {
-    "as_checksum": "sha256:0ff3d7b6d2fcad7dd4d0c24a2c08f2652a85279638492214062372acbb84a206"
-  },
-  "to_id": "art:check-consumer-reach"
-}

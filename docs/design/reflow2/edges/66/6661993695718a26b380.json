@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:b9756e04e23c7e481431ee945bd3fb3d93580cd8e7d80bb41222a931f9cd562e",
-  "edge_type": "AT_EPOCH",
-  "from_id": "snap:epoch:preserved-on-write:req:ci-checks-the-code-against-its-design-on-the-server",
-  "properties": {},
-  "to_id": "epoch:preserved-on-write"
-}

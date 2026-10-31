@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:c04c74077459c4d023699a0d2baf4982c5502e1b478bd5a75ded65028c557d01",
-  "edge_type": "HAS_SNAPSHOT",
-  "from_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter",
-  "properties": {},
-  "to_id": "snap:epoch:preserved-on-write:req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter:r2"
-}

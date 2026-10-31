@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5e02935dc5729fed2d93b52fd2168dc8cdad6ddc991726e5f9290145c311a336",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0834",
-  "properties": {
-    "as_checksum": "sha256:b9b43d0cb4b05848262d50d95a0c9c555bc76b0504984ca51a7ca3291b9933a9"
-  },
-  "to_id": "art:a-session-that-reads-and-never-writes-is-seen-test"
-}

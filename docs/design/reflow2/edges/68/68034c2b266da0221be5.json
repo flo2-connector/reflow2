@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:94ce508d8447cdc70e91298bc52686489344821dd28e8bd92eeb0e32c20a8a12",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:f1e8b98cdfbe1d1509302009bedb3b90a24676d1c58171ce296134faaa35d68b"
-  },
-  "to_id": "art:reflow2-rebuild"
-}

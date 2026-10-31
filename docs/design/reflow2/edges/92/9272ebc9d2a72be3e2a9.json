@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:80fca3c455db19ced948109682a31adb904c4dda0cdbb6055599ad6dfe7703cd",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-prune-the-tool-surface-to-an-orthogonal-essential-set",
-  "properties": {
-    "evidence": "The accepted prune intent's kinds (a)-(c) and its options A and C, now with usage and cue counts per pair: this is its candidate list grown from measurement."
-  },
-  "to_id": "dec:idea-fold-and-removal-candidates-from-the-2026-10-30-counts"
-}

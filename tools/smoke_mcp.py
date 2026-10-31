@@ -534,7 +534,7 @@ def run(binary: str, graph_path: str) -> int:
 
     # BL-27. Adopting a system that already exists needs to say two things a
     # greenfield design never does: this already ships, and I inferred it rather
-    # than being told it. Both were unsayable, so ophyd's 15 shipped capabilities
+    # than being told it. Both were unsayable, so the instrument-control trial's 15 shipped capabilities
     # landed as `planned` — a graph asserting a production system is entirely
     # unbuilt — and provenance got smuggled into statement text as `[EXTERNAL]`.
     # Driven here through the real MCP path because that is where the last
@@ -577,7 +577,7 @@ def run(binary: str, graph_path: str) -> int:
 
     # BL-27: the direction DETECT was blind in. cap:shipped above satisfies no
     # requirement — the probe both brownfield trials ran (3dtictactoe's
-    # cap:draw-detection, ophyd's cap:qserver-auth), where the orphan went
+    # cap:draw-detection, the instrument-control trial's cap:queue-auth), where the orphan went
     # unmentioned while the requirement gaps were all reported. It is marked
     # inferred, so it reads as a feature in production nothing asked for and
     # leads the list.

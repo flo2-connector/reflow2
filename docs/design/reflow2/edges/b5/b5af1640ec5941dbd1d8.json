@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:56ddeea30a8a814e973fead47be3a682111edbf714c7e13d33abbb3a6bb1fad2",
-  "edge_type": "CONSTRAINS",
-  "from_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
-  "properties": {
-    "note": "The foundations read is on demand; a conclusion with no inference has no axioms to list and raises nothing."
-  },
-  "to_id": "req:a-conclusion-shows-the-axioms-it-rests-on"
-}

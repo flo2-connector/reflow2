@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7695d5c2bef38f619968633dc4c9d7699578480e8d031d542137de1262c670ca",
-  "edge_type": "ANTICIPATES",
-  "from_id": "xref:83d2b0775fe79af6:dec:idea-process-steps-are-not-stand-alone-tools",
-  "properties": {
-    "evidence": "A process tool that lists its next step is a cue for the next call; the process-step decision saw that structure coming, and the named cue message would carry it."
-  },
-  "to_id": "req:a-cue-is-one-named-kind-of-message-in-reflow2s-interface"
-}

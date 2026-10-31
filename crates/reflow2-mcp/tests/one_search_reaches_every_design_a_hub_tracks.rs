@@ -2,7 +2,7 @@
 //! opens — `req:one-search-reaches-every-design-a-hub-tracks`,
 //! `cap:search-design-reaches-the-designs-a-hub-tracks` (phase 7, step 2).
 //!
-//! WHAT FAILED. hxm_program's hub pins fourteen member designs by their
+//! WHAT FAILED. A work hub pins fourteen member designs by their
 //! committed exports and is reached only through the `--call` door
 //! (organisation policy blocks MCP there). Measured 2026-10-21 on 0.89.0:
 //! `reflow2 read search_design '{"query":"x","tracked_designs":true}'` was
@@ -110,23 +110,27 @@ fn scratch(name: &str) -> std::path::PathBuf {
 async fn member_export(dir: &std::path::Path, graph_id: &str) -> String {
     let m = ReflowService::in_memory_as(graph_id).expect("member");
     m.add_component(Parameters(
-        serde_json::from_value(json!({"id": "cmp:role-pdfstream", "name": "pdfstream role",
-            "description": "deploys the pdfstream servers"}))
+        serde_json::from_value(
+            json!({"id": "cmp:role-datastream", "name": "datastream role",
+            "description": "deploys the datastream servers"}),
+        )
         .unwrap(),
     ))
     .await
     .expect("component");
     m.add_requirement(Parameters(
-        serde_json::from_value(json!({"id": "req:pdfstream-feed", "name": "pdfstream feed",
-            "statement": "pdfstream is fed from Tiled streaming."}))
+        serde_json::from_value(
+            json!({"id": "req:datastream-feed", "name": "datastream feed",
+            "statement": "datastream is fed from Storage streaming."}),
+        )
         .unwrap(),
     ))
     .await
     .expect("requirement");
     m.add_decision(Parameters(
         serde_json::from_value(
-            json!({"id": "dec:pdfstream-route", "name": "pdfstream route",
-            "decision": "pdfstream reads the stream through the role."}),
+            json!({"id": "dec:datastream-route", "name": "datastream route",
+            "decision": "datastream reads the stream through the role."}),
         )
         .unwrap(),
     ))
@@ -150,7 +154,7 @@ async fn member_export(dir: &std::path::Path, graph_id: &str) -> String {
 
 struct Hub {
     c: Client,
-    ansible: String,
+    deploy: String,
     other: String,
 }
 
@@ -158,7 +162,7 @@ struct Hub {
 /// dependency that names no design.
 async fn hub(name: &str) -> Hub {
     let dir = scratch(name);
-    let ansible = member_export(&dir, "ansible").await;
+    let deploy = member_export(&dir, "deploy").await;
     let other = member_export(&dir, "other").await;
     let garbled = dir.join("garbled.json");
     std::fs::write(&garbled, "this is not a design").expect("garbled");
@@ -167,8 +171,8 @@ async fn hub(name: &str) -> Hub {
     call(
         &c,
         "add_requirement",
-        json!({"id": "req:pdf-firewall", "name": "PDF firewall fix",
-               "statement": "The PDF firewall admits the pdfstream stream."}),
+        json!({"id": "req:instrument-firewall", "name": "instrument firewall fix",
+               "statement": "The instrument firewall admits the datastream stream."}),
     )
     .await;
     call(
@@ -187,10 +191,10 @@ async fn hub(name: &str) -> Hub {
         p
     };
     for p in [
-        pin("ansible", "ansible", json!({"design_export": ansible})),
+        pin("deploy", "deploy", json!({"design_export": deploy})),
         pin(
-            "tiled",
-            "tiled",
+            "storage",
+            "storage",
             json!({"design_export": dir.join("gone.json").to_string_lossy()}),
         ),
         pin(
@@ -209,7 +213,7 @@ async fn hub(name: &str) -> Hub {
     ] {
         call(&c, "external_dependency", p).await;
     }
-    Hub { c, ansible, other }
+    Hub { c, deploy, other }
 }
 
 fn not_searched<'a>(reply: &'a Value, design: &str) -> &'a Value {
@@ -224,46 +228,46 @@ async fn a_tracked_search_finds_what_only_a_pinned_design_holds_and_names_each_i
 {
     let h = hub("all-pins").await;
     let before = (
-        std::fs::read(&h.ansible).expect("export"),
+        std::fs::read(&h.deploy).expect("export"),
         std::fs::read(&h.other).expect("export"),
     );
     let found = call(
         &h.c,
         "search_design",
-        json!({"query": "pdfstream", "tracked_designs": true}),
+        json!({"query": "datastream", "tracked_designs": true}),
     )
     .await;
     let hits = found["hits"].as_array().expect("hits");
     // Every node type the member holds the word in comes back, under its
     // design and with its design's prefix.
     for (id, ty) in [
-        ("ansible:cmp:role-pdfstream", "Component"),
-        ("ansible:req:pdfstream-feed", "Requirement"),
-        ("ansible:dec:pdfstream-route", "Decision"),
+        ("deploy:cmp:role-datastream", "Component"),
+        ("deploy:req:datastream-feed", "Requirement"),
+        ("deploy:dec:datastream-route", "Decision"),
     ] {
         let hit = hits
             .iter()
             .find(|h| h["node_id"] == json!(id))
             .unwrap_or_else(|| panic!("{id} is a hit: {found}"));
-        assert_eq!(hit["design"], json!("ansible"), "{found}");
+        assert_eq!(hit["design"], json!("deploy"), "{found}");
         assert_eq!(hit["node_type"], json!(ty), "{found}");
     }
     // This design's own hit is there, unprefixed, under its own design.
     let own = hits
         .iter()
-        .find(|h| h["node_id"] == json!("req:pdf-firewall"))
+        .find(|h| h["node_id"] == json!("req:instrument-firewall"))
         .unwrap_or_else(|| panic!("the hub's own hit stays: {found}"));
     assert_eq!(own["design"], json!("hub"), "{found}");
     assert_eq!(
         found["designs_searched"],
-        json!(["hub", "ansible"]),
+        json!(["hub", "deploy"]),
         "{found}"
     );
-    assert_eq!(found["read_from"]["ansible"], json!(h.ansible), "{found}");
+    assert_eq!(found["read_from"]["deploy"], json!(h.deploy), "{found}");
 
     // Every pinned design it could not search: named, with a state and why.
     for (design, state) in [
-        ("tiled", "missing"),
+        ("storage", "missing"),
         ("hosted", "not_reached"),
         ("nowhere", "nowhere"),
         ("garbled", "unreadable"),
@@ -289,7 +293,7 @@ async fn a_tracked_search_finds_what_only_a_pinned_design_holds_and_names_each_i
         .filter_map(|n| n["design"].as_str())
         .collect();
     assert!(
-        !named.contains(&"ansible") && named.len() == 5,
+        !named.contains(&"deploy") && named.len() == 5,
         "only the unreached are named, a code dependency never: {found}"
     );
     assert!(
@@ -302,13 +306,13 @@ async fn a_tracked_search_finds_what_only_a_pinned_design_holds_and_names_each_i
     // Nothing was written: not to an export, not to this design.
     assert_eq!(
         (
-            std::fs::read(&h.ansible).expect("export"),
+            std::fs::read(&h.deploy).expect("export"),
             std::fs::read(&h.other).expect("export")
         ),
         before,
         "an export searched is never written"
     );
-    let plain = call(&h.c, "search_design", json!({"query": "pdfstream"})).await;
+    let plain = call(&h.c, "search_design", json!({"query": "datastream"})).await;
     assert_eq!(
         plain["hits"].as_array().map(Vec::len),
         Some(1),
@@ -319,11 +323,11 @@ async fn a_tracked_search_finds_what_only_a_pinned_design_holds_and_names_each_i
 #[tokio::test]
 async fn without_tracked_designs_the_reply_is_what_it_was() {
     let h = hub("unchanged").await;
-    let plain = call(&h.c, "search_design", json!({"query": "pdfstream"})).await;
+    let plain = call(&h.c, "search_design", json!({"query": "datastream"})).await;
     let off = call(
         &h.c,
         "search_design",
-        json!({"query": "pdfstream", "tracked_designs": false}),
+        json!({"query": "datastream", "tracked_designs": false}),
     )
     .await;
     assert_eq!(plain, off, "`tracked_designs: false` is the default");
@@ -349,13 +353,13 @@ async fn a_design_that_tracks_nothing_says_so() {
     call(
         &c,
         "add_requirement",
-        json!({"id": "req:x", "name": "pdfstream x", "statement": "pdfstream."}),
+        json!({"id": "req:x", "name": "datastream x", "statement": "datastream."}),
     )
     .await;
     let found = call(
         &c,
         "search_design",
-        json!({"query": "pdfstream", "tracked_designs": true}),
+        json!({"query": "datastream", "tracked_designs": true}),
     )
     .await;
     assert!(
@@ -373,7 +377,7 @@ async fn the_one_limit_bounds_the_merged_list_and_says_what_it_withheld() {
     let found = call(
         &h.c,
         "search_design",
-        json!({"query": "pdfstream", "tracked_designs": true, "limit": 2}),
+        json!({"query": "datastream", "tracked_designs": true, "limit": 2}),
     )
     .await;
     assert_eq!(found["hits"].as_array().map(Vec::len), Some(2), "{found}");
@@ -382,7 +386,7 @@ async fn the_one_limit_bounds_the_merged_list_and_says_what_it_withheld() {
         json!(1),
         "each design asked for 2: 1 + 2 ranked, 2 shown: {found}"
     );
-    assert_eq!(found["found_by_design"]["ansible"], json!(2), "{found}");
+    assert_eq!(found["found_by_design"]["deploy"], json!(2), "{found}");
 
     let none = call(
         &h.c,
@@ -402,11 +406,11 @@ async fn the_one_limit_bounds_the_merged_list_and_says_what_it_withheld() {
 async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
     let h = hub("open").await;
     for id in [
-        "cmp:role-pdfstream",
-        "req:pdfstream-feed",
-        "dec:pdfstream-route",
+        "cmp:role-datastream",
+        "req:datastream-feed",
+        "dec:datastream-route",
     ] {
-        let by_prefix = call(&h.c, "get_node", json!({"id": format!("ansible:{id}")})).await;
+        let by_prefix = call(&h.c, "get_node", json!({"id": format!("deploy:{id}")})).await;
         assert!(!by_prefix["node"].is_null(), "{id}: {by_prefix}");
         assert!(
             by_prefix["view_note"]
@@ -414,12 +418,12 @@ async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
                 .is_some_and(|n| n.contains("committed export")),
             "the reply says it read the export: {by_prefix}"
         );
-        let by_member = call(&h.c, "get_node", json!({"id": id, "member": "ansible"})).await;
+        let by_member = call(&h.c, "get_node", json!({"id": id, "member": "deploy"})).await;
         assert_eq!(by_prefix["node"], by_member["node"], "{id}");
     }
     // An id both hold: unprefixed is this design's own, prefixed the member's.
     let own = call(&h.c, "get_node", json!({"id": "req:shared"})).await;
-    let theirs = call(&h.c, "get_node", json!({"id": "ansible:req:shared"})).await;
+    let theirs = call(&h.c, "get_node", json!({"id": "deploy:req:shared"})).await;
     assert_eq!(
         own["node"]["properties"]["name"],
         json!("hub's shared"),
@@ -431,7 +435,7 @@ async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
         "{theirs}"
     );
     // Absent from the export: said, never a bare null.
-    let absent = call(&h.c, "get_node", json!({"id": "ansible:cmp:nope"})).await;
+    let absent = call(&h.c, "get_node", json!({"id": "deploy:cmp:nope"})).await;
     assert!(absent["node"].is_null(), "{absent}");
     assert!(absent["empty_because"].is_string(), "{absent}");
     // The member's own name: this design alone.
@@ -445,7 +449,7 @@ async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
 
     // Aimed where nothing can be read: refused with the pin's state.
     for (design, state) in [
-        ("tiled", "missing"),
+        ("storage", "missing"),
         ("hosted", "not_reached"),
         ("garbled", "unreadable"),
     ] {
@@ -459,13 +463,13 @@ async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
     )
     .await;
     assert!(
-        why.contains("does not pin") && why.contains("ansible"),
+        why.contains("does not pin") && why.contains("deploy"),
         "a design not pinned is refused naming the pinned ones: {why}"
     );
     let why = refused(
         &h.c,
         "get_node",
-        json!({"id": "ansible:req:x", "member": "wrong"}),
+        json!({"id": "deploy:req:x", "member": "wrong"}),
     )
     .await;
     assert!(why.contains("2 designs"), "{why}");
@@ -474,26 +478,26 @@ async fn a_hit_in_a_pinned_design_opens_by_its_prefixed_id_or_by_member() {
 #[tokio::test]
 async fn a_write_aimed_at_a_pinned_design_is_refused_and_its_export_is_untouched() {
     let h = hub("write").await;
-    let before = std::fs::read(&h.ansible).expect("export");
+    let before = std::fs::read(&h.deploy).expect("export");
     let why = refused(
         &h.c,
         "add_requirement",
-        json!({"id": "req:new", "name": "new", "statement": "A new one.", "member": "ansible"}),
+        json!({"id": "req:new", "name": "new", "statement": "A new one.", "member": "deploy"}),
     )
     .await;
     assert!(why.contains("never writes"), "{why}");
-    assert_eq!(std::fs::read(&h.ansible).expect("export"), before);
+    assert_eq!(std::fs::read(&h.deploy).expect("export"), before);
     // A write naming a member's id in its words is still this design's write.
     call(
         &h.c,
         "add_requirement",
         json!({"id": "req:note", "name": "note",
-               "statement": "The fix is in ansible:cmp:role-pdfstream."}),
+               "statement": "The fix is in deploy:cmp:role-datastream."}),
     )
     .await;
     let note = call(&h.c, "get_node", json!({"id": "req:note"})).await;
     assert!(!note["node"].is_null(), "{note}");
-    assert_eq!(std::fs::read(&h.ansible).expect("export"), before);
+    assert_eq!(std::fs::read(&h.deploy).expect("export"), before);
 }
 
 #[tokio::test]

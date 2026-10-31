@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:2d00cf840a0f9d99fd890b99c6e10cfb2de0ecf0e36b91d6e7dd69287adaeb3f",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:a-claim-held-up-only-by-disputes-reads-contested",
-  "properties": {
-    "note": "Built as option (a), one contested route is enough; the owner's word on the idea decides whether it stays."
-  },
-  "to_id": "dec:idea-a-claim-with-one-contested-route-reads-contested-or-every-route"
-}

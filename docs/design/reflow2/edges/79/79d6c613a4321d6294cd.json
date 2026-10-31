@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:020876db9822d74bd886ae73b90127d393cc0ac079eff98a9f4ce71033989f13",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0880",
-  "properties": {
-    "as_checksum": "sha256:5fb495e40e597cfca8dcd9fe2e9003f6cfc62e75b3c4ec28894558aa86dfbf07"
-  },
-  "to_id": "art:test-a-superseded-finding-does-not-read-as-current"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:39038c1ef74407df520bde442ed34c639992f32836e03605cb1b4de10d69687a",
-  "edge_type": "REALIZES",
-  "from_id": "art:init",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-project-can-remove-its-kit-and-update-never-brings-it-back"
-}

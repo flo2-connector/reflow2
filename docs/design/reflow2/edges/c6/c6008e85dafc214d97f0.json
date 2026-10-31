@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ba3b7ebfc98358bb8769aa48ebb9532e755aa94831a7e7df97e6ef4fcb186abe",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0880",
-  "properties": {
-    "as_checksum": "sha256:bb0bf8627a0f1ecb663db09ee72de19857115ea8d6809ad24e4baebe41f67225"
-  },
-  "to_id": "art:site-counts-tool-tests"
-}

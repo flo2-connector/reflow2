@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b010e82177da984d8e2ce9259e53a73bfcef5959a28982d2a49acf6c43312188",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-is-the-evolution-vocabulary-unused-because-nothing-asks-for-it",
-  "properties": {
-    "evidence": "arrival_delta reports discontinued versus delivered, and capture asks whether a new node replaces an older one (chg:a-capture-that-replaces-a-node-says-so). Evidence: cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept is realized, ver:a-capture-that-replaces-a-node-says-so passing, realized by art:capture-intent-skill. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:a-capture-can-say-its-node-replaces-an-older-one-and-the-choice-at-the-near-match-check-is-kept"
-}

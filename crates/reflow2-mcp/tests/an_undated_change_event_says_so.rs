@@ -1,6 +1,6 @@
 //! A ChangeEvent written without `detected_at` says so in the reply.
 //!
-//! F-06, hxm_program: *"Nine events written in one day, none dated in the field
+//! F-06, a work hub's field report: *"Nine events written in one day, none dated in the field
 //! (dates are in the prose). The verification digest then cannot order changes
 //! against `last_run_at`. Suggest: report an undated ChangeEvent the way an
 //! undated sweep is reported — as undated, not silently."*

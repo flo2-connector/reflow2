@@ -4,7 +4,7 @@
 //! `req:one-search-reaches-every-design-a-hub-tracks`; the search that reaches
 //! them is phase 7's second step).
 //!
-//! WHAT FAILED. hxm_program's hub pins fourteen member designs by their
+//! WHAT FAILED. A work hub pins fourteen member designs by their
 //! committed exports and is reached only through the --call door. Measured
 //! 2026-10-21 on 0.89.0: `search_design` for a word only a member holds
 //! answered from the hub alone, with `searched: 4` and nothing saying that
@@ -48,8 +48,8 @@ async fn member_export(dir: &std::path::Path, graph_id: &str) -> String {
     call!(
         m,
         add_component,
-        json!({"id": "cmp:role-pdfstream", "name": "pdfstream role",
-               "description": "deploys pdfstream servers"})
+        json!({"id": "cmp:role-datastream", "name": "datastream role",
+               "description": "deploys datastream servers"})
     );
     let path = dir.join(format!("{graph_id}.json"));
     call!(m, export_graph, json!({"path": path.to_string_lossy()}));
@@ -62,8 +62,8 @@ async fn hub() -> ReflowService {
     call!(
         s,
         add_requirement,
-        json!({"id": "req:firewall", "name": "PDF firewall fix",
-               "statement": "The PDF beamline firewall admits the stream."})
+        json!({"id": "req:firewall", "name": "instrument firewall fix",
+               "statement": "The instrument firewall admits the stream."})
     );
     s
 }
@@ -71,13 +71,13 @@ async fn hub() -> ReflowService {
 #[tokio::test]
 async fn every_pinned_design_is_named_with_why_it_was_not_searched() {
     let dir = scratch("all-kinds");
-    let present = member_export(&dir, "ansible").await;
+    let present = member_export(&dir, "deploy").await;
     let s = hub().await;
     let pins = [
-        json!({"id": "dep:ansible", "name": "ansible", "source": "https://example.org/ansible",
-               "version": "abc123", "graph_id": "ansible", "design_export": present}),
-        json!({"id": "dep:tiled", "name": "tiled plugins", "source": "https://example.org/tiled",
-               "version": "def456", "graph_id": "tiled",
+        json!({"id": "dep:deploy", "name": "deploy", "source": "https://example.org/deploy",
+               "version": "abc123", "graph_id": "deploy", "design_export": present}),
+        json!({"id": "dep:storage", "name": "storage plugins", "source": "https://example.org/storage",
+               "version": "def456", "graph_id": "storage",
                "design_export": dir.join("gone.json").to_string_lossy()}),
         json!({"id": "dep:hosted", "name": "hosted", "source": "https://example.org/hosted",
                "version": "v1", "graph_id": "hosted",
@@ -88,11 +88,11 @@ async fn every_pinned_design_is_named_with_why_it_was_not_searched() {
     for p in &pins {
         call!(s, external_dependency, p.clone());
     }
-    let found = call!(s, search_design, json!({"query": "pdfstream"}));
+    let found = call!(s, search_design, json!({"query": "datastream"}));
     let named = found["not_searched"]
         .as_array()
         .unwrap_or_else(|| panic!("the pinned designs not searched are named: {found}"));
-    for design in ["ansible", "tiled", "hosted", "nowhere"] {
+    for design in ["deploy", "storage", "hosted", "nowhere"] {
         let entry = named
             .iter()
             .find(|n| n["design"] == json!(design))
@@ -110,7 +110,7 @@ async fn every_pinned_design_is_named_with_why_it_was_not_searched() {
             .unwrap_or_default()
             .to_string()
     };
-    assert!(why("tiled").contains("missing"), "{found}");
+    assert!(why("storage").contains("missing"), "{found}");
     assert!(why("nowhere").contains("nowhere"), "{found}");
     assert!(
         found["hits"].as_array().is_some_and(Vec::is_empty),

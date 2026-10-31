@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6438b82c3be8099f2aed9ea9e57654a4f80f0bd0d98bf942bcd0023c6f00e377",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-how-does-the-site-show-what-reflow2-is-for-one-design-by-itself",
-  "properties": {
-    "evidence": "Promoted on Anthony's word 2026-10-12 (\"Go with your recommendation on: one-design walkthrough ...\"): options (a), (b) and (d) taken together (his walkthrough, the home page re-centred on one design, a made-up example), with the counter that it loops back from the code to the design."
-  },
-  "to_id": "req:the-site-follows-one-design-from-its-first-requirement-into-the-code-and-back"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d04590d053366dba5c59fa84dcaad209081957d6e220704ba47aa890b92b6614",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:f430faf1690b8e91b5b5df80faafae34000953f6171c91c71ab90aed5b2e5d00"
-  },
-  "to_id": "art:a-test-whose-criteria-moved-reads-unknown-until-acknowledged-test"
-}

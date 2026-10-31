@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:73da8ab4c948d25d94d2f02ded4d0ea5b6ab1e8a3538d759bfdc9aecc2d38146",
-  "edge_type": "REALIZES",
-  "from_id": "art:inference-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-claim-derived-under-a-refuted-supposition-reads-so"
-}

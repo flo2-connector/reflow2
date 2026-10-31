@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:4358facfae385f8bca9bfb01451dc63dd355740195a46960d36aea4059f5697e",
-  "edge_type": "AT_EPOCH",
-  "from_id": "snap:epoch:preserved-on-write:cap:the-first-read-cue-reaches-the-agent-before-its-first-call:r2",
-  "properties": {},
-  "to_id": "epoch:preserved-on-write"
-}

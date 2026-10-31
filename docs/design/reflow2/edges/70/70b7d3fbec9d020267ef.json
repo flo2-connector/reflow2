@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:50132505eaf18ab14d17f23109d09c93524ccd9b48f2deaf0dcfd2661cd64580",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:32d62286017ba770661b7b1bb7f80658cf98357623f42d2168a4d92f2d05a939"
-  },
-  "to_id": "art:test-a-relation-is-found-by-a-query-in-a-persons-words"
-}

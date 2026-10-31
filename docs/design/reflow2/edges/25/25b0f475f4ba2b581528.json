@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:5d3f3fd860085d2f3699d111f13e901d0a3c36d76f40409bac8682f4a51aad85",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:the-remote-client-measures-the-folders-own-files",
-  "properties": {},
-  "to_id": "req:a-local-client-works-against-a-remote-reflow2-server-by-url"
-}

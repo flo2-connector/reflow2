@@ -1732,7 +1732,7 @@ impl DesignGraph {
     /// It is settable *at creation* because the brownfield path cannot use the
     /// default at all. Adopting a system that already exists means recording
     /// capabilities that already ship, and a graph that calls them all `planned`
-    /// asserts that a production system is entirely unbuilt — ophyd's 15 shipped,
+    /// asserts that a production system is entirely unbuilt — the instrument-control trial's 15 shipped,
     /// under-test capabilities landed exactly that way. Correcting them
     /// afterwards through [`set_capability_status`](Self::set_capability_status)
     /// is two writes per node with no bulk tool, which is what an adoption pass
@@ -1943,7 +1943,7 @@ impl DesignGraph {
     /// `inferred` is the value that earns this property. A Requirement backed
     /// out of the code that implements it is satisfied by construction, so it
     /// can never contradict anything and a graph full of them says nothing —
-    /// but only if you can *tell*. Ophyd had nowhere to put that fact and wrote
+    /// but only if you can *tell*. The instrument-control trial had nowhere to put that fact and wrote
     /// `[EXTERNAL — …]` into the statement text, which is not queryable.
     ///
     /// For bulk adoption prefer [`import_graph`](Self::import_graph): it is the

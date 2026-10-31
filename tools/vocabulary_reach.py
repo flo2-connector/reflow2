@@ -84,8 +84,21 @@ shape as the ruling that the 183 pre-rule fixes are grandfathered rather than
 backfilled. A gate that goes red on day one over a long-standing state is a
 gate somebody switches off.
 
-Reads the committed export and the committed toolsnaps; opens no store and
-takes no lock. stdlib + PyYAML only.
+⭐ SINCE 2026-10-30 `--check` READS THE SURFACE ALONE. reflow2's own design is
+hosted on flo2.io and private, and the copy this instrument used to read was
+retired from the repository. That forced the question the fused filter once
+hid: the guarded list is REACHABILITY, and reachability needs no corpus. So the
+list `--check` compares with the baseline is every declared property no typed
+tool accepts, on every type, whether or not a design holds an instance of it.
+That is a superset of the old corpus-filtered list (17 more on the day, all on
+types reflow2's own design never instantiated), and each was classified in the
+baseline. A design export, given with `--export` (or found at the default path
+when someone has exported one locally), feeds only the ADOPTION columns of the
+report: what is populated, by a default or by hand, and what is offered and
+unused.
+
+Reads the toolsnaps and, when given, an export; opens no store and takes no
+lock. stdlib + PyYAML only.
 """
 
 from __future__ import annotations
@@ -100,7 +113,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import design_io  # noqa: E402  (the one reader of a saved design, either form)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
-EXPORT = pathlib.Path(design_io.default_export(str(REPO)))
+# The default design to read ADOPTION from, when one is there: a copy of
+# reflow2's own design exported locally. None in CI, where only the surface is
+# read (see the header).
+DEFAULT_EXPORT = pathlib.Path(design_io.default_export(str(REPO)))
 SCHEMA_DIR = REPO / "schema"
 TOOLSNAPS = REPO / "tools/toolsnaps"
 
@@ -352,12 +368,26 @@ def tool_parameters() -> tuple[set[str], dict[str, set[str]], set[str]]:
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    export: pathlib.Path | None = DEFAULT_EXPORT if DEFAULT_EXPORT.exists() else None
+    if "--export" in argv:
+        i = argv.index("--export")
+        if i + 1 >= len(argv):
+            print("--export needs a path (a single-file export or an item layout)", file=sys.stderr)
+            return 2
+        export = pathlib.Path(argv[i + 1])
+        del argv[i : i + 2]
+        if not export.exists():
+            print(f"no design export at {export}", file=sys.stderr)
+            return 2
     check_mode = "--check" in argv
     update_baseline = "--update-baseline" in argv
     unknown = [a for a in argv if a not in {"--check", "--update-baseline"}]
     if unknown:
         print(f"unknown argument(s): {' '.join(unknown)}", file=sys.stderr)
-        print("usage: vocabulary_reach.py [--check | --update-baseline]", file=sys.stderr)
+        print(
+            "usage: vocabulary_reach.py [--export PATH] [--check | --update-baseline]",
+            file=sys.stderr,
+        )
         return 2
     node_props, edge_props = declared()
     try:
@@ -381,7 +411,17 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 2
-    doc = design_io.load_design(str(EXPORT))
+    if export is None:
+        # NO CORPUS IS NOT A SMALLER ANSWER TO THE GUARDED QUESTION: reachability
+        # is read from the surface either way. Only the adoption columns are
+        # empty, and the report says so rather than printing zeros as findings.
+        print(
+            "no design export read: reachability comes from the surface alone; "
+            "the adoption columns below are empty (pass --export to fill them)."
+        )
+        doc = {"nodes": [], "edges": []}
+    else:
+        doc = design_io.load_design(str(export))
 
     # Corpus usage.
     per_type: dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
@@ -406,6 +446,9 @@ def main(argv: list[str] | None = None) -> int:
     # means somebody wanted the property enough to reach past the typed surface
     # for it. Both are unreachable; only the second has a user behind it.
     hidden: list[tuple[str, str, int, int, str]] = []
+    # THE GUARDED LIST, from the surface alone: every declared property no
+    # typed tool accepts, on every type (header, "SINCE 2026-10-30").
+    surface_unreachable: list[str] = []
     total_props = 0
     for t, props in sorted(node_props.items()):
         for p in sorted(props):
@@ -424,6 +467,8 @@ def main(argv: list[str] | None = None) -> int:
                 or p in reaches_every_type
                 or (t, p) in ALIASED
             )
+            if not offered:
+                surface_unreachable.append(f"{t}.{p}")
             if used:
                 if not offered and type_counts[t]:
                     why = (
@@ -468,12 +513,12 @@ def main(argv: list[str] | None = None) -> int:
                     edge_dead.append((et, p, edge_used[et]))
 
     # What the SURFACE cannot write, regardless of what the graph happens to
-    # hold. This is the list `--check` guards, and it is the union of the two
-    # unreachable buckets: the properties nothing has written and the ones that
-    # only look written.
-    unreachable_now = sorted(
-        [f"{t}.{p}" for t, p, _ in unreachable] + [f"{t}.{p}" for t, p, _, _, _ in hidden]
-    )
+    # hold. This is the list `--check` guards. It used to be the union of the
+    # two corpus buckets (the properties nothing had written on a type the
+    # design used, and the ones that only look written), which left out every
+    # property of a type the design never instantiated. Both buckets are inside
+    # this list by construction: neither is offered.
+    unreachable_now = sorted(surface_unreachable)
 
     if check_mode:
         if not BASELINE.exists():

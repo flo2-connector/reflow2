@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:70b706d5979b767cdd961a664fc3503d8b34f84a2b49fdf1c5cde52ebca0912d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0900",
-  "properties": {
-    "as_checksum": "sha256:d32079174c4b915946bcfda7ee03b8ac0dc236506ed277378939065d74562063"
-  },
-  "to_id": "art:a-missing-argument-names-the-tool-and-what-it-wants-test"
-}

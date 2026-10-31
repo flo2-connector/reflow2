@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1042c097f2c15747bf30886a632d2a462e29f2d9353249873d6650352fe25178",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-quantity-carries-how-it-was-obtained-and-an-unsourced-one-is-reported",
-  "properties": {
-    "evidence": "The accepted requirement sets provenance and reporting for quantities stored in fields. This idea asks how the same applies to the numbers a Decision's prose rests on, which it does not reach."
-  },
-  "to_id": "dec:idea-how-is-a-decision-that-rests-on-numbers-held-to-keeping-its-math"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:945e3beb7d47289c95e81da4efcf49d1651ac84cb8902b0be77509cd5e7b983e",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0830",
-  "properties": {
-    "as_checksum": "sha256:4ca6237c63f7555f0f54d1a4c73cded628b7659d607313d8051f15c40807613a"
-  },
-  "to_id": "art:grok-build-tui-feedback-2026-08-27"
-}

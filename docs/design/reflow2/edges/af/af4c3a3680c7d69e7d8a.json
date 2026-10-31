@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:57ee521be54c06e1abd6d708666f9ccf7b3c4f54ede016ae95e6e211159e0c18",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-fixed-rule-violation-closes-through-its-typed-tool",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-fixed-rule-violation-closes-through-its-typed-tool"
-}

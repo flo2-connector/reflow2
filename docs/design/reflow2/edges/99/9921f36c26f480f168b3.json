@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8b3cb0d243d13181cb6fb6b27fff60cafa2b8b7e34eda8f93eb5ac3da22021b1",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-init",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-removed-kit-stays-removed-tests"
-}

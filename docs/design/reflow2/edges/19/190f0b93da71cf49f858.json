@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5c7af5f5049807f4d68fd458a12f17997fbd45d8221128189f952b3dddc2753b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:2060e4bdd6152fa1582b928bc380bec2887541a50fbe0ac8839ce9c29db88b64"
-  },
-  "to_id": "art:test-a-relation-reaches-into-another-design"
-}

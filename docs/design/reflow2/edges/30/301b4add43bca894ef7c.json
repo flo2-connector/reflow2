@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:9460bb408944c00485bb6c2ffa8692e8d34da4306ca3e7c819636e9363946aed",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:960bbd01b7f9efe6ce51f971a3a615b1f11c085ec65edb7b0e9ee991285903eb"
-  },
-  "to_id": "art:test-an-enum-field-publishes-its-legal-values"
-}

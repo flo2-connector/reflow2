@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:037e5c12300a585a55af2b81a3af57a0006bd10e17437cf292667f6ac93f06bd",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:4c0a8c29c5a3b42525adba80552aecc9c6f46be790898ef1a9d6453fea4fa7cd"
-  },
-  "to_id": "art:feedback-command"
-}

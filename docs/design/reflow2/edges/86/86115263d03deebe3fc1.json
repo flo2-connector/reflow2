@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:1e082442e534b26e45571fc0eb7dd009702894f5442b78d42470025740f376ec",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:built-work-reads-as-built-on-the-wire-test",
-  "properties": {
-    "covers": "partial"
-  },
-  "to_id": "ver:built-work-reads-as-built-and-awaits-the-owners-word"
-}

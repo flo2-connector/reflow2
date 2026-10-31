@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:8c31bce1664e6bbc6dbc9d2815894451e6e126013200918aed4f82fb99cb3fc2",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:assumptions-are-first-class",
-  "properties": {
-    "evidence": "That accepted requirement leaves open 'what edge carries rests on ... a dedicated relation may be clearer'; a 'follows from' edge with its rule is a candidate answer."
-  },
-  "to_id": "dec:idea-an-explicit-inference-step-and-a-check-that-it-follows-improve-every-design"
-}

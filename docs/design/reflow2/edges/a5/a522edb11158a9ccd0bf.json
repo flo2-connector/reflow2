@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a3d7f6375de9cd5484da9a4d6ae07c963f4e754ebce746e85a8165adc91a15ed",
-  "edge_type": "ANTICIPATES",
-  "from_id": "fact:updating-reflow2-does-not-update-a-project-already-set-up",
-  "properties": {
-    "evidence": "It established that kit-version.json is 'a receipt for an install EVENT, not a live reading', and led to `reflow2 update` taking that receipt as its sole test (cap:update-is-one-word), which is the gate measured here."
-  },
-  "to_id": "fact:root-cause-update-brings-a-hand-removed-kit-back-from-its-receipt-2026-10-19"
-}

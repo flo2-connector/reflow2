@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ca7e29bf8ea6cb488cf5db3b31527bbb7a97a49e9235575fed955efe612f27ec",
-  "edge_type": "OBSOLETES",
-  "from_id": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor",
-  "properties": {
-    "evidence": "dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor replaces dec:a-tied-merge-breaks-by-degree-not-by-alphabet: declared by the writer through `replaces` on add_decision. dec:a-tied-merge-breaks-by-degree-not-by-alphabet's ending is recorded in chg:replaced:dec:a-tied-merge-breaks-by-degree-not-by-alphabet:by:dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor, and the thread that says what it was for moved to dec:the-engine-proposes-a-merge-and-a-person-picks-the-survivor."
-  },
-  "to_id": "dec:a-tied-merge-breaks-by-degree-not-by-alphabet"
-}

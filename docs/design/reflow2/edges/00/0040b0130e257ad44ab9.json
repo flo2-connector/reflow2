@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7c1ab1b42ae7b03cf4e917bfa6398774b35cf14d4b0a46983e13d51abfeb54a4",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0820",
-  "properties": {
-    "as_checksum": "sha256:82dabcba4d5d934fe9b126fe0c474a3ad07446055ae43669585a016abcc9caa3"
-  },
-  "to_id": "art:find-skills-corpus"
-}

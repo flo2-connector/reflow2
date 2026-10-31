@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:a38cc83980c9e0c809e43c739241fcb3569a172cff68a7604245b4b606dd5ed9",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-composed-check-through-a-hubs-address-reads-its-members-live-test",
-  "properties": {
-    "covers": "partial"
-  },
-  "to_id": "ver:designs-are-linked-on-exact-evidence-a-name-is-a-candidate-and-every-pair-says-what-was-checked"
-}

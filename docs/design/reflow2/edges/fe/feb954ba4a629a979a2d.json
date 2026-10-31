@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:91340f0af5fa44a8d3b1a9d0ed3e5570ca0ea815b02f5cd0dac16e0d187f421c",
-  "edge_type": "CONSTRAINS",
-  "from_id": "con:no-gap-is-raised-for-a-conclusion-that-has-no-inference",
-  "properties": {
-    "note": "C's finding fires only on a drawn Inference; a conclusion with no Inference reads as today."
-  },
-  "to_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows"
-}

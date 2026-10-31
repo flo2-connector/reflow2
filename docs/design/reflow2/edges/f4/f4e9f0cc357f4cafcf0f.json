@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0355cbfb781e1ec9e9b994e5d88ee78612fb8a58a995b32eb7df8c6cbc7f05b2",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:26f7671235d0bca090bede370b9cc4674857f8488f9c54b5a1731f21837d126a"
-  },
-  "to_id": "art:a-prediction-reads-whether-it-was-stated-before-its-result-test"
-}

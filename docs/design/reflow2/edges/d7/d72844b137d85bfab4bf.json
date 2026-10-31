@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:78f4cb69daa0d7c139d8665b694a551fe41b77fe4218c416bf2a7e2b686b9504",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-a-byte-backend-that-compiles-in-seconds",
-  "properties": {
-    "evidence": "Its option G, feature-gate RocksDB out of the builds that do not need it, is what this decision does for the server crate."
-  },
-  "to_id": "dec:rocksdb-is-a-default-on-feature-of-the-server-crate-and-its-tests-share-a-few-programs"
-}

@@ -3,7 +3,7 @@
 //! 7's third step (`epoch:planned-p7-a-hub-on-one-machine`).
 //!
 //! `compose_and_analyse` composed THIS design with ONE other, so a hub effort
-//! spanning three to six designs (hxm_program's hub of fifteen, reached only
+//! spanning three to six designs (a work hub of fifteen, reached only
 //! through `reflow2 read|write`) was run pairwise and stitched by hand, and the
 //! seam between two members was never analysed unless one of them was the
 //! design calling. Here it takes several at once — `other_graph_ids`, or

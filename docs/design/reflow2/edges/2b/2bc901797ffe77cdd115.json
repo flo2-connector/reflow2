@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6bd1a0f3eec9140518706d8b6c343c3f236605d60903051549a5c35304d2e294",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "req:adopt-says-how-much-it-got",
-  "properties": {
-    "evidence": "The dropped requirement asked adopt to report how much it recovered; option (a) is its per-claim form (evidence and limitations on each recovered node)."
-  },
-  "to_id": "dec:idea-what-adopt-takes-from-rea-reverse-engineer-anything"
-}

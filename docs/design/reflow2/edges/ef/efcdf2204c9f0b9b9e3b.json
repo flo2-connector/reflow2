@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:01a6fd8c128cce11398462818b0988456fe326e4e189df612e5c5e7e260bc7c4",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0950",
-  "properties": {
-    "as_checksum": "sha256:2e140876c8add72acfffee42399199310fd8b2f2636e2b7d3038851e81d06c60"
-  },
-  "to_id": "art:a-bulk-write-says-no-near-match-check-ran-test"
-}

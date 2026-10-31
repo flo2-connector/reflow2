@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d6238e941daebedc206d6237340563fe61d8933b341d6b49cea83e0901c170d2",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-should-a-requirement-trace-back-to-its-demand-signal",
-  "properties": {
-    "evidence": "Built as option (b): capture from a document registers its source, so the origin exists by construction. Evidence: cap:capture-registers-its-source is realized, realized by art:capture-intent-skill. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:capture-registers-its-source"
-}

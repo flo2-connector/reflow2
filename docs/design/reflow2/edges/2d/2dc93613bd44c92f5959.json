@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7ee3c8567c1ca529d0400da8bacb08e903c2bcd54d94585ac108c948a15b91c2",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0930",
-  "properties": {
-    "as_checksum": "sha256:7073d262a18c4e8c0baa6068c88fc2cb25be7a14f7a8539c2df11a4e19ef741c"
-  },
-  "to_id": "art:test-every-one-shot-mode-resolves-its-design-first"
-}

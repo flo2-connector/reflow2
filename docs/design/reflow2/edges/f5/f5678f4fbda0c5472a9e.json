@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:79360d9811e53f8548a1da998df6ab13d210191108072444e1893d34c8fadd24",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:49f41256c7306e1676e4549cb04e20d369c80353c03024d61b4e9f157fc06ac0"
-  },
-  "to_id": "art:service-far"
-}

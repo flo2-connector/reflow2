@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:f67ad53fef12d762365e835282c09fe8d744559d7d09fcd0423530ce39e55263",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {
-    "as_checksum": "sha256:f8f3397b33e62a4d96b28cc2dc7f0eca75949fcb1d290dd4036e46afb37d211f"
-  },
-  "to_id": "art:test-a-taxonomy-is-decided-once-before-bulk-capture"
-}

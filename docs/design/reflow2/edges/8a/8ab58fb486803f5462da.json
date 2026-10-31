@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:337c0ce9c9ee3da9abb68bb852d43cc6df10a337aa7b63fda6ffe4c709de5bde",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0832",
-  "properties": {
-    "as_checksum": "sha256:f88d2fd35ccdfc57f73bd7fc50544410604c83e140ed2bf5a45491bed236b0d9"
-  },
-  "to_id": "art:test-one-tool-declares-its-output-contract"
-}

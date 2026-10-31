@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e5784cb6a0c8a8d104e3bc1add62f4c93f427f1f17eae69dbe7eb086a94b014b",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:test-a-limit-each-part-meets-on-its-own",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:a-limit-each-part-meets-on-its-own-is-judged-on-its-worst-part-tests"
-}

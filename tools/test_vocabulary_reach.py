@@ -72,15 +72,62 @@ def run(*args: str) -> subprocess.CompletedProcess:
     )
 
 
+def load_instrument():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("vocabulary_reach", SCRIPT)
+    vr = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(vr)
+    return vr
+
+
+def fixture_design(vr, where: pathlib.Path) -> pathlib.Path:
+    """A small design the ADOPTION columns are read from: it populates
+    `Snapshot.state` by hand and one unoffered property that declares a schema
+    default, the two ways a property looks adopted while nothing on the surface
+    can set it.
+
+    MADE HERE, NOT READ FROM reflow2's OWN DESIGN. Until 2026-10-30 this read the
+    copy committed at docs/design/reflow2/, which was retired: the design is
+    hosted and private. Both properties are chosen from the instrument's own
+    view of the schema and the surface, so the fixture follows them as they move.
+    """
+    node_props, _ = vr.declared()
+    _, by_type, every = vr.tool_parameters()
+
+    def offered(t: str, p: str) -> bool:
+        return p in by_type.get(t, set()) or p in every or (t, p) in vr.ALIASED
+
+    defaulted = next(
+        (t, p)
+        for t, props in sorted(node_props.items())
+        for p, spec in sorted(props.items())
+        if isinstance(spec, dict) and "default" in spec and not offered(t, p) and t != "Snapshot"
+    )
+    nodes = [
+        {"node_id": "snap:one", "node_type": "Snapshot", "properties": {"state": "{}"}},
+        {"node_id": "fixture:defaulted", "node_type": defaulted[0],
+         "properties": {defaulted[1]: str(node_props[defaulted[0]][defaulted[1]]["default"])}},
+    ]
+    path = where / "design.json"
+    path.write_text(json.dumps({"graph_id": "fixture", "nodes": nodes, "edges": []}))
+    return path
+
+
 def main() -> int:
     print("== the reachability instrument separates reachability from adoption ==")
 
-    r = run()
+    vr = load_instrument()
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix="vocabulary-reach-"))
+    export = fixture_design(vr, tmp)
+
+    r = run("--export", str(export))
     out = r.stdout
     check("the report runs", r.returncode == 0, r.stderr[-400:])
 
-    # THE BUCKET THE FUSED FILTER COULD NOT PRODUCE, pinned on live members of
-    # it. `Actor.actor_type` is populated ONLY because it declares a schema
+    # THE BUCKET THE FUSED FILTER COULD NOT PRODUCE, pinned on members of it
+    # the fixture populates. `Actor.actor_type` is populated ONLY because it declares a schema
     # default, and `Capability.tier` only through generic create_node — the two
     # ways a property looks adopted while nothing on the surface can set it.
     # `Question.question` was the other live member until 2026-10-17, when
@@ -177,7 +224,8 @@ def main() -> int:
         "a single count conflates a gap with a deliberate state and cannot be acted on",
     )
 
-    # --check is what makes the answer reach somebody: it is the mode CI runs.
+    # --check is what makes the answer reach somebody: it is the mode CI runs,
+    # with no design at all, because the guarded list is read from the surface.
     r2 = run("--check")
     check(
         "--check passes against the committed baseline",
@@ -224,13 +272,6 @@ def main() -> int:
     # `Verification.location` had none (excused by register_alternative, whose
     # `location` is a path to a design export). flo2 found both by being
     # refused. Guessing quietly is the failure; refusing loudly is the fix.
-    import importlib.util
-
-    spec = importlib.util.spec_from_file_location("vocabulary_reach", SCRIPT)
-    vr = importlib.util.module_from_spec(spec)
-    assert spec.loader is not None
-    spec.loader.exec_module(vr)
-
     placed = set(vr.WRITES_TYPE) | vr.EDGE_ONLY | set(vr.POLYMORPHIC)
     unplaced = sorted(
         f.stem

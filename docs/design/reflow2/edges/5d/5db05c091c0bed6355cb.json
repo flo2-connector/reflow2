@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:62198ff2ca3776d62aaa655a74a0fa508d92f3ac9c17107914a92e57782fd8f6",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-correct-proof-reads-correct-assumptions-objections-and-conditional-claims"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c5304f9aa177a9f90542b306273e444e8f03dcf81d152d89597bdc0fca954f42",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-design-is-asked-why-what-could-go-wrong-and-how-youll-know-in-plain-words",
-  "properties": {
-    "evidence": "The accepted ask-what-could-go-wrong requirement saw this coming; this one asks it of one decision when it is settled. Drawn as ANTICIPATES rather than DECOMPOSES because it adds the barbell trigger and the upside question, so it is not a 1:1 piece, and DECOMPOSES would hold the parent's delivery until this is built."
-  },
-  "to_id": "req:a-hard-to-undo-decision-is-asked-what-a-wrong-call-costs-and-how-far-a-right-one-goes"
-}

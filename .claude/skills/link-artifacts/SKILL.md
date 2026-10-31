@@ -144,7 +144,7 @@ skimmed. A machine-readable contract (OpenAPI, protobuf, JSON-schema) is neither
 
 There is a **third case**, and it is the one that gets deleted by mistake. Some documents
 describe nothing and implement nothing, *correctly*: a dated field report, an incident
-write-up, a customer complaint, a beamline observation, a vendor's test certificate. They are
+write-up, a customer complaint, a lab-instrument observation, a vendor's test certificate. They are
 frozen observations — true of a moment, and correct precisely by **not** tracking the design as
 it moves. `DOCUMENTS` is the wrong edge for them, because it claims the opposite: that the file
 should stay in step, so every later design change would read as staling a record that is simply

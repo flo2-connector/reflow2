@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:e4b0bd78f83b0a7be4e6cf5ca3e637163056a7adfb2b9fd24283700461083100",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:every-cross-design-read-takes-the-other-design-by-graph-id-and-no-registry-reads-a-host-path",
-  "properties": {},
-  "to_id": "req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter"
-}

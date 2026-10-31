@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6e2e3a1cd29f9ed193f0ffcb98b9146aa8becf2ad708c58841645b269e480790",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:client-measure",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:client-measure"
-}

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:29b03d38401e801b932de8f28ed05ea6570ccd650b8d488c0a471b11a286de7e",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:compose-and-analyse-takes-several-designs-at-once",
-  "properties": {},
-  "to_id": "req:one-composed-check-runs-over-a-hub-and-several-of-its-designs"
-}

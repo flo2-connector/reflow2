@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:0cd87f07f22b59c420d3c2547aede0748a2825de582dea0a43197a635325d99d",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0832",
-  "properties": {
-    "as_checksum": "sha256:0ffb64a161752bde9977987e2c64e4356b1a8d024c9f08bed1d9cf038781ab37"
-  },
-  "to_id": "art:test-why-history"
-}

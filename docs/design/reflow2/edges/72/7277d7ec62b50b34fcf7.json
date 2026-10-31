@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:eb1fdfde7c5333c40a8b39ca10c7bb27d84121e469a8cfe3fe39c60fe99d1e8c",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:a-hosted-server-closes-idle-designs-and-says-busy-when-full",
-  "properties": {
-    "evidence": "That accepted requirement closes idle designs and answers 503 when it truly cannot open one, but it counts designs and never files. Option D grows it to cover running out of file handles."
-  },
-  "to_id": "dec:idea-a-server-checks-its-open-design-limit-and-per-design-file-cap-against-its-open-file-limit"
-}

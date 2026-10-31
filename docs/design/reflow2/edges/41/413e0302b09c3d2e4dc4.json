@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fd7d2fedcef79d92f130e079baba7ee0f75e639cf8c25f27a56415971a92815e",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "req:a-design-states-how-premises-support-a-conclusion-and-reflow2-checks-it-follows",
-  "properties": {
-    "note": "The decision fixes the shape: an Inference record between premises and conclusion, holding the rule."
-  },
-  "to_id": "dec:an-inference-is-a-record-between-premises-and-conclusion"
-}

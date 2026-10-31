@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:43a773b42edb8d56f914035190a399a546ebaa15c760b1c089decfde1e5f749f",
-  "edge_type": "REALIZES",
-  "from_id": "art:tools-exchange",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-composition-computes-where-its-designs-already-touch"
-}

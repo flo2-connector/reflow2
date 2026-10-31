@@ -1,6 +1,6 @@
 //! A `proposed` Decision asserts nothing, and the defect sweep must read that.
 //!
-//! FOUND IN THE FIELD, not by review. hxm_program followed the `brainstorm`
+//! FOUND IN THE FIELD, not by review. A work hub followed the `brainstorm`
 //! skill EXACTLY — ideas recorded as `proposed` Decisions, related to each other
 //! with `CONTRADICTS` / `ANTICIPATES` / `DEPENDS_ON` — and `detect_defects`
 //! reported the `CONTRADICTS` as a contradiction, the `ANTICIPATES` as an
@@ -93,7 +93,7 @@ fn defects(g: &DesignGraph, cat: HealCategory) -> Vec<String> {
 
 #[test]
 fn two_proposed_ideas_that_contradict_are_not_a_defect() {
-    // hxm_program's case, exactly: brainstorming records the tension between two
+    // A work hub's case, exactly: brainstorming records the tension between two
     // ideas, which is what the skill asks for. Neither idea asserts anything, so
     // there is nothing to resolve and no defect to report.
     let g = joined(Some("proposed"), edge::CONTRADICTS);
@@ -181,7 +181,7 @@ fn a_parked_idea_against_settled_design_is_still_reported() {
     // hide exactly the disagreements a brainstorm is supposed to surface."
     //
     // The two findings are not in conflict, because they are different shapes.
-    // hxm_program's field case was proposed-vs-PROPOSED, which nothing covered.
+    // The work hub's field case was proposed-vs-PROPOSED, which nothing covered.
     // Against SETTLED design, one parked side still leaves a live question — so
     // a withdrawal (a positive act retiring the conflict) skips on either side,
     // and being unclaimed skips only when neither side claims anything.

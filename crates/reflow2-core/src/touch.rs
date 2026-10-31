@@ -6,7 +6,7 @@
 //! A composition namespaces each design, so no two share a node, and a seam
 //! between two designs showed only where somebody had declared it. In a hub
 //! of fifteen designs nobody declares every seam, so the seam bucket stayed
-//! empty exactly where the cross-design bugs are (hxm_program, 2026-10-20).
+//! empty exactly where the cross-design bugs are (a work hub, 2026-10-20).
 //! This reads the records the designs ALREADY hold and says where they touch:
 //!
 //! - **declared**: a typed reference one design records to a node of another
@@ -762,21 +762,21 @@ mod tests {
     #[test]
     fn one_repository_reads_alike_however_a_pin_spells_it() {
         for s in [
-            "https://github.com/NSLS2/ansible",
-            "https://github.com/NSLS2/ansible.git",
-            "https://github.com/NSLS2/ansible/",
-            "git@github.com:NSLS2/ansible.git",
-            "git+https://github.com/NSLS2/ansible",
-            "ssh://git@github.com/NSLS2/ansible.git",
-            "http://GitHub.com/nsls2/ansible",
+            "https://github.com/Example/deploy",
+            "https://github.com/Example/deploy.git",
+            "https://github.com/Example/deploy/",
+            "git@github.com:Example/deploy.git",
+            "git+https://github.com/Example/deploy",
+            "ssh://git@github.com/Example/deploy.git",
+            "http://GitHub.com/example/deploy",
         ] {
             assert_eq!(
                 normalise_repository(s).as_deref(),
-                Some("github.com/nsls2/ansible"),
+                Some("github.com/example/deploy"),
                 "{s}"
             );
         }
-        for s in ["crates.io", "", "../ansible", "pypi", "https://github.com"] {
+        for s in ["crates.io", "", "../deploy", "pypi", "https://github.com"] {
             assert_eq!(normalise_repository(s), None, "{s} names no repository");
         }
     }
@@ -796,7 +796,7 @@ mod tests {
             assert!(is_common_file(Some(loc)), "{loc}");
         }
         for loc in [
-            "roles/pdfstream/tasks/main.yml",
+            "roles/datastream/tasks/main.yml",
             "src/stream.py",
             "licensing.md",
         ] {

@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:3d67ad5ffd11f5687253b2cbec621d3a8b7241da8686d92b4a96295816ece8d0",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:a-hypothesis-test-reads-supported-at-alpha-never-as-proof",
-  "properties": {},
-  "to_id": "req:a-hypothesis-tests-verdict-reads-as-supported-at-alpha-never-as-shown"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:db16017ab59b5adbff992ef17a456b3f9c5f0afc62840a5ab4c5368d51dd4868",
-  "edge_type": "IMPLEMENTS",
-  "from_id": "art:a-scoped-loop-status-fits-its-budget-test",
-  "properties": {
-    "covers": "whole"
-  },
-  "to_id": "ver:an-unscoped-loop-status-holds-its-budget-breaches-included"
-}

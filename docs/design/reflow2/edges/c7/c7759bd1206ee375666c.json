@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:02b9fc7fbb86bbbb381680d1c10fab31fec6d6e50d90e78eca93e272e595adb6",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:acaee8dc60aa0eedcab560abddad9ad71d2f51734a8b2f33cb0ffe96553cc25d"
-  },
-  "to_id": "art:test-every-test-file-runs-in-exactly-one-program"
-}

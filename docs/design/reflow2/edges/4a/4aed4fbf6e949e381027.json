@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e78d23a541fdcac573ef875d31959778ac9cc447f433979ac5355bf2c229f670",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:f609c40d4df76a21896a9c1f710e8eeaf2198d40df1508cacd00fc5318985804"
-  },
-  "to_id": "art:touch"
-}

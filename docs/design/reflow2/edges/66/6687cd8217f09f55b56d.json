@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:49055c13a4bc78c7b51149b96ee4a04727db572bf48982171d59623a01a9e683",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0890",
-  "properties": {
-    "as_checksum": "sha256:282bc88886695a7910cb53980d90f0fc2db5480011c1c6e56d96ad082fd588e2"
-  },
-  "to_id": "art:test-a-local-client-works-against-a-remote-server"
-}

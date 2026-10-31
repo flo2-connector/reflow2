@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3e477775cddbe4f79a6c49c738f31f70b7e5b46fd6c77ccd5ca52bb64c87ff6b",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0840",
-  "properties": {
-    "as_checksum": "sha256:8a494a5206d07fd59f7306d1828f692e92d0cd0e620a4dcd5217f9144fa5140b"
-  },
-  "to_id": "art:test-dependency-currency"
-}

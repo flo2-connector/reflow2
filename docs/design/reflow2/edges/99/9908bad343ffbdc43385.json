@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:4a078c8c6084843a43f4c42c6d3357713ac651dfcd605cf5d591c8c28bd3e588",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:644c980e83a1ad526ad9a80ff3ebc7dea3045fe7a74f738917b40353ec5b3977"
-  },
-  "to_id": "art:the-server-stamps-each-node-creation-and-content-change-test"
-}

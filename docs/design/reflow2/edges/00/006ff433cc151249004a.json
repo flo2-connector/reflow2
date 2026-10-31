@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fc067c1a7d0a1ee865877391e9f2542276d78723b9fa1e7787c074dc530531de",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0940",
-  "properties": {
-    "as_checksum": "sha256:343fdd94d4dee8a82bdbcb69ba71f8e1c476ffc75a7ae686ec619b4ed5079372"
-  },
-  "to_id": "art:a-composed-prompt-serves-its-pieces-test"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:93e1330d6b846273a49205f7b2e6b543de79e0347bec3edabfe03aa9061866d4",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-requirements-read-back-follows-its-reason-to-the-evidence"
-}

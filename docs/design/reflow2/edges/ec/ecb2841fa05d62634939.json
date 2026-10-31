@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:22b399033b2493b2699e5a91787989cbe403842236e96e5c4a61056a0f03d5ea",
-  "edge_type": "REALIZES",
-  "from_id": "art:reasoning-rs",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-source-named-but-not-read-never-cites-and-a-source-carries-evidences-grade"
-}

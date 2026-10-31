@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:bc9daba642c00f18b97fb182d2f03ccb8608f9795977fc6ca7e9a6e48592a91f",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-hubs-address-serves-a-view-over-its-members",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:service"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:fa89c8434dc69d37fe51713d310ac07d713b086d4856e79c71d6e1295448c7ed",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:an-inference-says-how-premises-support-a-conclusion-and-reflow2-checks-it-follows",
-  "properties": {
-    "note": "The decision fixes the shape this capability builds: an Inference record between premises and conclusion, holding the rule; a conclusion with no Inference reads exactly as before."
-  },
-  "to_id": "dec:an-inference-is-a-record-between-premises-and-conclusion"
-}

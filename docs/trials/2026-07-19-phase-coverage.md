@@ -11,7 +11,7 @@ that, the development and testing and deployment phases, you might as well have 
 phases."* The question was how to test whether reflow2 repeats that.
 
 **Method — deliberate probes, not observation.** The two highest-value findings in the whole trial
-record ([ophyd 9](2026-07-18-brownfield-ophyd-service.md),
+record (the instrument-control trial's finding 9 (a private record),
 [3dtictactoe 4](2026-07-18-brownfield-3dtictactoe.md)) came from seeding a defect on purpose and
 checking whether the tool noticed. Waiting for divergence to occur naturally inside a trial does not
 work; you inject it. A probe scores CAUGHT only if the graph names the problem **without being told
@@ -27,7 +27,7 @@ Every previous trial stops at or before P2:
 | grok weather station | P0–P2 |
 | aidrone | P0–P1 |
 | 3dtictactoe | 9 Req, 12 Cap, 12 Cmp — P2 |
-| ophyd | "P0/P1/P2 seeded" |
+| the instrument-control trial | "P0/P1/P2 seeded" |
 | self-host genesis | P0–P1, 0 Components |
 
 So the entire evidence base — every BL item argued from it — is drawn from the phases reflow1 was

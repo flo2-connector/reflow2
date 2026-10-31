@@ -122,15 +122,15 @@ fn a_real_design_is_named_from_its_sidecar() {
     let dir = scratch("named");
     let store = dir.join(".reflow2").join("graph");
     std::fs::create_dir_all(&store).unwrap();
-    write_identity(&store, "8a9ce30fedd213e5", "simulated_beamlines");
+    write_identity(&store, "8a9ce30fedd213e5", "simulated_instruments");
 
     let d = describe_at(store.to_str().unwrap());
     assert_eq!(d.state, DesignPathState::Design);
     assert_eq!(d.graph_id.as_deref(), Some("8a9ce30fedd213e5"));
-    assert_eq!(d.label.as_deref(), Some("simulated_beamlines"));
+    assert_eq!(d.label.as_deref(), Some("simulated_instruments"));
     assert_eq!(d.origin.as_deref(), Some("minted"));
     assert!(
-        d.reading.contains("simulated_beamlines"),
+        d.reading.contains("simulated_instruments"),
         "the reading must be usable as a menu line: {}",
         d.reading
     );
@@ -187,7 +187,7 @@ fn a_sweep_answers_every_path_including_the_uninteresting_ones() {
     let b = dir.join("root").join("sub").join(".reflow2").join("graph");
     std::fs::create_dir_all(&a).unwrap();
     std::fs::create_dir_all(&b).unwrap();
-    write_identity(&a, "37bbd9a6e0e75369", "hxm_program");
+    write_identity(&a, "37bbd9a6e0e75369", "work_hub");
     write_identity(&b, "6771abb9b0683423", "HEX");
     let missing = dir.join("root").join("gone").join(".reflow2").join("graph");
 
@@ -201,7 +201,7 @@ fn a_sweep_answers_every_path_including_the_uninteresting_ones() {
         3,
         "every path gets a row, including absent ones"
     );
-    assert_eq!(results[0].label.as_deref(), Some("hxm_program"));
+    assert_eq!(results[0].label.as_deref(), Some("work_hub"));
     assert_eq!(results[1].label.as_deref(), Some("HEX"));
     assert_eq!(results[2].state, DesignPathState::Absent);
     // Each row carries its own path, so a caller need not track correspondence.

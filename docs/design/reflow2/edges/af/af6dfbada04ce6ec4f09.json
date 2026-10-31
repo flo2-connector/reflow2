@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b29bd8f8a8b379f0be7601b616693ebd83211784be3aee82e6ffbff3d1279dce",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0910",
-  "properties": {
-    "as_checksum": "sha256:fc856414a2d4ef0a7b87cd4e092c52c3572dd64b6d5f1b28da86c10362e7c0e1"
-  },
-  "to_id": "art:fixture-proof-trial-arrow"
-}

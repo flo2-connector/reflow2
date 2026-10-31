@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:05fffe500863a92990055f131458ac25859e8bbe7e5b503e0cd4e681b2a4d6f9",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0931",
-  "properties": {
-    "as_checksum": "sha256:d3f1e369b03c34ad5a5ca7668d97bac199a512f799178a2c331953575dc3b0f1"
-  },
-  "to_id": "art:core-lib"
-}

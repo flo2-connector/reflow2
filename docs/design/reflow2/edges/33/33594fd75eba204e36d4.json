@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:927473c8816efc5a5a3c689ad64201e5dd8e65349c98c0a539fbe9f261d97048",
-  "edge_type": "REALIZES",
-  "from_id": "art:detect",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-test-whose-criteria-moved-supports-nothing-until-acknowledged"
-}

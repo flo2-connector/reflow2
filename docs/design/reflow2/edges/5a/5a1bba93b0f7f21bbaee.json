@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:5151df88c6f1aa4b451adee259fd363f5b28f76c371c281fe4351ea16c18a1c0",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "dec:idea-is-the-evolution-vocabulary-unused-because-nothing-asks-for-it",
-  "properties": {
-    "evidence": "arrival_delta reports discontinued versus delivered, and capture asks whether a new node replaces an older one (chg:a-capture-that-replaces-a-node-says-so). Evidence: cap:arrival-delta is realized, ver:arrival-delta passing, realized by art:temporal. Drawn on the owner's word of 2026-10-13 (chg:the-owner-rules-on-items-17-to-25-of-the-judgement-pass-2026-10-13); its status is left for him."
-  },
-  "to_id": "cap:arrival-delta"
-}

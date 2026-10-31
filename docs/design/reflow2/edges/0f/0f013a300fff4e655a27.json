@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:08a80838b0cebeb67a220efbda14f9fb382675dda708cc6968e1f5c3a0f9f4cc",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0870",
-  "properties": {
-    "as_checksum": "sha256:e9364a76ce887e73a06d5ed842f251129ff053e70d2b7e0ff033dab6069f14b8"
-  },
-  "to_id": "art:test-an-inference-says-how-premises-support-a-conclusion"
-}

@@ -21,72 +21,80 @@
 //!   cargo test -p reflow2-core --release --features fulltext \
 //!     --test hydrate_cost_from_the_document_alone -- --ignored --nocapture
 //!
-//! `#[ignore]` because it reads an 11 MB file and is a MEASUREMENT, not a
-//! property: it has no pass condition and must never gate a build. What it
-//! prints is the evidence; what a session does with it is a judgement.
+//! `#[ignore]` because it hydrates a design of reflow2's size and is a
+//! MEASUREMENT, not a property: it has no pass condition and must never gate a
+//! build. What it prints is the evidence; what a session does with it is a
+//! judgement. Which document it measures is below (`committed_document`).
 
 use std::time::Instant;
 
 use reflow2_core::{DesignGraph, GraphExport};
 
-/// The committed export — the only document that is both realistic and stable
-/// enough to quote a number against. Since 2026-10-03 it may be the item layout
-/// (`docs/design/reflow2/`, one file per node and per edge); the single file is
-/// read when the layout is not there.
-const EXPORT: &str = "../../docs/design/reflow2.json";
-const ITEMS: &str = "../../docs/design/reflow2";
-
-/// The design as ONE document's text, whichever form is committed: the item
-/// layout is assembled with the core's own rules and serialized, so the parse
-/// step below measures the same thing it always did.
+/// THE DOCUMENT MEASURED. Until 2026-10-30 this read reflow2's own design,
+/// committed at `docs/design/reflow2/`, "the only document that is both
+/// realistic and stable enough to quote a number against". That design is
+/// hosted on flo2.io and private, and the copy retired, so:
+///
+/// - `HYDRATE_DOCUMENT=<path>` measures a saved design you name: a single-file
+///   export, or an item layout's directory (`export_graph` with a path ending
+///   in `/`). To compare with the figures recorded before 2026-10-30, export
+///   the hosted design locally and point this at it; never commit the copy.
+/// - Without it, the GENERATED design of reflow2's own size and mix
+///   (`a_generated_design_stands_in_for_a_real_one.rs`), as reflow2 exports it.
+///   Its figures are comparable run to run, not with the recorded ones: its
+///   text and its edges are generated, and both drive the import's cost.
 fn committed_document() -> (String, String) {
-    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
-    let items = root.join(ITEMS);
-    if items.is_dir() {
-        use reflow2_core::item_layout::{self, DesignStamp};
-        let stamp: DesignStamp = serde_json::from_slice(
-            &std::fs::read(items.join(item_layout::DESIGN_FILE)).expect("design.json"),
-        )
-        .expect("a design stamp");
-        let mut parsed = Vec::new();
-        let mut stack = vec![
-            items.join(item_layout::NODES_DIR),
-            items.join(item_layout::EDGES_DIR),
-        ];
-        while let Some(dir) = stack.pop() {
-            for entry in std::fs::read_dir(&dir).expect("list the layout") {
-                let path = entry.expect("an entry").path();
-                if path.is_dir() {
-                    stack.push(path);
-                } else if path.extension().is_some_and(|e| e == "json") {
-                    let rel = path
-                        .strip_prefix(&items)
-                        .expect("inside the layout")
-                        .to_string_lossy()
-                        .replace('\\', "/");
-                    let bytes = std::fs::read(&path).expect("read an item");
-                    parsed.push(item_layout::parse_item(&rel, &bytes).expect("an item"));
+    if let Some(path) = std::env::var_os("HYDRATE_DOCUMENT") {
+        let path = std::path::PathBuf::from(path);
+        if path.is_dir() {
+            use reflow2_core::item_layout::{self, DesignStamp};
+            let stamp: DesignStamp = serde_json::from_slice(
+                &std::fs::read(path.join(item_layout::DESIGN_FILE)).expect("design.json"),
+            )
+            .expect("a design stamp");
+            let mut parsed = Vec::new();
+            let mut stack = vec![
+                path.join(item_layout::NODES_DIR),
+                path.join(item_layout::EDGES_DIR),
+            ];
+            while let Some(dir) = stack.pop() {
+                for entry in std::fs::read_dir(&dir).expect("list the layout") {
+                    let file = entry.expect("an entry").path();
+                    if file.is_dir() {
+                        stack.push(file);
+                    } else if file.extension().is_some_and(|e| e == "json") {
+                        let rel = file
+                            .strip_prefix(&path)
+                            .expect("inside the layout")
+                            .to_string_lossy()
+                            .replace('\\', "/");
+                        let bytes = std::fs::read(&file).expect("read an item");
+                        parsed.push(item_layout::parse_item(&rel, &bytes).expect("an item"));
+                    }
                 }
             }
+            let doc = item_layout::assemble(stamp, parsed)
+                .expect("one design")
+                .export;
+            let text = serde_json::to_string(&doc).expect("serializes");
+            return (text, path.display().to_string());
         }
-        let doc = item_layout::assemble(stamp, parsed)
-            .expect("one design")
-            .export;
-        let text = serde_json::to_string(&doc).expect("serializes");
-        return (text, items.display().to_string());
+        let raw = std::fs::read_to_string(&path)
+            .unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()));
+        return (raw, path.display().to_string());
     }
-    let path = root.join(EXPORT);
-    let raw = std::fs::read_to_string(&path)
-        .unwrap_or_else(|e| panic!("cannot read {}: {e}", path.display()));
-    (raw, path.display().to_string())
+    let doc = crate::a_generated_design_stands_in_for_a_real_one::generated_export(1.0);
+    let text = serde_json::to_string(&doc).expect("serializes");
+    (text, "the generated design (scale 1.0)".to_string())
 }
 
 #[test]
-#[ignore = "measurement, not a property: reads the 11 MB export and has no pass condition"]
+#[ignore = "measurement, not a property: hydrates a design of realistic size and has no pass condition"]
 fn hydrate_from_the_document_to_first_query() {
-    let (raw, _source) = committed_document();
+    let (raw, source) = committed_document();
 
     println!("\n=== HYDRATE FROM DOCUMENT ALONE ===");
+    println!("source        : {source}");
     println!("document      : {} bytes", raw.len());
     println!(
         "fulltext      : {}",

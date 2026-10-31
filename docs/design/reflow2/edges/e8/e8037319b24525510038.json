@@ -1,7 +1,0 @@
-{
-  "content_hash": "sha256:fcf7cb1917fdd2b752c5e547d13cceae6299172a01db2930b9cd2ea42776db7c",
-  "edge_type": "SATISFIES",
-  "from_id": "cap:an-agent-puts-its-own-question-to-a-named-person-about-the-nodes-it-concerns",
-  "properties": {},
-  "to_id": "req:an-agent-asks-the-owner-its-own-question-about-a-node"
-}

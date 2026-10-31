@@ -3,7 +3,7 @@
 //! `tests/one_search_reaches_every_design_a_hub_tracks.rs`
 //! (`cap:search-design-reaches-the-designs-a-hub-tracks`).
 //!
-//! hxm_program's hub (fifteen designs, organisation policy blocking MCP) has
+//! A work hub (fifteen designs, organisation policy blocking MCP) has
 //! `reflow2 read|write` and nothing else: no registry, no hub server. Measured
 //! 2026-10-21 on 0.89.0, `reflow2 read search_design` with `tracked_designs`
 //! was refused by the schema and `get_node` with `member` was refused off a
@@ -55,9 +55,9 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
         .unwrap();
     let home = dir.path().join("home");
     std::fs::create_dir_all(&home).unwrap();
-    let member = dir.path().join("ansible/.reflow2/graph");
+    let member = dir.path().join("deploy/.reflow2/graph");
     let hub = dir.path().join("hub/.reflow2/graph");
-    let export = dir.path().join("ansible/design.json");
+    let export = dir.path().join("deploy/design.json");
 
     ok(
         &run(
@@ -65,8 +65,8 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
             &member,
             "write",
             "add_component",
-            &json!({"id": "cmp:role-pdfstream", "name": "pdfstream role",
-                    "description": "deploys the pdfstream servers"}),
+            &json!({"id": "cmp:role-datastream", "name": "datastream role",
+                    "description": "deploys the datastream servers"}),
         ),
         "the member's component",
     );
@@ -93,18 +93,18 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
             &hub,
             "write",
             "add_requirement",
-            &json!({"id": "req:pdf-firewall", "name": "PDF firewall fix",
-                    "statement": "The PDF firewall admits the stream."}),
+            &json!({"id": "req:instrument-firewall", "name": "instrument firewall fix",
+                    "statement": "The instrument firewall admits the stream."}),
         ),
         "the hub's requirement",
     );
     for pin in [
-        json!({"id": "dep:ansible", "name": "ansible", "source": "https://example.org/ansible",
+        json!({"id": "dep:deploy", "name": "deploy", "source": "https://example.org/deploy",
                "version": "abc123", "graph_id": graph_id,
                "design_export": export.to_string_lossy()}),
-        json!({"id": "dep:tiled", "name": "tiled", "source": "https://example.org/tiled",
-               "version": "def456", "graph_id": "tiled",
-               "design_export": dir.path().join("tiled/design.json").to_string_lossy()}),
+        json!({"id": "dep:storage", "name": "storage", "source": "https://example.org/storage",
+               "version": "def456", "graph_id": "storage",
+               "design_export": dir.path().join("storage/design.json").to_string_lossy()}),
         json!({"id": "dep:hosted", "name": "hosted", "source": "https://example.org/hosted",
                "version": "v1", "graph_id": "hosted",
                "design_address": "http://127.0.0.1:9/g/hosted/mcp"}),
@@ -122,7 +122,7 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
             &hub,
             "read",
             "search_design",
-            &json!({"query": "pdfstream"}),
+            &json!({"query": "datastream"}),
         ),
         "the plain search",
     );
@@ -135,11 +135,11 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
             &hub,
             "read",
             "search_design",
-            &json!({"query": "pdfstream", "tracked_designs": true}),
+            &json!({"query": "datastream", "tracked_designs": true}),
         ),
         "the tracked search",
     );
-    let id = format!("{graph_id}:cmp:role-pdfstream");
+    let id = format!("{graph_id}:cmp:role-datastream");
     assert_eq!(found["hits"][0]["node_id"], json!(id), "{found}");
     assert_eq!(found["hits"][0]["design"], json!(graph_id), "{found}");
     let states: Vec<(&str, &str)> = found["not_searched"]
@@ -149,7 +149,7 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
         .map(|n| (n["design"].as_str().unwrap(), n["state"].as_str().unwrap()))
         .collect();
     assert!(
-        states.contains(&("tiled", "missing")) && states.contains(&("hosted", "not_reached")),
+        states.contains(&("storage", "missing")) && states.contains(&("hosted", "not_reached")),
         "{found}"
     );
 
@@ -160,7 +160,7 @@ fn a_hub_searches_its_pinned_exports_and_opens_a_hit_through_the_door() {
     );
     assert_eq!(
         node["node"]["properties"]["name"],
-        json!("pdfstream role"),
+        json!("datastream role"),
         "{node}"
     );
 

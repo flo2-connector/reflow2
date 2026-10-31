@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:e9a25c27c2f62dff02a9149c2039021d1a34b38bdf07bd4df08e7d3b044ae845",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0840",
-  "properties": {
-    "as_checksum": "sha256:e821fa1aabca559312cfffadefe5ed95eca4fe1bdfbc3219e6d317871ac2f9a9"
-  },
-  "to_id": "art:test-check-doc-versions"
-}

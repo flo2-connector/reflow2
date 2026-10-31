@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:6ac6b414684b279fcdc6ca129d4dd6efe35941bacffa165ae3021244103f1cdb",
-  "edge_type": "MITIGATES",
-  "from_id": "req:a-server-holding-many-designs-starts-with-file-handles-for-all-it-may-open",
-  "properties": {
-    "evidence": "The root cause is three limits chosen alone and never checked together; this raises the process limit and checks the three against each other at start."
-  },
-  "to_id": "fact:root-cause-a-registry-at-its-open-limit-runs-out-of-file-handles-2026-10-28"
-}

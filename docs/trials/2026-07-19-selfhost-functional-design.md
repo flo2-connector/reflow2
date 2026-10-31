@@ -2,7 +2,7 @@
 
 **What:** a real, durable graph of reflow2's functional design — 96 nodes, coarse-grained — built by
 [`tools/build_design_graph.py`](../../tools/build_design_graph.py), committed as a deterministic
-export at [`docs/design/reflow2.json`](../design/reflow2.json), and then put through reflow2's whole
+export at `docs/design/reflow2.json` (retired with the committed copy on 2026-10-30; the design is hosted on flo2.io now), and then put through reflow2's whole
 analysis surface.
 
 **Why this is different from every prior trial.** All of them, including today's three, build a

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ecc5c870492e4d47b27ecfe46090e41ea85d17dd66ba5c0890bc60015fd0b101",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:32234bbec55bf4893f04983d3628dec8931b58560b9f1c2a3818432f5f90f85e"
-  },
-  "to_id": "art:fixture-bearer-test-rsa-key"
-}

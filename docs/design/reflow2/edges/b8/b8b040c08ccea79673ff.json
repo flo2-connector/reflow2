@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:b72b1be7cace7a7158a787c995f0483b36567db10647f84ea0de97516d10f381",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-nameless-search-hit-shows-an-excerpt-of-its-text",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:service"
-}

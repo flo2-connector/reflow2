@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:caa2e95643750b490207b24bc1782d669c764fedcfee09c8f8e315377a190a86",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:reflow2-keeps-the-knowledge-it-derives",
-  "properties": {
-    "evidence": "The deferred requirement already wanted derived facts recomputed when their inputs change; this is the narrower, calculator-side form of it for a physical design, and does not undefer it."
-  },
-  "to_id": "req:a-changed-quantity-names-every-kept-computation-that-used-it"
-}

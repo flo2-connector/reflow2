@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:2f09f8d2818ba5de5d7339036f78217bcff0a34ebfc3292aa2df52e87c0c2229",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:4442416f7e574b16b4d54d0c67066804e5e508f35c7f7c60725e64e87bc5e32b"
-  },
-  "to_id": "art:a-loop-hint-says-where-the-node-landed-test"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:030d0a91f731988298c0c598f6a489fbee1ad5f687739700b4cc02f4db699584",
-  "edge_type": "EVOLVES_INTO",
-  "from_id": "fact:the-cogito-trial-ran-on-flo2-io-and-its-friction-names-what-a-line-of-reasoning-lacks-2026-10-18",
-  "properties": {
-    "evidence": "The trial ran through the hub; what it could not reach there is captured as a requirement."
-  },
-  "to_id": "req:through-a-hub-every-tool-can-run-on-one-named-member"
-}

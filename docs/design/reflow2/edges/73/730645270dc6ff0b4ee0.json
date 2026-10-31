@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ef46a0b35ef2d8bbebda65d5bb5743071cb27904292098f1c325aba1982711a9",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:a-null-unsets-at-every-typed-constructor",
-  "properties": {
-    "note": "The capability builds the accepted decision: the 2026-09-07 null-unsets rule at every typed constructor."
-  },
-  "to_id": "dec:null-unsets-on-every-typed-constructor"
-}

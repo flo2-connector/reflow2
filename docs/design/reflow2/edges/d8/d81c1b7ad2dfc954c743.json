@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:94d69d1ad1f658ca6819d0e92414666dcda2066a54d4a5ed8627c132c2dcfc14",
-  "edge_type": "YIELDED",
-  "from_id": "frag:art:test-the-first-read-cue-reaches-the-agent-at-connect",
-  "properties": {
-    "action": "created"
-  },
-  "to_id": "art:test-the-first-read-cue-reaches-the-agent-at-connect"
-}

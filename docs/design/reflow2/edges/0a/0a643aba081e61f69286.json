@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:89bfdb301ab69e38a8413500113189dc7966c49dca04e337a173bdadb31fed2a",
-  "edge_type": "REALIZES",
-  "from_id": "art:claims-and-shared-premises-test",
-  "properties": {
-    "conformance": "unchecked"
-  },
-  "to_id": "cap:a-claim-a-named-party-made-reads-claimed-and-a-status-over-a-period-is-read-back"
-}

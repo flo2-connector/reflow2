@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:7af2399e723423deec4ce51c0ebbbe8163a6b67b61ea8f7e1287bfed9d944983",
-  "edge_type": "ANTICIPATES",
-  "from_id": "dec:idea-missing-edge-prediction",
-  "properties": {
-    "evidence": "Proposing a missing edge from the neighbourhood, as a question rather than a repair, is the structural ancestor of proposing a missing premise for an orphan conclusion."
-  },
-  "to_id": "dec:idea-speculate-the-bridge-that-would-close-a-gap-then-test-it"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:3de5f2144b2e209cd2bfb627fe5921bf4aa492f4bf7ac46d1abc43f652d125b6",
-  "edge_type": "ALLOCATED_TO",
-  "from_id": "cap:a-registry-raises-and-checks-its-open-file-limit-at-start",
-  "properties": {
-    "weight_basis": "estimated"
-  },
-  "to_id": "cmp:registry"
-}

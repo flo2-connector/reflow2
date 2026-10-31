@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:ae3e3313eeba64cfbb1e0898b830e162b3ea4dbb080d4397ec51e7a2acef3f86",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0860",
-  "properties": {
-    "as_checksum": "sha256:e3ef5ba8cb2d5e43158506ab2be377f4ed513e3c0f016d51161892c41dd72c58"
-  },
-  "to_id": "art:claude-instructions"
-}

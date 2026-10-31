@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:bce012641c418093fe2673216112da9ada7adccba81d04f8219dc7a34d278424",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0900",
-  "properties": {
-    "as_checksum": "sha256:62bb4aeea93117d6a777031578c9a63ed82cbf70fc1f8db8ee5b45f5cb879946"
-  },
-  "to_id": "art:mcp-test-program-on-disk"
-}

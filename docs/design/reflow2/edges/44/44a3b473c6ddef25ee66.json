@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d3bd5f71f58e3f8074b4cb74178e0c9e73440d8de4ef952034fd1723609d5af0",
-  "edge_type": "INCLUDES",
-  "from_id": "rel:v0920",
-  "properties": {
-    "as_checksum": "sha256:b888cd9794a29e5c1d136040f539024c0427775a54f3b09dc27a25a211a06c20"
-  },
-  "to_id": "art:test-nothing-asks-what-a-session-made-false"
-}

@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:d285f778bea9aebf3bdd9edb968e862a52c3a7772a3d61dbdfd3dd98308b4757",
-  "edge_type": "GOVERNED_BY",
-  "from_id": "cap:served-text-tells-agents-when-to-record-inference-chains",
-  "properties": {
-    "note": "Anthony chose option (a) on 2026-10-14: the served instructions ask the agent to record it. The decision governs this capability."
-  },
-  "to_id": "dec:idea-an-agent-records-a-consequential-recommendation-as-an-inference-chain"
-}

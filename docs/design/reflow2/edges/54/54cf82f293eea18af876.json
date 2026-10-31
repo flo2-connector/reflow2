@@ -1,9 +1,0 @@
-{
-  "content_hash": "sha256:c0dd889fe505ff76780b5f9cd2ce89931df1fa17a4de0cbc91ff26d0cb56e668",
-  "edge_type": "ANTICIPATES",
-  "from_id": "req:decomposition-covers-its-parent",
-  "properties": {
-    "evidence": "It records that delivery already rolls up by a silent AND (a parent is delivered iff every child is); an explicit rule on the step is that AND written down, with OR and k-of-n beside it."
-  },
-  "to_id": "dec:idea-an-explicit-inference-step-and-a-check-that-it-follows-improve-every-design"
-}
