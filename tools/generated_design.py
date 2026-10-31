@@ -123,6 +123,20 @@ PREFIX = {
 # from every conclusion, so no chain it draws can close a circle.
 REASONING = ("CONCLUDES", "PREMISE_OF")
 
+# PROPERTIES THAT HOLD JSON TEXT hold JSON. A Snapshot's `edges` read as
+# "edges 7" stopped derived_report whole ("parse snapshot edges: expected value");
+# reflow2 writes these itself, so a real design's always parse.
+JSON_TEXT = {
+    ("Snapshot", "state"): "{}",
+    ("Snapshot", "edges"): "[]",
+    ("TemporalFact", "value"): '{"status": "realized"}',
+    ("Capability", "inputs"): '["request"]',
+    ("Capability", "outputs"): '["reply"]',
+    ("Decision", "alternatives"): '["the option not taken"]',
+}
+# Written only by an operation from a kept record, never by hand: left out.
+NOT_GENERATED = {("Verification", "hypothesis_test"), ("Verification", "criteria_at_data")}
+
 # The CHANGED edge's acceptance of a file: set only on a change INTO an
 # Artifact, where an import derives the artifact's checksum from it.
 ACCEPTANCE = ("checksum_after", "accepted_seq", "checksum_basis")
@@ -211,10 +225,12 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
             body: dict = {}
             for p, spec in sorted(props.items()):
                 spec = spec or {}
+                if (t, p) in NOT_GENERATED:
+                    continue
                 # The first node of a type carries EVERY property, so each
                 # declared property is somewhere (see OPTIONAL_SHARE).
                 if spec.get("required") or i == 0 or g.r.random() < OPTIONAL_SHARE:
-                    body[p] = g.value(p, spec, i)
+                    body[p] = JSON_TEXT.get((t, p)) or g.value(p, spec, i)
             if t == "Contributor" and i % 3 == 0:
                 body["kind"] = "person"  # a person is what the owner-scoped reads ask after
             nodes.append({"node_id": node_id, "node_type": t, "properties": body})
@@ -248,9 +264,12 @@ def generate(scale: float = 1.0, seed: int = 7, graph_id: str = "generated") -> 
             allowed = [x for x in _endpoints(edge_def.get(side), all_types) if by_type.get(x)] or [
                 x for x in all_types if by_type.get(x)
             ]
-            other_t = allowed[g.r.randrange(len(allowed))]
-            other = g.r.choice(by_type[other_t])
-            if other == n["node_id"]:
+            for _ in range(20):  # never itself: draw again
+                other_t = allowed[g.r.randrange(len(allowed))]
+                other = g.r.choice(by_type[other_t])
+                if other != n["node_id"]:
+                    break
+            else:
                 n["properties"].pop(p)
                 continue
             n["properties"][p] = other
