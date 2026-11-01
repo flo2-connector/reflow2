@@ -1,14 +1,68 @@
-//! TEMPORARY MEASUREMENT HARNESS (not for commit as is): replay search_first's
-//! query over every capture node of a saved design and write the raw score
-//! window per probe, so cut options can be compared offline.
+//! A MEASUREMENT INSTRUMENT, NOT A GATE: replay the near-match guard's query
+//! over every capture node of a saved design, and write the score window each
+//! one would have met, so cut options and signals can be compared offline
+//! against a real design rather than chosen by taste.
+//!
+//! Made 2026-11-01 for
+//! `req:the-near-match-guard-names-a-reworded-duplicate-of-a-verified-capability`.
+//! Its first use measured four cuts on today's score and found none that
+//! catches a reworded duplicate without new false alarms at every design size
+//! (`fact:no-cut-tried-for-the-near-match-guard-catches-a-reworded-duplicate-
+//! without-new-false-alarms-2026-11-01`). It is `#[ignore]` and reads its
+//! inputs from the environment, so an ordinary run never touches it.
+//!
+//! # Running it
+//!
+//! ```text
+//! REFLOW2_MEASURE_EXPORT=docs/design/reflow2/ \
+//! REFLOW2_MEASURE_OUT=/tmp/replay.jsonl \
+//!   cargo test -p reflow2-mcp --no-default-features --test in_memory \
+//!   near_match_replay -- --ignored --nocapture
+//! ```
+//!
+//! - `REFLOW2_MEASURE_EXPORT` (required): a saved design, the item layout's
+//!   directory or a single-file export. A design's text stays out of git:
+//!   export it under `docs/design/`, which is ignored.
+//! - `REFLOW2_MEASURE_OUT` (required): where the JSONL goes.
+//! - `REFLOW2_MEASURE_EXTRA` (optional): a JSON list of nodes to write before
+//!   the replay, each `{"type", "id", "props": {name: text}}`, for a probe the
+//!   saved design does not hold yet.
+//! - `REFLOW2_MEASURE_KEEP_MOD=N` (optional): keep one node in N, by a stable
+//!   hash of its id, and only the edges between kept nodes, to replay the same
+//!   design at a smaller size. `REFLOW2_MEASURE_ALWAYS` names ids, comma
+//!   separated, that are kept regardless.
+//!
+//! # What it writes
+//!
+//! One line per probe: its `id`, `type`, `words` (of the text the guard
+//! searches), `kind`, `statement_kind`, `distinct_from`, and `hits`, the
+//! search window of [`WINDOW`] for that text, best first, the probe itself
+//! included. Each hit is `[id, type, score, edges, kind]`, where `edges` lists
+//! every edge between the probe and the hit (`>TYPE` out of the probe, `<TYPE`
+//! into it) and is empty when nothing links them: the false-alarm proxy.
+//!
+//! The probe is already in the index, exactly as it is when `search_first`
+//! runs (the write lands first), so its own score is the same baseline the
+//! guard reads. What differs from write time is that the design has grown
+//! since, so absolute rates run higher than at write time; comparisons between
+//! options read the same windows and are like for like.
 
 use reflow2_core::{DesignGraph, ImportOptions};
 use std::io::Write;
 
+/// How many hits each probe's window holds. Wider than the guard's own window
+/// (12) so that options reading the score DISTRIBUTION have one to read.
 const WINDOW: usize = 40;
 
+/// The text the guard searches for each capture type: the same `format!`s as
+/// the `search_first` call sites in `src/tools/capture.rs`. Keep them in step.
 fn text_of(node_type: &str, p: &std::collections::HashMap<String, reflow2_core::Value>) -> String {
-    let s = |k: &str| p.get(k).and_then(|v| v.as_str()).unwrap_or_default().to_string();
+    let s = |k: &str| {
+        p.get(k)
+            .and_then(|v| v.as_str())
+            .unwrap_or_default()
+            .to_string()
+    };
     let name = s("name");
     match node_type {
         "Requirement" | "DesignRule" | "Constraint" => format!("{name} {}", s("statement")),
@@ -21,7 +75,7 @@ fn text_of(node_type: &str, p: &std::collections::HashMap<String, reflow2_core::
 }
 
 #[test]
-#[ignore]
+#[ignore = "measurement, not a gate — see the module header"]
 fn replay_search_first_over_a_saved_design() {
     let Ok(path) = std::env::var("REFLOW2_MEASURE_EXPORT") else {
         eprintln!("REFLOW2_MEASURE_EXPORT unset; nothing measured");
@@ -38,12 +92,27 @@ fn replay_search_first_over_a_saved_design() {
             .split(',')
             .map(str::to_string)
             .collect();
-        let h = |s: &str| s.bytes().fold(1469598103934665603u64, |a, b| (a ^ b as u64).wrapping_mul(1099511628211));
-        doc.nodes.retain(|n| always.contains(&n.node_id) || h(&n.node_id) % m == 0 || n.node_type == "Project" || n.node_type == "Contributor");
-        let kept: std::collections::HashSet<String> = doc.nodes.iter().map(|n| n.node_id.clone()).collect();
-        doc.edges.retain(|e| kept.contains(&e.from_id) && kept.contains(&e.to_id));
+        let h = |s: &str| {
+            s.bytes().fold(1469598103934665603u64, |a, b| {
+                (a ^ b as u64).wrapping_mul(1099511628211)
+            })
+        };
+        doc.nodes.retain(|n| {
+            always.contains(&n.node_id)
+                || h(&n.node_id) % m == 0
+                || n.node_type == "Project"
+                || n.node_type == "Contributor"
+        });
+        let kept: std::collections::HashSet<String> =
+            doc.nodes.iter().map(|n| n.node_id.clone()).collect();
+        doc.edges
+            .retain(|e| kept.contains(&e.from_id) && kept.contains(&e.to_id));
         doc.content_hash = None;
-        eprintln!("subsampled to {} nodes, {} edges", doc.nodes.len(), doc.edges.len());
+        eprintln!(
+            "subsampled to {} nodes, {} edges",
+            doc.nodes.len(),
+            doc.edges.len()
+        );
     }
     let mut g = DesignGraph::open_in_memory_as(&doc.graph_id).expect("graph");
     g.import_graph_with(
@@ -96,10 +165,16 @@ fn replay_search_first_over_a_saved_design() {
             };
             let mut linked: std::collections::HashMap<String, Vec<String>> = Default::default();
             for e in g.outgoing(&node.node_id, None).unwrap_or_default() {
-                linked.entry(e.to_id.clone()).or_default().push(format!(">{}", e.edge_type));
+                linked
+                    .entry(e.to_id.clone())
+                    .or_default()
+                    .push(format!(">{}", e.edge_type));
             }
             for e in g.incoming(&node.node_id, None).unwrap_or_default() {
-                linked.entry(e.from_id.clone()).or_default().push(format!("<{}", e.edge_type));
+                linked
+                    .entry(e.from_id.clone())
+                    .or_default()
+                    .push(format!("<{}", e.edge_type));
             }
             let distinct: Vec<String> = match node.properties.get("distinct_from") {
                 Some(reflow2_core::Value::List(l)) => l
@@ -116,7 +191,11 @@ fn replay_search_first_over_a_saved_design() {
                         h.node_id,
                         h.node_type,
                         h.score,
-                        linked.get(&h.node_id).cloned().unwrap_or_default().join(","),
+                        linked
+                            .get(&h.node_id)
+                            .cloned()
+                            .unwrap_or_default()
+                            .join(","),
                         h.kind.clone().unwrap_or_default()
                     ])
                 })

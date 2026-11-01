@@ -22,6 +22,21 @@
 //! also holds a CHANGELOG neighbourhood and unrelated work. The capability and
 //! the decision are named; nothing unrelated is; the report stays bounded.
 //! `req:the-near-match-guard-names-a-reworded-duplicate-of-a-verified-capability`.
+//!
+//! ⚠️ THE PIN IS A KNOWN GAP, SWITCHED OFF, AND THAT IS ON PURPOSE. It was
+//! observed failing on today's cut ("It named []": self 164.6, floor 82.3, the
+//! capability 68.5, the decision 62.3). Every cut on today's score that was
+//! measured to catch it raised false alarms at some design size, so none was
+//! shipped (`fact:no-cut-tried-for-the-near-match-guard-catches-a-reworded-
+//! duplicate-without-new-false-alarms-2026-11-01`). Anthony ruled on
+//! 2026-11-01 to keep today's cut, push this pin as a known gap, and measure a
+//! different signal next
+//! (`dec:how-the-near-match-guard-tells-a-reworded-duplicate-from-a-neighbour`).
+//! Remove the `ignore` in the change that ships a signal that clears the bar.
+//! `cargo test ... -- --ignored a_reworded_duplicate` runs it meanwhile.
+//!
+//! THE COUNTERWEIGHT BELOW RUNS: an unrelated requirement written beside the
+//! pair is told nothing. Whatever closes the gap must keep it green.
 
 use reflow2_mcp::service::*;
 use rmcp::handler::server::wrapper::Parameters;
@@ -292,6 +307,9 @@ fn named(out: &Value) -> Vec<String> {
 }
 
 #[tokio::test]
+#[ignore = "known gap: no cut on today's score clears the bar \
+            (dec:how-the-near-match-guard-tells-a-reworded-duplicate-from-a-neighbour); \
+            switched on when a measured signal does"]
 async fn a_requirement_restating_a_verified_capability_is_told_it_exists() {
     let (svc, written) = the_design_before_the_write().await;
     // The same-type seeds are named distinct so the write cannot be REFUSED
