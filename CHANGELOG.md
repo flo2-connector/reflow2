@@ -31,6 +31,334 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.96.0] — 2026-11-01
+
+**Minor. Every served skill now reaches the agent when it connects, and says what is true where
+it is served; fifteen tools are retired as counted refusing stubs; and the step for when a batch
+of writes lands is offered once per batch.** It contains #818 to #823. Claude Code keeps 4,096
+characters of a server's connect-time instructions, and 0.95.0's ran past that, so most skills
+never reached the agent with their trigger. On a local engine where reflow2's session-end nudge
+is installed, they now run 2,862 characters, down from 0.95.0's 9,961 (measured on both builds;
+the Fixed entry below gives every door). A skill served for others, as flo2.io serves them, no
+longer tells its reader the design is on their machine. **What to do:** nothing for the skills
+or the cues. If you call one of the fifteen retired tools, call what its answer names (under
+Deprecated). On the VS Code terminal route, run `reflow2 update` in each repository after
+installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is removed.** Measured against the published 0.95.0
+binary (sha256 `93298747…` for its linux-x86_64 archive, checked against `checksums.txt`), over
+stdio on a fresh store: 199 tools on both, none added or removed. Two tools take new inputs:
+`graph_report` takes `format` (`markdown` returns the document `graph_report_markdown` did), and
+`dimension_drifts` takes `target_id` and `dimension`. The fifteen stubs keep their names and say
+what they are in their descriptions and titles. The five of them that wrote
+(`set_artifact_checksum`, `acknowledge_gap`, `verifies`, `forecast_readiness`, `gate_on`) are now
+marked read-only and no longer take `echo`, because they write nothing. Twenty-two more tools change only in their prose, which now
+names the survivor of a fold. New in replies: `add_change_event`'s `next_step` and
+`usage_report`'s `retired_stubs`. All 35 skills change (their frontmatter, a `use_when` line,
+and the local and hosted wording), and so does `list_skills`; `get_instructions` and
+`describe_schema` change in prose only. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp does not move**: 28 node types, 69 edge types and the same 83 enum
+  vocabularies as 0.95.0; only `reflow2_version` differs. No upgrade doc is owed. 0.95.0 opens a
+  store this release wrote, with its usual warning that it is behind; it refuses an export this
+  release wrote, as every older reflow2 refuses a newer export.
+- **Fifteen tools are deprecated** and serve as counted refusing stubs until the re-count (about
+  2026-12-23). The people who run their own MCP server are told before the release is tagged.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets every change here that is not about hosting. Checked through the
+door (`reflow2 read|write --graph-path … TOOL -`) on the 0.96.0 release build beside the
+published 0.95.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** The instructions file `reflow2
+  init --harness vscode-cli` wrote names `reflow2 read graph_report_markdown` as the first read,
+  and 0.96.0 answers that with exit 1 and the call that replaces it. `reflow2 update` rewrites
+  the line to `reflow2 read graph_report '{"format": "markdown"}'`, which prints the Markdown
+  report (0.95.0 refused `format`, exit 2). On a repository set up by 0.95.0 it refreshes 8
+  files: that instructions file, one prompt and six skills' descriptions.
+- **A retired tool still answers and changes nothing.** `reflow2 read set_artifact_checksum …`
+  (a stub is read-only, so `read` runs it) exits 1 with the exact `set_artifact_checksums` call
+  to make, built from its arguments, and `reflow2 read graph_report_markdown` exits 1 naming
+  `graph_report` with `format` `markdown`. Each
+  such call is written to the usage ledger under the stub's own name, and `reflow2 write
+  usage_report '{"peek": true}'` lists all fifteen stubs under `retired_stubs` with their
+  counts, zeros included. It is `write`, not `read`, because without `peek` the report leaves a
+  marker.
+- **The batch cue is offered once per batch here too.** Three `reflow2 write add_requirement`
+  calls in a row named detect_gaps on the first and "named earlier in the batch" on the next
+  two; after `reflow2 read detect_gaps` the next write named it again. 0.95.0 named it on every
+  write.
+- **`add_change_event` names its checksum step** when `affected` names a registered file: its
+  `next_step` says to accept the file's checksum with `set_artifact_checksums` against that
+  change. 0.95.0 said nothing.
+- **A number reads back as it was written.** A Constraint `limit` of `0.11458333333333333`
+  written through the door reads back exactly; 0.95.0 read it back as `0.11458333333333331`.
+- **The skills served here are the local ones**: `reflow2 read get_skill` serves help's local
+  text ("a program that runs on your own machine") with no variant markers, detect-and-ask's
+  questions in rounds, string `metadata` and a `use_when` line. The connect-time instructions
+  are part of an MCP handshake, which this route does not have; `reflow2 read get_instructions`
+  still serves the rules in full.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the hosted side of the skills (help says
+"Your design is kept by that host, not on your machine", where 0.95.0 said "Nothing leaves your
+machine"), and connect-time instructions that fit a chat connector's 4,096-character cap
+with flo2.io's preamble in front (Fixed, below). flo2.io gets these once its engine moves to
+0.96.0 and is deployed. As before, the hosted hub view and reads across designs by graph id need
+flo2.io. These lines get checked again on the published binary once the release is out.
+
+### Added
+
+- **add_change_event names its next step when the change touched a registered
+  file.** Its reply carries `next_step`: accept the files' checksums against
+  this change with set_artifact_checksums (disposition `design_updated`,
+  `design_change_event_id` this change). On flo2.io, 227 of
+  set_artifact_checksums' 327 runs came within two writes of add_change_event,
+  207 of them right after it, and nothing in the reply named that step. Said
+  only when an Artifact is among `affected` and not removed; counted as the cue
+  `next_step/set_artifact_checksums`. Inside record_the_build, which runs that
+  step itself, the change step's receipt does not repeat it.
+
+- **`skill_lint` checks every served skill against the specification and against what is
+  served.** It fails the build on a frontmatter field the specification does not define, a
+  `name` or `description` past its limits (64 and 1,024 characters), a `metadata` value that is
+  not a string, or a value strict YAML refuses. It also fails when a count that introduces a list
+  is not the list's length, or when a skill's count of something served (renamed skills, slash
+  commands, the gate's failure kinds) disagrees with the surface, computed on every run.
+
+- **Two tests hold this.** One serves every skill both ways and fails on a claim only a local
+  install can make in what a hosted engine serves; the other measures the handshake on every
+  door, with room for a host's 496-character preamble, against the 4,096-character cap.
+
+### Changed
+
+- **The step for when a batch of writes lands is offered once per batch, not on
+  every write.** Six cues named that step on every write: `loop_hint/detect_gaps`,
+  `loop_hint/get_skill:detect-and-ask`, `loop_hint/detect_defects`,
+  `loop_hint/get_skill:check-health`, `loop_hint/loop_status` and
+  `loop_hint/governed_by`. Measured on 0.94.0, over the six writer sessions of
+  the recall re-run: detect_gaps was offered 97 times and followed 0,
+  detect-and-ask 75 and 0, governed_by 31 and 0, detect_defects and check-health
+  17 and 0 each, and loop_status 162 times, followed within five calls twice and
+  otherwise only at the end of each round. The tools themselves are called where
+  they are needed (flo2.io, 2026-09-24 to 10-30: detect_gaps 211 calls,
+  loop_status 397, governed_by 226), so the cue was offered at the wrong moment.
+  **What changed, exactly:** a write is still offered each of these cues on the
+  first write of a batch. It is not offered one again while that cue was offered
+  within the same session's last 25 calls and 15 minutes and nothing since has
+  made the call it names; making that call (or the batch running past 25 calls
+  or 15 minutes) ends the batch, and the next write offers it again. The session
+  is the one the cue counts already use: the seat, and the `--call` door's calls
+  as one sequence. It is decided from the design's usage ledger, so an
+  in-memory design, which has none, offers every cue as before. Where a hint is
+  only that step (add_requirement, create_node, add_component, add_design_rule
+  with its power stated), the withheld reply's `loop_hint` reads "loop: the step
+  for when this batch lands was named earlier in the batch and is not repeated
+  on every write", which names no call. Where a hint also says something about
+  the node just written, that half is said every time and only the batch half
+  is dropped: replace_text keeps its settlement clause, add_capability keeps
+  "wire satisfies", add_constraint keeps "wire it", an accepted decision keeps
+  "it reads back as what was decided", link_artifact keeps its
+  reconcile_artifacts clause. Each cue's id and words are unchanged when it is
+  offered, so increment 6 compares like with like. `loop_hint/set_decision_status`
+  (the owner-only cue 0.94.0 and 0.95.0 fixed) is not affected. **What to do:**
+  nothing; run detect_gaps, detect_defects, loop_status when your batch lands,
+  as the first write said.
+
+- **detect-and-ask, genesis and design-an-argument put their questions to the
+  person in rounds.** A round holds every question that is ready now, meaning
+  its prerequisites are settled. Each question is numbered and worded so "yes"
+  accepts the recommended answer, so "yes", or "yes to all but Q3", is a whole
+  reply. A question that depends on one still open waits for a later round. A
+  fact the agent can look up (in the design, the files, a document the person
+  gave) is looked up while the round goes out, and never asked. detect-and-ask
+  still orders the questions inside a round by the severity `detect_gaps` gives
+  them; dependency decides which round a question is in. How one question is put
+  has not changed: the recommendation first, what would change it, options to
+  pick from with their consequences, the person's own language and their own
+  field's words. For a person who is not in the chat, each round is one `batch`
+  of `gaps_to_prompts` or `ask_question`. detect-and-ask also counted its
+  obligations as six and listed seven; it says seven now. The technique is
+  adapted from the grilling skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skills carry it.
+- **plan-increments says how to cut an increment, not only how to order one.**
+  Each increment is a vertical slice that can be shown working on its own, end
+  to end: in software, one request answered from the screen to the stored
+  record; in a building, one room finished and inspected; in a proof, one case
+  carried to its conclusion. Restructuring that makes the work easier goes
+  first, as its own increment. A change that reaches everything (a part every
+  drawing cites, a unit every interface carries) takes three increments: add
+  the new beside the old, move each user over, then remove the old. Before the
+  plan is recorded, the agent asks two things: is each increment the right
+  size, and is each dependency between increments real? The technique is
+  adapted from the to-tickets skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skill carries it.
+- **root-cause builds one repeatable check that shows the failure before any
+  cause is weighed.** In code it is a command that goes red on the exact
+  symptom; in a building model, a query; in numbers, a calculation record that
+  re-runs; in a physical piece, a test procedure written down before it is run.
+  The check is cut down until every piece left matters, measurements in steps ④
+  and ⑤ answer to it, and it is kept so it shows the fix; step ⑦'s failing test
+  is the code case of it. It is fast and runs with nobody at the controls where
+  the design allows, and is never required to where it cannot. When no check
+  can be built, the agent says so and step ⑨ says the cause rests on a failure
+  nobody could show again. The steps keep their numbers. The technique is
+  adapted from the diagnosing-bugs skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skill carries it.
+- `skill_lint.py` checks that each of the five skills states its new rule.
+
+- **Two surface gates and two core tests read a generated design instead of reflow2's own.**
+  `replies_are_bounded` and `a_reply_is_sent_once` need a design big enough to make replies
+  large, and the item-layout round trip and the hydrate measurement need one of realistic
+  size. `tools/generated_design.py` (and its Rust twin in the core tests) makes one from the
+  schema: reflow2's own size and mix, every node type and edge type the schema declares, every
+  value shape, and odd ids on purpose. `vocabulary_reach.py --check` now reads reachability
+  from the surface alone, which guards 17 more properties than before; `--export` adds the
+  adoption columns.
+- **Examples and test fixtures use neutral names** (a work hub, a lab instrument, a deploy
+  repository, a storage service) in the skills, tool help, source comments and docs.
+
+- **The first-read cue names `graph_report` with `format` `markdown`.** The
+  connect-time instructions, `get_instructions` step 0a, the VS Code terminal
+  route and both SessionStart texts read "read `graph_report` with `format`
+  `markdown` first". **The cue's id changes** from
+  `instructions/graph_report_markdown` to `instructions/graph_report` (a cue id
+  is `<field>/<named call>` and never its arguments), so a count compared across
+  this release reads the two ids as one cue.
+- **Three pairs that read alike say which is which** in their first words:
+  `report_manual_work` WRITES one record and `manual_work_ledger` READS them
+  all; `add_epoch` is the past and `plan_epoch` the future; `scan_nodes` lists
+  every node of one TYPE and `search_design` finds nodes by what they SAY. No
+  name changes.
+- **The remote client no longer measures for the retired one-artifact
+  accept.** A `set_artifact_checksum` call is forwarded as it came, so the
+  server answers it and counts it; `link_artifact`, `set_artifact_checksums`
+  and `reconcile_artifacts` are measured as before.
+
+### Deprecated
+
+- **Fifteen tools are retired as counted refusing stubs, on the owner's word
+  (Anthony, 2026-10-30, "Yes, go with B").** Each name stays listed and
+  callable, changes nothing when called, and answers with the exact call that
+  now does its job — or, for a retired report, that it was retired and to say
+  so if it was needed. Every call to one is counted in the usage ledger under
+  its own name, and `usage_report` lists each stub with its count, zeros
+  included, under `retired_stubs`. **The re-count is about 2026-12-23** (the
+  90-day re-run of the flo2.io usage baseline): a stub nobody called is deleted,
+  and one somebody called is restored as the tool it was. Why: the 2026-10-30
+  counts found six tools whose job a twin already does and nine reports nobody
+  reached, and an absent tool is silent (an agent works around it and says
+  nothing) while a listed stub turns "it was missed" into a count. The computing
+  code stays in place until the re-count, so a restore re-points the handler.
+  find_tools does not offer a stub, and the served skills, instructions and
+  replies name the survivor instead, so the count measures need rather than the
+  text pointing at it. **MCP users (Alex among them) hear with this release**: a client of 0.95.0
+  that calls one of these names gets the refusal below, with what to do.
+- **`set_artifact_checksum` folds into `set_artifact_checksums`.**
+  **What to do:** call `set_artifact_checksums` with a one-item `accepts` list; each item
+  takes the same fields (`artifact_id`, `checksum`, `disposition`,
+  `change_type`, `design_change_event_id`, `note`, `at`). The stub hands back
+  that call, built from the arguments it was given.
+- **`acknowledge_gap` folds into `acknowledge_gaps`.** **What to do:** call
+  `acknowledge_gaps` with a one-item `gaps` list (`gap_id`, `reason`,
+  `affected_ids`, `approver`, `acted_at`).
+- **`dimension_drift` folds into `dimension_drifts`.** **What to do:** call
+  `dimension_drifts` with `target_id` and `dimension`, which now reads one
+  node's drift on one dimension exactly as `dimension_drift` did (either alone
+  narrows the sweep).
+- **`propagate_change` folds into `propagate_from`.** **What to do:** call
+  `propagate_from` with the ChangeEvent's id as its one seed (`seed_ids:
+  ["chg:…"]`), which now reads that change's blast radius from the nodes it
+  CHANGED, with the stale edge prose beside it, exactly as `propagate_change`
+  did (`max_depth`, `full`, `offset` and `budget_chars` unchanged). Its reply
+  says `seeded_by_change`.
+- **`verifies` folds into `add_verification`.** **What to do:** call
+  `add_verification` with the check's `id` and `verifies: [{"target_id": …}]`;
+  on an existing check every field you leave out keeps its stored value. In
+  `draw_edges`, an item naming `verifies` (or `gate_on`) is refused with the
+  stub's answer.
+- **`graph_report_markdown` folds into `graph_report`.** **What to do:** call
+  `graph_report` with `format: "markdown"`, which returns the same document.
+  Without `format` (or with `json`) `graph_report` answers exactly as before.
+- **Nine reports are retired: `evidence_report`, `forecast_readiness`,
+  `frontier`, `ility_report`, `granularity_report`, `consumption_report`,
+  `surprising_connections`, `readiness_report` and `gate_on`.** Each answers
+  that it was retired on 2026-10-30 at the owner's word and that nothing was
+  computed or written. **What to do:** nothing replaces them; if you needed
+  one, say so to the person you work for (report-friction records it) — a
+  retired tool somebody called is restored at the re-count. What other tools
+  computed from them is unchanged: `graph_report` still carries its
+  granularity and surprising-connection sections, and the derived relations
+  still read evidence and readiness.
+
+### Removed
+
+- **The copy of reflow2's own design is no longer committed to the repository.** reflow2's
+  design has been hosted on flo2.io since 2026-10-10, where it is private; the copy that CI
+  read at `docs/design/reflow2/`, the tool that refreshed it (`tools/reflow2_design_copy.py`,
+  with its one-design-PR-at-a-time hold) and the home page's counts of reflow2's design
+  (`tools/site_counts.py`) are gone. `/docs/design/` is now git-ignored, so a copy exported
+  there for local work cannot be committed by accident. Git history is unchanged. **What to
+  do:** nothing, unless you worked on reflow2's own design from the copy: write through
+  flo2.io, and claim `proj:reflow2` before a design PR as before (AGENTS.md says how).
+- **The CI gates that read that copy are retired until a nightly check replaces them.** The
+  design coherence gate (`reflow2_check.py --export`), `self_host_uses_documents`,
+  `check_intent_authority`, `check_consumer_reach`, `check_verification_ratchet` and
+  `the_served_surface_names_no_real_person` no longer run in CI on reflow2's own design; each
+  tool stays, and each hermetic suite still runs. The design is not checked against the code
+  until a scheduled check on flo2.io's box runs reflow2's own client against the hosted design
+  (accepted, not built yet). Projects that run these tools on their own designs are not
+  affected.
+
+### Fixed
+
+- **Every served skill's frontmatter now conforms to the Agent Skills specification.** Each skill
+  carried `metadata: {composes: [..]}` (and two `demanded_by: [..]`), a list where the
+  specification allows only string values, so a strict host could skip all 35 skills. Both are
+  now one string of words (`composes: "STANDING WRITES"`). Five descriptions held a `: ` that
+  strict YAML reads as a second key (check-health, link-ideas, onboarding, plan-increments,
+  where-am-i); they are reworded. Nothing to do: the skills are served, so the next release
+  carries them.
+- **The counts the skills state are true again.** help said eight skills answer to another word
+  (ten do: `/taxonomy` and `/triage` were missing) and spoke of a list of twenty-eight commands
+  (forty ship); ci-gate said the build fails on any of four causes while `reflow2_check.py` fails
+  on ten, and now names all ten (PHANTOM, INTEGRITY, STORED TWINS, DEPEND and GAPS were
+  undocumented); governance-proposal said two findings over a list of three.
+
+- **A skill served from flo2.io (or any host) no longer tells its reader the design is on their
+  own machine.** Every skill was served unchanged wherever reflow2 ran, written for a local
+  install: on flo2.io, `help` said "a program that runs on your own machine … Nothing leaves your
+  machine" about a design kept on flo2.io, and 33 skills pointed a chat at an AGENTS.md it does
+  not have. The lines that really differ are now written twice in the SKILL.md, a local version
+  and a hosted one, and reflow2 serves the one for how it runs: a local engine the local side,
+  an engine served for others (behind a trusted gateway, as an OAuth resource server, or exposed
+  with no caller rule) the hosted side. help, parallel-work, report-friction and ci-gate carry
+  both; the AGENTS.md pointer is reworded once in every skill ("The standing rule is in the
+  server's instructions"). Nothing to do: the skills are served.
+- **Every skill reaches the agent at connect time.** Claude Code keeps 4,096 characters of a
+  server's initialize instructions. 0.95.0's ran 10,327 characters locally (9,961 where a
+  session-end nudge is installed) and 10,656 behind a trusted gateway, 11,154 with flo2.io's
+  preamble in front, so 27 of the 35 skills fell past the cut with nothing to say so. The
+  handshake now states the standing rules first, shortened, and names every skill with a "use
+  when" line of at most eight words (a new `use_when` metadata field);
+  the full triggers stay in `list_skills` and `get_skill`, and the long form of the rules in
+  `get_instructions`. Measured on the built binary, it now runs 3,018 characters locally (2,862
+  with a nudge) and 3,276 behind a trusted gateway, 3,774 with flo2.io's preamble.
+
+- **A number saved in a design reads back as the same number.** serde_json parsed some
+  shortest-form floats one unit in the last place off (`0.11458333333333333`, which is 11/96,
+  came back `0.11458333333333331`), so an untouched design could read as tampered in the item
+  layout, or fail its own content hash as a single file. Its exact parser
+  (`float_roundtrip`) is now on. Found by the generated design; reflow2's own design never
+  held one of the values that change.
+
+### Security
+
+- **CI refuses a change that names a private work program.** `tools/check_private_terms.py`
+  checks every tracked file, the pull request's title and body, and its commit messages
+  against a pattern held in the repository secret `PRIVATE_TERMS`, and prints only where it
+  matched (`path:line`, `PR title`, `PR body`, a commit sha), never what. A pull request from a
+  fork has no secrets and passes with a notice; the push to main checks it.
+
 ## [0.95.0] — 2026-10-30
 
 **Minor. A trusted gateway can now tell the engine who owns the design a call is on, and which
