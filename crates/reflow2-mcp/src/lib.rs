@@ -55,6 +55,7 @@ pub mod schema_budget;
 pub mod service;
 pub mod settles;
 pub mod shared;
+pub mod skill_variants;
 pub mod skills;
 pub mod sync_debt;
 pub mod tool_listing;

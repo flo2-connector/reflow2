@@ -545,5 +545,51 @@ class TestStatedCounts(unittest.TestCase):
         self.assertEqual(skill_lint.served_count_problems(texts), [])
 
 
+class TestSkillVariants(unittest.TestCase):
+    """tools/skill_variants.py, the Python twin of src/skill_variants.rs: a
+    SKILL.md line that differs when the engine is served for others is written
+    both ways, and each reader gets one. The same cases as the Rust unit tests,
+    so the two renderers answer alike (and the Rust test holds each mirror,
+    written by this one, to the Rust rendering)."""
+
+    MARKED = ("a\n<!-- reflow2:local -->\nhere\n<!-- reflow2:hosted -->\nthere\n"
+              "<!-- reflow2:end -->\nb\n")
+
+    def test_each_side_reads_its_own_lines_and_neither_reads_a_marker(self):
+        self.assertEqual(skill_lint.skill_variants.render(self.MARKED, "local"), "a\nhere\nb\n")
+        self.assertEqual(skill_lint.skill_variants.render(self.MARKED, "hosted"), "a\nthere\nb\n")
+        self.assertEqual(skill_lint.skill_variants.problems(self.MARKED), [])
+
+    def test_unmarked_text_is_unchanged_both_ways(self):
+        plain = "---\nname: x\n---\nbody\nno newline at the end"
+        for side in ("local", "hosted"):
+            self.assertEqual(skill_lint.skill_variants.render(plain, side), plain)
+
+    def test_a_malformed_marking_is_named_by_line(self):
+        v = skill_lint.skill_variants
+        for text, said in (
+            ("<!-- reflow2:local -->\nx\n", "never closed"),
+            ("<!-- reflow2:hosted -->\nx\n<!-- reflow2:end -->\n", "no `<!-- reflow2:local -->`"),
+            ("<!-- reflow2:local -->\n<!-- reflow2:local -->\n", "inside the one"),
+            ("text <!-- reflow2:local -->\n", "alone on its line"),
+            ("---\n<!-- reflow2:local -->\n---\n", "frontmatter"),
+            ("<!-- reflow2:local -->\n\n<!-- reflow2:hosted -->\n<!-- reflow2:end -->\n", "either side"),
+        ):
+            self.assertTrue(any(said in p for p in v.problems(text)), f"{text!r}: {v.problems(text)}")
+
+    def test_a_mirror_holds_the_local_version_of_a_skill_and_any_other_file_as_it_is(self):
+        help_md = skill_lint.SKILLS / "help" / "SKILL.md"
+        self.assertTrue(skill_lint.skill_variants.has_variants(help_md.read_text()),
+                        "help states what reflow2 physically is, which differs when hosted")
+        self.assertEqual(skill_lint.skill_variants.mirror_bytes(help_md).decode(),
+                         skill_lint.skill_variants.render(help_md.read_text(), "local"))
+
+    def test_the_real_tree_is_marked_well_and_its_mirrors_are_current(self):
+        found = {d.name: skill_lint.skill_variants.problems((d / "SKILL.md").read_text())
+                 for d in skill_lint.SKILLS.iterdir() if (d / "SKILL.md").exists()}
+        self.assertEqual({k: v for k, v in found.items() if v}, {})
+        self.assertEqual(skill_lint.skill_variants.stale_mirrors(), {})
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

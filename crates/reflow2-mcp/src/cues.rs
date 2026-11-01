@@ -77,10 +77,15 @@ pub const INSTRUCTIONS_OFFER: [&str; 2] =
 /// carry, and the kit's session-start hooks repeat (`tools/loop_nudge.py`).
 /// It names what reflow2 already serves; reflow2 serves no compact read of a
 /// design's CURRENT VALUES, which is recorded as a finding, not built here.
+///
+/// SHORTENED 2026-11-01, losing only "(a few KB: what the design holds, what is
+/// delivered, the top open gaps) before anything longer": the whole handshake
+/// has to fit a client's 4,096-character cap
+/// (`tests/the_handshake_fits_the_clients_cap.rs`), and the hooks' copy keeps
+/// the longer form.
 pub const FIRST_READ_CUE: &str = "TO LEARN WHERE THIS DESIGN STANDS, read `graph_report` with \
-     `format` `markdown` first (a few KB: what the design holds, what is delivered, the top open \
-     gaps) before anything longer; if the design keeps its own record of where things stand, `search_design` \
-     finds it (\"current state\", \"status as of\").";
+     `format` `markdown` first; if the design keeps its own record of where things stand, \
+     `search_design` finds it (\"current state\", \"status as of\").";
 
 /// THE CUES OFFERED ONCE PER BATCH OF WRITES, not on every write
 /// (`epoch:planned-the-tool-surface-refined-from-the-counts`, increment 7).

@@ -274,12 +274,17 @@ impl ReflowService {
                 None,
             ));
         };
+        // THE VERSION FOR HOW THIS ENGINE RUNS: a line that differs when the
+        // engine is served for others is written both ways in the SKILL.md,
+        // and the reader gets the one true where they are
+        // (dec:a-skill-line-that-differs-when-hosted-has-a-local-and-a-hosted-version).
+        let served = crate::skills::Served::for_rule(self.caller_rule());
         let mut payload = json!({
             "name": skill.name,
             "summary": skill.summary,
             "audience": skill.audience,
             "description": skill.description,
-            "body": skill.body,
+            "body": skill.served_body(served),
         });
         // Asked for by its slash command: say so, so the caller learns the name.
         if req.name != skill.name

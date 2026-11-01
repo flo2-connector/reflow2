@@ -756,10 +756,23 @@ each time arrived at the step (`req:a-lesson-is-served-at-the-step-it-concerns`)
 (core tests, clippy `-D warnings`, fmt, schema, installer suite, skill lint) and a full job
 (workspace tests, the smoke test and the exit-zero instruments against the real binary). Green
 locally but red in CI means your local run skipped a gate — believe CI. The skill lint checks
-the skills' *contract* (served tool names, mirrors byte-identical, frontmatter against the Agent
+the skills' *contract* (served tool names, mirrors holding the local version, frontmatter against the Agent
 Skills specification, the standing rule, and every count a skill states against the list under it
 or the surface it counts); their semantic quality stays evidenced by trials, per
 docs/sharpening.md — deliberately no LLM evals in CI.
+
+**A skill line that is true only on a local install is written twice** (since 2026-11-01,
+`dec:a-skill-line-that-differs-when-hosted-has-a-local-and-a-hosted-version`): between
+`<!-- reflow2:local -->`, `<!-- reflow2:hosted -->` and `<!-- reflow2:end -->`, each alone on its
+line, and the engine serves the side for how it runs (`src/skill_variants.rs`; Local gets the
+local side, an engine served for others the hosted one). Mark only what really differs; a line
+that can be worded once so it is true everywhere is worded once.
+`tests/a_served_skill_says_what_is_true_where_it_is_served.rs` fails on a local-only claim in the
+hosted text. After any skill edit, `python3 tools/skill_variants.py --write-mirrors` refreshes
+`.claude/skills/` and `.grok/skills/`, which hold the local version. And each skill names itself
+in the handshake with its `use_when` (at most eight words): the whole handshake must fit a
+client's 4,096-character cap with a host's preamble, and
+`tests/the_handshake_fits_the_clients_cap.rs` fails when it does not.
 
 ### Branch, then PR — nothing lands on `main` directly
 

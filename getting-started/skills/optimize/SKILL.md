@@ -1,7 +1,7 @@
 ---
 name: optimize
 description: Use when someone wants something to be faster, smaller or cheaper — "this is slow", "can we speed this up", "reduce the memory", "the build takes forever" — or when a module has been identified as worth improving on its own. Makes the target explicit BEFORE any code changes, so the work has a condition under which it is finished, and leaves a measurement behind that a later session can re-run.
-metadata: {composes: "STANDING WRITES MEASURES", audience: operator, summary: "Make something faster, smaller or cheaper against a budget written down first."}
+metadata: {composes: "STANDING WRITES MEASURES", audience: operator, summary: "Make something faster, smaller or cheaper against a budget written down first.", use_when: "making something faster, smaller or cheaper"}
 ---
 
 # Optimise one thing, against a number you wrote down first
