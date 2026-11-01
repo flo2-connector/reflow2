@@ -96,17 +96,19 @@ jobs:
           - name: linux-arm64
             runner: ubuntu-22.04-arm
             target: aarch64-unknown-linux-gnu
+          # macos-15, not macos-14: GitHub retired the macOS 14 images on
+          # 2026-11-02, after brownouts that failed both macOS legs of v0.96.0.
           - name: macos-arm64
-            runner: macos-14
+            runner: macos-15
             target: aarch64-apple-darwin
           # macos-x86_64 is CROSS-COMPILED on the Apple-Silicon runner rather
           # than built natively on macos-13. GitHub's macos-13 (Intel) runners
           # are chronically scarce — a queued x86_64 job stalled the v0.5.0
           # release for 11h and never cleared. Apple's clang cross-compiles
-          # C++ (librocksdb-sys) to x86_64 natively, so macos-14 produces the
+          # C++ (librocksdb-sys) to x86_64 natively, so macos-15 produces the
           # Intel binary in seconds without touching the scarce runner pool.
           - name: macos-x86_64
-            runner: macos-14
+            runner: macos-15
             target: x86_64-apple-darwin
     runs-on: ${{ matrix.runner }}
     steps:
