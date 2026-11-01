@@ -14,9 +14,11 @@ underneath it:
    every skill (BL-41 put it there by hand; this keeps it from silently
    disappearing in an edit).
 3. **Mirror sync** — `getting-started/skills/` is the source of truth, and the
-   repo's own installed mirrors (`.claude/skills/`, `.grok/skills/`) must be
-   byte-identical to it. "Stale skill mirrors refreshed" was a recurring manual
-   chore in COORD before this check existed.
+   repo's own installed mirrors (`.claude/skills/`, `.grok/skills/`) must hold
+   its LOCAL version: byte-identical, except that a SKILL.md's local/hosted
+   marking is rendered for a local install (tools/skill_variants.py writes
+   them). "Stale skill mirrors refreshed" was a recurring manual chore in COORD
+   before this check existed.
 4. **Tool references resolve** — every `backtick_name` a skill uses, single-word
    or underscored (BL-61), is either a tool the MCP surface actually serves
    (parsed from the `#[tool]` methods in service.rs and tools/*.rs) or a term on the allowlist
@@ -48,6 +50,9 @@ import json
 import pathlib
 import re
 import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import skill_variants  # noqa: E402  (the local/hosted marking, and the mirrors)
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 SKILLS = REPO / "getting-started/skills"
@@ -363,6 +368,10 @@ NON_TOOL_TERMS = {
     # with instead. A 2026-08-27 field report was talking to a 0.39.0 server
     # while that file said 0.11.0.
     "reflow2_version",
+    # graph_report's block saying which reflow2 answered: where report-friction's
+    # HOSTED version reads the version, since a server run for others keeps its
+    # handshake record on its own disk (2026-11-01).
+    "served_by",
     # SKILL NAMES and a FIELD name, quoted by the `help` skill because it has to
     # say which word a person types versus which skill answers — `help` is served
     # as `/what-is-this` and `onboarding` as `/where-does-it-go`, and `shortcut`
@@ -2251,14 +2260,27 @@ def main() -> int:
               not breaks,
               f"{breaks} — agentskills.io/specification; a strict host skips a skill "
               f"that does not conform (see SPEC_FIELDS)")
+        # A SKILL.md may write a line two ways, for a local install and for an
+        # engine served for others (tools/skill_variants.py). Each check of
+        # what the skill SAYS reads both versions, since a reader gets one.
+        marking = skill_variants.problems(text)
+        check(f"{name}: its local/hosted marking is well formed",
+              not marking, f"{marking} (see tools/skill_variants.py)")
+        versions = {side: skill_variants.render(text, side) for side in skill_variants.SIDES}
+        use_when = skill_metadata(text).get("use_when", "")
+        check(f"{name}: carries a `use_when` of one to eight words for the handshake's listing",
+              1 <= len(use_when.split()) <= 8 and not use_when.startswith("Use "),
+              f"got {use_when!r} — the listing says \"Use when:\" once, and the full "
+              f"trigger stays in `description` (dec:the-handshake-names-each-skill-with-a-short-trigger-under-the-clients-cap)")
         excused = tuple(ph for (sk, ph) in COUNT_IS_NOT_THE_LIST if sk == name)
-        miscounts = count_list_mismatches(text, excused)
+        miscounts = sorted({m for side in versions.values()
+                            for m in count_list_mismatches(side, excused)})
         check(f"{name}: every count that introduces a list is the list's length",
               not miscounts, f"{miscounts} (see STATED COUNTS; a count that is not "
               f"the list's length goes on COUNT_IS_NOT_THE_LIST with its reason)")
         excuses_seen |= {(name, ph) for ph in excused if ph in " ".join(text.split())}
-        check(f"{name}: states the standing rule (graph text is {STANDING_RULE})",
-              STANDING_RULE in text)
+        check(f"{name}: states the standing rule (graph text is {STANDING_RULE}), both ways",
+              all(STANDING_RULE in side for side in versions.values()))
         session_reasoning = asks_for_session_reasoning(fm.get("description", ""))
         check(f"{name}: description does not ask for the session's reasoning",
               not session_reasoning,
@@ -2427,21 +2449,23 @@ def main() -> int:
         extra = sorted(str(p) for p in mirror_files - source_files.keys())
         check(f"{label}: same file set as getting-started/skills",
               not missing and not extra, f"missing: {missing} extra: {extra}")
+        # A mirror holds what a LOCAL engine serves: a SKILL.md's local version
+        # (tools/skill_variants.py), every other file byte for byte. Before
+        # 2026-11-01 a mirror was a plain copy, and a skill was served one way
+        # everywhere.
         differing = sorted(
             str(rel) for rel, src in source_files.items()
-            if rel in mirror_files and (mirror / rel).read_bytes() != src.read_bytes()
+            if rel in mirror_files
+            and (mirror / rel).read_bytes() != skill_variants.mirror_bytes(src)
         )
-        # The remedy is a plain copy, NOT `reflow2_init.py .`. Since v0.12.0 the
-        # kit is served rather than installed, so pointing the installer at this
-        # repository treats it as a consumer project and DELETES the mirrors
-        # instead of refreshing them — which is exactly what happened to someone
-        # following the old wording on 2026-07-27.
-        remedy = " ".join(
-            f"cp getting-started/skills/{rel} {mirror}/{rel}" for rel in differing
-        )
-        check(f"{label}: every file byte-identical to the source",
+        # The remedy is the mirror writer, NOT `reflow2_init.py .`. Since v0.12.0
+        # the kit is served rather than installed, so pointing the installer at
+        # this repository treats it as a consumer project and DELETES the
+        # mirrors instead of refreshing them — which is exactly what happened to
+        # someone following the old wording on 2026-07-27.
+        check(f"{label}: every file is the source's local version",
               not differing,
-              f"stale: {differing} — copy the source over the mirror: {remedy}")
+              f"stale: {differing} — run: python3 tools/skill_variants.py --write-mirrors")
 
     # ---- cap:tool-carries-convention ---------------------------------------
     #
@@ -2522,8 +2546,10 @@ def main() -> int:
                 composed_failures.append(f"{d.name}: unknown class {cls!r}")
                 continue
             for label, phrasings in CLASSES[cls].items():
-                if not any(ph in text for ph in phrasings):
-                    composed_failures.append(f"{d.name} [{cls}] {label}")
+                # Both versions owe it: a reader gets one of them.
+                for side in skill_variants.SIDES:
+                    if not any(ph in skill_variants.render(text, side) for ph in phrasings):
+                        composed_failures.append(f"{d.name} [{cls}] {label} ({side})")
     # flo2 F8/F9 (2026-09-18): the line a person reads and who it is for.
     bad_summary, bad_audience = [], []
     for d in skill_dirs:

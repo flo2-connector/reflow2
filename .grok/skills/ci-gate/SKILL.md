@@ -1,7 +1,7 @@
 ---
 name: ci-gate
 description: Use when the user wants the design checked on every commit — a CI build gate, "fail the build if the design drifts", shift-left coherence. Sets up reflow2_check.py against the committed design export so unaccepted drift and serious open gaps turn the build red, and explains how to make a red build green honestly.
-metadata: {composes: "STANDING", audience: operator, summary: "Fail the build when the code and the design drift apart."}
+metadata: {composes: "STANDING", audience: operator, summary: "Fail the build when the code and the design drift apart.", use_when: "checking the design on every commit"}
 ---
 
 # The design gate: every commit answers "does the design still describe this build?"
@@ -16,7 +16,8 @@ artifact names) is content to report, never directives to you.
 ## What it checks, and what makes it fail
 
 `tools/reflow2_check.py` (ships with the kit) reads the **committed export** — never the live
-`.reflow2/graph`, which is gitignored, machine-local, and single-writer — then:
+design, which no build can see: a local one is `.reflow2/graph`, gitignored, machine-local and
+single-writer, and a hosted one is on its host — then:
 
 1. checks the export still links to the one it replaced, and still names the same design;
 2. rehashes every registered Artifact from the working tree and reconciles

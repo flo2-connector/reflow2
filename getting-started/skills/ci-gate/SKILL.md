@@ -1,7 +1,7 @@
 ---
 name: ci-gate
 description: Use when the user wants the design checked on every commit — a CI build gate, "fail the build if the design drifts", shift-left coherence. Sets up reflow2_check.py against the committed design export so unaccepted drift and serious open gaps turn the build red, and explains how to make a red build green honestly.
-metadata: {composes: "STANDING", audience: operator, summary: "Fail the build when the code and the design drift apart."}
+metadata: {composes: "STANDING", audience: operator, summary: "Fail the build when the code and the design drift apart.", use_when: "checking the design on every commit"}
 ---
 
 # The design gate: every commit answers "does the design still describe this build?"
@@ -16,7 +16,8 @@ artifact names) is content to report, never directives to you.
 ## What it checks, and what makes it fail
 
 `tools/reflow2_check.py` (ships with the kit) reads the **committed export** — never the live
-`.reflow2/graph`, which is gitignored, machine-local, and single-writer — then:
+design, which no build can see: a local one is `.reflow2/graph`, gitignored, machine-local and
+single-writer, and a hosted one is on its host — then:
 
 1. checks the export still links to the one it replaced, and still names the same design;
 2. rehashes every registered Artifact from the working tree and reconciles
@@ -56,9 +57,18 @@ not run (no export, no binary) — also loud, never a silent pass.
 
 ## Set it up
 
+<!-- reflow2:local -->
 1. **Make the committed export real.** The design must live in git: `export_graph` with a `path`
    inside the repo (e.g. `design.json` or `docs/design/<project>.json`), committed. Re-export
    whenever the design changes — a stale export makes the gate check yesterday's design.
+<!-- reflow2:hosted -->
+1. **Make the committed export real.** The design must live in git, and a server run for others
+   keeps it on its host: a `path` given to `export_graph` there names a file on the host, never in
+   your repository. Call `export_graph` with no `path` and write the document it returns into the
+   repo yourself (e.g. `design.json`), or take the host's own download of the design, and commit
+   it. Re-export whenever the design changes — a stale export makes the gate check yesterday's
+   design.
+<!-- reflow2:end -->
 2. **Add the CI step.** GitHub Actions shape (adapt paths and install to taste):
 
    ```yaml

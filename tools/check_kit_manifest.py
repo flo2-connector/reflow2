@@ -71,6 +71,7 @@ REPO = Path(__file__).resolve().parent.parent
 # about, reproduced inside the checker.
 sys.path.insert(0, str(REPO / "tools"))
 import reflow2_init as kit  # noqa: E402
+import skill_variants  # noqa: E402
 
 
 def file_sha(p: Path) -> str:
@@ -209,8 +210,14 @@ def check(project: Path) -> tuple[list[str], list[str]]:
             # exist — so every mirror read as drifted and the check "found" ten
             # problems that were not there. A path that cannot resolve must never
             # look like a difference.
+            # An in-sync mirror holds the source's LOCAL version (a SKILL.md's
+            # local/hosted marking rendered, tools/skill_variants.py), so that
+            # is what it is compared with.
             source = kit.KIT / "skills" / Path(*Path(rel).parts[2:])
-            if source.is_file() and file_sha(on_disk) == file_sha(source):
+            if source.is_file() and (
+                file_sha(on_disk) == file_sha(source)
+                or on_disk.read_bytes() == skill_variants.mirror_bytes(source)
+            ):
                 notes.append(
                     f"{rel} shadows the served skill but is byte-identical to "
                     f"{source.relative_to(REPO)} — an in-sync mirror, which is "

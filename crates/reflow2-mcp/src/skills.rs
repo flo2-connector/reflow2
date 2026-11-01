@@ -143,11 +143,48 @@ pub struct EmbeddedSkill {
     /// it), `operator` (whoever runs the project and its tooling), `agent`
     /// (the agent reaches for it on its own). Expertise, not human-vs-model.
     pub audience: &'static str,
-    /// The whole SKILL.md, frontmatter included.
+    /// The frontmatter `use_when`: when to reach for it, in at most eight
+    /// words — the skill's line in the handshake's listing, where 35 full
+    /// triggers did not fit a client's cap ([`catalogue`]). The full trigger
+    /// is `description`.
+    pub use_when: &'static str,
+    /// The whole SKILL.md as written, frontmatter and local/hosted marking
+    /// included. Serve [`EmbeddedSkill::served_body`], never this.
     pub body: &'static str,
 }
 
 include!(concat!(env!("OUT_DIR"), "/skills_generated.rs"));
+
+pub use crate::skill_variants::Served;
+
+impl Served {
+    /// Which version of a skill's marked lines an engine run under `rule`
+    /// serves (`dec:a-skill-line-that-differs-when-hosted-has-a-local-and-a-hosted-version`).
+    /// Local gets the local version. An engine served for others gets the
+    /// hosted one: behind a trusted gateway or as an OAuth resource server, as
+    /// the decision names, and also exposed with no caller rule declared, whose
+    /// readers are just as surely not on the machine that holds the design.
+    pub fn for_rule(rule: &crate::caller::CallerRule) -> Served {
+        if rule.served_for_others() {
+            Served::Hosted
+        } else {
+            Served::Local
+        }
+    }
+}
+
+impl EmbeddedSkill {
+    /// The skill as it reads where it is `served`: each marked block's lines
+    /// for that side, the markers gone. A skill with no marked block is its
+    /// source, byte for byte.
+    pub fn served_body(&self, served: Served) -> std::borrow::Cow<'static, str> {
+        if crate::skill_variants::has_variants(self.body) {
+            std::borrow::Cow::Owned(crate::skill_variants::render(self.body, served))
+        } else {
+            std::borrow::Cow::Borrowed(self.body)
+        }
+    }
+}
 
 /// The skill named, if it exists.
 pub fn find(name: &str) -> Option<&'static EmbeddedSkill> {
@@ -220,9 +257,10 @@ const ANSWERS_TO_ITS_OWN_NAME: &[&str] = &["jot"];
 ///
 /// # Why the server states this rather than leaving it to be worked out
 ///
-/// Eight skills answer to a word that is not their name. Anyone deriving the
-/// mapping by comparing a skills directory against a commands directory gets
-/// those eight wrong — measured 2026-09-01, when an agent with full filesystem
+/// Ten skills answer to a word that is not their name (eight when this was
+/// written; `tools/skill_lint.py` holds help's count to this table). Anyone
+/// deriving the mapping by comparing a skills directory against a commands
+/// directory gets those wrong — measured 2026-09-01, when an agent with full filesystem
 /// access reported 11 of 28 commands for exactly that reason, having taken the
 /// aliased ones for skills with no shortcut at all.
 ///
@@ -282,37 +320,30 @@ pub fn alias_hint(name: &str) -> Option<String> {
 
 /// The catalogue that goes into the server instructions.
 ///
-/// One line per skill, carrying the **trigger** rather than a summary: the
-/// first sentence of the description is written as "Use when…" in every skill,
-/// which is precisely the sentence a harness would have matched on. The full
-/// descriptions are one `list_skills` call away, and the line says so.
+/// One line per skill: its name and its `use_when`, at most eight words
+/// saying when to reach for it
+/// (`dec:the-handshake-names-each-skill-with-a-short-trigger-under-the-clients-cap`).
+///
+/// UNTIL 2026-11-01 EACH LINE CARRIED THE DESCRIPTION'S WHOLE FIRST SENTENCE,
+/// and the listing alone ran past 8,000 characters. Claude Code keeps 4,096 of
+/// a server's instructions, so 27 of 35 skills never reached the agent, the
+/// ones after design-a-phenomenon, with nothing to say they were missing
+/// (`fact:root-cause-the-always-loaded-skill-listing-is-cut-at-4096-characters-2026-11-01`).
+/// The full descriptions are one `list_skills` call away, and the listing
+/// says so. `tests/the_handshake_fits_the_clients_cap.rs` holds the whole
+/// handshake under the cap on every door, with room for a host's preamble.
 pub fn catalogue() -> String {
     let mut out = String::from(
-        "SKILLS ARE SERVED, NOT INSTALLED. This project's reflow2 skills live in the server, so \
-         they always match the running version and nothing in your repo goes stale. They are NOT \
-         auto-loaded by your harness — call `get_skill` to read one in full before doing the work \
-         it covers, `list_skills` for the complete trigger conditions, and `find_skills` to find \
-         the one for a job you can describe but not name. Available:",
+        "SKILLS ARE SERVED, NOT INSTALLED, and NOT auto-loaded: read one with `get_skill` before \
+         its work (`list_skills` has full triggers; `find_skills` finds one by its job). Use when:",
     );
     for skill in SKILLS {
         out.push_str("\n- ");
         out.push_str(skill.name);
         out.push_str(": ");
-        out.push_str(trigger(skill.description));
+        out.push_str(skill.use_when);
     }
     out
-}
-
-/// The first sentence of a description — its trigger condition.
-///
-/// Truncating a description is a real risk (an agent could skip a skill it
-/// needed on a partial reading), which is why every caller is pointed at
-/// `list_skills` for the rest rather than left to assume this is all there is.
-fn trigger(description: &str) -> &str {
-    match description.find(". ") {
-        Some(i) => &description[..=i],
-        None => description,
-    }
 }
 
 /// THE LENS: who the agent is speaking to, attached to the response it is
