@@ -1,7 +1,7 @@
 ---
 name: hub
 description: Use when a session reaches several designs and one of them is a hub — a design that coordinates others — "/hub", "put this in the hub", "route the hub's ideas", "I'm working in the X hub", a collaborator dropping an idea into a shared hub, or any request that could belong in more than one of the designs this session can reach. Finds which designs the hub names, reads them only when a request needs them, writes each fact into the lowest design that owns all of it and says which before writing, keeps a collaborator's idea in the hub until someone who works on the right design routes it there, and leaves a pointer in the hub rather than a copy. Not for making two designs' interface real (link-projects), and not for a session that reaches only one design.
-metadata: {composes: [STANDING, WRITES, MINTS], audience: anyone, summary: "Work across a hub's related projects, filing each thing in the project it belongs to."}
+metadata: {composes: "STANDING WRITES MINTS", audience: anyone, summary: "Work across a hub's related projects, filing each thing in the project it belongs to."}
 ---
 
 # Work in a hub: every fact in the design it belongs to

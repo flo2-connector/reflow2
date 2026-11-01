@@ -1,7 +1,7 @@
 ---
 name: help
 description: Use when someone is NEW TO REFLOW2 and wants to know what it is, what it can do for them, or how to begin — "what is this?", "how do I use this?", "what can reflow2 actually do?", "someone set this up for me and I don't know what it's for", or a first session with a person who has clearly not met it before. NOT for questions about the project they are designing (where-am-i says where the design stands, onboarding says where new work belongs), and NOT for something reflow2 got wrong (report-friction).
-metadata: {composes: [STANDING], audience: anyone, summary: "Learn what reflow2 is and how to begin."}
+metadata: {composes: "STANDING", audience: anyone, summary: "Learn what reflow2 is and how to begin."}
 ---
 
 # Explaining reflow2 to someone who has not been convinced yet
@@ -81,14 +81,15 @@ newcomer certainly cannot, and a person who does not know a command exists will 
 So after their first move, **list every command** — all of them, not a selection.
 
 🛑 **GET THE LIST FROM `list_skills`, NEVER FROM MEMORY AND NEVER BY READING A DIRECTORY.** Each
-entry carries a `shortcut` — what a person actually types — because **eight skills answer to a
+entry carries a `shortcut` — what a person actually types — because **ten skills answer to a
 word that is not their name** (`capture-intent` is `/req`, `check-health` is `/health`,
-`detect-and-ask` is `/gaps`, `governance-proposal` is `/rules`, `kpp-proposal` is `/kpp`,
-`onboarding` is `/where-does-it-go`, `where-am-i` is `/where`, `help` is `/what-is-this`).
+`detect-and-ask` is `/gaps`, `establish-taxonomy` is `/taxonomy`, `governance-proposal` is
+`/rules`, `help` is `/what-is-this`, `kpp-proposal` is `/kpp`, `onboarding` is
+`/where-does-it-go`, `triage-feedback` is `/triage`, `where-am-i` is `/where`).
 
 ⚠️ **THIS IS NOT A HYPOTHETICAL FAILURE.** On 2026-09-01 an agent with full filesystem access
 answered this exact question with 11 of 28 commands, because it matched command names against
-skill names and reported the eight aliased ones — plus nine others — as reachable only through
+skill names and reported that day's eight aliased ones — plus nine others — as reachable only through
 `get_skill`. It under-reported the tool's surface by 60% to the person who built it. The
 `shortcut` field exists so that nobody has to derive this again.
 
@@ -102,7 +103,7 @@ skill names and reported the eight aliased ones — plus nine others — as reac
 
 **Group them by when a person would reach for one** — starting a design, capturing intent, reading
 where it stands, changing something, connecting things up — rather than alphabetically. The
-grouping is the part that makes a list of twenty-eight usable; a flat dump is the same
+grouping is the part that makes a list of forty usable; a flat dump is the same
 under-reporting failure by a different route.
 
 ⚠️ **A LIST IS ORIENTATION, NOT THE FIRST MOVE.** Give them their one command from §3 first, and

@@ -1,7 +1,7 @@
 ---
 name: jot
 description: Use when the user wants to get a thought down now and deal with it later, in one breath — "/jot", "/note", "/log-issue", "jot this down", "note this for later", "log this", "remind me to", an idea in the shower or on the road, a thing noticed away from the desk, a colleague's remark, a failure with no cause yet. Records a dated note on the thing it is about, in the user's own words, demanding nothing — no kind, no cause, no node type, no working-through. The word they typed is the tag — /note an idea, /log-issue an issue, /jot untagged — and the loop lists open notes at every boundary until each is settled the way its tag says. Not for an idea they want to work through NOW (brainstorm), not for intent they are stating now (capture-intent), not for a failure you are about to EXPLAIN (root-cause).
-metadata: {composes: [STANDING, WRITES], audience: anyone, summary: "Jot a thought down now, sort it out later — one line, no questions."}
+metadata: {composes: "STANDING WRITES", audience: anyone, summary: "Jot a thought down now, sort it out later — one line, no questions."}
 ---
 
 # Jot it down now, work it through later

@@ -25,6 +25,14 @@ underneath it:
    published contract catches it. Single-word tool names like `allocate`,
    `satisfies`, and `genesis` used to be exempt (an underscore-only filter); they
    are checked now.
+5. **The Agent Skills specification** — every frontmatter field is one the
+   specification defines, `name` and `description` keep its limits, `metadata`
+   holds only string values, and the whole of it is YAML a strict reader takes
+   (SPEC_FIELDS, 2026-11-01).
+6. **Stated counts** — a count that introduces a list is the list's length, and
+   a count of something served (renamed skills, commands, the gate's failure
+   kinds) is what the surface serves, computed each run (STATED COUNTS,
+   2026-11-01).
 
 The allowlist is deliberately committed and exact: an unknown new term fails
 until it is either corrected (it was a tool name typo/rename) or added here (a
@@ -1690,6 +1698,524 @@ def frontmatter(text: str) -> dict[str, str]:
     return fields
 
 
+# ---------------------------------------------------------------------------
+# THE AGENT SKILLS SPECIFICATION: what a conforming reader requires of a
+# skill's frontmatter (agentskills.io/specification, read 2026-11-01).
+#
+# req:ci-checks-every-served-skill-against-the-spec-and-the-live-surface and
+# req:reflow2s-skills-conform-to-the-agent-skills-specification. Until
+# 2026-11-01 every served skill carried `metadata: {composes: [..]}`, a LIST,
+# where the specification allows `metadata` only as a map from string keys to
+# string values, and nothing here checked it
+# (fact:reflow2s-skill-metadata-carries-a-list-where-agent-skills-allows-only-strings-2026-10-01).
+# A strict host skips a skill that does not conform (Agent Plugins §7.1), so
+# the miss costs every skill at once.
+#
+# Checked, field by field, as the specification states it:
+#   name           1-64 characters of a-z, 0-9 and hyphens; no hyphen first,
+#                  last or doubled; the same as the skill's directory
+#   description    1-1024 characters
+#   compatibility  1-500 characters, when present
+#   metadata       a map from string keys to string values
+#   and no top-level field the specification does not define.
+# And what it takes for granted: the frontmatter is YAML. A plain (unquoted)
+# value holding ": " is not, and five descriptions were
+# (fact:five-served-skills-carry-a-description-strict-yaml-refuses-2026-10-05).
+#
+# Stdlib only, like the rest of this file. The parse reads the subset the
+# skills use (one-line scalars, and `metadata` as a one-line `{...}` map or an
+# indented block) and REFUSES what it does not read rather than guessing.
+SPEC_FIELDS = ("name", "description", "license", "compatibility", "metadata", "allowed-tools")
+SPEC_NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
+SPEC_NAME_MAX = 64
+SPEC_DESCRIPTION_MAX = 1024
+SPEC_COMPATIBILITY_MAX = 500
+
+# A plain scalar YAML reads as something other than a string: YAML 1.2's core
+# schema, plus the 1.1 booleans a 1.1 reader still applies.
+_YAML_NOT_A_STRING = re.compile(
+    r"~|null|Null|NULL|true|True|TRUE|false|False|FALSE"
+    r"|yes|Yes|YES|no|No|NO|on|On|ON|off|Off|OFF"
+    r"|[-+]?[0-9]+|0o[0-7]+|0x[0-9a-fA-F]+"
+    r"|[-+]?(?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)(?:[eE][-+]?[0-9]+)?"
+    r"|[-+]?\.(?:inf|Inf|INF)|\.(?:nan|NaN|NAN)"
+)
+_PLAIN_BAD_START = tuple("[]{}#&*!|>%@`,")
+
+
+def yaml_scalar(raw: str, flow: bool = False) -> tuple[str | None, str | None]:
+    """One YAML scalar as written -> (its string value, None), or (None, why a
+    strict reader would not take it as a string). `flow` means it sits inside a
+    `{...}` map, where a plain scalar may not hold `,[]{}` either."""
+    s = raw.strip()
+    if not s:
+        return None, "an empty value, which YAML reads as null"
+    if s[0] == '"':
+        k = 1
+        while k < len(s) and s[k] != '"':
+            k += 2 if s[k] == "\\" else 1
+        if k >= len(s) or s[k + 1:].strip():
+            return None, "a double-quoted string that does not end where the value does"
+        try:
+            return json.loads(s[:k + 1]), None
+        except ValueError:
+            return None, "a double-quoted string with an escape this lint does not read"
+    if s[0] == "'":
+        k, chars = 1, []
+        while k < len(s):
+            if s[k] == "'":
+                if s[k + 1:k + 2] == "'":
+                    chars.append("'")
+                    k += 2
+                    continue
+                break
+            chars.append(s[k])
+            k += 1
+        if k >= len(s) or s[k + 1:].strip():
+            return None, "a single-quoted string that does not end where the value does"
+        return "".join(chars), None
+    if s.startswith(_PLAIN_BAD_START) or s[:2] in ("- ", "? ", ": ") or s in ("-", "?", ":"):
+        return None, f"a plain value may not start with {s[0]!r}; quote it"
+    if ": " in s or s.endswith(":"):
+        return None, 'a plain value may not hold ": " (strict YAML reads a second key there); reword it or quote it'
+    if " #" in s:
+        return None, 'a plain value may not hold " #" (YAML reads a comment there); reword it or quote it'
+    if flow and any(c in s for c in ",[]{}"):
+        return None, "a plain value inside `{...}` may not hold , [ ] { }; quote it"
+    if _YAML_NOT_A_STRING.fullmatch(s):
+        return None, f"{s!r} is read by YAML as a number, a boolean or null, not a string; quote it"
+    return s, None
+
+
+def flow_map(raw: str) -> tuple[dict[str, str], list[str]]:
+    """A one-line YAML flow map, `{key: value, ...}` -> (its string values, the
+    problems). A value that is a list, a map or not a string is a problem, and
+    is left out of the map."""
+    s = raw.strip()
+    if not (s.startswith("{") and s.endswith("}")):
+        return {}, [f"not a one-line `{{...}}` map: {s[:40]!r}"]
+    out: dict[str, str] = {}
+    problems: list[str] = []
+    i, end = 1, len(s) - 1
+    while i < end:
+        while i < end and s[i] in " \t":
+            i += 1
+        if i >= end:
+            break
+        colon = s.find(":", i)
+        if colon < 0 or colon >= end:
+            problems.append(f"a key with no value: {s[i:i + 30]!r}")
+            break
+        key = s[i:colon].strip()
+        i = colon + 1
+        while i < end and s[i] in " \t":
+            i += 1
+        start, depth, quote = i, 0, None
+        while i < end:
+            c = s[i]
+            if quote:
+                if quote == '"' and c == "\\":
+                    i += 2
+                    continue
+                if c == quote:
+                    if quote == "'" and s[i + 1:i + 2] == "'":
+                        i += 2
+                        continue
+                    quote = None
+            elif c in "\"'" and i == start:
+                quote = c
+            elif c in "[{":
+                depth += 1
+            elif c in "]}":
+                depth -= 1
+            elif c == "," and depth == 0:
+                break
+            i += 1
+        value = s[start:i].strip()
+        i += 1
+        if value[:1] in ("[", "{"):
+            kind = "a list" if value[0] == "[" else "a map"
+            problems.append(f"`{key}` is {kind} ({value}), and the specification allows a "
+                            f"metadata value only as a string")
+            continue
+        parsed, why = yaml_scalar(value, flow=True)
+        if why:
+            problems.append(f"`{key}`: {why}")
+        else:
+            out[key] = parsed
+    return out, problems
+
+
+def _block_map(lines: list[str]) -> tuple[dict[str, str], list[str]]:
+    """`metadata` written as an indented block -> (string values, problems)."""
+    out: dict[str, str] = {}
+    problems: list[str] = []
+    indent = None
+    for ln in lines:
+        if not ln.strip():
+            continue
+        lead = len(ln) - len(ln.lstrip())
+        indent = lead if indent is None else indent
+        body = ln.strip()
+        if lead != indent or body.startswith("- ") or body == "-" or ":" not in body:
+            problems.append(f"metadata holds something other than `key: string` ({body[:40]!r})")
+            continue
+        key, value = (x.strip() for x in body.split(":", 1))
+        if not value or value[0] in "[{":
+            problems.append(f"`{key}` is not a string on its own line, and the specification "
+                            f"allows a metadata value only as a string")
+            continue
+        parsed, why = yaml_scalar(value)
+        if why:
+            problems.append(f"`{key}`: {why}")
+        else:
+            out[key] = parsed
+    return out, problems
+
+
+def parse_frontmatter(text: str) -> tuple[dict[str, str], dict[str, str], list[str], set[str]]:
+    """A skill's frontmatter as a strict reader takes it -> (top-level string
+    values, metadata string values, problems, every top-level key present).
+    Read the problems: a field this cannot read as the specification allows is
+    reported, never repaired, and is missing from the values."""
+    m = re.match(r"\A---\n(.*?)\n---\n", text, re.DOTALL)
+    if not m:
+        return {}, {}, ["no YAML frontmatter (a `---` block) at the top of the file"], set()
+    lines = m.group(1).splitlines()
+    raw: dict[str, tuple[str, list[str]]] = {}
+    problems: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        i += 1
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if line[0] in " \t" or ":" not in line:
+            problems.append(f"a line that is not `key: value`: {line.strip()[:40]!r}")
+            continue
+        key, value = line.split(":", 1)
+        key = key.strip()
+        block = []
+        while i < len(lines) and lines[i][:1] in (" ", "\t"):
+            block.append(lines[i])
+            i += 1
+        if key in raw:
+            problems.append(f"`{key}` appears twice")
+        raw[key] = (value, block)
+    extra = [k for k in raw if k not in SPEC_FIELDS]
+    if extra:
+        problems.append(f"fields the specification does not define: {extra} (it defines "
+                        f"{list(SPEC_FIELDS)}; reflow2's own belong inside `metadata`, as strings)")
+    values: dict[str, str] = {}
+    for key, (value, block) in raw.items():
+        if key == "metadata":
+            continue
+        if block:
+            problems.append(f"`{key}` runs on to indented lines; keep it on one line")
+        parsed, why = yaml_scalar(value)
+        if why:
+            problems.append(f"`{key}`: {why}")
+        else:
+            values[key] = parsed
+    metadata: dict[str, str] = {}
+    if "metadata" in raw:
+        value, block = raw["metadata"]
+        if value.strip().startswith("{") and not block:
+            metadata, why = flow_map(value)
+        elif not value.strip() and block:
+            metadata, why = _block_map(block)
+        else:
+            why = ["`metadata` must be a map: a one-line `{key: value}` or an indented block"]
+        problems += [f"metadata: {w}" for w in why]
+    return values, metadata, problems, set(raw)
+
+
+def spec_problems(dir_name: str, text: str) -> list[str]:
+    """Every way this SKILL.md breaks the Agent Skills specification. Empty
+    when a conforming reader would load it."""
+    values, _, problems, present = parse_frontmatter(text)
+    name = values.get("name")
+    if "name" not in present:
+        problems.append("no `name`")
+    elif name is not None:
+        if not 1 <= len(name) <= SPEC_NAME_MAX:
+            problems.append(f"`name` is {len(name)} characters (1-{SPEC_NAME_MAX})")
+        if not SPEC_NAME.fullmatch(name):
+            problems.append(f"`name` {name!r} is not lowercase letters, digits and single "
+                            f"hyphens, with no hyphen first or last")
+        if name != dir_name:
+            problems.append(f"`name` {name!r} is not its directory's name {dir_name!r}")
+    desc = values.get("description")
+    if "description" not in present:
+        problems.append("no `description`")
+    elif desc is not None and not 1 <= len(desc) <= SPEC_DESCRIPTION_MAX:
+        problems.append(f"`description` is {len(desc)} characters (1-{SPEC_DESCRIPTION_MAX})")
+    compat = values.get("compatibility")
+    if compat is not None and not 1 <= len(compat) <= SPEC_COMPATIBILITY_MAX:
+        problems.append(f"`compatibility` is {len(compat)} characters (1-{SPEC_COMPATIBILITY_MAX})")
+    return problems
+
+
+def skill_metadata(text: str) -> dict[str, str]:
+    """The metadata values a strict reader takes. What it cannot take is
+    missing here and reported by spec_problems."""
+    return parse_frontmatter(text)[1]
+
+
+def metadata_words(text: str, key: str) -> list[str]:
+    """A metadata value that names several things, as reflow2 writes one: a
+    string of words separated by spaces (`composes: "STANDING WRITES"`), the
+    shape the specification's own `allowed-tools` takes."""
+    return skill_metadata(text).get(key, "").split()
+
+
+# ---------------------------------------------------------------------------
+# STATED COUNTS: a number a skill states must be the number it states.
+#
+# req:ci-checks-every-served-skill-against-the-spec-and-the-live-surface. On
+# 2026-11-01 help said "eight skills answer to a word that is not their name"
+# while list_skills counted ten, and "a list of twenty-eight" commands while
+# forty shipped; detect-and-ask said "Six obligations" over a list of seven;
+# ci-gate said the build fails on "any of four" causes and documented a fifth
+# further down, while reflow2_check.py failed on nine kinds. Each was true once
+# and nothing compared it again (the class:
+# fact:root-cause-a-served-skill-is-true-only-where-it-was-written-and-help-tells-flo2-chat-users-nothing-leaves-their-machine-2026-11-01).
+#
+# Two checks, because there are two places a count's truth lives:
+#   1. A count that INTRODUCES A LIST ("Six obligations, all of them:") must be
+#      the length of the list under it. Found anywhere, with no register: the
+#      truth is the next few lines.
+#   2. A count of something SERVED (SERVED_COUNT_CLAIMS below) must be what the
+#      surface serves, computed here from the source of truth each time.
+#      Pinned by phrase, both ways: a claim this cannot find any more fails, so
+#      the register cannot rot into checking nothing.
+_UNITS = ("zero one two three four five six seven eight nine ten eleven twelve thirteen "
+          "fourteen fifteen sixteen seventeen eighteen nineteen").split()
+_TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+         "seventy": 70, "eighty": 80, "ninety": 90}
+
+
+def number_word(word: str) -> int | None:
+    """`"Six"` -> 6, `"twenty-eight"` -> 28, `"40"` -> 40; anything else None."""
+    w = word.lower()
+    if w.isdigit():
+        return int(w)
+    if w in _UNITS:
+        return _UNITS.index(w)
+    if w in _TENS:
+        return _TENS[w]
+    tens, _, unit = w.partition("-")
+    if tens in _TENS and unit in _UNITS[1:10]:
+        return _TENS[tens] + _UNITS.index(unit)
+    return None
+
+
+# "one" is left out: "one of two ways" counts two, and "one line" counts nothing.
+_COUNT_WORD = (r"(?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)"
+               r"(?:-(?:one|two|three|four|five|six|seven|eight|nine))?"
+               r"|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen"
+               r"|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen)")
+# The counted noun: the first plural within four words of the number.
+_COUNTED = re.compile(rf"(?i)\b({_COUNT_WORD})\b((?:\s+[\w'’-]+){{0,3}}?)\s+([a-z]{{3,}}s)\b")
+_NOT_A_PLURAL = {"this", "was", "has", "its", "does", "says", "goes", "yes", "less", "unless",
+                 "across", "always", "perhaps", "whereas", "thus", "plus", "towards"}
+_LIST_ITEM = re.compile(r"(\s*)(?:[-*]|\d+\.)\s")
+_TABLE_RULE = re.compile(r"\s*\|[\s:|-]+\|\s*")
+
+
+def _list_length(lines: list[str], start: int) -> int | None:
+    """How many items the list or table beginning at `lines[start]` (after
+    blank lines) holds, or None when what follows is neither. A table's header
+    row and rule are not items."""
+    i = start
+    while i < len(lines) and not lines[i].strip():
+        i += 1
+    if i >= len(lines):
+        return None
+    if lines[i].lstrip().startswith("|"):
+        rows = 0
+        while i < len(lines) and lines[i].lstrip().startswith("|"):
+            rows += 0 if _TABLE_RULE.fullmatch(lines[i]) else 1
+            i += 1
+        return max(rows - 1, 0)
+    first = _LIST_ITEM.match(lines[i])
+    if not first:
+        return None
+    indent, items = len(first.group(1)), 0
+    while i < len(lines):
+        line = lines[i]
+        if not line.strip():
+            i += 1
+            continue
+        lead = len(line) - len(line.lstrip())
+        item = _LIST_ITEM.match(line)
+        if item and lead == indent:
+            items += 1
+        elif lead <= indent:
+            break
+        i += 1
+    return items
+
+
+# A count before a list that is NOT the list's length: the sentence states a
+# fact with a number in it and the list after is something else. Each entry is
+# (skill, a phrase of the sentence) -> why. Unused entries fail, so the register
+# cannot outlive the sentence it excuses.
+COUNT_IS_NOT_THE_LIST: dict[tuple[str, str], str] = {
+    ("parallel-work", "two exporting commits read as"):
+        "the two commits are what CI misreads; the list under it is the remedy's steps",
+}
+
+
+def count_list_mismatches(text: str, exempt: tuple[str, ...] = ()) -> list[str]:
+    """Every count in `text` that introduces a list or table and is not that
+    list's length, as `line N: ...`. A count introduces a list when it is in
+    the last clause before a closing `:` (no other colon after it) and the list
+    starts on the next line that is not blank. A sentence holding one of the
+    `exempt` phrases is skipped."""
+    lines = text.splitlines()
+    first = 0
+    if lines and lines[0] == "---":
+        first = next((k + 1 for k in range(1, len(lines)) if lines[k] == "---"), 0)
+    out: list[str] = []
+    para: list[str] = []
+    fenced = False
+    for i in range(first, len(lines)):
+        line = lines[i]
+        if line.lstrip().startswith("```"):
+            fenced, para = not fenced, []
+            continue
+        if fenced or not line.strip():
+            para = []
+            continue
+        if _LIST_ITEM.match(line) or line.lstrip().startswith(("#", "|", ">")):
+            para = [line]
+        else:
+            para.append(line)
+        if not line.rstrip().rstrip("*").endswith(":"):
+            continue
+        sentence = re.split(r"(?<=[.!?])\s+", " ".join(p.strip() for p in para))[-1]
+        if any(phrase in sentence for phrase in exempt):
+            continue
+        closing = sentence.rstrip().rstrip("*")[:-1]
+        found = [m for m in _COUNTED.finditer(sentence)
+                 if m.group(3).lower() not in _NOT_A_PLURAL and ":" not in closing[m.end():]]
+        if not found:
+            continue
+        said, noun = found[-1].group(1), found[-1].group(3)
+        held = _list_length(lines, i + 1)
+        if held is not None and held != number_word(said):
+            out.append(f"line {i + 1}: says {said} {noun}, and the list under it holds {held} "
+                       f"({sentence.strip()[:90]!r})")
+    return out
+
+
+SKILLS_RS = REPO / "crates/reflow2-mcp/src/skills.rs"
+COMMANDS_SRC = REPO / "getting-started/commands"
+REFLOW2_CHECK = REPO / "tools/reflow2_check.py"
+# A failure line reflow2_check.py adds starts with its KIND in capitals and two
+# spaces, or one space and a value (`DEPEND {dependency}`): "LINEAGE  ...".
+_GATE_KIND = re.compile(r'(?<![\w"])f?"([A-Z]{3,}(?: [A-Z]{3,})?)(?: {2,}| \{)')
+
+
+def gate_failure_kinds() -> set[str]:
+    """The kinds of failure reflow2_check.py fails the build on, read from it."""
+    return set(_GATE_KIND.findall(REFLOW2_CHECK.read_text(encoding="utf-8")))
+
+
+def served_shortcuts() -> dict[str, str]:
+    """Skill -> the word a person types for it, as `skills::shortcut_for`
+    answers: its own name for a skill in ANSWERS_TO_ITS_OWN_NAME, else the first
+    COMMAND_ALIASES entry naming it, else its name."""
+    rs = SKILLS_RS.read_text(encoding="utf-8")
+    table = re.findall(r'\(\s*"([a-z0-9-]+)"\s*,\s*Ok\("([a-z0-9-]+)"\)\s*\)', rs)
+    own = re.search(r"ANSWERS_TO_ITS_OWN_NAME:\s*&\[&str\]\s*=\s*&\[([^\]]*)\]", rs)
+    own_names = set(re.findall(r'"([a-z0-9-]+)"', own.group(1))) if own else set()
+    out = {}
+    for skill in sorted(d.name for d in SKILLS.iterdir() if (d / "SKILL.md").exists()):
+        alias = None if skill in own_names else next((a for a, s in table if s == skill), None)
+        out[skill] = f"/{alias or skill}"
+    return out
+
+
+def tool_backed_commands() -> set[str]:
+    """The slash commands COMMAND_ALIASES answers with a tool, not a skill."""
+    rs = SKILLS_RS.read_text(encoding="utf-8")
+    return set(re.findall(r'\(\s*"([a-z0-9-]+)"\s*,\s*Err\(', rs))
+
+
+def renamed_shortcuts() -> dict[str, str]:
+    """Skill -> shortcut, for the skills a person reaches by another word."""
+    return {s: c for s, c in served_shortcuts().items() if c != f"/{s}"}
+
+
+# (skill, the phrase holding the number as group 1, what is counted, the truth).
+SERVED_COUNT_CLAIMS = (
+    ("help", r"\*\*([\w-]+) skills answer to a\s+word that is not their name\*\*",
+     "skills whose shortcut is not their name (list_skills `shortcut`)",
+     lambda: len(renamed_shortcuts())),
+    ("help", r"\*\*([\w-]+) commands are not skills at all\*\*",
+     "commands that call a tool and serve no skill (COMMAND_ALIASES `Err`)",
+     lambda: len(tool_backed_commands())),
+    ("help", r"makes a\s+list of ([\w-]+)\s+usable",
+     "commands a person can type (getting-started/commands)",
+     lambda: len(list(COMMANDS_SRC.glob("*.md")))),
+    ("ci-gate", r"on \*\*any of ([\w-]+)\*\*",
+     "kinds of failure reflow2_check.py fails the build on",
+     lambda: len(gate_failure_kinds())),
+)
+
+
+def served_count_problems(texts: dict[str, str]) -> list[str]:
+    """Every SERVED_COUNT_CLAIMS entry whose number is not the served one, or
+    that can no longer be found; and the lists those claims introduce, held to
+    the same truth (help's renamed skills and tool commands, ci-gate's
+    failure kinds)."""
+    out: list[str] = []
+    for skill, pattern, what, truth in SERVED_COUNT_CLAIMS:
+        hits = list(re.finditer(pattern, texts.get(skill, "")))
+        if len(hits) != 1:
+            out.append(f"{skill}: the claim /{pattern}/ is found {len(hits)} times, not once — "
+                       f"it was reworded: update SERVED_COUNT_CLAIMS in the same diff")
+            continue
+        said, real = hits[0].group(1), truth()
+        if number_word(said) != real:
+            out.append(f"{skill}: says {said} {what}; the surface has {real}")
+
+    help_text = texts.get("help", "")
+    claim = re.search(r"word that is not their name\*\*\s*\(([^)]*)\)", help_text)
+    stated = dict(re.findall(r"`([a-z0-9-]+)`\s+is\s+`(/[a-z0-9-]+)`", claim.group(1))) if claim else {}
+    real = renamed_shortcuts()
+    if stated != real:
+        wrong = sorted(f"{s} is {real[s]}" for s in real if stated.get(s) != real[s])
+        extra = sorted(f"{s} ({stated[s]})" for s in stated if s not in real)
+        out.append(f"help: the list of renamed skills is not the served one — missing or wrong: "
+                   f"{wrong}; not renamed: {extra}")
+    table = re.search(r"commands are not skills at all\*\*.*?\n((?:\s*\|.*\n)+)", help_text, re.S)
+    listed = set(re.findall(r"\|\s*`/([a-z0-9-]+)`", table.group(1))) if table else set()
+    if listed != tool_backed_commands():
+        out.append(f"help: the table of commands that are not skills lists {sorted(listed)}; "
+                   f"the surface has {sorted(tool_backed_commands())}")
+
+    gate = texts.get("ci-gate", "")
+    at = re.search(r"on \*\*any of [\w-]+\*\*", gate)
+    if at:
+        lines = gate[at.end():].splitlines()
+        start = next((k for k, ln in enumerate(lines) if _LIST_ITEM.match(ln)), len(lines))
+        block = []
+        for ln in lines[start:]:
+            if ln.strip() and not ln.startswith((" ", "-")):
+                break
+            block.append(ln)
+        named = set(re.findall(r"\*\*([A-Z]{3,}(?: [A-Z]{3,})?)\*\*", "\n".join(block)))
+        kinds = gate_failure_kinds()
+        if named != kinds:
+            out.append(f"ci-gate: the failure list names {sorted(named)}; reflow2_check.py "
+                       f"fails on {sorted(kinds)} — missing {sorted(kinds - named)}, not a "
+                       f"failure {sorted(named - kinds)}")
+    return out
+
+
 def main() -> int:
     failures: list[str] = []
 
@@ -1704,6 +2230,7 @@ def main() -> int:
     # A skill names a survivor, never a counted refusing stub (retired_stubs).
     tools = served_tools() - retired_stubs()
     seen_terms: set[str] = set()
+    excuses_seen: set[tuple[str, str]] = set()
 
     print(f"== {len(skill_dirs)} skills, {len(tools)} served tools ==")
     for d in skill_dirs:
@@ -1719,6 +2246,17 @@ def main() -> int:
               fm.get("name") == name, f"frontmatter name: {fm.get('name')!r}")
         check(f"{name}: frontmatter has a description",
               bool(fm.get("description")))
+        breaks = spec_problems(name, text)
+        check(f"{name}: frontmatter conforms to the Agent Skills specification",
+              not breaks,
+              f"{breaks} — agentskills.io/specification; a strict host skips a skill "
+              f"that does not conform (see SPEC_FIELDS)")
+        excused = tuple(ph for (sk, ph) in COUNT_IS_NOT_THE_LIST if sk == name)
+        miscounts = count_list_mismatches(text, excused)
+        check(f"{name}: every count that introduces a list is the list's length",
+              not miscounts, f"{miscounts} (see STATED COUNTS; a count that is not "
+              f"the list's length goes on COUNT_IS_NOT_THE_LIST with its reason)")
+        excuses_seen |= {(name, ph) for ph in excused if ph in " ".join(text.split())}
         check(f"{name}: states the standing rule (graph text is {STANDING_RULE})",
               STANDING_RULE in text)
         session_reasoning = asks_for_session_reasoning(fm.get("description", ""))
@@ -1736,6 +2274,9 @@ def main() -> int:
               f"unknown: {unknown} — a renamed/mistyped tool, or a new field "
               f"term to add to NON_TOOL_TERMS in the same diff")
 
+    unused_excuses = sorted(set(COUNT_IS_NOT_THE_LIST) - excuses_seen)
+    check("COUNT_IS_NOT_THE_LIST has no unused entries (the register cannot rot)",
+          not unused_excuses, f"no sentence holds: {unused_excuses}")
     stale_allowlist = sorted(NON_TOOL_TERMS - seen_terms)
     check("allowlist has no unused entries (the list cannot rot)",
           not stale_allowlist, f"unused: {stale_allowlist}")
@@ -1964,15 +2505,15 @@ def main() -> int:
     undeclared: list[str] = []
     for d in sorted(x for x in SKILLS.iterdir() if x.is_dir()):
         text = (d / "SKILL.md").read_text()
-        fm = frontmatter(text)
         # `composes` rides inside `metadata`, NOT as a top-level key. The
         # frontmatter is a SHARED SURFACE across harnesses and OpenCode reads
         # only {name, description, license, compatibility, metadata} —
         # reflow2_init's portability check refuses anything else, and refused
-        # this on its first attempt. `metadata` is the sanctioned escape hatch.
-        raw = fm.get("metadata", "")
-        m = re.search(r"composes:\s*\[(.*?)\]", raw)
-        classes = [c.strip() for c in m.group(1).split(",") if c.strip()] if m else []
+        # this on its first attempt. `metadata` is the sanctioned escape hatch,
+        # and its values are STRINGS (the Agent Skills specification): the
+        # classes are one string of words, `composes: "STANDING WRITES"`. Until
+        # 2026-11-01 they were a YAML list, outside the specification.
+        classes = metadata_words(text, "composes")
         if not classes:
             undeclared.append(d.name)
             continue
@@ -1986,11 +2527,9 @@ def main() -> int:
     # flo2 F8/F9 (2026-09-18): the line a person reads and who it is for.
     bad_summary, bad_audience = [], []
     for d in skill_dirs:
-        raw_meta = frontmatter((d / "SKILL.md").read_text()).get("metadata", "")
-        ms = re.search(r'summary:\s*"([^"]*)"', raw_meta)
-        ma = re.search(r"audience:\s*([a-z]+)", raw_meta)
-        summ = (ms.group(1) if ms else "").strip()
-        aud = (ma.group(1) if ma else "").strip()
+        meta = skill_metadata((d / "SKILL.md").read_text())
+        summ = meta.get("summary", "").strip()
+        aud = meta.get("audience", "").strip()
         if not summ or summ.startswith("Use ") or len(summ) > 120:
             bad_summary.append(d.name)
         if aud not in ("anyone", "operator", "agent"):
@@ -2045,11 +2584,8 @@ def main() -> int:
     demands = 0
     for d in sorted(x for x in SKILLS.iterdir() if x.is_dir()):
         text = (d / "SKILL.md").read_text(encoding="utf-8")
-        raw = frontmatter(text).get("metadata", "")
-        m = re.search(r"demanded_by:\s*\[(.*?)\]", raw)
-        if not m:
-            continue
-        for tool in [t.strip() for t in m.group(1).split(",") if t.strip()]:
+        # One string of tool names, like `composes` (string values only).
+        for tool in metadata_words(text, "demanded_by"):
             demands += 1
             snap = snapdir / f"{tool}.json"
             if not snap.exists():
@@ -2217,6 +2753,15 @@ def main() -> int:
         for d in skill_dirs
         if (d / "SKILL.md").exists()
     }
+    print("== stated counts against the served surface ==")
+    kinds = gate_failure_kinds()
+    check("reflow2_check.py's failure kinds parsed (refusing to lint against a broken read)",
+          len(kinds) >= 5, f"found only {sorted(kinds)} in {REFLOW2_CHECK.name}")
+    miscounted = served_count_problems(all_skill_text)
+    check(f"every served count a skill states is the served one ({len(SERVED_COUNT_CLAIMS)} "
+          f"claims, and the lists they introduce)",
+          not miscounted, "\n      " + "\n      ".join(miscounted) if miscounted else "")
+
     hardcoded = sorted(n for n, t in all_skill_text.items() if LANGUAGE_HARDCODES.search(t))
     check(
         "no served skill hardcodes a particular answer language",

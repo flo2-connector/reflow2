@@ -756,9 +756,10 @@ each time arrived at the step (`req:a-lesson-is-served-at-the-step-it-concerns`)
 (core tests, clippy `-D warnings`, fmt, schema, installer suite, skill lint) and a full job
 (workspace tests, the smoke test and the exit-zero instruments against the real binary). Green
 locally but red in CI means your local run skipped a gate — believe CI. The skill lint checks
-the skills' *contract* (served tool names, mirrors byte-identical, frontmatter, the standing
-rule); their semantic quality stays evidenced by trials, per docs/sharpening.md — deliberately
-no LLM evals in CI.
+the skills' *contract* (served tool names, mirrors byte-identical, frontmatter against the Agent
+Skills specification, the standing rule, and every count a skill states against the list under it
+or the surface it counts); their semantic quality stays evidenced by trials, per
+docs/sharpening.md — deliberately no LLM evals in CI.
 
 ### Branch, then PR — nothing lands on `main` directly
 
