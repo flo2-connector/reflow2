@@ -37,12 +37,13 @@ This file is the third view: *what changed, and when*.
 it is served; fifteen tools are retired as counted refusing stubs; and the step for when a batch
 of writes lands is offered once per batch.** It contains #818 to #823. Claude Code keeps 4,096
 characters of a server's connect-time instructions, and 0.95.0's ran past that, so most skills
-never reached the agent with their trigger. On this release's build they run 2,862 characters on
-a local stdio session (0.95.0: 9,961) and 3,120 behind a trusted gateway (0.95.0: 10,290). A
-skill served for others, as flo2.io serves them, no longer tells its reader the design is on
-their machine. **What to do:** nothing for the skills or the cues. If you call one of the
-fifteen retired tools, call what its answer names (under Deprecated). On the VS Code terminal
-route, run `reflow2 update` in each repository after installing (In your setup, below).
+never reached the agent with their trigger. On a local engine where reflow2's session-end nudge
+is installed, they now run 2,862 characters, down from 0.95.0's 9,961 (measured on both builds;
+the Fixed entry below gives every door). A skill served for others, as flo2.io serves them, no
+longer tells its reader the design is on their machine. **What to do:** nothing for the skills
+or the cues. If you call one of the fifteen retired tools, call what its answer names (under
+Deprecated). On the VS Code terminal route, run `reflow2 update` in each repository after
+installing (In your setup, below).
 
 **The MCP surface changes shape; no tool is removed.** Measured against the published 0.95.0
 binary (sha256 `93298747…` for its linux-x86_64 archive, checked against `checksums.txt`), over
@@ -100,10 +101,10 @@ published 0.95.0 binary, each on a fresh design on disk:
 **Still needs flo2.io's gateway.** Checked by serving the release build with `--http
 --http-trusted-gateway flo2.io`, as flo2.io runs it: the hosted side of the skills (help says
 "Your design is kept by that host, not on your machine", where 0.95.0 said "Nothing leaves your
-machine"), and connect-time instructions that fit a chat connector's cap (3,120 characters on
-that door). flo2.io gets these once its engine moves to 0.96.0 and is deployed. As before, the
-hosted hub view and reads across designs by graph id need flo2.io. These lines get checked again
-on the published binary once the release is out.
+machine"), and connect-time instructions that fit a chat connector's 4,096-character cap
+with flo2.io's preamble in front (Fixed, below). flo2.io gets these once its engine moves to
+0.96.0 and is deployed. As before, the hosted hub view and reads across designs by graph id need
+flo2.io. These lines get checked again on the published binary once the release is out.
 
 ### Added
 
