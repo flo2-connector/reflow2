@@ -206,12 +206,17 @@ fn every_combination_of_what_the_handshake_carries_fits_with_a_hosts_preamble() 
 /// What `get_info` serves is the function the combinations above measure.
 #[test]
 fn the_served_handshake_is_the_one_measured() {
+    // An in-memory design is ephemeral, and its nudge is looked for from the
+    // working directory (`nudge::status(None)`): Installed on a machine with a
+    // session-end hook, Absent on a CI runner. The expectation reads the same
+    // status, so it holds on both.
+    let nudge = reflow2_mcp::nudge::status(None).handshake_line();
     for (_, rule) in rules() {
         let note = rule.handshake_note();
         assert_eq!(
             served(rule),
-            reflow2_mcp::service::handshake_instructions(true, &note, None),
-            "an in-memory design is ephemeral and checks for no nudge"
+            reflow2_mcp::service::handshake_instructions(true, &note, nudge.as_deref()),
+            "get_info serves exactly the function the cap is measured on"
         );
     }
 }
