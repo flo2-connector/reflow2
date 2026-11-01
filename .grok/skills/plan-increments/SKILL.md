@@ -54,6 +54,38 @@ COMPUTED from the golden thread (`arrival_delta`), never asserted. A plan that r
 success is the plan lying about itself, and it creates a second source of truth that can disagree
 with the first. If you want to know what actually landed, compute it — do not write it down.
 
+## 2b. Cut each increment as a slice that can be shown working on its own
+
+Ordering increments is half a plan. Where each one is CUT is the other half, and it decides
+whether an arrival means anything.
+
+- **Each increment is a vertical slice: when it arrives, it can be shown working on its own, end
+  to end.** It runs thinly through every layer the finished thing has, rather than finishing one
+  layer and leaving the rest for later. In software: one request answered all the way from the
+  screen to the stored record and back, not "the whole database layer". In a building: one
+  bathroom roughed in, finished and passed by the inspector, not every wall framed and none
+  plumbed. In a proof: one case carried from the axioms to its conclusion, not every definition
+  written first. An increment that cannot be shown working until a later one lands is a layer,
+  not an increment, and its arrival proves nothing. "Shown working" is something a person can
+  watch or a check can pass: record that check on what the increment delivers (`add_verification`),
+  so its arrival is computed, never claimed.
+- **Preparatory restructuring goes first, as its own increment.** If the work is easier once
+  something already there is reshaped (a module split, a jig built, a lemma stated more
+  generally), reshape it first and show that everything that worked before still works. The
+  change itself is then small.
+- **A change that reaches everything goes in three increments.** Renaming a part every drawing
+  cites, changing a unit every interface carries, replacing a library every module calls: no one
+  slice can carry it and leave everything working. So **add** the new beside the old, so nothing
+  breaks; **move** each user of the old over, one increment per group of users, each shown
+  working because the old is still there; then **remove** the old, once nothing uses it. The last
+  waits on every move, and that dependency is real.
+- **Before the plan is recorded, put two checks to the person**, together, each with your
+  recommended answer (detect-and-ask's rule for questions in rounds): *is each increment the
+  right size* — small enough to be shown working soon, big enough that showing it proves
+  something — and *is each dependency between increments real*, meaning the later one truly
+  cannot start until the earlier one arrives, rather than merely being listed after it. A
+  dependency nobody can give the reason for is a list order; section 3 says what to do with one.
+
 ## 3. Build the plan
 
 1. **Name the increment.** `plan_epoch` for a future one, with a `sequence` that orders it and a
