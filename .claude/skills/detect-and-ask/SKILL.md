@@ -76,11 +76,40 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    c. Call `gap_to_prompt` again with the **same** `gap` and
       `answers: [{ "id": <prompt id>, "text": <your answer> }]`. It returns
       `{ "status": "ok", "prompt": { "question", "rephrase_degraded" } }`.
-   d. Ask the **user** that `question`. (If `rephrase_degraded` is true, the raw wording is
-      used — still ask it.)
+   d. Ask the **user** that `question`, in its round (below). (If `rephrase_degraded` is true,
+      the raw wording is used — still ask it.)
+
+   **Ask in rounds, ordered by what depends on what.** Questions put one at a time make the
+   person wait on you between every answer; all of them at once makes them answer some against
+   a guess. Rounds are the middle course:
+
+   - **A round holds every question that is ready now** — one whose prerequisites are already
+     settled, so it can be answered without guessing at an answer nobody has given yet. Run the
+     handshake for each, send the whole round in one message, and wait for the reply.
+   - **A question that depends on one still open waits for a later round.** Which part a
+     function belongs in depends on what the system is for; ask both together and the second is
+     answered against a guess, or answered twice. Dependency decides the round. Within a round,
+     the severity ranking `detect_gaps` gave decides the order, so what blocks progress comes
+     first.
+   - **Each question is numbered, and worded so "yes" accepts your recommendation** —
+     *"Q2. Keep the pump and its controller as separate parts, so either can be replaced alone?
+     (recommended)"* — so "yes", or "yes to all but Q3", is a whole reply (their own word for
+     yes, in their language). The options and their consequences still follow, for anyone who
+     wants another.
+   - **A fact you can look up is looked up, never asked.** If a question turns on something
+     written down somewhere — in the design (`search_design`, `get_node`), in the files, in a
+     document they gave you — find it yourself, and look while the round goes out: only the
+     questions that wait on that fact wait for it, and the rest are sent now. What the person
+     DECIDES is theirs to answer; what is already KNOWN is yours to find.
+   - **After each reply, write the answers back (step 3) and run `detect_gaps` again.** What
+     they settled closes gaps and frees the questions that waited on it: those are the next
+     round. Stop when nothing ready is left to ask, or when they say to stop.
+
+   The round is the order questions travel in. It replaces none of the rules below for how one
+   is put: every question in a round meets all of them.
 
    **How to put it — the question carries your reading.** A bare question hands the user the
-   analysis `req:no-se-knowledge` exists to spare them. Six obligations, all of them:
+   analysis `req:no-se-knowledge` exists to spare them. Seven obligations, all of them:
 
    - **Offer a reading.** Say which answer you would give. A question with no recommendation makes
      the user reverse-engineer what you think, which is the work they came here to avoid.
@@ -163,9 +192,10 @@ the record**: the gaps stay counted and stay loud (`req:no-idea-goes-quiet`).
    **When the person who decides is NOT in the chat** — an owner another agent stands in for, a
    manager, a delegated owner — put the questions to them BY NAME instead of carrying them by
    hand: `gaps_to_prompts` with `asked_of` (their Contributor) and `batch` (a name such as
-   `round-2`), and per gap the `evidence` the recommendation rests on (the finding, file or check
-   ids). Hand them `open_questions` with `asked_of`: their batch in order, each question with
-   links to every node it asks about and every piece of evidence attached. Evidence you attach is
+   `round-2`: one batch per round, the next sent once this one is answered), and per gap the
+   `evidence` the recommendation rests on (the finding, file or check ids). Hand them
+   `open_questions` with `asked_of`: their batch in order, each question with links to every
+   node it asks about and every piece of evidence attached. Evidence you attach is
    evidence you CHOSE, so it travels as links they can open and read past, never as a summary to
    trust. Record each reply with `answered_by` set to them. Keep no question-number map outside
    the design: each question's `batch_position` is its number, so "Q4 of round-2" resolves.

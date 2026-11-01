@@ -53,6 +53,9 @@ Write down, before anything else:
 - **When it started**, or the first occurrence anybody can point to.
 - **What is NOT affected** — the neighbouring thing that still works. This bounds the search more than any other single fact.
 
+Write the observation exactly enough to build a check from it: the check you build before ③ has
+to show THIS output, not one that resembles it.
+
 🛑 **IF YOUR PROBLEM STATEMENT CONTAINS THE WORD "BECAUSE", YOU HAVE ALREADY SKIPPED TO STEP ④.**
 *"The export is broken because the lock is stale"* is a hypothesis wearing a symptom's clothes, and
 once written down it will quietly become the thing everybody investigates. Cut the clause and keep
@@ -77,6 +80,40 @@ reaches several designs, run the same search in every member design you can reac
 seam has precedent on both sides. Measured 2026-09-29: a flo2.io failure's mechanism was the third
 hit in reflow2's design, and the search ran only in flo2's. Name any member you could not reach as
 **not looked at**; never leave it out silently.
+
+## Before ③: build ONE repeatable check that shows the exact failure
+
+Before any candidate is weighed, make the failure happen on demand. **One check that anyone can
+run again, and that shows the symptom written in step ①** — that output, not a failure that
+happens to be nearby. Its form follows what the design is:
+
+| The design is | The check is |
+|---|---|
+| code | a command that goes red on the exact symptom: a test, a script, a call with a saved input |
+| a building model | a query against the model that returns the clash, the wrong wall, the missing room |
+| numbers | a calculation record that re-runs from its inputs and reproduces the wrong figure |
+| a physical piece | a test procedure written down BEFORE it is run: the set-up, what is done, what is read, and which reading means it failed |
+
+Run it and watch it show the failure before you go on. A check that has never shown the failure
+cannot tell you when it has gone.
+
+**Then cut it down until every piece left matters.** Take away one input, one step, one part of
+the set-up at a time, and run it again after each cut; whatever the failure survives losing, leave
+out. What remains is already half the diagnosis: a candidate in ③ that needs a piece you cut is
+refuted before you measure it.
+
+**Make it fast and unattended where the design allows**, because ④ and ⑤ will run it many times:
+seconds rather than minutes, and nobody needed at the controls. Where the design does not allow it
+(a fit tried by hand, an inspection walked in person, a reading taken off an instrument) it is
+never required to be; it is still the check, written down and done the same way every time.
+
+**If you cannot build one, say so before going on**: what you tried, and what would let you (access
+to where it fails, the captured output, the file or the model it failed on). If nothing will make
+the failure repeat, go on, and step ⑨ says that every cause below rests on a failure nobody could
+show again.
+
+**Keep it.** It is the standard ④ and ⑤ measure against, and it is the check that shows the fix
+(step ⑦).
 
 ## ③ GENERATE candidates from the design — do not brainstorm them
 
@@ -151,6 +188,10 @@ If two candidates predict the **same** observation, say so plainly. You cannot s
 That is a finding to record, not a failure to hide — and it tells you exactly what instrument you
 are missing.
 
+**The check you built before ③ is the standard each measurement answers to.** A candidate is
+refuted or kept by what that check shows, with the candidate's condition put in place or taken
+away; a measurement taken where the check does not reach is measuring something else.
+
 ## ⑤ Take the measurement — and check the RESULT, not that the call finished
 
 Run it. Do not reason about what it would probably show.
@@ -177,6 +218,10 @@ it* — a contract, an invariant, a list, a version. The instance is whichever f
 ## ⑦ Pin it with a test that FAILS TODAY
 
 Write the test **against the unfixed code and watch it fail.** In CI, not only locally.
+
+**In code, this is the check built before ③, kept and widened** from today's instance to the
+class. Outside code the same idea holds: the query, the re-run calculation or the written
+procedure that showed the failure is the one that shows the fix, run again after it.
 
 ⚠️ **SKIPPING THIS IS INVISIBLE.** A fix with a failing-first test and a fix without one both end
 green, and the difference only appears when the class recurs — by which time nobody remembers.
@@ -247,10 +292,11 @@ wrong answer that looks settled.
 
 ---
 
-## The tells — six ways this goes wrong, in the words they arrive in
+## The tells — seven ways this goes wrong, in the words they arrive in
 
 | What gets said | What it means |
 |---|---|
+| *"I couldn't make it happen again, but it's probably X."* | No check shows the failure. The step before ③. |
 | *"The problem is that X, so I'll fix X."* | One candidate. Step ③ never happened. |
 | *"That confirms it."* | A confirming measurement, not a discriminating one. Step ④. |
 | *"The error is gone, so it's fixed."* | The symptom was suppressed. The cause is unmeasured. |
