@@ -151,6 +151,20 @@ answered, which reading of a text is meant — is a question of your own: `ask_q
 `asked_of` the owner and `about` the records it concerns. `answer_question` with `answered_by`
 records their answer.
 
+**Put these questions to the owner in rounds, ordered by what depends on what** (detect-and-ask,
+step 2, has the full rule). An argument's questions lean on one another: whether an objection is
+answered can wait on which reading of a text is meant, and whether two positions stay an open
+dispute waits on which principles are in. So a round holds every question whose prerequisites are
+settled (which principles to consider, and which reading is meant, usually come first), each
+numbered, each with your recommended answer and worded so "yes" accepts it; a question that
+depends on one still open waits for a later round. Give every question of a round the same `batch`
+on `ask_question`, and record each reply before the next round goes out. On which side of a
+dispute is right, the answer you recommend is how to record it (kept open, or held as their
+reading), never the side. A fact you can look up is looked up, never asked: what a cited source
+says is read from the source (and registered, section 4), and whether a premise is already
+recorded is a `search_design`. Look while the round goes out; only the questions that wait on it
+wait.
+
 ## 6. Read each question back, in the reader's own words
 
 `reasoning_report` on each position reads it back: its computed truth, the steps under it with

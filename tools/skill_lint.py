@@ -1275,6 +1275,70 @@ SHIP_STEP_CONTRACT: dict[str, str] = {
 }
 
 # ---------------------------------------------------------------------------
+# The ROUNDS contract — the skills that put questions to the person, added
+# 2026-11-01 (req:questions-go-to-the-person-in-rounds-ordered-by-what-depends-
+# on-what, on the owner's word; the technique adapted from mattpocock/skills,
+# MIT, at 4ae2317).
+#
+# Each skill asks in rounds: a round holds every question whose prerequisites
+# are settled, each numbered and worded so "yes" accepts the recommendation; a
+# question that depends on one still open waits for a later round; a fact the
+# agent can look up is looked up while the round goes out, never asked. The
+# rules for how ONE question is put (ASK_CONTRACT above) stay as they are: this
+# pins the order questions travel in, not their wording. Matched like the
+# decision-math contract: case-insensitively, whitespace collapsed.
+ROUNDS_SKILLS = ("detect-and-ask", "genesis", "design-an-argument")
+ROUNDS_CONTRACT: dict[str, str] = {
+    "asks in rounds": "in rounds",
+    "a dependent question waits for a later round": "later round",
+    "each question is numbered": "numbered",
+    "worded so yes accepts the recommendation": '"yes" accepts',
+    "a fact the agent can find is never asked": "a fact you can look up is looked up, never asked",
+    "the lookup runs while the round goes out": "while the round goes out",
+}
+# detect-and-ask alone ranks its questions by severity, and keeps doing so
+# inside a round: dependency decides WHICH round, severity the order in it.
+ROUNDS_SEVERITY_PHRASE = "Dependency decides the round"
+
+# The SLICE contract — plan-increments, added 2026-11-01 (req:plan-increments-
+# cuts-each-increment-as-a-slice-shown-working-on-its-own; the technique adapted
+# from mattpocock/skills, MIT, at 4ae2317). A rule for CUTTING increments, not
+# only ordering them, worded for any design (a building, a proof) as well as
+# for code.
+SLICE_CONTRACT: dict[str, str] = {
+    "each increment is a vertical slice": "vertical slice",
+    "that can be shown working on its own": "shown working on its own",
+    "preparatory restructuring goes first": "Preparatory restructuring goes first",
+    "a wide change adds the new beside the old": "beside the old",
+    "then moves each user over": "each user of the old over",
+    "then removes the old once nothing uses it": "once nothing uses it",
+    "asks whether each increment is the right size": "right size",
+    "asks whether each dependency is real": "is each dependency between increments real",
+    "gives an example outside software": "In a building",
+}
+
+# The REPEATABLE-CHECK contract — root-cause, added 2026-11-01
+# (req:root-cause-builds-a-repeatable-check-that-shows-the-failure-before-
+# diagnosing; the technique adapted from mattpocock/skills, MIT, at 4ae2317).
+# Before candidates are weighed, one check that shows the exact failure, in the
+# design's own form; cut down until every piece matters; kept to show the fix.
+# Fast and unattended where the design allows, never required where it cannot
+# be. Step ⑦'s failing test stays as the code case of the same check.
+REPRO_CHECK_CONTRACT: dict[str, str] = {
+    "one check that shows the failure, before the candidates": "ONE repeatable check",
+    "in code, a command that goes red": "goes red on the exact symptom",
+    "in a building model, a query": "a query against the model",
+    "in numbers, a calc record that re-runs": "a calculation record that re-runs",
+    "for a physical piece, a procedure written first": "a test procedure written down BEFORE it is run",
+    "cut down until every piece matters": "until every piece left matters",
+    "fast and unattended where the design allows": "fast and unattended where the design allows",
+    "never required to be where it cannot": "it is never required to be",
+    "the measurements answer to it": "the standard each measurement answers to",
+    "kept, to show the fix": "the check that shows the fix",
+    "step 7's test is the code case of it": "this is the check built before ③",
+}
+
+# ---------------------------------------------------------------------------
 # The OPTIMISATION contract — optimize/SKILL.md, added 2026-08-21.
 #
 # Same shape as ASK_CONTRACT and LINK_CONTRACT, and pinned for a reason
@@ -2092,6 +2156,49 @@ def main() -> int:
                 " ".join(phrase.lower().split()) in ship_text,
                 f"missing {phrase!r}",
             )
+
+    print("== the rounds contract ==")
+    for skill_name in ROUNDS_SKILLS:
+        rd_md = SKILLS / skill_name / "SKILL.md"
+        rd_raw = rd_md.read_text(encoding="utf-8") if rd_md.exists() else ""
+        rd_text = " ".join(rd_raw.lower().split())
+        check(f"{skill_name}/SKILL.md present", bool(rd_text))
+        for label, phrase in ROUNDS_CONTRACT.items():
+            check(
+                f"{skill_name} asks in rounds: {label}",
+                " ".join(phrase.lower().split()) in rd_text,
+                f"missing {phrase!r}",
+            )
+        if skill_name == "detect-and-ask":
+            check(
+                "detect-and-ask keeps severity inside a round, dependency between rounds",
+                " ".join(ROUNDS_SEVERITY_PHRASE.lower().split()) in rd_text,
+                f"missing {ROUNDS_SEVERITY_PHRASE!r}",
+            )
+
+    print("== the slice contract ==")
+    sl_md = SKILLS / "plan-increments" / "SKILL.md"
+    sl_raw = sl_md.read_text(encoding="utf-8") if sl_md.exists() else ""
+    sl_text = " ".join(sl_raw.lower().split())
+    check("plan-increments/SKILL.md present", bool(sl_text))
+    for label, phrase in SLICE_CONTRACT.items():
+        check(
+            f"plan-increments cuts increments as slices: {label}",
+            " ".join(phrase.lower().split()) in sl_text,
+            f"missing {phrase!r}",
+        )
+
+    print("== the repeatable-check contract ==")
+    rc_md = SKILLS / "root-cause" / "SKILL.md"
+    rc_raw = rc_md.read_text(encoding="utf-8") if rc_md.exists() else ""
+    rc_text = " ".join(rc_raw.lower().split())
+    check("root-cause/SKILL.md present", bool(rc_text))
+    for label, phrase in REPRO_CHECK_CONTRACT.items():
+        check(
+            f"root-cause builds the check before diagnosing: {label}",
+            " ".join(phrase.lower().split()) in rc_text,
+            f"missing {phrase!r}",
+        )
 
     print("== the optimisation contract ==")
     opt_md = SKILLS / "optimize" / "SKILL.md"
