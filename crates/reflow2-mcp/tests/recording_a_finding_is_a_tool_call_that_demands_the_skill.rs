@@ -31,7 +31,7 @@
 //! was missing and the thing that cost a wrong cause.
 //!
 //! `tools/skill_lint.py` holds the other half — root-cause declares
-//! `demanded_by: [record_finding]`, and the lint fails if the golden is absent
+//! `demanded_by: "record_finding"`, and the lint fails if the golden is absent
 //! or its description does not name the skill. Both were observed failing
 //! before this landed.
 

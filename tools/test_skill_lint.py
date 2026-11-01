@@ -383,5 +383,167 @@ class TestThinCommands(unittest.TestCase):
         self.assertEqual({n: x for n, x in thick.items() if x}, {})
 
 
+def _skill(metadata: str, *, name: str = "jot", description: str = "Use when a thought "
+           "should be written down now.", extra: str = "") -> str:
+    """A SKILL.md with the frontmatter given, for the specification checks."""
+    return (f"---\nname: {name}\ndescription: {description}\n{extra}metadata: {metadata}\n"
+            f"---\n\n# Body\n")
+
+
+class TestAgentSkillsSpecification(unittest.TestCase):
+    """`spec_problems`: the frontmatter a conforming Agent Skills reader takes
+    (agentskills.io/specification). Seen failing first on all 35 served skills,
+    2026-11-01, on `composes: [..]`; and on five descriptions holding ": "."""
+
+    GOOD = '{composes: "STANDING WRITES", audience: anyone, summary: "Jot it down."}'
+
+    def problems(self, text, directory="jot"):
+        return skill_lint.spec_problems(directory, text)
+
+    def test_the_list_every_skill_carried_until_2026_11_01_is_refused(self):
+        today = _skill('{composes: [STANDING, WRITES], audience: anyone, summary: "Jot it down."}')
+        found = self.problems(today)
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("`composes` is a list", found[0])
+
+    def test_the_same_classes_as_one_string_conform(self):
+        self.assertEqual(self.problems(_skill(self.GOOD)), [])
+        self.assertEqual(skill_lint.metadata_words(_skill(self.GOOD), "composes"),
+                         ["STANDING", "WRITES"])
+
+    def test_a_metadata_map_or_a_non_string_value_is_refused(self):
+        for value, said in (('{version: 1.0}', "number"), ('{draft: true}', "boolean"),
+                            ('{owner: {team: x}}', "a map"), ('{empty: }', "null")):
+            found = self.problems(_skill(value))
+            self.assertTrue(any(said in p for p in found), f"{value}: {found}")
+        self.assertEqual(self.problems(_skill('{version: "1.0"}')), [])
+
+    def test_a_block_metadata_map_is_read_too(self):
+        block = ("\n  composes: \"STANDING\"\n  audience: anyone\n")
+        self.assertEqual(self.problems(_skill(block)), [])
+        nested = "\n  composes:\n    - STANDING\n"
+        self.assertTrue(self.problems(_skill(nested)))
+
+    def test_a_plain_description_holding_colon_space_is_not_yaml(self):
+        """The five served before 2026-11-01: strict YAML reads a second key."""
+        bad = _skill(self.GOOD, description="Distinct from detect-and-ask: that asks what it means.")
+        self.assertTrue(any('": "' in p for p in self.problems(bad)), self.problems(bad))
+        ok = _skill(self.GOOD, description="Distinct from detect-and-ask, which asks what it means.")
+        self.assertEqual(self.problems(ok), [])
+        quoted = _skill(self.GOOD, description='"Distinct from it: a quoted value may hold it."')
+        self.assertEqual(self.problems(quoted), [])
+
+    def test_the_name_rules(self):
+        for name in ("Jot", "-jot", "jot-", "j--ot", "j_ot", "j" * 65):
+            self.assertTrue(self.problems(_skill(self.GOOD, name=name), directory=name),
+                            f"{name!r} must be refused")
+        self.assertTrue(any("directory" in p for p in self.problems(_skill(self.GOOD), "note")))
+
+    def test_the_description_limit_is_the_specifications(self):
+        at = _skill(self.GOOD, description="a" * skill_lint.SPEC_DESCRIPTION_MAX)
+        over = _skill(self.GOOD, description="a" * (skill_lint.SPEC_DESCRIPTION_MAX + 1))
+        self.assertEqual(self.problems(at), [])
+        self.assertTrue(any("1025 characters" in p for p in self.problems(over)))
+        self.assertEqual(skill_lint.SPEC_DESCRIPTION_MAX, 1024)
+
+    def test_a_field_the_specification_does_not_define_is_refused(self):
+        self.assertTrue(self.problems(_skill(self.GOOD, extra="summary: x\n")))
+        self.assertEqual(self.problems(_skill(self.GOOD, extra="allowed-tools: Read\n")), [])
+
+    def test_the_real_tree_conforms(self):
+        found = {}
+        for d in sorted(skill_lint.SKILLS.iterdir()):
+            md = d / "SKILL.md"
+            if md.exists() and (p := skill_lint.spec_problems(d.name, md.read_text())):
+                found[d.name] = p
+        self.assertEqual(found, {})
+
+
+class TestStatedCounts(unittest.TestCase):
+    """`count_list_mismatches` and `served_count_problems`: a count a skill
+    states is the count it states. Seen failing first, 2026-11-01, on
+    detect-and-ask's "Six obligations" over seven, governance-proposal's "Two
+    findings" over three, help's "eight" renamed skills (ten) and "twenty-eight"
+    commands (forty), and ci-gate's "any of four" (reflow2_check.py: ten)."""
+
+    SIX_OVER_SEVEN = ("   analysis exists to spare them. Six obligations, all of them:\n\n"
+                      + "".join(f"   - **Rule {i}.** Said once.\n     And continued.\n"
+                                for i in range(7)))
+
+    def test_detect_and_asks_six_over_seven_is_found(self):
+        found = skill_lint.count_list_mismatches(self.SIX_OVER_SEVEN)
+        self.assertEqual(len(found), 1, found)
+        self.assertIn("Six obligations", found[0])
+        self.assertIn("holds 7", found[0])
+
+    def test_a_count_that_is_the_lists_length_passes(self):
+        right = self.SIX_OVER_SEVEN.replace("Six", "Seven")
+        self.assertEqual(skill_lint.count_list_mismatches(right), [])
+
+    def test_a_tables_header_is_not_a_row(self):
+        table = ("It answers in four kinds:\n\n| | what it means |\n|---|---|\n"
+                 + "".join(f"| `k{i}` | m |\n" for i in range(4)))
+        self.assertEqual(skill_lint.count_list_mismatches(table), [])
+        self.assertTrue(skill_lint.count_list_mismatches(table.replace("four", "three")))
+
+    def test_nested_items_and_continuations_are_not_items(self):
+        text = ("Keep them in one of two ways:\n\n- first\n  - nested\n  - nested\n"
+                "  more of the first\n- second\n\nAfter.\n")
+        self.assertEqual(skill_lint.count_list_mismatches(text), [])
+
+    def test_a_count_before_another_colon_does_not_introduce_the_list(self):
+        """adopt: "needing two primitives: a frontier query and a marker"):"."""
+        text = ('a field user\'s ask ("a mode needing two primitives: a query and a '
+                'marker"):\n\n1. one\n2. two\n3. three\n')
+        self.assertEqual(skill_lint.count_list_mismatches(text), [])
+
+    def test_an_excused_sentence_is_skipped(self):
+        text = "so two exporting commits read as a severed chain:\n\n1. a\n2. b\n3. c\n"
+        self.assertTrue(skill_lint.count_list_mismatches(text))
+        self.assertEqual(skill_lint.count_list_mismatches(text, ("two exporting commits read as",)), [])
+
+    def test_fenced_code_and_frontmatter_are_not_read(self):
+        text = "---\nname: x\n---\n```\nTwo things:\n- a\n```\n"
+        self.assertEqual(skill_lint.count_list_mismatches(text), [])
+
+    def test_number_words(self):
+        for word, n in (("Six", 6), ("twenty-eight", 28), ("forty", 40), ("40", 40), ("ten", 10)):
+            self.assertEqual(skill_lint.number_word(word), n, word)
+        self.assertIsNone(skill_lint.number_word("several"))
+
+    def test_the_gates_failure_kinds_are_read_from_reflow2_check(self):
+        kinds = skill_lint.gate_failure_kinds()
+        for kind in ("LINEAGE", "IDENTITY", "ROUND TRIP", "DRIFT", "DEPEND", "GAP"):
+            self.assertIn(kind, kinds)
+        self.assertNotIn("ITSELF", kinds, "a capitalised word inside a message is not a kind")
+
+    def test_the_counts_help_and_ci_gate_stated_until_2026_11_01_are_found(self):
+        today = {
+            "help": ("because **eight skills answer to a\nword that is not their name** "
+                     "(`capture-intent` is `/req`).\n**Three commands are not skills at all**"
+                     " and will not appear:\n\n| Command | What |\n| --- | --- |\n"
+                     "| `/debt` | a |\n| `/decisions` | b |\n| `/next` | c |\n\nthe part "
+                     "that makes a list of twenty-eight usable;"),
+            "ci-gate": ("Exit 1 on **any of four**, and:\n\n- **LINEAGE** — a\n- **IDENTITY** — b\n"
+                        "- **Unaccepted drift** — c\n- **An open gap** — d\n\nNotes.\n"),
+        }
+        found = "\n".join(skill_lint.served_count_problems(today))
+        self.assertIn("says eight", found)
+        self.assertIn("says twenty-eight", found)
+        self.assertIn("says four", found)
+        self.assertIn("ROUND TRIP", found, "the kind ci-gate documented without counting it")
+        self.assertIn("establish-taxonomy", found, "a renamed skill the list left out")
+        self.assertNotIn("not skills", found, "the three tool commands were right")
+
+    def test_a_claim_that_was_reworded_fails_rather_than_checking_nothing(self):
+        found = skill_lint.served_count_problems({"help": "", "ci-gate": ""})
+        self.assertTrue(any("found 0 times" in p for p in found), found)
+
+    def test_the_real_tree_states_the_served_counts(self):
+        texts = {d.name: (d / "SKILL.md").read_text(encoding="utf-8")
+                 for d in skill_lint.SKILLS.iterdir() if (d / "SKILL.md").exists()}
+        self.assertEqual(skill_lint.served_count_problems(texts), [])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
