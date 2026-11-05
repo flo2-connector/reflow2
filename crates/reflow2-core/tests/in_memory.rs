@@ -123,6 +123,7 @@ mod an_approval_does_not_erase_authorship;
 mod an_argument_reads_step_objections_and_every_lines_assumptions;
 mod an_edge_says_only_what_it_was_told;
 mod an_edge_says_whether_anyone_checked;
+mod an_export_says_where_a_checksum_it_left_off_a_record_is;
 mod an_export_says_where_it_was_taken;
 mod an_inference_says_how_premises_support_a_conclusion;
 mod an_open_breach_reaches_the_loop;

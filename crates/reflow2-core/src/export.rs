@@ -170,6 +170,23 @@ pub struct TakenAt {
     pub dirty: bool,
 }
 
+/// The key of [`ARTIFACT_CHECKSUMS_NOTE`] under [`GraphExport::reading_notes`].
+pub const ARTIFACT_CHECKSUMS_NOTE_KEY: &str = "artifact_checksums";
+
+/// What a reader of the file is told when the export left an Artifact's
+/// checksum off its record. Fixed text, so it never differs between two
+/// exports or two branches; every claim in it is held by
+/// `tests/an_export_says_where_a_checksum_it_left_off_a_record_is.rs` and the
+/// tests of the elision it describes.
+pub const ARTIFACT_CHECKSUMS_NOTE: &str = "An Artifact whose record here has no `checksum` may still have one. \
+     An accepted checksum is written once, on the CHANGED edge from the change that accepted it \
+     (`checksum_after`, with its `checksum_basis`), and left off the Artifact's record while the \
+     two are equal. The current one is on the CHANGED edge into the Artifact with the highest \
+     `accepted_seq` (ties go to the smaller change id). reflow2's import puts it back on the \
+     record, and the reflow2 kit's tools/design_io.py `current_acceptances` applies the same rule \
+     to this file. A checksum still on a record is one that differs from its acceptance, or that \
+     no change accepted.";
+
 /// A whole design graph, portable.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct GraphExport {
@@ -203,6 +220,20 @@ pub struct GraphExport {
     /// What lets `compare_designs` answer "does other descend from base?".
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub prev_content_hash: Option<String>,
+    /// What a person or a script reading THIS FILE needs to be told, because
+    /// the document's shape differs from a record in the store: keyed by topic,
+    /// one fixed sentence each. Derived from the document by
+    /// [`GraphExport::note_what_the_records_leave_out`], never stored, and NOT
+    /// part of the content hash, so it changes no design's identity and two
+    /// exports of one design stay byte-identical. Empty, it is not written.
+    ///
+    /// Added 2026-11-05 for [`ARTIFACT_CHECKSUMS_NOTE`]: twice in one project a
+    /// committed export was read with a plain `json.load`, the `checksum` the
+    /// export leaves off an Artifact was read as a dropped one, and the first
+    /// reading concluded the design gate could not see that file change. It
+    /// could (`fact:root-cause-a-design-copys-checksums-read-as-dropped-because-the-reader-read-the-record-not-the-accepting-change-2026-11-05`).
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub reading_notes: BTreeMap<String, String>,
     /// Which design wrote it. **Optional on the way in (BL-138)**, and the
     /// reason is that `import_graph` never reads it: an import loads into the
     /// receiving graph, whose id the server already knows, so demanding it from
@@ -295,6 +326,29 @@ impl GraphExport {
         self.content_hash
             .clone()
             .unwrap_or_else(|| self.compute_content_hash())
+    }
+
+    /// Write [`GraphExport::reading_notes`] from what this document holds, so
+    /// every place that builds one (the export, the published surface, the
+    /// merge, the item layout read back) says the same thing about the same
+    /// content. Today one note: [`ARTIFACT_CHECKSUMS_NOTE`], present exactly
+    /// when an Artifact's record has no `checksum` and an edge holds its
+    /// current acceptance — the shape the export's elision leaves.
+    pub fn note_what_the_records_leave_out(&mut self) {
+        let current = current_acceptances(&self.edges);
+        let left_off = self.nodes.iter().any(|n| {
+            n.node_type == node::ARTIFACT
+                && current.contains_key(&n.node_id)
+                && !n.properties.contains_key("checksum")
+        });
+        if left_off {
+            self.reading_notes.insert(
+                ARTIFACT_CHECKSUMS_NOTE_KEY.to_string(),
+                ARTIFACT_CHECKSUMS_NOTE.to_string(),
+            );
+        } else {
+            self.reading_notes.remove(ARTIFACT_CHECKSUMS_NOTE_KEY);
+        }
     }
 
     /// Does the embedded `content_hash` match the actual content? `None` when
@@ -565,10 +619,14 @@ impl DesignGraph {
             stamp: Some(GraphStamp::current(self.schema())),
             content_hash: None,
             prev_content_hash: None,
+            reading_notes: BTreeMap::new(),
             graph_id: self.graph_id().to_string(),
             nodes,
             edges,
         };
+        // The elision above is invisible to anyone reading the file, so the
+        // file says it happened (ARTIFACT_CHECKSUMS_NOTE).
+        export.note_what_the_records_leave_out();
         export.content_hash = Some(export.compute_content_hash());
         Ok(export)
     }
@@ -1349,10 +1407,12 @@ impl DesignGraph {
             content_hash: None,
             // Deliberately not chained — see the doc comment.
             prev_content_hash: None,
+            reading_notes: BTreeMap::new(),
             graph_id: self.graph_id().to_string(),
             nodes,
             edges,
         };
+        document.note_what_the_records_leave_out();
         document.content_hash = Some(document.compute_content_hash());
 
         Ok(SurfaceExport {
