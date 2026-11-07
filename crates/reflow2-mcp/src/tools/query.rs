@@ -2415,13 +2415,26 @@ fn reasoning_page(
     let parted = |from: usize, whole_needs: usize| -> (JsonValue, bool) {
         let n_parts = split.as_ref().map_or(0, |s| s.parts.len());
         let avail = n_parts.saturating_sub(from);
-        let mut best: Option<(usize, JsonValue)> = None;
-        for k in 0..=avail {
+        // The most parts that fit, found by halving: a page with more parts
+        // leaves the summary less room, so whether it fits only turns from
+        // yes to no as the count grows, and each try costs a summary fit.
+        let with = |k: usize| -> Option<JsonValue> {
             let v = fit(build_parted(from, k, whole_needs, None));
-            if chars_of(&v) > budget {
-                break;
+            (chars_of(&v) <= budget).then_some(v)
+        };
+        let mut best: Option<(usize, JsonValue)> = with(0).map(|v| (0, v));
+        if best.is_some() {
+            let (mut lo, mut hi) = (0, avail);
+            while lo < hi {
+                let mid = (lo + hi).div_ceil(2);
+                match with(mid) {
+                    Some(v) => {
+                        lo = mid;
+                        best = Some((mid, v));
+                    }
+                    None => hi = mid - 1,
+                }
             }
-            best = Some((k, v));
         }
         let none_fit = matches!(best, None | Some((0, _)));
         if none_fit && from < n_parts {
