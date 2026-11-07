@@ -191,6 +191,13 @@ NON_TOOL_TERMS = {
     # `decision` field for a turn in the search.
     "failed_route", "failed_routes", "route_to", "fails_at", "fails_at_step",
     "fails_because", "route_rests_on", "with_step_and_reason", "decision",
+    # work-a-proof-hole (2026-11-07, req:a-served-skill-works-a-proof-hole-
+    # refute-first-with-each-candidate-a-path-in-the-graph): register_alternative's
+    # `decision_id`; review_relations' `incoming` and a CAUSES link's `basis`
+    # value `correlational`; search_design's `tracked_designs`; and
+    # reasoning_report's `without_step_or_reason` for a route missing either.
+    "decision_id", "incoming", "correlational", "tracked_designs",
+    "without_step_or_reason",
     # a failed route's `would_hold_if` (req:a-failed-route-records-the-natural-
     # condition-under-which-it-would-hold, 2026-11-07).
     "would_hold_if",

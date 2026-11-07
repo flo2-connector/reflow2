@@ -302,7 +302,8 @@ word or a checker's, never yours. Recording a proof does not prove it.
 Working a hole leaves routes that did not go through. Keep each one as a record, never as prose
 on a finding, so a later reader, person or agent, sees the space it rules out without trying it
 again. Search first (`search_design` with the approach's words or its obstacle's): the route may
-already be recorded.
+already be recorded. To work one hole route by route, refute-first, use work-a-proof-hole: it
+records its routes and its turns the way this section says.
 
 **A failed route** is a Requirement (`add_requirement`) with `statement_kind` `failed_route`:
 
