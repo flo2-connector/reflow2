@@ -626,6 +626,94 @@ async fn the_map_fits_one_reply_at_any_size() {
     );
 }
 
+/// THE MAP DOES NOT GO THROUGH THE WHOLE-DESIGN REASONING WALK
+/// (fact:defect-whole-design-reasoning-report-time-explodes-with-alternatives-at-one-fork-2026-11-07):
+/// on 0.97.0 a whole-design reasoning_report passed 90 s with nine
+/// alternatives under one fork whose claim is a premise of the target's step,
+/// the shape the charted method makes. search_map never calls that walk: it
+/// reads each claim on its own (its statement reading, each step's verdict)
+/// and each route's own properties. This pins the map's own cost on that
+/// shape, sixteen routes at the fork and twelve at the target's hole, under a
+/// bound generous enough for a debug build on a shared runner.
+///
+/// Measured when it was written: this fixture does NOT reproduce the slow
+/// whole-design read (69 ms with `limit: 1`), so the bound says what the map
+/// costs here, not that it avoids the defect. That was measured on a copy of
+/// the trial design the defect was found on: the map answered in 0.56 s while
+/// the whole-design read had not answered at 150 s.
+#[tokio::test]
+async fn the_map_stays_fast_with_many_routes_at_a_fork_on_the_targets_support_path() {
+    let s = session().await;
+    s.ok(
+        "add_constraint",
+        json!({"id": "con:def-g", "name": "Definition of the graph class G",
+               "statement": "G is the class of finite graphs with average degree above k.",
+               "statement_kind": "definition"}),
+    )
+    .await;
+    s.ok(
+        "add_requirement",
+        json!({"id": "req:t", "name": "Target: every graph in G contains every tree on k edges",
+               "statement": "Every finite graph of average degree above k contains each tree with k edges.",
+               "statement_kind": "conjecture"}),
+    )
+    .await;
+    s.ok(
+        "add_requirement",
+        json!({"id": "req:core", "name": "Core claim: a dense subgraph embeds the tree greedily",
+               "statement": "A subgraph of minimum degree k/2 admits a greedy embedding of any tree on k edges.",
+               "statement_kind": "lemma"}),
+    )
+    .await;
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:t-from-core", "rule": "all", "premises": ["req:core", "con:def-g"],
+               "conclusion": "req:t", "rule_name": "reduction",
+               "warrant": "Pass to a subgraph of large minimum degree, then embed greedily."}),
+    )
+    .await;
+    s.ok(
+        "add_decision",
+        json!({"id": "dec:close-t", "kind": "choice", "name": "Which route proves the target?",
+               "decision": "The hole as observed: req:t.", "hole": "req:t"}),
+    )
+    .await;
+    s.ok(
+        "add_decision",
+        json!({"id": "dec:close-core", "kind": "choice",
+               "name": "Which route gives the greedy embedding in a dense subgraph?",
+               "decision": "The hole as observed: req:core.", "hole": "req:core",
+               "serves": "req:t", "closing_it": "closes", "distinct_from": ["dec:close-t"]}),
+    )
+    .await;
+    for (fork, n) in [("dec:close-core", 16), ("dec:close-t", 12)] {
+        for i in 0..n {
+            let mut args = json!({"decision_id": fork,
+                                  "artifact_id": format!("alt:route-{fork}-{i}").replace("dec:", ""),
+                                  "name": format!("Candidate {i} at {fork}"),
+                                  "location": "this design"});
+            if i % 2 == 0 {
+                args["waiting"] = json!(true);
+                args["promise_rank"] = json!(1 + i / 2);
+            } else {
+                args["refuter"] = json!(format!("a small graph where candidate {i} fails"));
+            }
+            s.ok("register_alternative", args).await;
+        }
+    }
+    let started = std::time::Instant::now();
+    let map = s.map().await;
+    let took = started.elapsed();
+    eprintln!("search map with 16 + 12 routes: {took:?}");
+    assert!(
+        took < std::time::Duration::from_secs(10),
+        "the map took {took:?}: it must not take the whole-design reasoning walk"
+    );
+    assert_eq!(map["counts"]["holes"], 2, "{}", map["counts"]);
+    assert_eq!(map["counts"]["waiting"], 14, "{}", map["counts"]);
+    assert_eq!(hole(&map, "dec:close-core")["can_close_target"], "yes");
+}
+
 // ── 3. Convergence: rounds since progress, and the forks to go back to ────
 
 async fn round(s: &Session, n: usize, did: &str) {
