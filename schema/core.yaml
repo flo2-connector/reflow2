@@ -396,6 +396,11 @@ schema:
         seat: { type: string, description: "The SESSION that made the claim, as <machine>:<pid>:<mint> — assigned with zero coordination, never negotiated (dec:identity-out-of-band). It is what makes liveness COMPUTABLE: a claim whose session has exited is a ghost, and a ghost that reads as live makes the overlap report lie. A claim with no seat is from before this existed, and is reported as unknown rather than assumed live." }
 
     DECOMPOSES:
+      # IRREFLEXIVE: this relation cannot hold from a node to itself, so the graph's one
+      # edge write refuses an edge from a node to itself on every door (a restore keeps
+      # what its document holds and says so). Declared once here rather than per door
+      # (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+      irreflexive: true
       # Resource on either end is a cross-design REFERENCE (a node another design
       # holds, crate::crosslink): a part's piece decomposes its parent's
       # requirement across designs. Widened 2026-10-08 on Anthony's pick (slice 3).
@@ -593,6 +598,7 @@ schema:
         note: { type: string }
 
     COMPLEMENTS:
+      irreflexive: true
       from: DesignRule
       to: DesignRule
       reading: { form: "composite", composition: "COMPLEMENTS(a,b) := compares(+)(a,b) ∧ ¬same-as(a,b)", components: ["compares", "same-as"], modifiers: { evidence: "evidence" }, basis: "classified" }

@@ -165,6 +165,21 @@ pub struct EdgeTypeDef {
     /// Only meaningful when `inference_category` is also set.
     #[serde(default)]
     pub pass_1_extractable: bool,
+    /// IRREFLEXIVE: this relation cannot hold from a node to itself — a node
+    /// contradicting, causing, depending on or duplicating itself means
+    /// nothing. Declared once, per edge type, and refused at the graph's one
+    /// edge write on every door (`DesignGraph::create_edge`, a restore
+    /// excepted: it keeps what its document holds and says so).
+    ///
+    /// ⭐ UNTIL 2026-11-07 THE RULE WAS KEPT PER DOOR. `review_relations`
+    /// refused all thirteen of its relations to a node itself, `decomposes`
+    /// refused DECOMPOSES, a step could not support itself — and `create_edge`,
+    /// `record_finding` and `register_alternative` refused nothing, so "X
+    /// CAUSES X" (2026-10-30) and "X CONTRADICTS X" (2026-11-07) were drawn
+    /// in the field
+    /// (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub irreflexive: bool,
     /// What this edge is FOR, when an endpoint is `*` BY DESIGN rather than by
     /// oversight — advisory only, and that word is load-bearing.
     ///

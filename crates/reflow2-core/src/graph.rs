@@ -1286,13 +1286,16 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, false)
     }
 
-    /// [`Self::create_edge`] with the edge's node-reference guard NOT run here
-    /// — reserved for [`Self::import_graph`], which reports a dangling
-    /// reference rather than refusing the restore, exactly as it does for a
-    /// node's (`ImportReport::dangling_node_refs`).
+    /// [`Self::create_edge`] as a RESTORE writes it — reserved for
+    /// [`Self::import_graph`]. The edge's node-reference guard is NOT run here:
+    /// the import reports a dangling reference rather than refusing the
+    /// restore, exactly as it does for a node's
+    /// (`ImportReport::dangling_node_refs`). Nor is the refusal of a self-loop
+    /// on a relation that cannot hold to itself: the import keeps what its
+    /// document holds and names it (`ImportReport::self_loops_kept`).
     pub(crate) fn create_edge_refs_checked_later(
         &mut self,
         edge_type: &str,
@@ -1302,7 +1305,7 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, false)
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, true)
     }
 
     #[allow(clippy::too_many_arguments)]
@@ -1314,7 +1317,7 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
-        check_refs: bool,
+        restoring: bool,
     ) -> Result<StoredEdge, DynoError> {
         let mut props = props.into();
         // AN AUTHORSHIP WRITTEN THROUGH AN AGENT (`crate::acting`): the roles
@@ -1323,7 +1326,7 @@ impl DesignGraph {
         // comes in below this, at `create_edge_unstamped`.
         let through = self.stamp_through_acting_agent(edge_type, from_id, to_id, &mut props)?;
         let stored = self.create_edge_unstamped_with(
-            edge_type, from_type, from_id, to_type, to_id, props, check_refs,
+            edge_type, from_type, from_id, to_type, to_id, props, restoring,
         )?;
         if let Some(acting) = through {
             self.record_acts_for(&acting, to_id)?;
@@ -1342,7 +1345,7 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_unstamped_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+        self.create_edge_unstamped_with(edge_type, from_type, from_id, to_type, to_id, props, false)
     }
 
     #[allow(clippy::too_many_arguments)]
@@ -1354,7 +1357,7 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
-        check_refs: bool,
+        restoring: bool,
     ) -> Result<StoredEdge, DynoError> {
         // BOTH ENDPOINTS MUST EXIST. The schema validates the endpoint TYPES
         // against the edge's declared `from`/`to`, which is a different question
@@ -1409,7 +1412,7 @@ impl DesignGraph {
         // (`refuse_dangling_node_refs`): `argued_by`, the claim that argues
         // for the edge, must name a node this design holds
         // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
-        if check_refs {
+        if !restoring {
             for (prop, target) in self.declared_edge_node_refs(edge_type, &props) {
                 if self.node_types_holding(&target)?.is_empty() {
                     return Err(Self::dangling_node_ref_error(edge_type, &prop, &target));
@@ -1432,6 +1435,12 @@ impl DesignGraph {
         // A FAILED ROUTE SUPPORTS, CONCLUDES AND OBJECTS TO NOTHING
         // (crate::failed_route), refused here for the same reason.
         self.refuse_a_failed_route_link(edge_type, from_id, to_id, &props)?;
+        // A RELATION THAT CANNOT HOLD FROM A NODE TO ITSELF (the schema's
+        // `irreflexive`), refused here so no door can draw one; a restore
+        // keeps what its document holds and the import names it.
+        if !restoring {
+            self.refuse_a_self_loop_that_means_nothing(edge_type, from_id, to_id)?;
+        }
         self.engine.create_edge(
             &self.graph_id,
             edge_type,
@@ -1441,6 +1450,53 @@ impl DesignGraph {
             to_id,
             props,
         )
+    }
+
+    /// A RELATION THAT CANNOT HOLD FROM A NODE TO ITSELF IS REFUSED WHERE IT IS
+    /// WRITTEN, on every door: the schema declares it once per edge type
+    /// (`EdgeTypeDef::irreflexive`), and this, at the store's one edge write,
+    /// is the only place it is enforced. Re-writing an edge already stored is
+    /// never refused (an upsert); answers nothing for an edge between two
+    /// different nodes or a relation that may hold to itself.
+    ///
+    /// ⭐ THE CLASS (walked with the root-cause skill, 2026-11-07): the rule was
+    /// kept per door, so the doors that kept no copy drew "X CAUSES X"
+    /// (`record_finding`, `create_edge`, 2026-10-30) and "X CONTRADICTS X"
+    /// (`register_alternative` registering an alternative again, 2026-11-07,
+    /// fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+    pub(crate) fn refuse_a_self_loop_that_means_nothing(
+        &self,
+        edge_type: &str,
+        from_id: &str,
+        to_id: &str,
+    ) -> Result<(), DynoError> {
+        if from_id != to_id
+            || !self
+                .schema()
+                .edge_types
+                .get(edge_type)
+                .is_some_and(|d| d.irreflexive)
+        {
+            return Ok(());
+        }
+        if self
+            .outgoing(from_id, Some(edge_type))?
+            .iter()
+            .any(|e| e.to_id == to_id)
+        {
+            return Ok(());
+        }
+        Err(DynoError::EdgeValidation {
+            edge_type: edge_type.to_string(),
+            property: "endpoints".to_string(),
+            message: format!(
+                "'{from_id}' cannot be joined to itself by {edge_type}: {edge_type} is a \
+                 relation between two different nodes (the schema declares it irreflexive), so \
+                 an edge from a node to itself means nothing. Nothing was written. Name the \
+                 other node it relates to; if you meant to update this node, its own tool \
+                 does that without drawing an edge."
+            ),
+        })
     }
 
     /// Outgoing edges from `from_id`, optionally filtered to one edge type.
