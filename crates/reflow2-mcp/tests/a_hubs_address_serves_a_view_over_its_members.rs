@@ -860,16 +860,17 @@ fn with_no_view_meta_every_reply_is_what_it_was() {
         .iter()
         .map(|(tool, args)| on_plain.call(tool, args.clone(), Some(&readable), None).raw)
         .collect();
-    // The ONE thing two sessions may not share: the seat handle each session is
-    // minted (`host:pid:nonce`), which `loop_status` reports. Masked, by value,
-    // and nothing else is.
+    // The TWO things two calls may not share: the seat handle each session is
+    // minted (`host:pid:nonce`), and how long the call took
+    // (`time_budget.elapsed_ms`), both of which `loop_status` reports. Masked,
+    // by value, and nothing else is.
     let gated_seat = seat_in(&gated_replies);
     let plain_seat = seat_in(&plain_replies);
     for (((tool, _), gated_raw), plain_raw) in probes.iter().zip(&gated_replies).zip(&plain_replies)
     {
         assert_eq!(
-            gated_raw.replace(&gated_seat, "<seat>"),
-            plain_raw.replace(&plain_seat, "<seat>"),
+            elapsed_masked(&gated_raw.replace(&gated_seat, "<seat>")),
+            elapsed_masked(&plain_raw.replace(&plain_seat, "<seat>")),
             "{tool}: with no view _meta the reply is byte-identical to a server that never \
              serves a view"
         );
@@ -934,6 +935,38 @@ fn with_no_view_meta_every_reply_is_what_it_was() {
 }
 
 /// The seat handle a session was minted, read from its `loop_status` reply.
+/// `raw` with the number after every `elapsed_ms` key (in the structured
+/// payload and in its escaped copy in the text block) replaced by `<ms>`: the
+/// time one call took, which two calls never share.
+fn elapsed_masked(raw: &str) -> String {
+    let mut out = String::with_capacity(raw.len());
+    let mut rest = raw;
+    while let Some(i) = rest.find("elapsed_ms") {
+        let (head, tail) = rest.split_at(i + "elapsed_ms".len());
+        out.push_str(head);
+        let skip = tail
+            .find(|c: char| c.is_ascii_digit())
+            .filter(|&j| {
+                tail[..j]
+                    .chars()
+                    .all(|c| matches!(c, '"' | '\\' | ':' | ' '))
+            })
+            .unwrap_or(0);
+        let digits = tail[skip..]
+            .find(|c: char| !c.is_ascii_digit())
+            .unwrap_or(tail.len() - skip);
+        if skip > 0 && digits > 0 {
+            out.push_str(&tail[..skip]);
+            out.push_str("<ms>");
+            rest = &tail[skip + digits..];
+        } else {
+            rest = tail;
+        }
+    }
+    out.push_str(rest);
+    out
+}
+
 fn seat_in(raws: &[String]) -> String {
     raws.iter()
         .filter_map(|raw| serde_json::from_str::<Value>(raw).ok())

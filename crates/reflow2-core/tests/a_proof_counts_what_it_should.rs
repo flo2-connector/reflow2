@@ -553,7 +553,10 @@ fn a_counterexample_that_holds_is_not_a_contradiction_defect() {
         "counted as a refutation, never silenced: {swept:#}"
     );
     let status = g.loop_status().unwrap();
-    assert_eq!(status.structural_defects, g.open_defects().unwrap().len());
+    assert_eq!(
+        status.structural_defects,
+        Some(g.open_defects().unwrap().len())
+    );
     assert!(
         g.open_defects()
             .unwrap()

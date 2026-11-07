@@ -416,7 +416,8 @@ pub struct LoopStatus {
     /// Open *anchored* gaps DETECT finds right now that no Question was ever
     /// asked about — intent was captured and never surfaced to the user.
     /// Phase nudges don't count: they say what comes next, not what is owed.
-    pub unsurfaced_gaps: usize,
+    /// NULL WHEN GAP DETECTION WAS NOT COMPUTED THIS CALL (`not_computed`).
+    pub unsurfaced_gaps: Option<usize>,
     /// Questions put to the user, still waiting on them.
     pub unanswered_questions: usize,
     /// Questions the user answered whose gap is still OPEN. THAT IS THE WHOLE
@@ -427,7 +428,8 @@ pub struct LoopStatus {
     /// than debt. Renamed from `unwritten_answers` on 2026-09-02: that name
     /// asserted the half this count cannot reach, and three projects each
     /// diagnosed the resulting message from scratch.
-    pub answered_with_open_gap: usize,
+    /// Null when gap detection was not computed this call.
+    pub answered_with_open_gap: Option<usize>,
     /// How many of `answered_with_open_gap` NAME the design record that
     /// answered them, via an `ANSWERS` edge.
     ///
@@ -435,7 +437,8 @@ pub struct LoopStatus {
     /// `answered_with_open_gap` is what nobody has said either way — NOT a
     /// count of answers that went unwritten. Every design predating the
     /// `ANSWERS` edge (2026-09-02) reports 0 here and is not thereby in debt.
-    pub answered_naming_their_record: usize,
+    /// Null when gap detection was not computed this call.
+    pub answered_naming_their_record: Option<usize>,
     /// Decisions left `proposed` that a NAMED person has been asked to settle —
     /// an `AUTHORED_BY` edge carrying `role=approver`.
     ///
@@ -456,15 +459,17 @@ pub struct LoopStatus {
     /// prose has none — so making it fire would mean inventing file paths that
     /// do not exist.
     pub unsettled_assigned_decisions: usize,
-    /// Structural defects HEAL reports right now.
-    pub structural_defects: usize,
+    /// Structural defects HEAL reports right now. Null when defect detection
+    /// was not computed this call.
+    pub structural_defects: Option<usize>,
     /// Capabilities claiming `realized`/`verified` with no passing check.
     pub unproven_capabilities: usize,
     /// Recorded divergences (`DriftEvent`) awaiting a disposition.
     pub undispositioned_drift: usize,
     /// Built capabilities nobody has ever checked against reality
-    /// (the confirmation ledger's `unexamined`).
-    pub unexamined_claims: usize,
+    /// (the confirmation ledger's `unexamined`). Null when the ledger was not
+    /// computed this call.
+    pub unexamined_claims: Option<usize>,
     /// Follow-ups captured and never revisited: TemporalFacts with
     /// `fact_type: follow_up`, no `valid_to`, and nothing claiming to have
     /// answered them (no incoming INVALIDATES). The one-word capture
@@ -545,7 +550,8 @@ pub struct LoopStatus {
     /// is to SHOW it, not to hold it against them — so a design that has never
     /// fed a run back can still be clean. It is in `next` rather than only
     /// here because a field beside the list is measured not to be read.
-    pub loop_closure: crate::loop_closure::LoopClosure,
+    /// Null when it was not computed this call (`not_computed`).
+    pub loop_closure: Option<crate::loop_closure::LoopClosure>,
     /// WHAT THE REASONING STILL OWES, on a design that holds Inference steps:
     /// its unconfirmed steps, its uncited premises, and its claims that read
     /// `shown` but not `proven` (req:the-loop-sees-unconfirmed-steps-and-
@@ -596,7 +602,168 @@ pub struct LoopStatus {
     /// Every counter zero. **When `scope` is set this means "nothing is
     /// assigned to that person"** — not that the design is clean. `scope`
     /// carries what could not be attributed, and `next` says so in words.
+    /// Never true while `not_computed` names anything.
     pub clean: bool,
+    /// THE WHOLE-DESIGN ANALYSES THIS CALL DID NOT COMPUTE, each with the
+    /// fields it left null and the call that computes it alone. Empty when the
+    /// answer is whole, which is every answer with no stop scope open
+    /// (`crate::stop`). A caller that gave a time budget gets the floor and
+    /// the analyses that fit, cheapest first, and this names the rest
+    /// (req:loop-status-answers-within-a-time-budget-and-names-the-sections-it-did-not-compute).
+    pub not_computed: Vec<NotComputed>,
+}
+
+/// One whole-design analysis `loop_status` ran under its caller's budget,
+/// in the order it runs them: cheapest first, as measured on reflow2's own
+/// design on 2026-11-07 (8,696 nodes, a dev box, its own check points): the
+/// confirmation ledger 1.3 s, the reasoning 1.2 s, whether a result ever came
+/// back 4.8 s, gap detection 12.3 s, defect detection 7.6 s after it (which
+/// shares what gap detection built; alone, 8.0 s against gap detection's 7.8).
+#[derive(Debug)]
+pub struct LoopSection {
+    /// The section's key in `not_computed` (`gaps`).
+    pub key: &'static str,
+    /// What it is, in words (`gap detection`).
+    pub what: &'static str,
+    /// The fields of the reply it fills, which read null when it is not run.
+    pub fields: &'static [&'static str],
+    /// The call that computes it alone.
+    pub call: &'static str,
+    /// Its check point, asked before it starts.
+    checkpoint: &'static str,
+}
+
+/// The five, in the order `loop_status` runs them.
+pub const LOOP_SECTIONS: [&LoopSection; 5] = [
+    &SECTION_LEDGER,
+    &SECTION_REASONING,
+    &SECTION_LOOP_CLOSURE,
+    &SECTION_GAPS,
+    &SECTION_DEFECTS,
+];
+
+const SECTION_LEDGER: LoopSection = LoopSection {
+    key: "confirmation_ledger",
+    what: "the confirmation ledger",
+    fields: &["unexamined_claims"],
+    call: "confirmation_ledger",
+    checkpoint: "loop_status:confirmation_ledger",
+};
+const SECTION_REASONING: LoopSection = LoopSection {
+    key: "reasoning",
+    what: "what the reasoning owes",
+    fields: &["reasoning"],
+    call: "reasoning_report",
+    checkpoint: "loop_status:reasoning",
+};
+/// Not in the floor although it reads one kind of record: it asks each
+/// passing check for its kept record, and a check whose `location` names no
+/// Artifact by id is matched against every Artifact's location — 4.8 s of the
+/// 29.3 on reflow2's own design, measured. Nothing else serves it alone.
+const SECTION_LOOP_CLOSURE: LoopSection = LoopSection {
+    key: "loop_closure",
+    what: "whether a real result has ever come back",
+    fields: &["loop_closure"],
+    call: "loop_status with a larger `time_budget_ms` (no other call computes it)",
+    checkpoint: "loop_status:loop_closure",
+};
+const SECTION_GAPS: LoopSection = LoopSection {
+    key: "gaps",
+    what: "gap detection",
+    fields: &[
+        "unsurfaced_gaps",
+        "answered_with_open_gap",
+        "answered_naming_their_record",
+        "gaps_on_owned_ground",
+    ],
+    call: "detect_gaps (and open_questions for the answered questions whose gap is open)",
+    checkpoint: "loop_status:gaps",
+};
+const SECTION_DEFECTS: LoopSection = LoopSection {
+    key: "defects",
+    what: "defect detection",
+    fields: &["structural_defects"],
+    call: "detect_defects",
+    checkpoint: "loop_status:defects",
+};
+
+/// A section `loop_status` did not compute this call — see
+/// [`LoopStatus::not_computed`].
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct NotComputed {
+    /// `confirmation_ledger`, `reasoning`, `gaps` or `defects`.
+    pub section: &'static str,
+    /// What it is, in words.
+    pub what: &'static str,
+    /// The fields it fills, null in this reply (`reasoning` absent).
+    pub fields: &'static [&'static str],
+    /// The call that computes it on its own.
+    pub call: &'static str,
+    /// Why it stopped: `budget` (the call's time ran out) or `caller_gone`
+    /// (the caller cancelled or went away).
+    pub why: &'static str,
+    /// Whether it had begun when it was stopped. A section begun and stopped
+    /// kept nothing: what it had worked out is discarded, never reported.
+    pub started: bool,
+    /// The check point it stopped at.
+    pub stopped_at: String,
+}
+
+impl NotComputed {
+    /// Its line in `next`.
+    pub fn line(&self) -> String {
+        let why = match self.why {
+            "caller_gone" => "the caller gave up on this call",
+            _ => "this call's time budget ran out",
+        };
+        format!(
+            "NOT COMPUTED THIS CALL — {what}: {why} {when}, so {fields} read null here and \
+             nothing about them is known from this answer, which is therefore not clean. Call \
+             {call} on its own; a loop_status after it, with no write in between, reads its \
+             result from the server instead of computing it again (or raise `time_budget_ms`)",
+            what = self.what,
+            when = if self.started {
+                "part-way through it"
+            } else {
+                "before it began"
+            },
+            fields = self.fields.join(", "),
+            call = self.call,
+        )
+    }
+}
+
+/// Run one whole-design analysis under the caller's budget: `Some` with its
+/// result, or `None` with the section named in `not_computed` when a check
+/// point said stop. Any other error is the call's own and is returned.
+fn section<T>(
+    not_computed: &mut Vec<NotComputed>,
+    s: &LoopSection,
+    compute: impl FnOnce() -> Result<T, DynoError>,
+) -> Result<Option<T>, DynoError> {
+    let run = crate::stop::checkpoint(s.checkpoint).and_then(|()| compute());
+    match run {
+        Ok(v) => Ok(Some(v)),
+        Err(e) => match crate::stop::stopped(&e) {
+            Some(reason) => {
+                let stopped_at = match &e {
+                    DynoError::Stopped { at, .. } => at.clone(),
+                    _ => String::new(),
+                };
+                not_computed.push(NotComputed {
+                    section: s.key,
+                    what: s.what,
+                    fields: s.fields,
+                    call: s.call,
+                    why: reason.as_str(),
+                    started: stopped_at != s.checkpoint,
+                    stopped_at,
+                });
+                Ok(None)
+            }
+            None => Err(e),
+        },
+    }
 }
 
 /// A gap standing on ground a contributor owns.
@@ -1027,10 +1194,29 @@ impl DesignGraph {
                 node_id: id.to_string(),
             });
         }
-        let questions = self.open_questions()?;
+        // ⭐ THE FLOOR FIRST, THEN THE WHOLE-DESIGN ANALYSES, CHEAPEST FIRST
+        // (req:loop-status-answers-within-a-time-budget-and-names-the-sections-it-did-not-compute).
+        // The floor reads the records the debt is ABOUT — questions, decisions,
+        // capabilities, divergences, follow-ups, breaches, kept outputs — each
+        // in one pass over its own records, and is always computed. The four
+        // analyses below it read the whole design and are what made the call
+        // cross flo2.io's 30 s door on reflow2's own design (38.1 s there on
+        // 2026-11-07: gap detection and defect detection about half each,
+        // fact:root-cause-loop-status-on-reflow2s-design-takes-38-s-on-flo2-io-past-its-30-s-door-gaps-and-defects-each-about-half-2026-11-07).
+        // Each runs as a `section`: when the caller's budget runs out, or the
+        // caller has gone (`crate::stop`), the ones left are NOT COMPUTED, their
+        // counts read null, `not_computed` names each with the call that
+        // computes it alone, and the answer is never `clean`. With no stop scope
+        // open every section runs, exactly as before.
+        crate::stop::mark("loop_status:floor");
+        // Questions put to the user and still waiting: their own records, read
+        // WITHOUT gap detection (an empty set of open gaps keeps exactly the
+        // `asked` ones), so this count never waits on the costliest analysis.
+        let asked = self.open_questions_among(&std::collections::HashSet::new(), None)?;
+        let unanswered_questions = asked.len();
         // Put to THIS person by name and still unanswered, in batch order.
         let mut questions_put_to_them: Vec<QuestionPutTo> = match contributor {
-            Some(id) => questions
+            Some(id) => asked
                 .iter()
                 .filter(|q| q.status == "asked" && q.asked_of.as_deref() == Some(id))
                 .map(|q| QuestionPutTo {
@@ -1049,19 +1235,6 @@ impl DesignGraph {
                 &b.question_id,
             ))
         });
-        let surfaced: std::collections::BTreeSet<&str> =
-            questions.iter().map(|q| q.gap_id.as_str()).collect();
-        // Acknowledged gaps are already absent from detect_gaps, so what
-        // remains unsurfaced is: open right now, anchored to real nodes, and
-        // never asked about. Anchored only — a phase nudge says what comes
-        // next, not what is owed (dec:anchored-first), and counting nudges as
-        // debt would make `clean` unreachable on a healthy design.
-        let unsurfaced: Vec<_> = self
-            .detect_gaps()?
-            .into_iter()
-            .filter(|g| !g.affected_ids.is_empty() && !surfaced.contains(g.id.as_str()))
-            .collect();
-        let unsurfaced_gaps = unsurfaced.len();
 
         // Gaps standing on ground this contributor OWNS. This is the second
         // thing that can honestly be attributed to a person, and the reason
@@ -1078,44 +1251,6 @@ impl DesignGraph {
             Some(id) => self.owned_by_contributor(id)?,
             None => Default::default(),
         };
-        let gaps_on_owned_ground: Vec<GapOnOwnedGround> = if owned.is_empty() {
-            Vec::new()
-        } else {
-            unsurfaced
-                .iter()
-                .filter(|g| g.affected_ids.iter().any(|id| owned.contains(id)))
-                .map(|g| GapOnOwnedGround {
-                    gap_id: g.id.clone(),
-                    title: g.title.clone(),
-                    owned_ids: g
-                        .affected_ids
-                        .iter()
-                        .filter(|id| owned.contains(*id))
-                        .cloned()
-                        .collect(),
-                })
-                .collect()
-        };
-        let unanswered_questions = questions.iter().filter(|q| q.status == "asked").count();
-        let answered_with_open_gap = questions.iter().filter(|q| q.status == "answered").count();
-        // HOW MANY OF THOSE NAME THE RECORD THAT ANSWERED THEM. This is the
-        // half the old message ASSERTED and never checked.
-        //
-        // AN `ANSWERS` EDGE IS POSITIVE EVIDENCE AND ITS ABSENCE IS "NOBODY
-        // SAID", never "not written in". Every design written before the edge
-        // existed (2026-09-02) has answered Questions and no ANSWERS edges, so
-        // reading absence as debt would invent work on every existing graph —
-        // the mixed-vintage hazard AGENTS.md names for any additive schema
-        // change. The message below says the count and declines the inference.
-        let mut answered_naming_their_record = 0usize;
-        for q in questions.iter().filter(|q| q.status == "answered") {
-            if !self
-                .incoming(&q.question_id, Some(edge::ANSWERS))?
-                .is_empty()
-            {
-                answered_naming_their_record += 1;
-            }
-        }
 
         // A Decision that is still `proposed` AND carries an approver edge:
         // somebody was asked to decide and nothing else says so. The approver
@@ -1152,11 +1287,10 @@ impl DesignGraph {
         }
         let unsettled_assigned_decisions = assigned_decisions.len();
 
-        let structural_defects = self.open_defects()?.len();
-
         // A component-granularity check clears this debt (BL-73): the claim
         // HAS a passing check, one hop away — the coverage line says at which
         // granularity, and the per-component gap asks whether that is enough.
+        crate::stop::mark("loop_status:floor:unproven_capabilities");
         let mut unproven_capabilities = 0usize;
         for cap in self.scan_nodes(node::CAPABILITY)? {
             let claims_built = cap
@@ -1184,14 +1318,16 @@ impl DesignGraph {
             })
             .count();
 
-        let unexamined_claims = self.confirmation_ledger()?.unexamined;
+        crate::stop::mark("loop_status:floor:follow_ups");
         let follow_ups = self.open_follow_ups()?;
         let follow_ups_open = follow_ups.len();
         let deferrals = self.open_deferrals()?;
         let deferrals_open = deferrals.len();
+        crate::stop::mark("loop_status:floor:breaches");
         let mut breaches = self.open_breaches()?;
         let breaches_open = breaches.len();
         breaches.truncate(BREACHES_LISTED);
+        crate::stop::mark("loop_status:floor:owed_computations");
         let owed = self.owed_computations()?;
         let computations_owed = owed.computations.len();
         let stale_number_dependents = owed.resting_on_stale_numbers.len();
@@ -1200,6 +1336,99 @@ impl DesignGraph {
         let mut resting_on_stale_numbers = owed.resting_on_stale_numbers;
         resting_on_stale_numbers.truncate(OWED_LISTED);
 
+        // The rest of the floor, read BEFORE the analyses rather than after
+        // them, so that once the budget runs out nothing but assembling the
+        // answer is left (measured: these two cost 1.4 s after the stop when
+        // they came last).
+        crate::stop::mark("loop_status:floor:repairs");
+        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
+        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+        crate::stop::mark("loop_status:floor:verification_recency");
+        let verifications = self.verification_recency()?;
+
+        // ---- THE WHOLE-DESIGN ANALYSES, each under the caller's budget ----
+        let mut not_computed: Vec<NotComputed> = Vec::new();
+        let unexamined_claims = section(&mut not_computed, &SECTION_LEDGER, || {
+            Ok(self.confirmation_ledger()?.unexamined)
+        })?;
+        let reasoning = section(&mut not_computed, &SECTION_REASONING, || {
+            self.reasoning_debt()
+        })?
+        .flatten();
+        let loop_closure = section(&mut not_computed, &SECTION_LOOP_CLOSURE, || {
+            self.loop_closure()
+        })?;
+        let gaps = section(&mut not_computed, &SECTION_GAPS, || {
+            // Acknowledged gaps are already absent from detect_gaps, so what
+            // remains unsurfaced is: open right now, anchored to real nodes,
+            // and never asked about. Anchored only — a phase nudge says what
+            // comes next, not what is owed (dec:anchored-first), and counting
+            // nudges as debt would make `clean` unreachable on a healthy design.
+            let open = self.detect_gaps()?;
+            let still_open: std::collections::HashSet<String> =
+                open.iter().map(|g| g.id.clone()).collect();
+            let questions = self.open_questions_among(&still_open, None)?;
+            let surfaced: std::collections::BTreeSet<&str> =
+                questions.iter().map(|q| q.gap_id.as_str()).collect();
+            let unsurfaced: Vec<_> = open
+                .into_iter()
+                .filter(|g| !g.affected_ids.is_empty() && !surfaced.contains(g.id.as_str()))
+                .collect();
+            let answered_with_open_gap =
+                questions.iter().filter(|q| q.status == "answered").count();
+            // HOW MANY OF THOSE NAME THE RECORD THAT ANSWERED THEM. This is the
+            // half the old message ASSERTED and never checked.
+            //
+            // AN `ANSWERS` EDGE IS POSITIVE EVIDENCE AND ITS ABSENCE IS "NOBODY
+            // SAID", never "not written in". Every design written before the
+            // edge existed (2026-09-02) has answered Questions and no ANSWERS
+            // edges, so reading absence as debt would invent work on every
+            // existing graph — the mixed-vintage hazard AGENTS.md names for any
+            // additive schema change. The message below says the count and
+            // declines the inference.
+            let mut answered_naming_their_record = 0usize;
+            for q in questions.iter().filter(|q| q.status == "answered") {
+                if !self
+                    .incoming(&q.question_id, Some(edge::ANSWERS))?
+                    .is_empty()
+                {
+                    answered_naming_their_record += 1;
+                }
+            }
+            let gaps_on_owned_ground: Vec<GapOnOwnedGround> = if owned.is_empty() {
+                Vec::new()
+            } else {
+                unsurfaced
+                    .iter()
+                    .filter(|g| g.affected_ids.iter().any(|id| owned.contains(id)))
+                    .map(|g| GapOnOwnedGround {
+                        gap_id: g.id.clone(),
+                        title: g.title.clone(),
+                        owned_ids: g
+                            .affected_ids
+                            .iter()
+                            .filter(|id| owned.contains(*id))
+                            .cloned()
+                            .collect(),
+                    })
+                    .collect()
+            };
+            Ok((
+                unsurfaced.len(),
+                answered_with_open_gap,
+                answered_naming_their_record,
+                gaps_on_owned_ground,
+            ))
+        })?;
+        let structural_defects = section(&mut not_computed, &SECTION_DEFECTS, || {
+            Ok(self.open_defects()?.len())
+        })?;
+        let (unsurfaced_gaps, answered_with_open_gap, answered_naming_their_record) = match &gaps {
+            Some((u, a, n, _)) => (Some(*u), Some(*a), Some(*n)),
+            None => (None, None, None),
+        };
+        let gaps_on_owned_ground = gaps.map(|(_, _, _, g)| g).unwrap_or_default();
+
         let mut next = Vec::new();
         if unanswered_questions > 0 {
             next.push(format!(
@@ -1207,7 +1436,10 @@ impl DesignGraph {
                  don't re-ask (open_questions)"
             ));
         }
-        if answered_with_open_gap > 0 {
+        if let (Some(answered_with_open_gap), Some(answered_naming_their_record)) =
+            (answered_with_open_gap, answered_naming_their_record)
+            && answered_with_open_gap > 0
+        {
             // SAYS ONLY WHAT THE FILTER ABOVE SUPPORTS. The old wording —
             // "never reached the design — write the answer in, or acknowledge
             // the gap" — asserted a fact about design nodes that nothing here
@@ -1252,13 +1484,17 @@ impl DesignGraph {
                  changed input gives the whole redo list"
             ));
         }
-        if unsurfaced_gaps > 0 {
+        if let Some(unsurfaced_gaps) = unsurfaced_gaps
+            && unsurfaced_gaps > 0
+        {
             next.push(format!(
                 "{unsurfaced_gaps} open gap(s) have never been put to the user — run \
                  detect-and-ask"
             ));
         }
-        if structural_defects > 0 {
+        if let Some(structural_defects) = structural_defects
+            && structural_defects > 0
+        {
             // The IMPERATIVE names the read-only tool; the skill is named as
             // context, and its destructive step is named with it.
             //
@@ -1299,7 +1535,9 @@ impl DesignGraph {
                  (set_artifact_checksums)"
             ));
         }
-        if unexamined_claims > 0 {
+        if let Some(unexamined_claims) = unexamined_claims
+            && unexamined_claims > 0
+        {
             next.push(format!(
                 "{unexamined_claims} built capability(ies) never checked against reality \
                  (reconcile_artifacts)"
@@ -1346,7 +1584,11 @@ impl DesignGraph {
                  `invalidates` from the record that answered it"
             ));
         }
-        let gaps_not_attributable = unsurfaced_gaps.saturating_sub(gaps_on_owned_ground.len());
+        // A section NOT COMPUTED counts nothing here: `not_computed` names it,
+        // and its line leads `next` whether or not the answer is scoped.
+        let gaps_not_attributable = unsurfaced_gaps
+            .unwrap_or(0)
+            .saturating_sub(gaps_on_owned_ground.len());
         let scope = contributor.map(|id| {
             let mut not_attributable = Vec::new();
             for (n, what) in [
@@ -1356,10 +1598,10 @@ impl DesignGraph {
                     "question(s) waiting on an answer and not put to them by name",
                 ),
                 (
-                    answered_with_open_gap,
+                    answered_with_open_gap.unwrap_or(0),
                     "answered question(s) whose gap is still open",
                 ),
-                (structural_defects, "structural defect(s)"),
+                (structural_defects.unwrap_or(0), "structural defect(s)"),
                 (
                     unproven_capabilities,
                     "capability(ies) claiming built with no passing check",
@@ -1369,7 +1611,7 @@ impl DesignGraph {
                     "recorded divergence(s) awaiting a disposition",
                 ),
                 (
-                    unexamined_claims,
+                    unexamined_claims.unwrap_or(0),
                     "built capability(ies) never checked against reality",
                 ),
                 (follow_ups_open, "follow-up(s) captured and never revisited"),
@@ -1468,21 +1710,28 @@ impl DesignGraph {
         // Both attributable kinds count: a gap on your own ground is owed by you
         // as surely as a decision you were asked to settle, and a `clean: true`
         // that ignored it would be the same confident lie in a new place.
-        let clean = match &scope {
-            Some(_) => {
-                unsettled_assigned_decisions == 0
-                    && gaps_on_owned_ground.is_empty()
-                    && questions_put_to_them.is_empty()
-            }
-            None => next.is_empty(),
-        };
+        // WHAT THIS CALL DID NOT COMPUTE LEADS `next`, scoped or not, and an
+        // answer that left a section out is never clean: a null count is not a
+        // zero, and "the budget ran out before I looked" must never read like
+        // "I looked and found nothing".
+        for (i, n) in not_computed.iter().enumerate() {
+            next.insert(i, n.line());
+        }
+        let clean = not_computed.is_empty()
+            && match &scope {
+                Some(_) => {
+                    unsettled_assigned_decisions == 0
+                        && gaps_on_owned_ground.is_empty()
+                        && questions_put_to_them.is_empty()
+                }
+                None => next.is_empty(),
+            };
 
         // AFTER `clean`, like `loop_closure`: two lines about how repairs are
         // RECORDED, each one line however many events it counts. Never
         // counted in `clean` (see the fields' notes). Unscoped answers only:
         // they are facts about the design, not about a person.
-        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
-        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+        // `fixes_answering_nothing` and `repairs` were read with the floor.
         if scope.is_none() {
             if fixes_answering_nothing > 0 {
                 next.push(format!(
@@ -1500,8 +1749,9 @@ impl DesignGraph {
         // AFTER `clean`, deliberately: see `LoopStatus::loop_closure`. Only an
         // unscoped answer says it — it is a fact about the design, and the
         // scoped `next` already names what it leaves out.
-        let loop_closure = self.loop_closure()?;
+        // `loop_closure` was worked out among the analyses above, under the budget.
         if scope.is_none()
+            && let Some(loop_closure) = &loop_closure
             && loop_closure.state == crate::loop_closure::LoopClosureState::NeverClosed
         {
             next.push(format!(
@@ -1514,7 +1764,7 @@ impl DesignGraph {
 
         // AFTER `clean`, like `loop_closure`: what the reasoning owes waits on
         // the owner's word, and the gap is what puts it to them.
-        let reasoning = self.reasoning_debt()?;
+        // `reasoning` was worked out among the analyses above, under the budget.
         if scope.is_none()
             && let Some(r) = reasoning.as_ref().filter(|r| r.is_owed())
         {
@@ -1574,6 +1824,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::mark("loop_status:done");
         Ok(LoopStatus {
             reasoning,
             unsurfaced_gaps,
@@ -1597,7 +1848,7 @@ impl DesignGraph {
             resting_on_stale_numbers,
             fixes_answering_nothing,
             repairs,
-            verifications: self.verification_recency()?,
+            verifications,
             loop_closure,
             assigned_decisions,
             gaps_on_owned_ground,
@@ -1606,6 +1857,7 @@ impl DesignGraph {
             scope,
             clean,
             next,
+            not_computed,
         })
     }
 

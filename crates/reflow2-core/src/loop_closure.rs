@@ -97,6 +97,9 @@ impl DesignGraph {
         let (mut checks, mut claiming, mut compared, mut failed) = (0, 0, 0, 0);
         let mut last: Option<String> = None;
         for v in self.scan_nodes(node::VERIFICATION)? {
+            // A check point per check: on reflow2's own design this loop took
+            // 4.8 s, one kept-record read per passing check (crate::stop).
+            crate::stop::checkpoint("loop_status:loop_closure:check")?;
             let status = str_prop(&v, "status").unwrap_or_else(|| "planned".into());
             if status == "superseded" {
                 continue;

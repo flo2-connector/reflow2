@@ -1766,7 +1766,9 @@ impl DesignGraph {
             }
         }
         let mut open = Vec::new();
-        for issue in self.all_defects(suppressed)? {
+        let all = self.all_defects(suppressed)?;
+        crate::stop::checkpoint("defects:acknowledgements")?;
+        for issue in all {
             if self.defect_acknowledgement(&issue.id)?.is_none() {
                 open.push(issue);
             }
@@ -2351,6 +2353,7 @@ impl DesignGraph {
     /// including ones already reviewed. [`detect_defects`](Self::detect_defects)
     /// is the filtered view callers want.
     fn all_defects(&self, suppressed: &mut Suppressed) -> Result<Vec<HealIssue>, DynoError> {
+        crate::stop::checkpoint("defects:index")?;
         let index = self.node_type_index()?;
         let mut issues = Vec::new();
         // Nodes whose unattached state an ACCEPTED ruling declares correct.
@@ -2360,6 +2363,7 @@ impl DesignGraph {
         // (`req:a-deliberate-state-is-not-a-defect`).
         let parked: BTreeSet<String> = self.parked_nodes()?.into_iter().collect();
 
+        crate::stop::checkpoint("defects:dangling_reference")?;
         // dangling_reference — a declared node-reference property naming a node
         // that is not here. RUN FIRST, because the zero-degree rule below skips
         // whatever this reports: an edgeless node with a broken pointer is ONE
@@ -2410,6 +2414,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:dangling_edge_reference")?;
         // The same rule for an EDGE property that names a node — `argued_by`,
         // the claim that argues for an edge
         // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
@@ -2449,6 +2454,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:refused_by_schema")?;
         // refused_by_schema — a stored node or edge the current schema refuses,
         // judged by the write rule itself (`crate::narrowing`). See
         // `HealCategory::RefusedBySchema`. Parking does not suppress it: a
@@ -2458,6 +2464,7 @@ impl DesignGraph {
             issues.push(refused_by_schema_issue(refusal));
         }
 
+        crate::stop::checkpoint("defects:untriaged_report")?;
         // untriaged_report — a document parked under a methodology rule that
         // produced no finding. See `HealCategory::UntriagedReport` for the
         // predicate, why parking must not suppress it, and why it could not be
@@ -2500,6 +2507,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:orphan_node")?;
         // orphan_node — missing golden-thread links, scoped to the ones DETECT
         // does not already ask about.
         //
@@ -2597,6 +2605,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:zero_degree")?;
         // A node reachable from NOTHING — no edges at all, in either
         // direction.
         //
@@ -2751,6 +2760,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:contradiction")?;
         // contradiction — a CONTRADICTS edge (unresolved in this increment).
         //
         // `alignment: supporting` is NOT a contradiction and must not be
@@ -2952,6 +2962,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:duplicate")?;
         // duplicate — a DUPLICATES edge a HUMAN asserted (fixable by merge).
         //
         // `basis` is checked here rather than at the merge, because a merge that
@@ -3016,6 +3027,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:unresolved_setup")?;
         // unresolved_setup — an ANTICIPATES edge (info).
         //
         // This loop had NO endpoint filter of any kind, so "if we did X we would
@@ -3110,6 +3122,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:structural")?;
         self.detect_structural_defects(&mut issues, suppressed)?;
 
         annotate_hubs(&mut issues);
@@ -3324,6 +3337,7 @@ impl DesignGraph {
         issues: &mut Vec<HealIssue>,
         suppressed: &mut Suppressed,
     ) -> Result<(), DynoError> {
+        crate::stop::checkpoint("defects:design_network")?;
         let net = self.design_network()?;
 
         // unthreaded_cluster — islands of ≥2 nodes cut off from the main
@@ -3468,6 +3482,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:single_point_of_failure")?;
         // single_point_of_failure — articulation points that actually separate
         // ≥2 subsystems (not the leaf-cutting every tree-internal node does),
         // and that name something which can *fail*.
@@ -3551,6 +3566,7 @@ impl DesignGraph {
         // claim rests on, so losing it leaves the claim unsupported — checked
         // by counting it lost, never inferred from shape. Silent on a design
         // with no Inference.
+        crate::stop::checkpoint("defects:reasoning_single_points")?;
         for sp in self.reasoning_single_points()? {
             let affected = vec![sp.node.clone(), sp.claim.clone()];
             issues.push(HealIssue {
@@ -3577,6 +3593,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:circular_dependency")?;
         // circular_dependency — parts that depend on each other in a loop, via
         // DEPENDS_ON or through the contracts they provide/consume. Not
         // auto-fixable: breaking a cycle is a design decision (introduce an
@@ -3685,6 +3702,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:dead_end")?;
         // dead_end — an isolated Component (no traceability edges at all).
         //
         // "Isolated" is judged in the design network, which excludes CONTAINS

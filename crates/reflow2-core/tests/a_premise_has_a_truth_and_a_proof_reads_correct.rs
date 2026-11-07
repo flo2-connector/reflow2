@@ -462,7 +462,7 @@ fn a_deliberate_objection_is_never_a_structural_contradiction() {
             .collect();
         assert!(contradictions.is_empty(), "{name}: {contradictions:?}");
         let ls = g.loop_status().unwrap();
-        assert_eq!(ls.structural_defects, sweep.defects.len(), "{name}");
+        assert_eq!(ls.structural_defects, Some(sweep.defects.len()), "{name}");
     }
 }
 
@@ -505,7 +505,7 @@ fn an_accidental_contradiction_is_still_reported() {
             "{name}: the accidental contradiction is not reported"
         );
         assert!(
-            g.loop_status().unwrap().structural_defects > before,
+            g.loop_status().unwrap().structural_defects.unwrap() > before.unwrap(),
             "{name}"
         );
     }

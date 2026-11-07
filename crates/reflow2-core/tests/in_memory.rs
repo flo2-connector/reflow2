@@ -208,6 +208,7 @@ mod key_interfaces;
 mod kpp;
 mod linking_report;
 mod llm;
+mod loop_status_stops_where_its_caller_says;
 mod lost_update;
 mod maturity;
 mod merge;

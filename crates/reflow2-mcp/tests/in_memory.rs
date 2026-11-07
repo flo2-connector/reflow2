@@ -179,6 +179,7 @@ mod feedback_is_a_computed_tally;
 mod find_tools_ranks_what_the_query_means;
 mod get_node_reads_its_edges;
 mod latent_mode;
+mod loop_status_answers_within_its_time_budget;
 mod no_per_design_process_globals;
 mod no_served_text_names_a_tool_that_is_not_served;
 mod no_served_text_writes_a_readers_persona_into_the_design;

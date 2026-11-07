@@ -174,7 +174,7 @@ fn a_design_with_nothing_owed_reads_clean() {
     // A bare project draws phase nudges, and nudges are guidance, not debt.
     assert!(status.clean, "{:?}", status.next);
     assert!(status.next.is_empty());
-    assert_eq!(status.unsurfaced_gaps, 0);
+    assert_eq!(status.unsurfaced_gaps, Some(0));
 }
 
 #[test]
@@ -401,7 +401,7 @@ fn captured_intent_owes_a_surface_pass_until_the_question_is_asked() {
     let before = g.loop_status().unwrap();
     assert!(!before.clean);
     assert!(
-        before.unsurfaced_gaps > 0,
+        before.unsurfaced_gaps.unwrap() > 0,
         "anchored gaps exist and nobody asked"
     );
     assert_eq!(before.unproven_capabilities, 1);
@@ -434,7 +434,7 @@ fn captured_intent_owes_a_surface_pass_until_the_question_is_asked() {
         .unwrap();
     }
     let asked = g.loop_status().unwrap();
-    assert_eq!(asked.unsurfaced_gaps, 0);
+    assert_eq!(asked.unsurfaced_gaps, Some(0));
     assert_eq!(asked.unanswered_questions, gaps.len());
     assert!(
         asked.next.iter().any(|l| l.contains("waiting on the user")),
@@ -447,7 +447,7 @@ fn captured_intent_owes_a_surface_pass_until_the_question_is_asked() {
     // design is not something this count can see.
     g.answer_question(&gaps[0].id, "It should do x.").unwrap();
     let answered = g.loop_status().unwrap();
-    assert_eq!(answered.answered_with_open_gap, 1);
+    assert_eq!(answered.answered_with_open_gap, Some(1));
     assert_eq!(answered.unanswered_questions, gaps.len() - 1);
     assert!(
         answered
@@ -495,7 +495,7 @@ fn recorded_drift_is_owed_a_disposition_until_accepted() {
     .unwrap();
 
     // Built, never reconciled: the ledger calls it unexamined and so do we.
-    assert_eq!(g.loop_status().unwrap().unexamined_claims, 1);
+    assert_eq!(g.loop_status().unwrap().unexamined_claims, Some(1));
 
     let report = g
         .reconcile_artifacts(
@@ -534,7 +534,7 @@ fn recorded_drift_is_owed_a_disposition_until_accepted() {
     .unwrap();
     let accepted = g.loop_status().unwrap();
     assert_eq!(accepted.undispositioned_drift, 0);
-    assert_eq!(accepted.unexamined_claims, 0);
+    assert_eq!(accepted.unexamined_claims, Some(0));
 }
 
 // ---- Requirement certainty: derived, never stored (BL-75) -------------------

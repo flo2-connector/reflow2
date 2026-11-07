@@ -2829,6 +2829,22 @@ impl DesignGraph {
         }
         let still_open: std::collections::HashSet<String> =
             self.detect_gaps()?.into_iter().map(|g| g.id).collect();
+        self.open_questions_among(&still_open, asked_of)
+    }
+
+    /// [`Self::open_questions_for`] against a set of open gap ids the caller
+    /// already holds: every question still `asked`, and every `answered` one
+    /// whose gap is in `still_open`.
+    ///
+    /// With an EMPTY set it is the questions still waiting on an answer and
+    /// nothing else — what `loop_status` reads before gap detection, so the
+    /// count of questions waiting on the user never waits on the most costly
+    /// analysis in the report (crate::stop).
+    pub(crate) fn open_questions_among(
+        &self,
+        still_open: &std::collections::HashSet<String>,
+        asked_of: Option<&str>,
+    ) -> Result<Vec<AskedRecord>, DynoError> {
         let index = self.node_type_index()?;
 
         let mut out = Vec::new();
@@ -2972,7 +2988,9 @@ impl DesignGraph {
             }
         }
         let mut open = Vec::new();
-        for gap in self.all_gaps()? {
+        let all = self.all_gaps()?;
+        crate::stop::checkpoint("gaps:acknowledgements")?;
+        for gap in all {
             if self.gap_acknowledgement(&gap.id)?.is_none() {
                 open.push(gap);
             }
@@ -3099,95 +3117,147 @@ impl DesignGraph {
     /// [`gap-surfacing.md`]: https://github.com/flo2-connector/reflow2/blob/main/docs/gap-surfacing.md
     /// [aidrone trial]: https://github.com/flo2-connector/reflow2/blob/main/docs/trials/2026-07-18-greenfield-aidrone.md
     fn all_gaps(&self) -> Result<Vec<GapCandidate>, DynoError> {
+        crate::stop::checkpoint("gaps:population")?;
         let pop = self.population()?;
         let mut gaps = Vec::new();
 
+        crate::stop::checkpoint("gaps:phase_coverage")?;
         self.detect_phase_coverage(&pop, &mut gaps);
+        crate::stop::checkpoint("gaps:unsatisfied_requirements")?;
         self.detect_unsatisfied_requirements(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:unmotivated_capabilities")?;
         self.detect_unmotivated_capabilities(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:possible_duplicates")?;
         self.detect_possible_duplicates(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:suspected_duplicate_edges")?;
         self.detect_suspected_duplicate_edges(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unallocated_capabilities")?;
         self.detect_unallocated_capabilities(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:unallocated_components")?;
         self.detect_unallocated_components(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:quality_target_unstated")?;
         self.detect_quality_target_unstated(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:unrealized_capabilities")?;
         self.detect_unrealized_capabilities(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:unverified_capabilities")?;
         self.detect_unverified_capabilities(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:unverified_enforced_rules")?;
         self.detect_unverified_enforced_rules(&pop, &mut gaps)?;
+        crate::stop::checkpoint("gaps:compliance_gaps")?;
         self.detect_compliance_gaps(&mut gaps)?;
+        crate::stop::checkpoint("gaps:artifact_standard")?;
         self.detect_artifact_standard(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unit_sweep")?;
         self.detect_unit_sweep(&mut gaps)?;
+        crate::stop::checkpoint("gaps:quantity_provenance")?;
         self.detect_quantity_provenance(&mut gaps)?;
+        crate::stop::checkpoint("gaps:closure_criterion")?;
         self.detect_closure_criterion(&mut gaps)?;
+        crate::stop::checkpoint("gaps:published_surface_carries_no_intent")?;
         self.detect_published_surface_carries_no_intent(&mut gaps)?;
+        crate::stop::checkpoint("gaps:encoding_undecided")?;
         self.detect_encoding_undecided(&mut gaps)?;
+        crate::stop::checkpoint("gaps:repo_know_how")?;
         self.detect_repo_know_how(&mut gaps)?;
+        crate::stop::checkpoint("gaps:failing_verifications")?;
         self.detect_failing_verifications(&mut gaps)?;
+        crate::stop::checkpoint("gaps:blocked_verifications")?;
         self.detect_blocked_verifications(&mut gaps)?;
+        crate::stop::checkpoint("gaps:criteria_changed_after_data")?;
         self.detect_criteria_changed_after_data(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unresolved_drift")?;
         self.detect_unresolved_drift(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unreleased_components")?;
         self.detect_unreleased_components(&mut gaps)?;
+        crate::stop::checkpoint("gaps:releases_without_epoch")?;
         self.detect_releases_without_epoch(&mut gaps)?;
+        crate::stop::checkpoint("gaps:releases_without_manifest")?;
         self.detect_releases_without_manifest(&mut gaps)?;
+        crate::stop::checkpoint("gaps:status_contradictions")?;
         self.detect_status_contradictions(&mut gaps)?;
         // The other direction: a status that claims LESS than the structure
         // shows, still at the `planned` default while the thing is built.
+        crate::stop::checkpoint("gaps:understated_statuses")?;
         self.detect_understated_statuses(&mut gaps)?;
+        crate::stop::checkpoint("gaps:interface_pairing")?;
         self.detect_interface_pairing(&pop, &mut gaps)?;
         // The other direction from interface pairing: those two need an
         // Interface to exist, this one fires where none ever has.
+        crate::stop::checkpoint("gaps:undeclared_seams")?;
         self.detect_undeclared_seams(&mut gaps)?;
         // Deliberately absent: unexpected coupling. It is a *signal*, reported
         // by `graph_report` and `surprising_connections`, not a gap demanding
         // an answer — see `GapSource::UnexpectedCoupling`.
+        crate::stop::checkpoint("gaps:declining_dimensions")?;
         self.detect_declining_dimensions(&mut gaps)?;
+        crate::stop::checkpoint("gaps:hierarchy_gaps")?;
         self.detect_hierarchy_gaps(&mut gaps)?;
+        crate::stop::checkpoint("gaps:undecided_decision_points")?;
         self.detect_undecided_decision_points(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unreviewed_ideas")?;
         self.detect_unreviewed_ideas(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unlinked_intent")?;
         self.detect_unlinked_intent(&mut gaps)?;
+        crate::stop::checkpoint("gaps:unvalidated_capabilities")?;
         self.detect_unvalidated_capabilities(&mut gaps)?;
+        crate::stop::checkpoint("gaps:kpp_violations")?;
         self.detect_kpp_violations(&mut gaps)?;
         // The roll-up's blind spot: delivery climbs a decomposition without
         // anything ever asking whether the children amount to the parent.
+        crate::stop::checkpoint("gaps:decomposition_coverage")?;
         self.detect_decomposition_coverage(&mut gaps)?;
         // The stated steps: a conclusion whose claimed status is past what the
         // Inferences concluding it support. Silent on a design with none.
+        crate::stop::checkpoint("gaps:conclusions_that_do_not_follow")?;
         self.detect_conclusions_that_do_not_follow(&mut gaps)?;
         // What the reasoning still owes: unconfirmed steps, uncited premises,
         // claims shown but not proven. Silent on a design with no Inference.
+        crate::stop::checkpoint("gaps:unconfirmed_reasoning")?;
         self.detect_unconfirmed_reasoning(&mut gaps)?;
         // What the reasoning says of itself that its structure does not bear
         // out: an undischarged assumption, a generalization over a fixed
         // variable, a stated independence that fails.
+        crate::stop::checkpoint("gaps:reasoning_not_as_stated")?;
         self.detect_reasoning_not_as_stated(&mut gaps)?;
         // Absence, not consistency: fires loudest where the axis has NEVER
         // been stated, which is the case every other detector here misses.
+        crate::stop::checkpoint("gaps:change_axis_unstated")?;
         self.detect_change_axis_unstated(&mut gaps)?;
         // The third leg of the root-cause vocabulary: a repair that recorded
         // no cause, and — the mirror — a recorded defect whose subject moved
         // with nothing saying whether that was the fix.
+        crate::stop::checkpoint("gaps:fix_without_recorded_cause")?;
         self.detect_fix_without_recorded_cause(&mut gaps)?;
+        crate::stop::checkpoint("gaps:defect_overtaken_by_change")?;
         self.detect_defect_overtaken_by_change(&mut gaps)?;
         // AFTER the overtaken detector, deliberately: a finding it already asks
         // about ("did this change fix it?") is not asked about twice.
+        crate::stop::checkpoint("gaps:open_breaches")?;
         self.detect_open_breaches(&mut gaps)?;
         // The same mirror one type over: an open question whose answer the
         // design has already taken up.
+        crate::stop::checkpoint("gaps:decision_overtaken_by_promotion")?;
         self.detect_decision_overtaken_by_promotion(&mut gaps)?;
         // The third copy of "is this open?": an accepted decision's own name.
+        crate::stop::checkpoint("gaps:settled_decision_named_open")?;
         self.detect_settled_decision_named_open(&mut gaps)?;
         // A prohibition the routing table would have sent to a Constraint,
         // sitting in the prose of something else.
+        crate::stop::checkpoint("gaps:prohibitions_in_prose")?;
         self.detect_prohibitions_in_prose(&mut gaps)?;
         // The product form of the third-party rule: a stated need that nothing
         // a consumer can reach delivers. Silent unless the design has actually
         // declared some audiences.
+        crate::stop::checkpoint("gaps:internal_only_delivery")?;
         self.detect_internal_only_delivery(&mut gaps)?;
         // A promise others may rely on, with nothing showing it holds — and,
         // when nothing is published at all, the ambiguity that a defaulted
         // `designation` creates, asked once rather than assumed away.
+        crate::stop::checkpoint("gaps:unverified_published_contracts")?;
         self.detect_unverified_published_contracts(&mut gaps)?;
         // The other half of the same boundary: described in terms another
         // design could compare, or not.
+        crate::stop::checkpoint("gaps:incomplete_published_contracts")?;
         self.detect_incomplete_published_contracts(&mut gaps)?;
         // qs 2026-09-04: one forgotten `allocate` arrived as an unallocated gap,
         // an unrealized gap and a cluster defect, three angles on one edge, with
@@ -3195,6 +3265,7 @@ impl DesignGraph {
         // the gaps that share a cause now name each other and the one call.
         // fact:defect-one-missing-edge-arrives-as-three-findings-and-two-gaps-
         // fire-before-they-can-be-acted-on.
+        crate::stop::checkpoint("gaps:group_shared_causes")?;
         group_shared_causes(&mut gaps);
 
         gaps.sort_by(|a, b| {
@@ -7200,6 +7271,11 @@ impl DesignGraph {
             if prop("fact_type") != Some("defect") {
                 continue;
             }
+            // A CHECK POINT PER DEFECT FINDING, not only before the detector:
+            // measured 2026-11-07 on reflow2's own design this one detector
+            // was 5.3 s of gap detection's 12.3, so a budget asked only
+            // between detectors overshot by up to that much (crate::stop).
+            crate::stop::checkpoint("gaps:defect_overtaken_by_change:finding")?;
             let Some(subject) = prop("subject_id").filter(|s| !s.is_empty()) else {
                 continue;
             };

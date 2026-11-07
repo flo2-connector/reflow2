@@ -610,7 +610,55 @@ pub(crate) fn not_readable(graph_id: &str, readable: Option<&[String]>) -> Optio
     }
 }
 
+/// Whether the caller of the tool call now being served has GIVEN UP on it:
+/// rmcp cancels a request's token when its client sends
+/// `notifications/cancelled` for it, or — on a stateless HTTP request (MCP
+/// 2026-07-28) — when the client disconnects before the answer
+/// (`crate::service::caller_has_gone`). Held as a question rather than the
+/// token so this crate needs no second copy of tokio-util.
+pub type CallerGone = std::sync::Arc<dyn Fn() -> bool + Send + Sync>;
+
+/// [`CallerGone`] for the tool call now being served, or `None` outside a
+/// served call (a test calling a handler directly, a one-shot read).
+pub fn caller_gone() -> Option<CallerGone> {
+    CALLER_GONE.try_with(Clone::clone).ok()
+}
+
+/// Run `fut` as a served call whose caller-gone question is `gone`: what
+/// `call_tool` does around every handler, for a test that drives a handler
+/// directly and needs a caller who has given up.
+#[doc(hidden)]
+pub async fn with_caller_gone<F: std::future::Future>(gone: CallerGone, fut: F) -> F::Output {
+    CALLER_GONE.scope(gone, fut).await
+}
+
+/// When the tool call now being served ARRIVED: set once by `call_tool`,
+/// around everything it does, so a hub's view that runs one call on the hub
+/// and then on each member in turn spends ONE budget across all of them
+/// (`crate::time_budget`), never a fresh one per design. `None` outside a
+/// served call.
+pub fn call_started() -> Option<std::time::Instant> {
+    CALL_STARTED.try_with(|t| *t).ok()
+}
+
+/// Run `fut` as a served call that arrived at `at`: what `call_tool` does
+/// around every call, for a test that needs a call whose time is already spent.
+#[doc(hidden)]
+pub async fn with_call_started<F: std::future::Future>(
+    at: std::time::Instant,
+    fut: F,
+) -> F::Output {
+    CALL_STARTED.scope(at, fut).await
+}
+
 tokio::task_local! {
+    /// [`call_started`] for the tool call now being served.
+    static CALL_STARTED: std::time::Instant;
+    /// [`CallerGone`] for the tool call now being served. Set by `call_tool`
+    /// around the handler and read by the long reads that stop when their
+    /// caller has gone (`loop_status`, `detect_gaps`, `detect_defects`), so
+    /// no handler takes the request context to learn it.
+    static CALLER_GONE: CallerGone;
     /// The designs, by graph_id, the host said the tool call now being served
     /// may read ([`READABLE_GRAPH_IDS_META`]) — `None` when the call carried
     /// no such set. Set by `call_tool` around the handler and read by
@@ -1456,24 +1504,31 @@ pub(crate) fn read_debt_summary(s: &LoopStatus) -> String {
             parts.push(format!("{n} {label}"));
         }
     };
-    add(s.unsurfaced_gaps, "gap(s) never asked");
+    add(s.unsurfaced_gaps.unwrap_or(0), "gap(s) never asked");
     add(s.unanswered_questions, "question(s) awaiting the user");
     add(
-        s.answered_with_open_gap,
+        s.answered_with_open_gap.unwrap_or(0),
         "answered question(s) with an open gap",
     );
     add(
         s.unsettled_assigned_decisions,
         "decision(s) awaiting a named approver",
     );
-    add(s.structural_defects, "structural defect(s)");
+    add(s.structural_defects.unwrap_or(0), "structural defect(s)");
     add(
         s.unproven_capabilities,
         "capability(ies) claiming built with no check",
     );
     add(s.undispositioned_drift, "drift(s) awaiting disposition");
-    add(s.unexamined_claims, "built capability(ies) never checked");
+    add(
+        s.unexamined_claims.unwrap_or(0),
+        "built capability(ies) never checked",
+    );
     add(s.breaches_open, "open breach(es)");
+    // A section left out is said, never counted as nothing.
+    for n in &s.not_computed {
+        parts.push(format!("{} not computed this call", n.what));
+    }
     format!(
         "loop owes: {} — run loop_status for the ordered to-do list",
         parts.join(", ")
@@ -5831,6 +5886,21 @@ pub struct LoopScopeReq {
     /// was withheld. Raise it only if this client has the room.
     #[serde(default)]
     pub budget_chars: Option<usize>,
+    /// How many MILLISECONDS this call may spend before it answers with what
+    /// it has (default 20,000, or the server's REFLOW2_LOOP_STATUS_BUDGET_MS).
+    ///
+    /// The floor (questions, decisions, checks, divergences, follow-ups,
+    /// breaches, kept outputs) is always computed. Then the whole-design
+    /// analyses run cheapest first: the confirmation ledger, the reasoning,
+    /// whether a real result ever came back, gap detection, defect detection.
+    /// Any the time does not reach are listed
+    /// in `not_computed` with the call that computes each alone, their counts
+    /// read null, and the answer is never `clean`. The clock starts before the
+    /// call waits for the design, and 20 s is two thirds of flo2.io's 30 s
+    /// door. `0` asks for the floor alone; raise it where nothing in front of
+    /// the server gives up sooner.
+    #[serde(default)]
+    pub time_budget_ms: Option<u64>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]
@@ -8436,7 +8506,12 @@ impl ReflowService {
         // consults the fire-on-change cache, which is the thing being bypassed.
         // The cache is left untouched, so this never suppresses a hint another
         // read was going to make.
-        let status = g.loop_status().map_err(dyno_err)?;
+        // UNDER loop_status's OWN BUDGET (`crate::time_budget`): this read
+        // runs every analysis loop_status does, and an empty answer must not
+        // outlast the door the call came through.
+        let status = crate::time_budget::CallBudget::start(None)
+            .run(|| g.loop_status())
+            .map_err(dyno_err)?;
         let hint = if status.clean {
             "nothing here, and the loop is owed nothing else either — this is an all-clear, \
              not an empty list"
@@ -9454,6 +9529,12 @@ impl ReflowService {
             }
             _ => std::collections::BTreeSet::new(),
         };
+        // WHETHER THE CALLER HAS GONE, asked by the long reads at their check
+        // points (`CALLER_GONE`). Taken before the context moves into the call.
+        let gone: CallerGone = {
+            let ct = context.ct.clone();
+            std::sync::Arc::new(move || ct.is_cancelled())
+        };
         let tcc = rmcp::handler::server::tool::ToolCallContext::new(self, request, context);
         let answer = match unknown_writer {
             // A NAME NOTHING SERVES is refused as rmcp refuses it — the same
@@ -9520,7 +9601,13 @@ impl ReflowService {
                                         readable,
                                         crate::arguments::TRANSPORT.scope(
                                             transport,
-                                            far::FarScoped::new(far, self.tool_router.call(tcc)),
+                                            CALLER_GONE.scope(
+                                                gone,
+                                                far::FarScoped::new(
+                                                    far,
+                                                    self.tool_router.call(tcc),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                 ),
@@ -9687,43 +9774,49 @@ impl ServerHandler for ReflowService {
         // WHICH OF THE HUB'S MEMBERS THE HOST NAMED (`VIEW_GRAPH_IDS_META`):
         // the request's own `_meta`, never the session's.
         let view = readable_graph_ids_in(context.meta.get(VIEW_GRAPH_IDS_META));
-        VIEW_GRAPH_IDS
-            .scope(view, async move {
-                if VIEW_GRAPH_IDS.with(Option::is_some) {
-                    return view::serve(self, request, context, policy).await;
-                }
-                // A DESIGN THAT PINS OTHERS reads them from their committed
-                // exports (`tracked`): a search with `tracked_designs`, and a
-                // read aimed at one pinned design. Anything else comes back
-                // untouched and goes where every call went before.
-                let (request, context) = match tracked::serve(self, request, context, policy).await
-                {
-                    tracked::Served::Answered(answer) => return answer,
-                    tracked::Served::NotMine(request, context) => (request, context),
-                };
-                if request
-                    .arguments
-                    .as_ref()
-                    .is_some_and(|a| a.contains_key(view::MEMBER_ARGUMENT))
-                {
-                    // `member` aims a call at one design of a hub's view; with
-                    // no view named, it is refused before anything runs, in
-                    // words that say so rather than "unknown argument".
-                    crate::content_policy::shape(
-                        policy,
-                        Ok(rmcp::model::CallToolResponse::Complete(
-                            CallToolResult::error(vec![ContentBlock::text(
-                                view::member_without_a_view(&request.name),
-                            )]),
-                        )),
-                    )
-                } else {
-                    crate::content_policy::shape(
-                        policy,
-                        self.call_tool_unshaped(request, context).await,
-                    )
-                }
-            })
+        // ONE CLOCK PER CALL (`call_started`): a view's fan-out runs this call
+        // on the hub and each member inside this scope, and spends one budget.
+        let arrived = call_started().unwrap_or_else(std::time::Instant::now);
+        CALL_STARTED
+            .scope(
+                arrived,
+                VIEW_GRAPH_IDS.scope(view, async move {
+                    if VIEW_GRAPH_IDS.with(Option::is_some) {
+                        return view::serve(self, request, context, policy).await;
+                    }
+                    // A DESIGN THAT PINS OTHERS reads them from their committed
+                    // exports (`tracked`): a search with `tracked_designs`, and a
+                    // read aimed at one pinned design. Anything else comes back
+                    // untouched and goes where every call went before.
+                    let (request, context) =
+                        match tracked::serve(self, request, context, policy).await {
+                            tracked::Served::Answered(answer) => return answer,
+                            tracked::Served::NotMine(request, context) => (request, context),
+                        };
+                    if request
+                        .arguments
+                        .as_ref()
+                        .is_some_and(|a| a.contains_key(view::MEMBER_ARGUMENT))
+                    {
+                        // `member` aims a call at one design of a hub's view; with
+                        // no view named, it is refused before anything runs, in
+                        // words that say so rather than "unknown argument".
+                        crate::content_policy::shape(
+                            policy,
+                            Ok(rmcp::model::CallToolResponse::Complete(
+                                CallToolResult::error(vec![ContentBlock::text(
+                                    view::member_without_a_view(&request.name),
+                                )]),
+                            )),
+                        )
+                    } else {
+                        crate::content_policy::shape(
+                            policy,
+                            self.call_tool_unshaped(request, context).await,
+                        )
+                    }
+                }),
+            )
             .await
     }
 
