@@ -142,6 +142,11 @@ pub struct EdgeTypeSpec {
     pub also_called: AlsoCalled,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub properties: Vec<PropertySpec>,
+    /// True when the relation cannot hold from a node to itself: an edge from
+    /// a node to itself is refused (`EdgeTypeDef::irreflexive`). Served where
+    /// the whole reading is, where a caller is choosing between edges.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub irreflexive: bool,
 }
 
 /// An edge type that accepts a specific `from`/`to` pair, and on what basis.
@@ -326,6 +331,10 @@ fn edge_spec(name: &str, def: &EdgeTypeDef, detail: ReadingDetail) -> EdgeTypeSp
         },
         also_called: def.also_called.clone(),
         properties,
+        irreflexive: match detail {
+            ReadingDetail::Full => def.irreflexive,
+            ReadingDetail::OneLine => false,
+        },
     }
 }
 

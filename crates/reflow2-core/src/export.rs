@@ -447,6 +447,16 @@ pub struct ImportReport {
     #[serde(skip_serializing_if = "Vec::is_empty")]
     #[serde(default)]
     pub dangling_node_refs: Vec<String>,
+    /// Edges from a node to itself on a relation that cannot hold to itself
+    /// (the schema's `irreflexive`), which every other door now refuses. A
+    /// restore KEEPS them, for the reason `dangling_node_refs` gives: it
+    /// reproduces a state that existed, and refusing would leave a design
+    /// written before the rule with an unrestorable backup. Each is named
+    /// here, with what removes it, so keeping one is never silent
+    /// (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    #[serde(default)]
+    pub self_loops_kept: Vec<String>,
     /// What the store now holds that the document did NOT state, counted by
     /// `Type.property` (nodes) and `EDGE_TYPE.property` (edges): the schema
     /// defaults this reflow2 materialised and the migrations it applied (an
@@ -876,6 +886,7 @@ impl DesignGraph {
             // they need detection over the graph as it stands, which is a
             // different cause with a different fix.
             let mut dangling_node_refs: Vec<String> = Vec::new();
+            let mut self_loops_kept: Vec<String> = Vec::new();
             for (_index, node_id, _node_type, prop, target) in pending_refs {
                 if types.contains_key(target.as_str()) || existing.contains_key(&target) {
                     continue;
@@ -937,11 +948,25 @@ impl DesignGraph {
                                 ));
                             }
                         }
+                        let a_self_loop_that_means_nothing = e.from_id == e.to_id
+                            && self
+                                .schema()
+                                .edge_types
+                                .get(edge_type)
+                                .is_some_and(|d| d.irreflexive);
                         match self.create_edge_refs_checked_later(
                             edge_type, ft, &e.from_id, tt, &e.to_id, props,
                         ) {
                             Ok(stored) => {
                                 edges_written += 1;
+                                if a_self_loop_that_means_nothing {
+                                    self_loops_kept.push(format!(
+                                        "{edge_type} {} -> {} (a relation that cannot hold \
+                                         from a node to itself, kept as the document holds \
+                                         it; remove it with delete_edge)",
+                                        e.from_id, e.to_id
+                                    ));
+                                }
                                 for key in stored.properties.keys() {
                                     if !e.properties.contains_key(key) {
                                         *materialized
@@ -1006,6 +1031,7 @@ impl DesignGraph {
                 adopted_identity: adopted_identity.clone(),
                 migrated_edges,
                 dangling_node_refs,
+                self_loops_kept,
                 materialized,
                 twin_repairs,
                 removed_note: removed_note(&properties_removed, nodes_losing),

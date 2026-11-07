@@ -3189,8 +3189,17 @@ pub struct ReasoningReportReq {
     /// Characters the reply may spend (default 30,000). Over it, the page
     /// returns FEWER claims, each WHOLE, never every claim with its words cut:
     /// `next_offset` reads on, and `page` names the budget it was held to.
+    /// One claim larger than the budget comes as its head and its parts.
     #[serde(default)]
     pub budget_chars: Option<usize>,
+    /// Where in ONE CLAIM'S PARTS the page starts: its steps of support, its
+    /// failed routes and its objections, in that order, each part whole.
+    /// Pass the claim's `in_parts.next_part_offset`, with the same `offset`,
+    /// to read on. Given, the claim at `offset` comes as its head and its
+    /// parts from here, whatever the budget. Omitted, a claim comes whole,
+    /// and in parts from 0 only when it is larger than the budget.
+    #[serde(default)]
+    pub part_offset: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

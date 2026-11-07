@@ -92,6 +92,11 @@ schema:
   edge_types:
 
     DEPENDS_ON:
+      # IRREFLEXIVE: this relation cannot hold from a node to itself, so the graph's one
+      # edge write refuses an edge from a node to itself on every door (a restore keeps
+      # what its document holds and says so). Declared once here rather than per door
+      # (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+      irreflexive: true
       deliberately_open:
         from: [Component, Capability]
         to: [Component, Capability]
