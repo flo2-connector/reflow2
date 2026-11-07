@@ -181,6 +181,7 @@ schema_enum!(
 schema_enum!(constraint_direction_opt, "Constraint", "direction", opt);
 schema_enum!(constraint_priority_opt, "Constraint", "priority", opt);
 schema_enum!(decision_kind_opt, "Decision", "kind", opt);
+schema_enum!(decision_closing_it_opt, "Decision", "closing_it", opt);
 schema_enum!(design_epoch_status_req, "DesignEpoch", "status", req);
 schema_enum!(
     dimension_assessment_dimension_req,

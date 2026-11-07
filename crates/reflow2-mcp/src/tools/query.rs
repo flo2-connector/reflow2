@@ -1540,7 +1540,11 @@ impl ReflowService {
                        source, the points still contested, the disputes a Decision set to \
                        `contested` keeps open on purpose, and every claim with no support. \
                        `claim` reads under one claim; omitted, every claim, refuted ones \
-                       included. `what_this_means`: structure is not truth. Shown \
+                       included. `map: true` reads A PROOF SEARCH AS ONE PAGE instead: the \
+                       target, the holes under the claims they serve with their routes (open, \
+                       failed, waiting), each closed result in one line, the rounds since \
+                       progress toward the target and the branches to go back to — one reply at \
+                       any size, arguments fetched by id. `what_this_means`: structure is not truth. Shown \
                        here, never raised as a gap. Bounded by `budget_chars`: every claim \
                        comes back whole, and a long proof pages with `next_offset`. Writes \
                        nothing. \
@@ -1554,6 +1558,9 @@ impl ReflowService {
         Parameters(req): Parameters<ReasoningReportReq>,
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
+        if req.map == Some(true) {
+            return self.search_map_read(&g, req.claim.as_deref(), req.budget_chars);
+        }
         let report = g
             .reasoning_report_from(req.claim.as_deref(), req.limit, req.offset)
             .map_err(dyno_err)?;
@@ -2328,4 +2335,37 @@ fn fit_summary_beside_claims(mut out: JsonValue, budget: usize) -> JsonValue {
         out = whole(room);
     }
     out
+}
+
+impl ReflowService {
+    /// `reasoning_report` with `map: true`: THE MAP OF A PROOF SEARCH
+    /// (req:a-proof-round-starts-from-a-one-page-map-of-its-search,
+    /// reflow2_core::search_map), held to the reply budget by
+    /// [`reflow2_core::search_map::fit_map`], which names every cut.
+    fn search_map_read(
+        &self,
+        g: &reflow2_core::DesignGraph,
+        claim: Option<&str>,
+        budget: Option<usize>,
+    ) -> Result<CallToolResult, McpError> {
+        use reflow2_core::search_map::{SearchMapRead, fit_map};
+        let budget = budget.unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
+        match g.search_map(claim).map_err(dyno_err)? {
+            SearchMapRead::Map(m) => self.ok_read(g, fit_map(&m, budget)),
+            SearchMapRead::ChooseTarget(targets) => {
+                let because = if targets.is_empty() {
+                    "No proof search is recorded here, so there is no map to draw: no decision \
+                     point names a hole (`hole`, `serves` or `closing_it` on add_decision), and \
+                     none carries a route registered as `alt:route-<slug>`."
+                } else {
+                    "More than one proof search is recorded here, one per target below: pass \
+                     `claim` with the target whose map to draw."
+                };
+                self.ok_read(
+                    g,
+                    json!({"view": "search_map", "targets": targets, "because": because}),
+                )
+            }
+        }
+    }
 }

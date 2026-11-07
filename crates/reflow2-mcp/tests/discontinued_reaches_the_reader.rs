@@ -117,6 +117,9 @@ async fn withdrawn() -> ReflowService {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));
@@ -260,6 +263,9 @@ async fn a_proposed_decision_discontinues_nothing() {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));
@@ -392,6 +398,9 @@ async fn it_is_not_a_capability_only_field() {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));

@@ -63,6 +63,10 @@ const NOT_PROSE: &[(&str, NotProse)] = &[
     ("Constraint.source", Provenance),
     ("Constraint.unit", Category),
     ("Contributor.handle", Which),
+    // A proof hole's decision point names the claim it is the hole for and
+    // the claim it serves, by id (reflow2_core::search_map).
+    ("Decision.hole", Which),
+    ("Decision.serves", Which),
     ("DesignEpoch.checksum", Hash),
     ("DesignEpoch.created_at", When),
     ("DesignRule.category", Category),

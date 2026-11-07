@@ -180,6 +180,20 @@
           "null"
         ]
       },
+      "closing_it": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE\nCLAIM IT SERVES — `closes` (it is a premise that finishes a route to\nthat claim), `narrows` (a special case, or a class ruled out such as a\ncounterexample pruning: it cannot close the claim) or `restates` (an\nequivalent form: closing it closes the claim, and it is no smaller a\nstep). The search map reads it along the path to the target and says\nwhether closing the hole could close the target. Refused without\n`serves`, on this call or stored. NO DEFAULT: left out, it reads\nunsaid, never `closes`.",
+        "enum": [
+          "closes",
+          "narrows",
+          "restates",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "decision": {
         "default": null,
         "description": "What was decided.",
@@ -207,6 +221,14 @@
           "node"
         ],
         "type": "string"
+      },
+      "hole": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: THE STATEMENT THAT MUST BE SHOWN, by\nid — the lemma, conjecture or theorem this decision point is the hole\nfor (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-\nit-closes-that-claim). It must name a node of this design, and never\nthis decision. reasoning_report's search map (`map: true`) places the\nhole's routes and failed routes under it.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "id": {
         "description": "The decision's id — `dec:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives. An exploratory idea is conventionally `dec:idea-…`.",
@@ -266,6 +288,14 @@
         },
         "type": [
           "array",
+          "null"
+        ]
+      },
+      "serves": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: THE CLAIM THIS HOLE SERVES, by id —\nthe claim above it whose route needs it, or another hole's decision\npoint. Leave it out on the target's own hole. It must name a node of\nthis design, and never this decision or its `hole`. A property, never\nan edge: serving a claim is not supporting it.",
+        "type": [
+          "string",
           "null"
         ]
       },

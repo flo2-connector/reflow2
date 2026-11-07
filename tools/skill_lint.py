@@ -201,6 +201,17 @@ NON_TOOL_TERMS = {
     # a failed route's `would_hold_if` (req:a-failed-route-records-the-natural-
     # condition-under-which-it-would-hold, 2026-11-07).
     "would_hold_if",
+    # the map of a proof search (2026-11-07, req:a-proof-round-starts-from-a-
+    # one-page-map-of-its-search and its three siblings): a hole's decision
+    # point's `hole`, `serves` and `closing_it` with its values `closes`,
+    # `narrows` and `restates`; a route's `refuter`, `waiting`, `promise` and
+    # `promise_rank`, and `null` to unset `waiting`; the round's finding
+    # `fact_type` value `search_round`; and the map's `can_close_target`,
+    # `since_progress`, `forks_with_an_untried_branch` and
+    # `untried_branches_by_promise`.
+    "hole", "serves", "closing_it", "closes", "narrows", "restates", "refuter",
+    "waiting", "promise", "promise_rank", "null", "search_round", "can_close_target",
+    "since_progress", "forks_with_an_untried_branch", "untried_branches_by_promise",
     # claims, superseded mirrors and shared premises (PR A2, 2026-10-23): a
     # claim's `claimed_by` and the readings `claimed`, `withdrawn` and
     # `superseded`; `status_over_time`; an independence's `shared_premises`

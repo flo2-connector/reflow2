@@ -101,6 +101,11 @@ const CONTEXT: &[(&str, &str, &str)] = &[
     // failed_route`, below in ONLY_WITH.
     ("add_requirement", "route_to", "req:seed"),
     ("add_requirement", "fails_at_step", "req:seed"),
+    // A proof hole's decision point names the claim it serves and the
+    // statement it is the hole for, each a node of the design and never the
+    // same one (reflow2_core::search_map); the two seeds stand in.
+    ("add_decision", "serves", "req:seed"),
+    ("add_decision", "hole", "who:seed"),
 ];
 
 /// Enum values a tool publishes and then refuses on this path, with the reason

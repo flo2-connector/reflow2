@@ -53,6 +53,9 @@ fn idea(id: &str) -> DecisionReq {
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 
