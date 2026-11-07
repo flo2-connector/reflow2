@@ -113,6 +113,10 @@ Three records, three questions — kept separate on purpose:
   there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.97.0.md](upgrading-to-v0.97.0.md) — **upgrade everywhere, together**: the stamp
+  moves by an enum value (`Requirement.statement_kind` gains `failed_route`). A v0.96.0 binary
+  opens a v0.97.0 store with its "behind" warning and refuses one holding a failed route. Nothing
+  to migrate. Also: `loop_status` answers within a time budget, and an export's `reading_notes`.
 - [upgrading-to-v0.78.0.md](upgrading-to-v0.78.0.md) — **upgrade everywhere, together**: the stamp
   moves by an enum value (`Verification.last_reconciled_outcome` gains `blocked`). A v0.77.0
   binary does NOT refuse a design that stores it: it opens the design, re-stamps it, and writes an
