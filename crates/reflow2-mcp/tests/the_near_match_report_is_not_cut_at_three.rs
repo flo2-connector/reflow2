@@ -97,6 +97,9 @@ fn decision(id: &str, name: &str, body: &str) -> DecisionReq {
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

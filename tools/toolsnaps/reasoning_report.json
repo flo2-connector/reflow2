@@ -2,7 +2,7 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), its cited sources, and the routes tried toward it that fail (`failed_routes`: what was tried, the step where it fails and why — the space ruled out, which moves no reading). Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every claim, refuted ones included. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
+  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), its cited sources, and the routes tried toward it that fail (`failed_routes`: what was tried, the step where it fails and why — the space ruled out, which moves no reading). Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every claim, refuted ones included. `map: true` reads A PROOF SEARCH AS ONE PAGE instead: the target, the holes under the claims they serve with each hole's routes (open with its refuter, failed in one line, waiting with why), each closed result in one line, the rounds since the last progress that served the target, and the forks holding an untried branch — the read a proof round starts from, one reply at any size, arguments fetched by id. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -32,6 +32,14 @@
         "minimum": 0,
         "type": [
           "integer",
+          "null"
+        ]
+      },
+      "map": {
+        "default": null,
+        "description": "THE MAP OF A PROOF SEARCH instead of the claim-by-claim read\n(req:a-proof-round-starts-from-a-one-page-map-of-its-search): with\n`claim` the target, one reply at any size holding the target and how\nit reads, the holes under the claims they serve (each with its routes:\nopen with its refuter, failed in one line, waiting with why), each\nclosed result in one line, the rounds since the last progress that\nserved the target, and the forks that hold an untried branch, highest\nfirst. The arguments are not in it: they are fetched by id. `claim`\nleft out: the one search the design holds, or the targets to choose\nfrom. `limit` and `offset` do not apply; `budget_chars` does.",
+        "type": [
+          "boolean",
           "null"
         ]
       },

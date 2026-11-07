@@ -340,6 +340,21 @@ to it from the source or result that forced the turn (`review_relations`, with `
 what that source changed): the failed route, a counterexample, or a paper registered as an
 Artifact with its checksum (section 2a). Settling the Decision is the owner's word.
 
+**A hole says what it serves.** A hole being worked has a decision point (a Decision of kind
+`choice` its routes are registered under, work-a-proof-hole step 1). In the same `add_decision`
+call it names the statement that must be shown (`hole`), the claim it serves (`serves`) and what
+closing it does to that claim (`closing_it`): `closes` (a premise that finishes a route to it),
+`narrows` (a special case or a class ruled out: it cannot close the claim) or `restates` (an
+equivalent form). Left out, it reads unsaid, never `closes`. These are fields, not links: serving
+a claim is not supporting it, so no reading moves because of them.
+
+**A long search is read from its map.** `reasoning_report` with `claim` the target and `map: true`
+gives one page at any size: each hole under the claim it serves with its routes (open with its
+refuter, failed with where and why, waiting with its promise), whether closing each hole could
+close the target along the path, each closed result in one line, the rounds since progress
+toward the target, and the untried branches, most promising first. The arguments are fetched by
+id. Working the search round by round is work-a-proof-hole.
+
 ## 6. Read it back, in the reader's own words
 
 `reasoning_report` on the theorem reads the proof back: each claim with its computed truth, the

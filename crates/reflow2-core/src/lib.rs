@@ -106,6 +106,7 @@ pub mod schema;
 pub mod scope;
 pub mod seam;
 pub mod search;
+pub mod search_map;
 // Absorbed from dynograph-foundation at v0.12.0 — private on purpose; see each
 // module header for what was taken, what was left, and why an absorbed file
 // does not widen the public surface.

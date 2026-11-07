@@ -1049,6 +1049,88 @@ fn failed_route_fields_must_fit(
     Ok(())
 }
 
+/// A PROOF HOLE'S FIELDS FIT, OR NOTHING IS WRITTEN
+/// (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-it-closes-that-claim,
+/// reflow2_core::search_map): `closing_it` is one of `closes`, `narrows`,
+/// `restates`, and says what closing the hole does to the claim it `serves`,
+/// so it is refused with no `serves` on this call or stored; `hole` and
+/// `serves` name nodes of this design, never the decision itself, and never
+/// each other. Checked before the node is written.
+fn hole_fields_must_fit(
+    g: &reflow2_core::graph::DesignGraph,
+    req: &DecisionReq,
+    prior: Option<&reflow2_core::StoredNode>,
+    nulled: &[String],
+) -> Result<(), McpError> {
+    use reflow2_core::search_map::CLOSING_IT;
+    let refuse = |m: String| Err(McpError::invalid_params(m, None));
+    let stored = |k: &str| {
+        prior
+            .and_then(|n| n.properties.get(k))
+            .and_then(reflow2_core::Value::as_str)
+            .map(str::to_string)
+    };
+    let given = |v: &Option<String>| {
+        v.as_deref()
+            .map(str::trim)
+            .filter(|v| !v.is_empty())
+            .map(str::to_string)
+    };
+    let serves = given(&req.serves).or_else(|| {
+        if nulled.iter().any(|n| n == "serves") {
+            None
+        } else {
+            stored("serves")
+        }
+    });
+    let hole = given(&req.hole).or_else(|| stored("hole"));
+    if let Some(c) = req.closing_it.as_deref() {
+        if !CLOSING_IT.contains(&c) {
+            return refuse(format!(
+                "`closing_it` is `{c}`, and it says what closing a proof hole does to the claim it \
+                 serves: one of `closes` (a premise that finishes a route to it), `narrows` (a \
+                 special case or a class ruled out, which cannot close it) or `restates` (an \
+                 equivalent form). Leave it out when nobody can say: unsaid reads unsaid. \
+                 Nothing was written"
+            ));
+        }
+        if serves.is_none() {
+            return refuse(format!(
+                "`closing_it: {c}` says what closing '{}' does to the claim it serves, and it \
+                 names none: pass `serves` with that claim's id (or the decision point of the \
+                 hole above it). The target's own hole serves nothing and leaves `closing_it` \
+                 out. Nothing was written",
+                req.id
+            ));
+        }
+    }
+    for (field, v) in [("hole", given(&req.hole)), ("serves", given(&req.serves))] {
+        let Some(v) = v else { continue };
+        if v == req.id {
+            return refuse(format!(
+                "`{field}` names '{}' itself: a hole's decision point names the claim it is the \
+                 hole for and the claim it serves, never itself. Nothing was written",
+                req.id
+            ));
+        }
+        if g.node_types_holding(&v).map_err(dyno_err)?.is_empty() {
+            return refuse(format!(
+                "`{field}` names '{v}', which names no node in this design. Record that claim \
+                 first, or check the id. Nothing was written"
+            ));
+        }
+    }
+    if let (Some(h), Some(sv)) = (&hole, &serves)
+        && h == sv
+    {
+        return refuse(format!(
+            "`serves` and `hole` both name '{h}': a hole serves a claim ABOVE it, never the claim \
+             it is the hole for. Nothing was written"
+        ));
+    }
+    Ok(())
+}
+
 pub(crate) fn status_must_be_known(
     tool: &str,
     node_type: &str,
@@ -1578,6 +1660,42 @@ pub(crate) fn set_optional_props(
         return Ok(None);
     }
     Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
+}
+
+/// A route's rough rank is a whole number from 1, the most promising
+/// (reflow2_core::search_map). Refused before anything is written.
+pub(crate) fn promise_rank_must_fit(rank: Option<i64>) -> Result<(), McpError> {
+    match rank {
+        Some(r) if r < 1 => Err(McpError::invalid_params(
+            format!(
+                "`promise_rank` is {r}: a route's rough rank counts from 1, the most promising, \
+                 and a larger number is less promising. Leave it out for an unranked branch. \
+                 Nothing was written"
+            ),
+            None,
+        )),
+        _ => Ok(()),
+    }
+}
+
+/// Write a route's `promise_rank`, when said.
+pub(crate) fn set_promise_rank(
+    g: &mut reflow2_core::graph::DesignGraph,
+    id: &str,
+    rank: Option<i64>,
+) -> Result<Option<reflow2_core::StoredNode>, McpError> {
+    promise_rank_must_fit(rank)?;
+    let Some(r) = rank else {
+        return Ok(None);
+    };
+    Ok(Some(
+        g.upsert_node(
+            reflow2_core::nodes::node::ARTIFACT,
+            id,
+            reflow2_core::nodes::Props::new().set("promise_rank", r),
+        )
+        .map_err(dyno_err)?,
+    ))
 }
 
 /// [`set_optional_props`] for one boolean: written only when the caller said.
@@ -3942,6 +4060,7 @@ impl ReflowService {
         approver_must_exist(&g, req.approver.as_deref(), "add_decision")?;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        hole_fields_must_fit(&g, &req, prior.as_ref(), &nulled)?;
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let decision = __rf.str("decision", req.decision);
@@ -3957,6 +4076,20 @@ impl ReflowService {
         let mut stored = g
             .add_decision(&req.id, &name, &decision, req.rationale.as_deref())
             .map_err(dyno_err)?;
+        // A PROOF HOLE'S THREE FIELDS (reflow2_core::search_map), checked
+        // above by `hole_fields_must_fit` before anything was written.
+        if let Some(n) = set_optional_props(
+            &mut g,
+            node_ty,
+            &req.id,
+            &[
+                ("hole", req.hole.as_deref()),
+                ("serves", req.serves.as_deref()),
+                ("closing_it", req.closing_it.as_deref()),
+            ],
+        )? {
+            stored = n;
+        }
         // The kind rides THIS call rather than a follow-up setter. Two
         // order-dependent calls is precisely the hazard #392 documented, and
         // `cap:a-decision-can-be-created-already-settled` exists because the

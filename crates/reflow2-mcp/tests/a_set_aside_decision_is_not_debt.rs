@@ -78,6 +78,9 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
         status: status.map(str::to_string),
         approver: approver.map(str::to_string),
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 
@@ -289,6 +292,10 @@ async fn a_deferred_decision_cannot_have_alternatives_registered() {
             artifact_id: "art:road-a".into(),
             name: "Road A".into(),
             location: "designs/alt-a.json".into(),
+            refuter: None,
+            waiting: None,
+            promise: None,
+            promise_rank: None,
         }))
         .await
         .expect_err("a deferred decision is not an open decision point");
