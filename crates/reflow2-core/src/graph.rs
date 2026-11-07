@@ -1429,6 +1429,9 @@ impl DesignGraph {
         // or a second conclusion for one step. Answers nothing for any other
         // edge type.
         self.refuse_an_unsound_step_link(edge_type, from_id, to_id)?;
+        // A FAILED ROUTE SUPPORTS, CONCLUDES AND OBJECTS TO NOTHING
+        // (crate::failed_route), refused here for the same reason.
+        self.refuse_a_failed_route_link(edge_type, from_id, to_id, &props)?;
         self.engine.create_edge(
             &self.graph_id,
             edge_type,

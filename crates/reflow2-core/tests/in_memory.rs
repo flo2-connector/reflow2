@@ -53,6 +53,7 @@ mod a_design_that_publishes_contracts_publishes_intent;
 mod a_detector_consults_what_the_graph_already_holds;
 mod a_documentation_change_has_a_name;
 mod a_drawn_relation_is_read_back_as_a_sentence;
+mod a_failed_route_is_a_record_of_its_own;
 mod a_fields_own_terms_have_one_home;
 mod a_file_realizes_only_what_it_implements;
 mod a_finding_says_when_the_state_is_normal_for_the_phase;

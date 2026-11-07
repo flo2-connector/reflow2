@@ -108,6 +108,10 @@
             "node_type": {
               "type": "string"
             },
+            "route_to": {
+              "description": "Present ONLY on a failed route (statement_kind `failed_route`, a route tried that fails): the claim it was a route to. reasoning_report on that claim reads the route in full.",
+              "type": "string"
+            },
             "score": {
               "description": "BM25 relevance.",
               "type": "number"

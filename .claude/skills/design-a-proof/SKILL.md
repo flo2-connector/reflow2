@@ -60,6 +60,9 @@ already exist under another name.
   `taken_as_given`, which would file it beside the theorem as a foundation). It reads `bridge`;
   what rests on it reads `conditional` on it (`rests_on_bridges`); an objection aimed at it
   contests every claim resting on it, and the formal statement under it stands.
+- **A `failed_route`** is a route that was tried toward a claim and fails: a record of its own,
+  never prose on a finding (section 5a). It reads `failed_route`, and it supports and refutes
+  nothing.
 - **An `objection`, a `reply`, an `unstated_premise` or a `method_rule`** are the roles a line of
   reasoning that is not a proof gives its statements: see design-an-argument. So are `evidence`
   (a report or study, read `cited_as_evidence` and never proven) and a `judgement` drawn from it.
@@ -294,6 +297,48 @@ their answer.
 **Never confirm a step on the owner's behalf.** `confirmed_by` and `confirmed_how` are the owner's
 word or a checker's, never yours. Recording a proof does not prove it.
 
+## 5a. A route that fails is a record of its own, and a turn in the search names its cause
+
+Working a hole leaves routes that did not go through. Keep each one as a record, never as prose
+on a finding, so a later reader, person or agent, sees the space it rules out without trying it
+again. Search first (`search_design` with the approach's words or its obstacle's): the route may
+already be recorded.
+
+**A failed route** is a Requirement (`add_requirement`) with `statement_kind` `failed_route`:
+
+- `statement`: what was tried, the approach in words;
+- `route_to`: the claim it was a route to, the hole it tried to close. A step named here is read
+  under the claim it concludes;
+- `fails_at`: the step at which it fails, in words; and `fails_at_step`, that step or statement,
+  when the design holds it;
+- `fails_because`: why it fails there: the counterexample, the bound that is too weak, the
+  hypothesis the step needs and the route cannot supply;
+- `route_rests_on`: what the route rests on, by id: the lemmas, definitions and cited results it
+  built on;
+- `would_hold_if`, only when there is a natural one: the condition under which the route WOULD
+  go through ("if f is Boolean-valued"). It is read with the route and moves no reading.
+
+It reads `failed_route`. It supports nothing and refutes nothing: it is never a premise, an
+assumption or the conclusion of a step, and never an objection (`add_inference` and the store
+refuse each), so no claim reads proven, refuted, contested or open because of it, and it is never
+a gap or a debt. Its references are fields, not links, so a what-if on what it rests on never
+reaches it. **Never draw DEPENDS_ON from it to the step that fails**: name the step in
+`fails_at_step`. If what blocks the route also tells against the claim itself, record that as an
+objection of its own (section 5). To dispute the record ("the route does not fail there"), aim an
+objection at the route; it is read on the route and moves nothing else.
+
+`reasoning_report` on the claim reads each route whole under it (`failed_routes`), and the
+report's `failed_routes` counts them: how many, how many name both the step and the reason
+(`with_step_and_reason`), and which do not. `get_node` on a route reads it whole
+(`failed_route`), and `search_design` finds it by what was tried, where it fails and why, and
+names its `route_to`.
+
+**A turn in the search**, leaving one route for another, is a Decision (`add_decision`, `kind`
+`choice`) whose `decision` names the route left, the route taken and what changed. Draw `CAUSES`
+to it from the source or result that forced the turn (`review_relations`, with `evidence` saying
+what that source changed): the failed route, a counterexample, or a paper registered as an
+Artifact with its checksum (section 2a). Settling the Decision is the owner's word.
+
 ## 6. Read it back, in the reader's own words
 
 `reasoning_report` on the theorem reads the proof back: each claim with its computed truth, the
@@ -336,8 +381,10 @@ fewer steps than a claim it rests on.
 Each statement's `statement_reading` says what it is and how it reads: `taken_as_given` (a
 definition or axiom), `cited` or `cited_unverified` (a result from elsewhere), `assumed`,
 `discharged` or `not_assumed` (a hypothesis), `false` or `inconsistent` (a falsum, which carries
-no proof status of its own), `bridge`, `claimed`, `withdrawn`, `superseded`, `stated`,
-`open`, `refuted`, or the proof status above.
+no proof status of its own), `bridge`, `failed_route` (a route tried that fails: read under the
+claim it was a route to, in that claim's `failed_routes`), `claimed`, `withdrawn`, `superseded`,
+`stated`, `open`, `refuted`, or the proof status above. Say what the failed routes under a claim
+rule out, and never count one as support or as a hole.
 
 Then run `loop_status` and say what the reasoning owes: unconfirmed steps, uncited premises,
 unverified citations, anything not as stated (an undischarged assumption, a generalization that

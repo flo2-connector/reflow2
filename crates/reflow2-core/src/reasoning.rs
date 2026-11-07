@@ -545,6 +545,14 @@ pub struct ClaimReading {
     /// part 3).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rests_on_withdrawn: Vec<String>,
+    /// THE ROUTES TRIED TOWARD IT THAT FAIL, each read whole: what was tried,
+    /// the step at which it fails, why, and what it rests on
+    /// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-
+    /// reasoning, crate::failed_route). The space ruled out on the way to
+    /// it: none of them moves its `truth`, its proof status or anything else
+    /// read here. Absent when none was recorded.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub failed_routes: Vec<crate::failed_route::FailedRouteReading>,
 }
 
 /// One formula and the occurrences of it the walk read.
@@ -795,6 +803,14 @@ pub struct ReasoningReport {
     /// tests anything the walk reached.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub prediction_order: Vec<crate::prediction_order::OrderReading>,
+    /// THE FAILED ROUTES this read covers, tallied
+    /// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-
+    /// reasoning): how many, how many name the step at which they fail and
+    /// why, the claims they were tried toward, and in full any whose claim
+    /// the walk did not read. Each route toward a walked claim is read in
+    /// full under that claim. Absent when none was recorded.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub failed_routes: Option<crate::failed_route::FailedRoutesRead>,
     /// How many nodes the walk read.
     pub walked: usize,
     /// Whether the walk stopped at its cap ([`REASONING_MAX_LIMIT`]) before it
@@ -955,6 +971,11 @@ impl DesignGraph {
                 c.argues_for = edges;
             }
         }
+        // THE ROUTES TRIED TOWARD EACH WALKED CLAIM THAT FAIL, read whole
+        // under it (crate::failed_route). Read once for the whole walk, as
+        // `argues_for` is: a failed route is reached through no edge, so the
+        // walk itself never meets one.
+        let failed_routes = self.failed_routes_over(&mut claims, &order, whole)?;
         // Each premise by its name, so a step reads with the words of what it
         // rests on, not ids alone.
         let mut names: BTreeMap<String, Option<String>> = BTreeMap::new();
@@ -1218,6 +1239,15 @@ impl DesignGraph {
             if discharged_only.contains(&c.id) {
                 continue;
             }
+            // A FAILED ROUTE IS NOT AN UNSUPPORTED CLAIM, and never reads as a
+            // hole (crate::failed_route): it records a route ruled out, and
+            // is read under `failed_routes`.
+            if c.statement
+                .as_ref()
+                .is_some_and(|s| s.kind == crate::failed_route::FAILED_ROUTE)
+            {
+                continue;
+            }
             // A requirement whose reason to exist stands is not an
             // unsupported claim: its read-back names that reason and the
             // evidence beneath it.
@@ -1389,6 +1419,7 @@ impl DesignGraph {
             bridges,
             circular_steps,
             prediction_order,
+            failed_routes,
             capped,
             note,
             what_this_means: WHAT_THIS_MEANS,
@@ -1461,6 +1492,17 @@ impl DesignGraph {
         stated_on.sort();
         for t in stated_on {
             for n in self.scan_nodes(t)? {
+                // A FAILED ROUTE IS NOT A CLAIM of the reasoning: the claim it
+                // was a route to is, and the route is read under it
+                // (crate::failed_route).
+                if t.as_str() == node::REQUIREMENT
+                    && crate::failed_route::is_failed_route(&n.properties)
+                {
+                    if let Some(c) = self.failed_route_claim(&n.node_id)? {
+                        rest.insert(c);
+                    }
+                    continue;
+                }
                 if n.properties.contains_key("statement_kind") {
                     rest.insert(n.node_id);
                 }
@@ -1752,6 +1794,7 @@ impl DesignGraph {
             withdrawn: self.withdrawn_reading(id)?,
             superseded: self.superseded_reason(id)?,
             rests_on_withdrawn: self.rests_on_withdrawn(id)?,
+            failed_routes: Vec::new(),
             acceptance,
             chain,
             node_type,

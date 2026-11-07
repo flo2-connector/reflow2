@@ -183,6 +183,17 @@ NON_TOOL_TERMS = {
     # and reasoning_report's `circular_steps`.
     "bridge", "bridges", "rests_on_bridges", "bridges_lost", "by", "equivalent_to",
     "equivalents_reached", "circular_steps",
+    # a failed route is a record of its own (req:a-failed-route-is-a-record-of-
+    # its-own-read-back-with-the-reasoning, 2026-10-31): the `failed_route`
+    # statement kind and its fields (`route_to`, `fails_at`, `fails_at_step`,
+    # `fails_because`, `route_rests_on`), reasoning_report's and a claim's
+    # `failed_routes` with their `with_step_and_reason`, and add_decision's
+    # `decision` field for a turn in the search.
+    "failed_route", "failed_routes", "route_to", "fails_at", "fails_at_step",
+    "fails_because", "route_rests_on", "with_step_and_reason", "decision",
+    # a failed route's `would_hold_if` (req:a-failed-route-records-the-natural-
+    # condition-under-which-it-would-hold, 2026-11-07).
+    "would_hold_if",
     # claims, superseded mirrors and shared premises (PR A2, 2026-10-23): a
     # claim's `claimed_by` and the readings `claimed`, `withdrawn` and
     # `superseded`; `status_over_time`; an independence's `shared_premises`
