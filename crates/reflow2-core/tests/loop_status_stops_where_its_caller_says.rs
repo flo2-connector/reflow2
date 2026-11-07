@@ -86,10 +86,10 @@ fn told_to_stop_at_once_it_keeps_the_floor_and_names_every_analysis() {
         assert!(!n.call.is_empty() && !n.fields.is_empty(), "{n:?}");
     }
     assert_eq!(
-        part.not_computed[2].call.split(' ').next(),
+        part.not_computed[3].call.split(' ').next(),
         Some("detect_gaps")
     );
-    assert_eq!(part.not_computed[3].call, "detect_defects");
+    assert_eq!(part.not_computed[4].call, "detect_defects");
     // NULL, never zero.
     assert_eq!(part.unsurfaced_gaps, None);
     assert_eq!(part.answered_with_open_gap, None);
