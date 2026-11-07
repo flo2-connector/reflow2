@@ -58,6 +58,7 @@ pub mod shared;
 pub mod skill_variants;
 pub mod skills;
 pub mod sync_debt;
+pub mod time_budget;
 pub mod tool_listing;
 pub mod tools;
 pub mod upstream;

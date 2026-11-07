@@ -207,6 +207,46 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          who may not read the far design.",
     ),
     (
+        "reflow2-core/src/stop.rs",
+        "thread_local!",
+        "The declaration of CHECK, below: the stop question of the one read running on \
+         this thread (req:loop-status-answers-within-a-time-budget-and-names-the-sections-\
+         it-did-not-compute).",
+    ),
+    (
+        "reflow2-core/src/stop.rs",
+        "CHECK",
+        "A THREAD-LOCAL holding the stop question of the ONE synchronous read running on \
+         this thread: `stop::within` sets it around that read and restores what was there \
+         after, even on a panic, so it never outlives the read and is never seen by \
+         another. It is the CALLER's question (its deadline, whether it has gone), never a \
+         property of a design: two calls on one design, with different budgets, each ask \
+         their own.",
+    ),
+    (
+        "reflow2-mcp/src/service.rs",
+        "CALL_STARTED",
+        "A tokio TASK-LOCAL beside VIEW_GRAPH_IDS, and the same shape: when the ONE tool \
+         call now being served arrived, set by `call_tool` around that call and gone when \
+         it returns, so a hub's view spends one time budget across the designs it runs \
+         the call on. A fact about one call, never a property of a design.",
+    ),
+    (
+        "reflow2-mcp/src/service.rs",
+        "CALLER_GONE",
+        "A tokio TASK-LOCAL beside VIEW_GRAPH_IDS, and the same shape: whether the caller \
+         of the ONE tool call now being served has given up (rmcp's request token), set by \
+         `call_tool` around that call's handler and gone when it returns. A fact about one \
+         call, never a property of a design.",
+    ),
+    (
+        "reflow2-mcp/src/time_budget.rs",
+        "READ",
+        "loop_status's server-wide time budget, read once from REFLOW2_LOOP_STATUS_BUDGET_MS: \
+         a fact about how the process was launched (the door it is served behind), the same \
+         for every design it serves.",
+    ),
+    (
         "reflow2-core/src/inference/memo.rs",
         "thread_local!",
         "The declaration of TRUNCATIONS and SCOPE, below: the reasoning evaluation's \

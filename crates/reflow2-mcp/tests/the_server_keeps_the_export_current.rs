@@ -207,6 +207,7 @@ async fn a_hand_edit_is_left_alone_and_loop_status_says_so() {
         contributor_id: None,
         since_export: false,
         budget_chars: None,
+        time_budget_ms: None,
     })));
     let skipped = status
         .get("auto_export")

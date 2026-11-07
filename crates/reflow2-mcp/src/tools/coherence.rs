@@ -83,13 +83,20 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<GapScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // STOPS WHEN ITS CALLER HAS GONE, at the next detector
+        // (`crate::time_budget::CallBudget::caller_only`): a sweep nobody is
+        // waiting for is not run to its end holding the design.
+        let stop = crate::time_budget::CallBudget::caller_only();
         let g = self.graph.read().await;
         let budget = req.budget_chars.unwrap_or(DEFAULT_REPLY_BUDGET_CHARS);
         match req.scope.as_deref() {
             None => ok_json_or_why(
                 lift_parks_route(
-                    serde_json::to_value(g.detect_gaps_within(budget).map_err(dyno_err)?)
-                        .map_err(ser_err)?,
+                    serde_json::to_value(
+                        stop.run(|| g.detect_gaps_within(budget))
+                            .map_err(dyno_err)?,
+                    )
+                    .map_err(ser_err)?,
                 ),
                 "no open gap: every anchored gap has been put to the user or accepted — or the design holds nothing yet to have a gap about",
             ),
@@ -225,9 +232,12 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<LoopScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // THE CLOCK STARTS BEFORE THE LOCK (`crate::time_budget`): a wait
+        // behind a writer is spent from the budget, not added to it.
+        let budget = crate::time_budget::CallBudget::start(req.time_budget_ms);
         let g = self.graph.read().await;
-        let status = g
-            .loop_status_for(req.contributor_id.as_deref())
+        let status = budget
+            .run(|| g.loop_status_for(req.contributor_id.as_deref()))
             .map_err(dyno_err)?;
         let mut payload = serde_json::to_value(&status).map_err(ser_err)?;
         // The debt rollup is seven integers and a to-do list; the per-check roll
@@ -594,7 +604,20 @@ impl ReflowService {
         // 2,367 nodes carry `created_at`, so a time-based session boundary was
         // never computable; what the durable record does not yet hold is, and
         // is the more useful question anyway.
-        if req.since_export
+        // What this session introduced re-reads gap and defect detection, so
+        // an answer that did not compute them does not compute them here
+        // either, outside the budget.
+        if req.since_export && !status.not_computed.is_empty() {
+            if let Some(obj) = payload.as_object_mut() {
+                obj.insert(
+                    "since_export_unavailable".into(),
+                    json!(
+                        "not computed this call: it reads gap and defect detection, and this \
+                         answer did not compute all of them (`not_computed`)"
+                    ),
+                );
+            }
+        } else if req.since_export
             && let Some(graph_path) = self.graph_path.as_deref()
         {
             let mut baseline: std::collections::BTreeSet<String> =
@@ -927,6 +950,12 @@ impl ReflowService {
                 }
             }
         }
+        // WHAT THIS CALL WAS GIVEN AND SPENT, and whether the answer is whole
+        // (`crate::time_budget`). Always present, so a partial answer and a
+        // whole one never share a shape a reader could mistake.
+        if let Some(obj) = payload.as_object_mut() {
+            obj.insert("time_budget".into(), budget.block(&status.not_computed));
+        }
         // HELD TO THE REPLY BUDGET, LAST, so the reply that has to fit is the
         // one the caller receives. The scoped answer's `awaiting_word` grows
         // with the design — measured 2026-10-14 at 27,951 of 38,939 characters
@@ -942,7 +971,7 @@ impl ReflowService {
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
             "awaiting_word",
-            &["next"],
+            &["next", "not_computed"],
             "Each list is counted beside it (`breaches_open`, `next`). Read a row in full with \
              get_node on its id, the breaches with detect_gaps, or pass a larger budget_chars.",
         ))
@@ -1446,9 +1475,11 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // Stops when its caller has gone, as detect_gaps does.
+        let stop = crate::time_budget::CallBudget::caller_only();
         let g = self.graph.read().await;
         let mut out = match req.scope.as_deref() {
-            None => serde_json::to_value(g.detect_defects().map_err(dyno_err)?),
+            None => serde_json::to_value(stop.run(|| g.detect_defects()).map_err(dyno_err)?),
             Some(seed) => serde_json::to_value(
                 g.detect_defects_in_scope(seed, req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH))
                     .map_err(dyno_err)?,
