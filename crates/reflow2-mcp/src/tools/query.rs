@@ -1542,8 +1542,10 @@ impl ReflowService {
                        `claim` reads under one claim; omitted, every claim, refuted ones \
                        included. `what_this_means`: structure is not truth. Shown \
                        here, never raised as a gap. Bounded by `budget_chars`: every claim \
-                       comes back whole, and a long proof pages with `next_offset`. Writes \
-                       nothing. \
+                       comes back whole, and a long proof pages with `next_offset`; one claim \
+                       larger than the budget comes as its head (what it says, how it reads \
+                       and why) and its parts (steps, failed routes, objections), each whole, \
+                       read on with `part_offset`. Writes nothing. \
                        Ask for this to check an argument point by point: what backs each claim, \
                        what is disputed, and what has no evidence behind it.",
         title = "Reasoning Report",
@@ -1563,6 +1565,7 @@ impl ReflowService {
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
             req.budget_chars.is_none(),
+            req.part_offset,
         );
         self.ok_read(&g, bounded)
     }
@@ -2058,6 +2061,98 @@ pub(crate) fn generic_settle(
     reflow2_core::intent::newly_settles(node_type, id, prior.map(|p| &p.properties), &after)
 }
 
+/// The lists of ONE CLAIM that page when the claim is larger than its budget,
+/// in the order they are read: its steps of support, the routes tried toward it
+/// that fail, and the objections against it
+/// (req:one-claims-reasoning-read-fits-the-reply-door-at-any-size).
+const CLAIM_PARTS: [&str; 3] = ["support", "failed_routes", "objections"];
+
+/// One claim read as its HEAD and its PARTS. The head is the claim without
+/// [`CLAIM_PARTS`]: what it says, how it reads and why, and everything else it
+/// carries. Each part is one item of those lists, whole, as
+/// `{"part": i, "in": "<the list it belongs to>", "item": {...}}`, numbered in
+/// the order the lists are read.
+struct ClaimInParts {
+    head: JsonValue,
+    parts: Vec<JsonValue>,
+    counts: Vec<(&'static str, usize)>,
+}
+
+impl ClaimInParts {
+    fn of(row: &JsonValue) -> Self {
+        let mut head = row.clone();
+        let mut parts = Vec::new();
+        let mut counts = Vec::new();
+        if let Some(o) = head.as_object_mut() {
+            for list in CLAIM_PARTS {
+                let items = match o.remove(list) {
+                    Some(JsonValue::Array(a)) => a,
+                    _ => Vec::new(),
+                };
+                counts.push((list, items.len()));
+                for item in items {
+                    parts.push(json!({"part": parts.len(), "in": list, "item": item}));
+                }
+            }
+        }
+        Self {
+            head,
+            parts,
+            counts,
+        }
+    }
+
+    /// The premises the steps of support among `parts[from..to]` take up, so
+    /// a page cites the reasons of the parts it carries and no others.
+    fn premises_in(&self, from: usize, to: usize) -> std::collections::BTreeSet<String> {
+        let to = to.min(self.parts.len());
+        self.parts[from.min(to)..to]
+            .iter()
+            .filter(|p| p["in"] == "support")
+            .filter_map(|p| p["item"]["premises"].as_array())
+            .flatten()
+            .filter_map(|p| p["id"].as_str().map(str::to_string))
+            .collect()
+    }
+
+    /// "1 step of support, 15 failed routes and 2 objections".
+    fn counted(&self) -> String {
+        let said: Vec<String> = self
+            .counts
+            .iter()
+            .map(|(list, n)| {
+                let (one, many) = match *list {
+                    "support" => ("step of support", "steps of support"),
+                    "failed_routes" => ("failed route", "failed routes"),
+                    _ => ("objection", "objections"),
+                };
+                format!("{n} {}", if *n == 1 { one } else { many })
+            })
+            .collect();
+        match said.split_last() {
+            Some((last, rest)) if !rest.is_empty() => format!("{} and {last}", rest.join(", ")),
+            Some((last, _)) => last.clone(),
+            None => String::new(),
+        }
+    }
+}
+
+/// The budget a page needs, rounded up past what it measured.
+fn budget_for(chars: usize) -> usize {
+    (chars + 64).div_ceil(500) * 500
+}
+
+/// Append a sentence to `page.reads`.
+fn say_on_the_page(v: &mut JsonValue, sentence: &str) {
+    if let Some(r) = v
+        .get_mut("page")
+        .and_then(|p| p.get_mut("reads"))
+        .and_then(|r| r.as_str().map(str::to_string))
+    {
+        v["page"]["reads"] = json!(format!("{r} {sentence}"));
+    }
+}
+
 /// Hold one page of `reasoning_report` to `budget` characters by returning
 /// FEWER CLAIMS, each WHOLE, never every claim with its words cut
 /// (req:the-reasoning-read-back-keeps-the-words-of-the-claims-it-returns).
@@ -2072,16 +2167,37 @@ pub(crate) fn generic_settle(
 /// and `page` names the budget it was held to, so a budget lowered on the way
 /// shows in the result itself. Only if ONE claim and the summary still pass
 /// the budget is prose cut, and then only outside `claims`, never below
-/// NEVER_TRIM_BELOW characters; and if one claim will not fit beside the
-/// summary at that floor, the page returns NO claim, the summary, and the
-/// budget the claim needs (2026-10-27), so the reply keeps to its budget.
+/// NEVER_TRIM_BELOW characters.
+///
+/// ⭐ ONE CLAIM LARGER THAN THE BUDGET COMES IN PARTS
+/// (req:one-claims-reasoning-read-fits-the-reply-door-at-any-size). Measured
+/// 2026-11-07 in a proof trial: the target claim, under fifteen failed routes,
+/// read at 39,060 characters, and at budget_chars 3,000 the read answered "0 of
+/// 28 claims" with `next_offset` 0, which a harness read as nothing closed
+/// (fact:root-cause-the-aa-attempts-r-arm-round-4-read-as-failing-because-the-harness-stopped-on-an-empty-page-2026-11-07).
+/// Through flo2.io's door of about 30,000 characters that claim could not be
+/// read whole at any budget. Now such a claim comes as its HEAD (what it says,
+/// how it reads and why, everything but its parts, which `in_parts` counts) and
+/// as many of its PARTS as fit, each whole ([`ClaimInParts`]); `part_offset`
+/// reads on through them, and `next_offset` goes on to the next claim, so a
+/// reader following only `next_offset` still reads every claim's head. Only a
+/// claim whose HEAD will not fit beside the summary (its words alone larger
+/// than the budget) is answered with no claim and the budget it needs, as
+/// since 2026-10-27, so the reply keeps to its budget; and when the summary
+/// alone is over the budget at its floor, the least the read answers is that
+/// floor and the claim's head.
 ///
 /// EACH PREMISE'S REASON IS SAID ONCE (crate::said_once): a premise row
 /// carries a short reading, the page cites each full reason once in
 /// `premise_whys`, and an advisory a reason would repeat for every unverified
 /// citation is said once in `advisories` with the ids it applies to — built
 /// from the rows the page keeps, so it is counted against the budget too.
-fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> JsonValue {
+fn reasoning_page(
+    mut full: JsonValue,
+    budget: usize,
+    default_budget: bool,
+    part_offset: Option<usize>,
+) -> JsonValue {
     use crate::reply_budget::chars_of;
     let mut rows: Vec<JsonValue> = full
         .get_mut("claims")
@@ -2099,6 +2215,13 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
         format!("budget_chars {budget} (the default)")
     } else {
         format!("budget_chars {budget}")
+    };
+    let fit = |v: JsonValue| -> JsonValue {
+        if chars_of(&v) <= budget {
+            v
+        } else {
+            fit_summary_beside_claims(v, budget)
+        }
     };
     // `needs`: when no claim fits beside the summary, the budget the next one
     // needs, said on the page.
@@ -2158,6 +2281,228 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
         crate::said_once::cite_once(&mut v, &cited);
         v
     };
+    // THE CLAIM AT `offset`, IN PARTS: its head, then `k` of its parts from
+    // `from`, each whole. `whole_needs` is the budget its whole read needs;
+    // `part_needs`, when no part fits, the budget the part at `from` needs.
+    let split = rows.first().map(ClaimInParts::of);
+    let build_parted =
+        |from: usize, k: usize, whole_needs: usize, part_needs: Option<usize>| -> JsonValue {
+            let Some(split) = split.as_ref() else {
+                return build(0, None);
+            };
+            let n_parts = split.parts.len();
+            let start = from.min(n_parts);
+            let stop = (start + k).min(n_parts);
+            let parts_left = n_parts - stop;
+            let next_part = (stop < n_parts).then_some(stop);
+            let id = split.head["id"].as_str().unwrap_or_default().to_string();
+            let carried = match (stop > start, n_parts) {
+                (_, 0) => "It has no parts, so the head is the whole of it.".to_string(),
+                (true, _) if stop - start == 1 => {
+                    format!("This page carries part {start} of {n_parts} in `parts`.")
+                }
+                (true, _) => format!(
+                    "This page carries parts {start} to {} of {n_parts} in `parts`.",
+                    stop - 1
+                ),
+                (false, _) if from >= n_parts => format!(
+                    "part_offset {from} is past its last part: it has {n_parts}, numbered from \
+                     0, so this page carries none."
+                ),
+                (false, _) => "This page carries none of them.".to_string(),
+            };
+            let on = match (part_needs, next_part) {
+                (Some(m), Some(at)) => format!(
+                    "THE PART AT part_offset {at} DOES NOT FIT beside the head and the summary \
+                     in this budget: it needs budget_chars {m}. Read on with `offset: {offset}`, \
+                     `part_offset: {at}` and `budget_chars: {m}`. {parts_left} part(s) remain."
+                ),
+                (None, Some(at)) => format!(
+                    "{parts_left} part(s) remain: read on with `offset: {offset}` and \
+                     `part_offset: {at}`."
+                ),
+                (_, None) => "No part of it remains after this page.".to_string(),
+            };
+            let in_reads = format!(
+                "THIS CLAIM IS READ IN PARTS: its whole read needs budget_chars {whole_needs}, \
+                 and this reply was held to {held}. So it comes as its HEAD (what it says, how \
+                 it reads and why, and all it carries but its parts) and its PARTS, each whole: \
+                 {}, {n_parts} part(s) in all, in that order. Each part names the list it \
+                 belongs to (`in`); on this page the claim's own `support`, `failed_routes` and \
+                 `objections` are not listed, only counted here. {carried} {on}",
+                split.counted()
+            );
+            let mut counts = serde_json::Map::new();
+            for (list, n) in &split.counts {
+                counts.insert((*list).into(), json!(n));
+            }
+            let mut in_parts = json!({
+                "counts": counts,
+                "total": n_parts,
+                "part_offset": from,
+                "returned": stop - start,
+                "remaining": parts_left,
+                "next_part_offset": next_part,
+                "claim_needs_budget_chars": whole_needs,
+                "reads": in_reads,
+            });
+            if let (Some(m), Some(o)) = (part_needs, in_parts.as_object_mut()) {
+                o.insert("part_needs_budget_chars".into(), json!(m));
+            }
+            let mut head = split.head.clone();
+            if let Some(o) = head.as_object_mut() {
+                o.insert("in_parts".into(), in_parts);
+                o.insert(
+                    "parts".into(),
+                    JsonValue::Array(split.parts[start..stop].to_vec()),
+                );
+            }
+            let mut v = full.clone();
+            let end = offset + 1;
+            let remaining = total.saturating_sub(end);
+            let next = (end < total).then_some(end);
+            let after = match next {
+                Some(n) => {
+                    format!(" {remaining} claim(s) remain after it: read on with `offset: {n}`.")
+                }
+                None => " It is the last claim.".to_string(),
+            };
+            let reads = format!(
+                "1 of {total} claims, from offset {offset}: {id} IS LARGER THAN THIS BUDGET, so \
+                 it comes as its head and its parts, each whole; its `in_parts` says which parts \
+                 this page carries and how to read the rest (`part_offset`).{after} This reply \
+                 was held to {held}. The summary lists cover the whole walk, not this page."
+            );
+            if let Some(o) = v.as_object_mut() {
+                o.insert("claims".into(), JsonValue::Array(vec![head]));
+                o.insert("remaining".into(), json!(remaining));
+                match next {
+                    Some(n) => o.insert("next_offset".into(), json!(n)),
+                    None => o.remove("next_offset"),
+                };
+                o.insert(
+                    "page".into(),
+                    json!({
+                        "offset": offset,
+                        "returned": 1,
+                        "total": total,
+                        "remaining": remaining,
+                        "next_offset": next,
+                        "budget_chars": budget,
+                        "claim_in_parts": id,
+                        "part_offset": from,
+                        "next_part_offset": next_part,
+                        "claim_needs_budget_chars": whole_needs,
+                        "reads": reads,
+                    }),
+                );
+            }
+            let taken = split.premises_in(start, stop);
+            let cited: std::collections::BTreeMap<String, String> = moved
+                .first()
+                .map(|m| {
+                    m.iter()
+                        .filter(|(id, _)| taken.contains(id.as_str()))
+                        .map(|(k, v)| (k.clone(), v.clone()))
+                        .collect()
+                })
+                .unwrap_or_default();
+            crate::said_once::cite_once(&mut v, &cited);
+            v
+        };
+    // As many whole parts from `from` as fit beside the head and the summary,
+    // and whether even the head did.
+    let parted = |from: usize, whole_needs: usize| -> (JsonValue, bool) {
+        let n_parts = split.as_ref().map_or(0, |s| s.parts.len());
+        let avail = n_parts.saturating_sub(from);
+        // The most parts that fit, found by halving: a page with more parts
+        // leaves the summary less room, so whether it fits only turns from
+        // yes to no as the count grows, and each try costs a summary fit.
+        let with = |k: usize| -> Option<JsonValue> {
+            let v = fit(build_parted(from, k, whole_needs, None));
+            (chars_of(&v) <= budget).then_some(v)
+        };
+        let mut best: Option<(usize, JsonValue)> = with(0).map(|v| (0, v));
+        if best.is_some() {
+            let (mut lo, mut hi) = (0, avail);
+            while lo < hi {
+                let mid = (lo + hi).div_ceil(2);
+                match with(mid) {
+                    Some(v) => {
+                        lo = mid;
+                        best = Some((mid, v));
+                    }
+                    None => hi = mid - 1,
+                }
+            }
+        }
+        let none_fit = matches!(best, None | Some((0, _)));
+        if none_fit && from < n_parts {
+            let needs = budget_for(chars_of(&fit(build_parted(from, 1, whole_needs, None))));
+            let v = fit(build_parted(from, 0, whole_needs, Some(needs)));
+            let fits = chars_of(&v) <= budget;
+            return (v, fits);
+        }
+        match best {
+            Some((_, v)) => (v, true),
+            None => (fit(build_parted(from, 0, whole_needs, None)), false),
+        }
+    };
+    // THE CLAIM'S HEAD WILL NOT FIT beside the summary in this budget. With
+    // room for the summary at its floor, the page returns NO claim and says
+    // what the claim needs, so the reply keeps to its budget
+    // (fact:reasoning-report-at-6000-blanked-its-summary-and-answered-9529-characters-2026-10-27:
+    // until 2026-10-27 the claim was kept whole, the summary got 0 room, every
+    // name in it read "…", and the reply still passed the budget, 9,529
+    // characters to 6,000 on the sinogram design;
+    // req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on).
+    // With none, the least this read answers is the summary at its floor and
+    // the claim's head, never no claim at all.
+    let head_will_not_fit = |head_page: JsonValue, whole_needs: usize| -> JsonValue {
+        let head_needs = budget_for(chars_of(&head_page));
+        let mut zero = build(0, Some(whole_needs));
+        say_on_the_page(
+            &mut zero,
+            &format!(
+                "Its head alone, with its parts read in turn (`part_offset`), needs \
+                 budget_chars {head_needs}."
+            ),
+        );
+        if let Some(p) = zero.get_mut("page").and_then(|p| p.as_object_mut()) {
+            p.insert("head_needs_budget_chars".into(), json!(head_needs));
+        }
+        let zero = fit(zero);
+        if chars_of(&zero) <= budget {
+            return zero;
+        }
+        // THE SUMMARY'S OWN FLOOR, said where the reader looks: every count,
+        // one entry of each list, each name at NEVER_TRIM_BELOW characters. A
+        // budget below it is answered at the floor, never with names blanked.
+        let mut out = head_page;
+        let at_floor = chars_of(&out);
+        say_on_the_page(
+            &mut out,
+            &format!(
+                "THE SUMMARY ALONE IS OVER budget_chars {budget} AT ITS FLOOR (every count, one \
+                 entry of each list, each name at {} characters): that floor and the claim's \
+                 head, about {at_floor} characters, are the least this read answers.",
+                crate::reply_budget::NEVER_TRIM_BELOW
+            ),
+        );
+        settle_reply_chars(&mut out);
+        out
+    };
+    // ASKED FOR IN PARTS: the claim at `offset`, from `part_offset`, whatever
+    // the budget, so a reader paging through it never has its cursor moved.
+    if let (Some(from), true) = (part_offset, page_len > 0) {
+        let whole_needs = budget_for(chars_of(&fit(build(1, None))));
+        let (out, fits) = parted(from, whole_needs);
+        return if fits {
+            out
+        } else {
+            head_will_not_fit(out, whole_needs)
+        };
+    }
     // Estimate from what each claim costs, then confirm on the real reply:
     // the page block's numbers move its own size by a few characters.
     let costs: Vec<usize> = rows.iter().map(chars_of).collect();
@@ -2182,44 +2527,15 @@ fn reasoning_page(mut full: JsonValue, budget: usize, default_budget: bool) -> J
     if keep == 0 || chars_of(&one) <= budget {
         return one;
     }
-    // ONE CLAIM WILL NOT FIT BESIDE THE SUMMARY AT ITS FLOOR
-    // (fact:reasoning-report-at-6000-blanked-its-summary-and-answered-9529-characters-2026-10-27):
-    // until 2026-10-27 the claim was kept whole, the summary got 0 room, every
-    // name in it read "…", and the reply still passed the budget (9,529
-    // characters to 6,000 on the sinogram design). Now the summary keeps its
-    // room, no claim is returned, and the page says where to read on and what
-    // budget the claim needs, rounded up past what it measured
-    // (req:no-reply-grows-with-the-design-each-fills-its-budget-and-says-how-to-read-on).
-    let needs = (chars_of(&one) + 64).div_ceil(500) * 500;
-    let zero = build(0, Some(needs));
-    let mut zero = if chars_of(&zero) <= budget {
-        zero
+    // ONE CLAIM WILL NOT FIT WHOLE BESIDE THE SUMMARY AT ITS FLOOR: it comes
+    // in parts, from its first.
+    let whole_needs = budget_for(chars_of(&one));
+    let (out, fits) = parted(0, whole_needs);
+    if fits {
+        out
     } else {
-        fit_summary_beside_claims(zero, budget)
-    };
-    // THE SUMMARY'S OWN FLOOR, said where the reader looks: every count, one
-    // entry of each list, each name at NEVER_TRIM_BELOW characters. A budget
-    // below it is answered at the floor, never with names blanked.
-    let at_floor = chars_of(&zero);
-    if at_floor > budget {
-        if let Some(reads) = zero
-            .get_mut("page")
-            .and_then(|p| p.get_mut("reads"))
-            .and_then(|r| r.as_str().map(str::to_string))
-            .map(|r| {
-                format!(
-                    "{r} THE SUMMARY ALONE IS OVER budget_chars {budget} AT ITS FLOOR (every \
-                     count, one entry of each list, each name at {} characters): that floor, \
-                     about {at_floor} characters, is the least this read answers.",
-                    crate::reply_budget::NEVER_TRIM_BELOW
-                )
-            })
-        {
-            zero["page"]["reads"] = json!(reads);
-        }
-        settle_reply_chars(&mut zero);
+        head_will_not_fit(out, whole_needs)
     }
-    zero
 }
 
 /// `reply_chars` in the budget block counts the reply it is in: two passes

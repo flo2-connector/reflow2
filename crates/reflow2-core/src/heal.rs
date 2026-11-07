@@ -2778,6 +2778,35 @@ impl DesignGraph {
         // corroboration at all. A property the detector ignores is a property
         // that lies.
         for e in self.all_edges_of_type(edge::CONTRADICTS, &index)? {
+            // A NODE RECORDED AS CONTRADICTING ITSELF is no pair to reconcile:
+            // CONTRADICTS cannot hold from a node to itself, and since
+            // 2026-11-07 no door writes one. One stored before that (a restore
+            // keeps it) is said as what it is, with what removes it, and never
+            // passed over as an objection or a refutation below. Until then it
+            // read "'X' and 'X' contradict each other", with a Decision to
+            // reconcile them as the fix
+            // (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+            if e.from_id == e.to_id {
+                let affected = vec![e.from_id.clone(), e.to_id.clone()];
+                issues.push(HealIssue {
+                    id: issue_id(HealCategory::Contradiction, &affected),
+                    category: HealCategory::Contradiction,
+                    severity: HealSeverity::Warning,
+                    message: format!(
+                        "'{}' is recorded as contradicting itself: CONTRADICTS cannot hold \
+                         from a node to itself, so the edge means nothing and nothing rests on \
+                         it. It was written before the store refused one; remove it with \
+                         delete_edge (CONTRADICTS, from and to '{}').",
+                        e.from_id, e.from_id
+                    ),
+                    suggested_fix_type: None,
+                    repair_is_a_judgement: None,
+                    affected_ids: affected,
+                    hubs: Vec::new(),
+                    refusal: None,
+                });
+                continue;
+            }
             if e.properties
                 .get("alignment")
                 .and_then(Value::as_str)
@@ -3870,6 +3899,17 @@ impl DesignGraph {
                         issue.message
                     ),
                 }),
+                // A node recorded as contradicting itself is no pair to
+                // reconcile: what removes it is a delete_edge, said in its
+                // message, and no Decision is drafted for it.
+                HealCategory::Contradiction
+                    if issue.affected_ids.first() == issue.affected_ids.last() =>
+                {
+                    skipped_operations.push(SkippedOperation {
+                        reference: issue.id.clone(),
+                        reason: issue.message.clone(),
+                    })
+                }
                 HealCategory::Contradiction => generated_content.push(GeneratedContentStub {
                     for_issue: issue.id.clone(),
                     kind: "Decision".to_string(),

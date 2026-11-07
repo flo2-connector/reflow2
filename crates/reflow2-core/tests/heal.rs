@@ -937,21 +937,31 @@ fn a_self_loop_duplicates_edge_never_becomes_a_merge() {
     // itself (re-pointing skipped every edge, the delete removed the survivor),
     // reported as applied/verified. It must be refused at derivation, which
     // covers propose and apply alike.
+    //
+    // Since 2026-11-07 no door writes `x DUPLICATES x` (the schema declares
+    // DUPLICATES irreflexive), but a restore keeps one a document written
+    // before that holds, so the derivation's guard still has stored ones to
+    // meet: the self-loop is restored here rather than drawn.
     let mut g = DesignGraph::open_in_memory().unwrap();
     g.add_capability("cap:a", "A", "does a", None).unwrap();
-    g.create_edge(
-        "DUPLICATES",
-        node::CAPABILITY,
-        "cap:a",
-        node::CAPABILITY,
-        "cap:a",
+    let mut doc = g.export_graph().unwrap();
+    doc.edges.push(reflow2_core::export::ExportedEdge {
+        edge_type: "DUPLICATES".to_string(),
+        from_id: "cap:a".to_string(),
+        to_id: "cap:a".to_string(),
         // `asserted` on purpose: BL-53's guard lives in the merge DERIVATION,
         // so the self-loop has to reach it to be refused there. A `suspected`
         // self-loop never gets that far, which would make this test pass for
         // the wrong reason and leave the real guard uncovered.
-        Props::new().set("basis", "asserted"),
-    )
-    .unwrap();
+        properties: [(
+            "basis".to_string(),
+            reflow2_core::foundation::core::Value::from("asserted"),
+        )]
+        .into_iter()
+        .collect(),
+    });
+    let mut g = DesignGraph::open_in_memory().unwrap();
+    g.import_graph(&doc).unwrap();
 
     let proposal = g.propose_heal(HealOptions::default()).unwrap();
     assert!(
