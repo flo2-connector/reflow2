@@ -103,7 +103,7 @@ skill names and reported that day's eight aliased ones — plus nine others — 
 
 **Group them by when a person would reach for one** — starting a design, capturing intent, reading
 where it stands, changing something, connecting things up — rather than alphabetically. The
-grouping is the part that makes a list of forty usable; a flat dump is the same
+grouping is the part that makes a list of forty-one usable; a flat dump is the same
 under-reporting failure by a different route.
 
 ⚠️ **A LIST IS ORIENTATION, NOT THE FIRST MOVE.** Give them their one command from §3 first, and

@@ -1656,8 +1656,11 @@ pub fn fixed_variable(entry: &str) -> &str {
 /// (req:evidence-carries-its-source-grade-and-confidence-and-is-not-intent);
 /// `bridge` is a translation premise carrying a formal statement into another
 /// field's claim (dec:idea-a-bridge-premise-says-a-formal-statement-models-a-
-/// claim, option b).
-pub const STATEMENT_KINDS: [&str; 16] = [
+/// claim, option b); `failed_route` is a route tried toward a claim that fails,
+/// a record of the space ruled out that supports and refutes nothing
+/// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning,
+/// crate::failed_route).
+pub const STATEMENT_KINDS: [&str; 17] = [
     "theorem",
     "lemma",
     "corollary",
@@ -1674,6 +1677,7 @@ pub const STATEMENT_KINDS: [&str; 16] = [
     "evidence",
     "judgement",
     "bridge",
+    "failed_route",
 ];
 
 /// Whether a node is EVIDENCE: a report, study, survey or measurement
@@ -3845,6 +3849,16 @@ impl DesignGraph {
                 ),
             ));
         }
+        // A FAILED ROUTE SUPPORTS NOTHING (req:a-failed-route-is-a-record-of-
+        // its-own-read-back-with-the-reasoning, crate::failed_route): a record
+        // of a route tried that fails, never `holds`, whatever steps or status
+        // it carries. Read before every other predicate, so nothing below can
+        // lend it a truth; an objection aimed at the record still counts, in
+        // `truth_full`, and moves nothing but the record.
+        if node_type == node::REQUIREMENT && crate::failed_route::is_failed_route(&n.properties) {
+            let (truth, why) = self.failed_route_truth(id)?;
+            return Ok(Read::plain(truth, why));
+        }
         let status = prop(&n.properties, "status").map(str::to_string);
         if node_type == node::REQUIREMENT && status.as_deref() == Some("dropped") {
             return Ok(Read::plain(
@@ -4884,6 +4898,31 @@ impl DesignGraph {
                 "false"
             };
             return Ok(Some(StatementReading { kind, reads, why }));
+        }
+        // A FAILED ROUTE READS AS ONE (crate::failed_route): never `open`,
+        // `stated` or `unproven`, so it never reads as a hole. Read before the
+        // proof status, which it never has.
+        if kind == crate::failed_route::FAILED_ROUTE && ty == node::REQUIREMENT {
+            // An objection to the record STANDS when it is neither established
+            // nor answered. Read from the objections themselves, never from
+            // `contested_by`: that list is filled only for a claim whose own
+            // support holds, and a failed route's never does, so it is always
+            // empty here and the dispute would go unsaid.
+            let contested = truth == Truth::Unknown && {
+                let lost = BTreeSet::new();
+                let mut ev = Eval::new(self, &lost);
+                let (own_truth, own_why) = self.failed_route_truth(id)?;
+                let own = Read::plain(own_truth, own_why);
+                self.objections_within(id, &mut ev, INFERENCE_DEPTH, &own)?
+                    .iter()
+                    .any(|o| o.standing == "stands")
+            };
+            let why = self.failed_route_statement(id, truth, &why, contested)?;
+            return Ok(Some(StatementReading {
+                kind,
+                reads: "failed_route",
+                why,
+            }));
         }
         let proof = self.proof_reading(id)?;
         // AN OBJECTION OR A REPLY READS BY HOW IT STANDS AGAINST WHAT IT
@@ -7538,6 +7577,37 @@ impl DesignGraph {
         };
         // The conclusion.
         let conclusion_type = self.one_type_for(&spec.conclusion, "conclusion")?;
+        // A FAILED ROUTE TAKES PART IN NO STEP (crate::failed_route): neither
+        // its conclusion, nor a premise, an assumption, the record that its
+        // cases are all the cases, or its rule. Refused here, before anything
+        // is written; the store refuses the link on every other door.
+        if self.is_a_failed_route(&spec.conclusion)? {
+            return Err(invalid(
+                "conclusion",
+                crate::failed_route::failed_route_refusal(
+                    &spec.conclusion,
+                    "the conclusion of a step",
+                ),
+            ));
+        }
+        for (field, ids) in [
+            ("premises", spec.premises.iter().collect::<Vec<_>>()),
+            ("assumed", spec.assumed.iter().collect()),
+            ("cases_exhaustive", spec.cases_exhaustive.iter().collect()),
+            ("rule_node", spec.rule_node.iter().collect()),
+        ] {
+            for id in ids {
+                if self.is_a_failed_route(id)? {
+                    return Err(invalid(
+                        field,
+                        crate::failed_route::failed_route_refusal(
+                            id,
+                            "a premise, an assumption or the rule of a step",
+                        ),
+                    ));
+                }
+            }
+        }
         if let Some(had) = self.conclusion_of(&spec.id)?
             && had != spec.conclusion
         {

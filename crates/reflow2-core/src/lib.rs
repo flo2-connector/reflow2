@@ -57,6 +57,7 @@ pub mod drift;
 pub mod edge_prose;
 pub mod equivalence;
 pub mod export;
+pub mod failed_route;
 pub mod far;
 pub mod fielded;
 pub mod flow;

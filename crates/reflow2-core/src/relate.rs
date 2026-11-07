@@ -626,6 +626,13 @@ impl DesignGraph {
             if r.properties.contains_key("no_relation_note") || self.is_parked(&r.node_id)? {
                 continue;
             }
+            // A FAILED ROUTE IS NOT INTENT (crate::failed_route): it records a
+            // route ruled out, joined to its claim by `route_to`, a field and
+            // never an edge. One that names no claim is said in the
+            // read-back (`missing`), never raised: a thinner map is not a debt.
+            if crate::failed_route::is_failed_route(&r.properties) {
+                continue;
+            }
             if !linked_by(&r.node_id)? {
                 out.push(r.node_id.clone());
             }

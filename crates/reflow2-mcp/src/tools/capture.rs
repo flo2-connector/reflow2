@@ -966,6 +966,89 @@ pub(crate) fn approver_must_exist(
 /// node behind. (Until 2026-10-19 an unknown Decision status was not refused at
 /// all: it did not settle, so it was not written, and the node landed
 /// `proposed` without a word.)
+/// A FAILED ROUTE'S FIELDS FIT, OR NOTHING IS WRITTEN
+/// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning,
+/// reflow2_core::failed_route): `route_to`, `fails_at`, `fails_at_step`,
+/// `fails_because`, `route_rests_on` and `would_hold_if` belong to a statement of kind
+/// `failed_route` and are refused on any other; every id they name must be a
+/// node of this design, and `route_to` not the route itself; and a record that
+/// already takes part in a step or objects to something cannot become one.
+/// Checked before the node is written, so a refusal leaves nothing behind.
+fn failed_route_fields_must_fit(
+    g: &reflow2_core::graph::DesignGraph,
+    req: &RequirementReq,
+    prior: Option<&reflow2_core::StoredNode>,
+) -> Result<(), McpError> {
+    use reflow2_core::failed_route::FAILED_ROUTE;
+    let refuse = |m: String| Err(McpError::invalid_params(m, None));
+    let was_one = prior.is_some_and(|n| reflow2_core::failed_route::is_failed_route(&n.properties));
+    let will_be_one = match req.statement_kind.as_deref() {
+        Some(k) => k == FAILED_ROUTE,
+        None => was_one,
+    };
+    let given: Vec<&str> = [
+        ("route_to", req.route_to.is_some()),
+        ("fails_at", req.fails_at.is_some()),
+        ("fails_at_step", req.fails_at_step.is_some()),
+        ("fails_because", req.fails_because.is_some()),
+        ("route_rests_on", req.route_rests_on.is_some()),
+        ("would_hold_if", req.would_hold_if.is_some()),
+    ]
+    .into_iter()
+    .filter_map(|(f, said)| said.then_some(f))
+    .collect();
+    if !will_be_one {
+        if !given.is_empty() {
+            return refuse(format!(
+                "{} belong to a FAILED ROUTE only: a statement of kind `failed_route`, a route \
+                 that was tried and fails. Pass `statement_kind: failed_route` to record '{}' as \
+                 one, or leave them out",
+                given
+                    .iter()
+                    .map(|f| format!("`{f}`"))
+                    .collect::<Vec<_>>()
+                    .join(", "),
+                req.id
+            ));
+        }
+        return Ok(());
+    }
+    if !was_one && let Some(why) = g.failed_route_conflict(&req.id).map_err(dyno_err)? {
+        return refuse(why);
+    }
+    let mut named: Vec<(&str, &str)> = Vec::new();
+    for (field, value) in [
+        ("route_to", req.route_to.as_deref()),
+        ("fails_at_step", req.fails_at_step.as_deref()),
+    ] {
+        if let Some(v) = value.map(str::trim).filter(|v| !v.is_empty()) {
+            named.push((field, v));
+        }
+    }
+    for v in req.route_rests_on.iter().flatten() {
+        let v = v.trim();
+        if !v.is_empty() {
+            named.push(("route_rests_on", v));
+        }
+    }
+    for (field, id) in named {
+        if field == "route_to" && id == req.id {
+            return refuse(format!(
+                "`route_to` names '{id}' itself: a failed route is a route TO another claim — \
+                 the hole it tried to close"
+            ));
+        }
+        if id != req.id && g.node_types_holding(id).map_err(dyno_err)?.is_empty() {
+            return refuse(format!(
+                "`{field}` names '{id}', which names no node in this design. A failed route's \
+                 references must name records the design holds; check the id, or record that \
+                 node first. Nothing was written"
+            ));
+        }
+    }
+    Ok(())
+}
+
 pub(crate) fn status_must_be_known(
     tool: &str,
     node_type: &str,
@@ -1895,6 +1978,7 @@ impl ReflowService {
         approver_must_exist(&g, req.approver.as_deref(), "add_requirement")?;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        failed_route_fields_must_fit(&g, &req, prior.as_ref())?;
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
@@ -1987,6 +2071,13 @@ impl ReflowService {
                 ("reported_at", req.reported_at.as_deref()),
                 ("confidence", req.confidence.as_deref()),
                 ("same_formula_as", req.same_formula_as.as_deref()),
+                // A FAILED ROUTE's own fields (reflow2_core::failed_route),
+                // checked above by `failed_route_fields_must_fit`.
+                ("route_to", req.route_to.as_deref()),
+                ("fails_at", req.fails_at.as_deref()),
+                ("fails_at_step", req.fails_at_step.as_deref()),
+                ("fails_because", req.fails_because.as_deref()),
+                ("would_hold_if", req.would_hold_if.as_deref()),
             ],
         )?;
         set_optional_lists(
@@ -1997,6 +2088,7 @@ impl ReflowService {
                 ("variables", req.variables.as_ref()),
                 ("silent_on", req.silent_on.as_ref()),
                 ("fixes", req.fixes.as_ref()),
+                ("route_rests_on", req.route_rests_on.as_ref()),
             ],
         )?;
         if not_drawn.is_none() {
