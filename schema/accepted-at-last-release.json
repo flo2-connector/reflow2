@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.96.0",
+  "reflow2_version": "0.97.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -1361,6 +1361,15 @@
       "distinct_from": {
         "type": "list:string"
       },
+      "fails_at": {
+        "type": "string"
+      },
+      "fails_at_step": {
+        "type": "string"
+      },
+      "fails_because": {
+        "type": "string"
+      },
       "fixes": {
         "type": "list:string"
       },
@@ -1423,6 +1432,12 @@
       "reported_at": {
         "type": "string"
       },
+      "route_rests_on": {
+        "type": "list:string"
+      },
+      "route_to": {
+        "type": "string"
+      },
       "same_formula_as": {
         "type": "string"
       },
@@ -1457,6 +1472,7 @@
           "corollary",
           "definition",
           "evidence",
+          "failed_route",
           "falsum",
           "hypothesis",
           "judgement",
@@ -1484,6 +1500,9 @@
       },
       "variables": {
         "type": "list:string"
+      },
+      "would_hold_if": {
+        "type": "string"
       }
     },
     "Resource": {

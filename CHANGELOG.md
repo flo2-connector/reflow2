@@ -31,6 +31,234 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.97.0] — 2026-11-07
+
+**Minor. A route tried in a proof that fails is a record of its own, a served skill works one
+hole in a proof refute-first, `loop_status` answers within a time budget and names what it left
+out, a saved design says where an accepted checksum is, and the macOS binaries are built on
+macOS 15.** It contains #826 to #829. On a design of 8,696 nodes `loop_status` took 38.1 s on
+flo2.io's hardware, past the 30 s its gateway waits, so the call every session is told to make
+answered nothing; it now stops at 20 s by default and says which analyses it did not reach.
+**What to do:** upgrade every seat together before anyone records a failed route
+([docs/upgrading-to-v0.97.0.md](docs/upgrading-to-v0.97.0.md)). On the VS Code terminal route,
+run `reflow2 update` in each repository after installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.96.0 binary (sha256 `83324513…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Two tools take new inputs: `add_requirement` takes
+`route_to`, `fails_at`, `fails_at_step`, `fails_because`, `route_rests_on` and `would_hold_if`,
+and `loop_status` takes `time_budget_ms`. `search_design`'s output schema declares `route_to`, and
+`reasoning_report`'s description names failed routes. New in replies: `loop_status`'s
+`time_budget` and `not_computed`, `reasoning_report`'s `failed_routes`, `get_node`'s
+`failed_route`, and an export's `reading_notes`. Skills go from 35 to 36: `work-a-proof-hole` is
+added, and `design-a-proof` and `help` change in their own words. `get_instructions` is
+unchanged; `describe_schema` gains the new value and properties. The connect-time instructions
+grow by the new skill's line: 2,911 characters on stdio (0.96.0: 2,862) and 3,169 behind
+`--http-trusted-gateway flo2.io` (0.96.0: 3,120), both measured on the machine 0.96.0's figures
+came from. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp moves by vocabulary**: `Requirement.statement_kind` gains `failed_route`, and
+  Requirement gains the six optional properties above. No node or edge type is added (28 and 69,
+  and 83 enum vocabularies, as in 0.96.0). Measured at this cut: a 0.96.0 seat opens a store this
+  release wrote, with its "behind" warning, and refuses one holding a failed route; it refuses
+  this release's exports without `--accept-newer`, and with it still refuses one holding a failed
+  route ([docs/upgrading-to-v0.97.0.md](docs/upgrading-to-v0.97.0.md)). Upgrade every seat
+  together.
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **A symptom contained, not a cause fixed.** `changelog_view` takes no reply bound. In #828 it
+  answered 55,395 characters on the test suite's generated design, after that design's random
+  stream moved, and failed `replies_are_bounded`. #828 put it back on that check's register of
+  known-unbounded reads, which makes the check pass and bounds nothing. Measured at this cut on a
+  copy of reflow2's own design (8,499 nodes): `changelog_view` from v0.90.0 to v0.95.0 answers
+  382,900 characters, and from v0.94.0 to v0.95.0 15,304. A host that holds replies to 30,000
+  characters, as flo2.io does, refuses the larger one. The fix is still owed: `changelog_view`
+  takes `budget_chars` like the other bounded reads
+  (`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`, which
+  names three more reads in the same state). Until then, ask it for a narrow window.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets everything here that is not about a server. Checked through the
+door (`reflow2 read|write --graph-path … TOOL …`) on the 0.97.0 release build beside the
+published 0.96.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** On a repository set up by the
+  0.96.0 kit with `--harness vscode-cli`, it adds the new skill's two files,
+  `.github/skills/work-a-proof-hole/` and `.github/prompts/work-a-proof-hole.prompt.md`, and
+  changes nothing else.
+- **`loop_status` answers within its budget.** `reflow2 read loop_status` carries `time_budget`
+  (`budget_ms` 20,000, `set_by` `default`, `complete` true). `reflow2 read loop_status
+  '{"time_budget_ms": 0}'` prints the floor alone, never clean, with `not_computed` naming
+  `confirmation_ledger`, `reasoning`, `loop_closure`, `gaps` and `defects` and their counts
+  `null`. On a copy of reflow2's own design (8,499 nodes) on this machine, the whole answer took
+  14.4 to 17.9 s of the engine's clock (16.0 to 20.3 s wall) and the floor 1.2 s (3.1 s wall);
+  0.96.0 took 16.8 s wall for the same answer and refuses `time_budget_ms` (exit 2). A one-shot
+  call has no caller to give up, so the entry about cancellation is for a server.
+- **A failed route is written and read here.** `reflow2 write add_requirement` with
+  `statement_kind` `failed_route`, `route_to`, `fails_at`, `fails_because` and `would_hold_if` is
+  stored (0.96.0: exit 2, `route_to` is not a parameter). `reflow2 read get_node` reads it as
+  `failed_route`, `reflow2 read reasoning_report` counts it under `failed_routes` (1 route, 1 with
+  its step and reason), and `reflow2 read search_design` finds it first by the words of its
+  reason, with `route_to`.
+- **The new skill is served here.** `reflow2 read get_skill '{"name": "work-a-proof-hole"}'`
+  serves it, and `list_skills` names 36. 0.96.0 refuses the name (exit 1) and names 35.
+- **An export says where an accepted checksum is.** On a design with a file's checksum accepted
+  by a change, `reflow2 read export_graph` carries `reading_notes.artifact_checksums`. 0.96.0's
+  export has no such key.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: `loop_status` answers there with its
+budget (20,000 ms by default; `time_budget_ms` 0 gives the floor), and the skills served there are
+the hosted ones, `work-a-proof-hole` among them and `design-a-proof` with its section on failed
+routes. flo2.io gets these once its engine moves to 0.97.0 and is deployed. A `loop_status` that
+would run past flo2.io's 30 s door stops there only if the gateway sends
+`notifications/cancelled` when it stops waiting, because on an HTTP session a dropped connection
+cancels nothing; that is a change to flo2.io's gateway, not to this release. flo2.io serves each
+skill's text from its engine, so the new skill and design-a-proof's section on failed routes
+arrive with the engine. The list of skills flo2.io shows a chat is generated from the engine's at
+each re-pin, and names `work-a-proof-hole` only once it is regenerated. As before, the hosted hub view and reads across designs by graph id need flo2.io. These lines get
+checked again on the published binary once the release is out.
+
+### Added
+
+- **A route that was tried and fails is a record of its own, read back with the
+  line of reasoning it belongs to** (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning,
+  Anthony 2026-10-30). Working a hole in a proof leaves approaches that did not
+  go through; until now they could only be prose on a finding, which nobody
+  could find or count, or DEPENDS_ON edges to the failing steps, which put the
+  finding in every what-if's blast radius (the heat rung, 2026-10-22). Record
+  one with `add_requirement` and `statement_kind: failed_route`: `statement`
+  says what was tried, `route_to` names the claim it was a route to (the hole),
+  `fails_at` says the step at which it fails (and `fails_at_step` names that
+  step or statement when the design holds it), `fails_because` says why, and
+  `route_rests_on` names what it rests on.
+  - **A route can say what would make it go through.** `would_hold_if` holds
+    the natural condition under which the route WOULD hold ("if f is
+    Boolean-valued", "with exp(d) in place of poly(d)"), so a dead end for one
+    claim is kept as a possible result for another
+    (req:a-failed-route-records-the-natural-condition-under-which-it-would-hold).
+    It is read back with the route and moves no reading: the route still fails
+    for its claim, and the condition is neither a hypothesis of that claim nor
+    a result shown.
+  - **It supports nothing and refutes nothing.** It reads `failed_route`, never
+    `open`, `stated` or `unproven`, and its truth never holds. It is never a
+    premise, an assumption or the conclusion of a step, and never an objection:
+    `add_inference` and the store refuse each link, and `add_requirement`
+    refuses to turn a record that already takes part in a step into one. No
+    claim reads proven, refuted, contested or open because of it, and it is
+    never a gap, a debt or an unsupported claim. On the committed Riemann map,
+    every gap, defect, debt count and claim reading is the same with a failed
+    route recorded as without it.
+  - **No walk crosses it.** Its references are fields, not edges, so a what-if
+    on the step it fails at, or on anything it rests on, never reaches it.
+  - **Where it is read.** `reasoning_report` reads each route whole under the
+    claim it was a route to (that claim's new `failed_routes`) and tallies them
+    in the report's new `failed_routes`: how many, how many name both the step
+    and the reason (`with_step_and_reason`, what working a hole is scored on),
+    which do not, and in full any whose claim the read did not walk. `get_node`
+    on a route adds `failed_route`, the record read whole with each id it names
+    resolved. `search_design` finds it by what was tried, where it fails and
+    why, and a hit on a route carries `route_to`.
+  - **The design-a-proof skill says how** (section 5a): how to record a failed
+    route, never to draw DEPENDS_ON to the step that fails, and how to record a
+    turn in the search (a Decision whose `decision` names the route left and
+    the route taken, with CAUSES from the source or result that forced it).
+  - **Additive only.** A design that records no failed route reads exactly as
+    before: no new field appears in any reply, and every existing call answers
+    as it did. The tool list gains six optional `add_requirement` fields, each
+    refused on any statement that is not a failed route. It works the same on
+    every door — the MCP server, `reflow2 write add_requirement` / `--call`,
+    and a design hosted on flo2.io once flo2.io runs this release, which also
+    serves design-a-proof's section on it from its engine.
+
+- **A saved design says where an Artifact's accepted checksum is.** Since 0.79.0
+  an accepted checksum is written once, on the CHANGED edge from the change that
+  accepted it, and left off the Artifact's own record while the two are equal;
+  reflow2's import puts it back. Nothing in the file said so, and a person or a
+  script that opened a committed export with plain JSON read the missing
+  `checksum` as a dropped one: twice in one project, which then concluded its
+  design gate could not see those files change. It could: one byte added to one
+  of them failed the gate. Now a single-file export that leaves at least one
+  checksum off a record carries a top-level `reading_notes.artifact_checksums`
+  saying which edge holds it, which fields, which acceptance is current (the
+  highest `accepted_seq`), and that the kit's `tools/design_io.py`
+  `current_acceptances` applies the rule. The note is outside the content hash,
+  so no design's hash changes and two exports of one design stay byte-identical;
+  a design with no accepted checksums gets no note. An agent that calls
+  `export_graph` gets the note in the document it is handed. **What to do:**
+  nothing. A script that reads checksums from an export should read them with
+  `current_acceptances`, or import the export and read the records. The item
+  layout's `design.json` does not carry the note yet: it refuses fields it does
+  not know, so adding one would break older binaries reading a newer layout.
+
+- **`loop_status` answers within a time budget, and names what it did not
+  compute.** On a design of 8,696 nodes it took 38.1 s on flo2.io's hardware,
+  past the 30 s its gateway waits, so the call every session is told to make
+  answered nothing. It now computes its floor first (questions, decisions,
+  checks, divergences, follow-ups, breaches, kept outputs), then the five
+  whole-design analyses cheapest first: the confirmation ledger, the
+  reasoning, whether a real result ever came back, gap detection, defect
+  detection. When the budget runs out, the analyses it did not reach are
+  listed in `not_computed`, each with the fields it left null and the call
+  that computes it alone (`detect_gaps`, `detect_defects`,
+  `confirmation_ledger`, `reasoning_report`; `loop_closure` has none, so a
+  larger `time_budget_ms`); a line for
+  each leads `next`; and the answer is never `clean`. A new `time_budget`
+  block says what the call was given and spent, and whether the answer is
+  whole. The default is 20 s, two thirds of flo2.io's door; the clock starts
+  when the call arrives, so a wait for the design is spent from it, and a
+  hub's view spends one budget across its designs. **What to do:** nothing.
+  Pass `time_budget_ms` to raise or lower it for one call (`0` is the floor
+  alone), or set `REFLOW2_LOOP_STATUS_BUDGET_MS` on a server behind a
+  different door.
+
+- **A long read stops when its caller has gone.** `loop_status`,
+  `detect_gaps` and `detect_defects` check between their detectors whether
+  the request was cancelled, and stop there instead of running to the end
+  while holding the design. rmcp cancels a request when its client sends
+  `notifications/cancelled` for it (any transport), or when a stateless HTTP
+  client (MCP 2026-07-28) disconnects. It does NOT on an HTTP session
+  (before 2026-07-28): a client there that gives up must send
+  `notifications/cancelled`. **What to do:** a client that times a call out
+  should send that notification.
+
+- **A served skill works one hole in a proof: `work-a-proof-hole`
+  (`/work-a-proof-hole`)** (req:a-served-skill-works-a-proof-hole-refute-first-with-each-candidate-a-path-in-the-graph).
+  It runs root-cause's refute-first steps on a proof's open step or lemma. It
+  states the hole as an observation, then searches the design and the given
+  sources for precedent, including the failed routes already recorded toward
+  it. It generates at least three candidate routes, each with a stated reason,
+  and registers each as an alternative under the hole's decision point
+  (`register_alternative`), with no more than three open at once. Before a
+  route is worked, it writes into the decision point what would refute it, and
+  it works the routes cheapest refuter first. A route that fails becomes a
+  `failed_route` record with where and why it fails, and a change of route is
+  a decision with `CAUSES` from the source or result that forced it. It never
+  lets a step read proven on the agent's word, and leaves settling the decision
+  point to the owner. Each session ends with what is closed, what is open, the
+  failed routes counted from `reasoning_report`, and the next route, written
+  into the design so that a fresh agent can start from it.
+  - **It adds no record type and no tool.** It composes what this release
+    serves: `failed_route` (above), the fork tools, `review_relations` and
+    design-a-proof's statements and steps. design-a-proof points to it from its
+    section on failed routes.
+  - **The cap and the order are discipline, not enforcement.** Nothing refuses a
+    fourth open route or a route worked before its refuter is written; the
+    record shows both, for whoever judges the session. reflow2 does not compute
+    the most efficient route over a proof's graph.
+
+### Changed
+
+- **`loop_status`'s `unsurfaced_gaps`, `answered_with_open_gap`,
+  `answered_naming_their_record`, `structural_defects`, `unexamined_claims`
+  and `loop_closure` read `null` when their analysis was not computed this
+  call**, never `0`. A whole answer reads exactly as before. **What to do:** a
+  script that adds these up should treat `null` as "not known from this
+  answer", and read `not_computed`.
+
+### Fixed
+
+- **The macOS binaries are built on macOS 15.** GitHub retired its macOS 14 runner images on 2026-11-02, and its brownout the day before failed both macOS legs of the v0.96.0 release, so nothing was published until the release was run again from this fix (v0.96.0's assets went out the same day). The release workflow now names `macos-15`. Nothing to do as a user.
+
 ## [0.96.0] — 2026-11-01
 
 **Minor. Every served skill now reaches the agent when it connects, and says what is true where
