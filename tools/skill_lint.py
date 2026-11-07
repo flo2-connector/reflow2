@@ -183,6 +183,24 @@ NON_TOOL_TERMS = {
     # and reasoning_report's `circular_steps`.
     "bridge", "bridges", "rests_on_bridges", "bridges_lost", "by", "equivalent_to",
     "equivalents_reached", "circular_steps",
+    # a failed route is a record of its own (req:a-failed-route-is-a-record-of-
+    # its-own-read-back-with-the-reasoning, 2026-10-31): the `failed_route`
+    # statement kind and its fields (`route_to`, `fails_at`, `fails_at_step`,
+    # `fails_because`, `route_rests_on`), reasoning_report's and a claim's
+    # `failed_routes` with their `with_step_and_reason`, and add_decision's
+    # `decision` field for a turn in the search.
+    "failed_route", "failed_routes", "route_to", "fails_at", "fails_at_step",
+    "fails_because", "route_rests_on", "with_step_and_reason", "decision",
+    # work-a-proof-hole (2026-11-07, req:a-served-skill-works-a-proof-hole-
+    # refute-first-with-each-candidate-a-path-in-the-graph): register_alternative's
+    # `decision_id`; review_relations' `incoming` and a CAUSES link's `basis`
+    # value `correlational`; search_design's `tracked_designs`; and
+    # reasoning_report's `without_step_or_reason` for a route missing either.
+    "decision_id", "incoming", "correlational", "tracked_designs",
+    "without_step_or_reason",
+    # a failed route's `would_hold_if` (req:a-failed-route-records-the-natural-
+    # condition-under-which-it-would-hold, 2026-11-07).
+    "would_hold_if",
     # claims, superseded mirrors and shared premises (PR A2, 2026-10-23): a
     # claim's `claimed_by` and the readings `claimed`, `withdrawn` and
     # `superseded`; `status_over_time`; an independence's `shared_premises`

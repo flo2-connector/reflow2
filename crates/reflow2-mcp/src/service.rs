@@ -2250,6 +2250,11 @@ pub struct RequirementReq {
     /// `cited_as_evidence` when a pinned source documents it, and what rests
     /// on it is supported, never proven; `judgement` is an analytic judgement
     /// drawn from evidence, with its `confidence`.
+    /// `failed_route` is a route that was tried and fails, a record of its own:
+    /// `statement` says what was tried, with `route_to`, `fails_at`,
+    /// `fails_because`, `route_rests_on` and `would_hold_if` below. It reads `failed_route`,
+    /// supports and refutes nothing, and is read back under the claim it was
+    /// a route to.
     /// Omitted: nothing is written.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
@@ -2296,6 +2301,41 @@ pub struct RequirementReq {
     /// written.
     #[serde(default)]
     pub fixes: Option<Vec<String>>,
+    /// FOR A FAILED ROUTE (`statement_kind: failed_route`) ONLY, and refused
+    /// on any other statement: THE CLAIM IT WAS A ROUTE TO, by id — the hole
+    /// it tried to close (a step is read under the claim it concludes).
+    /// reasoning_report reads the route under that claim; the claim's own
+    /// reading never moves. Refused unless it names a node of this design.
+    /// Omitted: nothing is written.
+    #[serde(default)]
+    pub route_to: Option<String>,
+    /// FOR A FAILED ROUTE ONLY: THE STEP AT WHICH IT FAILS, in words.
+    /// Searched. Omitted: nothing is written.
+    #[serde(default)]
+    pub fails_at: Option<String>,
+    /// FOR A FAILED ROUTE ONLY: THE STEP OR STATEMENT OF THIS DESIGN AT WHICH
+    /// IT FAILS, by id, when the design holds it. A reference, never an edge:
+    /// that step's reading never moves. Omitted: nothing is written.
+    #[serde(default)]
+    pub fails_at_step: Option<String>,
+    /// FOR A FAILED ROUTE ONLY: WHY IT FAILS THERE, in words — the
+    /// obstruction. Searched. Omitted: nothing is written.
+    #[serde(default)]
+    pub fails_because: Option<String>,
+    /// FOR A FAILED ROUTE ONLY: WHAT IT RESTS ON, by id — the records the
+    /// route built on. Never premises: nothing rests on a failed route, and a
+    /// what-if on one of these never reaches it. Each must name a node of
+    /// this design. Overwrites; omitted: nothing is written.
+    #[serde(default)]
+    pub route_rests_on: Option<Vec<String>>,
+    /// FOR A FAILED ROUTE ONLY: THE NATURAL CONDITION UNDER WHICH IT WOULD GO
+    /// THROUGH, in words with its connective ("if f is Boolean-valued",
+    /// "with exp(d) in place of poly(d)"). Only when the condition is natural,
+    /// never a trivial one. Read back with the route; it moves no reading and
+    /// is neither a hypothesis of the claim nor a result shown. Searched.
+    /// Omitted: nothing is written.
+    #[serde(default)]
+    pub would_hold_if: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

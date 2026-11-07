@@ -114,6 +114,13 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
                                 },
                                 "required": ["node_id", "relation", "direction"]
                             }
+                        },
+                        "route_to": {
+                            "type": "string",
+                            "description": "Present ONLY on a failed route (statement_kind \
+                                            `failed_route`, a route tried that fails): the claim \
+                                            it was a route to. reasoning_report on that claim \
+                                            reads the route in full."
                         }
                     },
                     "required": ["node_id", "node_type", "name", "score"]
@@ -1526,8 +1533,10 @@ impl ReflowService {
                        experiment's case, a paper's chain of claims, a legal case. Each claim \
                        comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that \
                        support it (rule, warrant, who confirmed them), the objections against it \
-                       and how each stands (`refutes`, `stands`, `answered`), and its cited \
-                       sources. Then: what the reasoning rests on and which premises cite no \
+                       and how each stands (`refutes`, `stands`, `answered`), its cited \
+                       sources, and the routes tried toward it that fail (`failed_routes`: what \
+                       was tried, the step where it fails and why — the space ruled out, which \
+                       moves no reading). Then: what the reasoning rests on and which premises cite no \
                        source, the points still contested, the disputes a Decision set to \
                        `contested` keeps open on purpose, and every claim with no support. \
                        `claim` reads under one claim; omitted, every claim, refuted ones \
@@ -1777,6 +1786,19 @@ fn decorate(
     } else {
         None
     };
+    // A FAILED ROUTE, READ WHOLE (reflow2_core::failed_route): the claim it
+    // was a route to, the step at which it fails and why, and what it rests
+    // on, each record named. Only on a failed route; every other read is as
+    // before.
+    let failed_route = if says_its_kind && node_type == reflow2_core::nodes::node::REQUIREMENT {
+        g.failed_route_reading(node_id)
+            .map_err(dyno_err)?
+            .map(serde_json::to_value)
+            .transpose()
+            .map_err(ser_err)?
+    } else {
+        None
+    };
     // A REQUIREMENT'S REASON TO EXIST (req:an-edge-names-the-claim-that-
     // argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist,
     // item 1): the Decision(s) it is GOVERNED_BY and each one's support,
@@ -1829,6 +1851,9 @@ fn decorate(
         }
         if let Some(sr) = statement_reading {
             obj.insert("statement_reading".to_string(), sr);
+        }
+        if let Some(fr) = failed_route {
+            obj.insert("failed_route".to_string(), fr);
         }
         if let Some(reading) = built_reading {
             obj.insert("built_reading".to_string(), reading);
