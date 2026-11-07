@@ -228,7 +228,7 @@ fn a_failed_route_says_which_of_its_parts_it_does_not_record() {
     let r = json(g.failed_route_reading(ROUTE).unwrap().unwrap());
     assert!(r.get("missing").is_none(), "{r:#}");
     assert_eq!(r["names_step_and_reason"], true);
-    assert_eq!(r["tried"].as_str().unwrap().contains("colossally"), true);
+    assert!(r["tried"].as_str().unwrap().contains("colossally"));
     assert_eq!(r["route_to"]["id"], RH);
     assert_eq!(r["route_to"]["name"], "The Riemann Hypothesis (OPEN)");
     assert_eq!(r["fails_at_step"]["id"], ROBIN_ALL_N);
