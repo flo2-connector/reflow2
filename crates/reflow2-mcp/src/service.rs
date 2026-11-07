@@ -3175,6 +3175,18 @@ pub struct ReasoningReportReq {
     /// read too.
     #[serde(default)]
     pub claim: Option<String>,
+    /// THE MAP OF A PROOF SEARCH instead of the claim-by-claim read
+    /// (req:a-proof-round-starts-from-a-one-page-map-of-its-search): with
+    /// `claim` the target, one reply at any size holding the target and how
+    /// it reads, the holes under the claims they serve (each with its routes:
+    /// open with its refuter, failed in one line, waiting with why), each
+    /// closed result in one line, the rounds since the last progress that
+    /// served the target, and the forks that hold an untried branch, highest
+    /// first. The arguments are not in it: they are fetched by id. `claim`
+    /// left out: the one search the design holds, or the targets to choose
+    /// from. `limit` and `offset` do not apply; `budget_chars` does.
+    #[serde(default)]
+    pub map: Option<bool>,
     /// How many claims one page returns at most (default 60, at most 500).
     /// The walk itself always reads the whole reasoning, up to 500 records,
     /// so the summary lists are never one page's; `capped: true` means the
@@ -3297,6 +3309,24 @@ pub struct AddArtifactReq {
     /// they are. Register a re-run's new version with what IT used. reflow2 never reads the file.
     #[serde(default)]
     pub inputs: Option<Vec<ArtifactInputArg>>,
+    /// ON A ROUTE REGISTERED UNDER A PROOF HOLE: what result would show the
+    /// route cannot close the hole, written before it is worked. Omitted:
+    /// nothing is written; `null` unsets it.
+    #[serde(default)]
+    pub refuter: Option<String>,
+    /// ON A ROUTE REGISTERED UNDER A PROOF HOLE: `true` while it is an
+    /// untried branch, charted and not worked. Send `null` to open it.
+    /// Omitted: nothing is written.
+    #[serde(default)]
+    pub waiting: Option<bool>,
+    /// ON A ROUTE REGISTERED UNDER A PROOF HOLE: its stated promise, a short
+    /// line. Omitted: nothing is written; `null` unsets it.
+    #[serde(default)]
+    pub promise: Option<String>,
+    /// ON A ROUTE REGISTERED UNDER A PROOF HOLE: its rough rank, 1 the most
+    /// promising. Omitted: nothing is written; `null` unsets it.
+    #[serde(default)]
+    pub promise_rank: Option<i64>,
 }
 
 /// One input a kept output took (add_artifact `inputs`).
@@ -5204,6 +5234,33 @@ pub struct DecisionReq {
     /// When the approver acted, as a plain date. Stored on the approver edge.
     #[serde(default)]
     pub acted_at: Option<String>,
+    /// ON A PROOF HOLE'S DECISION POINT: THE STATEMENT THAT MUST BE SHOWN, by
+    /// id — the lemma, conjecture or theorem this decision point is the hole
+    /// for (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-
+    /// it-closes-that-claim). It must name a node of this design, and never
+    /// this decision. reasoning_report's search map (`map: true`) places the
+    /// hole's routes and failed routes under it.
+    #[serde(default)]
+    pub hole: Option<String>,
+    /// ON A PROOF HOLE'S DECISION POINT: THE CLAIM THIS HOLE SERVES, by id —
+    /// the claim above it whose route needs it, or another hole's decision
+    /// point. Leave it out on the target's own hole. It must name a node of
+    /// this design, and never this decision or its `hole`. A property, never
+    /// an edge: serving a claim is not supporting it.
+    #[serde(default)]
+    pub serves: Option<String>,
+    /// ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE
+    /// CLAIM IT SERVES — `closes` (it is a premise that finishes a route to
+    /// that claim), `narrows` (a special case, or a class ruled out such as a
+    /// counterexample pruning: it cannot close the claim) or `restates` (an
+    /// equivalent form: closing it closes the claim, and it is no smaller a
+    /// step). The search map reads it along the path to the target and says
+    /// whether closing the hole could close the target. Refused without
+    /// `serves`, on this call or stored. NO DEFAULT: left out, it reads
+    /// unsaid, never `closes`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::decision_closing_it_opt")]
+    pub closing_it: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -7624,6 +7681,30 @@ pub struct RegisterAlternativeReq {
     pub name: String,
     /// Where the alternative's design export lives (branch-by-file).
     pub location: String,
+    /// FOR A ROUTE UNDER A PROOF HOLE: WHAT RESULT WOULD SHOW IT CANNOT CLOSE
+    /// THE HOLE, written before it is worked — a counterexample to its key
+    /// lemma, a barrier to its method, its step reading circular. The search
+    /// map shows it beside the open route. Revise it with add_artifact.
+    #[serde(default)]
+    pub refuter: Option<String>,
+    /// FOR A ROUTE UNDER A PROOF HOLE: `true` CHARTS IT AS AN UNTRIED BRANCH,
+    /// listed and not yet worked. Chart every candidate at a fork this way,
+    /// one line each, unfiltered: no reason is needed to list one, only to
+    /// work it. The search map lists it as waiting, ranked by its promise.
+    /// Open it with add_artifact `waiting: null`, writing its `refuter`.
+    #[serde(default)]
+    pub waiting: Option<bool>,
+    /// FOR A ROUTE UNDER A PROOF HOLE: ITS STATED PROMISE, in a short line —
+    /// why it is on the chart and how promising it looks (a bone, a source, a
+    /// near result). Optional while it waits; written before it is worked.
+    #[serde(default)]
+    pub promise: Option<String>,
+    /// FOR A ROUTE UNDER A PROOF HOLE: ITS ROUGH RANK, 1 the most promising.
+    /// The search map orders the untried branches anywhere on the chart by
+    /// whether closing them could close the target first, then by this rank,
+    /// then the higher fork. Left out: unranked, after the ranked ones.
+    #[serde(default)]
+    pub promise_rank: Option<i64>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

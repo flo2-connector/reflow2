@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Register an alternative under a proposed decision point (BL-70): a lightweight Artifact pointer that names where the alternative's design export lives (branch-by-file), GOVERNED_BY the Decision and CONTRADICTS its siblings. Refuses unless the Decision is `proposed` — you fork an open choice, not a settled one. Compare the registered alternatives with analyze_alternatives, then collapse_decision to choose.",
+  "description": "Register an alternative under a proposed decision point (BL-70): a lightweight Artifact pointer that names where the alternative's design export lives (branch-by-file), GOVERNED_BY the Decision and CONTRADICTS its siblings. Refuses unless the Decision is `proposed` — you fork an open choice, not a settled one. Compare the registered alternatives with analyze_alternatives, then collapse_decision to choose. A ROUTE UNDER A PROOF HOLE says, in the same call, what would refute it (`refuter`), or that it is an untried branch charted at the fork (`waiting: true`) with its stated promise (`promise`, `promise_rank`): reasoning_report's search map reads it as open, waiting or failed, and ranks the untried branches.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -32,6 +32,39 @@
       "name": {
         "description": "A short human name for the alternative — the road, not the file — as it will appear in `alternatives_for` and `analyze_alternatives`.",
         "type": "string"
+      },
+      "promise": {
+        "default": null,
+        "description": "FOR A ROUTE UNDER A PROOF HOLE: ITS STATED PROMISE, in a short line —\nwhy it is on the chart and how promising it looks (a bone, a source, a\nnear result). Optional while it waits; written before it is worked.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "promise_rank": {
+        "default": null,
+        "description": "FOR A ROUTE UNDER A PROOF HOLE: ITS ROUGH RANK, 1 the most promising.\nThe search map orders the untried branches anywhere on the chart by\nwhether closing them could close the target first, then by this rank,\nthen the higher fork. Left out: unranked, after the ranked ones.",
+        "format": "int64",
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "refuter": {
+        "default": null,
+        "description": "FOR A ROUTE UNDER A PROOF HOLE: WHAT RESULT WOULD SHOW IT CANNOT CLOSE\nTHE HOLE, written before it is worked — a counterexample to its key\nlemma, a barrier to its method, its step reading circular. The search\nmap shows it beside the open route. Revise it with add_artifact.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "waiting": {
+        "default": null,
+        "description": "FOR A ROUTE UNDER A PROOF HOLE: `true` CHARTS IT AS AN UNTRIED BRANCH,\nlisted and not yet worked. Chart every candidate at a fork this way,\none line each, unfiltered: no reason is needed to list one, only to\nwork it. The search map lists it as waiting, ranked by its promise.\nOpen it with add_artifact `waiting: null`, writing its `refuter`.",
+        "type": [
+          "boolean",
+          "null"
+        ]
       }
     },
     "required": [

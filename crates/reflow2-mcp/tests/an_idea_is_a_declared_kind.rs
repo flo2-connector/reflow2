@@ -48,6 +48,9 @@ fn dec(id: &str, kind: Option<&str>) -> DecisionReq {
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

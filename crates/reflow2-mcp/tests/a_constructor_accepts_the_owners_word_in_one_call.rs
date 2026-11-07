@@ -104,6 +104,9 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
         status: status.map(str::to_string),
         approver: approver.map(str::to_string),
         acted_at: Some("2026-09-06".into()),
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

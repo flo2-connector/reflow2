@@ -102,6 +102,9 @@ fn decision(id: &str, name: &str, text: &str, rationale: Option<&str>) -> Decisi
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

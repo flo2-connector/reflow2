@@ -729,9 +729,22 @@ impl ReflowService {
                     "information_credibility",
                     req.information_credibility.as_deref(),
                 ),
+                // A route under a proof hole (reflow2_core::search_map).
+                ("refuter", req.refuter.as_deref()),
+                ("promise", req.promise.as_deref()),
             ],
         )?
         .unwrap_or(stored);
+        let stored = crate::tools::capture::set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::ARTIFACT,
+            &req.id,
+            "waiting",
+            req.waiting,
+        )?
+        .unwrap_or(stored);
+        let stored = crate::tools::capture::set_promise_rank(&mut g, &req.id, req.promise_rank)?
+            .unwrap_or(stored);
         let stored = crate::tools::capture::set_optional_bool(
             &mut g,
             reflow2_core::nodes::node::ARTIFACT,

@@ -216,7 +216,10 @@ async fn the_skill_names_each_record_as_the_build_serves_it() {
         "`failed_routes`",
         "the given sources",
         "At least three, and three is a floor",
-        "a stated reason to be on the list",
+        // Every candidate is charted; a reason is needed only to work one
+        // (req:a-proof-search-charts-every-idea-at-each-fork-and-works-the-
+        // most-promising-path-by-stated-rank).
+        "is needed only before a branch is worked",
         "No more than three routes are open at once",
         "name what would REFUTE it",
         "refute-first",
@@ -235,7 +238,7 @@ async fn the_skill_names_each_record_as_the_build_serves_it() {
         "`ask_question`",
         "not\n  `proven`",
         "does not compute the most efficient",
-        "what is closed, what is open, the next route",
+        "what is closed, what is open, and the next route",
         "Honest limits",
     ] {
         assert!(body.contains(taught), "the skill teaches {taught:?}");

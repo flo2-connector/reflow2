@@ -1287,7 +1287,11 @@ impl ReflowService {
                        export lives (branch-by-file), GOVERNED_BY the Decision and CONTRADICTS its \
                        siblings. Refuses unless the Decision is `proposed` — you fork an open \
                        choice, not a settled one. Compare the registered alternatives with \
-                       analyze_alternatives, then collapse_decision to choose.",
+                       analyze_alternatives, then collapse_decision to choose. A ROUTE UNDER A \
+                       PROOF HOLE says, in the same call, what would refute it (`refuter`), or \
+                       that it is an untried branch charted at the fork (`waiting: true`) with \
+                       its stated promise (`promise`, `promise_rank`): reasoning_report's search \
+                       map reads it as open, waiting or failed, and ranks the untried branches.",
         title = "Register an Alternative",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -1296,10 +1300,30 @@ impl ReflowService {
         Parameters(req): Parameters<RegisterAlternativeReq>,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
-        ok_json(
-            g.register_alternative(&req.decision_id, &req.artifact_id, &req.name, &req.location)
-                .map_err(dyno_err)?,
-        )
+        crate::tools::capture::promise_rank_must_fit(req.promise_rank)?;
+        let registered = g
+            .register_alternative(&req.decision_id, &req.artifact_id, &req.name, &req.location)
+            .map_err(dyno_err)?;
+        // A ROUTE UNDER A PROOF HOLE says what would refute it, or why it
+        // waits, in the same call (reflow2_core::search_map).
+        crate::tools::capture::set_optional_props(
+            &mut g,
+            reflow2_core::nodes::node::ARTIFACT,
+            &req.artifact_id,
+            &[
+                ("refuter", req.refuter.as_deref()),
+                ("promise", req.promise.as_deref()),
+            ],
+        )?;
+        crate::tools::capture::set_optional_bool(
+            &mut g,
+            reflow2_core::nodes::node::ARTIFACT,
+            &req.artifact_id,
+            "waiting",
+            req.waiting,
+        )?;
+        crate::tools::capture::set_promise_rank(&mut g, &req.artifact_id, req.promise_rank)?;
+        ok_json(registered)
     }
 
     #[tool(
