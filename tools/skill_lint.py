@@ -213,10 +213,13 @@ NON_TOOL_TERMS = {
     # `promise_rank`, and `null` to unset `waiting`; the round's finding
     # `fact_type` value `search_round`; and the map's `can_close_target`,
     # `since_progress`, `forks_with_an_untried_branch` and
-    # `untried_branches_by_promise`.
+    # `untried_branches_by_promise`; and the count's `at_least`, when it stops
+    # at a round the record cannot judge (progress means a claim on the path
+    # moves, 2026-11-07).
     "hole", "serves", "closing_it", "closes", "narrows", "restates", "refuter",
     "waiting", "promise", "promise_rank", "null", "search_round", "can_close_target",
     "since_progress", "forks_with_an_untried_branch", "untried_branches_by_promise",
+    "at_least",
     # claims, superseded mirrors and shared premises (PR A2, 2026-10-23): a
     # claim's `claimed_by` and the readings `claimed`, `withdrawn` and
     # `superseded`; `status_over_time`; an independence's `shared_premises`

@@ -17,8 +17,8 @@
 //! 3. `req:a-proof-search-checks-convergence-and-goes-back-to-the-highest-fork-with-an-untried-branch`
 //!    — reflow2 counts the rounds since the last progress that served the
 //!    target (a round is a `search_round` finding about the target; only a
-//!    step closed or a route failed on a hole whose closing could close the
-//!    target is progress), lists the forks holding a waiting branch highest
+//!    claim on the path to the target changing its reading is progress,
+//!    revised 2026-11-07), lists the forks holding a waiting branch highest
 //!    first, and the served skill work-a-proof-hole reads that at the start of
 //!    each round and goes back at N.
 //!
@@ -741,7 +741,9 @@ async fn rounds_since_progress_count_only_progress_that_could_close_the_target()
     );
     assert_eq!(map["rounds"]["recorded"], 0, "{}", map["rounds"]);
 
-    // Round 1: a route toward the target fails. That is progress on it.
+    // Round 1: a route toward the target fails. That rules a route out, and
+    // moves no claim on the path: T still reads open (revised 2026-11-07;
+    // the yardstick #831 shipped counted it as progress).
     route_cases_fails(&s).await;
     round(&s, 1, "the sign split failed at opposite seeds").await;
     // Round 2: work on the palindromic special case only, which narrows the
@@ -771,13 +773,13 @@ async fn rounds_since_progress_count_only_progress_that_could_close_the_target()
     let r = &map["rounds"];
     assert_eq!(r["recorded"], 3, "{r:#}");
     assert_eq!(
-        r["since_progress"], 2,
-        "rounds 2 and 3 served nothing: {r:#}"
+        r["since_progress"], 3,
+        "no round moved a claim on the path to the target: {r:#}"
     );
-    assert_eq!(r["last_progress"]["round"], 1, "{r:#}");
-    assert_eq!(r["last_progress"]["record"], "req:route-cases", "{r:#}");
+    assert!(r["last_progress"].is_null(), "{r:#}");
 
-    // Round 4, in progress: a route on a hole that could close the target fails.
+    // Round 4, in progress: a route toward Lemma B, a claim on the path,
+    // fails. Lemma B still reads stated, so nothing on the path moved.
     s.ok(
         "add_requirement",
         json!({"id": "req:route-b-telescoping", "name": "Failed route: telescope the recurrence",
@@ -789,14 +791,11 @@ async fn rounds_since_progress_count_only_progress_that_could_close_the_target()
     .await;
     let map = s.map().await;
     let r = &map["rounds"];
-    assert_eq!(r["since_progress"], 2, "closed rounds only: {r:#}");
-    assert_eq!(
-        r["this_round"]["progress"],
-        json!(["req:route-b-telescoping"]),
-        "{r:#}"
-    );
+    assert_eq!(r["since_progress"], 3, "closed rounds only: {r:#}");
+    assert_eq!(r["this_round"]["progress"], json!([]), "{r:#}");
     round(&s, 4, "the telescoping route on Lemma B failed").await;
-    // Round 5: a step closed on a hole that closes the target's lemma.
+    // Round 5: Lemma B, on the path (it closes Lemma A, which closes T), is
+    // shown.
     s.ok(
         "add_inference",
         json!({"id": "inf:b", "rule": "all", "premises": ["con:def-family", "req:lem-d"],
@@ -809,7 +808,204 @@ async fn rounds_since_progress_count_only_progress_that_could_close_the_target()
     let r = &map["rounds"];
     assert_eq!(r["since_progress"], 0, "{r:#}");
     assert_eq!(r["last_progress"]["round"], 5, "{r:#}");
-    assert_eq!(r["last_progress"]["record"], "inf:b", "{r:#}");
+    assert_eq!(
+        r["last_progress"]["moved"][0]["claim"], "req:lem-b",
+        "{r:#}"
+    );
+    assert_eq!(r["last_progress"]["moved"][0]["moved"], "holds", "{r:#}");
+}
+
+/// THE SHAPE OF THE SECOND PROOF TRIAL
+/// (fact:the-erdos-sos-trial-ended-after-8-rounds-with-no-proof-no-wrong-step-and-a-progress-yardstick-too-lenient-to-fire-the-go-back-rule-2026-11-07):
+/// rounds that refute the attempt's own auxiliary route and close side
+/// lemmas BENEATH an open claim on the path move nothing on the path, so the
+/// count keeps rising and the map lists where to go back. A round that moves
+/// a claim on the path resets it (req:a-proof-search-checks-convergence-and-
+/// goes-back-to-the-highest-fork-with-an-untried-branch, revised 2026-11-07).
+#[tokio::test]
+async fn rounds_that_only_work_beneath_an_open_claim_on_the_path_are_not_progress() {
+    let s = session().await;
+    search(&s).await;
+    // Lemma A is on the path (it closes T). Round 1 reduces it to a side
+    // lemma E and to Lemma C, so it reads unproven: a step concludes it from
+    // premises that do not hold yet.
+    s.ok(
+        "add_requirement",
+        json!({"id": "req:lem-e", "name": "Lemma E: a three-term identity",
+               "statement": "Each term equals the one before it minus the one before that.",
+               "statement_kind": "lemma"}),
+    )
+    .await;
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:a", "rule": "all", "premises": ["req:lem-e", "req:lem-c"],
+               "conclusion": "req:lem-a", "rule_name": "combination",
+               "warrant": "The identity and the windowed mean together bound every term."}),
+    )
+    .await;
+    round(&s, 1, "Lemma A reduced to Lemma E and Lemma C").await;
+    // Round 2: the attempt's own auxiliary route toward Lemma A is refuted.
+    s.ok(
+        "add_requirement",
+        json!({"id": "req:route-a-aux", "name": "Failed route: an auxiliary count for Lemma A",
+               "statement": "Bound every term by a count of sign changes.",
+               "statement_kind": "failed_route", "route_to": "req:lem-a",
+               "fails_at": "the count at period six",
+               "fails_because": "a member of F changes sign four times a period, which breaks \
+                                 the count"}),
+    )
+    .await;
+    round(&s, 2, "the auxiliary count refuted").await;
+    // Round 3: the side lemma E beneath Lemma A is shown.
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:e", "rule": "all", "premises": ["con:def-family"],
+               "conclusion": "req:lem-e", "rule_name": "direct computation",
+               "warrant": "Substitute the recurrence once."}),
+    )
+    .await;
+    round(&s, 3, "side lemma E shown").await;
+    // Round 4: a route toward Lemma C, beneath Lemma A, fails.
+    s.ok(
+        "add_requirement",
+        json!({"id": "req:route-c-parity", "name": "Failed route: parity of the window sums",
+               "statement": "Show the window mean vanishes by a parity argument.",
+               "statement_kind": "failed_route", "route_to": "req:lem-c",
+               "fails_at": "windows starting at an odd index",
+               "fails_because": "parity says nothing about the size of the sum"}),
+    )
+    .await;
+    round(&s, 4, "a route to Lemma C failed").await;
+
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert_eq!(
+        r["since_progress"], 4,
+        "a failed route toward a claim on the path, a side lemma shown beneath it and a failed \
+         route beneath it each leave Lemma A unproven, so no round moved the path: {r:#}"
+    );
+    assert!(r["last_progress"].is_null(), "{r:#}");
+    assert!(
+        r["at_least"].is_null(),
+        "every round could be judged: {r:#}"
+    );
+    assert_eq!(r["claims_on_the_path"], 3, "T, Lemma A and Lemma B: {r:#}");
+    assert!(
+        r["reads"]
+            .as_str()
+            .unwrap_or_default()
+            .contains("moved a claim on the path"),
+        "{r:#}"
+    );
+    // The map lists where to go back: the highest fork with an untried
+    // branch, and the most promising untried branch on the chart.
+    assert_eq!(
+        map["forks_with_an_untried_branch"][0]["hole"], "dec:close-t",
+        "{map:#}"
+    );
+    assert_eq!(
+        map["untried_branches_by_promise"][0]["id"], "alt:route-a-compactness",
+        "{map:#}"
+    );
+
+    // Each round's finding carries the readings the server wrote when it was
+    // recorded, and a value passed on a round is refused.
+    let value = s.node("fact:round-4").await["properties"]["value"].clone();
+    let value: Value = serde_json::from_str(value.as_str().unwrap_or_default())
+        .unwrap_or_else(|e| panic!("the round's value is JSON ({e}): {value}"));
+    let lem_a = value["path_readings"]
+        .as_array()
+        .and_then(|a| a.iter().find(|c| c["claim"] == "req:lem-a"))
+        .unwrap_or_else(|| panic!("the round records Lemma A's reading: {value:#}"));
+    assert_eq!(lem_a["reads"], "unproven", "{value:#}");
+    let e = s
+        .refused(
+            "record_finding",
+            json!({"id": "fact:round-x", "subject_id": "req:t", "fact_type": "search_round",
+                   "statement": "a round with its own readings",
+                   "value": "{\"path_readings\": []}"}),
+        )
+        .await;
+    assert!(e.contains("written by reflow2"), "{e}");
+
+    // Round 5, in progress: Lemma C is shown, so Lemma A, on the path, comes
+    // to hold.
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:c", "rule": "all", "premises": ["con:def-family"],
+               "conclusion": "req:lem-c", "rule_name": "direct computation",
+               "warrant": "Six consecutive terms of a member cancel in pairs."}),
+    )
+    .await;
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert_eq!(r["since_progress"], 4, "ended rounds only: {r:#}");
+    let moved = &r["this_round"]["progress"];
+    assert_eq!(moved[0]["claim"], "req:lem-a", "{r:#}");
+    assert_eq!(moved[0]["from"]["reads"], "unproven", "{r:#}");
+    assert_eq!(moved[0]["to"]["reads"], "shown", "{r:#}");
+    assert_eq!(moved[0]["moved"], "holds", "{r:#}");
+    round(&s, 5, "Lemma C shown, so Lemma A holds").await;
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert_eq!(r["since_progress"], 0, "{r:#}");
+    assert_eq!(r["last_progress"]["round"], 5, "{r:#}");
+    assert_eq!(
+        r["last_progress"]["moved"][0]["claim"], "req:lem-a",
+        "{r:#}"
+    );
+}
+
+/// A ROUND WHOSE FINDING CARRIES NO READINGS CANNOT BE JUDGED, and the count
+/// says so rather than guess: a round recorded before readings were kept, or
+/// through another door than record_finding.
+#[tokio::test]
+async fn a_round_recorded_without_readings_is_not_judged_and_the_count_says_at_least() {
+    let s = session().await;
+    search(&s).await;
+    s.ok(
+        "create_node",
+        json!({"node_type": "TemporalFact", "id": "fact:round-1",
+               "props": {"subject_id": "req:t", "fact_type": "search_round",
+                         "name": "Round 1 of the search on T",
+                         "statement": "Round 1 ended: charted the first fork"}}),
+    )
+    .await;
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert!(
+        r["since_progress"].is_null(),
+        "nothing says what the path read when round 1 ended: {r:#}"
+    );
+    assert_eq!(r["not_judged"], json!([1]), "{r:#}");
+    // Round 2 is recorded with its readings, and every claim on the path
+    // reads open at its end: it moved nothing, whatever came before.
+    round(&s, 2, "nothing moved").await;
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert_eq!(r["since_progress"], 1, "{r:#}");
+    assert_eq!(r["at_least"], true, "round 1 cannot be judged: {r:#}");
+    // Round 3 shows Lemma B, on the path: judged against round 2's readings.
+    s.ok(
+        "add_inference",
+        json!({"id": "inf:b", "rule": "all", "premises": ["con:def-family", "req:lem-d"],
+               "conclusion": "req:lem-b", "rule_name": "direct computation",
+               "warrant": "Six steps of the recurrence return the seeds with alternating signs."}),
+    )
+    .await;
+    round(&s, 3, "Lemma B shown").await;
+    let map = s.map().await;
+    let r = &map["rounds"];
+    assert_eq!(r["since_progress"], 0, "{r:#}");
+    assert!(r["at_least"].is_null(), "{r:#}");
+    assert_eq!(
+        r["last_progress"]["moved"][0]["claim"], "req:lem-b",
+        "{r:#}"
+    );
+    assert_eq!(
+        r["last_progress"]["moved"][0]["from"]["reads"], "stated",
+        "{r:#}"
+    );
 }
 
 #[tokio::test]
@@ -1068,6 +1264,22 @@ fn work_a_proof_hole_starts_each_round_from_the_map_and_goes_back_at_n() {
         "`forks_with_an_untried_branch`",
         "N = 3",
         "highest fork",
+        // progress is a claim on the path moving, not work beneath it
+        // (revised 2026-11-07)
+        "moved a claim on the path",
+        "beneath an open claim on the path do not count",
+        "`at_least`",
+        "Never pass `value` on it",
+        // req:a-proof-round-spends-a-slice-on-quick-kills-and-sieves-new-
+        // candidates-through-known-tight-examples: (c) the quick-kill slice,
+        // (d) the standing sieve
+        "a fifth",
+        "quick kills from the bottom of the chart",
+        "Time-box each kill",
+        "recorded against each of them",
+        "standing sieve",
+        "tight or extremal examples",
+        "the candidate is given a rank",
     ] {
         assert!(
             body.contains(needle),

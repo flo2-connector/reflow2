@@ -1,6 +1,6 @@
 ---
 name: work-a-proof-hole
-description: Use when a proof recorded in the design has a HOLE to close, and when it will not close, to learn why — "work this hole", "close the gap in this proof", "find a route to this lemma", "why does this step not go through", "attack this open step", "try to prove the missing case", and one round of a longer proof search. Works ONE hole, refute-first, starting each round from the map of the search. States the hole as an observation and whether closing it closes, narrows or restates the claim it serves, searches for precedent, charts every candidate at the fork as a waiting branch with its stated promise, keeps no more than three open, names what would refute each route before working it, records every failed route with where and why, records every turn with what forced it, goes back to the most promising untried branch after N rounds with no progress toward the target, and never lets a step read proven on the agent's own word. To record a whole proof step by step, use design-a-proof.
+description: Use when a proof recorded in the design has a HOLE to close, and when it will not close, to learn why — "work this hole", "close the gap in this proof", "find a route to this lemma", "why does this step not go through", "attack this open step", "try to prove the missing case", and one round of a longer proof search. Works ONE hole, refute-first, from the map of the search. States the hole and whether closing it closes, narrows or restates the claim it serves, searches for precedent, charts every candidate at its fork as a waiting branch, sieves each through the known tight examples, keeps no more than three open, spends a fifth of each round on quick kills, names each route's refuter before working it, records every failed route with where and why and every turn with what forced it, goes back to the most promising untried branch after N rounds in which no claim on the target's path moved, and never lets a step read proven on the agent's own word. To record a whole proof step by step, use design-a-proof.
 metadata: {composes: "STANDING WRITES MINTS REPORTS MEASURES", audience: anyone, summary: "Work one hole in a proof - try routes refute-first and keep every route that fails.", use_when: "closing one hole in a proof"}
 ---
 
@@ -61,10 +61,16 @@ when you need it.
 Read four things from it and say them:
 
 - **Where the search stands**: the target's reading, and each hole's `can_close_target`.
-- **`rounds.since_progress`**: the ended rounds since the last progress that served the target.
-  Progress here is a step closed, or a route failed, on a hole whose closing could close the
-  target. Work on a special case that only narrows it is not counted, however many steps it closes.
-  `null` means it cannot be counted, and `rounds.reads` says why.
+- **`rounds.since_progress`**: the ended rounds since the last one that moved a claim on the path
+  to the target. A claim on the path is the target, or the claim of a hole whose every link up to
+  the target closes or restates the claim it serves (the map reads its `can_close_target` as yes).
+  It moves when it comes to hold (`shown`), is refuted, or comes to rest on fewer premises
+  (`conditional` on fewer): equivalently, a hole on that path closes. **Steps closed and routes
+  failed beneath an open claim on the path do not count.** They rule things out and are recorded,
+  and they move nothing on the path. Work on a special case that only narrows the target does not
+  count either. `rounds.last_progress` names the round and the claims it moved. `null` means it
+  cannot be counted, and `rounds.reads` says why; `at_least` means the count stopped at a round
+  the record cannot judge, so the true count is this or more.
 - **`forks_with_an_untried_branch`**: the forks that hold a waiting branch, highest first.
 - **`untried_branches_by_promise`**: the waiting branches anywhere on the chart, most promising
   first: those whose closing would close the target, then those that restate it, then unsaid, then
@@ -81,6 +87,10 @@ say how many rounds remain before the rule fires.
 
 The count says WHEN to switch; the order says WHICH branch comes next. Neither is enforcement:
 nothing in reflow2 refuses a round that ignores them, and the record shows it.
+
+**THE ROUND'S BUDGET.** Set aside a fixed slice of the round, **a fifth** to start (a guess, to be
+measured), for quick kills from the bottom of the chart (step ⑥). The rest works the most promising
+branch. Say the split before the round starts, and at its end say what the slice killed.
 
 ## ① State the hole as an OBSERVATION
 
@@ -164,6 +174,22 @@ it**: chart the candidates of the hole you are at, not of every fork below it, s
 with the search. A claim a route needs that has no decision point yet becomes a fork when the
 route reaches it: open its decision point (step ①) and chart its candidates there.
 
+**Sieve every new candidate through the known tight examples before it is ranked.** The design
+holds a standing sieve: the field's known tight or extremal examples, the cases where the bound is
+met exactly or the claim only just holds. Record each once, as a statement with its source, the
+way design-a-proof records a result from elsewhere (section 2a), with an id that carries `tight-`,
+so `search_design` finds the sieve. Build it in the first round, from the given sources, and add to
+it when a source names another. Then test each new candidate against every example in it before
+the candidate is given a rank:
+
+- **It fails on one**: the candidate is dead before it is worked. Record it as a failed route
+  (step ⑦) with `fails_because` naming the example, and the example in `route_rests_on`.
+- **It survives**: say so in its `promise`, naming the examples it was tested against.
+- **The test is not cheap**: chart it unranked, and leave its sieve to the quick kills.
+
+🛑 **A CANDIDATE THE SIEVE KILLS NEVER REACHES THE TOP OF THE CHART.** A rank given before the sieve
+is a rank given to an idea the field's own examples may already refute.
+
 ## ④ Register each route, with no more than three open at once
 
 `register_alternative` for each candidate: `decision_id` the hole's decision point, `artifact_id`
@@ -205,6 +231,23 @@ Write each refuter on the route BEFORE it is worked: `refuter` on `register_alte
 route's record carries when it was written, so a later reader can see the refuter came first.
 
 ## ⑥ Work the routes refute-first, cheapest refuter first
+
+**First, the quick kills: a fifth of the round, from the bottom of the chart.** The unranked and the
+lowest-ranked candidates, anywhere on the chart, are the ones the ranking never reaches; in a
+later proof trial the candidates nearest the real proof were among the 72 of 96 never ranked. So
+spend the round's slice on them:
+
+- **Take the cheapest refuter of each**: a small case, a tight example from the sieve, a known
+  barrier read. Time-box each kill strictly, and stop it when its box runs out, killed or not.
+- **Every kill is a failed route** (step ⑦), with where and why it fails. A kill that rules out
+  several candidates at once (a barrier) is recorded against each of them: one failed route each,
+  every one naming the barrier in `route_rests_on`.
+- **A candidate that survives its quick kill** is no longer unexamined: say what it survived in its
+  `promise`, and give it a rank (`promise_rank`) if it has earned one.
+- **The slice is not spent on the top of the chart**, and the rest of the round is not spent on the
+  bottom. When the slice is used up, go on with the most promising branch.
+
+Then the routes you are working:
 
 - **Order by the refuter, not by promise**: a small case computed, a barrier looked up and read, a
   circularity read back, before the route whose refuter takes a week.
@@ -286,7 +329,9 @@ Then **record the round**: `record_finding` with `subject_id` the target, `fact_
 `search_round`, a `name` such as "Round 7 of the search on <target>", and a `statement` saying in
 one line what the round did. This is what the map counts rounds by: a round is the records made
 since the previous `search_round` finding, ordered by when the server stored them. A round not
-recorded is not counted, and the map says so.
+recorded is not counted, and the map says so. **Record it when the round ends, never later**:
+reflow2 writes into the finding's `value` how each claim on the path reads at that moment, and the
+next rounds are compared with it. Never pass `value` on it; it is refused.
 
 Read the record back, never your memory of the session: `reasoning_report` with `claim` the target
 and `map: true`, `reasoning_report` with `claim` the hole, `alternatives_for` the decision point,
@@ -301,7 +346,8 @@ then `loop_status`. Tell the reader, in the words of their mathematics rather th
 - **The gates**: the hole's statement unchanged, no axiom or given added, at least one step closed
   (or plainly none), the earlier steps still holding.
 - **The rounds since progress toward the target**, and how many remain before the convergence
-  rule fires.
+  rule fires. Name the claims on the path that moved, or say plainly that none did.
+- **The quick kills**: how much of the round they took, what they killed, and what survived.
 - **The next route**, with its refuter: the open route to carry on with, or, at N, the first of
   `untried_branches_by_promise`.
 
@@ -319,7 +365,8 @@ its `decision`) when it is not already the map's first branch.
 - **The cap and the order are discipline, not enforcement.** Nothing in reflow2 refuses a fourth
   open route, or a route worked before its refuter was written. The record shows both, for whoever
   judges the session.
-- **N = 3 is a guess**, and the rank is the writer's word. `closing_it` says what the writer
+- **N = 3 is a guess, and so is the fifth**, and the rank is the writer's word. Whether a stated
+  rank predicts anything is to be measured: each candidate's rank against its fate. `closing_it` says what the writer
   judged closing a hole would do; reflow2 reads the links along the path, never the mathematics.
   A route can look stalled just before it breaks through.
 - **The routes in the design are the routes somebody wrote down.** The shortest found is not the
@@ -342,9 +389,11 @@ By typing /work-a-proof-hole the person asked for the following:
 - Work ONE hole in the proof, and state it as an observation first.
 - Search the design and the given sources for precedent before trying anything.
 - Chart every candidate at the fork, one line each and unfiltered, as a waiting branch with its promise and rank when there is one; generate at least three, with open routes capped.
+- Test every new candidate against the field's known tight examples before it is ranked.
+- Spend a fifth of each round on quick kills from the bottom of the chart, each time-boxed and recorded as a failed route.
 - For each route, name what would refute it before working it, and work the routes refute-first.
 - Record every route that fails as a failed route, with where it fails and why.
 - Record each change of route as a decision that names the source or result that forced it.
 - Never let a step read proven on your own word.
-- After N = 3 rounds with no progress toward the target, go back to the most promising untried branch on the chart, and record the turn with its cause.
+- After N = 3 rounds in which no claim on the path to the target moved, go back to the most promising untried branch on the chart, and record the turn with its cause.
 - End each round with a new-ideas pass, the round recorded, what is closed, what is open, and the next route.

@@ -675,6 +675,30 @@ impl ReflowService {
             .default_on_create(req.basis.as_deref(), "measured")
             .map(str::to_string);
         __rf.refuse_nulled(&nulled)?;
+        // A ROUND OF A PROOF SEARCH RECORDS HOW THE PATH READS WHEN IT ENDS
+        // (dec:a-round-records-how-the-path-reads-when-it-ends): the server
+        // writes the readings into `value` when the round is recorded, because
+        // a reading is computed from the design as it stands and nothing else
+        // says later what a claim read then. The readings are the server's,
+        // never the caller's, so a `value` passed on a round is refused.
+        let is_round = fact_type
+            .clone()
+            .or_else(|| __rf.stored_str("fact_type"))
+            .as_deref()
+            == Some(reflow2_core::search_map::ROUND_FACT);
+        let creating = !__rf.revising();
+        if is_round && (req.value.is_some() || nulled.iter().any(|f| f == "value")) {
+            return Err(McpError::invalid_params(
+                format!(
+                    "`value` on a `{}` finding is written by reflow2, never passed: when the \
+                     round is recorded the server writes how each claim on the path to the \
+                     target reads at that moment, which the search map compares round by round \
+                     to count the rounds since progress. Leave `value` out. Nothing was written.",
+                    reflow2_core::search_map::ROUND_FACT
+                ),
+                None,
+            ));
+        }
         __rf.finish()?;
         drop(g0);
 
@@ -726,6 +750,9 @@ impl ReflowService {
             if let Some(v) = v {
                 props = props.set(k, v);
             }
+        }
+        if is_round && creating {
+            props = props.set("value", g.round_value(&subject_id).map_err(dyno_err)?);
         }
         // Where the lesson is DELIVERED (req:a-lesson-is-served-at-the-step-it-
         // concerns): validated against what this server serves, so a typo cannot
