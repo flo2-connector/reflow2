@@ -1336,6 +1336,16 @@ impl DesignGraph {
         let mut resting_on_stale_numbers = owed.resting_on_stale_numbers;
         resting_on_stale_numbers.truncate(OWED_LISTED);
 
+        // The rest of the floor, read BEFORE the analyses rather than after
+        // them, so that once the budget runs out nothing but assembling the
+        // answer is left (measured: these two cost 1.4 s after the stop when
+        // they came last).
+        crate::stop::mark("loop_status:floor:repairs");
+        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
+        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+        crate::stop::mark("loop_status:floor:verification_recency");
+        let verifications = self.verification_recency()?;
+
         // ---- THE WHOLE-DESIGN ANALYSES, each under the caller's budget ----
         let mut not_computed: Vec<NotComputed> = Vec::new();
         let unexamined_claims = section(&mut not_computed, &SECTION_LEDGER, || {
@@ -1721,9 +1731,7 @@ impl DesignGraph {
         // RECORDED, each one line however many events it counts. Never
         // counted in `clean` (see the fields' notes). Unscoped answers only:
         // they are facts about the design, not about a person.
-        crate::stop::mark("loop_status:floor:repairs");
-        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
-        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+        // `fixes_answering_nothing` and `repairs` were read with the floor.
         if scope.is_none() {
             if fixes_answering_nothing > 0 {
                 next.push(format!(
@@ -1816,8 +1824,6 @@ impl DesignGraph {
             }
         }
 
-        crate::stop::mark("loop_status:floor:verification_recency");
-        let verifications = self.verification_recency()?;
         crate::stop::mark("loop_status:done");
         Ok(LoopStatus {
             reasoning,
