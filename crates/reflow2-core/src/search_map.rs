@@ -1245,7 +1245,7 @@ impl DesignGraph {
         &self,
         before: Option<(&BTreeMap<String, PathReading>, &str)>,
         now: &[PathClaim],
-    ) -> Result<Judged, DynoError> {
+    ) -> Result<Judgement, DynoError> {
         let mut moves = Vec::new();
         let mut unknown = Vec::new();
         for pc in now {
@@ -1285,9 +1285,9 @@ impl DesignGraph {
             }
         }
         Ok(if !moves.is_empty() {
-            Judged::Moved(moves)
+            Judgement::Moved(moves)
         } else if !unknown.is_empty() {
-            Judged::NotJudged(
+            Judgement::NotJudged(
                 format!(
                     "{} read(s) settled and the record cannot say whether this round settled \
                      them",
@@ -1296,7 +1296,7 @@ impl DesignGraph {
                 unknown,
             )
         } else {
-            Judged::Still
+            Judgement::Still
         })
     }
 
@@ -1339,10 +1339,10 @@ impl DesignGraph {
         let recorded = ends.len() + unordered.len();
 
         // Each ended round, judged against the round before it.
-        let mut judged: Vec<Judged> = Vec::new();
+        let mut judged: Vec<Judgement> = Vec::new();
         for (k, (_, now)) in ends.iter().enumerate() {
             let Some(now) = now else {
-                judged.push(Judged::NotJudged(
+                judged.push(Judgement::NotJudged(
                     "its finding carries no readings of the path (recorded before rounds kept \
                      them, or not through record_finding)"
                         .to_string(),
@@ -1363,7 +1363,7 @@ impl DesignGraph {
             judged.push(self.judge_round(before, &now)?);
         }
         let last_progress = judged.iter().enumerate().rev().find_map(|(k, j)| match j {
-            Judged::Moved(m) => Some(ProgressRef {
+            Judgement::Moved(m) => Some(ProgressRef {
                 round: k + 1,
                 moved: m.clone(),
             }),
@@ -1372,7 +1372,7 @@ impl DesignGraph {
         let not_judged: Vec<usize> = judged
             .iter()
             .enumerate()
-            .filter(|(_, j)| matches!(j, Judged::NotJudged(..)))
+            .filter(|(_, j)| matches!(j, Judgement::NotJudged(..)))
             .map(|(k, _)| k + 1)
             .collect();
 
@@ -1382,23 +1382,23 @@ impl DesignGraph {
                 .last()
                 .and_then(|(at, r)| r.as_ref().map(|r| (r, at.as_str())));
             match self.judge_round(before, path)? {
-                Judged::Moved(progress) => ThisRound {
+                Judgement::Moved(progress) => ThisRound {
                     progress,
                     not_judged: Vec::new(),
                 },
-                Judged::NotJudged(_, not_judged) => ThisRound {
+                Judgement::NotJudged(_, not_judged) => ThisRound {
                     progress: Vec::new(),
                     not_judged,
                 },
-                Judged::Still => ThisRound::default(),
+                Judgement::Still => ThisRound::default(),
             }
         };
 
         // Count back from the newest ended round.
         let mut since = 0usize;
-        let mut stop: Option<(usize, &Judged)> = None;
+        let mut stop: Option<(usize, &Judgement)> = None;
         for (k, j) in judged.iter().enumerate().rev() {
-            if matches!(j, Judged::Still) {
+            if matches!(j, Judgement::Still) {
                 since += 1;
             } else {
                 stop = Some((k + 1, j));
@@ -1428,7 +1428,7 @@ impl DesignGraph {
             )
         } else {
             match stop {
-                Some((k, Judged::Moved(m))) => {
+                Some((k, Judgement::Moved(m))) => {
                     let claims: Vec<String> = m
                         .iter()
                         .map(|m| format!("{} {}", m.claim, m.moved))
@@ -1443,14 +1443,14 @@ impl DesignGraph {
                         ),
                     )
                 }
-                Some((k, Judged::NotJudged(why, _))) if since == 0 => (
+                Some((k, Judgement::NotJudged(why, _))) if since == 0 => (
                     None,
                     format!(
                         "Round {k}, the newest ended round, cannot be judged: {why}. So the \
                          rounds since a claim on the path to the target moved are not counted."
                     ),
                 ),
-                Some((k, Judged::NotJudged(why, _))) => {
+                Some((k, Judgement::NotJudged(why, _))) => {
                     at_least = true;
                     (
                         Some(since),
@@ -1715,7 +1715,7 @@ enum Prior<'a> {
 
 /// One ended round, judged.
 #[derive(Debug, Clone)]
-enum Judged {
+enum Judgement {
     /// It moved these claims on the path toward settled.
     Moved(Vec<PathMove>),
     /// It moved nothing on the path.
