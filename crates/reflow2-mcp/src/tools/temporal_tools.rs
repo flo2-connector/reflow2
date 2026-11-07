@@ -636,6 +636,22 @@ impl ReflowService {
                 None,
             ));
         }
+        // A FINDING IS NEVER ITS OWN CAUSE: CAUSES cannot hold from a node to
+        // itself, and the store refuses that edge on every door. Refused here
+        // too, before the finding is written, so the refusal never leaves a
+        // finding with its cause missing
+        // (fact:root-cause-a-finding-can-name-itself-as-its-cause-and-create-edge-draws-a-causes-self-loop-2026-10-30).
+        if req.caused_by.as_deref() == Some(req.id.as_str()) {
+            return Err(McpError::invalid_params(
+                format!(
+                    "`caused_by` names this finding itself ({:?}): a finding cannot be its own \
+                     cause, and CAUSES cannot hold from a node to itself. Name the node whose \
+                     behaviour caused what this finding records. Nothing was written.",
+                    req.id
+                ),
+                None,
+            ));
+        }
         let g0 = self.write_lock().await?;
         let mut __rf = crate::service::RequiredFields::new(
             &g0,

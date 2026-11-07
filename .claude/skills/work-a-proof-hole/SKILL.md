@@ -122,7 +122,11 @@ Before any route:
 
 - **What was already tried.** `reasoning_report` on the hole lists every route recorded toward it
   under `failed_routes`, each with where it fails and why. Read them all. A route already failed is
-  not tried again unless you can say what is different now, and the record says it.
+  not tried again unless you can say what is different now, and the record says it. A hole with
+  many routes can be larger than one reply: it then comes as its head (what it says, how it reads)
+  with `in_parts` counting its steps, failed routes and objections, and its parts in `parts`; read
+  on with `part_offset` until `in_parts.next_part_offset` is gone, and count what you read against
+  `in_parts.counts` before you rely on it.
 - **What is already open.** `alternatives_for` the decision point lists the routes registered under
   it.
 - **The design.** `search_design` with the hole's words, the method's words and the words of the

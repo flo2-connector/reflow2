@@ -191,6 +191,11 @@ NON_TOOL_TERMS = {
     # `decision` field for a turn in the search.
     "failed_route", "failed_routes", "route_to", "fails_at", "fails_at_step",
     "fails_because", "route_rests_on", "with_step_and_reason", "decision",
+    # one claim larger than the budget reads in parts (req:one-claims-reasoning-
+    # read-fits-the-reply-door-at-any-size, 2026-11-07): reasoning_report's
+    # `part_offset`, and a claim's `in_parts` (its counts and
+    # `next_part_offset`) and `parts`.
+    "part_offset", "in_parts", "parts",
     # work-a-proof-hole (2026-11-07, req:a-served-skill-works-a-proof-hole-
     # refute-first-with-each-candidate-a-path-in-the-graph): register_alternative's
     # `decision_id`; review_relations' `incoming` and a CAUSES link's `basis`

@@ -2,14 +2,14 @@
   "annotations": {
     "readOnlyHint": true
   },
-  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), its cited sources, and the routes tried toward it that fail (`failed_routes`: what was tried, the step where it fails and why — the space ruled out, which moves no reading). Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every claim, refuted ones included. `map: true` reads A PROOF SEARCH AS ONE PAGE instead: the target, the holes under the claims they serve with their routes (open, failed, waiting), each closed result in one line, the rounds since progress toward the target and the branches to go back to — one reply at any size, arguments fetched by id. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
+  "description": "READ BACK A LINE OF REASONING, read-only: an argument for and against, an experiment's case, a paper's chain of claims, a legal case. Each claim comes with its COMPUTED truth (holds, conditional, fails or unknown), the steps that support it (rule, warrant, who confirmed them), the objections against it and how each stands (`refutes`, `stands`, `answered`), its cited sources, and the routes tried toward it that fail (`failed_routes`: what was tried, the step where it fails and why — the space ruled out, which moves no reading). Then: what the reasoning rests on and which premises cite no source, the points still contested, the disputes a Decision set to `contested` keeps open on purpose, and every claim with no support. `claim` reads under one claim; omitted, every claim, refuted ones included. `map: true` reads A PROOF SEARCH AS ONE PAGE instead: the target, its holes and their routes (open, failed, waiting), closed results in one line, rounds since progress and the branches to go back to; one reply at any size. `what_this_means`: structure is not truth. Shown here, never raised as a gap. Bounded by `budget_chars`: every claim comes back whole, and a long proof pages with `next_offset`; a claim larger than the budget comes as its head and its parts (steps, failed routes, objections), each whole, read on with `part_offset`. Writes nothing. Ask for this to check an argument point by point: what backs each claim, what is disputed, and what has no evidence behind it.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
       "budget_chars": {
         "default": null,
-        "description": "Characters the reply may spend (default 30,000). Over it, the page\nreturns FEWER claims, each WHOLE, never every claim with its words cut:\n`next_offset` reads on, and `page` names the budget it was held to.",
+        "description": "Characters the reply may spend (default 30,000). Over it, the page\nreturns FEWER claims, each WHOLE, never every claim with its words cut:\n`next_offset` reads on, and `page` names the budget it was held to.\nOne claim larger than the budget comes as its head and its parts.",
         "format": "uint",
         "minimum": 0,
         "type": [
@@ -46,6 +46,16 @@
       "offset": {
         "default": null,
         "description": "Where in the walk the page starts (default 0, the roots): pass the\nreply's `next_offset` to read on. The walk's order is proof order,\nbreadth first from the claim asked about.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "part_offset": {
+        "default": null,
+        "description": "Where in ONE CLAIM'S PARTS the page starts: its steps of support, its\nfailed routes and its objections, in that order, each part whole.\nPass the claim's `in_parts.next_part_offset`, with the same `offset`,\nto read on. Given, the claim at `offset` comes as its head and its\nparts from here, whatever the budget. Omitted, a claim comes whole,\nand in parts from 0 only when it is larger than the budget.",
         "format": "uint",
         "minimum": 0,
         "type": [
