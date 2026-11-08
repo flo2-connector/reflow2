@@ -20,9 +20,10 @@
 //!   the target. The arguments (a step's warrant and premises, a route's
 //!   prose) are NOT in it: they are fetched on demand by id.
 //! - `req:a-proof-search-checks-convergence-and-goes-back-to-the-highest-fork-with-an-untried-branch`
-//!   — the rounds since the last progress that served the target are
-//!   COMPUTED, and the forks that hold an untried (waiting) branch are listed,
-//!   highest first, for the served skill work-a-proof-hole to go back to.
+//!   — the rounds since the last progress that served the target (a claim on
+//!   the path to the target changing its reading) are COMPUTED, and the forks
+//!   that hold an untried (waiting) branch are listed, highest first, for the
+//!   served skill work-a-proof-hole to go back to.
 //! - `req:a-proof-search-charts-every-idea-at-each-fork-and-works-the-most-promising-path-by-stated-rank`
 //!   — every untried branch anywhere on the chart is ranked: first by what
 //!   closing it could do to the target (closes, then restates, then unsaid,
@@ -56,20 +57,52 @@
 //!
 //! # What counts as progress that served the target
 //!
-//! A step that HOLDS, or a failed route, on a hole whose closing could close
-//! the target (every link from it to the target `closes` or `restates`): a
-//! step in the reasoning under that hole's claim, or a failed route toward
-//! that claim or a claim beneath it. Any closed step or failed route, as a
-//! round gate counting activity would see it, is NOT this signal: work on a
-//! special case that only narrows the target moves nothing here.
+//! A CLAIM ON THE PATH TO THE TARGET CHANGING ITS READING, revised on the
+//! owner's word on 2026-11-07
+//! (`chg:the-go-back-rules-progress-means-a-claim-on-the-path-moves-2026-11-07`).
+//! A claim on the path is the target itself, or the claim of a hole whose
+//! every link up to the target closes (or restates) the claim it serves: the
+//! holes the map reads `can_close_target: yes`. Its reading must move toward
+//! settled: it comes to hold (`shown`, `proven`, `holds`, `cited`), it is
+//! refuted, it comes to hold under premises it did not hold under before
+//! (`conditional`), or it is conditional on fewer of them (the undischarged
+//! assumptions, unverified citations, bridges and statistical tests under it).
+//! Equivalently, a hole on that path closes.
+//!
+//! Steps closed and routes failed BENEATH an open claim on the path are not
+//! this signal: they are recorded, a round gate may count them, and they move
+//! nothing on the path. The requirement's first yardstick counted them (a
+//! holding step in the reasoning under, or a failed route toward, a hole
+//! whose closing could close the target), and #831 built it. A later proof
+//! trial counted its rounds by that yardstick, and it reset the count every
+//! round while the open lemma on the path stayed unchanged for four rounds
+//! (`fact:the-erdos-sos-trial-ended-after-8-rounds-with-no-proof-no-wrong-step-and-a-progress-yardstick-too-lenient-to-fire-the-go-back-rule-2026-11-07`);
+//! `rounds_that_only_work_beneath_an_open_claim_on_the_path_are_not_progress`
+//! reproduces that shape on the built count.
+//!
+//! # How a past reading is known
+//!
+//! A reading is computed from the design as it stands, so the design cannot
+//! say what a claim read when an earlier round ended unless something wrote it
+//! down then. `dec:a-round-records-how-the-path-reads-when-it-ends` (proposed):
+//! when a `search_round` finding is recorded with `record_finding`, the server
+//! writes into its `value` how each claim on the path reads at that moment
+//! ([`DesignGraph::round_value`]); the map compares each round's readings with
+//! the round before's. A claim created after the round before ended had no
+//! reading then. Where the record cannot say whether a claim moved in a round
+//! (a round whose finding carries no readings, the first round, a claim that
+//! joined the path already settled), the round is NOT JUDGED, and the count
+//! stops there: `at_least` when rounds after it were judged, `null` when none
+//! were. A claim on the path that reads open at a round's end did not move
+//! toward settled in it, whatever it read before, so such a round is judged.
 //!
 //! # Honest limits
 //!
-//! - A step is credited to the round its record was CREATED in. A step that
-//!   comes to hold later, when a premise beneath it is shown, is credited
-//!   through that premise's own step, in the later round.
+//! - Readings are recorded from the release that writes them. A round recorded
+//!   before it, or written by another door than `record_finding`, carries none
+//!   and cannot be judged.
 //! - A record without a creation stamp cannot be placed in a round; while
-//!   any progress record is unplaced the count reads `null`, and names them.
+//!   any round's marker is unplaced the count reads `null`, and names them.
 //! - Whether a route's mathematics is right, and whether a hole's
 //!   `closing_it` is true, are the writer's word: reflow2 reads the form.
 
@@ -86,6 +119,14 @@ use crate::nodes::{edge, node};
 
 /// The `fact_type` of the finding that marks the end of one round.
 pub const ROUND_FACT: &str = "search_round";
+
+/// The key, in a round finding's `value`, of how each claim on the path read
+/// when the round ended ([`DesignGraph::round_value`]).
+pub const ROUND_READINGS: &str = "path_readings";
+
+/// Who wrote a round finding's readings, said beside them.
+pub const ROUND_READINGS_BY: &str = "reflow2, when the round was recorded: how each claim on \
+     the path to the target read at that moment, which the map compares round by round";
 
 /// What closing a hole may do to the claim it serves (`closing_it`).
 pub const CLOSING_IT: [&str; 3] = ["closes", "narrows", "restates"];
@@ -121,7 +162,10 @@ const NOTE: &str = "THE MAP OF THE SEARCH, computed from the record: the target,
      under the claims they serve (highest first), each hole's routes — open with the result \
      that would refute it, failed with where and why, waiting with its stated promise and rank \
      (the top of each fork; the rest by id) — each closed result in one line, the rounds since \
-     the last progress that served the target, the forks that hold an untried branch, and the \
+     the last progress that served the target (a round in which a claim on the path to the \
+     target came to hold, was refuted, or came to rest on fewer premises: steps closed and \
+     routes failed beneath an open claim on the path do not count), the forks that hold an \
+     untried branch, and the \
      untried branches anywhere on the chart, most promising first (what closing them could do \
      to the target, then their stated rank, then the higher fork). `can_close_target` reads the links from a hole to the target: \
      `yes` when every link closes or restates, `no` when one only narrows (a special case or a \
@@ -243,25 +287,61 @@ pub struct UnplacedHole {
     pub why: String,
 }
 
-/// The newest progress that served the target.
-#[derive(Debug, Clone, Serialize)]
-pub struct ProgressRef {
-    /// The round it was made in.
-    pub round: usize,
-    /// The record: a step (`inf:…`) or a failed route.
-    pub record: String,
-    /// `step` or `failed_route`.
-    pub kind: &'static str,
-    /// The hole it served.
-    pub hole: String,
+/// How a claim on the path to the target reads, as a round records it.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct PathReading {
+    /// Its reading, as the map gives it (`open`, `stated`, `unproven`,
+    /// `conditional`, `shown`, `refuted` ...).
+    pub reads: String,
+    /// For a `conditional` or `supported` reading: how many premises it holds
+    /// under (the undischarged assumptions, unverified citations, bridges and
+    /// statistical tests under it).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub on: Option<usize>,
 }
 
-/// The round still in progress: what has been recorded since the last
+/// One claim on the path to the target, and how it reads.
+#[derive(Debug, Clone, Serialize)]
+pub struct PathClaim {
+    pub claim: String,
+    #[serde(flatten)]
+    pub reading: PathReading,
+}
+
+/// A claim on the path whose reading moved toward settled in a round.
+#[derive(Debug, Clone, Serialize)]
+pub struct PathMove {
+    pub claim: String,
+    /// How it read when the round before ended; `null` when it was created
+    /// after that, so it had no reading then.
+    pub from: Option<PathReading>,
+    pub to: PathReading,
+    /// `holds` (it came to hold), `refuted`, `holds_conditionally` (it came
+    /// to hold under premises, where it held under none) or `fewer_premises`
+    /// (conditional on fewer).
+    pub moved: &'static str,
+}
+
+/// The newest ended round that moved a claim on the path to the target.
+#[derive(Debug, Clone, Serialize)]
+pub struct ProgressRef {
+    /// The round.
+    pub round: usize,
+    /// The claims on the path it moved.
+    pub moved: Vec<PathMove>,
+}
+
+/// The round still in progress: what has moved on the path since the last
 /// round ended.
 #[derive(Debug, Clone, Default, Serialize)]
 pub struct ThisRound {
-    /// The progress that served the target, oldest first.
-    pub progress: Vec<String>,
+    /// The claims on the path whose reading moved toward settled since the
+    /// last round ended, as they read now.
+    pub progress: Vec<PathMove>,
+    /// Claims on the path that read settled now, where the record cannot say
+    /// whether they moved since the last round ended.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub not_judged: Vec<String>,
 }
 
 /// The rounds of the search, counted.
@@ -270,17 +350,28 @@ pub struct RoundsRead {
     /// How many rounds were recorded as ended (`search_round` findings about
     /// the target).
     pub recorded: usize,
-    /// The ended rounds since the last one that made progress serving the
-    /// target, newest first. `null` when it cannot be counted, and `reads`
-    /// says why; never zero for "nobody said".
+    /// The ended rounds since the last one that moved a claim on the path to
+    /// the target, newest first. `null` when it cannot be counted, and
+    /// `reads` says why; never zero for "nobody said".
     pub since_progress: Option<usize>,
+    /// True when the count stopped at a round that cannot be judged: the
+    /// rounds after it moved nothing on the path, and the true count is this
+    /// or more.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub at_least: bool,
     /// What the count means, in a sentence.
     pub reads: String,
-    /// The newest progress in an ended round.
+    /// How many claims are on the path to the target now: the target and
+    /// the claims of the holes that read `can_close_target: yes`.
+    pub claims_on_the_path: usize,
+    /// The newest ended round that moved a claim on the path.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub last_progress: Option<ProgressRef>,
     /// The round in progress.
     pub this_round: ThisRound,
+    /// The ended rounds whose progress the record cannot judge.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub not_judged: Vec<usize>,
     /// Records that could not be placed in a round (no creation stamp).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub unordered: Vec<String>,
@@ -350,6 +441,11 @@ pub struct SearchMap {
     /// Each closed result, one line.
     pub closed: Vec<MapClaim>,
     pub rounds: RoundsRead,
+    /// The claims on the path to the target and how each reads now: what a
+    /// round's finding records when it ends ([`DesignGraph::round_value`]).
+    /// The holes carry the same readings, so the map does not repeat them.
+    #[serde(skip)]
+    pub path: Vec<PathClaim>,
     /// The forks that hold an untried branch, highest first.
     pub forks_with_an_untried_branch: Vec<Fork>,
     /// The untried branches anywhere on the chart, most promising first:
@@ -791,7 +887,6 @@ impl DesignGraph {
         let mut claimed_failed: BTreeSet<String> = BTreeSet::new();
         let mut holes: Vec<MapHole> = Vec::new();
         let mut counts = MapCounts::default();
-        let mut failed_of_hole: BTreeMap<String, Vec<String>> = BTreeMap::new();
         let mut branches: Vec<Branch> = Vec::new();
         let mut waiting_totals: Vec<usize> = Vec::new();
         for &i in &order {
@@ -807,10 +902,6 @@ impl DesignGraph {
                 let name = short(sprop(props, "name"));
                 if let Some(f) = failed {
                     claimed_failed.insert(f.clone());
-                    failed_of_hole
-                        .entry(c.id.clone())
-                        .or_default()
-                        .push(f.clone());
                     routes.failed.push(MapRoute {
                         id: f.clone(),
                         name,
@@ -856,10 +947,6 @@ impl DesignGraph {
                         continue;
                     }
                     claimed_failed.insert(f.clone());
-                    failed_of_hole
-                        .entry(c.id.clone())
-                        .or_default()
-                        .push(f.clone());
                     let props = self.node_props(&f)?.unwrap_or_default();
                     routes.failed.push(MapRoute {
                         id: f.clone(),
@@ -993,38 +1080,26 @@ impl DesignGraph {
         closed.extend(off);
         counts.closed = closed.len();
 
-        // Progress that served the target: on holes whose closing could
-        // close it.
-        let mut progress: Vec<(String, &'static str, String)> = Vec::new();
-        let mut seen_progress = BTreeSet::new();
+        // The claims on the path to the target and how each reads now: the
+        // target, then the claim of each hole whose closing could close it,
+        // in tree order.
+        let target_line = self.map_claim(&target)?;
+        let mut path = vec![PathClaim {
+            claim: target.clone(),
+            reading: self.path_reading(&target, &target_line.reads)?,
+        }];
+        let mut on_path = BTreeSet::from([target.clone()]);
         for h in holes.iter().filter(|h| h.can_close_target == "yes") {
-            let (claims, steps) = h
-                .hole
-                .as_ref()
-                .and_then(|c| beneath.get(c).cloned())
-                .unwrap_or_default();
-            for s in steps {
-                let holds = self
-                    .inference_reading(&s)?
-                    .is_some_and(|r| r.verdict == Truth::Holds);
-                if holds && seen_progress.insert(s.clone()) {
-                    progress.push((s, "step", h.id.clone()));
-                }
-            }
-            for f in failed_of_hole.get(&h.id).cloned().unwrap_or_default() {
-                if seen_progress.insert(f.clone()) {
-                    progress.push((f, "failed_route", h.id.clone()));
-                }
-            }
-            for c in claims {
-                for f in failed_by_claim.get(&c).cloned().unwrap_or_default() {
-                    if seen_progress.insert(f.clone()) {
-                        progress.push((f, "failed_route", h.id.clone()));
-                    }
-                }
+            if let (Some(c), Some(r)) = (&h.hole, &h.hole_reads)
+                && on_path.insert(c.clone())
+            {
+                path.push(PathClaim {
+                    claim: c.clone(),
+                    reading: self.path_reading(c, r)?,
+                });
             }
         }
-        let rounds = self.rounds_read(&target, target_hole.map(|t| t.id.as_str()), &progress)?;
+        let rounds = self.rounds_read(&target, target_hole.map(|t| t.id.as_str()), &path)?;
 
         // The forks that hold an untried branch, highest first.
         let mut forks = Vec::new();
@@ -1073,12 +1148,13 @@ impl DesignGraph {
 
         Ok(SearchMapRead::Map(Box::new(SearchMap {
             view: "search_map",
-            target: self.map_claim(&target)?,
+            target: target_line,
             target_hole: target_hole.map(|t| t.id.clone()),
             holes,
             not_placed,
             closed,
             rounds,
+            path,
             forks_with_an_untried_branch: forks,
             untried_branches_by_promise: branches,
             counts,
@@ -1098,15 +1174,144 @@ impl DesignGraph {
         Ok(one_line(&format!("at {at}: {because}"), SHORT_CHARS * 2).0)
     }
 
+    /// How a claim on the path reads, for a round to record: the map's
+    /// reading, and for a conditional one how many premises it holds under.
+    fn path_reading(&self, claim: &str, reads: &str) -> Result<PathReading, DynoError> {
+        let on = if matches!(reads, "conditional" | "supported") {
+            let mut under: BTreeSet<String> = BTreeSet::new();
+            under.extend(self.assumptions_under(claim)?);
+            under.extend(self.unverified_under(claim)?);
+            under.extend(self.bridges_under(claim)?);
+            under.extend(self.tests_under(claim)?);
+            Some(under.len())
+        } else {
+            None
+        };
+        Ok(PathReading {
+            reads: reads.to_string(),
+            on,
+        })
+    }
+
+    /// The target a round's finding is about: its subject, or, when the
+    /// subject is the target's own hole, the claim it is the hole for.
+    fn round_target(&self, subject: &str) -> Result<String, DynoError> {
+        if let Some(d) = self.get_node(node::DECISION, subject)?
+            && sprop(&d.properties, "serves").is_none()
+            && let Some(h) = sprop(&d.properties, "hole")
+        {
+            return Ok(h.to_string());
+        }
+        Ok(subject.to_string())
+    }
+
+    /// WHAT A ROUND'S FINDING RECORDS WHEN IT ENDS
+    /// (dec:a-round-records-how-the-path-reads-when-it-ends): how each claim
+    /// on the path to the target reads at this moment, as JSON for the
+    /// finding's `value`. `record_finding` writes it on a `search_round`
+    /// finding; the map compares each round's readings with the round
+    /// before's, because a reading is computed from the design as it stands
+    /// and nothing else says what a claim read when an earlier round ended.
+    pub fn round_value(&self, subject: &str) -> Result<String, DynoError> {
+        let target = self.round_target(subject)?;
+        let path = match self.search_map(Some(&target))? {
+            SearchMapRead::Map(m) => m.path,
+            SearchMapRead::ChooseTarget(_) => Vec::new(),
+        };
+        Ok(json!({
+            ROUND_READINGS: path,
+            "target": target,
+            "written_by": ROUND_READINGS_BY,
+        })
+        .to_string())
+    }
+
+    /// Whether `claim` was created after `stamp`: then it had no reading
+    /// when the round that ended at `stamp` ended.
+    fn created_after(&self, claim: &str, stamp: &str) -> Result<bool, DynoError> {
+        let Some(ty) = self.type_holding(claim)? else {
+            return Ok(false);
+        };
+        Ok(self
+            .node_stamp(&ty, claim)?
+            .and_then(|s| s.created)
+            .is_some_and(|c| c.as_str() > stamp))
+    }
+
+    /// Judge one round: what moved on the path between the readings recorded
+    /// when the round before ended (`before`, with that round's end) and
+    /// `now`.
+    fn judge_round(
+        &self,
+        before: Option<(&BTreeMap<String, PathReading>, &str)>,
+        now: &[PathClaim],
+    ) -> Result<Judgement, DynoError> {
+        let mut moves = Vec::new();
+        let mut unknown = Vec::new();
+        for pc in now {
+            let prior = match before {
+                Some((map, _)) if map.contains_key(&pc.claim) => Prior::Read(&map[&pc.claim]),
+                Some((_, end)) if self.created_after(&pc.claim, end)? => Prior::Absent,
+                _ => Prior::Unknown,
+            };
+            match prior {
+                Prior::Read(b) => {
+                    if let Some(m) = moved(Some(b), &pc.reading) {
+                        moves.push(PathMove {
+                            claim: pc.claim.clone(),
+                            from: Some(b.clone()),
+                            to: pc.reading.clone(),
+                            moved: m,
+                        });
+                    }
+                }
+                Prior::Absent => {
+                    if let Some(m) = moved(None, &pc.reading) {
+                        moves.push(PathMove {
+                            claim: pc.claim.clone(),
+                            from: None,
+                            to: pc.reading.clone(),
+                            moved: m,
+                        });
+                    }
+                }
+                // Open now means it did not move toward settled, whatever it
+                // read before; settled now, the record cannot say when.
+                Prior::Unknown => {
+                    if level(&pc.reading.reads) != Level::Open {
+                        unknown.push(pc.claim.clone());
+                    }
+                }
+            }
+        }
+        Ok(if !moves.is_empty() {
+            Judgement::Moved(moves)
+        } else if !unknown.is_empty() {
+            Judgement::NotJudged(
+                format!(
+                    "{} read(s) settled and the record cannot say whether this round settled \
+                     them",
+                    unknown.join(", ")
+                ),
+                unknown,
+            )
+        } else {
+            Judgement::Still
+        })
+    }
+
     /// THE ROUNDS, COUNTED (req:a-proof-search-checks-convergence-and-goes-
-    /// back-to-the-highest-fork-with-an-untried-branch, part 1).
+    /// back-to-the-highest-fork-with-an-untried-branch, part 1, as revised
+    /// 2026-11-07): a round made progress when a claim on the path to the
+    /// target moved toward settled in it.
     fn rounds_read(
         &self,
         target: &str,
         target_hole: Option<&str>,
-        progress: &[(String, &'static str, String)],
+        path: &[PathClaim],
     ) -> Result<RoundsRead, DynoError> {
-        let mut markers: Vec<(String, Option<String>)> = Vec::new();
+        type Readings = Option<BTreeMap<String, PathReading>>;
+        let mut markers: Vec<(String, Option<String>, Readings)> = Vec::new();
         for f in self.scan_nodes(node::TEMPORAL_FACT)? {
             let p = &f.properties;
             if sprop(p, "fact_type") != Some(ROUND_FACT) {
@@ -1119,48 +1324,89 @@ impl DesignGraph {
             let created = self
                 .node_stamp(node::TEMPORAL_FACT, &f.node_id)?
                 .and_then(|s| s.created);
-            markers.push((f.node_id.clone(), created));
+            markers.push((f.node_id.clone(), created, readings_of(p)));
         }
-        let mut unordered: Vec<String> = markers
+        let unordered: Vec<String> = markers
             .iter()
-            .filter(|(_, c)| c.is_none())
-            .map(|(id, _)| id.clone())
+            .filter(|(_, c, _)| c.is_none())
+            .map(|(id, _, _)| id.clone())
             .collect();
-        let mut ends: Vec<String> = markers.into_iter().filter_map(|(_, c)| c).collect();
-        ends.sort();
+        let mut ends: Vec<(String, Readings)> = markers
+            .into_iter()
+            .filter_map(|(_, c, r)| c.map(|c| (c, r)))
+            .collect();
+        ends.sort_by(|a, b| a.0.cmp(&b.0));
         let recorded = ends.len() + unordered.len();
 
-        // Each progress record's round: 1 + the markers created before it.
-        let mut placed: Vec<(usize, String, String, &'static str, String)> = Vec::new();
-        for (id, kind, hole) in progress {
-            let ty = if *kind == "step" {
-                node::INFERENCE
-            } else {
-                node::REQUIREMENT
+        // Each ended round, judged against the round before it.
+        let mut judged: Vec<Judgement> = Vec::new();
+        for (k, (_, now)) in ends.iter().enumerate() {
+            let Some(now) = now else {
+                judged.push(Judgement::NotJudged(
+                    "its finding carries no readings of the path (recorded before rounds kept \
+                     them, or not through record_finding)"
+                        .to_string(),
+                    Vec::new(),
+                ));
+                continue;
             };
-            match self.node_stamp(ty, id)?.and_then(|s| s.created) {
-                Some(at) => {
-                    let round = 1 + ends.iter().filter(|e| e.as_str() < at.as_str()).count();
-                    placed.push((round, at, id.clone(), kind, hole.clone()));
-                }
-                None => unordered.push(id.clone()),
+            let now: Vec<PathClaim> = now
+                .iter()
+                .map(|(c, r)| PathClaim {
+                    claim: c.clone(),
+                    reading: r.clone(),
+                })
+                .collect();
+            let before = k
+                .checked_sub(1)
+                .and_then(|j| ends[j].1.as_ref().map(|r| (r, ends[j].0.as_str())));
+            judged.push(self.judge_round(before, &now)?);
+        }
+        let last_progress = judged.iter().enumerate().rev().find_map(|(k, j)| match j {
+            Judgement::Moved(m) => Some(ProgressRef {
+                round: k + 1,
+                moved: m.clone(),
+            }),
+            _ => None,
+        });
+        let not_judged: Vec<usize> = judged
+            .iter()
+            .enumerate()
+            .filter(|(_, j)| matches!(j, Judgement::NotJudged(..)))
+            .map(|(k, _)| k + 1)
+            .collect();
+
+        // The round in progress, against the newest round's readings.
+        let this_round = {
+            let before = ends
+                .last()
+                .and_then(|(at, r)| r.as_ref().map(|r| (r, at.as_str())));
+            match self.judge_round(before, path)? {
+                Judgement::Moved(progress) => ThisRound {
+                    progress,
+                    not_judged: Vec::new(),
+                },
+                Judgement::NotJudged(_, not_judged) => ThisRound {
+                    progress: Vec::new(),
+                    not_judged,
+                },
+                Judgement::Still => ThisRound::default(),
+            }
+        };
+
+        // Count back from the newest ended round.
+        let mut since = 0usize;
+        let mut stop: Option<(usize, &Judgement)> = None;
+        for (k, j) in judged.iter().enumerate().rev() {
+            if matches!(j, Judgement::Still) {
+                since += 1;
+            } else {
+                stop = Some((k + 1, j));
+                break;
             }
         }
-        placed.sort_by(|a, b| (a.0, &a.1, &a.2).cmp(&(b.0, &b.1, &b.2)));
-        let this_round = ThisRound {
-            progress: placed
-                .iter()
-                .filter(|p| p.0 > ends.len())
-                .map(|p| p.2.clone())
-                .collect(),
-        };
-        let last = placed.iter().rev().find(|p| p.0 <= ends.len());
-        let last_progress = last.map(|p| ProgressRef {
-            round: p.0,
-            record: p.2.clone(),
-            kind: p.3,
-            hole: p.4.clone(),
-        });
+        let n = ends.len();
+        let mut at_least = false;
         let (since_progress, reads) = if recorded == 0 {
             (
                 None,
@@ -1174,34 +1420,52 @@ impl DesignGraph {
             (
                 None,
                 format!(
-                    "{} record(s) carry no creation stamp ({}), so they cannot be placed in a \
-                     round and the count is not given.",
+                    "{} round finding(s) carry no creation stamp ({}), so the rounds cannot be \
+                     ordered and the count is not given.",
                     unordered.len(),
                     unordered.join(", ")
                 ),
             )
         } else {
-            match &last_progress {
-                Some(l) => {
-                    let since = ends.len() - l.round;
+            match stop {
+                Some((k, Judgement::Moved(m))) => {
+                    let claims: Vec<String> = m
+                        .iter()
+                        .map(|m| format!("{} {}", m.claim, m.moved))
+                        .collect();
                     (
                         Some(since),
                         format!(
-                            "{since} of the {} ended round(s) since the last progress that served \
-                             the target ({}, round {}, on {}).",
-                            ends.len(),
-                            l.record,
-                            l.round,
-                            l.hole
+                            "{since} of the {n} ended round(s) since round {k}, the last that \
+                             moved a claim on the path to the target ({}). Steps closed and \
+                             routes failed beneath an open claim on the path do not count.",
+                            claims.join(", ")
                         ),
                     )
                 }
-                None => (
-                    Some(ends.len()),
+                Some((k, Judgement::NotJudged(why, _))) if since == 0 => (
+                    None,
                     format!(
-                        "None of the {} ended round(s) made progress that served the target: no \
-                         step closed and no route failed on a hole whose closing could close it.",
-                        ends.len()
+                        "Round {k}, the newest ended round, cannot be judged: {why}. So the \
+                         rounds since a claim on the path to the target moved are not counted."
+                    ),
+                ),
+                Some((k, Judgement::NotJudged(why, _))) => {
+                    at_least = true;
+                    (
+                        Some(since),
+                        format!(
+                            "At least {since}: the {since} ended round(s) after round {k} moved \
+                             no claim on the path to the target, and round {k} cannot be judged \
+                             ({why}), so the count goes no further back."
+                        ),
+                    )
+                }
+                _ => (
+                    Some(since),
+                    format!(
+                        "None of the {n} ended round(s) moved a claim on the path to the target: \
+                         none came to hold, was refuted, or came to rest on fewer premises."
                     ),
                 ),
             }
@@ -1209,9 +1473,12 @@ impl DesignGraph {
         Ok(RoundsRead {
             recorded,
             since_progress,
+            at_least,
             reads,
+            claims_on_the_path: path.len(),
             last_progress,
             this_round,
+            not_judged,
             unordered,
         })
     }
@@ -1394,6 +1661,88 @@ fn for_routes(v: &mut Json, state: &str, keys: &[&str]) {
             }
         }
     }
+}
+
+/// How far a reading has settled, for judging whether it moved.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Level {
+    /// It does not hold yet: open, stated, unproven, contested, claimed ...
+    Open,
+    /// It holds under premises it does not discharge.
+    Conditional,
+    /// It holds: shown, proven, holds, cited, taken as given.
+    Holds,
+    /// It is refuted.
+    Refuted,
+}
+
+fn level(reads: &str) -> Level {
+    match reads {
+        "refuted" | "fails" | "false" | "inconsistent" => Level::Refuted,
+        "proven" | "shown" | "holds" | "cited" | "taken_as_given" => Level::Holds,
+        "conditional" | "supported" | "cited_unverified" => Level::Conditional,
+        _ => Level::Open,
+    }
+}
+
+/// Whether a reading moved toward settled, and how: `None` for no move, a
+/// move back, or a claim already settled.
+fn moved(from: Option<&PathReading>, to: &PathReading) -> Option<&'static str> {
+    let was = from.map(|f| level(&f.reads)).unwrap_or(Level::Open);
+    match (was, level(&to.reads)) {
+        (Level::Refuted, _) => None,
+        (_, Level::Refuted) => Some("refuted"),
+        (Level::Holds, _) => None,
+        (_, Level::Holds) => Some("holds"),
+        (Level::Open, Level::Conditional) => Some("holds_conditionally"),
+        (Level::Conditional, Level::Conditional) => match (from.and_then(|f| f.on), to.on) {
+            (Some(a), Some(b)) if b < a => Some("fewer_premises"),
+            _ => None,
+        },
+        _ => None,
+    }
+}
+
+/// How the record knows what a claim read when the round before ended.
+enum Prior<'a> {
+    /// The round before recorded it.
+    Read(&'a PathReading),
+    /// It was created after the round before ended: it had no reading then.
+    Absent,
+    /// The record does not say.
+    Unknown,
+}
+
+/// One ended round, judged.
+#[derive(Debug, Clone)]
+enum Judgement {
+    /// It moved these claims on the path toward settled.
+    Moved(Vec<PathMove>),
+    /// It moved nothing on the path.
+    Still,
+    /// The record cannot say: why, and the claims on the path it cannot say
+    /// about.
+    NotJudged(String, Vec<String>),
+}
+
+/// The readings a round's finding recorded in its `value`, by claim; `None`
+/// when it holds none.
+fn readings_of(props: &HashMap<String, Value>) -> Option<BTreeMap<String, PathReading>> {
+    let v: Json = serde_json::from_str(sprop(props, "value")?).ok()?;
+    let mut out = BTreeMap::new();
+    for e in v.get(ROUND_READINGS)?.as_array()? {
+        let claim = e.get("claim")?.as_str()?;
+        let reads = e.get("reads")?.as_str()?;
+        let on = e.get("on").and_then(Json::as_u64).map(|n| n as usize);
+        out.insert(
+            claim.to_string(),
+            PathReading {
+                reads: reads.to_string(),
+                on,
+            },
+        );
+    }
+    Some(out)
 }
 
 /// What closing a fork could do to the target, as a rank: a path that

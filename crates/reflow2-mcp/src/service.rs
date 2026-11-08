@@ -6998,7 +6998,9 @@ pub struct RecordFindingReq {
     /// The DATE it stopped being true; absent means still true.
     #[serde(default)]
     pub valid_to: Option<String>,
-    /// JSON of an asserted value, when the finding carries one.
+    /// JSON of an asserted value, when the finding carries one. On a
+    /// `search_round` finding reflow2 writes it, and one passed is refused:
+    /// how each claim on the path to the target reads when the round ends.
     #[serde(default)]
     pub value: Option<String>,
     /// The node whose behaviour CAUSED this — drawn as a `CAUSES` edge in the
