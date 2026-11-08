@@ -113,6 +113,11 @@ Three records, three questions — kept separate on purpose:
   there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.98.0.md](upgrading-to-v0.98.0.md) — **upgrade every seat**: the stamp moves
+  by an enum vocabulary (`Decision.closing_it`, new). A v0.97.0 binary opens a v0.98.0 store with
+  its "behind" warning and keeps the new fields, but cannot read a proof search's map, and a round
+  it records cannot be judged. Nothing to migrate. Also: one claim larger than the budget reads in
+  parts, and seventeen relations cannot be drawn from a node to itself.
 - [upgrading-to-v0.97.0.md](upgrading-to-v0.97.0.md) — **upgrade everywhere, together**: the stamp
   moves by an enum value (`Requirement.statement_kind` gains `failed_route`). A v0.96.0 binary
   opens a v0.97.0 store with its "behind" warning and refuses one holding a failed route. Nothing

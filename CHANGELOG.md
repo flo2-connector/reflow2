@@ -31,6 +31,179 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.98.0] — 2026-11-07
+
+**Minor. A proof search reads as one page, each hole says what it serves, a stalled search goes
+back to its most promising untried branch, progress means a claim on the path to the target
+moves, one claim larger than the budget reads in parts, and no tool draws an edge from a node to
+itself where that means nothing.** It contains #831 to #833. The proof-method changes came from
+two proof trials on public conjectures, Aaronson–Ambainis and Erdős–Sós. Both attempts ended
+without a proof and with no wrong step; in the first, both arms spent their late rounds on holes
+whose closing could not close the target, and the second showed that the go-back rule needs
+"progress" to mean a claim on the path moves. **What to do:** upgrade every seat
+([docs/upgrading-to-v0.98.0.md](docs/upgrading-to-v0.98.0.md)). A seat left on 0.97.0 still
+opens the design, but cannot read the map, and a round it records cannot be judged. On the VS
+Code terminal route, run `reflow2 update` in each repository after installing (In your setup,
+below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.97.0 binary (sha256 `57dfc5f3…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Five tools take new inputs or describe one anew:
+`add_decision` takes `hole`, `serves` and `closing_it`; `register_alternative` and `add_artifact`
+take `refuter`, `waiting`, `promise` and `promise_rank` (and `register_alternative`'s description
+grows); `reasoning_report` takes `map` and `part_offset`, and its description and `budget_chars`
+say how to read a map and a claim in parts; `record_finding`'s `value` says it is written by
+reflow2 on a round. Skills stay at 36: `design-a-proof` and `work-a-proof-hole` change in their
+own words, and `work-a-proof-hole`'s description changes. `get_instructions` is unchanged;
+`describe_schema` gains the new properties and values, and asked about a pair it says
+`irreflexive` on the relations that cannot hold from a node to itself. The connect-time
+instructions are unchanged: 2,911 characters on stdio and 3,169 behind `--http-trusted-gateway
+flo2.io`, as in 0.97.0. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp moves by vocabulary**: Decision gains `closing_it` (`closes`, `narrows`,
+  `restates`), so the stamp's enum vocabularies go from 83 to 84. Decision also gains `hole` and
+  `serves`, and Artifact gains `refuter`, `waiting`, `promise` and `promise_rank`, each optional.
+  No node or edge type is added (28 and 69, as in 0.97.0). Measured at this cut: a 0.97.0 seat
+  opens a store this release wrote, with its "behind" warning, even one holding every new field;
+  it reads those fields back as stored and keeps them through its own revise. It refuses this
+  release's exports without `--accept-newer`, and with it imports them whole. A round it records
+  carries no readings of the path, so this release's map reports it not judged and counts
+  nothing past it ([docs/upgrading-to-v0.98.0.md](docs/upgrading-to-v0.98.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two fragments are folded together here.** #833 changed how the map, added in #831, counts
+  progress, before either shipped. A reader of 0.97.0 never saw the earlier count, so its entries
+  are under Added, as the map now behaves.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets everything in this release. Checked through the door
+(`reflow2 read|write TOOL JSON --graph-path …`) on the 0.98.0 release build beside the published
+0.97.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** On a repository set up by the
+  0.97.0 kit with `--harness vscode-cli`, it changes one file,
+  `.github/skills/work-a-proof-hole/SKILL.md` (the skill's description), and nothing else.
+- **A proof search reads as one page here.** `reflow2 write add_decision` with `hole`, `serves`
+  and `closing_it`, and `reflow2 write register_alternative` with `refuter`, `waiting`,
+  `promise` and `promise_rank`, are stored; 0.97.0 refuses each (exit 2, not a parameter).
+  `reflow2 read reasoning_report '{"claim": "req:t", "map": true}'` answers the map, 4,801
+  characters on a small search (a conjecture, three lemmas, two holes, three charted routes):
+  `rounds`, `holes`, `closed`,
+  `forks_with_an_untried_branch` (the target's hole first) and `untried_branches_by_promise`
+  (the rank-1 waiting route first). 0.97.0 refuses `map` (exit 2).
+- **Progress means a claim on the path moves.** After three recorded rounds (a lemma on the path
+  reduced, a failed route toward it, a side lemma shown beneath it), the map reads
+  `since_progress` 3. When the last premise is shown, `this_round.progress` names the lemma and
+  the target, each moving from unproven to shown, and after the round is recorded
+  `since_progress` reads 0 with `last_progress.round` 4. Each round's finding carries a `value`
+  written by reflow2 (`path_readings`), and `reflow2 write record_finding` with a `value` on a
+  round is refused (exit 1); 0.97.0 stores it.
+- **One claim larger than the budget reads in parts.** A target under 15 failed routes reads
+  whole at 73,936 characters. At `budget_chars` 6,000 and 30,000, `reflow2 read
+  reasoning_report` gives its head with `in_parts` counting 1 step, 15 routes and 0 objections;
+  reading on with `part_offset` gives all 16 parts (in 3 pages at 30,000, the largest reply
+  29,120 characters). At 3,000 the summary leaves no room, and the reply names the budget the head
+  needs (4,500). 0.97.0 answers no claim at all three budgets.
+- **No self-loop where it means nothing.** `reflow2 write register_alternative` called again for
+  an alternative leaves it with no CONTRADICTS to itself (0.97.0 drew one), and `reflow2 write
+  create_edge` for CONTRADICTS from a node to itself and `record_finding` naming itself as its
+  cause are refused, each naming why (exit 1; 0.97.0 wrote both).
+- **The skills are served here.** `reflow2 read get_skill '{"name": "work-a-proof-hole"}'`
+  serves the new text (28,026 characters, with the quick kills, the sieve and the map; 0.97.0's
+  is 17,000), and `list_skills` names 36.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries `map`,
+`part_offset` and the hole fields, `get_skill` serves the new work-a-proof-hole, and a search
+written through it reads back as a map. flo2.io gets these once its engine moves to 0.98.0 and
+is deployed. The skill count does not change (36), but work-a-proof-hole's description does, so
+the list of skills flo2.io shows a chat should be regenerated at the re-pin. As before, the
+hosted hub view and reads across designs by graph id need flo2.io. These lines get checked
+again on the published binary once the release is out.
+
+### Added
+
+- **A proof search reads as one page: `reasoning_report` with `map: true`.** Pass `claim` the
+  target and the reply holds the target and how it reads, every hole under the claim it serves
+  with its routes (open with what would refute it, failed with where and why, waiting with its
+  stated promise and rank), each closed result in one line, the rounds since a claim on the path
+  to the target last moved, the forks that hold an untried branch, and the untried branches
+  anywhere on the chart, most promising first. It fits one reply at any size, naming in
+  `page.withheld` what it held back, and carries no step's warrant: read each argument by id
+  with `get_node`. Built after a 16-round proof trial on the Aaronson–Ambainis conjecture, where
+  both arms spent their late rounds on holes that could not close the target.
+- **A hole says what it serves, and what closing it does.** `add_decision` takes `hole`,
+  `serves` and `closing_it` (`closes`, `narrows` or `restates`) on a hole's decision point. The
+  map says along the path whether closing each hole could close the target; a hole that only
+  narrows it is shown as such, and an unsaid link reads unsaid, never `closes`.
+- **A route says what would refute it, and an idea can be charted before it is judged.**
+  `register_alternative` and `add_artifact` take `refuter`, `waiting`, `promise` and
+  `promise_rank` on a route under a hole. A charted idea needs no reason until it is worked.
+- **Rounds are counted, and progress means a claim on the path to the target moves.** A round is
+  recorded when it ends, as `record_finding` with `fact_type: search_round` about the target.
+  The map's `rounds.since_progress` resets only when the target, or the claim of a hole whose
+  every link up to the target closes or restates, comes to hold, is refuted, or comes to rest on
+  fewer premises. Steps closed and routes failed beneath an open claim on the path are still
+  recorded, and do not reset the count; neither does work on a special case that only narrows
+  the target. In the Erdős–Sós trial, refuting the attempt's own side conjectures beneath the
+  open lemma on the path was counted as progress, so the go-back rule never fired while that
+  lemma stayed open and unchanged for four rounds; the count as first built in #831 reset on the
+  same shape. `rounds.last_progress` and `rounds.this_round.progress` name the claims that moved,
+  with how each read before and after.
+- **A round's finding records how the path read when the round ended.** `record_finding` with
+  `fact_type: search_round` writes into the finding's `value` how each claim on the path reads at
+  that moment, and the map compares each round with the one before. A `value` passed on such a
+  finding is refused. A round the record cannot judge (one recorded by an older reflow2, or a
+  claim on the path that reads settled with no earlier reading) stops the count: it reads
+  `at_least`, or `null` when no later round could be judged, and `rounds.not_judged` lists those
+  rounds. **What to do:** record each round with `record_finding` when it ends, and leave `value`
+  out.
+- **work-a-proof-hole starts each round from the map** and, after three rounds with no progress
+  toward the target, goes back to the most promising untried branch on the chart and records the
+  turn with its cause. It charts every candidate at a fork, one line each, and ends each round
+  with a new-ideas pass. **What to do:** nothing for a recorded proof to keep reading as before;
+  to use the map, give each hole's decision point `hole`, `serves` and `closing_it`, and record
+  each round's end.
+- **work-a-proof-hole spends a fifth of each round on quick kills, and sieves new candidates.**
+  Each round sets aside a slice of its budget (a fifth, as a starting guess) for the cheapest
+  refuters of the unranked and lowest-ranked candidates anywhere on the chart, each time-boxed
+  and recorded as a failed route; a barrier that rules out several is recorded against each.
+  The design keeps a standing sieve of the field's known tight or extremal examples, each a
+  statement with its source, and every new candidate is tested against it before it is ranked.
+
+### Fixed
+
+- **`reasoning_report` never answers zero claims because one claim is larger
+  than the budget.** A claim with many failed routes under it could read at
+  39,000 characters: at `budget_chars` 3,000 the read answered "0 of 28 claims"
+  with `next_offset` 0, and through a reply door of about 30,000 characters it
+  could not be read whole at any budget. Such a claim now comes as its **head**
+  (what it says, how it reads and why, and everything it carries but its parts)
+  with `in_parts` counting its steps of support, failed routes and objections,
+  and as many of those **parts** as fit, each whole, in `parts` (each naming
+  the list it belongs to in `in`). Every page keeps to its budget. **What to
+  do:** read on through a claim's parts with the new `part_offset` argument
+  (the claim's `in_parts.next_part_offset`, with the same `offset`);
+  `next_offset` still goes on to the next claim, so a reader that follows only
+  it still reads every claim's head. A claim whose words alone are larger than
+  the budget is still answered with no claim and the budget it needs.
+- **No tool draws an edge from a node to itself where that means nothing.**
+  `register_alternative`, called again for an alternative already registered
+  under a decision (to move where its export lives, say), drew "X CONTRADICTS
+  X"; `record_finding` with `caused_by` equal to its own id drew "X CAUSES X";
+  and `create_edge` and `create_edges` drew either. The schema now declares, per
+  edge type, the seventeen relations that cannot hold from a node to itself
+  (`irreflexive: true`: CONTRADICTS, CAUSES, DEPENDS_ON, DUPLICATES,
+  EVOLVES_INTO, DECOMPOSES, EQUIVALENT_TO, the two links of a step and the rest
+  that a review already refused, TRIGGERS excepted, since a step of a process
+  may retry itself), and the graph's one edge write refuses such an edge on
+  every door, naming the relation. Registering an alternative again is now an
+  update that keeps its siblings' CONTRADICTS. `describe_schema`, asked about a
+  pair, says `irreflexive` on the relations it applies to. **What to do:**
+  nothing for new work. A design that already holds such an edge still imports
+  whole: the import keeps it and names it in `self_loops_kept`, and
+  `detect_defects` reports a node recorded as contradicting itself as what it
+  is; remove one with `delete_edge`.
+
 ## [0.97.0] — 2026-11-07
 
 **Minor. A route tried in a proof that fails is a record of its own, a served skill works one
