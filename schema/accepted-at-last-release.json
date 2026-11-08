@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.97.0",
+  "reflow2_version": "0.98.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -92,6 +92,15 @@
       "not_read": {
         "type": "bool"
       },
+      "promise": {
+        "type": "string"
+      },
+      "promise_rank": {
+        "type": "int"
+      },
+      "refuter": {
+        "type": "string"
+      },
       "signature": {
         "type": "string"
       },
@@ -122,6 +131,9 @@
           "living",
           "stable"
         ]
+      },
+      "waiting": {
+        "type": "bool"
       }
     },
     "Capability": {
@@ -522,6 +534,14 @@
       "chose": {
         "type": "string"
       },
+      "closing_it": {
+        "type": "enum",
+        "values": [
+          "closes",
+          "narrows",
+          "restates"
+        ]
+      },
       "decision": {
         "type": "string",
         "required": true,
@@ -529,6 +549,9 @@
       },
       "distinct_from": {
         "type": "list:string"
+      },
+      "hole": {
+        "type": "string"
       },
       "kind": {
         "type": "enum",
@@ -560,6 +583,9 @@
         ]
       },
       "rationale": {
+        "type": "string"
+      },
+      "serves": {
         "type": "string"
       },
       "status": {
