@@ -115,9 +115,10 @@ Code where MCP is blocked) gets everything in this release. Checked through the 
 --http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries `map`,
 `part_offset` and the hole fields, `get_skill` serves the new work-a-proof-hole, and a search
 written through it reads back as a map. flo2.io gets these once its engine moves to 0.98.0 and
-is deployed. The skill count does not change (36), but work-a-proof-hole's description does, so
-the list of skills flo2.io shows a chat should be regenerated at the re-pin. As before, the
-hosted hub view and reads across designs by graph id need flo2.io. These lines get checked
+is deployed. The list of skills flo2.io shows a chat keeps each skill's name, shortcut and
+summary, and none of those changes (36 skills, the same summaries), so regenerating it at the
+re-pin moves only its version line. As before, the hosted hub view and reads across designs by
+graph id need flo2.io. These lines get checked
 again on the published binary once the release is out.
 
 ### Added
