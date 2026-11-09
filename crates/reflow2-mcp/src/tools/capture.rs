@@ -951,14 +951,21 @@ pub(crate) fn approver_must_exist(
             .may_sign(who, "approver")
             .map_err(|e| McpError::invalid_params(format!("`{tool}`: {e}"), None));
     }
-    Err(McpError::invalid_params(
-        format!(
+    // A display name, not an id: say which id holds it
+    // (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09),
+    // rather than "create them", which would mint a second record of them.
+    let message = match g.contributor_name_hint(who).map_err(dyno_err)? {
+        Some(hint) => format!(
+            "`{tool}`: no Contributor has the id `{who}` in this design, so nothing was \
+             written. {hint}"
+        ),
+        None => format!(
             "`{tool}`: no Contributor `{who}` in this design, so nothing was written. An \
              approver who does not exist would attach the owner's authority to a name nobody \
              can check. Create them with add_contributor first, or check the id."
         ),
-        None,
-    ))
+    };
+    Err(McpError::invalid_params(message, None))
 }
 
 /// A constructor's status is checked against the schema BEFORE anything is

@@ -165,13 +165,19 @@ impl DesignGraph {
             return Err(DynoError::Validation {
                 node_type: node::CONTRIBUTOR.into(),
                 property: "contributor_id".into(),
-                message: format!(
-                    "no Contributor '{contributor_id}' exists yet, so there is nobody to hold \
-                     this claim. CALL `add_contributor` FIRST with id '{contributor_id}', then \
-                     claim again. (A claim is advisory and names a person; reflow2 will not \
-                     invent one, because a region held by a contributor nobody declared is a \
-                     claim no colleague can ask about.)"
-                ),
+                message: match self.contributor_name_hint(contributor_id)? {
+                    Some(hint) => format!(
+                        "no Contributor has the id '{contributor_id}', so there is nobody to \
+                         hold this claim. {hint}"
+                    ),
+                    None => format!(
+                        "no Contributor '{contributor_id}' exists yet, so there is nobody to \
+                         hold this claim. CALL `add_contributor` FIRST with id \
+                         '{contributor_id}', then claim again. (A claim is advisory and names a \
+                         person; reflow2 will not invent one, because a region held by a \
+                         contributor nobody declared is a claim no colleague can ask about.)"
+                    ),
+                },
             });
         }
         let index = self.node_type_index()?;
