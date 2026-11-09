@@ -2041,6 +2041,67 @@ def no_kit_here(project: Path, why: str, then: str = "") -> str:
     )
 
 
+def kit_part(rel: str) -> str:
+    """The part of the kit a recorded file belongs to. A file in a kit
+    directory belongs to its first two path components (`.github/skills`,
+    `.github/prompts`, `.github/hooks`, `.claude/commands`). A file at the
+    top, or one level down, is a part of its own."""
+    parts = Path(rel).parts
+    return str(Path(*parts[:2])) if len(parts) > 2 else rel
+
+
+def kit_writes() -> set[str]:
+    """Every path this kit writes for any harness: the files and their
+    sidecars, the trees, and the terminal route's files."""
+    paths = {rel for _, rel in FILES}
+    paths |= {SIDECAR.get(rel, f"REFLOW2_{rel}") for _, rel in FILES}
+    for src, rel in TREES:
+        paths |= {str(Path(rel) / p.relative_to(src)) for p in src.rglob("*") if p.is_file()}
+    return paths | set(vscode_cli_files())
+
+
+def parts_removed_whole(project: Path, recorded: dict) -> dict[str, int]:
+    """Each part of the kit this project removed whole, with how many of its
+    recorded files are gone.
+
+    WHY A WHOLE PART AND NOT ONE FILE
+    (fact:root-cause-update-recreates-a-kit-kept-in-part-because-one-surviving-recorded-file-reads-as-installed-2026-11-09).
+    Deleting one kit file is how a person asks for the kit's copy back, so
+    one gone file is never read as removal. Deleting every skill, or every
+    prompt, is not how anyone asks for a fresh copy: the project chose not to
+    carry that part. Two member clones of a work hub kept only REFLOW2.md, and
+    0.98.0's update planned 83 creates in another team's repo.
+
+    Only files this kit still writes count, so a file a later kit stopped
+    shipping can never make a part look removed. A part counts only when its
+    receipt recorded at least two files, because one file gone is the
+    one-deleted-file case, whatever part it is in."""
+    writes = kit_writes()
+    by_part: dict[str, list[bool]] = {}
+    for rel in recorded:
+        if rel in writes:
+            by_part.setdefault(kit_part(rel), []).append((project / rel).exists())
+    return {part: len(here) for part, here in sorted(by_part.items())
+            if len(here) > 1 and not any(here)}
+
+
+def kept_in_part(project: Path, recorded: dict, gone: dict[str, int]) -> str:
+    """Update's refusal for a kit kept in part: what is gone, what stays, and
+    the two commands that each give a whole answer."""
+    here = sorted(rel for rel in recorded if (project / rel).exists())
+    shown = ", ".join(here[:6]) + (f" and {len(here) - 6} more" if len(here) > 6 else "")
+    removed = "; ".join(f"{part} ({n} file{'s' if n != 1 else ''})" for part, n in gone.items())
+    return (
+        f"{project} keeps only part of reflow2's kit, so `update` changed nothing here.\n"
+        f"  Removed whole (every file its receipt records there is gone): {removed}.\n"
+        f"  Still here: {shown}.\n"
+        "  A part removed whole was taken out on purpose, so update will not write it\n"
+        "  back. Update cannot yet refresh only the files a project keeps.\n"
+        f"  To bring the whole kit back:\n      reflow2 init {project}\n"
+        f"  To take out the rest as well, and record that:\n      reflow2 init --remove {project}"
+    )
+
+
 def why_not_an_update(project: Path) -> str | None:
     """Why `reflow2 update` must not run here — `None` when it may.
 
@@ -2073,7 +2134,9 @@ def why_not_an_update(project: Path) -> str | None:
         # `update` write ~72 files back into 11 repos whose kit had been removed.
         # Two states read as no kit: a receipt `--remove` marked, and one whose
         # every recorded file is gone. ONE file gone is not removal: deleting a
-        # kit file is how a person asks for the kit's copy back.
+        # kit file is how a person asks for the kit's copy back. A third state
+        # is a kit KEPT IN PART, where a whole part of it (the skills, the
+        # prompts) is gone and the rest stays. Update refuses that too, below.
         receipt = read_receipt(project) or {}
         if receipt.get("removed"):
             return no_kit_here(
@@ -2091,6 +2154,8 @@ def why_not_an_update(project: Path) -> str | None:
                 f"\n  To record that, so no later update asks again:\n"
                 f"      reflow2 init --remove {project}",
             )
+        if isinstance(recorded, dict) and (gone := parts_removed_whole(project, recorded)):
+            return kept_in_part(project, recorded, gone)
         return None
     if (project / ".reflow2").exists():
         return no_kit_here(

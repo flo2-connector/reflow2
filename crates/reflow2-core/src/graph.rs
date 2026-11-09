@@ -3171,6 +3171,59 @@ impl DesignGraph {
     /// rather than lazy: it is the confusion actually observed, and the only
     /// other person-shaped node type, so a general cross-type scan would cost
     /// every caller a sweep to report a case that cannot arise.
+    /// The ids of every Contributor whose display name (`name`) is `text`,
+    /// compared trimmed and without regard to case, sorted. An empty answer
+    /// means no Contributor carries that name.
+    pub fn contributors_named(&self, text: &str) -> Result<Vec<String>, DynoError> {
+        let want = text.trim().to_lowercase();
+        if want.is_empty() {
+            return Ok(Vec::new());
+        }
+        let mut ids: Vec<String> = self
+            .scan_nodes(node::CONTRIBUTOR)?
+            .into_iter()
+            .filter(|c| {
+                matches!(c.properties.get("name"),
+                    Some(Value::String(n)) if n.trim().to_lowercase() == want)
+            })
+            .map(|c| c.node_id)
+            .collect();
+        ids.sort();
+        Ok(ids)
+    }
+
+    /// WHAT A REFUSAL OF AN UNKNOWN CONTRIBUTOR ID SAYS WHEN THE TEXT IS
+    /// SOMEONE'S DISPLAY NAME: the id (or ids) that hold that name. `None`
+    /// when no Contributor is called that.
+    ///
+    /// The refusal stays a refusal. A signature names one person for
+    /// certain, and a display name two people may share cannot. But the
+    /// refusal has the answer in hand, so it says it
+    /// (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09:
+    /// a work hub's add_decision was refused for an approver given by display
+    /// name, told only "check the id"). Every refusal of an id that names no
+    /// Contributor asks this before it says what to do.
+    pub fn contributor_name_hint(&self, text: &str) -> Result<Option<String>, DynoError> {
+        let ids = self.contributors_named(text)?;
+        let why = "A Contributor is named by its id, never by its display name, so that the \
+                   record names one person for certain.";
+        Ok(match ids.as_slice() {
+            [] => None,
+            [one] => Some(format!(
+                "`{text}` is the display name of Contributor `{one}`: pass its id, `{one}`. {why}"
+            )),
+            many => Some(format!(
+                "`{text}` is the display name of {} Contributors ({}): pass the id of the one \
+                 you mean. {why}",
+                many.len(),
+                many.iter()
+                    .map(|id| format!("`{id}`"))
+                    .collect::<Vec<_>>()
+                    .join(", ")
+            )),
+        })
+    }
+
     pub(crate) fn require_contributor(
         &self,
         id: &str,
@@ -3189,6 +3242,10 @@ impl DesignGraph {
                  `add_contributor` for the human (its id may differ from '{id}'), then call \
                  `{tool}` again with that id."
             )
+        } else if let Some(hint) = self.contributor_name_hint(id)? {
+            // A display name, not an id: telling the caller to add_contributor
+            // here would mint a second record of a person who already has one.
+            format!("no Contributor has the id '{id}', so there is nobody to {verb}. {hint}")
         } else {
             format!(
                 "no Contributor '{id}' exists yet, so there is nobody to {verb}. CALL \

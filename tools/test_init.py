@@ -2066,6 +2066,62 @@ class AKitRemovedStaysRemoved(unittest.TestCase):
         self.assertIsNone(init.why_not_an_update(p),
                           "deleting ONE kit file is how a person accepts the kit's copy")
 
+    # ---- 2b. a kit kept in part (the work hub's member clones, 2026-11-09) ----
+
+    def test_the_field_case_a_kit_kept_in_part_is_not_brought_back_by_update(self):
+        # fact:root-cause-update-recreates-a-kit-kept-in-part-because-one-surviving-recorded-file-reads-as-installed-2026-11-09:
+        # a clone that kept only REFLOW2.md beside its team's own AGENTS.md, with
+        # .git/info/exclude hiding the kit's own files but not .github/. On
+        # 0.98.0, `update --check` planned 83 creates and an appended line.
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        recorded = self.receipt(p)["installed_files"]
+        self.assertIn("REFLOW2.md", recorded, "precondition: the sidecar is a recorded kit file")
+        kept = (p / "REFLOW2.md").read_text()
+        self.remove_by_hand(p)
+        (p / "REFLOW2.md").write_text(kept)
+        (p / ".git" / "info" / "exclude").write_text(".reflow2/\nREFLOW2.md\n.reflow2.toml\n")
+        self.assertEqual(self.status(p), "", "precondition: only the kept file and the store")
+
+        for args in (("--update", "--check"), ("--update",)):
+            out = self.run_init(p, *args)
+            self.assertEqual(out.returncode, 1, f"{args} must refuse:\n{out.stdout}\n{out.stderr}")
+            self.assertIn("keeps only part of reflow2's kit", out.stderr)
+            self.assertIn(".github/skills", out.stderr, "the refusal names each part removed whole")
+            self.assertIn(".github/prompts", out.stderr)
+            self.assertIn("Still here: REFLOW2.md", out.stderr, "and what the project kept")
+            self.assertIn("reflow2 init", out.stderr, "and the command that brings it all back")
+            self.assertEqual(self.status(p), "", f"{args}: nothing was created or appended")
+        self.assertEqual((p / "REFLOW2.md").read_text(), kept)
+        self.assertEqual((p / "AGENTS.md").read_text(), self.THEIR_AGENTS,
+                         "the team's own AGENTS.md got no pointer line")
+
+    def test_a_part_with_one_recorded_file_left_still_updates(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        skills = sorted((p / ".github" / "skills").glob("*/SKILL.md"))
+        for stub in skills[1:]:
+            stub.unlink()
+        self.assertIsNone(init.why_not_an_update(p),
+                          "a part with any recorded file left was not removed whole")
+
+    def test_a_one_file_part_gone_is_the_one_deleted_file_case(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        (p / ".github" / "hooks" / "reflow2.json").unlink()
+        self.assertIsNone(init.why_not_an_update(p),
+                          "the hook is a part of one file, and one file gone means give it back")
+
+    def test_files_a_later_kit_stopped_writing_never_make_a_part_look_removed(self):
+        p = self.field_project()
+        init.install(p, self.stub, False, ["vscode-cli"])
+        receipt = self.receipt(p)
+        receipt["installed_files"][".claude/skills/retired-a/SKILL.md"] = "sha256:0"
+        receipt["installed_files"][".claude/skills/retired-b/SKILL.md"] = "sha256:0"
+        (p / init.STAMP).write_text(json.dumps(receipt, indent=2) + "\n")
+        self.assertIsNone(init.why_not_an_update(p),
+                          "a part this kit no longer writes is not a part the project removed")
+
     def test_a_receipt_that_says_removed_is_refused_by_update(self):
         p = self.field_project()
         init.install(p, self.stub, False, ["vscode-cli"])

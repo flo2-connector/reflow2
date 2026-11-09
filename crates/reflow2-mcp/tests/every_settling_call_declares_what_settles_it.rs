@@ -410,3 +410,36 @@ async fn choosing_a_forks_winner_draws_the_owners_signature() {
         "an approver naming no Contributor is refused before anything is written"
     );
 }
+
+/// THE FIELD CASE (a work hub, 2026-11-09): add_decision with `approver` set
+/// to a Contributor's display name was refused with "check the id", although
+/// the answer was in the design
+/// (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09).
+/// Still refused, and nothing written; the refusal now names the id.
+#[tokio::test]
+async fn an_approver_given_by_display_name_is_refused_with_the_id_that_holds_it() {
+    let c = connect().await;
+    call(
+        &c,
+        "add_contributor",
+        json!({"id": "who:pat", "name": "Pat Doe", "kind": "person"}),
+    )
+    .await
+    .expect("add_contributor");
+    let refused = call(
+        &c,
+        "add_decision",
+        json!({"id": "dec:by-name", "name": "Use the north route", "decision": "Take the north route",
+               "rationale": "fixture", "kind": "choice", "status": "accepted", "approver": "Pat Doe"}),
+    )
+    .await
+    .expect_err("a display name is not a Contributor id");
+    assert!(
+        refused.contains("add_decision") && refused.contains("pass its id, `who:pat`"),
+        "the refusal names the tool and the id that holds the name: {refused}"
+    );
+    let node = call(&c, "get_node", json!({"id": "dec:by-name"}))
+        .await
+        .expect("get_node");
+    assert!(node["node"].is_null(), "nothing was written: {node}");
+}

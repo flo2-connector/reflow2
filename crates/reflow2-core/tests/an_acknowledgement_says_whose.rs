@@ -141,3 +141,22 @@ fn the_old_signature_still_works_and_records_nobody() {
             .is_empty()
     );
 }
+
+#[test]
+fn an_approver_given_by_display_name_is_refused_with_the_id_that_holds_it() {
+    // fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09
+    let (mut g, gap, ids) = design_with_a_gap();
+    g.add_contributor("who:pat", "Pat Doe", Some("person"), None, None)
+        .unwrap();
+    let text = g
+        .acknowledge_gap_by(&gap, &ids, "accepted", Some("Pat Doe"), None)
+        .expect_err("an approval names one person by id")
+        .to_string();
+    assert!(text.contains("pass its id, `who:pat`"), "{text}");
+    assert!(!text.contains("Create them with add_contributor"), "{text}");
+    let ack = format!("decision:ack:{}", gap.trim_start_matches("gap:"));
+    assert!(
+        g.get_node(node::DECISION, &ack).unwrap().is_none(),
+        "nothing written"
+    );
+}

@@ -2200,9 +2200,14 @@ impl DesignGraph {
             return Err(DynoError::Validation {
                 node_type: node::DECISION.to_string(),
                 property: "approver".into(),
-                message: format!(
-                    "no Contributor `{who}` in this design, so the acknowledgement was NOT recorded. An approver who does not exist attaches the owner's authority to a name nobody can check, which is worse than recording none. Create them with add_contributor, or omit `approver` and the reply will say the judgement carries nobody's name."
-                ),
+                message: match self.contributor_name_hint(who)? {
+                    Some(hint) => format!(
+                        "no Contributor has the id `{who}` in this design, so the acknowledgement was NOT recorded. {hint}"
+                    ),
+                    None => format!(
+                        "no Contributor `{who}` in this design, so the acknowledgement was NOT recorded. An approver who does not exist attaches the owner's authority to a name nobody can check, which is worse than recording none. Create them with add_contributor, or omit `approver` and the reply will say the judgement carries nobody's name."
+                    ),
+                },
             });
         }
         // AND THE SIGNATURE IS THE CALLER'S OWN (`crate::intent::Signer`),
