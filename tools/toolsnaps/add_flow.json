@@ -26,7 +26,7 @@
       },
       "flow_type": {
         "default": null,
-        "description": "`process` (default) / `data_flow` / `control_flow` / `decision_flow` /\n`capture` / `retrieval` / `generation`.",
+        "description": "`process` (default) / `data_flow` / `control_flow` / `decision_flow` /\n`capture` / `retrieval` / `generation` / `assembly`. `assembly` is how\na thing is made and put together: `flow_report` reads it back as\ninstructions (each step's parts, joins, performers, checks and limits).",
         "enum": [
           "process",
           "data_flow",
@@ -35,6 +35,7 @@
           "capture",
           "retrieval",
           "generation",
+          "assembly",
           null
         ],
         "type": [

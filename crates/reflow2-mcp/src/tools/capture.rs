@@ -3242,7 +3242,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
+        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step WITHOUT `step_order` is listed after the ordered ones, and the report says so. Where the flow starts and ends is COMPUTED from the order, so it cannot go stale. A capability may be a step of several flows. A step names the parts it puts together (`puts_together`) and the joins it makes (`closes`) in the same call, all or nothing. Ask for this when you want to record that a capability is one step in a larger sequence.",
         title = "Add a Step to a Flow",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3260,7 +3260,8 @@ impl ReflowService {
                        are its design, so they do not appear in detect_defects (whose circular_dependency stays \
                        scoped to DEPENDS_ON and contracts, where a cycle really is a defect). Anything the \
                        model left unstated (an unmatched entry/exit point, steps without step_order, \
-                       transitions without a role) is confessed by name. Ask for this when you want to walk \
+                       transitions without a role) is confessed by name. A flow of `flow_type: assembly` \
+                       reads back as instructions, and says what they lack. Ask for this when you want to walk \
                        through an end-to-end process step by step and see what is missing from it.",
         title = "Flow Report",
         annotations(read_only_hint = true)
@@ -4914,10 +4915,36 @@ impl ReflowService {
         g: &mut reflow2_core::DesignGraph,
         req: PartOfFlowReq,
     ) -> Result<CallToolResult, McpError> {
-        ok_json(EdgeDto::from(
-            g.part_of_flow(&req.capability_id, &req.flow_id, req.step_order)
-                .map_err(dyno_err)?,
-        ))
+        // EVERY EDGE THE CALL DRAWS IS NAMED IN ITS REPLY (crate::drawn_edges),
+        // read BEFORE the write so a part named again reads as already there.
+        // The reply is the step's own edge, as it always was; the block is
+        // silent when the call names no part and no join.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let mut seen = std::collections::BTreeSet::new();
+        for (relation, ids) in [
+            (reflow2_core::nodes::edge::PUTS_TOGETHER, &req.puts_together),
+            (reflow2_core::nodes::edge::CLOSES, &req.closes),
+        ] {
+            for id in ids {
+                if seen.insert((relation, id.as_str())) {
+                    edges
+                        .classify(g, &req.capability_id, relation, id)
+                        .map_err(dyno_err)?;
+                }
+            }
+        }
+        let drawn = g
+            .draw_flow_step(
+                &req.capability_id,
+                &req.flow_id,
+                req.step_order,
+                &req.puts_together,
+                &req.closes,
+            )
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(EdgeDto::from(drawn.step)).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        ok_json(reply)
     }
 
     /// The body of [`Self::provides`] over a graph the caller already holds: the

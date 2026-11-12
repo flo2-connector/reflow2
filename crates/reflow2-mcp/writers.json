@@ -262,7 +262,9 @@
       "OWNED_BY"
     ],
     "part_of_flow": [
-      "PART_OF_FLOW"
+      "PART_OF_FLOW",
+      "PUTS_TOGETHER",
+      "CLOSES"
     ],
     "performed_in": [
       "PERFORMED_IN"

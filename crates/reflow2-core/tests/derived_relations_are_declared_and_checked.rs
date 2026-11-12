@@ -740,10 +740,11 @@ fn every_declaration_is_well_formed() {
     let decls = declarations();
     assert_eq!(
         decls.len(),
-        28,
+        29,
         "the study's 23 relations are all declared, and built(component), added 2026-10-13, \
-         follows(conclusion), added 2026-10-14, foundations(conclusion), added 2026-10-15, and \
-         computation_owed and redo_list, added 2026-10-25 (the web of rules)"
+         follows(conclusion), added 2026-10-14, foundations(conclusion), added 2026-10-15, \
+         computation_owed and redo_list, added 2026-10-25 (the web of rules), and \
+         assembly_instructions, added 2026-11-12 (a step names the parts it puts together)"
     );
     let ids: BTreeSet<&str> = decls.iter().map(|d| d.id.as_str()).collect();
     for d in &decls {
@@ -1472,8 +1473,8 @@ fn the_served_read_counts_what_the_code_computes() {
             .unwrap_or_else(|| panic!("{id} in the report"))
             .count
     };
-    assert_eq!(r.declared, 28);
-    assert_eq!(r.relations.len(), 28, "every declared relation is reported");
+    assert_eq!(r.declared, 29);
+    assert_eq!(r.relations.len(), 29, "every declared relation is reported");
 
     // By hand: cap:a is realized directly, cap:b through cmp:x; cap:c is withdrawn.
     assert_eq!(count("realized"), Some(2));
@@ -1526,7 +1527,9 @@ fn the_served_read_counts_what_the_code_computes() {
     let redo = r.relations.iter().find(|t| t.id == "redo_list").unwrap();
     assert_eq!(redo.count, None);
     assert!(redo.not_counted.is_some());
-    assert_eq!(r.counted, 26);
+    assert_eq!(r.counted, 27);
+    // A design that holds no assembly flow has no join between its parts.
+    assert_eq!(count("assembly_instructions"), Some(0));
     // A design that registers no kept output's inputs owes no re-run.
     assert_eq!(count("computation_owed"), Some(0));
     // A design that states no inference step has no conclusion that follows.

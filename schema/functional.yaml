@@ -55,7 +55,11 @@ schema:
         name: { type: string, required: true, indexed: true, fulltext: true }
         aliases: { type: "list:string", description: "WHAT THE USER CALLS THIS, in their own words — the domain nouns that mean this node. reflow2's vocabulary is deliberately abstract so it spans a house, a spacecraft and a service, which leaves every user translating their field's words into it; one wrote a private translator skill to do that, and the mapping then lived outside the design where nothing could read or check it (dec:idea-a-users-domain-vocabulary-has-no-route-into-se-vocabulary). This is where that mapping goes. Recorded ONLY when a user actually used the word — never guessed, because a fabricated alias is a false neighbour every later search repeats. ADDITIVE: record_alias merges, so learning a second word for a thing never costs the first. It renames nothing and gates nothing: `name` stays the design's word and every computation reads the node type, so an alias can be wrong without making anything else wrong (req:framework-is-chosen-not-defaulted was dropped for gating capability on a self-declared label, and this must not become that)." }
         description: { type: string, fulltext: true }
-        flow_type: { type: enum, values: [process, data_flow, control_flow, decision_flow, capture, retrieval, generation], default: process, indexed: true }
+        # `assembly` added 2026-11-12 (req:a-step-of-a-process-names-the-parts-it-puts-together,
+        # settled by the owner): the hint below has named "assembly sequence" since the
+        # schema was written, and nothing could say which parts each step puts together.
+        # An enum value moves the stamp's `enum_values`; the upgrade note is owed at the cut.
+        flow_type: { type: enum, values: [process, data_flow, control_flow, decision_flow, capture, retrieval, generation, assembly], default: process, indexed: true, description: "What kind of sequence this is. `assembly` is how a thing is MADE AND PUT TOGETHER: each step names the parts it puts together (PUTS_TOGETHER, to a Component) and the joins it makes (CLOSES, to an Interface), and flow_report reads the flow back as instructions — each step's parts, joins, who performs it (an Actor INTERACTS_WITH it, `interaction: performs`), its checks (VERIFIES) and its limits (CONSTRAINS), and what is missing from them: a step that names no part and no join, one nobody performs, one nothing checks, and a join between two of the flow's parts that no step closes. Every other type reads as it always did." }
         tier: { type: enum, values: [strategic, operational, tactical, cross_cutting], default: operational, indexed: true }
       embedding_field: description
       resolution: { strategy: fuzzy_then_vector, fuzzy_threshold: 82 }
@@ -75,7 +79,9 @@ schema:
       extraction_hint: >
         An ordered process that links Capabilities end to end (e.g. "user
         authentication flow", "assembly sequence"). Capabilities join a flow
-        via PART_OF_FLOW.
+        via PART_OF_FLOW. For an assembly sequence, `flow_type: assembly`, and
+        each step names the parts it puts together (PUTS_TOGETHER) and the
+        joins it makes (CLOSES).
 
     Actor:
       properties:
@@ -157,22 +163,51 @@ schema:
         data_volume: { type: float, description: "Bytes/records per interaction, if known." }
         weight_basis: { type: enum, values: [estimated, evidence, measured], default: estimated, description: "How the weight was set." }
 
+    # A STEP NAMES THE PARTS IT PUTS TOGETHER AND THE JOINS IT CLOSES
+    # (req:a-step-of-a-process-names-the-parts-it-puts-together, settled by the owner
+    # 2026-11-12; cap:a-step-names-the-parts-it-puts-together-and-the-joins-it-closes).
+    # A Flow could say a ring is printed, cast, polished, plated and set, and nothing
+    # could say WHICH PARTS each step puts together or WHICH JOINS it makes: how a
+    # thing is made and put together could not be recorded. Two edges, both from the
+    # step: one to each part (a Component), one to each join (an Interface that one
+    # part PROVIDES and another CONSUMES). An `assembly` Flow reads back as
+    # instructions (flow_report). Both carry impact like REALIZES and VERIFIES: a
+    # changed part or join reaches the steps that put it together or close it.
+    # Two new edge types move the stamp; the upgrade note is owed at the cut.
+    PUTS_TOGETHER:
+      from: Capability
+      to: Component
+      reading: { form: "primitive", primitive: "causes", sub: "puts together", polarity: "+", note: "The step brings the part into the whole it makes: it places, joins or assembles it with the other parts it names. Not ALLOCATED_TO, which says which part HOSTS a function: a step that puts a part together does not live in it. The join the step makes between two parts is CLOSES.", basis: "classified" }
+      extraction_hint: >
+        Puts this part together with the others it names: places, fits or
+        assembles it ("print the pattern" puts together the band, cup, petals
+        and stamen).
+
+    CLOSES:
+      from: Capability
+      to: Interface
+      reading: { form: "primitive", primitive: "causes", sub: "closes", polarity: "+", note: "The step makes the join — an Interface one part PROVIDES and another CONSUMES: after it, what the Interface says must hold there holds, which the step's own checks (VERIFIES) are there to confirm. A part the step places is PUTS_TOGETHER.", basis: "classified" }
+      extraction_hint: >
+        Makes this join: after it, what the Interface says must hold there
+        holds ("cast it" closes cup-to-band, fused in the casting).
+
     INTERACTS_WITH:
       from: Actor
       to: "*"
       reading:
         form: "leftover"
         modifiers: { interaction: "subtype" }
-        note: "An umbrella: with `interaction` unset, or outside the four values, the edge says only that SOME relation exists."
+        note: "An umbrella: with `interaction` unset, or outside the five values, the edge says only that SOME relation exists."
         splits:
           - property: "interaction"
-            note: "Free text, not an enum; these four are the values its description names."
+            note: "Free text, not an enum; these five are the values its description names."
             values:
               reads: { form: "primitive", primitive: "flows-to", sub: "reads", inverse: true }
               writes: { form: "primitive", primitive: "flows-to", sub: "writes" }
               receives: { form: "primitive", primitive: "flows-to", sub: "receives", inverse: true }
               triggers: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating" }
+              performs: { form: "primitive", primitive: "causes", sub: "performs", polarity: "+", note: "The actor carries the step out: it happens by their work. flow_report reads it as who performs a step of an assembly flow (added 2026-11-12)." }
         basis: "classified"
       extraction_hint: An Actor interacts with a Capability, Flow, or Interface.
       properties:
-        interaction: { type: string, description: "reads / writes / triggers / receives." }
+        interaction: { type: string, description: "reads / writes / triggers / receives / performs. `performs`: the actor carries out a step (a Capability that is part of a Flow) — flow_report names them as who performs each step of an assembly flow." }

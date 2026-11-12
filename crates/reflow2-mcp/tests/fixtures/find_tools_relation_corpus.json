@@ -26,7 +26,9 @@
     { "query": "one epoch comes before another", "relations": ["PRECEDES"], "source": "written-2026-10-25" },
     { "query": "a fact about a node at a point in time", "relations": ["HAS_TEMPORAL_FACT"], "source": "written-2026-10-25" },
     { "query": "the release that ships this component", "relations": ["INCLUDES"], "source": "written-2026-10-25" },
-    { "query": "record who approved this decision", "relations": ["AUTHORED_BY"], "source": "written-2026-10-25" }
+    { "query": "record who approved this decision", "relations": ["AUTHORED_BY"], "source": "written-2026-10-25" },
+    { "query": "which parts does this assembly step put together", "relations": ["PUTS_TOGETHER"], "source": "written-2026-11-12" },
+    { "query": "the join this step of the assembly makes", "relations": ["CLOSES"], "source": "written-2026-11-12" }
   ],
   "known_misses": [
     { "query": "one thing is stopping another from going ahead", "relations": ["BLOCKS"], "why": "No shared word: BLOCKS says \"prevents or stalls\", the person says \"stopping\" and \"going ahead\"." },
