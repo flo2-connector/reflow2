@@ -609,10 +609,7 @@ impl DesignGraph {
             // step, or a step's conclusion, is related to the intent the step
             // joins it to (the primes trial's F12: a proof's lemmas read as
             // unlinked intent).
-            if self.takes_part_in_reasoning(id)? {
-                return Ok(true);
-            }
-            Ok(false)
+            self.takes_part_in_reasoning(id)
         };
         let mut out = Vec::new();
         for r in self.scan_nodes(node::REQUIREMENT)? {

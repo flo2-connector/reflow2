@@ -26,12 +26,10 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 fn bin() -> PathBuf {
-    let mut p = std::env::current_exe().expect("test binary has a path");
-    p.pop();
-    if p.ends_with("deps") {
-        p.pop();
-    }
-    p.join("reflow2-mcp")
+    // Cargo names where it built the server. Working it out from this test's
+    // own path assumed tests sit in target/<profile>/deps beside it, and cargo
+    // 1.100 builds them under target/<profile>/build/ instead.
+    PathBuf::from(env!("CARGO_BIN_EXE_reflow2-mcp"))
 }
 
 fn tmp_dir(tag: &str) -> PathBuf {
