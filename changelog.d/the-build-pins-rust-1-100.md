@@ -7,10 +7,14 @@
   is now a commit that changes one line. On 2026-08-24, and again on
   2026-11-13 when Rust 1.100 came out, a new stable release made every open
   pull request fail on code nobody had changed. The oldest Rust the crates
-  build on is still `rust-version` (1.98) in `Cargo.toml`, and the monthly
-  floor job now really builds at it: the toolchain file would otherwise have
-  overridden it. **What to do:** building from source, rustup installs
-  1.100.0 the first time you run `cargo` here. Nothing else changes.
+  build on, `rust-version` in `Cargo.toml`, rises from 1.98 to 1.99: stable
+  minus one, as before. The floor job now really builds at it; the toolchain
+  file would otherwise have overridden it. **What to do:** building from
+  source, rustup installs 1.100.0 the first time you run `cargo` here. A build
+  on your own older compiler needs 1.99 or newer.
+- **`jsonwebtoken` 12.0.0 is held back until 2026-11-27, on the record.** It
+  is a new major, and the bearer-token check uses its cryptography interface,
+  so its bump gets a pull request of its own (`dependency-holds.toml`).
 
 ### Fixed
 
