@@ -49,7 +49,7 @@ const DECLARATIONS: &str = include_str!("../../../schema/derived/relations.yaml"
 /// The test holds this list and the declaration file to each other in both
 /// directions: a declaration nobody evaluates, or an evaluator nobody declared,
 /// fails it.
-pub const DERIVED_EVALUATORS: [&str; 28] = [
+pub const DERIVED_EVALUATORS: [&str; 29] = [
     "delivered",
     "follows",
     "foundations",
@@ -73,6 +73,7 @@ pub const DERIVED_EVALUATORS: [&str; 28] = [
     "budget_rollup",
     "allocation_scores",
     "flow_step_order",
+    "assembly_instructions",
     "readiness_gate",
     "arrival_delta",
     "closure",
@@ -538,6 +539,30 @@ impl DesignGraph {
                     let steps = self.flow_report(&f)?.steps.len();
                     count += steps * steps.saturating_sub(1) / 2;
                     sample.push(format!("{f}: {steps} steps"));
+                }
+                Evaluated::of(count, take(sample, n))
+            }
+            "assembly_instructions" => {
+                // One join between two parts an assembly puts together, closed
+                // or not; the sample names each assembly and what it leaves
+                // unclosed. Only an assembly is read as instructions.
+                let mut count = 0usize;
+                let mut sample = Vec::new();
+                for f in live(node::FLOW)? {
+                    let is_assembly = self
+                        .get_node(node::FLOW, &f)?
+                        .and_then(|n| n.properties.get("flow_type").cloned())
+                        .is_some_and(|t| t.as_str() == Some(crate::flow::ASSEMBLY));
+                    if !is_assembly {
+                        continue;
+                    }
+                    let joins = self.assembly_joins(&f)?;
+                    let unclosed = joins.iter().filter(|j| j.closed_by.is_empty()).count();
+                    count += joins.len();
+                    sample.push(format!(
+                        "{f}: {} join(s), {unclosed} closed by no step",
+                        joins.len()
+                    ));
                 }
                 Evaluated::of(count, take(sample, n))
             }

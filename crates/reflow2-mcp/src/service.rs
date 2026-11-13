@@ -4388,7 +4388,9 @@ pub struct AddFlowReq {
     #[serde(default)]
     pub description: Option<String>,
     /// `process` (default) / `data_flow` / `control_flow` / `decision_flow` /
-    /// `capture` / `retrieval` / `generation`.
+    /// `capture` / `retrieval` / `generation` / `assembly`. `assembly` is how
+    /// a thing is made and put together: `flow_report` reads it back as
+    /// instructions (each step's parts, joins, performers, checks and limits).
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::flow_type_opt")]
     pub flow_type: Option<String>,
@@ -4417,6 +4419,21 @@ pub struct PartOfFlowReq {
     /// listed after the ordered ones, and the flow report says so.
     #[serde(default)]
     pub step_order: Option<i64>,
+    /// The PARTS this step puts together — places, joins or assembles —
+    /// as Component ids (`cmp:…`): one PUTS_TOGETHER from the step to each.
+    /// Every id must name a Component, or the WHOLE call is refused naming
+    /// each one that does not, and nothing is written. Additive: a part an
+    /// earlier call named and this one leaves out is kept (`delete_edge`
+    /// takes one away).
+    #[serde(default)]
+    pub puts_together: Vec<String>,
+    /// The JOINS this step makes — after it, what each Interface says must
+    /// hold there holds — as Interface ids (`ifc:…`): one CLOSES from the step
+    /// to each. Every id must name an Interface, or the WHOLE call is refused
+    /// naming each one that does not, and nothing is written. Additive, like
+    /// `puts_together`.
+    #[serde(default)]
+    pub closes: Vec<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

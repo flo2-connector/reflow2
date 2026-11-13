@@ -189,7 +189,10 @@ pub use export::{
 pub use fielded::{
     FieldedDriftKind, FieldedFinding, FieldedOptions, FieldedReport, ObservedEnvironment,
 };
-pub use flow::{FlowCycle, FlowReport, FlowStep, FlowTransition};
+pub use flow::{
+    AssemblyJoin, FlowCycle, FlowReport, FlowStep, FlowStepDrawn, FlowTransition, StepCheck,
+    StepJoin, StepNamed,
+};
 pub use flowdown::{ReceivedIntent, SEND_KINDS, SentIntent};
 pub use fork::{ChangeSince, ForkEpoch, ForkPoint, Reopened};
 pub use frontier::{DEFERRED_DERIVATION, Deferral, FrontierItem, FrontierReport};

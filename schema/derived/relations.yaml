@@ -232,12 +232,12 @@ relations:
 
   impact:
     name: "impact / blast radius"
-    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW, PREMISE_OF only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST, CONCLUDES only) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES, EQUIVALENT_TO), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
+    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW, PREMISE_OF only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST, CONCLUDES only), causes (PUTS_TOGETHER, CLOSES: a step and the part or join it makes) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES, EQUIVALENT_TO), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
     rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, and along every edge type of the schema's inference module as causal, transitively. Crossing a risk edge (RISK_EDGES: RISKS, BLOCKS, CONTRADICTS, VIOLATES, MASKS) marks the hop as a risk. Every radius also carries the stated steps its seeds are premises of, each read BROKEN or WEAKENED by its own rule (the `follows` relation's walk)."
     stated_over_readings: partial
     not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the inference edges are chosen by their schema MODULE, not their reading; the closure needs transitivity, which no reading declares as algebra yet."
     inference: deduced
-    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS, EQUIVALENT_TO, HAS_TEMPORAL_FACT]
+    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, PUTS_TOGETHER, CLOSES, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS, EQUIVALENT_TO, HAS_TEMPORAL_FACT]
     over: [follows, redo_list]
     code:
       - { file: nodes.rs, function: structural_rule, dedicated: true }
@@ -408,14 +408,32 @@ relations:
   flow_step_order:
     name: "flow step order"
     reading: { form: composite, composition: "before(c1, c2) := part-of(c1, f) ∧ part-of(c2, f) ∧ order(c1) < order(c2)", components: [part-of, before] }
-    rule: "PART_OF_FLOW (part-of, before) edges carry step_order, which sorts a flow's steps; TRIGGERS between steps is read beside it."
+    rule: "PART_OF_FLOW (part-of, before) edges carry step_order, which sorts a flow's steps; TRIGGERS between steps is read beside it. Each step carries its instructions beside its place in the order (assembly_instructions)."
     stated_over_readings: partial
     not_yet_stated: "order(c) is PART_OF_FLOW.step_order, an edge property; entry and exit points are node properties. flow_report also reads TRIGGERS, for the transitions it lists beside the order; a transition does not order steps, so the composition does not state it."
     inference: deduced
     edges: [PART_OF_FLOW, TRIGGERS]
+    over: [assembly_instructions]
     code:
       - { file: flow.rs, function: flow_report, dedicated: true }
     counts: "one ordered pair of steps in one flow"
+    cost: bounded
+
+  assembly_instructions:
+    name: "assembly instructions, and the joins no step closes"
+    reading: { form: composite, composition: "instruction(s, f) := part-of(s, f) ∧ parts(s) ∧ joins(s) ∧ performers(s) ∧ checks(s) ∧ limits(s), where parts(s) := {p : causes·puts-together(s, p)}, joins(s) := {j : causes·closes(s, j)}, performers(s) := {a : causes·performs(a, s)}, checks(s) := {v : norm·evaluates(v, s)}, limits(s) := {c : norm·binds(c, s)}; unclosed(j, f) := ∃ p ≠ q ∈ parts(f): source-of·offers(p, j) ∧ causes(q, j) ∧ ¬∃ s: part-of(s, f) ∧ j ∈ joins(s), where parts(f) := ∪ {parts(s) : part-of(s, f)}", components: [part-of, causes, norm, source-of] }
+    rule: "A step's instructions are what it names: the parts it puts together (PUTS_TOGETHER), the joins it closes (CLOSES) with what each Interface says must hold there, who performs it (INTERACTS_WITH with interaction performs), its checks (VERIFIES) and its limits (CONSTRAINS). A join between two of a flow's own parts — an Interface one part the flow puts together PROVIDES and another CONSUMES — that no step of the flow CLOSES is unclosed. flow_report reads every step's parts and joins, and only an assembly flow's performers, checks and limits and unclosed joins (req:a-step-of-a-process-names-the-parts-it-puts-together)."
+    stated_over_readings: partial
+    not_yet_stated: "which actors perform a step is INTERACTS_WITH's `interaction` value `performs`, a split of a free-text property; what a join must hold is the Interface's description, a node property; only an assembly is asked about its unclosed joins, which is Flow.flow_type, a node property."
+    inference: deduced
+    edges: [PART_OF_FLOW, PUTS_TOGETHER, CLOSES, INTERACTS_WITH, VERIFIES, CONSTRAINS, PROVIDES, CONSUMES]
+    code:
+      - { file: flow.rs, function: step_parts_and_joins, dedicated: true }
+      - { file: flow.rs, function: step_performers_checks_and_limits, dedicated: true }
+      - { file: flow.rs, function: joins_between, dedicated: true }
+      - { file: flow.rs, function: assembly_joins, dedicated: true }
+      - { file: flow.rs, function: confess_what_instructions_lack, dedicated: true }
+    counts: "one join between two parts an assembly flow puts together, closed or not"
     cost: bounded
 
   readiness_gate:

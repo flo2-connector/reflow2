@@ -1101,6 +1101,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 71 since PUTS_TOGETHER + CLOSES (2026-11-12, a step names the
+        // parts it puts together and the joins it closes);
         // 69 since EQUIVALENT_TO (2026-10-23, two statements proven
         // equivalent);
         // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
@@ -1118,7 +1120,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        69,
+        71,
         "every edge type is discoverable"
     );
 }

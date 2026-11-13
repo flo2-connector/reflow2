@@ -244,6 +244,20 @@ const NOT_DRIVEN_BY_A_PAIR: &[(&str, &str)] = &[
     ("pin_at_epoch", "pins by epoch sequence, not by pair"),
 ];
 
+/// Edges a typed tool draws through a LIST ARGUMENT of a call about something
+/// else, as `(tool, edge, argument)`: `part_of_flow` records a step of a Flow
+/// and names the parts it puts together and the joins it closes in the same
+/// call (req:a-step-of-a-process-names-the-parts-it-puts-together). Such a
+/// pair is driven in that call's own shape — the step, a flow, and the target
+/// in the list — never as a bare `from_id`/`to_id`.
+const DRAWN_THROUGH_A_LIST: &[(&str, &str, &str)] = &[
+    ("part_of_flow", "PUTS_TOGETHER", "puts_together"),
+    ("part_of_flow", "CLOSES", "closes"),
+];
+
+/// The Flow a pair drawn through a step's list is a step of.
+const PAIR_FLOW: &str = "flow:pairs-drawn-through-a-step";
+
 /// Pairs a wildcard admits that no relation the edge stands for uses, each
 /// with the measurement behind the exemption.
 ///
@@ -307,6 +321,9 @@ async fn every_edge_tool_accepts_every_pair_its_schema_models() {
     }
 
     let s = session().await;
+    s.node("Flow", PAIR_FLOW)
+        .await
+        .expect("the flow a step's lists are drawn on");
     let mut made: BTreeSet<String> = BTreeSet::new();
     let mut unbuildable: BTreeSet<String> = BTreeSet::new();
     let mut narrower: Vec<String> = Vec::new();
@@ -329,10 +346,18 @@ async fn every_edge_tool_accepts_every_pair_its_schema_models() {
             let mut refusals = Vec::new();
             let mut drawn = false;
             for tool in &tools_for[edge] {
-                match s
-                    .call(tool, json!({"from_id": from_id, "to_id": to_id}))
-                    .await
+                let args = match DRAWN_THROUGH_A_LIST
+                    .iter()
+                    .find(|(t, e, _)| t == tool && e == edge)
                 {
+                    Some((_, _, list)) => {
+                        let mut step = json!({"capability_id": from_id, "flow_id": PAIR_FLOW});
+                        step[*list] = json!([to_id]);
+                        step
+                    }
+                    None => json!({"from_id": from_id, "to_id": to_id}),
+                };
+                match s.call(tool, args).await {
                     Ok(_) => {
                         drawn = true;
                         break;
