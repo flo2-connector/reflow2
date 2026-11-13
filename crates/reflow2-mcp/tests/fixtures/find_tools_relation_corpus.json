@@ -9,7 +9,6 @@
     { "query": "actor capability edge interacts_with operates", "relations": ["INTERACTS_WITH"], "source": "alex-grok-2026-10-10" },
     { "query": "INTERACTS_WITH edge from an actor", "relations": ["INTERACTS_WITH"], "source": "the root-cause measurement on 0.91.0, 2026-10-25" },
     { "query": "which edge links an actor to a capability", "relations": ["INTERACTS_WITH"], "source": "written-2026-10-25" },
-    { "query": "which capabilities does this user role work with", "relations": ["INTERACTS_WITH"], "source": "written-2026-10-25" },
     { "query": "record that the operator triggers this flow", "relations": ["TRIGGERS", "INTERACTS_WITH"], "source": "written-2026-10-25" },
     { "query": "say that this decision reduces that risk", "relations": ["MITIGATES"], "source": "written-2026-10-25" },
     { "query": "this choice puts that requirement at risk", "relations": ["RISKS"], "source": "written-2026-10-25" },
@@ -33,6 +32,7 @@
     { "query": "these two records say the same thing twice", "relations": ["DUPLICATES"], "why": "No discriminating shared word: DUPLICATES says \"cover the same ground\", and \"same\" is common across the surface." },
     { "query": "the part of the system that offers this API", "relations": ["PROVIDES"], "why": "No shared word: PROVIDES says \"exposes/provides an Interface\"; \"part\" pulls PART_OF_FLOW instead." },
     { "query": "draw a link from a person to the interface they operate", "relations": ["INTERACTS_WITH", "CONSUMES"], "why": "\"person\" is nowhere in either relation's words, and \"operate\" is OPERATES_IN's name, which outranks both." },
-    { "query": "connect a user role to the feature they use", "relations": ["INTERACTS_WITH"], "why": "\"user\", \"role\" and \"feature\" are the Actor and Capability types' own words, not the relation's; counting an endpoint type's hint was measured and did not lift it." }
+    { "query": "connect a user role to the feature they use", "relations": ["INTERACTS_WITH"], "why": "\"user\", \"role\" and \"feature\" are the Actor and Capability types' own words, not the relation's; counting an endpoint type's hint was measured and did not lift it." },
+    { "query": "which capabilities does this user role work with", "relations": ["INTERACTS_WITH"], "source": "written-2026-10-25", "why": "Moved from `queries` on 2026-11-13. It passed only through \"with\" (INTERACTS_WITH's name and hint), which weighed 0.571 while relations were weighed over tools and edge types together and weighs 0.357 over the tools alone, the scale the top tool is weighed on; INTERACTS_WITH then ranks fourth, 0.21 behind REALIZES, and three are shown. \"user role\" names no endpoint, as in the query above (fact:weighing-relations-over-the-tools-ends-the-drift-and-loses-one-relation-question-found-through-the-word-with-2026-11-13)." }
   ]
 }
