@@ -27,9 +27,10 @@ edition = "2024"
 # req:reflow2-keeps-its-dependencies-at-or-near-their-latest-releases). It is
 # CHECKED, not claimed: .github/workflows/dependencies.yml builds the workspace
 # at exactly this version, and tools/dependency_currency.py reports it owed the
-# day stable moves two releases past it. Release binaries are built on current
-# stable regardless; this is the oldest compiler a source build may use.
-rust-version = "1.98"
+# day stable moves two releases past it. Release binaries are built on the Rust
+# that rust-toolchain.toml pins; this is the oldest compiler a source build may
+# use. Raised 1.98 -> 1.99 on 2026-11-13, when stable (and the pin) became 1.100.
+rust-version = "1.99"
 license = "Apache-2.0"
 authors = ["Anthony Sligar <sligara7@gmail.com>"]
 repository = "https://github.com/flo2-connector/reflow2"
