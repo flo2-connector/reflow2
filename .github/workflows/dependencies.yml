@@ -16,7 +16,7 @@ name: dependencies
 #   summary and an artifact.
 # - floor: does the workspace actually BUILD at the rust-version it declares? Until
 #   2026-10-02 that number (1.94) was set once and nothing compiled at it.
-#   Release binaries are built on current stable either way.
+#   Release binaries are built on the Rust that rust-toolchain.toml pins.
 
 on:
   schedule:
@@ -85,6 +85,12 @@ jobs:
         with:
           shared-key: floor-${{ steps.floor.outputs.version }}
       - name: Check the whole workspace, every target, at the floor
+        # rust-toolchain.toml pins the build's Rust and outranks `rustup
+        # default`, so without this the floor job would quietly build on the
+        # pinned version and check nothing. RUSTUP_TOOLCHAIN outranks the file.
+        env:
+          RUSTUP_TOOLCHAIN: ${{ steps.floor.outputs.version }}
         run: |
           rustc --version
+          rustc --version | grep -q "^rustc ${RUSTUP_TOOLCHAIN}" || { echo "::error::the floor job ran $(rustc --version), not the declared floor ${RUSTUP_TOOLCHAIN}"; exit 1; }
           cargo check --workspace --all-targets --locked

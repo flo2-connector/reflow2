@@ -39,13 +39,10 @@ fn tmp_root() -> PathBuf {
 }
 
 fn bin() -> PathBuf {
-    // The integration-test binary sits beside the built one.
-    let mut p = std::env::current_exe().expect("test binary has a path");
-    p.pop();
-    if p.ends_with("deps") {
-        p.pop();
-    }
-    p.join("reflow2-mcp")
+    // Cargo names where it built the server. Working it out from this test's
+    // own path assumed tests sit in target/<profile>/deps beside it, and cargo
+    // 1.100 builds them under target/<profile>/build/ instead.
+    PathBuf::from(env!("CARGO_BIN_EXE_reflow2-mcp"))
 }
 
 /// Mint a design by running the binary over stdio once, and return its graph_id.

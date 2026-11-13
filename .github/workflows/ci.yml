@@ -87,9 +87,28 @@ jobs:
           # therefore never once run in CI. Depth 2 is exactly what it needs
           # (BL-208).
           fetch-depth: 2
-      - uses: dtolnay/rust-toolchain@stable
+      - name: The Rust this repo pins (rust-toolchain.toml)
+        id: rust
+        run: echo "version=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: ${{ steps.rust.outputs.version }}
           components: clippy, rustfmt
+      - name: The compiler is the one rust-toolchain.toml pins, and no workflow floats (req:the-builds-toolchain-is-pinned)
+        # A new stable release reddened every open PR on code nobody changed,
+        # twice (2026-08-24, 2026-11-13), because the workflows installed
+        # whatever `stable` was that day. The pin is rust-toolchain.toml; this
+        # fails if the compiler that ran is not the pinned one, or if any
+        # workflow asks for a floating channel again.
+        run: |
+          pin='${{ steps.rust.outputs.version }}'
+          test -n "$pin" || { echo "::error::rust-toolchain.toml names no channel"; exit 1; }
+          rustc --version
+          rustc --version | grep -q "^rustc ${pin} " || { echo "::error::rustc is '$(rustc --version)', rust-toolchain.toml pins ${pin}"; exit 1; }
+          if grep -rnE 'rust-toolchain@(stable|beta|nightly)|toolchain: *(stable|beta|nightly)' .github/workflows; then
+            echo "::error::a workflow installs a floating Rust; read the channel from rust-toolchain.toml as ci.yml does"
+            exit 1
+          fi
       - uses: Swatinem/rust-cache@v2
         with:
           shared-key: ci-core
@@ -211,8 +230,12 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
           df -h /
-      - uses: dtolnay/rust-toolchain@stable
+      - name: The Rust this repo pins (rust-toolchain.toml)
+        id: rust
+        run: echo "version=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: ${{ steps.rust.outputs.version }}
           components: clippy
       - uses: Swatinem/rust-cache@v2
         with:

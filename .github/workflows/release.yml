@@ -115,8 +115,12 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.tag || github.ref }}
-      - uses: dtolnay/rust-toolchain@stable
+      - name: The Rust this repo pins (rust-toolchain.toml)
+        id: rust
+        run: echo "version=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)" >> "$GITHUB_OUTPUT"
+      - uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: ${{ steps.rust.outputs.version }}
           targets: ${{ matrix.target }}
       # librocksdb-sys generates its bindings with bindgen, which needs
       # libclang. The x86_64 image has it; GitHub's arm64 image lists clang
