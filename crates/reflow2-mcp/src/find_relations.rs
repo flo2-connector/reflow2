@@ -26,8 +26,14 @@
 //! word for it (`also_called`); its property names; and the types it may join,
 //! where one is named rather than `*`. The weights are `score_tool`'s (an exact
 //! name, a name word, a hint word, a property), plus one for an endpoint, and
-//! each is multiplied by how discriminating the query word is across tools AND
-//! relations together.
+//! each is multiplied by how discriminating the query word is across the TOOLS,
+//! the same weight the top tool's score carries. A relation is shown only when
+//! it scores close to the top tool, so the two sides are weighed on one scale.
+//! Until 2026-11-13 the relations were weighed over tools and edge types
+//! together: every edge type the schema gained then raised every relation's
+//! score and none of the tools', and the relation-share ratchet failed on a
+//! branch that added two:
+//! `fact:root-cause-a-relations-score-rises-whenever-the-schema-gains-an-edge-type-so-the-relation-share-ratchet-fails-2026-11-12`.
 //!
 //! Words match by [`same_word`], not exact spelling: a person writes
 //! "capabilities", "operated", "shapes", and the schema says "capability",
@@ -192,22 +198,16 @@ fn draw_with(edge: &EdgeTypeSpec) -> JsonValue {
 
 /// The relations a query names, best first, at most [`RELATIONS_SHOWN`].
 /// `tool_corpus` is the served tools as find_tools scores them (lowercased
-/// name, lowercased description), so a word's weight counts tools and
-/// relations together.
+/// name, lowercased description). A word is weighed over the tools alone, as
+/// it is for the top tool [`close_to_the_top_tool`] compares against, so a
+/// relation's score does not move when the schema gains an edge type.
 pub(crate) fn rank(
     edges: &[EdgeTypeSpec],
     terms: &[&str],
     tool_corpus: &[(String, String)],
 ) -> Vec<JsonValue> {
     let prose: Vec<String> = edges.iter().map(prose).collect();
-    let mut corpus: Vec<(String, String)> = tool_corpus.to_vec();
-    corpus.extend(
-        edges
-            .iter()
-            .zip(&prose)
-            .map(|(e, p)| (e.edge_type.to_lowercase(), p.clone())),
-    );
-    let weighted = term_weights(terms, &corpus);
+    let weighted = term_weights(terms, tool_corpus);
     let mut scored: Vec<(f64, &EdgeTypeSpec)> = edges
         .iter()
         .zip(&prose)
@@ -241,7 +241,83 @@ pub(crate) fn rank(
 
 #[cfg(test)]
 mod tests {
-    use super::same_word;
+    use super::{rank, same_word};
+    use reflow2_core::vocabulary::EdgeTypeSpec;
+
+    fn edge(edge_type: &str, from: &str, to: &str, hint: &str) -> EdgeTypeSpec {
+        EdgeTypeSpec {
+            edge_type: edge_type.to_string(),
+            from: vec![from.to_string()],
+            to: vec![to.to_string()],
+            hint: Some(hint.to_string()),
+            reads_as: None,
+            reading: None,
+            also_called: Default::default(),
+            properties: Vec::new(),
+            irreflexive: false,
+        }
+    }
+
+    /// A relation's score is weighed on the tools' scale, so an edge type the
+    /// schema gains moves no other relation's score: the reply to every query
+    /// is the same, scores included. On the old weighing (tools and edge types
+    /// together) each added type raised every relation's score, and the
+    /// relation-share ratchet failed on a branch that added two
+    /// (`fact:root-cause-a-relations-score-rises-whenever-the-schema-gains-an-edge-type-so-the-relation-share-ratchet-fails-2026-11-12`).
+    #[test]
+    fn an_edge_type_no_query_names_moves_no_relations_score() {
+        let tools: Vec<(String, String)> = [
+            ("add_capability", "record a capability the system provides"),
+            ("constrains", "a rule that limits what a component may do"),
+            ("get_node", "read one node of the design by its id"),
+        ]
+        .iter()
+        .map(|(n, d)| (n.to_string(), d.to_string()))
+        .collect();
+        let edges = vec![
+            edge(
+                "INTERACTS_WITH",
+                "Actor",
+                "Capability",
+                "An actor performs or uses a capability.",
+            ),
+            edge(
+                "CONSTRAINS",
+                "DesignRule",
+                "Component",
+                "A rule limits what a component may do.",
+            ),
+            edge(
+                "SATISFIES",
+                "Capability",
+                "Requirement",
+                "A capability meets a requirement.",
+            ),
+        ];
+        let mut grown = edges.clone();
+        grown.push(edge(
+            "ZZQ_PLACEHOLDER_ONE",
+            "Capability",
+            "Component",
+            "Placeholder zzqone.",
+        ));
+        grown.push(edge(
+            "ZZQ_PLACEHOLDER_TWO",
+            "Capability",
+            "Interface",
+            "Placeholder zzqtwo.",
+        ));
+        for query in [
+            "link actor to capability performed by operated by uses",
+            "a rule that limits what a component may do",
+            "which capability meets this requirement",
+        ] {
+            let terms: Vec<&str> = query.split(' ').collect();
+            let before = rank(&edges, &terms, &tools);
+            assert!(!before.is_empty(), "{query:?} finds a relation");
+            assert_eq!(before, rank(&grown, &terms, &tools), "{query:?}");
+        }
+    }
 
     #[test]
     fn same_word_takes_a_persons_spelling_and_no_more() {
