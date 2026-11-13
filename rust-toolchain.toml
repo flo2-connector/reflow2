@@ -1,0 +1,13 @@
+# The Rust every build and gate of this repo is measured against
+# (req:the-builds-toolchain-is-pinned). A compiler upgrade is a commit that
+# changes this line, reviewed like any other: on 2026-08-24 and again on
+# 2026-11-13 a new stable release reddened every open pull request on code
+# nobody had changed, because CI installed whatever `stable` was that day.
+# CI reads the channel from here; a step fails if the compiler it ran is not
+# this one, or if a workflow asks for `stable` again. The oldest Rust the
+# crates still build on is `rust-version` in Cargo.toml, checked by
+# dependencies.yml's floor job.
+[toolchain]
+channel = "1.100.0"
+components = ["clippy", "rustfmt"]
+profile = "minimal"
