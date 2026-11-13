@@ -12,9 +12,3 @@
 #   name       = the crate name, the action's owner/repo, or "rust-version"
 #   reason     = why, in a sentence somebody else can check
 #   look_again = a date (YYYY-MM-DD) after which this hold stops counting
-
-[[hold]]
-kind = "crate"
-name = "jsonwebtoken"
-reason = "12.0.0 is a new major. bearer.rs verifies sign-in tokens through jsonwebtoken's crypto-provider API (JwtVerifier, signature::Verifier, its key and error types), so the bump is security code and gets its own PR, with the bearer tests run against it, rather than riding along with the toolchain pin (PR #837)."
-look_again = 2026-11-27
