@@ -7824,6 +7824,13 @@ impl DesignGraph {
         let (judged, decisions) = self.repairs_judged_for(fact_id, &is_change)?;
         for c in &mut sweep.offered {
             c.judged = judged.contains(&c.id);
+            // HOW BROAD A CHANGE WAS only ranks the changes offered, so it is
+            // counted for those and for no other. MEASURED 2026-11-13 on
+            // reflow2's own design at 8,916 nodes: counted for every change
+            // near every defect it was 7,751 counts over 324,023 relations,
+            // 1.2 s of this rule's 1.5, for 550 defects
+            // (`fact:root-cause-a-sixth-of-the-loop-check-after-a-write-is-the-overtaken-defect-rule-counting-what-each-change-changed-again-per-defect-2026-11-13`).
+            c.breadth = self.outgoing(&c.id, Some(edge::CHANGED))?.len();
         }
         sweep.judged_by = decisions;
         sweep.offered.sort_by_key(FixCandidate::rank);
@@ -7831,7 +7838,9 @@ impl DesignGraph {
     }
 
     /// One change as a candidate fix, or `None` when the id holds no
-    /// ChangeEvent.
+    /// ChangeEvent. Its own record only: how broad it was (`breadth`) is left
+    /// at zero here and counted by [`Self::changes_that_may_have_fixed`] for
+    /// the changes it offers, the only ones it ranks.
     fn fix_candidate(&self, id: &str, link: FixLink) -> Result<Option<FixCandidate>, DynoError> {
         let Some(ev) = self.get_node(node::CHANGE_EVENT, id)? else {
             return Ok(None);
@@ -7847,7 +7856,7 @@ impl DesignGraph {
             day: detected_at.as_deref().and_then(crate::dates::parse_day),
             detected_at,
             is_repair: change_type == "defect_fix" || change_type == "test_failure_fix",
-            breadth: self.outgoing(id, Some(edge::CHANGED))?.len(),
+            breadth: 0,
             link,
             judged: false,
         }))
@@ -9975,7 +9984,7 @@ struct FixCandidate {
     day: Option<i64>,
     is_repair: bool,
     /// How many records the change `CHANGED`: the narrower, the more it is
-    /// about each of them.
+    /// about each of them. Counted only for a change that is offered.
     breadth: usize,
     /// An accepted acknowledgement already judged it not to be this
     /// defect's fix.

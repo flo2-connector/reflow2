@@ -69,6 +69,7 @@ mod a_link_into_another_design_is_recorded_and_checked;
 mod a_mirror_can_be_refreshed;
 mod a_node_records_what_the_user_calls_it;
 mod a_parked_report_that_produced_nothing_is_reported;
+mod a_pass_reads_what_its_items_share_once;
 mod a_premise_has_a_truth_and_a_proof_reads_correct;
 mod a_premise_in_another_design_reads_as_it_reads_there;
 mod a_premise_says_whether_it_rests_on_intent_or_delivery;
