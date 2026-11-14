@@ -213,6 +213,51 @@ pub struct DerivedMemo {
     /// How many times the adjacency was actually BUILT. Its own counter, for
     /// the reason the two above have theirs.
     pub adjacency_builds: u64,
+    /// The readings of other designs (`crate::far`) that `defects`, `gaps`
+    /// and everything in `kept` were worked out under.
+    ///
+    /// A reference to another design reads, as a premise, what the server
+    /// handed in for THIS call, and two callers may be handed different
+    /// readings: the far design changed (no write lands here when it does),
+    /// or one caller may read it and the other may not. So a result that
+    /// rests on a premise's truth is kept together with the readings it read,
+    /// and a call that brings different ones works it out again
+    /// (`req:a-loop-check-asked-again-with-no-write-since-answers-from-what-it-kept`:
+    /// "kept only together with what it read, or is not kept"). The entries
+    /// that read only this design's own nodes and edges (`discontinued`,
+    /// `node_types`, `betweenness`, `adjacency`) are not dropped for it.
+    pub far: Option<std::sync::Arc<crate::far::FarReadings>>,
+    /// Whole results kept by name until the next write, each behind
+    /// [`DesignGraph::kept`]: the passes `loop_status` is made of that read
+    /// only the design, and its whole answer per contributor.
+    ///
+    /// MEASURED 2026-11-13 on this design at 8,916 nodes
+    /// (`fact:measured-the-four-measurements-the-loop-check-idea-asked-for-2026-11-13`):
+    /// a `loop_status` asked again with no write since took 3.1 to 3.4 s,
+    /// against a 2,000 ms budget (`con:loop-status-warm-latency-ms`), because
+    /// only gap and defect detection were kept. Loop closure alone was 1.9 to
+    /// 2.2 s of it, worked out again on every ask from records no write had
+    /// touched.
+    pub kept: std::collections::HashMap<String, std::sync::Arc<dyn std::any::Any + Send + Sync>>,
+    /// How many times each name in `kept` was actually WORKED OUT, by name,
+    /// over this graph's lifetime. A counter per name, for the reason
+    /// `betweenness_builds` has its own: a test pins "once per state of the
+    /// design" for one pass without another pass moving the number under it.
+    pub kept_builds: std::collections::HashMap<String, u64>,
+}
+
+/// Whether two calls were handed the same readings of other designs: the same
+/// allocation (every access within one call), or equal content (two calls the
+/// server read the same far truths for).
+fn same_readings(
+    a: &Option<std::sync::Arc<crate::far::FarReadings>>,
+    b: &Option<std::sync::Arc<crate::far::FarReadings>>,
+) -> bool {
+    match (a, b) {
+        (None, None) => true,
+        (Some(a), Some(b)) => std::sync::Arc::ptr_eq(a, b) || **a == **b,
+        _ => false,
+    }
 }
 
 /// Every edge of a graph, indexed by both endpoints. One build serves every
@@ -251,6 +296,7 @@ impl DesignGraph {
     /// written since they were computed. Callers then hit or fill ONE entry.
     pub(crate) fn derived_at_current_generation(&self) -> std::sync::MutexGuard<'_, DerivedMemo> {
         let now = self.engine.write_generation();
+        let far = crate::far::in_scope();
         let mut memo = self.derived.lock().expect("derived memo poisoned");
         if memo.generation != Some(now) {
             memo.generation = Some(now);
@@ -260,8 +306,105 @@ impl DesignGraph {
             memo.node_types = None;
             memo.betweenness = None;
             memo.adjacency = None;
+            memo.kept.clear();
+        } else if !same_readings(&memo.far, &far) {
+            // This call reads other designs differently from the one these
+            // were worked out for: what rests on a premise's truth goes, what
+            // reads only this design's own records stays (see `far`).
+            memo.defects = None;
+            memo.gaps = None;
+            memo.kept.clear();
         }
+        // Always this call's own, so the next access within it is a pointer
+        // comparison and never a comparison of contents.
+        memo.far = far;
         memo
+    }
+
+    /// `compute`, worked out at most once per state of the design and handed
+    /// back from what was kept until the next write
+    /// (`req:a-loop-check-asked-again-with-no-write-since-answers-from-what-it-kept`).
+    ///
+    /// For a result that is a function of the design alone, or of the design
+    /// and the readings of other designs this call was handed (`crate::far`):
+    /// a call handed different readings works it out again. Anything else a
+    /// result depends on (who is asking) goes in `name`.
+    ///
+    /// WHAT IS NEVER KEPT:
+    /// - an error, a stop at a check point included (`crate::stop`): a pass
+    ///   stopped part-way keeps nothing, and the next ask works it out;
+    /// - a result whose write generation moved while `compute` ran. A write
+    ///   takes `&mut self`, so through this type's own API none can land while
+    ///   a `&self` read is working one out, and no test can make it happen.
+    ///   The comparison costs one number and holds the rule if a later
+    ///   arrangement ever lets a write in beside a read: the memo's lock is
+    ///   not held while `compute` runs.
+    pub(crate) fn kept<T>(
+        &self,
+        name: &str,
+        compute: impl FnOnce() -> Result<T, DynoError>,
+    ) -> Result<T, DynoError>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        self.kept_when(name, |_| true, compute)
+    }
+
+    /// [`kept`](Self::kept), keeping the result only when `keep` says so. For
+    /// a result that can come back PARTIAL without being an error:
+    /// `loop_status` told to stop names the sections it left out, and that
+    /// answer is the stopped call's alone.
+    pub(crate) fn kept_when<T>(
+        &self,
+        name: &str,
+        keep: impl FnOnce(&T) -> bool,
+        compute: impl FnOnce() -> Result<T, DynoError>,
+    ) -> Result<T, DynoError>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        let began_at = {
+            let memo = self.derived_at_current_generation();
+            if let Some(v) = memo.kept.get(name).and_then(|v| v.downcast_ref::<T>()) {
+                return Ok(v.clone());
+            }
+            memo.generation
+        };
+        let v = compute()?;
+        let mut memo = self.derived_at_current_generation();
+        *memo.kept_builds.entry(name.to_string()).or_default() += 1;
+        if memo.generation == began_at && keep(&v) {
+            memo.kept
+                .insert(name.to_string(), std::sync::Arc::new(v.clone()));
+        }
+        Ok(v)
+    }
+
+    /// What is kept under `name` for the design as it stands and the readings
+    /// this call was handed, if anything is. Never works anything out.
+    pub(crate) fn kept_read<T>(&self, name: &str) -> Option<T>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        self.derived_at_current_generation()
+            .kept
+            .get(name)
+            .and_then(|v| v.downcast_ref::<T>())
+            .cloned()
+    }
+
+    /// How many times the result kept under `name` has actually been WORKED
+    /// OUT in this graph's lifetime (see [`DerivedMemo::kept_builds`]). The
+    /// structural assertion behind [`kept`](Self::kept): across N asks with no
+    /// write between them this moves by one, not N.
+    pub fn kept_builds(&self, name: &str) -> u64 {
+        self.derived
+            .lock()
+            .expect("derived memo poisoned")
+            .kept_builds
+            .get(name)
+            .copied()
+            .unwrap_or(0)
     }
 
     /// How many times a memoised derived scan has actually RUN in this
