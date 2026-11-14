@@ -113,6 +113,11 @@ Three records, three questions — kept separate on purpose:
   there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.99.0.md](upgrading-to-v0.99.0.md) — **upgrade every seat together**: the stamp
+  moves by two edge types (`PUTS_TOGETHER`, `CLOSES`; 69 → 71), and `Flow.flow_type` gains
+  `assembly`. A v0.98.0 binary refuses any store a v0.99.0 binary has opened, even once and only
+  to read; snapshot first, because that is the way back. Nothing to migrate. Also: `loop_status`
+  is faster on a large design, and building from source needs Rust 1.99 or newer.
 - [upgrading-to-v0.98.0.md](upgrading-to-v0.98.0.md) — **upgrade every seat**: the stamp moves
   by an enum vocabulary (`Decision.closing_it`, new). A v0.97.0 binary opens a v0.98.0 store with
   its "behind" warning and keeps the new fields, but cannot read a proof search's map, and a round

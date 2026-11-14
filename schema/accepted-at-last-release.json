@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.98.0",
+  "reflow2_version": "0.99.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -874,6 +874,7 @@
       "flow_type": {
         "type": "enum",
         "values": [
+          "assembly",
           "capture",
           "control_flow",
           "data_flow",
@@ -2010,6 +2011,14 @@
         }
       }
     },
+    "CLOSES": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Interface"
+      ]
+    },
     "COMPLEMENTS": {
       "from": [
         "DesignRule"
@@ -2720,6 +2729,14 @@
           ]
         }
       }
+    },
+    "PUTS_TOGETHER": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Component"
+      ]
     },
     "REALIZES": {
       "from": [
