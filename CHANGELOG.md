@@ -31,6 +31,277 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.99.0] — 2026-11-14
+
+**Minor. A process can be recorded as how a thing is made: each step names the parts it puts
+together and the joins it closes, and an assembly reads back as instructions that say what they
+lack. `loop_status` is faster on a large design, asked again and after a write.** It contains
+#835 to #841. **What to do:** upgrade every seat together
+([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)), and snapshot a served store
+first. This move is not like 0.98.0's: a seat left on 0.98.0 is refused a design from the first
+time a 0.99.0 seat opens it, even once and only to read. On the VS Code terminal route, run
+`reflow2 update` in each repository after installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.98.0 binary (sha256 `919d1d9d…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Three tools change: `add_flow`'s `flow_type`
+takes `assembly`, and its description says what an assembly is; `part_of_flow` takes
+`puts_together` and `closes`; `flow_report`'s description says an assembly reads back as
+instructions. Skills stay at 36, and none changes. `get_instructions` is unchanged;
+`describe_schema` gains the two edge types and `assembly`, and `INTERACTS_WITH`'s `interaction`
+names `performs`. The connect-time instructions are unchanged: 2,911 characters on stdio and
+3,169 behind `--http-trusted-gateway flo2.io`, as in 0.98.0. `toolsnap` on the release build: all
+199 match.
+
+- **The schema stamp moves by two edge types**: `PUTS_TOGETHER` and `CLOSES`, so edge types go
+  from 69 to 71. Node types stay at 28 and enum vocabularies at 84; `Flow.flow_type` gains the
+  value `assembly`. Measured at this cut with the published 0.98.0 binary: it refuses to open
+  any store this release has opened, and one read by this release is enough. It refuses this
+  release's exports without `--accept-newer`; with it, it imports whole an export in which no
+  flow is an assembly and no step names a part or a join, and refuses whole any other
+  ([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two pairs of fragments are folded here.** #837 recorded a hold on `jsonwebtoken` 12.0.0 and
+  #838 lifted it, before either shipped. A reader of 0.98.0 never saw the hold, so only the move
+  to 12.0.0 is listed, under Security. #840 said the first `loop_status` after a write was not
+  faster, and #841 then made it faster, so the two entries under Changed read as the release
+  behaves.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets the assembly reading whole, and part of the `loop_status`
+speed-up. Checked through the door (`reflow2 read|write TOOL JSON --graph-path …`) on the 0.99.0
+release build beside the published 0.98.0 binary, each on a design on disk:
+- **Install the new binary on every machine that opens the design, then run `reflow2 update` in
+  each repository.** On a repository set up by the 0.98.0 kit with `--harness vscode-cli`,
+  `reflow2 update` changes no file you commit (103 files, none differs): no skill and no command
+  changed. It backs the design up to `.reflow2/backups/` and then opens the store, which moves
+  the store's stamp to 0.99.0. From then on the 0.98.0 binary refuses that store, to read or to
+  write, naming `CLOSES` and `PUTS_TOGETHER`. One `reflow2 read get_node` by 0.99.0 does the
+  same.
+- **A step names its parts and joins here.** `reflow2 write add_flow` with `flow_type: assembly`
+  is stored, and `reflow2 write part_of_flow` with `puts_together` and `closes` replies with
+  `edges_drawn` (two `PUTS_TOGETHER`, one `CLOSES`). 0.98.0 refuses each (exit 2: `assembly` is
+  not one of its flow types, and `puts_together` and `closes` are not parameters). Naming an
+  Interface as a part, or an id that names nothing, refuses the whole call and names each one
+  (exit 1); nothing is written.
+- **An assembly reads back as instructions.** On a three-step assembly (a ring: set the stone,
+  polish, fit the bezel), `reflow2 read flow_report` gives the first step its `puts_together`
+  (bezel, stone), its `closes` (the stone seat, with `what_must_hold` from the Interface's
+  description) and its `performed_by` (an Actor drawn with `interaction: performs`). It
+  confesses four things: one step names no part and no join, two name no one who performs them,
+  none has a check, and the join between the band and the bezel is closed by no step.
+  `reflow2 read derived_report` counts the joins under `assembly_instructions` (2 joins, 1
+  closed by no step).
+- **A changed part reaches its step.** `reflow2 read propagate_from` from the stone names the
+  step that sets it in its first ring, through `PUTS_TOGETHER`, and from the stone seat names
+  the same step through `CLOSES`.
+- **`loop_status` on a large design.** A one-shot call starts a new engine each time, so it gets
+  the faster check and not the kept answer. On a copy of reflow2's own design (8,981 nodes) on
+  disk, on one idle machine, `reflow2 read loop_status` took 8.6 to 8.9 s on 0.98.0 and takes
+  5.7 to 6.0 s, asked again or straight after a write (8.9 s, now 6.0 s). `reflow2 read
+  detect_gaps` went from 4.2 s to 3.0 s. A small design sees no difference.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries `puts_together`,
+`closes` and `assembly`, and an assembly written through it reads back as instructions. flo2.io
+gets these, and the faster `loop_status`, once its engine moves to 0.99.0 and is deployed; its
+engine stays up between calls, so the repeat ask arrives there. Measured on the same copy of
+reflow2's design, served over `--http` with the engine left up: the first `loop_status` took 7.7 s
+on 0.98.0 and takes 4.7 s; asked again with no write, 2.4 s and now 0.1 s; after a write, 7.8 s
+and now 4.9 s. **The engine's first open of
+each hosted design moves that design's stamp**, so after the move a 0.98.0 engine cannot open
+it: going back means restoring the stores from a backup taken before, and every local binary
+that opens an export from flo2.io moves with it. The list of skills flo2.io shows a chat keeps
+each skill's name, shortcut and summary, and none of those changes (36 skills, the same
+summaries), so regenerating it at the re-pin moves only its version line. As before, the hosted
+hub view and reads across designs by graph id need flo2.io. These lines get checked again on the
+published binary once the release is out.
+
+### Added
+
+- **🛑 Upgrade every seat together: the schema stamp moves.** Two edge types
+  are added, `PUTS_TOGETHER` and `CLOSES` (69 → 71), `Flow.flow_type` gains
+  `assembly`, and `INTERACTS_WITH.interaction` names a fifth value,
+  `performs` (free text, as before). Measured with the published 0.98.0
+  binary (its release checksum checked) on stores and an export this build
+  wrote:
+  - 0.98.0 REFUSES to open ANY store this build has written, even one
+    holding neither addition, naming the types it lacks ("it has never heard
+    of CLOSES, PUTS_TOGETHER"): a new edge type moves both halves of the
+    stamp.
+  - This build opens a 0.98.0 store and says so ("Additive only —
+    everything in it still reads"). That open moves the store's stamp to
+    0.99.0, whether the call was a read or a write, and 0.98.0 refuses the
+    store from then on: one `get_node` by this build is enough.
+  - 0.98.0 refuses a plain import of any export this build wrote. With
+    `--accept-newer` it imports whole an export in which no flow is an
+    assembly and no step names a part or a join, and then reads and writes
+    the copy. It refuses whole, all or nothing, an export holding an assembly
+    flow or a single `PUTS_TOGETHER` or `CLOSES`, naming each item it cannot
+    read.
+  **What to do:** snapshot a served store, then upgrade every seat
+  together, flo2.io included
+  ([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)); stop any
+  shared server still on the old binary (`reflow2-mcp --graph-path <path>
+  --stop-shared`). Nothing needs migrating.
+- **A step of a process names the parts it puts together and the joins it
+  closes.** `part_of_flow` takes two optional lists: `puts_together`
+  (Component ids; one `PUTS_TOGETHER` from the step to each part it places,
+  joins or assembles) and `closes` (Interface ids; one `CLOSES` to each join
+  it makes, after which what the Interface says must hold there holds). One
+  call records a step with its parts and joins, and `draw_edges` takes the
+  same lists. All or nothing: an id that is not a Component, or not an
+  Interface, or that names nothing, refuses the whole call naming each one,
+  and nothing is written. Re-sending a step keeps the parts and joins it
+  leaves out (`delete_edge` takes one away). The reply names every edge the
+  call drew in `edges_drawn`, and one that was already there apart. A step
+  named without either list reads and replies exactly as before
+  (req:a-step-of-a-process-names-the-parts-it-puts-together).
+- **An assembly reads back as instructions.** A Flow of `flow_type:
+  assembly` (how a thing is made and put together: printed, cast, polished,
+  plated, set) reads back in `flow_report` with, on each step:
+  `puts_together`, `closes` (each join with `what_must_hold`, the
+  Interface's own description), `performed_by` (each Actor that
+  INTERACTS_WITH the step with `interaction: performs`), `checks` (each
+  Verification that VERIFIES it, with its `method` and `status`) and
+  `limits` (each Constraint or DesignRule that CONSTRAINS it). Each list is
+  written only when it has something in it. Its confessions say, in plain
+  words, a step that puts together no part and closes no join, a step
+  nobody performs, a step nothing checks, and a join between two of the
+  flow's own parts (an Interface one part PROVIDES and another CONSUMES)
+  that no step closes. `derived_report` counts those joins
+  (`assembly_instructions`). Every other flow reads byte for byte as it
+  did: a step of a process already carries checks, limits and actors, and
+  its report does not start listing them. A flow of another type whose
+  steps name parts or joins lists those, and says it is not read as
+  instructions until it is recorded with `flow_type: assembly`.
+- **A changed part or join reaches the step that makes it.**
+  `propagate_from` walks `PUTS_TOGETHER` and `CLOSES` as it walks
+  `REALIZES`: from a changed bezel seat to the step that sets the stone,
+  from a changed band to the step that prints it, and from a changed step
+  to the parts and joins it makes.
+
+### Changed
+
+- **`loop_status` asked again with no write since answers from what the engine kept.** On
+  reflow2's own design (8,916 nodes) a repeat ask took 3.1 s and now takes 0.1 s, measured
+  2026-11-13 on one machine with the 0.98.0 engine beside this one. Until now only gap and
+  defect detection were kept between asks; whether each check ever came back with a real
+  result, the list of checks, the confirmation ledger and the reasoning debt were worked out
+  again every time, from records no write had touched. Each is now worked out once per state
+  of the design, and a whole answer is kept per person asked about. Any write drops all of
+  it, so nothing is served stale. `detect_defects` asked again with no write went from 1.6 s
+  to under 0.05 s, and a `loop_status` with `time_budget_ms: 0` from 0.63 s to 0.35 s. The first
+  ask after a write is the next entry. What is kept lives in the running engine and uses
+  memory there; it is gone when the design is closed, so a one-shot call, which starts a new
+  engine each time, does not get it. **What to do:** nothing.
+
+- **The first `loop_status` after a write is about a third faster on a large design.** On
+  reflow2's own design (8,916 nodes) it took 8.7 s and now takes 5.5 to 5.6 s, measured
+  2026-11-13 on one machine, the engine before this change beside the engine after it. Two
+  parts of the check read the same thing again for every item they looked at. Asking whether
+  each check ever came back with a real result read every file record once per check to find
+  the one at the check's location (all 833, for each of 200 checks, 1.8 s); the file records
+  are now read once per state of the design. The question "was this defect fixed by a later
+  change?" counted everything each nearby change had changed, for every defect, to rank the
+  few changes it then offered (7,751 counts for 550 defects, 1.2 s); it now counts only for
+  the changes it offers. The answers are the same. `detect_gaps` alone after a write went
+  from 3.8 s to 2.3 s on that design. A small design sees no difference, and a repeat ask
+  with no write between is the entry above. **This is not "check only what changed"**, which
+  is recorded and not built: the rest of the time is each rule reading the whole design once.
+  **What to do:** nothing.
+
+- **The repo now names the Rust it is built and checked with: 1.100.0, in
+  `rust-toolchain.toml`.** CI and the release builds install that version, not
+  whatever `stable` is on the day. A step fails if the compiler that ran is not
+  the pinned one, or if a workflow asks for `stable` again. A compiler upgrade
+  is now a commit that changes one line. On 2026-08-24, and again on
+  2026-11-13 when Rust 1.100 came out, a new stable release made every open
+  pull request fail on code nobody had changed. The oldest Rust the crates
+  build on, `rust-version` in `Cargo.toml`, rises from 1.98 to 1.99: stable
+  minus one, as before. The floor job now really builds at it; the toolchain
+  file would otherwise have overridden it. **What to do:** building from
+  source, rustup installs 1.100.0 the first time you run `cargo` here. A build
+  on your own older compiler needs 1.99 or newer.
+
+### Fixed
+
+- **`find_tools` no longer shows more relations each time the schema gains an
+  edge type.** A relation comes back beside the tools only when it scores
+  close to the top tool. The relation's words were weighed over the tools and
+  the schema's edge types together, and the top tool's over the tools alone,
+  so every added edge type raised every relation's score and none of the
+  tools'. Two placeholder edge types, with words no query uses, took the share
+  of plain tool searches carrying relations from 89 to 91 of 184 and failed
+  its ceiling. Relations are now weighed over the tools, the same scale, and
+  the same two types change no reply: 79 of 184 (42.9%) with or without them.
+  The ceiling is lowered to 43.0%. Tool rankings do not change. One
+  relation question in the corpus, "which capabilities does this user role
+  work with", no longer finds `INTERACTS_WITH`: it was found only through the
+  word "with", and it joins its sibling "connect a user role to the feature
+  they use" among the known misses. **What to do:** nothing. A design whose
+  schema adds its own edge types now gets the same relations back as before
+  it added them.
+
+- **`detect_gaps` asked twice with no write between could answer the second call from the
+  first call's readings of another design.** Since 0.89.0 a premise that lives in another
+  design reads as it reads there, from readings each call brings. The kept gap scan was only
+  dropped by a write to this design, so a call that brought different readings (the other
+  design changed, or the caller can read different designs) got the gaps worked out for the
+  call before, until the next write here. Shown at the core library; how often it was met in
+  use was not measured. The engine now notes which readings its kept results were worked out
+  under and drops them when a call brings different ones. **What to do:** nothing. If a
+  design that rests on another one showed a gap that did not match the other design, ask
+  again on this version.
+
+- **A refusal for a Contributor given by display name now names the id that holds that
+  name.** `add_decision` (and every tool that takes an `approver`, the defect and gap
+  acknowledgements, `authored_by`, `owned_by`, `ask_question`, `claim_region` and the other
+  who-edges) refused `"Pat Doe"` with "no Contributor ... check the id", although a
+  Contributor `who:pat` named Pat Doe was in the design. Some of those refusals even said to
+  create the person, which would have made a second record of them. The refusal stays,
+  because an approval must name one person for certain, but it now says "`Pat Doe` is the
+  display name of Contributor `who:pat`: pass its id". When several Contributors share the
+  name, it names them all. **What to do:** nothing; pass the id the refusal names.
+
+- **Eleven server tests no longer fail to start the server when cargo builds
+  tests in its new location.** Cargo 1.100 builds a test program under
+  `target/<profile>/build/` instead of beside the server binary in
+  `target/<profile>/deps`. These tests worked the server's path out from
+  their own, so 55 of them failed with "spawn reflow2-mcp: No such file or
+  directory". They now take the path cargo gives (`CARGO_BIN_EXE_reflow2-mcp`),
+  as the other 28 test files already did. **What to do:** nothing.
+
+- **`reflow2 update` no longer writes the whole kit back into a project that kept only part
+  of it.** A clone that kept only `REFLOW2.md` beside its team's own `AGENTS.md` had
+  `update --check` plan about 80 new files and a line appended to that team's `AGENTS.md`.
+  The guard added in 0.89.0 only refused when every recorded kit file was gone. Now, when
+  every file of one part of the kit (all the skills, all the prompts, a command tree) is gone,
+  `update` and `update --check` refuse and change nothing. The refusal names the parts that
+  are gone and the files still here. Deleting ONE kit file still means "give me reflow2's
+  copy". **What to do:** nothing in a project that carries the whole kit. In a project that
+  keeps part of it on purpose, leave it: `update` now leaves it alone. `reflow2 init .` brings
+  the whole kit back, and `reflow2 init --remove` takes out the rest. Update cannot yet refresh
+  only the files a project keeps.
+
+### Security
+
+- **An exposed `--http` server checks bearer tokens with `jsonwebtoken`
+  12.0.0.** The new release is stricter in ways that apply to a token check:
+  - a token whose header lists a "critical" extension it does not know is
+    refused, as RFC 7515 requires;
+  - the remaining confusion between a string and a list in `sub`, `iss` and
+    `aud` is fixed;
+  - empty HMAC keys are refused.
+
+  reflow2 accepts only RSA, RSA-PSS, ECDSA and Ed25519 tokens, never HMAC, and
+  still verifies them with `ring` through jsonwebtoken's provider interface; no
+  code changed. The build also sheds `base64` 0.22 and `rand_core` 0.6, which
+  were in the tree only through the old version. **What to do:** nothing. A token signed
+  with a header that names an unknown critical extension, which no common
+  issuer sends, is now refused where it was accepted before.
+
 ## [0.98.0] — 2026-11-07
 
 **Minor. A proof search reads as one page, each hole says what it serves, a stalled search goes
