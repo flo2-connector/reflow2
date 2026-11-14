@@ -72,112 +72,128 @@ pub struct LoopClosure {
 }
 
 impl DesignGraph {
-    /// Compute the [`LoopClosure`] reading.
+    /// The [`LoopClosure`] reading: worked out once per state of the design
+    /// and kept until the next write ([`DesignGraph::kept`]).
+    ///
+    /// MEASURED 2026-11-13 on reflow2's own design at 8,916 nodes: 1.9 to
+    /// 2.2 s of a 3.1 to 3.4 s `loop_status` asked again with no write since
+    /// (62%), every time, from checks and kept records no write had touched
+    /// (`fact:measured-the-four-measurements-the-loop-check-idea-asked-for-2026-11-13`).
+    /// It reads Verifications, divergence events and Artifacts, and one
+    /// reference's truth where a check rests on another design, which
+    /// `kept` holds it together with.
     pub fn loop_closure(&self) -> Result<LoopClosure, DynoError> {
-        let str_prop = |n: &crate::foundation::store::StoredNode, k: &str| {
-            n.properties
-                .get(k)
-                .and_then(Value::as_str)
-                .filter(|s| !s.is_empty())
-                .map(str::to_string)
-        };
+        // The reading stays inside this function: it is the one the derived
+        // relations' declarations and the list of edge readers name
+        // (schema/derived), so the work is a closure here and not a second
+        // function beside it.
+        self.kept("loop_closure", || {
+            let str_prop = |n: &crate::foundation::store::StoredNode, k: &str| {
+                n.properties
+                    .get(k)
+                    .and_then(Value::as_str)
+                    .filter(|s| !s.is_empty())
+                    .map(str::to_string)
+            };
 
-        // A status_mismatch event can only be minted by a compared run, so the
-        // check it names was compared even if it carries no stamp.
-        let mut mismatched: std::collections::BTreeSet<String> = Default::default();
-        for ev in self.scan_nodes(node::DRIFT_EVENT)? {
-            if str_prop(&ev, "drift_type").as_deref() != Some("status_mismatch") {
-                continue;
+            // A status_mismatch event can only be minted by a compared run, so the
+            // check it names was compared even if it carries no stamp.
+            let mut mismatched: std::collections::BTreeSet<String> = Default::default();
+            for ev in self.scan_nodes(node::DRIFT_EVENT)? {
+                if str_prop(&ev, "drift_type").as_deref() != Some("status_mismatch") {
+                    continue;
+                }
+                for e in self.outgoing(&ev.node_id, Some(edge::DEPENDS_ON))? {
+                    mismatched.insert(e.to_id);
+                }
             }
-            for e in self.outgoing(&ev.node_id, Some(edge::DEPENDS_ON))? {
-                mismatched.insert(e.to_id);
-            }
-        }
 
-        let (mut checks, mut claiming, mut compared, mut failed) = (0, 0, 0, 0);
-        let mut last: Option<String> = None;
-        for v in self.scan_nodes(node::VERIFICATION)? {
-            // A check point per check: on reflow2's own design this loop took
-            // 4.8 s, one kept-record read per passing check (crate::stop).
-            crate::stop::checkpoint("loop_status:loop_closure:check")?;
-            let status = str_prop(&v, "status").unwrap_or_else(|| "planned".into());
-            if status == "superseded" {
-                continue;
+            let (mut checks, mut claiming, mut compared, mut failed) = (0, 0, 0, 0);
+            let mut last: Option<String> = None;
+            for v in self.scan_nodes(node::VERIFICATION)? {
+                // A check point per check: on reflow2's own design this loop took
+                // 4.8 s, one kept-record read per passing check (crate::stop).
+                crate::stop::checkpoint("loop_status:loop_closure:check")?;
+                let status = str_prop(&v, "status").unwrap_or_else(|| "planned".into());
+                if status == "superseded" {
+                    continue;
+                }
+                checks += 1;
+                if status == "passing" || status == "failing" {
+                    claiming += 1;
+                }
+                let outcome = str_prop(&v, "last_reconciled_outcome");
+                // A COMPUTED CHECK'S KEPT RECORD IS A RUN THAT CAME BACK (item 11
+                // of req:small-read-back-faults-from-the-cogito-trial-are-fixed):
+                // its result is the calculator's own output, pinned, never a
+                // status somebody typed — the logic rung's truth tables read
+                // "never closed" while every one was such a record.
+                if outcome.is_some()
+                    || mismatched.contains(&v.node_id)
+                    || ((status == "passing" || status == "failing")
+                        && self.computed_with_a_kept_record(&v.node_id, &v.properties)?)
+                {
+                    compared += 1;
+                }
+                // RUN evidence only. A check somebody TYPED as `failing` is a
+                // claim, not a result that came back, and counting it would let
+                // the entry point read as fired on a design that never ran a thing.
+                if outcome.as_deref() == Some("failed")
+                    || str_prop(&v, "last_failed_run_at").is_some()
+                {
+                    failed += 1;
+                }
+                if let Some(at) = str_prop(&v, "last_reconciled_at")
+                    && last.as_ref().is_none_or(|l| at > *l)
+                {
+                    last = Some(at);
+                }
             }
-            checks += 1;
-            if status == "passing" || status == "failing" {
-                claiming += 1;
-            }
-            let outcome = str_prop(&v, "last_reconciled_outcome");
-            // A COMPUTED CHECK'S KEPT RECORD IS A RUN THAT CAME BACK (item 11
-            // of req:small-read-back-faults-from-the-cogito-trial-are-fixed):
-            // its result is the calculator's own output, pinned, never a
-            // status somebody typed — the logic rung's truth tables read
-            // "never closed" while every one was such a record.
-            if outcome.is_some()
-                || mismatched.contains(&v.node_id)
-                || ((status == "passing" || status == "failing")
-                    && self.computed_with_a_kept_record(&v.node_id, &v.properties)?)
-            {
-                compared += 1;
-            }
-            // RUN evidence only. A check somebody TYPED as `failing` is a
-            // claim, not a result that came back, and counting it would let
-            // the entry point read as fired on a design that never ran a thing.
-            if outcome.as_deref() == Some("failed") || str_prop(&v, "last_failed_run_at").is_some()
-            {
-                failed += 1;
-            }
-            if let Some(at) = str_prop(&v, "last_reconciled_at")
-                && last.as_ref().is_none_or(|l| at > *l)
-            {
-                last = Some(at);
-            }
-        }
 
-        let state = if failed > 0 {
-            LoopClosureState::AFailureCameBack
-        } else if compared > 0 {
-            LoopClosureState::ClosedWithoutAFailure
-        } else if claiming > 0 {
-            LoopClosureState::NeverClosed
-        } else {
-            LoopClosureState::NothingToClose
-        };
+            let state = if failed > 0 {
+                LoopClosureState::AFailureCameBack
+            } else if compared > 0 {
+                LoopClosureState::ClosedWithoutAFailure
+            } else if claiming > 0 {
+                LoopClosureState::NeverClosed
+            } else {
+                LoopClosureState::NothingToClose
+            };
 
-        let when = last
-            .as_deref()
-            .map(|d| format!(", most recently on {d}"))
-            .unwrap_or_default();
-        let summary = match state {
-            LoopClosureState::NothingToClose => {
-                "No check claims a result yet, so there is nothing a real run could have \
-                 confirmed or refuted."
-                    .to_string()
-            }
-            LoopClosureState::NeverClosed => format!(
-                "{claiming} check(s) claim a result and no real run has ever been fed back \
-                 against any of them — every pass and fail this design holds is what \
-                 somebody recorded, never what a run was compared to."
-            ),
-            LoopClosureState::ClosedWithoutAFailure => format!(
-                "Real runs have been compared against {compared} of {checks} check(s){when}, \
-                 and none has ever reported a failure."
-            ),
-            LoopClosureState::AFailureCameBack => format!(
-                "Real runs have been compared against {compared} of {checks} check(s){when}; \
-                 {failed} check(s) have had a failure come back."
-            ),
-        };
+            let when = last
+                .as_deref()
+                .map(|d| format!(", most recently on {d}"))
+                .unwrap_or_default();
+            let summary = match state {
+                LoopClosureState::NothingToClose => {
+                    "No check claims a result yet, so there is nothing a real run could have \
+                     confirmed or refuted."
+                        .to_string()
+                }
+                LoopClosureState::NeverClosed => format!(
+                    "{claiming} check(s) claim a result and no real run has ever been fed back \
+                     against any of them — every pass and fail this design holds is what \
+                     somebody recorded, never what a run was compared to."
+                ),
+                LoopClosureState::ClosedWithoutAFailure => format!(
+                    "Real runs have been compared against {compared} of {checks} check(s){when}, \
+                     and none has ever reported a failure."
+                ),
+                LoopClosureState::AFailureCameBack => format!(
+                    "Real runs have been compared against {compared} of {checks} check(s){when}; \
+                     {failed} check(s) have had a failure come back."
+                ),
+            };
 
-        Ok(LoopClosure {
-            state,
-            checks,
-            claiming_an_outcome: claiming,
-            compared_to_a_run: compared,
-            failures_fed_back: failed,
-            last_compared_at: last,
-            summary,
+            Ok(LoopClosure {
+                state,
+                checks,
+                claiming_an_outcome: claiming,
+                compared_to_a_run: compared,
+                failures_fed_back: failed,
+                last_compared_at: last,
+                summary,
+            })
         })
     }
 }

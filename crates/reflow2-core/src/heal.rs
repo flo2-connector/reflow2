@@ -1725,7 +1725,18 @@ impl DesignGraph {
     /// so an empty answer says which empty it is. Callers that only want the
     /// findings take `.defects`; the scoped sibling has always answered this
     /// way, and the two now agree.
+    ///
+    /// The whole sweep, what it looked at included, is worked out once per
+    /// state of the design and kept until the next write
+    /// ([`DesignGraph::kept`]). The open defects were already kept
+    /// (`open_defects_counting`); what the sweep LOOKED AT was not, and asked
+    /// again with no write since it was 1.6 s on reflow2's own design,
+    /// measured 2026-11-13.
     pub fn detect_defects(&self) -> Result<DefectSweep, DynoError> {
+        self.kept("detect_defects", || self.detect_defects_computed())
+    }
+
+    fn detect_defects_computed(&self) -> Result<DefectSweep, DynoError> {
         // One evaluation for everything this reads (inference/memo.rs).
         let _shared = self.reasoning_scope();
         // ONE SWEEP FEEDS BOTH HALVES. The suppression counts are accumulated by

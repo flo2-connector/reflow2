@@ -1864,11 +1864,20 @@ impl DesignGraph {
     /// premises, Anthony 2026-10-17). `None` for a design holding no
     /// Inference, so nothing is said where there is no reasoning
     /// (con:no-gap-is-raised-for-a-conclusion-that-has-no-inference).
+    ///
+    /// Worked out once per state of the design AND of the other designs this
+    /// call was handed readings of, and kept until either moves
+    /// ([`DesignGraph::kept`]): 0.53 to 0.55 s of every repeat `loop_status`
+    /// on reflow2's own design, measured 2026-11-13. A premise in another
+    /// design reads what the call brought (`crate::far`), so a call that
+    /// brings different readings works the debt out again.
     pub fn reasoning_debt(&self) -> Result<Option<ReasoningDebt>, DynoError> {
-        // One evaluation for everything this reads (inference/memo.rs), and
-        // the debt itself worked out once while it is open.
-        let _shared = self.reasoning_scope();
-        crate::inference::debt_held(self, || self.reasoning_debt_computed())
+        self.kept("reasoning_debt", || {
+            // One evaluation for everything this reads (inference/memo.rs),
+            // and the debt itself worked out once while it is open.
+            let _shared = self.reasoning_scope();
+            crate::inference::debt_held(self, || self.reasoning_debt_computed())
+        })
     }
 
     fn reasoning_debt_computed(&self) -> Result<Option<ReasoningDebt>, DynoError> {
