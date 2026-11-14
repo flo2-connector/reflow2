@@ -133,6 +133,62 @@ pub struct DesignGraph {
     /// open. Kept so `loop_status` can say it, for the reason `repaired_on_open`
     /// is kept.
     pub(crate) identity_on_open: Option<crate::identity::IdentityNote>,
+    /// How many times this graph read its store, by what was read, once
+    /// [`count_store_reads`](Self::count_store_reads) asked for the count.
+    /// `None` is every graph that did not ask, so the default costs one
+    /// branch a read and takes no lock. See [`StoreReads`].
+    pub(crate) store_reads: Option<std::sync::Mutex<StoreReads>>,
+}
+
+/// How many times a graph read its store, by what was read: whole scans by
+/// node type, and one node's relations by direction and relation type.
+///
+/// WHY IT EXISTS. Measured 2026-11-13 on reflow2's own design at 8,916 nodes,
+/// a third of one loop check after a write was a read repeated for every item
+/// of a pass: all 833 file records read once for each of 200 checks, and what
+/// each change had changed counted 7,751 times for 550 defects. Every guard
+/// then counted how many times a PART was worked out
+/// ([`DesignGraph::kept_builds`]), and none counted what a part READ, so a
+/// part worked out once could read the same thing two hundred times unseen.
+/// This is the count a test holds a pass to: reads that do not grow with the
+/// items of the pass.
+///
+/// A count, never a duration: no load on the machine moves it.
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
+pub struct StoreReads {
+    scans: std::collections::BTreeMap<String, u64>,
+    outgoing: std::collections::BTreeMap<String, u64>,
+    incoming: std::collections::BTreeMap<String, u64>,
+}
+
+impl StoreReads {
+    /// How many times every node of `node_type` was read
+    /// ([`DesignGraph::scan_nodes`]).
+    pub fn scans_of(&self, node_type: &str) -> u64 {
+        self.scans.get(node_type).copied().unwrap_or(0)
+    }
+
+    /// How many times one node's outgoing relations were read, asked for as
+    /// `relation` alone ([`DesignGraph::outgoing`]). A read that asked for
+    /// every type is under the empty name.
+    pub fn outgoing_of(&self, relation: &str) -> u64 {
+        self.outgoing.get(relation).copied().unwrap_or(0)
+    }
+
+    /// [`outgoing_of`](Self::outgoing_of), for incoming relations
+    /// ([`DesignGraph::incoming`]).
+    pub fn incoming_of(&self, relation: &str) -> u64 {
+        self.incoming.get(relation).copied().unwrap_or(0)
+    }
+
+    fn count(counts: &mut std::collections::BTreeMap<String, u64>, what: &str) {
+        match counts.get_mut(what) {
+            Some(n) => *n += 1,
+            None => {
+                counts.insert(what.to_string(), 1);
+            }
+        }
+    }
 }
 
 /// How an open settled the store's identity, before anything was written.
@@ -525,6 +581,7 @@ impl DesignGraph {
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
             identity_on_open: None,
+            store_reads: None,
         })
     }
 
@@ -749,6 +806,7 @@ impl DesignGraph {
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
             identity_on_open: identity_note,
+            store_reads: None,
         };
         // Stamping starts before anything below writes: a repair on open that
         // changes a node's content is a change this server made, now.
@@ -1649,6 +1707,10 @@ impl DesignGraph {
         from_id: &str,
         edge_type: Option<&str>,
     ) -> Result<Vec<StoredEdge>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.outgoing, edge_type.unwrap_or(""));
+        }
         self.engine
             .scan_outgoing_edges(&self.graph_id, from_id, edge_type)
     }
@@ -1663,6 +1725,10 @@ impl DesignGraph {
         to_id: &str,
         edge_type: Option<&str>,
     ) -> Result<Vec<StoredEdge>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.incoming, edge_type.unwrap_or(""));
+        }
         self.engine
             .scan_incoming_edges(&self.graph_id, to_id, edge_type)
     }
@@ -1670,7 +1736,27 @@ impl DesignGraph {
     /// All nodes of a type. Used by PROPAGATE to build an id→type index (edge
     /// adjacency stores only endpoint ids, not their types).
     pub fn scan_nodes(&self, node_type: &str) -> Result<Vec<StoredNode>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.scans, node_type);
+        }
         self.engine.scan_nodes(&self.graph_id, node_type)
+    }
+
+    /// Start counting this graph's reads of its store ([`StoreReads`]), from
+    /// zero. Nothing counts until this is called: a served graph never calls
+    /// it, so its reads take no lock for it.
+    pub fn count_store_reads(&mut self) {
+        self.store_reads = Some(Default::default());
+    }
+
+    /// The reads counted since [`count_store_reads`](Self::count_store_reads),
+    /// and all zeros on a graph that never asked for the count.
+    pub fn store_reads(&self) -> StoreReads {
+        self.store_reads
+            .as_ref()
+            .map(|reads| reads.lock().expect("store reads poisoned").clone())
+            .unwrap_or_default()
     }
 
     /// Build an id→type index over the whole project subgraph. Edge adjacency

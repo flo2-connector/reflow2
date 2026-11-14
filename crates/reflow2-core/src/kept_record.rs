@@ -46,7 +46,8 @@
 //! the record on request; reflow2 reads the binding (the checksum and the
 //! link), never the bytes.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
+use std::sync::Arc;
 
 use crate::foundation::core::{DynoError, Value};
 use crate::graph::DesignGraph;
@@ -57,6 +58,12 @@ use crate::nodes::{edge, node};
 /// `<name>.calc.json`). A check whose location or record ends with it is a
 /// computed check whether or not it says `computed: true`.
 pub const CALC_RECORD_SUFFIX: &str = ".calc.json";
+
+/// The name the Artifacts-by-location index is kept under
+/// ([`DesignGraph::kept`]): each Artifact's id under its own `location`, read
+/// once per state of the design. [`DesignGraph::kept_builds`] with this name
+/// says how many times it was built.
+pub const ARTIFACTS_BY_LOCATION: &str = "artifacts_by_location";
 
 /// One Artifact a check names as its record, and how it stands.
 #[derive(Debug, Clone, serde::Serialize)]
@@ -153,16 +160,39 @@ impl DesignGraph {
                 }
             }
             // No id in the location: match it against the Artifacts' own
-            // locations. Read only here, so a check that names its record by
-            // id never pays for the scan.
+            // locations. Asked only here, so a check that names its record by
+            // id never pays for it.
+            //
+            // THE ARTIFACTS ARE READ ONCE PER STATE OF THE DESIGN, NOT ONCE PER
+            // CHECK. Measured 2026-11-13 on reflow2's own design (8,916 nodes,
+            // 833 Artifacts): this ran for 200 checks in one loop check, each
+            // reading all 833 to find one, 1.8 s of the 8.7 s a loop check
+            // took after a write
+            // (`fact:root-cause-a-fifth-of-the-loop-check-after-a-write-is-200-whole-reads-of-the-file-records-one-per-check-2026-11-13`).
+            // The index is the same for every check, so it is kept until the
+            // next write ([`DesignGraph::kept`]), which drops it.
             if !found {
-                let path = location_path(loc);
-                for a in self.scan_nodes(node::ARTIFACT)? {
-                    if let Some(theirs) = str_prop(&a.properties, "location")
-                        && (theirs == loc || theirs == path)
-                    {
-                        named.entry(a.node_id).or_default().0.push("location");
+                let by_location = self.kept(ARTIFACTS_BY_LOCATION, || {
+                    let mut index: HashMap<String, Vec<String>> = HashMap::new();
+                    for a in self.scan_nodes(node::ARTIFACT)? {
+                        if let Some(theirs) = str_prop(&a.properties, "location") {
+                            index.entry(theirs.to_string()).or_default().push(a.node_id);
+                        }
                     }
+                    Ok(Arc::new(index))
+                })?;
+                // An Artifact has one location, so it is under one key: asking
+                // for the whole location and then for its path names no
+                // Artifact twice.
+                let path = location_path(loc);
+                let keys = [Some(loc), (path != loc).then_some(path)];
+                for id in keys
+                    .into_iter()
+                    .flatten()
+                    .filter_map(|k| by_location.get(k))
+                    .flatten()
+                {
+                    named.entry(id.clone()).or_default().0.push("location");
                 }
             }
         }
