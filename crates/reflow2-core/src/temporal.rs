@@ -925,6 +925,17 @@ impl DesignGraph {
     /// plan compare equal.
     fn live_schedule(&self, target_id: &str) -> Result<ScheduleSet, DynoError> {
         let index = self.node_type_index()?;
+        self.live_schedule_in(&index, target_id)
+    }
+
+    /// [`live_schedule`](Self::live_schedule) against an id→type index the
+    /// caller already holds, so a read over MANY targets takes the index once
+    /// instead of copying it per target.
+    fn live_schedule_in(
+        &self,
+        index: &std::collections::HashMap<String, String>,
+        target_id: &str,
+    ) -> Result<ScheduleSet, DynoError> {
         let mut out = ScheduleSet::new();
         for e in self.incoming(target_id, Some(edge::SCHEDULED_FOR))? {
             let Some(item_type) = index.get(&e.from_id) else {
@@ -1210,6 +1221,24 @@ impl DesignGraph {
             ready_to_cut,
             notes,
         })
+    }
+
+    /// What is scheduled for `target_id` NOW, each item with the outcome
+    /// [`arrival_delta`](Self::arrival_delta) reads for it — the same two
+    /// functions, so a second reader of "how much of this is delivered?"
+    /// (`open_increments`) cannot come to another answer than the delta does.
+    /// `index` is [`DesignGraph::node_type_index`], taken once by a caller that
+    /// reads many targets.
+    pub(crate) fn scheduled_now(
+        &self,
+        index: &std::collections::HashMap<String, String>,
+        target_id: &str,
+    ) -> Result<Vec<ScheduledItem>, DynoError> {
+        let mut items = Vec::new();
+        for (item_type, item_id, modality) in &self.live_schedule_in(index, target_id)? {
+            items.push(self.scheduled_item(target_id, item_type, item_id, modality)?);
+        }
+        Ok(items)
     }
 
     /// One scheduled item's outcome. Delivery wins over everything: an item

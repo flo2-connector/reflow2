@@ -303,6 +303,10 @@ NON_TOOL_TERMS = {
     # whether a real result ever came back, and the four STATES it reads —
     # the skill names them because reading them apart is the contract.
     "loop_closure", "nothing_to_close", "never_closed", "a_failure_came_back",
+    # where-am-i (2026-11-14): the FIELD of loop_status's reply that lists the
+    # increments still planned and never closed, and the graph_report OPTION
+    # that lists every one of them when the oldest ten are not enough.
+    "open_increments", "include_open_increments",
     # root-cause (2026-09-22): the two FIELDS of reconcile_verification its
     # Choice bone names — the doubt trace only has evidence once a failing run
     # is fed back with them.

@@ -398,6 +398,13 @@ pub struct GraphReport {
     pub declining: Vec<DimensionDrift>,
     /// Declining dimensions beyond the shown top.
     pub declining_truncated: usize,
+    /// EVERY INCREMENT THAT WAS PLANNED AND NEVER CLOSED, oldest first: how
+    /// much of what was scheduled for each is delivered and which unfinished
+    /// signals it shows ([`crate::open_increments`]). The counts are the whole
+    /// design's; the list is the oldest
+    /// [`OPEN_INCREMENTS_LISTED`](crate::open_increments::OPEN_INCREMENTS_LISTED).
+    /// The same answer `loop_status` carries.
+    pub open_increments: crate::open_increments::OpenIncrements,
 }
 
 /// The coherence loop's outstanding debt — what CHANGE→DETECT→SURFACE→RESOLVE
@@ -531,6 +538,18 @@ pub struct LoopStatus {
     /// `repair_report` (`dec:loop-status-carries-one-repair-line`). One line
     /// in `next`; never counted in `clean`.
     pub repairs: crate::repair::RepairLine,
+    /// EVERY INCREMENT THAT WAS PLANNED AND NEVER CLOSED, oldest first: how
+    /// much of what was scheduled for each is delivered, and which unfinished
+    /// signals it shows — done but not closed, overtaken, empty
+    /// ([`crate::open_increments`]). The counts are the whole design's; the
+    /// list is the oldest
+    /// [`OPEN_INCREMENTS_LISTED`](crate::open_increments::OPEN_INCREMENTS_LISTED),
+    /// and `full_list` names the call that shows the rest. The same answer
+    /// `graph_report` carries. One line in `next`; never counted in `clean`:
+    /// an increment left open is something to mention at the start or end of
+    /// a session, not a debt the loop owes. The whole design's, whoever the
+    /// answer is narrowed to.
+    pub open_increments: crate::open_increments::OpenIncrements,
     /// The debt as ordered to-do lines, most blocking first. Empty when the
     /// loop is clean — and emptiness is asserted, not implied.
     pub next: Vec<String>,
@@ -1376,6 +1395,10 @@ impl DesignGraph {
             crate::stop::mark("loop_status:floor:repairs");
             let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
             let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+            crate::stop::mark("loop_status:floor:open_increments");
+            let open_increments = self
+                .open_increments()?
+                .listed(crate::open_increments::OPEN_INCREMENTS_LISTED);
             crate::stop::mark("loop_status:floor:verification_recency");
             let verifications = self.verification_recency()?;
 
@@ -1778,6 +1801,19 @@ impl DesignGraph {
                 if let Some(line) = repairs.line() {
                     next.push(line);
                 }
+                // AFTER `clean`, like the two above: an increment left open is
+                // said at a boundary, and is not a debt.
+                // `open_increments` was read with the floor.
+                if open_increments.open > 0 {
+                    next.push(format!(
+                        "{}. `open_increments` lists the oldest, at most {}, each with how \
+                         much of what was scheduled for it is delivered. Mention them at the \
+                         start or end of a session, never mid-task; an increment leaves the \
+                         list when it is closed. Not counted against `clean`.",
+                        open_increments.counts_line(),
+                        crate::open_increments::OPEN_INCREMENTS_LISTED
+                    ));
+                }
             }
 
             // AFTER `clean`, deliberately: see `LoopStatus::loop_closure`. Only an
@@ -1882,6 +1918,7 @@ impl DesignGraph {
                 resting_on_stale_numbers,
                 fixes_answering_nothing,
                 repairs,
+                open_increments,
                 verifications,
                 loop_closure,
                 assigned_decisions,
@@ -2323,6 +2360,9 @@ impl DesignGraph {
             confirmation,
             declining,
             declining_truncated,
+            open_increments: self
+                .open_increments()?
+                .listed(crate::open_increments::OPEN_INCREMENTS_LISTED),
         })
     }
 }
@@ -2457,6 +2497,52 @@ impl GraphReport {
                     m,
                     "\n_{cut} gap(s) above are CUT SHORT — titles at {GAP_TITLE_WORDS} words, \
                      prose at {GAP_PROSE_WORDS}. `detect_gaps` carries the full text._"
+                );
+            }
+            let _ = writeln!(m);
+        }
+
+        // Open increments: planned and never closed. Omitted when none is.
+        let inc = &self.open_increments;
+        if inc.open > 0 {
+            let _ = writeln!(m, "## Open increments\n");
+            let _ = writeln!(
+                m,
+                "**{}** open (planned and never closed): {} done but not closed · {} overtaken · \
+                 {} empty · {} showing none of these. Oldest first.\n",
+                inc.open, inc.done_but_not_closed, inc.overtaken, inc.empty, inc.no_signal
+            );
+            for i in &inc.increments {
+                let _ = writeln!(m, "- {}", i.line());
+            }
+            if let Some(full) = &inc.full_list {
+                let more = inc.open.saturating_sub(inc.increments.len());
+                let _ = writeln!(m, "- _…and {more} more. {full}_");
+            }
+            let _ = writeln!(
+                m,
+                "\n_\"Changes since it moved\" counts the design's {} recorded change(s), newest \
+                 first, back to the last one that named anything scheduled for the increment or \
+                 something that delivers it. Nothing is called stalled._",
+                inc.changes_recorded
+            );
+            // Where the order is not known, the document says so: "oldest
+            // first" and a count are both only as good as the times kept.
+            if inc.increments_with_no_recorded_time > 0 {
+                let _ = writeln!(
+                    m,
+                    "\n_The store kept no creation time for {} of the {} open increment(s): \
+                     they are listed first, as the oldest, by id among themselves._",
+                    inc.increments_with_no_recorded_time, inc.open
+                );
+            }
+            if inc.changes_with_no_recorded_time > 0 {
+                let _ = writeln!(
+                    m,
+                    "\n_It kept none for {} of the {} change(s) either: they count as older than \
+                     every change it kept one for, and a count that rests on one reads \"or \
+                     more\"._",
+                    inc.changes_with_no_recorded_time, inc.changes_recorded
                 );
             }
             let _ = writeln!(m);

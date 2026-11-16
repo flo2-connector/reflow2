@@ -6052,6 +6052,16 @@ pub struct GraphReportReq {
     /// when you actually want the roll; `loop_status`'s `full_list` points here.
     #[serde(default)]
     pub include_verifications: bool,
+    /// List EVERY open increment (an epoch planned and never closed) in
+    /// `open_increments`, oldest first, with its whole name, instead of the
+    /// oldest ten.
+    ///
+    /// Off by default: the counts beside the list are always the whole
+    /// design's, and reflow2's own design held 31 open increments on
+    /// 2026-11-14. Ask for it when someone wants to go through them all;
+    /// `open_increments.full_list` (here and in `loop_status`) points here.
+    #[serde(default)]
+    pub include_open_increments: bool,
     /// `json` (the default): the report as an agent parses it. `markdown`: the
     /// same report as a document a person reads (counts, requirement
     /// certainty, the delivery line, top gaps, allocation, confirmation,
@@ -7451,6 +7461,12 @@ pub struct DerivedReportReq {
     /// How many example ids each relation carries (default 3, at most 20).
     #[serde(default)]
     pub sample: Option<usize>,
+    /// How many characters of JSON this reply may spend before prose is
+    /// withheld to make it fit (default 30,000). See `reply_budget`: counts and
+    /// ids are never budgeted away, and every relation stays listed, so a
+    /// shorter answer is never a quieter one. `only` reads named relations whole.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

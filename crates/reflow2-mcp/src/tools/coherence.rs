@@ -1339,12 +1339,16 @@ impl ReflowService {
         match req.format.as_deref() {
             None | Some("json") => {}
             Some("markdown") => {
-                if req.include_verifications || req.budget_chars.is_some() {
+                if req.include_verifications
+                    || req.include_open_increments
+                    || req.budget_chars.is_some()
+                {
                     return Err(McpError::invalid_params(
                         "graph_report: `format: \"markdown\"` is the report as a document, \
-                         which withholds the per-check roll and is not budgeted; \
-                         `include_verifications` and `budget_chars` shape the JSON report. Pass \
-                         either, or `format: \"markdown\"` alone. Nothing was read.",
+                         which withholds the per-check roll, lists the oldest open increments \
+                         and is not budgeted; `include_verifications`, \
+                         `include_open_increments` and `budget_chars` shape the JSON report. \
+                         Pass any of them, or `format: \"markdown\"` alone. Nothing was read.",
                         None,
                     ));
                 }
@@ -1386,6 +1390,13 @@ impl ReflowService {
             })
             .map_err(ser_err)?
         };
+        // EVERY OPEN INCREMENT, when asked: the same computation the bounded
+        // list above was cut from (`DesignGraph::open_increments`, kept until
+        // the next write), so the counts are the ones already in the report.
+        if req.include_open_increments {
+            report["open_increments"] =
+                serde_json::to_value(g.open_increments().map_err(dyno_err)?).map_err(ser_err)?;
+        }
         let mut served = served_by();
         if let Some(behind) = crate::service::behind_record(self.written_by.as_deref()) {
             served["behind_record"] = behind;
@@ -2158,7 +2169,19 @@ impl ReflowService {
             .unwrap_or(reflow2_core::derived::DEFAULT_DERIVED_SAMPLE)
             .min(20);
         let g = self.graph.read().await;
-        ok_json(g.derived_report(&req.only, sample).map_err(dyno_err)?)
+        let full = serde_json::to_value(g.derived_report(&req.only, sample).map_err(dyno_err)?)
+            .map_err(crate::service::ser_err)?;
+        // Prose only, never the list: the relations are a catalogue, and a
+        // sample of a catalogue reads as the whole of it. The thirtieth
+        // declared relation took the whole reply past 30,000 characters on a
+        // design of realistic size (31,169 against main's 29,660, measured
+        // 2026-11-14 by tools/replies_are_bounded.py), with nowhere to bound it.
+        ok_json(crate::reply_budget::bound_reply(
+            full,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "Read named relations whole with `only`.",
+        ))
     }
 
     #[tool(

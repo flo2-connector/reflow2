@@ -116,10 +116,10 @@ fn relation<'a>(report: &'a Value, id: &str) -> &'a Value {
 async fn every_declared_relation_is_reported_with_its_reading_and_count() {
     let s = session().await.seeded().await;
     let r = s.ok("derived_report", json!({})).await;
-    assert_eq!(r["declared"], 29, "{r}");
-    assert_eq!(r["relations"].as_array().unwrap().len(), 29);
+    assert_eq!(r["declared"], 30, "{r}");
+    assert_eq!(r["relations"].as_array().unwrap().len(), 30);
     assert_eq!(
-        r["counted"], 27,
+        r["counted"], 28,
         "the two closures (impact, redo_list) are declared and not counted: {r}"
     );
 
@@ -173,4 +173,70 @@ async fn a_relation_nobody_declared_is_refused_and_the_refusal_lists_the_declare
         .expect_err("an undeclared relation is refused, never answered empty");
     assert!(err.contains("blast_radius"), "{err}");
     assert!(err.contains("impact") && err.contains("delivered"), "{err}");
+}
+
+/// The whole reply passed 30,000 characters on a design of realistic size
+/// when the thirtieth relation was declared (31,169 against 29,660, measured
+/// 2026-11-14 by tools/replies_are_bounded.py), and the tool took no bound. It
+/// takes one now, and what gives is the declarations' prose: the list of
+/// relations is a catalogue, so it stays whole, and so does every count.
+#[tokio::test]
+async fn a_reply_held_to_a_budget_keeps_every_relation_and_every_count() {
+    let s = session().await.seeded().await;
+    let whole = s.ok("derived_report", json!({})).await;
+    assert!(
+        whole.get("budget").is_none(),
+        "a reply that fits says nothing about a budget: {whole}"
+    );
+    let whole_chars = whole.to_string().len();
+    // Three quarters of the whole: far enough under to need a real cut, and
+    // within what cutting prose alone can reach.
+    let budget = whole_chars * 3 / 4;
+
+    let held = s
+        .ok("derived_report", json!({"budget_chars": budget}))
+        .await;
+    assert!(
+        held.to_string().len() <= budget,
+        "{} characters against {budget}",
+        held.to_string().len()
+    );
+    assert_eq!(
+        held["budget"]["full_chars"], whole_chars,
+        "it says how long the whole is: {}",
+        held["budget"]
+    );
+    for field in ["declared", "counted", "derived_facts", "asserted_facts"] {
+        assert_eq!(held[field], whole[field], "{field}");
+    }
+    let rows = |r: &Value| -> Vec<(String, Value, Value)> {
+        r["relations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|x| {
+                (
+                    x["id"].as_str().unwrap().to_string(),
+                    x["count"].clone(),
+                    x["sample"].clone(),
+                )
+            })
+            .collect()
+    };
+    assert_eq!(
+        rows(&held),
+        rows(&whole),
+        "every relation, its count and its examples survive the cut"
+    );
+
+    // And a named relation is read whole, as the cut reply says.
+    let hint = held["budget"].to_string();
+    assert!(hint.contains("`only`"), "{hint}");
+    let one = s
+        .ok(
+            "derived_report",
+            json!({"only": ["realized"], "budget_chars": budget}),
+        )
+        .await;
+    assert_eq!(relation(&one, "realized"), relation(&whole, "realized"));
 }

@@ -912,14 +912,30 @@ impl DesignGraph {
 
     /// When this server recorded the node's creation and its last content
     /// change, and whether this store vouches for those times — the only way
-    /// the stamps are read (every node read leaves them out). `None` when the
-    /// node does not exist.
+    /// a stamp is read as a TIME (every node read leaves them out;
+    /// [`created_stamps`](Self::created_stamps) reads creation as an order
+    /// only). `None` when the node does not exist.
     pub fn node_stamp(
         &self,
         node_type: &str,
         id: &str,
     ) -> Result<Option<crate::foundation::store::NodeStamp>, DynoError> {
         self.engine.node_stamp(&self.graph_id, node_type, id)
+    }
+
+    /// When each node of `node_type` was created, as the store holds it, in
+    /// one scan of the type: `(id, creation stamp)`. For ORDERING a whole
+    /// type; the seal is not checked, so this is never a time to vouch for
+    /// (that is [`node_stamp`](Self::node_stamp)).
+    pub fn created_stamps(
+        &self,
+        node_type: &str,
+    ) -> Result<Vec<(String, Option<String>)>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.scans, node_type);
+        }
+        self.engine.created_stamps(&self.graph_id, node_type)
     }
 
     /// The node's stamp properties exactly as stored, for an export to carry.
