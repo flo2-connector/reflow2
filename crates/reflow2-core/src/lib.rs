@@ -87,6 +87,7 @@ pub mod narrowing;
 pub mod neighbourhood;
 pub mod node_edges;
 pub mod nodes;
+pub mod open_increments;
 pub mod operate;
 pub mod owed;
 pub mod prediction_order;
@@ -223,6 +224,7 @@ pub use merge::{
     AutoResolution, ConflictKind, MergeAction, MergeApplyReport, MergeConflict, MergeError,
     MergeProposal, MergeSummary, MergeUnit, Resolution, Source, merge_designs, resolve_merge,
 };
+pub use open_increments::{OPEN_INCREMENTS_LISTED, OpenIncrement, OpenIncrements, SinceMoved};
 pub use preserve::{
     ClassifiedFinding, DivergenceClass, FUNCTION_PRESERVATION_INVARIANT, PreservationCertificate,
     PreservationCounts, PreservationVerdict, certify_preservation, classify_node_type,

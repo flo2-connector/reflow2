@@ -131,6 +131,7 @@ mod an_edge_says_whether_anyone_checked;
 mod an_existing_flow_reads_back_as_it_did;
 mod an_export_says_where_a_checksum_it_left_off_a_record_is;
 mod an_export_says_where_it_was_taken;
+mod an_increment_started_and_never_finished_is_found;
 mod an_inference_says_how_premises_support_a_conclusion;
 mod an_open_breach_reaches_the_loop;
 mod an_upstream_design_is_watched_not_imported;

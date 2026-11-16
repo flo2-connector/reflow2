@@ -363,6 +363,18 @@
         2
       ]
     ],
+    "open_increments": {
+      "changes_recorded": 0,
+      "changes_with_no_recorded_time": 0,
+      "done_but_not_closed": 0,
+      "empty": 0,
+      "increments": [],
+      "increments_with_no_recorded_time": 0,
+      "never_moved": 0,
+      "no_signal": 0,
+      "open": 0,
+      "overtaken": 0
+    },
     "other_counts": [],
     "realization": {
       "built_but_unmodelled": 0,

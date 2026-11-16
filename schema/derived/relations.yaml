@@ -461,9 +461,30 @@ relations:
     code:
       - { file: temporal.rs, function: arrival_delta, dedicated: true }
       - { file: temporal.rs, function: live_schedule, dedicated: true }
+      - { file: temporal.rs, function: live_schedule_in, dedicated: true }
+      - { file: temporal.rs, function: scheduled_now, dedicated: true }
       - { file: temporal.rs, function: scheduled_item, dedicated: true }
       - { file: temporal.rs, function: snapshots_of, dedicated: true }
     counts: "one scheduled item classified"
+    cost: bounded
+
+  open_increments:
+    name: "open increments (planned and never closed), and what each shows"
+    reading: { form: composite, composition: "open(e) := e.status = planned; done(e) := open(e) ∧ ∃x: norm[modality](during(delivered(x), ≤ e)) ∧ ¬∃x so scheduled: outstanding(x); overtaken(e) := open(e) ∧ ∃l: before⁺(e, l) ∧ l.status = arrived; empty(e) := open(e) ∧ ¬∃x still intended: norm[modality](during(delivered(x), ≤ e)); moved(c, e) := ∃x scheduled for e: causes(c, x) ∨ ∃y: causes(c, y) ∧ (norm·meets(y, x) ∨ instance-of·realizes(y, x) ∨ ∃k: norm·meets(k, x) ∧ instance-of·realizes(y, k))", components: [norm, during, before, causes, instance-of] }
+    rule: "An increment (a DesignEpoch whose status is planned) is OPEN until it is closed. It reads DONE BUT NOT CLOSED when something still intended is SCHEDULED_FOR it and nothing scheduled for it is outstanding, each item read as arrival delta reads it; OVERTAKEN when an epoch it PRECEDES, directly or down a chain of PRECEDES edges, has arrived (the drawn order only: `sequence` is never read); EMPTY when nothing still intended is scheduled for it. Beside them it carries a COUNT and no verdict: how many of the design's recorded changes, newest first by the creation time the store kept, have passed since a ChangeEvent CHANGED an item scheduled for it, something that SATISFIES that item, or a file that REALIZES the item or what satisfies it; `never` when none did. Nothing is called stalled (the requirement accepted 2026-11-14, as its owner settled it that day)."
+    stated_over_readings: partial
+    not_yet_stated: "an epoch's status is a node property; the order of the changes is the creation time the store keeps for each record, which no reading declares; and the count is arithmetic over that order."
+    inference: deduced
+    edges: [PRECEDES, CHANGED, SATISFIES, REALIZES]
+    over: [arrival_delta]
+    code:
+      - { file: open_increments.rs, function: open_increments, dedicated: true }
+      - { file: open_increments.rs, function: open_increments_now, dedicated: true }
+      - { file: open_increments.rs, function: overtaken_by, dedicated: true }
+      - { file: open_increments.rs, function: changes_by_recency, dedicated: true }
+      - { file: open_increments.rs, function: what_moves, dedicated: true }
+      - { file: open_increments.rs, function: last_change_naming, dedicated: true }
+    counts: "one open increment"
     cost: bounded
 
   closure:

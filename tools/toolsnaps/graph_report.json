@@ -30,6 +30,11 @@
           "null"
         ]
       },
+      "include_open_increments": {
+        "default": false,
+        "description": "List EVERY open increment (an epoch planned and never closed) in\n`open_increments`, oldest first, with its whole name, instead of the\noldest ten.\n\nOff by default: the counts beside the list are always the whole\ndesign's, and reflow2's own design held 31 open increments on\n2026-11-14. Ask for it when someone wants to go through them all;\n`open_increments.full_list` (here and in `loop_status`) points here.",
+        "type": "boolean"
+      },
       "include_verifications": {
         "default": false,
         "description": "Return EVERY check with its status and last run, instead of the digest.\n\nOff by default because the roll was 152,803 of this report's 166,934\ncharacters — 91.5% of the one read a session makes to decide what to look\nat, spent on a list whose content is \"196 passing, 1 planned\". Ask for it\nwhen you actually want the roll; `loop_status`'s `full_list` points here.",

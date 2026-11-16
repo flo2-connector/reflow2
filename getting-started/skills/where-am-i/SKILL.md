@@ -63,6 +63,14 @@ you. The standing rule is in the server's instructions.
 - `loop_status` → `loop_closure` — **has a real test result ever come back into this design?**
   `never_closed` means checks claim results and no real run has ever been compared against any of
   them, so every pass on record is what somebody typed. Read it before quoting any pass rate.
+- `loop_status` → `open_increments` — **what was started and never finished.** Every increment
+  that is still planned, oldest first, each with how much of what was scheduled for it is
+  delivered and which of three signs it shows: everything scheduled is delivered and it was never
+  closed, an increment drawn after it has already arrived, or nothing is scheduled for it at all.
+  Each also carries how many of the design's recorded changes have passed since anything scheduled
+  for it moved, or the word "never". The counts are whole; the list is the oldest ten at most,
+  and `graph_report` with `include_open_increments` set to true lists every one. `graph_report`
+  with `format` `markdown` shows the same list under **Open increments**.
 - `scan_nodes` for `Contributor` — who contributed to this design and, where it matters, their
   role on it: whom you credit, not whose words to use. See **Who you are talking to**.
 
@@ -230,7 +238,17 @@ dump. Aim for something they could read in under a minute:
    each one shapes. **Skip this for someone who already knows the design**; it is orientation, not
    news. If `governs_retired` is high on one, that is worth a clause: it means most of what that
    decision shaped has since been pruned.
-9. **Where to go next** — the one or two things worth doing now, and offer the choice rather than
+9. **What was started and never finished** — the open increments, oldest first. Say how many
+   there are, then the oldest few by name: how much of what was planned for each is delivered, and
+   what the design shows about it — *"the sync work has everything it planned delivered and was
+   never closed"*, *"the import work is still planned, and the work drawn after it has already
+   arrived"*, *"nothing was ever scheduled for the reporting work"*. Where it helps, add how many
+   recorded changes have gone by since anything in it moved. **Report the count and stop there:
+   the design calls nothing stalled**, and a number of changes is not a verdict. Say this **at the
+   start or the end of a session, or when they ask** — never in the middle of other work — and
+   keep saying it each time until the increment is closed. If more are open than the list shows,
+   say how many were left out.
+10. **Where to go next** — the one or two things worth doing now, and offer the choice rather than
    assuming: keep filling in the design, or start building.
 
 ## Keep it honest
