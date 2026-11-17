@@ -73,6 +73,10 @@
     "ask_question": [
       "Question"
     ],
+    "close_increment": [
+      "ChangeEvent",
+      "DesignEpoch"
+    ],
     "collapse_decision": [
       "Decision"
     ],

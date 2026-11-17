@@ -6929,6 +6929,7 @@ pub struct AddEpochReq {
     /// fused reach with adoption.
     #[serde(default)]
     pub checksum: Option<String>,
+    /// A close (deferred, dropped, superseded) is close_increment's alone.
     /// `arrived` (the landing status of add_epoch: a point that HAS happened) or
     /// `planned` (one that has not). plan_epoch is the same call with `planned`
     /// as its landing status; both are sayable here so a caller who reached
@@ -6948,10 +6949,76 @@ pub struct EpochStatusReq {
     #[serde(alias = "node_id")]
     #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub epoch_id: String,
-    /// `arrived` (it has happened) or `planned` (a claim about one that has
-    /// not). `planned` → `arrived` is ARRIVAL.
+    /// To close an increment WITHOUT it arriving (deferred, dropped,
+    /// superseded), use close_increment. `arrived` (it has happened) or
+    /// `planned` (a claim about one that has not). `planned` → `arrived` is
+    /// ARRIVAL.
     #[schemars(schema_with = "crate::enum_schema::design_epoch_status_req")]
     pub status: String,
+}
+
+/// One unfinished item's answer, for `close_increment`'s `leftovers`.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct LeftoverReq {
+    /// The item scheduled for the increment and not delivered (a Requirement,
+    /// Capability, Question, Verification or Decision id).
+    #[serde(alias = "id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id"]))]
+    pub item_id: String,
+    /// `moves` (to another open increment, named in `to`: a recorded slip),
+    /// `dropped` (from this increment only, with `reason`; the item keeps its
+    /// own status) or `stays` (with a DEFERRED increment only).
+    #[schemars(schema_with = "crate::enum_schema::leftover_fate_req")]
+    pub fate: String,
+    /// With `moves`: the open (`planned`) DesignEpoch it moves to.
+    #[serde(default)]
+    pub to: Option<String>,
+    /// With `dropped`: why, in the owner's words. Required there.
+    #[serde(default)]
+    pub reason: Option<String>,
+}
+
+/// `close_increment`: an increment that will not be finished, closed honestly.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct CloseIncrementReq {
+    /// The open (`planned`) DesignEpoch to close.
+    #[serde(alias = "id")]
+    #[serde(alias = "node_id")]
+    #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
+    pub epoch_id: String,
+    /// `deferred` (still meant, later), `dropped` (no longer meant; `reason`
+    /// required) or `superseded` (by `superseded_by`).
+    #[schemars(schema_with = "crate::enum_schema::increment_close_req")]
+    pub how: String,
+    /// Why it closes, in the owner's words. REQUIRED for `dropped`; stored as
+    /// the epoch's `close_reason` and in the close's ChangeEvent.
+    #[serde(default)]
+    pub reason: Option<String>,
+    /// With `superseded`: the DesignEpoch that took its place.
+    #[serde(default)]
+    pub superseded_by: Option<String>,
+    /// ONE ANSWER FOR EVERY UNFINISHED ITEM scheduled for it — none is
+    /// defaulted. Leave out what is delivered. An empty list closes an
+    /// increment with nothing unfinished.
+    #[serde(default)]
+    pub leftovers: Vec<LeftoverReq>,
+    /// An ARRIVED epoch to file the plan's snapshot in (and pin the close's
+    /// ChangeEvent to), needed when an item moves or is dropped and the plan
+    /// is not on the record yet.
+    #[serde(default)]
+    pub recorded_in: Option<String>,
+    /// The Contributor whose word closes it — the OWNER'S SIGNATURE. Draws
+    /// `AUTHORED_BY role=approver` on the increment. REQUIRED; an id naming no
+    /// Contributor is refused before anything is written.
+    #[serde(default)]
+    pub approver: Option<String>,
+    /// When the owner gave their word, as a plain date: stored on the approver
+    /// edge, dates the close's ChangeEvent, and dates a moved item's new
+    /// schedule.
+    #[serde(default)]
+    pub acted_at: Option<String>,
 }
 
 /// One dated finding for `record_finding`.

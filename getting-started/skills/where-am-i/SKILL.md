@@ -70,7 +70,8 @@ you. The standing rule is in the server's instructions.
   Each also carries how many of the design's recorded changes have passed since anything scheduled
   for it moved, or the word "never". The counts are whole; the list is the oldest ten at most,
   and `graph_report` with `include_open_increments` set to true lists every one. `graph_report`
-  with `format` `markdown` shows the same list under **Open increments**.
+  with `format` `markdown` shows the same list under **Open increments**. `deferred` counts the
+  increments their owner deferred (closed for now, not listed).
 - `scan_nodes` for `Contributor` — who contributed to this design and, where it matters, their
   role on it: whom you credit, not whose words to use. See **Who you are talking to**.
 
@@ -247,7 +248,9 @@ dump. Aim for something they could read in under a minute:
    the design calls nothing stalled**, and a number of changes is not a verdict. Say this **at the
    start or the end of a session, or when they ask** — never in the middle of other work — and
    keep saying it each time until the increment is closed. If more are open than the list shows,
-   say how many were left out.
+   say how many were left out. If some were deferred, say how many in a clause. When the person
+   says one will not be finished, the honest close is **plan-increments**' step 4b
+   (`close_increment`): deferred, dropped or superseded, every unfinished item answered for.
 10. **Where to go next** — the one or two things worth doing now, and offer the choice rather than
    assuming: keep filling in the design, or start building.
 

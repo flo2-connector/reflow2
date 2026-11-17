@@ -85,10 +85,11 @@ const READS: &str = "Oldest first. `changes_since_it_moved` counts the design's 
 
 /// Is this increment OPEN: planned, and not yet closed?
 ///
-/// ⭐ THE ONE PLACE THIS IS DECIDED. Today an increment closes only by
-/// arriving, so open is exactly `status: planned`. When an increment can also
-/// be closed honestly without arriving (deferred, dropped, superseded), this
-/// function is the only one that changes.
+/// ⭐ THE ONE PLACE THIS IS DECIDED. An increment closes by arriving or, since
+/// 2026-11-17, by being closed honestly without arriving (`close_increment`:
+/// deferred, dropped, superseded), so open is still exactly `status:
+/// planned`. A deferred increment is closed for now and counted apart
+/// (`deferred`); reopening it makes it `planned`, and open, again.
 fn increment_is_open(epoch: &StoredNode) -> bool {
     epoch.properties.get("status").and_then(Value::as_str) == Some("planned")
 }
@@ -223,6 +224,13 @@ pub struct OpenIncrements {
     pub no_signal: usize,
     /// Of those, how many read `never` for `changes_since_it_moved`.
     pub never_moved: usize,
+    /// How many increments were DEFERRED by their owner (`close_increment`):
+    /// still meant, later, and closed for now, so neither open nor listed.
+    /// Counted apart so a deferral is never mistaken for work that is done or
+    /// gone. `set_epoch_status planned` reopens one. Absent when none is, so a
+    /// design that never deferred one reads exactly as it did before.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub deferred: usize,
     /// How many changes the design has recorded: what the counts run over.
     pub changes_recorded: usize,
     /// Of those, how many the store kept no creation time for. They are older
@@ -274,11 +282,18 @@ impl OpenIncrements {
     /// The counts in one clause: "6 open increment(s) (planned and never
     /// closed): 2 done but not closed, 1 overtaken, 2 empty".
     pub fn counts_line(&self) -> String {
-        format!(
+        let mut line = format!(
             "{} open increment(s) (planned and never closed): {} done but not closed, {} \
              overtaken, {} empty",
             self.open, self.done_but_not_closed, self.overtaken, self.empty
-        )
+        );
+        if self.deferred > 0 {
+            line.push_str(&format!(
+                "; {} deferred by their owner (closed for now, not listed)",
+                self.deferred
+            ));
+        }
+        line
     }
 }
 
@@ -343,6 +358,10 @@ impl DesignGraph {
             empty: 0,
             no_signal: 0,
             never_moved: 0,
+            deferred: epochs
+                .iter()
+                .filter(|e| e.properties.get("status").and_then(Value::as_str) == Some("deferred"))
+                .count(),
             changes_recorded: 0,
             changes_with_no_recorded_time: 0,
             increments_with_no_recorded_time: open.iter().filter(|(c, _)| c.is_none()).count(),

@@ -1875,6 +1875,24 @@ impl DesignGraph {
         Ok(deleted)
     }
 
+    /// Remove one `SCHEDULED_FOR` WITHOUT the unrecorded-plan guard, for a
+    /// caller that has just put the whole plan on the record itself.
+    ///
+    /// `guard_schedule_loss` asks that the LATEST snapshot equal the live
+    /// plan, so a close that moves three items off one increment would pass
+    /// it for the first and be refused for the second, the plan having moved
+    /// since its snapshot. `close_increment` snapshots the plan (or finds it
+    /// recorded) before any item leaves, checks every answer first, and only
+    /// then calls this, so nothing is lost that the guard protects.
+    pub(crate) fn delete_schedule_edge_on_the_record(
+        &mut self,
+        item_id: &str,
+        target_id: &str,
+    ) -> Result<bool, DynoError> {
+        self.engine
+            .delete_edge(&self.graph_id, edge::SCHEDULED_FOR, item_id, target_id)
+    }
+
     // ---- Atomic batches (HEAL's apply step, import, the bulk forms) --------
 
     /// Begin buffering writes; nothing hits the store until [`commit_batch`].

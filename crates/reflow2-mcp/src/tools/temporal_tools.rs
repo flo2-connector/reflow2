@@ -467,6 +467,23 @@ impl ReflowService {
             crate::nulls::Nullable<AddEpochReq>,
         >,
     ) -> Result<CallToolResult, McpError> {
+        if let Some(s) = req
+            .status
+            .as_deref()
+            .filter(|s| reflow2_core::close_increment::is_closed_status(s))
+        {
+            // A close answers for every unfinished item and carries the
+            // owner's word; a tense argument on a constructor does neither.
+            return Err(McpError::invalid_params(
+                format!(
+                    "`add_epoch`: `{s}` closes an increment without it arriving, which only \
+                     close_increment does (it asks what becomes of each unfinished item, and \
+                     carries the owner's word). Nothing was written. `status` here is the \
+                     epoch's tense: planned or arrived."
+                ),
+                None,
+            ));
+        }
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::DESIGN_EPOCH;
         refuse_without_a_sequence_hint(&g, &req)?;
@@ -583,6 +600,92 @@ impl ReflowService {
         ok_json(
             crate::prose_currency::with_prose_currency(node, prior.as_deref()).map_err(ser_err)?,
         )
+    }
+
+    #[tool(
+        description = "CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word: \
+                       `deferred` (still meant, later), `dropped` (no longer meant; `reason` says \
+                       why) or `superseded` (by the increment `superseded_by` names). Only an open \
+                       increment closes. NO UNFINISHED ITEM IS DEFAULTED: `leftovers` answers for \
+                       every item scheduled for it and not delivered, each `moves` (to another \
+                       open increment, `to`: a recorded slip), is `dropped` from it (with its \
+                       `reason`; the item itself keeps its status, so dropping it here retires no \
+                       intent), or, on a deferral only, `stays`. One missing, doubled or unknown \
+                       answer refuses the whole call, naming every problem, and nothing is \
+                       written. When an item leaves and the plan is not on the record yet, \
+                       `recorded_in` names an epoch that has HAPPENED to file the plan's snapshot \
+                       in, so arrival_delta reads each item as moved or dropped rather than the \
+                       plan as always smaller. Writes one ChangeEvent with every fate and reason, \
+                       linked to what moved. `approver` is REQUIRED: the close is the owner's \
+                       word. A deferred increment leaves the open-increments list and is counted \
+                       apart; set_epoch_status reopens it. Ask for this to defer, drop or \
+                       supersede an increment that is not going to be finished.",
+        title = "Close an Increment",
+        annotations(read_only_hint = false, destructive_hint = false)
+    )]
+    pub async fn close_increment(
+        &self,
+        Parameters(req): Parameters<crate::service::CloseIncrementReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let how = reflow2_core::close_increment::CloseAs::parse(&req.how).ok_or_else(|| {
+            McpError::invalid_params(
+                format!(
+                    "`close_increment`: `how` is `{}`; an increment closes as deferred, dropped \
+                     or superseded. To say it HAPPENED, use set_epoch_status `arrived`.",
+                    req.how
+                ),
+                None,
+            )
+        })?;
+        let Some(approver) = req.approver.as_deref().filter(|a| !a.trim().is_empty()) else {
+            return Err(McpError::invalid_params(
+                "`close_increment`: no `approver`, so nothing was written. Closing an increment \
+                 without it arriving is the owner's word: name the Contributor whose it is.",
+                None,
+            ));
+        };
+        let mut leftovers = Vec::with_capacity(req.leftovers.len());
+        for l in &req.leftovers {
+            use reflow2_core::close_increment::{Leftover, LeftoverFate};
+            let fate = match l.fate.as_str() {
+                "stays" => LeftoverFate::Stays,
+                "moves" => LeftoverFate::Moves {
+                    to: l.to.clone().unwrap_or_default(),
+                },
+                "dropped" => LeftoverFate::Dropped {
+                    reason: l.reason.clone().unwrap_or_default(),
+                },
+                other => {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "`close_increment`: '{}' has fate `{other}`; a leftover stays, moves \
+                             or is dropped.",
+                            l.item_id
+                        ),
+                        None,
+                    ));
+                }
+            };
+            leftovers.push(Leftover {
+                item_id: l.item_id.clone(),
+                fate,
+            });
+        }
+        let mut g = self.write_lock().await?;
+        crate::tools::capture::approver_must_exist(&g, Some(approver), "close_increment")?;
+        let closed = g
+            .close_increment(&reflow2_core::close_increment::IncrementClose {
+                epoch_id: &req.epoch_id,
+                how,
+                reason: req.reason.as_deref(),
+                superseded_by: req.superseded_by.as_deref(),
+                leftovers: &leftovers,
+                recorded_in: req.recorded_in.as_deref(),
+                approver,
+                acted_at: req.acted_at.as_deref(),
+            })
+            .map_err(dyno_err)?;
+        ok_json(closed)
     }
 
     #[tool(

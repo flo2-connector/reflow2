@@ -90,6 +90,11 @@ def settles_intent(node):
         return p.get("status") in ("accepted", "deferred", "contested")
     if t == "DesignRule":
         return p.get("enforced") is not None
+    if t == "DesignEpoch":
+        # Since 2026-11-17: closing an increment without it arriving is the
+        # owner's word (req:an-increment-that-will-not-be-finished-can-be-
+        # closed-honestly). `planned` and `arrived` decide nothing here.
+        return p.get("status") in ("deferred", "dropped", "superseded")
     return False
 
 

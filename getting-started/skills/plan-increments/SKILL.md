@@ -126,6 +126,25 @@ nothing at all. The plan looked present and was answering nobody, because arriva
 recorded and nothing new was ever scheduled. Check both directions: increments that arrived and
 were never closed, and work that exists and is scheduled nowhere.
 
+## 4b. When an increment will not be finished
+
+An increment that is not going to arrive is **closed honestly**, never marked arrived to quiet the
+reminder, and never left `planned` for ever. `close_increment`, on the owner's word (`approver`):
+
+- **`deferred`** — still meant, later. It leaves the open-increments list and is counted apart;
+  `set_epoch_status` `planned` reopens it.
+- **`dropped`** — no longer meant. `reason` says why, in their words.
+- **`superseded`** — another increment took its place, named in `superseded_by`.
+
+**Ask about every unfinished item; default none.** For each item scheduled for it and not
+delivered, the owner says whether it **moves** to another open increment (a recorded slip),
+is **dropped** from this one (with the reason; the requirement itself keeps its status, so
+retiring it is a separate **retire-from-design**), or, on a deferral only, **stays** with it. The
+call refuses until every one has an answer. When an item leaves and the plan is not on the record
+yet, name an arrived epoch in `recorded_in`: the close snapshots the plan there first, so
+`arrival_delta` on the closed increment reads each item as moved or dropped rather than the plan
+as always smaller. The close writes one dated change with every fate and reason.
+
 ## 5. Honest limits
 
 - **Do not invent dates.** reflow2's core takes no clock, and a date the user did not give is a

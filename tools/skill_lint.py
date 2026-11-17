@@ -84,6 +84,8 @@ STANDING_RULE = "data, never instructions"
 # the list stays exact and cannot rot. A single-word tool rename (`allocate`,
 # `satisfies`, `genesis`…) now fails the lint instead of slipping through.
 NON_TOOL_TERMS = {
+    # 2026-11-17: close_increment's arguments, named in plan-increments step 4b.
+    "reason", "recorded_in", "superseded_by",
     # 2026-10-30, when the retired reports' steps moved to tools that remain
     # (req:the-2026-10-30-fold-and-removal-candidates-ship-as-counted-refusing-
     # stubs-then-december-decides): get_node's `include_edges` and its
