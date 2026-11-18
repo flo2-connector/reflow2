@@ -65,7 +65,8 @@ pub struct SettlingProperty {
 /// aside is the owner's act exactly as accepting one is; superseded and
 /// rejected retire rather than decide. `contested` since 2026-10-16: keeping a
 /// question open on purpose, both sides on the record, is the owner's act too
-/// (req:a-design-holds-a-line-of-reasoning).
+/// (req:a-design-holds-a-line-of-reasoning). An increment's three honest
+/// closes since 2026-11-17 (`close_increment`).
 pub const SETTLING: &[SettlingProperty] = &[
     SettlingProperty {
         node_type: node::REQUIREMENT,
@@ -81,6 +82,15 @@ pub const SETTLING: &[SettlingProperty] = &[
         node_type: node::DESIGN_RULE,
         property: "enforced",
         when: SettleWhen::Present,
+    },
+    // Since 2026-11-17: an increment closed WITHOUT arriving is closed on the
+    // owner's word (req:an-increment-that-will-not-be-finished-can-be-closed-
+    // honestly). Arriving, and planning, settle nothing: they record what
+    // happened and what is meant, as they always have.
+    SettlingProperty {
+        node_type: node::DESIGN_EPOCH,
+        property: "status",
+        when: SettleWhen::In(&["deferred", "dropped", "superseded"]),
     },
 ];
 

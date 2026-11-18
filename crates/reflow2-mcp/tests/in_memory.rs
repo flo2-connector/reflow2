@@ -149,6 +149,7 @@ mod an_export_says_which_tree_it_was_taken_in;
 mod an_idea_is_a_declared_kind;
 mod an_import_from_a_newer_reflow2_is_refused;
 mod an_import_says_what_it_removed_and_merges_only_when_asked;
+mod an_increment_is_closed_honestly_through_the_tool;
 mod an_inference_says_how_premises_support_a_conclusion;
 mod an_initialize_is_recorded_as_rmcp_answered_it;
 mod an_undated_change_event_says_so;

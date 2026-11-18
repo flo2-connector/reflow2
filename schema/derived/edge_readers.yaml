@@ -47,6 +47,7 @@ readers:
   budget.rs::constrains_by: { kind: unjudged, edges: [CONSTRAINS] }
   claims.rs::claim_region: { kind: unjudged, edges: [CLAIMS] }
   claims.rs::release_claim: { kind: unjudged, edges: [CLAIMS] }
+  close_increment.rs::close_increment: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: closes an increment on the owner's word, reading which items are scheduled for it (arrival_delta's own reading, through scheduled_now) only to check that every unfinished one is answered for, then moving or removing those SCHEDULED_FOR edges." }
   compare.rs::changelog_point: { kind: unjudged, edges: [AT_EPOCH] }
   compare.rs::changelog_view: { kind: unjudged, edges: [AT_EPOCH, CHANGED] }
   compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
@@ -137,6 +138,7 @@ readers:
   graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
   graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, PREMISE_OF, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer); a deleted PREMISE_OF refreshes the step's generated name, which is a stored label, not a derived relation." }
   graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
+  graph.rs::delete_schedule_edge_on_the_record: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: removes one SCHEDULED_FOR for close_increment, after it has put the whole plan on the record itself." }
   graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
   graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }
   graph.rs::migrate_authored_by_roles: { kind: unjudged, edges: [AUTHORED_BY] }

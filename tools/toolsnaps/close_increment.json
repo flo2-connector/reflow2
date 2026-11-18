@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "reflow2/settles": {
+      "approver": "approver",
+      "argument": null,
+      "unsigned": "refused",
+      "version": 1,
+      "when": "always"
+    }
+  },
+  "annotations": {
+    "destructiveHint": false,
+    "readOnlyHint": false
+  },
+  "description": "CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word: `deferred` (still meant, later), `dropped` (no longer meant; `reason` says why) or `superseded` (by the increment `superseded_by` names). Only an open increment closes. NO UNFINISHED ITEM IS DEFAULTED: `leftovers` answers for every item scheduled for it and not delivered, each `moves` (to another open increment, `to`: a recorded slip), is `dropped` from it (with its `reason`; the item itself keeps its status, so dropping it here retires no intent), or, on a deferral only, `stays`. One missing, doubled or unknown answer refuses the whole call, naming every problem, and nothing is written. When an item leaves and the plan is not on the record yet, `recorded_in` names an epoch that has HAPPENED to file the plan's snapshot in, so arrival_delta reads each item as moved or dropped rather than the plan as always smaller. Writes one ChangeEvent with every fate and reason, linked to what moved. `approver` is REQUIRED: the close is the owner's word. A deferred increment leaves the open-increments list and is counted apart; set_epoch_status reopens it. Ask for this to defer, drop or supersede an increment that is not going to be finished.",
+  "inputSchema": {
+    "$defs": {
+      "LeftoverReq": {
+        "additionalProperties": false,
+        "description": "One unfinished item's answer, for `close_increment`'s `leftovers`.",
+        "properties": {
+          "fate": {
+            "description": "`moves` (to another open increment, named in `to`: a recorded slip),\n`dropped` (from this increment only, with `reason`; the item keeps its\nown status) or `stays` (with a DEFERRED increment only).",
+            "enum": [
+              "stays",
+              "moves",
+              "dropped"
+            ],
+            "type": "string"
+          },
+          "item_id": {
+            "description": "The item scheduled for the increment and not delivered (a Requirement,\nCapability, Question, Verification or Decision id).",
+            "type": "string"
+          },
+          "reason": {
+            "default": null,
+            "description": "With `dropped`: why, in the owner's words. Required there.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "to": {
+            "default": null,
+            "description": "With `moves`: the open (`planned`) DesignEpoch it moves to.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "item_id",
+          "fate"
+        ],
+        "type": "object"
+      }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "acted_at": {
+        "default": null,
+        "description": "When the owner gave their word, as a plain date: stored on the approver\nedge, dates the close's ChangeEvent, and dates a moved item's new\nschedule.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "approver": {
+        "default": null,
+        "description": "The Contributor whose word closes it — the OWNER'S SIGNATURE. Draws\n`AUTHORED_BY role=approver` on the increment. REQUIRED; an id naming no\nContributor is refused before anything is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "epoch_id": {
+        "description": "The open (`planned`) DesignEpoch to close.",
+        "type": "string"
+      },
+      "how": {
+        "description": "`deferred` (still meant, later), `dropped` (no longer meant; `reason`\nrequired) or `superseded` (by `superseded_by`).",
+        "enum": [
+          "deferred",
+          "dropped",
+          "superseded"
+        ],
+        "type": "string"
+      },
+      "leftovers": {
+        "description": "ONE ANSWER FOR EVERY UNFINISHED ITEM scheduled for it — none is\ndefaulted. Leave out what is delivered. An empty list closes an\nincrement with nothing unfinished.",
+        "items": {
+          "$ref": "#/$defs/LeftoverReq"
+        },
+        "type": "array"
+      },
+      "reason": {
+        "default": null,
+        "description": "Why it closes, in the owner's words. REQUIRED for `dropped`; stored as\nthe epoch's `close_reason` and in the close's ChangeEvent.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "recorded_in": {
+        "default": null,
+        "description": "An ARRIVED epoch to file the plan's snapshot in (and pin the close's\nChangeEvent to), needed when an item moves or is dropped and the plan\nis not on the record yet.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "superseded_by": {
+        "default": null,
+        "description": "With `superseded`: the DesignEpoch that took its place.",
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "epoch_id",
+      "how"
+    ],
+    "type": "object"
+  },
+  "name": "close_increment",
+  "title": "Close an Increment"
+}

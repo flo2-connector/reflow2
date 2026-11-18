@@ -38,6 +38,7 @@ pub mod balance;
 pub mod budget;
 pub mod bulk;
 pub mod claims;
+pub mod close_increment;
 pub mod closure;
 pub mod compare;
 pub mod compose;

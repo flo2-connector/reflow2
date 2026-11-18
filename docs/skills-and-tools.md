@@ -1,4 +1,4 @@
-# What reflow2 offers: 36 skills and 199 tools
+# What reflow2 offers: 36 skills and 200 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 199 tools
+## The 200 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -312,6 +312,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `report_manual_work` | **write** | WRITES ONE RECORD (manual_work_ledger READS them all): record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
 | `manual_work_ledger` | **read** | READS THEM ALL (report_manual_work WRITES one): every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |
 | `snapshot_before_change` | **write** | Record a change to a node in an epoch (snapshots the prior state). |
+| `close_increment` | **write** | CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word: `deferred` (still meant, later), `dropped` (no longer meant; `reason` says why) or `superseded` (by the increment `superseded_by` names). |
 
 ### Operate — releases, environments, resources, readiness
 

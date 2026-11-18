@@ -760,14 +760,31 @@ impl DesignGraph {
         epoch_id: &str,
         status: &str,
     ) -> Result<StoredNode, DynoError> {
+        if crate::close_increment::is_closed_status(status) {
+            // A CLOSE IS NOT A STATUS FLIP. It asks what becomes of every
+            // unfinished item and carries the owner's word, so it has its own
+            // door, and this one refuses rather than writing a close that
+            // answered for nothing.
+            return Err(DynoError::Validation {
+                node_type: node::DESIGN_EPOCH.into(),
+                property: "status".into(),
+                message: format!(
+                    "'{status}' closes an increment without it arriving, which only \
+                     close_increment does: it asks what becomes of each unfinished item scheduled \
+                     for '{epoch_id}' (moved, dropped from it, or kept on a deferral) and carries \
+                     the owner's word. This call moves an epoch between planned and arrived."
+                ),
+            });
+        }
         if !matches!(status, "planned" | "arrived") {
             return Err(DynoError::Validation {
                 node_type: node::DESIGN_EPOCH.into(),
                 property: "status".into(),
                 message: format!(
-                    "'{status}' is not an epoch status (one of planned, arrived). `planned` is a \
-                     claim about a point that has not happened; `arrived` is a record of one that \
-                     has."
+                    "'{status}' is not an epoch status this call sets (planned, arrived). \
+                     `planned` is a claim about a point that has not happened; `arrived` is a \
+                     record of one that has. close_increment closes one as deferred, dropped or \
+                     superseded."
                 ),
             });
         }
@@ -777,11 +794,38 @@ impl DesignGraph {
                 node_id: epoch_id.into(),
             });
         };
+        let was = existing
+            .properties
+            .get("status")
+            .and_then(Value::as_str)
+            .unwrap_or("arrived")
+            .to_string();
+        if status == "arrived" && matches!(was.as_str(), "dropped" | "superseded") {
+            // A dropped or superseded increment's leftovers were moved or
+            // dropped at its close, so "it happened" would claim work that
+            // left it. Reopening first makes that a visible, separate step.
+            return Err(DynoError::Validation {
+                node_type: node::DESIGN_EPOCH.into(),
+                property: "status".into(),
+                message: format!(
+                    "'{epoch_id}' was closed as `{was}`, and what was unfinished in it was moved \
+                     or dropped then. To say it happened after all, reopen it first \
+                     (set_epoch_status `planned`) and schedule back what it delivered."
+                ),
+            });
+        }
+        let reopening = crate::close_increment::is_closed_status(&was);
         let mut props = Props::new().set("status", status);
         for (k, v) in &existing.properties {
-            if k != "status" {
-                props = props.set(k, v.clone());
+            // REOPENING CLEARS THE CLOSE: its reason and successor described a
+            // status the epoch no longer holds. The close's ChangeEvent keeps
+            // both.
+            if k == "status"
+                || (reopening && matches!(k.as_str(), "close_reason" | "superseded_by"))
+            {
+                continue;
             }
+            props = props.set(k, v.clone());
         }
         self.create_node(node::DESIGN_EPOCH, epoch_id, props)
     }
@@ -799,6 +843,22 @@ impl DesignGraph {
                     .map(|s| s == "planned")
             })
             .unwrap_or(false))
+    }
+
+    /// The status of an epoch that has NOT happened, when it has not: `planned`
+    /// or one of the three closes. `None` when it arrived (or carries no
+    /// status, which reads arrived) or does not exist. What `record_change`
+    /// asks, since a closed increment never happened either.
+    pub fn epoch_not_happened(&self, epoch_id: &str) -> Result<Option<String>, DynoError> {
+        Ok(self
+            .get_node(node::DESIGN_EPOCH, epoch_id)?
+            .and_then(|e| {
+                e.properties
+                    .get("status")
+                    .and_then(crate::foundation::core::Value::as_str)
+                    .map(str::to_string)
+            })
+            .filter(|s| s != "arrived"))
     }
 
     /// `earlier PRECEDES later` — an explicit ordering edge between epochs.
@@ -1098,6 +1158,20 @@ impl DesignGraph {
                  stands, not a delta. Nothing has been missed until the moment passes."
             ));
         }
+        match status.as_deref() {
+            Some("deferred") => notes.push(format!(
+                "'{target_id}' was DEFERRED by its owner: still meant, later. It has not \
+                 arrived, so what stays with it is a forecast, not a miss; an item that moved \
+                 reads deferred to where it went."
+            )),
+            Some(how @ ("dropped" | "superseded")) => notes.push(format!(
+                "'{target_id}' was closed as `{how}` by its owner without arriving. Every item \
+                 unfinished at the close was moved (it reads deferred, with where it went) or \
+                 dropped from it (discontinued here, its own status untouched); the close's \
+                 ChangeEvent gives each one's reason."
+            )),
+            _ => {}
+        }
 
         let snapshots = self.snapshots_of(target_id)?;
         let mut movement = Vec::new();
@@ -1155,10 +1229,18 @@ impl DesignGraph {
         // intent a deadline dimension (`dec:schedule-is-an-edge-with-modality`).
         // Computed across BOTH sets: an obligation added late is still an
         // obligation.
+        // AN INCREMENT CLOSED WITHOUT ARRIVING never reached its moment, so an
+        // obligation that MOVED off it at the close (kept `required` where it
+        // went) or was DROPPED from it on the owner's word was not missed here:
+        // only what is still pointed at it can be (2026-11-17).
+        let closed_unarrived = status
+            .as_deref()
+            .is_some_and(crate::close_increment::is_closed_status);
         let missed_obligations: Vec<String> = items
             .iter()
             .chain(added_after_baseline.iter())
             .filter(|i| i.modality == "required" && i.outcome != ScheduleOutcome::Delivered)
+            .filter(|i| !closed_unarrived || i.outcome == ScheduleOutcome::Outstanding)
             .map(|i| i.item_id.clone())
             .collect();
 
@@ -1842,6 +1924,21 @@ impl DesignGraph {
         // declared-and-unconsulted field (`req:defaults-do-not-assert`'s sibling
         // defect), and it fails loud rather than quietly filing history under a
         // future date (`req:no-silent-fallback`).
+        if let Some(closed) = self
+            .epoch_not_happened(rec.epoch_id)?
+            .filter(|s| s != "planned")
+        {
+            return Err(DynoError::Validation {
+                node_type: node::DESIGN_EPOCH.into(),
+                property: "status".into(),
+                message: format!(
+                    "epoch '{}' was closed as `{closed}` without arriving — it never happened, \
+                     so history cannot be recorded into it. Record this change in an epoch that \
+                     has arrived.",
+                    rec.epoch_id
+                ),
+            });
+        }
         if self.epoch_is_planned(rec.epoch_id)? {
             return Err(DynoError::Validation {
                 node_type: node::DESIGN_EPOCH.into(),

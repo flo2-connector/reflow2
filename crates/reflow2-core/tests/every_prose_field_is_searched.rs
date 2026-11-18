@@ -69,6 +69,7 @@ const NOT_PROSE: &[(&str, NotProse)] = &[
     ("Decision.serves", Which),
     ("DesignEpoch.checksum", Hash),
     ("DesignEpoch.created_at", When),
+    ("DesignEpoch.superseded_by", Which),
     ("DesignRule.category", Category),
     ("DimensionAssessment.assessed_at", When),
     ("DimensionAssessment.target_id", Which),

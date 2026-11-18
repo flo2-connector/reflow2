@@ -266,6 +266,15 @@ async fn case(c: &Client, tool: &str, settling: bool, n: usize) -> Result<Option
             }
             json!({"decision_id": id, "winner_id": format!("art:alt-{n}-a")})
         }
+        // Every close of an increment is the owner's word (2026-11-17).
+        "close_increment" => {
+            if !settling {
+                return Ok(None);
+            }
+            let id = format!("epoch:close-{n}");
+            ok(call(c, "plan_epoch", json!({"id": id, "name": format!("The {word} increment"), "epoch_type": "milestone", "sequence": 2})).await, "epoch");
+            json!({"epoch_id": id, "how": "dropped", "reason": format!("{word} reason")})
+        }
         "acknowledge_defect" => {
             if !settling {
                 return Ok(None);

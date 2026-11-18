@@ -29,6 +29,9 @@ fn cases() -> Vec<(&'static str, &'static str, Option<Value>)> {
                 "met",
                 "rejected",
                 "superseded",
+                // An epoch's own words (2026-11-17): neither settles.
+                "planned",
+                "arrived",
             ]
             .iter()
             .map(|s| Value::String((*s).into()))
