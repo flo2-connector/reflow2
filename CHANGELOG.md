@@ -31,6 +31,58 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.101.0] — 2026-11-18
+
+**Minor. `graph_report` names the open increments by id, with every count, so a design's own
+overview fits the reply it is read in.** It contains #846. **What to do:** install the new binary
+on every machine that opens the design. Nothing to migrate: the schema does not move. A client
+that read each open increment's name, delivery or signals from the default `graph_report` reads
+them from `loop_status`, or passes `include_open_increments: true`.
+
+**One tool changes shape; none is added or removed.** Measured against the published 0.100.0
+binary (sha256 `78f5d9ab…` for its linux-x86_64 archive, checked against `checksums.txt`), over
+stdio on a fresh store: 200 tools on each. `graph_report`'s input schema changes only in
+`include_open_increments`'s description, and its reply changes as below. Skills stay at 36,
+none changed; `list_skills`, `get_instructions` and `describe_schema` read the same. The
+connect-time instructions are unchanged: 2,911 characters on stdio and 3,169 behind
+`--http-trusted-gateway flo2.io`. `toolsnap` on the release build: all 200 match.
+
+- **The schema does not move.** Measured at this cut with the published 0.100.0 binary: it opens
+  a store this release has written, with its "behind" warning, and writes to it; this release
+  then reads that write. It refuses this release's exports without `--accept-newer`, and with it
+  imports one whole.
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.101.0 release build beside the published 0.100.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design.** The 0.100.0 binary still
+  opens the store afterwards, with its "behind" warning.
+- **`reflow2 read graph_report '{}'`** carries `open_increments` with every count and the oldest
+  ten as `{"epoch_id": ...}`, and `full_list` reads "graph_report with include_open_increments:
+  true lists all N in full."
+- **`reflow2 read graph_report '{"include_open_increments":true}'`** and **`reflow2 read
+  loop_status '{}'`** give each row in full, as in 0.100.0: its name, `scheduled`, `delivered`,
+  `signals` and `changes_since_it_moved`.
+
+### Changed
+
+- **`graph_report` names the open increments by id** (its reply changes shape). Left
+  without `include_open_increments`, its `open_increments` keeps every count and lists the
+  oldest ten as `{"epoch_id": ...}` only. `full_list` (under 80 characters, so no budget cuts
+  it) names `include_open_increments: true` as the call that lists every one in full;
+  `loop_status` still gives the oldest ten in full. `reads` is no longer in this view, since it
+  explains fields the view does not carry. Unchanged: `include_open_increments: true`,
+  `loop_status`, and `format: "markdown"`'s **Open increments** lines. Why: measured
+  2026-11-18 on flo2's own design under 0.100.0, the report was 28,728 characters, 2,647 of
+  them the seven full rows, and it no longer fit the 28,000 that flo2's chat door reads it in,
+  so flo2's test that its design reads back whole failed (Anthony, 2026-11-18, option A: keep
+  the guard and fix it here). **What to do:** a client that read each row's name, delivery or
+  signals from the default `graph_report` reads them from `loop_status`, or passes
+  `include_open_increments: true`.
+
 ## [0.100.0] — 2026-11-17
 
 **Minor. An increment that was started and never finished is found and listed where a session
