@@ -6053,8 +6053,10 @@ pub struct GraphReportReq {
     #[serde(default)]
     pub include_verifications: bool,
     /// List EVERY open increment (an epoch planned and never closed) in
-    /// `open_increments`, oldest first, with its whole name, instead of the
-    /// oldest ten.
+    /// `open_increments`, oldest first, in full: its whole name, how much of
+    /// it is delivered and its signals. Left out, the report names the oldest
+    /// ten by id only, with every count (`loop_status` gives those ten in
+    /// full).
     ///
     /// Off by default: the counts beside the list are always the whole
     /// design's, and reflow2's own design held 31 open increments on

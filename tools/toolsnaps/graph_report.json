@@ -32,7 +32,7 @@
       },
       "include_open_increments": {
         "default": false,
-        "description": "List EVERY open increment (an epoch planned and never closed) in\n`open_increments`, oldest first, with its whole name, instead of the\noldest ten.\n\nOff by default: the counts beside the list are always the whole\ndesign's, and reflow2's own design held 31 open increments on\n2026-11-14. Ask for it when someone wants to go through them all;\n`open_increments.full_list` (here and in `loop_status`) points here.",
+        "description": "List EVERY open increment (an epoch planned and never closed) in\n`open_increments`, oldest first, in full: its whole name, how much of\nit is delivered and its signals. Left out, the report names the oldest\nten by id only, with every count (`loop_status` gives those ten in\nfull).\n\nOff by default: the counts beside the list are always the whole\ndesign's, and reflow2's own design held 31 open increments on\n2026-11-14. Ask for it when someone wants to go through them all;\n`open_increments.full_list` (here and in `loop_status`) points here.",
         "type": "boolean"
       },
       "include_verifications": {

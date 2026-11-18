@@ -1390,13 +1390,19 @@ impl ReflowService {
             })
             .map_err(ser_err)?
         };
-        // EVERY OPEN INCREMENT, when asked: the same computation the bounded
-        // list above was cut from (`DesignGraph::open_increments`, kept until
-        // the next write), so the counts are the ones already in the report.
-        if req.include_open_increments {
-            report["open_increments"] =
-                serde_json::to_value(g.open_increments().map_err(dyno_err)?).map_err(ser_err)?;
-        }
+        // EVERY OPEN INCREMENT IN FULL when asked; otherwise every count and
+        // the oldest ten BY ID (dec:graph-reports-default-names-open-
+        // increments-by-id-and-count-2026-11-18), since loop_status carries
+        // the rows. Both from the one computation (`DesignGraph::
+        // open_increments`, kept until the next write) the markdown report's
+        // list is cut from, so every surface counts the same.
+        let open = g.open_increments().map_err(dyno_err)?;
+        report["open_increments"] = if req.include_open_increments {
+            serde_json::to_value(open).map_err(ser_err)?
+        } else {
+            serde_json::to_value(open.by_id(reflow2_core::open_increments::OPEN_INCREMENTS_LISTED))
+                .map_err(ser_err)?
+        };
         let mut served = served_by();
         if let Some(behind) = crate::service::behind_record(self.written_by.as_deref()) {
             served["behind_record"] = behind;
