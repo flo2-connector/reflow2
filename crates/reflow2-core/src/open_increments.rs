@@ -310,11 +310,12 @@ impl OpenIncrements {
                     epoch_id: i.epoch_id.clone(),
                 })
                 .collect(),
+            // Kept under the 80 characters below which a budgeted reply never
+            // cuts a string, so the pointer survives the smallest budget: a
+            // longer sentence was measured cut to "…" at budget_chars 2500.
             full_list: (self.open > 0).then(|| {
                 format!(
-                    "graph_report with include_open_increments: true lists all {} in full, \
-                     each with its name, how much of it is delivered and its signals; \
-                     loop_status gives the oldest {OPEN_INCREMENTS_LISTED} in full.",
+                    "graph_report with include_open_increments: true lists all {} in full.",
                     self.open
                 )
             }),

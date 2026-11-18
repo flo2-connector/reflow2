@@ -544,12 +544,13 @@ async fn the_overview_names_them_by_id_and_every_count_and_says_where_each_is_in
         "no note on how to read rows it does not carry: {overview}"
     );
     // Every one is listed by id here, and still the call that gives each one
-    // in full is named, with loop_status.
+    // in full is named, short enough that no budget cuts it.
     let full_list = overview["full_list"].as_str().expect("`full_list`");
     assert!(
-        full_list.contains("include_open_increments")
+        full_list.contains("graph_report")
+            && full_list.contains("include_open_increments")
             && full_list.contains("all 4")
-            && full_list.contains("loop_status"),
+            && full_list.chars().count() <= 80,
         "{full_list}"
     );
 
