@@ -403,7 +403,9 @@ pub struct GraphReport {
     /// signals it shows ([`crate::open_increments`]). The counts are the whole
     /// design's; the list is the oldest
     /// [`OPEN_INCREMENTS_LISTED`](crate::open_increments::OPEN_INCREMENTS_LISTED).
-    /// The same answer `loop_status` carries.
+    /// The same answer `loop_status` carries, which the Markdown report lists;
+    /// the JSON `graph_report` names these by id
+    /// ([`OpenIncrements::by_id`](crate::open_increments::OpenIncrements::by_id)).
     pub open_increments: crate::open_increments::OpenIncrements,
 }
 

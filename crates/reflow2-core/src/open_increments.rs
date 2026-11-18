@@ -59,11 +59,11 @@ use crate::graph::DesignGraph;
 use crate::nodes::{edge, node};
 use crate::temporal::ScheduleOutcome;
 
-/// How many open increments `loop_status` and `graph_report` list by name,
-/// oldest first. The counts beside the list are always the whole design's;
-/// `graph_report` with `include_open_increments` lists every one. reflow2's
-/// own design held 31 on 2026-11-14, and a reply that listed them
-/// all inside `loop_status` would crowd out the debt it exists to say.
+/// How many open increments `loop_status` lists in full, and `graph_report`
+/// names by id, oldest first. The counts beside the list are always the whole
+/// design's; `graph_report` with `include_open_increments` lists every one in
+/// full. reflow2's own design held 31 on 2026-11-14, and a reply that listed
+/// them all inside `loop_status` would crowd out the debt it exists to say.
 pub const OPEN_INCREMENTS_LISTED: usize = 10;
 
 /// Everything still intended for it is delivered, and it still reads planned.
@@ -279,6 +279,48 @@ impl OpenIncrements {
         view
     }
 
+    /// The overview's view, which `graph_report`'s JSON carries unless every
+    /// one is asked for: every count, the `at_most` oldest BY ID ONLY, and
+    /// where each is in full.
+    ///
+    /// Anthony, 2026-11-18, option A
+    /// (dec:graph-reports-default-names-open-increments-by-id-and-count-2026-11-18):
+    /// the rows say what `loop_status` already says at a session's boundary,
+    /// and in the overview they cost room without adding a reading. Measured
+    /// that day on flo2's design under 0.100.0: 2,647 of the report's 28,728
+    /// characters were its seven rows, and the report no longer fit the
+    /// 28,000 flo2's chat door reads it in.
+    pub fn by_id(&self, at_most: usize) -> OpenIncrementsById {
+        OpenIncrementsById {
+            open: self.open,
+            done_but_not_closed: self.done_but_not_closed,
+            overtaken: self.overtaken,
+            empty: self.empty,
+            no_signal: self.no_signal,
+            never_moved: self.never_moved,
+            deferred: self.deferred,
+            changes_recorded: self.changes_recorded,
+            changes_with_no_recorded_time: self.changes_with_no_recorded_time,
+            increments_with_no_recorded_time: self.increments_with_no_recorded_time,
+            increments: self
+                .increments
+                .iter()
+                .take(at_most)
+                .map(|i| IncrementId {
+                    epoch_id: i.epoch_id.clone(),
+                })
+                .collect(),
+            full_list: (self.open > 0).then(|| {
+                format!(
+                    "graph_report with include_open_increments: true lists all {} in full, \
+                     each with its name, how much of it is delivered and its signals; \
+                     loop_status gives the oldest {OPEN_INCREMENTS_LISTED} in full.",
+                    self.open
+                )
+            }),
+        }
+    }
+
     /// The counts in one clause: "6 open increment(s) (planned and never
     /// closed): 2 done but not closed, 1 overtaken, 2 empty".
     pub fn counts_line(&self) -> String {
@@ -295,6 +337,47 @@ impl OpenIncrements {
         }
         line
     }
+}
+
+/// One open increment, named by id: a row of [`OpenIncrementsById`].
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct IncrementId {
+    /// The planned epoch.
+    pub epoch_id: String,
+}
+
+/// Every count of [`OpenIncrements`], and the oldest few by id only — what
+/// [`OpenIncrements::by_id`] gives the overview. The counts are the same
+/// fields, named the same, so a reader of either reads both.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct OpenIncrementsById {
+    /// How many increments are open: planned, and never closed.
+    pub open: usize,
+    /// Of those, how many show `done_but_not_closed`.
+    pub done_but_not_closed: usize,
+    /// Of those, how many show `overtaken`.
+    pub overtaken: usize,
+    /// Of those, how many show `empty`.
+    pub empty: usize,
+    /// Of those, how many show none of the three.
+    pub no_signal: usize,
+    /// Of those, how many read `never` for `changes_since_it_moved`.
+    pub never_moved: usize,
+    /// How many were deferred by their owner. Absent when none is.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub deferred: usize,
+    /// How many changes the design has recorded.
+    pub changes_recorded: usize,
+    /// Of those, how many the store kept no creation time for.
+    pub changes_with_no_recorded_time: usize,
+    /// How many open increments the store kept no creation time for.
+    pub increments_with_no_recorded_time: usize,
+    /// The oldest few, oldest first, by id. As in [`OpenIncrements`], nothing
+    /// here says how many rows the list holds: `open` is the whole count.
+    pub increments: Vec<IncrementId>,
+    /// Where each one is in full. Absent when nothing is open.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub full_list: Option<String>,
 }
 
 /// `name` cut to [`NAME_CHARS`] at a word boundary, with an ellipsis; `None`
