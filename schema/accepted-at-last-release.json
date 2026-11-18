@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.99.0",
+  "reflow2_version": "0.100.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -604,6 +604,9 @@
       "checksum": {
         "type": "string"
       },
+      "close_reason": {
+        "type": "string"
+      },
       "created_at": {
         "type": "string"
       },
@@ -632,8 +635,14 @@
         "type": "enum",
         "values": [
           "arrived",
-          "planned"
+          "deferred",
+          "dropped",
+          "planned",
+          "superseded"
         ]
+      },
+      "superseded_by": {
+        "type": "string"
       }
     },
     "DesignRule": {
