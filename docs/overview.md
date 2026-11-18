@@ -113,6 +113,12 @@ Three records, three questions — kept separate on purpose:
   there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.100.0.md](upgrading-to-v0.100.0.md) — **upgrade every seat together, before
+  anyone closes an increment**: the stamp moves by vocabulary (`DesignEpoch.status` gains
+  `deferred`, `dropped` and `superseded`); no type is added. A v0.99.0 binary opens a v0.100.0
+  store with its "behind" warning until an increment in it is closed, and refuses it from then on;
+  snapshot first. Nothing to migrate. Also: every planned epoch now reads as an open increment,
+  and `derived_report` takes `budget_chars`.
 - [upgrading-to-v0.99.0.md](upgrading-to-v0.99.0.md) — **upgrade every seat together**: the stamp
   moves by two edge types (`PUTS_TOGETHER`, `CLOSES`; 69 → 71), and `Flow.flow_type` gains
   `assembly`. A v0.98.0 binary refuses any store a v0.99.0 binary has opened, even once and only

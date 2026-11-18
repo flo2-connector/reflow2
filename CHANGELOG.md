@@ -31,6 +31,180 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.100.0] — 2026-11-17
+
+**Minor. An increment that was started and never finished is found and listed where a session
+starts and ends, and one that will not be finished is closed honestly, on the owner's word:
+deferred, dropped or superseded, with every unfinished item moved or dropped and none
+defaulted.** It contains #843 and #844. **What to do:** upgrade every seat together
+([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)), and snapshot a served store
+first. An older seat goes on opening the design until someone closes an increment; from then on
+it is refused. On the VS Code terminal route, run `reflow2 update` in each repository after
+installing (In your setup, below).
+
+**One tool is added and seven change shape; none is removed.** Measured against the published
+0.99.0 binary (sha256 `8b713c04…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on 0.99.0, 200 here. `close_increment` is added. Seven
+tools change: `graph_report` takes `include_open_increments`; `derived_report` takes
+`budget_chars`; `add_epoch`, `plan_epoch` and `set_epoch_status` say, on their `status`, that a
+close is `close_increment`'s alone (they still offer only `planned` and `arrived`); and
+`create_node` and `create_nodes` declare, in `_meta` `reflow2/settles`, that a `DesignEpoch`
+written with one of the three closes settles. `loop_status`'s schema and description are
+unchanged; its reply gains `open_increments`. Skills stay at 36, and two change: plan-increments
+and where-am-i. `list_skills` reads the same (each name and summary unchanged). `get_instructions`
+is unchanged; `describe_schema` gains the three `DesignEpoch.status` values and the two
+properties. The connect-time instructions are unchanged: 2,911 characters on stdio and 3,169
+behind `--http-trusted-gateway flo2.io`, as in 0.99.0. `toolsnap` on the release build: all 200
+match.
+
+- **The schema stamp moves by vocabulary**: `DesignEpoch.status` gains `deferred`, `dropped` and
+  `superseded`. Node types stay at 28, edge types at 71 and enum vocabularies at 84. Measured at
+  this cut with the published 0.99.0 binary: it opens a store this release has opened, with its
+  "behind" warning, and refuses one that holds a closed increment. It refuses this release's
+  exports without `--accept-newer`; with it, it imports whole an export that holds no closed
+  increment and refuses whole any other
+  ([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two fragments are corrected at the cut.** #843 said an increment leaves the open list only
+  when it is marked `arrived`; #844 added the three closes, so the entry says both. #844 said the
+  schema stamp does not move. Measured, its types do not and its vocabulary does, so the entry
+  says that, and the first entry under Added says what an older seat does.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.100.0 release build beside the published 0.99.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design, then run `reflow2 update` in
+  each repository.** On a repository set up by the 0.99.0 kit with `--harness vscode-cli`,
+  `reflow2 update` changes no file you commit (84 files, 79 of them under `.github/`; none
+  differs). The two skills that changed are served: their stubs under `.github/` carry each
+  skill's name and description and point to the served copy, and neither changed. It backs the
+  design up to `.reflow2/backups/` and then opens the store, which moves the store's stamp to
+  0.100.0. The 0.99.0 binary still opens that store afterwards, with its "behind" warning, until
+  an increment in it is closed.
+- **The open increments are listed.** `reflow2 read loop_status` carries `open_increments`: the
+  whole counts, then the oldest ten at most, each with how much of what was scheduled for it is
+  delivered, its signs and its `changes_since_it_moved`. `reflow2 read graph_report
+  '{"include_open_increments":true}'` lists every one, and with `format` `markdown` the report
+  shows them under **Open increments**. 0.99.0's `loop_status` has no such section, and its
+  `graph_report` refuses `include_open_increments` (exit 2). The session-start hook does not name
+  them; the where-am-i skill reads them back.
+- **An increment is closed here.** `reflow2 write close_increment` refuses (exit 1), and writes
+  nothing, when an unfinished item has no answer (it names each one), when there is no
+  `approver`, or when an item leaves and no `recorded_in` names an arrived epoch to file the
+  plan in. With all three, it closes, and the reply names the close's ChangeEvent and the plan's
+  snapshot. `loop_status` then counts the increment under `deferred` and no longer lists it, and
+  `reflow2 read arrival_delta` reads a moved item as deferred, with where it is now due.
+  `set_epoch_status` with `deferred` is refused before it runs (exit 2), naming
+  `close_increment`, and a superseded increment cannot be marked `arrived` without being
+  reopened (exit 1). `reflow2 read close_increment` is refused by name, since it writes. 0.99.0
+  has no `close_increment` (exit 1, "no tool named `close_increment` is served").
+- **`derived_report` fits a budget.** On a nine-record design its whole reply is 28,597
+  characters; `reflow2 read derived_report '{"budget_chars":3000}'` cuts the declarations' text
+  to fit and says so at `budget`, and every relation, count and example id stays.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries
+`close_increment` and `graph_report`'s `include_open_increments`, and `loop_status` there counts a
+closed increment under `deferred`. A close the gateway names its caller for is signed by that
+caller: one whose `approver` names somebody else is refused, and nothing is written. flo2.io gets
+these once its engine moves to 0.100.0 and is deployed. **The engine's first open of each hosted
+design moves that design's stamp**, and a 0.99.0 engine still opens it until an increment there
+is closed. After that, going back means restoring the stores from a backup taken before, and
+every local binary that opens an export from flo2.io moves with it. The list of skills flo2.io
+shows a chat keeps each skill's name, shortcut and summary, and none of those changes (36
+skills, the same summaries), so regenerating it at the re-pin moves only its version line. As
+before, the hosted hub view and reads across designs by graph id need flo2.io. These lines get
+checked again on the published binary once the release is out.
+
+### Added
+
+- **🛑 Upgrade every seat together, before anyone closes an increment: the schema stamp moves
+  by vocabulary.** No node or edge type is added or removed (28 and 71, as in 0.99.0), and the
+  enum vocabularies stay at 84; `DesignEpoch.status` gains `deferred`, `dropped` and
+  `superseded`. The two new properties, `close_reason` and `superseded_by`, are not in the
+  stamp. Measured with the published 0.99.0 binary (its release checksum checked) on stores and
+  exports this build wrote:
+  - 0.99.0 opens a store this build has written, with its "behind" warning, and reads and
+    writes it, while no increment in it is closed. This build opens a 0.99.0 store and says so
+    ("Additive only — everything in it still reads"), and the open moves the store's stamp.
+  - 0.99.0 REFUSES to open a store that holds one closed increment, to read or to write, naming
+    the value ("this graph holds `DesignEpoch.status = "deferred"` — 1 value(s) this reflow2
+    does not know, on a property it DOES know"). The same holds for `dropped` and `superseded`.
+    A deferred increment reopened with `set_epoch_status` `planned` holds none of them, and
+    0.99.0 opens that store again.
+  - 0.99.0 refuses a plain import of any export this build wrote. With `--accept-newer` it
+    imports whole an export that holds no closed increment, and refuses whole one that holds a
+    single closed increment ("invalid enum value 'deferred', expected one of ["planned",
+    "arrived"]"), naming each record that rests on it.
+  **What to do:** snapshot a served store, then upgrade every seat together, flo2.io included
+  ([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)), before anyone calls
+  `close_increment`. Stop any shared server still on the old binary (`reflow2-mcp --graph-path
+  <path> --stop-shared`). Nothing needs migrating.
+- **`loop_status` and `graph_report` now list every increment that was started and never
+  finished.** An increment is a planned epoch; it is open until it arrives. Both replies carry a
+  new `open_increments` section, and `graph_report` with `format` `markdown` shows it under
+  **Open increments**. It gives the whole counts, then at most the oldest ten increments, each
+  with how much of what was scheduled for it is delivered and which of three signs it shows:
+  `done_but_not_closed` (everything scheduled is delivered and it still reads planned),
+  `overtaken` (an epoch it was drawn before, with `precedes`, has arrived) and `empty` (nothing is
+  scheduled for it). Each row also says how many of the design's recorded changes have passed
+  since anything scheduled for it moved, or `"never"`. Nothing is called stalled: the count is a
+  number of changes and no threshold is applied to it. Oldest first is the order the store
+  recorded each epoch in, never its `sequence` and never a date somebody typed. The list is not
+  counted against `clean`. **What to do:** nothing; to see every open increment rather than the
+  oldest ten, call `graph_report` with the new option `include_open_increments` set to true. A
+  list is never cut there, so on a design with many open increments the whole list can take the
+  report past its budget, and the reply's `budget` block says so (31 of them did, by 1,651
+  characters, on reflow2's own design on 2026-11-14). An increment leaves the list when
+  `set_epoch_status` marks it `arrived`, or when `close_increment` closes it (below).
+- **The where-am-i skill reads the open increments back**, at the start or the end of a session or
+  when asked, and `derived_report` counts a new declared relation, `open_increments`.
+- **`derived_report` takes `budget_chars`** (default 30,000), like the other long reads. The
+  thirtieth declared relation took its whole reply past 30,000 characters on a design of
+  realistic size, the size at which a client refuses a reply. Over the budget, the declarations'
+  text is cut and the reply says so at `budget`; every relation stays listed and every count and
+  example id is untouched. **What to do:** nothing; `only` reads named relations whole.
+- **`close_increment` closes an increment that will not be finished, honestly, on the owner's
+  word.** Until now an increment could only stay `planned`, listed as open at every session's
+  start and end, or be marked `arrived`, which is false. It now closes three more ways:
+  `deferred` (still meant, later), `dropped` (no longer meant; `reason` is required) and
+  `superseded` (by the increment `superseded_by` names). No unfinished item is defaulted:
+  `leftovers` answers for every item scheduled for it and not delivered. Each one `moves` to
+  another open increment, keeping its modality, is `dropped` from this one with its reason, or,
+  on a deferral only, `stays` with it. A dropped item keeps its own status, so closing a plan
+  retires no intent. One missing, doubled or unknown answer refuses the whole call, naming every
+  problem, and nothing is written. When an item leaves and the plan is not on the record yet,
+  `recorded_in` names an arrived epoch to snapshot the plan in first, so `arrival_delta` on the
+  closed increment reads each item as moved or dropped rather than the plan as always smaller.
+  The close writes one dated ChangeEvent with every fate and reason, linked to what moved.
+  `approver` is required, and the tool declares that every call settles (`_meta`
+  `reflow2/settles`), so a gateway signing for its caller reads the rule. **What to do:**
+  nothing; to close one, call `close_increment`.
+- **`DesignEpoch.status` gains `deferred`, `dropped` and `superseded`**, with two new properties,
+  `close_reason` and `superseded_by`. These are new values and properties, not new types: the
+  stamp's types do not move, and its vocabulary does (the first entry here). A closed increment
+  never happened, so `snapshot_before_change` refuses to record history into one, as it refuses
+  a planned one.
+- **`loop_status` and `graph_report` count deferred increments apart** (`open_increments` →
+  `deferred`). A deferred increment is closed for now and not listed; `set_epoch_status`
+  `planned` reopens it, which clears its `close_reason` and `superseded_by` (the close's
+  ChangeEvent keeps both).
+- **The plan-increments skill has a step for an increment that will not be finished**, and
+  where-am-i points to it.
+
+### Changed
+
+- **`set_epoch_status` and `add_epoch` refuse `deferred`, `dropped` and `superseded`**, naming
+  `close_increment`; their `status` still offers only `planned` and `arrived`. `set_epoch_status`
+  also refuses to mark a dropped or superseded increment `arrived` without reopening it first,
+  since what was unfinished in it was moved or dropped at the close.
+- **A closed increment is the owner's settle** in the authority check
+  (`tools/check_intent_authority.py` and `reflow2_core::intent::SETTLING`): one written without
+  an `AUTHORED_BY` approver fails the design gate, as an unsigned accepted requirement does.
+  **What to do:** nothing; no design held one before this release.
+
 ## [0.99.0] — 2026-11-14
 
 **Minor. A process can be recorded as how a thing is made: each step names the parts it puts
