@@ -22,8 +22,14 @@ reflow2 is an assumption about its shape:
 
 **It is a program that runs on your own machine.** It keeps your design as **a file in your own
 repository**. **Your coding agent talks to it over MCP**, so you use it by talking to your agent
-rather than by running commands. **Nothing leaves your machine** — there is no service, no account
-and no telemetry.
+rather than by running commands. **With the default install, nothing leaves your machine**: there
+is no service, no account and no telemetry.
+
+The same binary can also **serve designs over the network** when you ask it to. `--http` serves one
+design to the people you choose ([docs/collaborating.md](docs/collaborating.md)), and the Docker
+image can serve many designs from one address, each behind its own bearer token, which it verifies
+itself but never issues. [flo2.io](https://flo2.io) is a service built that way. There, a design is
+kept on that service rather than on your machine, and it is reached through that service's sign-in.
 
 ```mermaid
 flowchart LR
@@ -187,15 +193,15 @@ conclusion).
 ```
 reflow2/
   crates/
-    reflow2-core/    # the deterministic, LLM-free coherence engine (59 modules)
-    reflow2-mcp/     # the agent-native MCP server, stdio or HTTP (165 tools) — the binary you run
+    reflow2-core/    # the deterministic, LLM-free coherence engine (99 modules)
+    reflow2-mcp/     # the agent-native MCP server, stdio or HTTP (200 tools) — the binary you run
   schema/            # 11 composable schema domains (28 node / 71 edge types)
     core / functional / structure / build / verify / operate
     environment / temporal / inference / dimensions
   getting-started/   # the consumer kit installed into a project being designed
     SETUP.md         #   install + connect a coding agent + verify
     AGENTS.md        #   how an agent drives reflow2 to design YOUR project
-    skills/          #   the 25 served skills (genesis, adopt, help, onboarding, …)
+    skills/          #   the 36 served skills (genesis, adopt, help, onboarding, …)
                      #   — SKILLS.md is the catalogue: which skill, when
     commands/        #   the slash commands that reach them
   tools/             # install.sh (one-line installer), reflow2_init.py, the trial harnesses,

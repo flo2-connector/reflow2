@@ -233,12 +233,140 @@ def claims(reflow2: str, foundation: str) -> list[tuple[str, str, str, str]]:
     ]
 
 
+# --------------------------------------------------------------------------
+# COUNTS, FOUND RATHER THAN LISTED (req:a-count-a-current-doc-states-matches-the-build,
+# dec:idea-every-number-a-doc-states-is-checked-against-the-build-or-not-stated).
+#
+# The claims above are a hand-kept table, and that was the hole: on 2026-11-20
+# an outside review of v0.101.0 found README saying 165 tools (200 served) and
+# 25 served skills (36), and lib.rs saying 60 edge types (71), while this gate
+# said "OK — 16 targeted claim(s)". Nobody had added those sentences to the
+# table, so nothing read them. Here the gate SCANS every current-state doc for
+# a counted claim and checks each one, so a sentence written tomorrow is checked
+# the day it is written.
+#
+# History is not current state. An upgrade note saying what the schema had at
+# v0.65, or the original Reflow's tool count, is correct prose about the past,
+# so it is named in HISTORY with its reason. A history entry that no longer
+# matches anything FAILS, for the reason an unmatched claim does above.
+# --------------------------------------------------------------------------
+
+# The documents that describe reflow2 AS IT IS. CHANGELOG, changelog fragments,
+# dated records and the design's own facts are history and are not scanned.
+CURRENT_DOCS = (
+    "README.md",
+    "AGENTS.md",
+    "SKILLS.md",
+    "getting-started/AGENTS.md",
+    "docs/overview.md",
+    "docs/interaction-surfaces.md",
+    "crates/reflow2-core/src/lib.rs",
+    "crates/reflow2-mcp/src/lib.rs",
+)
+
+# (file, the literal text of the past-tense claim, why it is history).
+HISTORY = (
+    (
+        "docs/overview.md",
+        "(66 edge types)",
+        "the v0.64.0 upgrade note: what the schema stamp moved to then",
+    ),
+    (
+        "docs/overview.md",
+        "all 25 workflows and all 51 tools",
+        "the audit of the ORIGINAL Reflow, not reflow2",
+    ),
+)
+
+
+def served_tool_count() -> int:
+    """The served tool list: one committed golden per tool (tools/toolsnap.py)."""
+    n = len(list((REPO / "tools" / "toolsnaps").glob("*.json")))
+    if not n:
+        sys.exit("FAIL: tools/toolsnaps/ holds no tool goldens to count")
+    return n
+
+
+def served_skill_count() -> int:
+    """The skills the binary embeds and serves (crates/reflow2-mcp/build.rs)."""
+    n = len([p for p in (REPO / "getting-started" / "skills").glob("*/SKILL.md")])
+    if not n:
+        sys.exit("FAIL: getting-started/skills/ holds no SKILL.md to count")
+    return n
+
+
+def core_module_count() -> int:
+    """The modules reflow2-core's lib.rs declares (`mod x;` / `pub mod x;`)."""
+    text = (REPO / "crates" / "reflow2-core" / "src" / "lib.rs").read_text()
+    n = len(re.findall(r"^\s*(?:pub(?:\([a-z]+\))?\s+)?mod\s+[a-z_0-9]+\s*;", text, re.M))
+    if not n:
+        sys.exit("FAIL: read no module declarations from crates/reflow2-core/src/lib.rs")
+    return n
+
+
+def _flattened(text: str) -> str:
+    """One line per document, so a count wrapped across lines (a `//!` header,
+    a hard-wrapped paragraph) reads as the sentence it is."""
+    text = re.sub(r"[ \t]*\n[ \t]*(?://[!/]?[ \t]*)?", " ", text)
+    return re.sub(r"[ \t]+", " ", text)
+
+
+def count_kinds() -> list[tuple[str, str, int]]:
+    """(label, pattern capturing the number in group 1, what the build says)."""
+    nodes, edges = (int(x) for x in schema_counts())
+    return [
+        ("tools", r"\b~?(\d{2,4}) (?:MCP )?tools\b", served_tool_count()),
+        ("served skills", r"\b(\d{2,3}) (?:served )?skills\b", served_skill_count()),
+        ("node types", r"\b(\d{2,3}) node(?: types?)?(?=[ ,/)]|$)", nodes),
+        ("edge types", r"\b(\d{2,3}) (?:edge types?\b|edges\))", edges),
+        ("modules", r"\b(\d{2,3}) modules\b", core_module_count()),
+    ]
+
+
+def scan_counts() -> tuple[int, list[str]]:
+    """Every counted claim in the current-state docs, checked. Returns how many
+    were read and what disagreed."""
+    failures: list[str] = []
+    checked = 0
+    kinds = count_kinds()
+    for rel in CURRENT_DOCS:
+        path = REPO / rel
+        if not path.exists():
+            failures.append(f"MISSING FILE: {rel} (a current-state doc the count scan reads)")
+            continue
+        flat = _flattened(path.read_text())
+        exempt: list[tuple[int, int]] = []
+        for hrel, literal, why in HISTORY:
+            if hrel != rel:
+                continue
+            spans = [(m.start(), m.end()) for m in re.finditer(re.escape(literal), flat)]
+            if not spans:
+                failures.append(
+                    f"HISTORY ENTRY MATCHES NOTHING: {rel} — {literal!r} ({why}). "
+                    f"The past-tense sentence was reworded or removed: update or "
+                    f"remove its entry in HISTORY in tools/check_doc_versions.py."
+                )
+            exempt.extend(spans)
+        for label, pattern, actual in kinds:
+            for m in re.finditer(pattern, flat, re.I):
+                if any(a <= m.start() < b for a, b in exempt):
+                    continue
+                checked += 1
+                if int(m.group(1)) != actual:
+                    context = flat[max(0, m.start() - 50) : m.end() + 10].strip()
+                    failures.append(
+                        f"COUNT: {rel} ({label}) — says {m.group(1)}, build says {actual}: "
+                        f"…{context}…"
+                    )
+    return checked, failures
+
+
 def main() -> int:
     reflow2 = reflow2_version()
     foundation = foundation_tag()
     print(f"reflow2 {reflow2} · absorbed from dynograph-foundation {foundation}\n")
 
-    failures: list[str] = []
+    counted, failures = scan_counts()
     for filename, label, pattern, expected in claims(reflow2, foundation):
         path = REPO / filename
         if not path.exists():
@@ -272,7 +400,10 @@ def main() -> int:
         return 1
 
     n = len(claims(reflow2, foundation))
-    print(f"check_doc_versions: OK — {n} targeted claim(s) agree with the build.")
+    print(
+        f"check_doc_versions: OK — {n} targeted claim(s) and {counted} count(s) "
+        f"found in {len(CURRENT_DOCS)} current-state doc(s) agree with the build."
+    )
     return 0
 
 

@@ -3,9 +3,10 @@
 //! Reflow 2.0 captures a design's whole lifecycle (concept → operations) in one
 //! knowledge graph and keeps it coherent when anything changes. This crate is
 //! the LLM-free foundation of that system: it stands up the graph **store**
-//! (dynograph-foundation) configured with the reflow2 **schema** (28 node
-//! types, 60 edge types across 11 domains) and exposes schema-validated CRUD
-//! over the design graph.
+//! (its own `foundation` module, absorbed from dynograph-foundation on
+//! 2026-08-24) configured with the reflow2 **schema** (28 node types, 71 edge
+//! types across 11 domains) and exposes schema-validated CRUD over the design
+//! graph.
 //!
 //! It is deliberately neutral to the interaction surface (MCP / CLI / hosted /
 //! library) and to any LLM provider — those plug in later

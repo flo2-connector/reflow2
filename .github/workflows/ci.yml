@@ -171,12 +171,16 @@ jobs:
         run: python3 tools/changelog_fragments.py --check
       - name: CHANGELOG fragment suite (hermetic — the cut assembles and removes them; two PRs' fragments merge in either order)
         run: python3 tools/test_changelog_fragments.py
-      - name: Doc-version drift (prose vs what the build actually pins)
+      - name: Doc-version drift (prose vs what the build actually pins, and every count a current doc states)
         run: python3 tools/check_doc_versions.py
       - name: skills-and-tools.md matches the served surface
         run: python3 tools/render_skills_and_tools.py --check
       - name: Doc-version checker suite (hermetic)
         run: python3 tools/test_check_doc_versions.py
+      - name: AGENTS.md can only hold or shrink (req:agents-md-can-only-hold-or-shrink)
+        run: python3 tools/check_agents_md_size.py
+      - name: AGENTS.md size-ceiling suite (hermetic)
+        run: python3 tools/test_check_agents_md_size.py
       - name: Release workflow shape (hermetic — arm64 built natively, each image smoked before any push, both platforms in one index, a dry run writes nothing)
         # release.yml runs on a tag, so a tag used to be the first thing to test
         # it. This reads its jobs and drives the scripts they call

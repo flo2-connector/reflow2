@@ -1,0 +1,6 @@
+# The most bytes AGENTS.md may hold (req:agents-md-can-only-hold-or-shrink).
+# Set 2026-11-20 to the file's size when tools/check_agents_md_size.py landed.
+# LOWER it freely when the file shrinks, so the room given back cannot be spent
+# again unnoticed. RAISING it is its own reviewed change, and the line below the
+# number says why, in one sentence.
+103959

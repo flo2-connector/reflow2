@@ -441,7 +441,7 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > and the Python suites — `phase_trial`, `coherent_erosion_trial`, `model_the_loop`,
 > `stateless_seat_probe`, `test_init`, `test_shared_sessions`, `test_merge_driver`,
 > `test_degraded_server`, `test_nudge_path`, `test_loop_nudge`, `test_render_views`,
-> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
+> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`, `check_agents_md_size`, `test_check_agents_md_size`,
 > `test_skill_lint`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
 > `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments`,
@@ -1154,7 +1154,7 @@ decision or assume the surface doesn't exist — it is the binary a consumer run
   (as-built linking, releases/environments, process flows, provenance, the rollup report,
   BM25 search, schema discovery, portable export/import). Fast dev/test build:
   `cargo test -p reflow2-core --no-default-features`.
-- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs`, ~78 tools; `dto.rs`;
+- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs` and `tools/`, 200 tools; `dto.rs`;
   `main.rs`). Thin: every tool locks the graph, calls one core op, returns. It carries the
   `rocksdb` feature ON BY DEFAULT, so every installed build has on-disk storage, and development
   builds without it (`cargo dev-test`); see its own AGENTS.md.
