@@ -3138,6 +3138,17 @@ pub struct SearchDesignReq {
     /// as nothing anywhere. Default false: this design alone.
     #[serde(default)]
     pub tracked_designs: Option<bool>,
+    /// How many characters of JSON this reply may spend (default 30,000),
+    /// envelope included. Over it, hits are withheld whole from the tail of
+    /// the ranked list and `budget` names them; every count stays.
+    ///
+    /// Added 2026-11-20 (reflow2:fact:root-cause-a-hub-wide-search-spends-77-
+    /// percent-on-per-design-lists-and-takes-no-budget-2026-11-19): through a
+    /// hub of 29 designs a search at limit 2 answered 5,746 characters, 1,314
+    /// of them hits, and nothing held it. Through a hub's address the WHOLE
+    /// merged reply is held to it, the per-design lists first.
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 /// All fields optional: no args dumps the whole vocabulary, `node_type` focuses
