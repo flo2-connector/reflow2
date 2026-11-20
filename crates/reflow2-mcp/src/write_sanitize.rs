@@ -154,28 +154,18 @@ pub fn clean_arguments(
 /// field, WITHOUT changing it. `None` when it holds none.
 pub fn scan_export(doc: &reflow2_core::export::GraphExport) -> Option<Value> {
     let mut found = Found::default();
-    let mut scan = |value: Value, path: String, found: &mut Found| {
-        let mut copy = value;
-        // An id in a document is reported like any other field: nothing here
-        // stores the copy, so nothing is refused.
-        let _ = walk_report_only(&mut copy, &path, found);
-    };
+    // An id in a document is reported like any other field: nothing here
+    // stores what it reads, so nothing is refused.
     for n in &doc.nodes {
+        let node_id = Value::String(n.node_id.clone());
+        report_only(&node_id, &format!("node {}.node_id", n.node_id), &mut found);
         let props = serde_json::to_value(&n.properties).unwrap_or(Value::Null);
-        scan(
-            Value::String(n.node_id.clone()),
-            format!("node {}.node_id", n.node_id),
-            &mut found,
-        );
-        scan(props, format!("node {}", n.node_id), &mut found);
+        report_only(&props, &format!("node {}", n.node_id), &mut found);
     }
     for e in &doc.edges {
         let props = serde_json::to_value(&e.properties).unwrap_or(Value::Null);
-        scan(
-            props,
-            format!("edge {} {} {}", e.from_id, e.edge_type, e.to_id),
-            &mut found,
-        );
+        let path = format!("edge {} {} {}", e.from_id, e.edge_type, e.to_id);
+        report_only(&props, &path, &mut found);
     }
     if found.report.is_clean() {
         return None;
@@ -194,8 +184,9 @@ pub fn scan_export(doc: &reflow2_core::export::GraphExport) -> Option<Value> {
 }
 
 /// [`walk`] for a document that is only read: every string with hidden
-/// characters is counted and named, an id included, and nothing is refused.
-fn walk_report_only(value: &mut Value, path: &str, found: &mut Found) -> Result<(), String> {
+/// characters is counted and named, an id included, and nothing is changed or
+/// refused.
+fn report_only(value: &Value, path: &str, found: &mut Found) {
     match value {
         Value::String(s) => {
             let (_, report) = sanitize_text(s);
@@ -205,18 +196,17 @@ fn walk_report_only(value: &mut Value, path: &str, found: &mut Found) -> Result<
             }
         }
         Value::Array(items) => {
-            for (i, item) in items.iter_mut().enumerate() {
-                walk_report_only(item, &format!("{path}[{i}]"), found)?;
+            for (i, item) in items.iter().enumerate() {
+                report_only(item, &format!("{path}[{i}]"), found);
             }
         }
         Value::Object(map) => {
-            for (key, item) in map.iter_mut() {
-                walk_report_only(item, &child(path, key), found)?;
+            for (key, item) in map {
+                report_only(item, &child(path, key), found);
             }
         }
         _ => {}
     }
-    Ok(())
 }
 
 #[cfg(test)]

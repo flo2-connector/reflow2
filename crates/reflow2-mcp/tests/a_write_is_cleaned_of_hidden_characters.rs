@@ -92,7 +92,9 @@ async fn a_write_stores_clean_text_and_says_what_it_removed() {
     .await
     .expect("the write is accepted");
     assert_eq!(
-        stored_statement(&c, "req:pump-holds-pressure").await.as_deref(),
+        stored_statement(&c, "req:pump-holds-pressure")
+            .await
+            .as_deref(),
         Some(CLEAN),
         "the stored statement must hold none of the hidden characters"
     );
@@ -103,7 +105,11 @@ async fn a_write_stores_clean_text_and_says_what_it_removed() {
     assert_eq!(block["stripped"]["bidi_control"], 1, "{block}");
     assert_eq!(block["stripped"]["hidden_formatting"], 1, "{block}");
     assert!(
-        block["fields"].as_array().unwrap().iter().any(|f| f == "statement"),
+        block["fields"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|f| f == "statement"),
         "the field is named: {block}"
     );
 }
@@ -157,17 +163,18 @@ async fn an_import_stores_its_document_as_given_and_reports_what_it_holds() {
         Some(HIDDEN),
         "an import must store its document exactly as given"
     );
-    assert!(reply.get("sanitized").is_none(), "an import is not cleaned: {reply}");
+    assert!(
+        reply.get("sanitized").is_none(),
+        "an import is not cleaned: {reply}"
+    );
     let found = reply
         .get("hidden_characters")
         .unwrap_or_else(|| panic!("the import must report what its document holds: {reply}"));
     assert_eq!(found["found"]["unicode_tag"], 2, "{found}");
     assert!(
-        found["fields"]
-            .as_array()
-            .unwrap()
-            .iter()
-            .any(|f| f.as_str().is_some_and(|s| s.contains("req:imported") && s.contains("statement"))),
+        found["fields"].as_array().unwrap().iter().any(|f| f
+            .as_str()
+            .is_some_and(|s| s.contains("req:imported") && s.contains("statement"))),
         "{found}"
     );
 }
