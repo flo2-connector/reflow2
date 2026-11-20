@@ -183,8 +183,86 @@ def test_modules_absorbed_from_different_vintages_are_caught() -> None:
         victim.write_text(original)
 
 
+# --------------------------------------------------------------------------
+# COUNTS THE GATE FINDS ITSELF (req:a-count-a-current-doc-states-matches-the-build).
+# Until 2026-11-20 every count was a hand-written (file, pattern) row, so a new
+# sentence stating one was never checked: an outside review of v0.101.0 found
+# README saying 165 tools (200 served), 25 served skills (36) and lib.rs saying
+# 60 edge types (71), with this gate green
+# (fact:root-cause-the-doc-facts-gate-checks-16-named-claims-and-the-readme-tool-
+# skill-and-module-counts-are-not-among-them-2026-11-20). These pin the class: a
+# count written anywhere in a current-state doc is found without anyone adding it.
+# --------------------------------------------------------------------------
+
+
+def _with_appended(rel: str, sentence: str) -> subprocess.CompletedProcess[str]:
+    path = REPO / rel
+    original = path.read_text()
+    try:
+        path.write_text(original + "\n" + sentence + "\n")
+        return run()
+    finally:
+        path.write_text(original)
+
+
+def test_a_count_nobody_registered_is_found_and_checked() -> None:
+    for kind, sentence in (
+        ("tools", "reflow2 serves 17 tools."),
+        ("served skills", "It carries 13 served skills."),
+        ("edge types", "The schema has 12 edge types."),
+        ("node types", "The schema has 12 node types."),
+        ("modules", "The core is 12 modules."),
+    ):
+        r = _with_appended("README.md", sentence)
+        assert r.returncode == 1, f"a wrong {kind} count nobody registered must fail:\n{r.stdout}"
+        assert "COUNT" in r.stdout and "README.md" in r.stdout and kind in r.stdout, r.stdout
+
+
+def test_a_count_split_across_doc_comment_lines_is_found() -> None:
+    # The shape lib.rs's header had: "(28 node\n//! types, 60 edge types".
+    lib = REPO / "crates/reflow2-core/src/lib.rs"
+    original = lib.read_text()
+    try:
+        lib.write_text("//! a store with 28 node\n//! types and 12 edge\n//! types\n" + original)
+        r = run()
+        assert r.returncode == 1, f"a count wrapped across //! lines must still be read:\n{r.stdout}"
+        assert "lib.rs" in r.stdout and "edge types" in r.stdout, r.stdout
+    finally:
+        lib.write_text(original)
+
+
+def test_a_correct_new_count_passes() -> None:
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("cdv", TOOL)
+    assert spec is not None and spec.loader is not None
+    cdv = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cdv)
+    r = _with_appended("README.md", f"It serves {cdv.served_tool_count()} tools.")
+    assert r.returncode == 0, f"a count that matches the build must pass:\n{r.stdout}"
+
+
+def test_a_history_entry_that_no_longer_matches_fails() -> None:
+    # The exemptions are for prose about the PAST (an upgrade note, the original
+    # Reflow's tool count). An exemption that matches nothing is a check that was
+    # silently removed, which this file forbids for every other pattern.
+    overview = REPO / "docs/overview.md"
+    original = overview.read_text()
+    assert "(66 edge types)" in original, "the upgrade note the exemption names is gone"
+    try:
+        overview.write_text(original.replace("(66 edge types)", "(sixty-six edge types)"))
+        r = run()
+        assert r.returncode == 1 and "HISTORY ENTRY" in r.stdout, r.stdout
+    finally:
+        overview.write_text(original)
+
+
 def main() -> int:
     tests = [
+        test_a_count_nobody_registered_is_found_and_checked,
+        test_a_count_split_across_doc_comment_lines_is_found,
+        test_a_correct_new_count_passes,
+        test_a_history_entry_that_no_longer_matches_fails,
         test_the_repo_as_it_stands_passes,
         test_a_stale_claim_is_caught,
         test_a_site_page_left_at_an_older_release_is_caught,
