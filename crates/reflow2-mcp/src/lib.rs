@@ -65,4 +65,5 @@ pub mod upstream;
 pub mod usage;
 pub mod verbs;
 pub mod wall_check;
+pub mod write_sanitize;
 pub mod writers;
