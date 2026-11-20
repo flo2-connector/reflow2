@@ -553,6 +553,16 @@ impl ReflowService {
         }
         let mut reply = serde_json::to_value(report).map_err(ser_err)?;
         crate::settles::report_unsigned(&mut reply, watch.unsigned(&g));
+        // HIDDEN CHARACTERS IN THE DOCUMENT are reported, never stripped: an
+        // export's content is its identity, so the import stored it as given
+        // (`crate::write_sanitize::scan_export`, Anthony's "Detect and report",
+        // 2026-11-20). Absent when the document holds none.
+        if let (Some(found), Some(o)) = (
+            crate::write_sanitize::scan_export(&read.export),
+            reply.as_object_mut(),
+        ) {
+            o.insert("hidden_characters".into(), found);
+        }
         ok_json(reply)
     }
 

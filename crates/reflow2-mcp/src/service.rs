@@ -9595,6 +9595,30 @@ impl ReflowService {
             }
             _ => Ok(crate::receipt::Echo::Node),
         };
+        // EVERY WRITE IS CLEANED OF HIDDEN CHARACTERS (`crate::write_sanitize`,
+        // req:every-write-and-every-import-is-cleaned-of-hidden-characters-and-says-what-was-stripped).
+        // Here, at the one door every write passes, so a new write tool joins by
+        // being served. Text is cleaned and the reply says so (`sanitized`); an id
+        // holding them is refused, never cleaned; import_graph is reported on by
+        // its own body and stores its document as given.
+        let (sanitized, id_refusal) = match self.tool_router.get(&tool_name) {
+            Some(t)
+                if argument_violations.is_empty()
+                    && crate::receipt::is_write(t)
+                    && !crate::write_sanitize::NOT_CLEANED.contains(&tool_name.as_str()) =>
+            {
+                match request
+                    .arguments
+                    .as_mut()
+                    .map(crate::write_sanitize::clean_arguments)
+                {
+                    Some(Ok(block)) => (block, None),
+                    Some(Err(message)) => (None, Some(message)),
+                    None => (None, None),
+                }
+            }
+            _ => (None, None),
+        };
         // THE RETIREMENT RULE's notice (`crate::deprecation`) reads what the
         // call passed, so it is kept before the request moves — and only when
         // this build is retiring anything, so an empty registry costs nothing.
@@ -9766,6 +9790,15 @@ impl ReflowService {
             Some(refusal) => Ok(rmcp::model::CallToolResponse::Complete(
                 CallToolResult::error(vec![ContentBlock::text(refusal)]),
             )),
+            // AN ID HOLDING HIDDEN CHARACTERS is refused before anything runs,
+            // like an argument refusal: cleaning it would address a different
+            // node from the one written (`crate::write_sanitize`).
+            None if id_refusal.is_some() => Ok(rmcp::model::CallToolResponse::Complete(
+                CallToolResult::error(vec![ContentBlock::text(format!(
+                    "{tool_name} refused: {}",
+                    id_refusal.as_deref().unwrap_or_default()
+                ))]),
+            )),
             None => {
                 // WHO MAY SIGN on this call (`crate::caller`): nothing on a
                 // local engine; the caller the engine established, or nobody,
@@ -9882,6 +9915,23 @@ impl ReflowService {
             ) if r.is_error != Some(true) => {
                 if let Some(v) = r.structured_content.take() {
                     r.structured_content = Some(crate::receipt::receipt(v));
+                }
+                Ok(rmcp::model::CallToolResponse::Complete(r))
+            }
+            (_, other) => other,
+        };
+        // WHAT THE CLEANER REMOVED rides the reply a write answered with, so
+        // nothing is stripped silently. Absent when nothing was hidden.
+        let answer = match (sanitized, answer) {
+            (Some(block), Ok(rmcp::model::CallToolResponse::Complete(mut r)))
+                if r.is_error != Some(true) =>
+            {
+                if let Some(o) = r
+                    .structured_content
+                    .as_mut()
+                    .and_then(|v| v.as_object_mut())
+                {
+                    o.insert("sanitized".into(), block);
                 }
                 Ok(rmcp::model::CallToolResponse::Complete(r))
             }
