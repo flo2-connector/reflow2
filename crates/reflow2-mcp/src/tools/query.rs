@@ -181,11 +181,20 @@ fn search_design_output_schema() -> Arc<rmcp::model::JsonObject> {
             "designs_searched": {
                 "type": "array",
                 "description": "On a search over several designs: the graph_id of each design \
-                                searched, this one first. `found_by_design`, \
-                                `searched_by_design` and `hits_withheld` give each one's count \
-                                and what the one `limit` left out; with `tracked_designs`, \
-                                `read_from` names the export each pinned design was read from.",
+                                searched, this one first. `found_in` gives each design that \
+                                returned hits with its count, `searched` the nodes the searches \
+                                ran over in all, and `hits_withheld` what the one `limit` left \
+                                out; with `tracked_designs`, `read_from` names the export each \
+                                pinned design was read from.",
                 "items": { "type": "string" }
+            },
+            "found_in": {
+                "type": "object",
+                "description": "On a search over several designs: each design that returned \
+                                hits, keyed by graph_id, with how many it returned (a design at \
+                                the limit may hold more). A design in `designs_searched` and \
+                                absent here returned none.",
+                "additionalProperties": { "type": "integer" }
             },
             "tracked_note": {
                 "type": "string",
@@ -1475,8 +1484,12 @@ impl ReflowService {
                 crate::service::TRACKED_NOT_AT_THE_CALL_LAYER
             }
         });
+        let budget = req
+            .budget_chars
+            .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
         if pins.is_empty() && tracked_note.is_none() {
-            return self.ok_read(&g, result);
+            let reply = serde_json::to_value(result).map_err(ser_err)?;
+            return self.ok_read(&g, held_search(reply, budget));
         }
         let mut reply = serde_json::to_value(result).map_err(ser_err)?;
         if let Some(o) = reply.as_object_mut() {
@@ -1491,7 +1504,7 @@ impl ReflowService {
                 o.insert("tracked_note".into(), JsonValue::String(note.to_string()));
             }
         }
-        self.ok_read(&g, reply)
+        self.ok_read(&g, held_search(reply, budget))
     }
 
     #[tool(
@@ -2682,4 +2695,17 @@ impl ReflowService {
             }
         }
     }
+}
+
+/// A search reply held to `budget`: hits withheld WHOLE from the tail of the
+/// ranked list, each named, then prose only if that was not enough; every
+/// count stays. A reply that fits is returned unchanged, byte for byte.
+pub(crate) fn held_search(reply: JsonValue, budget: usize) -> JsonValue {
+    crate::reply_budget::bound_reply_rows_first(
+        reply,
+        budget,
+        "raise `budget_chars`, lower `limit`, or narrow the query or `node_type`",
+        &["hits"],
+        &[],
+    )
 }

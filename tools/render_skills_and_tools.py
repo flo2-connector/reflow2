@@ -62,8 +62,18 @@ FAMILY = {
 }
 
 
+# A deprecated reply field is marked by a line opening its tool's description
+# (crates/reflow2-mcp/src/deprecation.rs, mark_tools): "The reply's `<path>` is
+# DEPRECATED in ...". The row says what the tool does, so those lines are left
+# out of it; the tool's own description and the changelog say what is going.
+REPLY_FIELD_MARK = re.compile(r"^The reply's `[^`]+` is DEPRECATED in ")
+
+
 def first_sentence(text: str) -> str:
-    text = re.sub(r"\s+", " ", text or "").strip()
+    lines = (text or "").split("\n")
+    while lines and (REPLY_FIELD_MARK.match(lines[0]) or not lines[0].strip()):
+        lines.pop(0)
+    text = re.sub(r"\s+", " ", "\n".join(lines)).strip()
     m = re.match(r"(.+?[.!?])(\s|$)", text)
     return (m.group(1) if m else text).replace("|", "\\|")
 

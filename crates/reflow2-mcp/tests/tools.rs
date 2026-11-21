@@ -1850,6 +1850,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: None,
         limit: None,
         tracked_designs: None,
+        budget_chars: None,
     })));
     let hits = result["hits"].as_array().expect("hits list");
     assert!(
@@ -1868,6 +1869,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: Some("Capability".into()),
         limit: Some(5),
         tracked_designs: None,
+        budget_chars: None,
     })));
     let cap_hits = caps["hits"].as_array().unwrap();
     assert!(!cap_hits.is_empty(), "cap:flight mentions flight: {caps}");
@@ -1878,6 +1880,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: None,
         limit: None,
         tracked_designs: None,
+        budget_chars: None,
     })));
     assert!(none["hits"].as_array().unwrap().is_empty());
 }
