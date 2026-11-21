@@ -14,6 +14,16 @@
           "string",
           "null"
         ]
+      },
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000).\nOver it, prose goes first (the wording each question carried, its\ncontext), then questions from the end of the list, and `budget` names\nwhat was withheld; `count` and every question id survive. Unbounded\nuntil 2026-10-31, when the generated design of reflow2's size answered\n58,916 characters\n(`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
       }
     },
     "type": "object"

@@ -1499,40 +1499,12 @@ mod tests {
         );
     }
 
-    /// The handshake's report cue moved with its tool on 2026-10-30: counted
-    /// across the move, the old id and the new are ONE cue, and a call to the
-    /// old tool acts on it.
-    #[test]
-    fn a_cue_whose_call_moved_is_counted_as_one_cue() {
-        assert_eq!(
-            canonical("instructions/graph_report_markdown"),
-            "instructions/graph_report"
-        );
-        assert_eq!(canonical("next/propagate_change"), "next/propagate_from");
-        assert_eq!(canonical("loop_hint/loop_status"), "loop_hint/loop_status");
-        assert_eq!(
-            canonical("hint/get_skill:root-cause"),
-            "hint/get_skill:root-cause"
-        );
-        let lines = [
-            // Before the fold: the old id, followed by the old tool.
-            line("cue", "", "s1", &["instructions/graph_report_markdown"]),
-            line("call", "graph_report_markdown", "s1", &[]),
-            // After it: the new id, followed by the survivor.
-            line("cue", "", "s2", &["instructions/graph_report"]),
-            line("call", "get_node", "s2", &[]),
-            line("call", "graph_report", "s2", &[]),
-        ];
-        let refs: Vec<&UsageLine> = lines.iter().collect();
-        let t = tally(&refs);
-        assert!(!t.by_cue.contains_key("instructions/graph_report_markdown"));
-        let c = &t.by_cue["instructions/graph_report"];
-        assert_eq!((c.offered, c.followed_within_5), (2, 2), "{c:?}");
-        assert_eq!(
-            t.moved["instructions/graph_report_markdown"],
-            "instructions/graph_report"
-        );
-    }
+    // The moved-id fold (`instructions/graph_report_markdown` counted as
+    // `instructions/graph_report`) is tested in
+    // tests/a_cue_whose_call_moved_is_counted_as_one_cue.rs, not here: a test
+    // of it has to name the counted refusing stub, and every string literal in
+    // src/ is read as served text by
+    // tests/no_served_text_names_a_tool_that_is_not_served.rs.
 
     /// The table is read under the ids it is counted by, and says what the
     /// 2026-11-21 counts say: carry_it, the checksum step and the settling cue
@@ -1572,7 +1544,6 @@ mod tests {
             "next/open_questions",
             "instructions/search_design",
             "instructions/graph_report",
-            "instructions/graph_report_markdown",
         ] {
             assert_eq!(standing(never), Standing::NeverFollowed, "{never}");
         }
