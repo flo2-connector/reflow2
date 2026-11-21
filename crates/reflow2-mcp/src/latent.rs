@@ -287,21 +287,26 @@ impl LatentService {
     }
 
     /// What design lives at each of these paths — without opening any of them.
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - because reflow2 does no file navigation; this answers what each one IS.
+    // - WHY IT EXISTS: a session opened at a repo root was told 'no design here' and started a THIRD
+    //   design while two populated ones sat one and two directories below. Nothing could say what
+    //   they were.
+    // - — enough to put a menu in front of the user.
+    // - Returns the design's stable id, its label, whether it was minted or adopted, and the schema
+    //   stamp
+    // - and a design another session is holding right now describes fine. Node counts are
+    //   deliberately absent because counting would mean opening, and opening MINTS an identity where
+    //   there is none — naming a design by the act of looking at it is the very failure this
+    //   prevents.
     #[tool(
         description = "Say what design lives at each given path, WITHOUT opening or writing \
                        anything. Call this BEFORE reflow2_start_design, every time. YOU find the \
-                       candidate paths — `find . -maxdepth 3 -name .reflow2` and the same upward \
-                       — because reflow2 does no file navigation; this answers what each one IS. \
-                       WHY IT EXISTS: a session opened at a repo root was told 'no design here' \
-                       and started a THIRD design while two populated ones sat one and two \
-                       directories below. Nothing could say what they were. Returns the design's \
-                       stable id, its label, whether it was minted or adopted, and the schema \
-                       stamp — enough to put a menu in front of the user. It reads only the \
-                       sidecar files beside each store: no lock is taken, nothing is written, and \
-                       a design another session is holding right now describes fine. Node counts \
-                       are deliberately absent because counting would mean opening, and opening \
-                       MINTS an identity where there is none — naming a design by the act of \
-                       looking at it is the very failure this prevents.",
+                       candidate paths — `find . -maxdepth 3 -name .reflow2` and the same upward — \
+                       and pass them all; this answers what each one IS: the design's stable id, \
+                       its label, whether it was minted or adopted, and the schema stamp. It reads \
+                       only the sidecar files beside each store: no lock is taken, nothing is \
+                       written, and node counts are not returned.",
         title = "Describe Designs at Paths"
     )]
     pub async fn describe_designs(

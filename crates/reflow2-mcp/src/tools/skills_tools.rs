@@ -494,19 +494,24 @@ impl ReflowService {
         }))
     }
     /// What design lives at each of these paths — without opening any of them.
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - reflow2 does no file navigation, and this answers what each one IS.
+    // - Returns each design's stable id, label, minted-or-adopted origin and schema stamp.
+    // - Use it before starting a design anywhere, before pointing a project at a graph, and whenever
+    //   'which design am I in?' has more than one plausible answer.
+    // - so no lock is taken, nothing is written, and a design another session holds right now
+    //   describes fine. Node counts are deliberately absent: counting means opening, and opening
+    //   MINTS an identity where there is none.
     #[tool(
         description = "Say what design lives at each given path, WITHOUT opening or writing \
                        anything — the sibling of design_identity, which answers only for the \
                        design THIS session is bound to. YOU find the candidate paths (`find . \
-                       -maxdepth 3 -name .reflow2`, and the same upward); reflow2 does no file \
-                       navigation, and this answers what each one IS. Use it before starting a \
-                       design anywhere, before pointing a project at a graph, and whenever \
-                       'which design am I in?' has more than one plausible answer. Returns each \
-                       design's stable id, label, minted-or-adopted origin and schema stamp. It \
-                       reads only the sidecar files beside each store, so no lock is taken, \
-                       nothing is written, and a design another session holds right now describes \
-                       fine. Node counts are deliberately absent: counting means opening, and \
-                       opening MINTS an identity where there is none.",
+                       -maxdepth 3 -name .reflow2`, and the same upward) and pass them all; this \
+                       answers what each one IS: stable id, label, minted-or-adopted origin and \
+                       schema stamp. Use it whenever 'which design am I in?' has more than one \
+                       plausible answer. It reads only the sidecar files beside each store: no \
+                       lock, nothing written, no node counts. On a registry server a store path is \
+                       refused.",
         title = "Describe Designs at Paths",
         annotations(read_only_hint = true)
     )]

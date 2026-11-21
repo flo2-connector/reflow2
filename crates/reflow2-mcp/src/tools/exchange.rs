@@ -81,23 +81,36 @@ async fn inline_or_by_graph_id(
 
 #[tool_router(router = exchange_router, vis = "pub")]
 impl ReflowService {
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - , instead of hand-asserting which boundaries correspond. Each boundary declares a role on
+    //   `Interface.designation` and pairing matches COMPLEMENTS — `published`/`both` against
+    //   `required`/`both` — never like with like. Two boundaries pair when their NAMES match fuzzily
+    //   AND they agree on medium, transport_security and auth. FIVE OUTCOMES, all useful: paired
+    //   (the seam, computed); CONFLICTS, where the names match but the axes refuse — reported with
+    //   EVERY refusing axis, never dropped as a non-match, because "you publish this, I need this,
+    //   and we cannot connect as either is built" is the finding worth having; unmet needs (we
+    //   require it, nobody publishes it — the loudest signal); dead surface (they publish it, nobody
+    //   here needs it); and duplicate providers (two publishers of one need is a conflict, not a
+    //   match).
+    // - Uncertain name matches are CANDIDATES to ask about, never actions. Boundaries carrying no
+    //   role are counted and NAMED, because `internal` is the DEFAULT and cannot tell "deliberately
+    //   internal" from "never classified" — otherwise a design that did no labelling reports a clean
+    //   seam.
+    // - Feed `paired` to seam_report to learn whether the full contracts agree
+    //   (req:complementary-pairing).
+    // - A name pair is not evidence the designs touch; `computed_links` are.
     #[tool(
-        description = "Compute the seam between this design and another by COMPLEMENTARY ROLE, instead of \
-                       hand-asserting which boundaries correspond. Each boundary declares a role on \
-                       `Interface.designation` and pairing matches COMPLEMENTS — `published`/`both` against \
-                       `required`/`both` — never like with like. Two boundaries pair when their NAMES match fuzzily AND they agree \
-                       on medium, transport_security and auth. FIVE OUTCOMES, all useful: paired (the seam, \
-                       computed); CONFLICTS, where the names match but the axes refuse — reported with EVERY \
-                       refusing axis, never dropped as a non-match, because \"you publish this, I need this, \
-                       and we cannot connect as either is built\" is the finding worth having; unmet needs (we \
-                       require it, nobody publishes it — the loudest signal); dead surface (they publish it, \
-                       nobody here needs it); and duplicate providers (two publishers of one need is a \
-                       conflict, not a match). Uncertain name matches are CANDIDATES to ask about, never \
-                       actions. Boundaries carrying no role are counted and NAMED, because `internal` is the \
-                       DEFAULT and cannot tell \"deliberately internal\" from \"never classified\" — otherwise \
-                       a design that did no labelling reports a clean seam. Feed `paired` to seam_report to \
-                       learn whether the full contracts agree (req:complementary-pairing). On a registry server, \
-                       `other_graph_id` instead of `design`. A name pair is not evidence the designs touch; `computed_links` are. Ask for this to match our required contracts against what the other system publishes.",
+        description = "Compute the seam between this design and another by COMPLEMENTARY ROLE: \
+                       each boundary declares a role on `Interface.designation`, and \
+                       `published`/`both` pairs with `required`/`both` when their NAMES match \
+                       fuzzily AND they agree on medium, transport_security and auth. Five \
+                       outcomes: paired; CONFLICTS (names match, axes refuse, every refusing axis \
+                       named); unmet needs; dead surface; duplicate providers. Uncertain name \
+                       matches are CANDIDATES to ask about; boundaries with no role are counted \
+                       and NAMED. Pass `design` (an export document) or, on a registry server, \
+                       `other_graph_id`. Feed `paired` to seam_report. \
+                       Ask for this to match our required contracts against what the other system \
+                       publishes.",
         title = "Pair Two Designs",
         annotations(read_only_hint = true)
     )]
@@ -710,25 +723,32 @@ impl ReflowService {
         }
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — compare_designs' verdict-bearing sibling. A maturity restructuring holds the function set
+    //   invariant and moves everything else (allocation, packaging, which functions live in which
+    //   component, which seams are declared), and it is safe exactly when function is provably
+    //   unchanged. That is computable, so this CERTIFIES rather than asserts: every divergence is
+    //   classified function / structure / supporting
+    // - NOTHING IS WAVED THROUGH — a node type, an edge endpoint or a property edit the rules cannot
+    //   place lands in `unclassified` and forces `indeterminate`, because a classifier that has not
+    //   been taught part of the vocabulary must not certify a design it never examined.
+    // - A reworded capability is undecidable by construction (a rename and a scope change are the
+    //   same bytes) and comes back with both values for a human.
+    // - `not_certified_about` is on every certificate INCLUDING a clean one: this reads two design
+    //   records and has read no code, so it never claims the implementation preserved behaviour.
     #[tool(
-        description = "Decide whether a restructuring PRESERVED FUNCTION — compare_designs' \
-                       verdict-bearing sibling. A maturity restructuring holds the function set \
-                       invariant and moves everything else (allocation, packaging, which \
-                       functions live in which component, which seams are declared), and it is \
-                       safe exactly when function is provably unchanged. That is computable, so \
-                       this CERTIFIES rather than asserts: every divergence is classified \
-                       function / structure / supporting and the verdict is `preserved`, \
-                       `not_preserved` or `indeterminate`. NOTHING IS WAVED THROUGH — a node \
-                       type, an edge endpoint or a property edit the rules cannot place lands in \
-                       `unclassified` and forces `indeterminate`, because a classifier that has \
-                       not been taught part of the vocabulary must not certify a design it never \
-                       examined. A reworded capability is undecidable by construction (a rename \
-                       and a scope change are the same bytes) and comes back with both values \
-                       for a human. `not_certified_about` is on every certificate INCLUDING a \
-                       clean one: this reads two design records and has read no code, so it \
-                       never claims the implementation preserved behaviour. On a registry server, \
-                       give `other_graph_id` instead of a path. \
-                       Ask for this when you want to know whether a restructuring or reorganisation changed what the system does or only how it is organised — proof that no function was lost.",
+        description = "Decide whether a restructuring PRESERVED FUNCTION. Every divergence between \
+                       the base and the restructured design is classified function / structure / \
+                       supporting, and the verdict is `preserved`, `not_preserved` or \
+                       `indeterminate`. Anything the rules cannot place lands in `unclassified` \
+                       and forces `indeterminate`; a reworded capability (a rename and a scope \
+                       change are the same bytes) comes back with both values for a human. It \
+                       reads two design records and no code, so it never certifies the \
+                       implementation. On a registry server, give `other_graph_id` instead of a \
+                       path. \
+                       Ask for this when you want to know whether a restructuring or \
+                       reorganisation changed what the system does or only how it is organised — \
+                       proof that no function was lost.",
         title = "Certify Function Preserved",
         annotations(read_only_hint = true)
     )]
@@ -803,17 +823,19 @@ impl ReflowService {
         }
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — compare's write-side sibling (BL-80). Runs git's trivial-merge case table per node and per
+    //   property over typed values:
+    // - (deletion must be re-justified); edges get the identical rule.
+    // - (the ancestor — e.g. git merge-base + the committed export at that commit)
     #[tool(
         description = "Propose a three-way merge of two divergent designs against their common \
-                       ancestor — compare's write-side sibling (BL-80). Runs git's trivial-merge \
-                       case table per node and per property over typed values: only one side \
-                       changed → take it; both changed the same way → take it; both changed \
-                       differently → a conflict, surfaced as a Question for the human, never \
-                       guessed. A node one side deleted and the other changed is retained and \
-                       asked (deletion must be re-justified); edges get the identical rule. Pass \
-                       base_path (the ancestor — e.g. git merge-base + the committed export at \
-                       that commit), ours_path (merge into) and theirs_path (merge in). This is a \
-                       PROPOSAL: it writes nothing. Applying the resolved merge is a separate, \
+                       ancestor, per node, per property and for edges: only one side changed → \
+                       take it; both changed the same way → take it; both changed differently → a \
+                       conflict, surfaced as a Question for the human, never guessed. A node one \
+                       side deleted and the other changed is retained and asked. Pass base_path \
+                       (the ancestor), ours_path (merge into) and theirs_path (merge in). This is \
+                       a PROPOSAL: it writes nothing. Applying the resolved merge is a separate, \
                        explicit step. On a registry server, give `other_graph_id` (theirs) and \
                        `base_graph_id` instead of paths; ours is then this design.",
         title = "Propose a Three-Way Merge",
@@ -896,16 +918,20 @@ impl ReflowService {
         ))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (BL-80)
+    // - `ours` is the live graph at --graph-path;
+    // - This is the explicit commit the proposal is designed around: run merge_designs first, decide
+    //   the conflicts, then apply.
     #[tool(
         description = "Apply a resolved three-way merge into the live design — the write side of \
-                       merge_designs (BL-80). `ours` is the live graph at --graph-path; this \
-                       merges `theirs` into it against the common ancestor `base`, making the live \
-                       design equal the merged result, atomically. Pass `resolutions` — one \
-                       decision per conflict (its `merge:…` id → base/ours/theirs, from a prior \
-                       merge_designs run). It REFUSES and writes nothing if any conflict is \
-                       undecided, or a decision names no conflict. This is the explicit commit the \
-                       proposal is designed around: run merge_designs first, decide the conflicts, \
-                       then apply.",
+                       merge_designs. `ours` is the live graph; this merges `theirs` into it \
+                       against the common ancestor `base`, making the live design equal the merged \
+                       result, atomically. Pass `resolutions` — one decision per conflict (its \
+                       `merge:…` id → base/ours/theirs, from a prior merge_designs run). It \
+                       REFUSES and writes nothing if any conflict is undecided, or a decision \
+                       names no conflict. Run merge_designs first, decide the conflicts, then \
+                       apply.",
         title = "Apply a Merge",
         annotations(read_only_hint = false, destructive_hint = true)
     )]
@@ -957,15 +983,18 @@ impl ReflowService {
         ok_json(reply)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (BL-80 #5)
+    // - Because the key is the conflict's *content* (values, not location), one recorded decision is
+    //   recalled for every node with the identical conflict — resolve the shape once,
     #[tool(
         description = "Recall recorded conflict resolutions (rerere) by their content keys — the \
-                       advisory half of merge (BL-80 #5). Pass the `resolution_key`s (`rr:…`) that \
+                       advisory half of merge. Pass the `resolution_key`s (`rr:…`) that \
                        merge_designs put on its conflicts; returns, for each one previously \
-                       resolved, the recorded decision (base/ours/theirs). Because the key is the \
-                       conflict's *content* (values, not location), one recorded decision is \
-                       recalled for every node with the identical conflict — resolve the shape \
-                       once, then apply_merge with use_recorded, or feed these suggestions back as \
-                       explicit resolutions. A suggestion, never an auto-decision. \
+                       resolved, the recorded decision (base/ours/theirs). The key is the \
+                       conflict's content, not its location, so resolve the shape once, then \
+                       apply_merge with use_recorded, or feed these suggestions back as explicit \
+                       resolutions. A suggestion, never an auto-decision. \
                        Ask for this to see how we settled the same conflict last time.",
         title = "Recall Conflict Resolutions",
         annotations(read_only_hint = true)
@@ -1000,18 +1029,23 @@ impl ReflowService {
         }))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Compare parallel design alternatives on the same measures — an analysis of alternatives
+    //   (BL-70).
+    // - plus every non-baseline branch's structural divergence from the baseline
+    // - (added/removed/changed)
+    // - Makes alternatives comparable on measures, not advocacy; it opens its own throwaway graphs,
+    //   so it never touches and is never blocked by the live one.
     #[tool(
-        description = "Compare parallel design alternatives on the same measures — an analysis of \
-                       alternatives (BL-70). Pass the paths to two or more alternative export \
-                       documents (branch-by-file); the first is the baseline. Returns each branch's \
-                       measures side by side — design nodes, open gaps, structural defects, \
-                       allocation modularity, capabilities verified — plus every non-baseline \
-                       branch's structural divergence from the baseline (added/removed/changed). \
-                       Makes alternatives comparable on measures, not advocacy; it opens its own \
-                       throwaway graphs, so it never touches and is never blocked by the live one. \
-                       Collapse the winner with merge_designs/apply_merge and retire the losers. \
-                       On a registry server, give `other_graph_ids` instead of paths, measured \
-                       against this design. \
+        description = "Compare parallel design alternatives side by side on the same measures. \
+                       Pass `paths` to two or more alternative export documents (branch-by-file); \
+                       the first is the baseline. On a registry server, give `other_graph_ids` \
+                       instead of paths, measured against this design. Returns each branch's \
+                       measures — design nodes, open gaps, structural defects, allocation \
+                       modularity, capabilities verified — plus each non-baseline branch's \
+                       structural divergence from the baseline. It opens its own throwaway graphs \
+                       and never touches the live one. Collapse the winner with \
+                       merge_designs/apply_merge and retire the losers. \
                        Ask for this to line candidate designs up on the same numbers.",
         title = "Analyze Alternatives",
         annotations(read_only_hint = true)
@@ -1336,9 +1370,21 @@ impl ReflowService {
         ok_json(registered)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (BL-70)
+    // - AN EMPTY LIST SAYS WHICH EMPTY: the reply distinguishes a decision that exists but has no
+    //   alternatives registered, a decision that is not `proposed` (only an open decision point can
+    //   carry forks), and an id that names no Decision at all — three different facts that used to
+    //   share one bare zero.
     #[tool(
-        description = "List the alternatives registered under a decision point (BL-70) — the Artifact pointers GOVERNED_BY the Decision, each with its export location, ready to feed to analyze_alternatives. AN EMPTY LIST SAYS WHICH EMPTY: the reply distinguishes a decision that exists but has no alternatives registered, a decision that is not `proposed` (only an open decision point can carry forks), and an id that names no Decision at all — three different facts that used to share one bare zero. Ask for this when you want to see the roads recorded under an open choice before comparing them. \
-                       Ask for this to see which candidate designs we did register against a decision.",
+        description = "List the alternatives registered under a decision point — the Artifact \
+                       pointers GOVERNED_BY the Decision, each with its export location, ready to \
+                       feed to analyze_alternatives. An empty list says why: no alternatives \
+                       registered, a decision that is not `proposed`, or an id that names no \
+                       Decision. \
+                       Ask for this when you want to see the roads recorded under an open choice \
+                       before comparing them. Ask for this to see which candidate designs we did \
+                       register against a decision.",
         title = "Alternatives for a Decision",
         annotations(read_only_hint = true)
     )]
@@ -1370,13 +1416,15 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Collapse a decision point (BL-70):
     #[tool(
-        description = "Collapse a decision point (BL-70): choose the winning alternative. The \
-                       Decision moves to `accepted`, the losing alternatives are superseded \
-                       (OBSOLETES — retired on the record, not deleted), and the outcome is \
-                       written into the Decision's own `alternatives` field with the rationale. \
-                       This records the choice; merge the winner's design content into the \
-                       baseline separately with apply_merge. \
+        description = "Collapse a decision point: choose the winning alternative. The Decision \
+                       moves to `accepted`, the losing alternatives are superseded (OBSOLETES — \
+                       retired on the record, not deleted), and the outcome is written into the \
+                       Decision's own `alternatives` field with the rationale. This records the \
+                       choice; merge the winner's design content into the baseline separately with \
+                       apply_merge. \
                        Ask for this to pick the winner and retire the others.",
         title = "Collapse a Decision Point",
         annotations(read_only_hint = false, destructive_hint = false)

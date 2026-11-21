@@ -511,8 +511,23 @@ impl ReflowService {
         ok_json(reply)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - A Question records WHAT WAS ASKED, and the answer stored beside it was given to those exact
+    //   words — so editing it afterwards would make the record a claim about what somebody wishes
+    //   they had asked. The immutability is deliberate, not a missing feature: two projects went
+    //   looking for an edit tool in the 2026-09-02 reports and the absence cost them more than the
+    //   wording did.
+    // - IF THE PHRASING CAME OUT AS RAW DETECTOR JARGON, the cause was almost certainly the replayed
+    //   gap being mutilated between the two passes — fixed 2026-09-02, so asking again now produces
+    //   the phrasing you meant.
+    // - Withdraw is for a question that should not have been asked or no longer applies; a question
+    //   asked BADLY is a different fact.
     #[tool(
-        description = "Withdraw a question asked in error or overtaken by events. Kept in the graph, not deleted. \u{1f6d1} THIS IS NOT HOW YOU FIX BAD WORDING, AND THERE IS NO TOOL THAT IS. A Question records WHAT WAS ASKED, and the answer stored beside it was given to those exact words \u{2014} so editing it afterwards would make the record a claim about what somebody wishes they had asked. The immutability is deliberate, not a missing feature: two projects went looking for an edit tool in the 2026-09-02 reports and the absence cost them more than the wording did. IF THE PHRASING CAME OUT AS RAW DETECTOR JARGON, the cause was almost certainly the replayed gap being mutilated between the two passes \u{2014} fixed 2026-09-02, so asking again now produces the phrasing you meant. Withdraw is for a question that should not have been asked or no longer applies; a question asked BADLY is a different fact. Name it by the `gap_id` it was asked about or by its own `question_id` (one asked with ask_question has no gap). \
+        description = "Withdraw a question asked in error or overtaken by events. Kept in the \
+                       graph, not deleted. \u{1f6d1} THIS IS NOT HOW YOU FIX BAD WORDING, AND \
+                       THERE IS NO TOOL THAT IS: a Question records WHAT WAS ASKED, and its answer \
+                       was given to those exact words. Name it by the `gap_id` it was asked about \
+                       or by its own `question_id` (one asked with ask_question has no gap). \
                        Ask for this to retract a question.",
         title = "Withdraw a Question",
         annotations(read_only_hint = false, destructive_hint = false)

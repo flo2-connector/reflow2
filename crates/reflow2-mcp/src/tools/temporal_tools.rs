@@ -602,24 +602,29 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word:
+    // - NO UNFINISHED ITEM IS DEFAULTED: `leftovers` answers for every item scheduled for it and not
+    //   delivered,
+    // - (to another open increment, `to`: a recorded slip)
+    // - so arrival_delta reads each item as moved or dropped rather than the plan as always smaller.
     #[tool(
-        description = "CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word: \
+        description = "CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, on the owner's word: \
                        `deferred` (still meant, later), `dropped` (no longer meant; `reason` says \
                        why) or `superseded` (by the increment `superseded_by` names). Only an open \
-                       increment closes. NO UNFINISHED ITEM IS DEFAULTED: `leftovers` answers for \
-                       every item scheduled for it and not delivered, each `moves` (to another \
-                       open increment, `to`: a recorded slip), is `dropped` from it (with its \
-                       `reason`; the item itself keeps its status, so dropping it here retires no \
-                       intent), or, on a deferral only, `stays`. One missing, doubled or unknown \
-                       answer refuses the whole call, naming every problem, and nothing is \
-                       written. When an item leaves and the plan is not on the record yet, \
-                       `recorded_in` names an epoch that has HAPPENED to file the plan's snapshot \
-                       in, so arrival_delta reads each item as moved or dropped rather than the \
-                       plan as always smaller. Writes one ChangeEvent with every fate and reason, \
-                       linked to what moved. `approver` is REQUIRED: the close is the owner's \
-                       word. A deferred increment leaves the open-increments list and is counted \
-                       apart; set_epoch_status reopens it. Ask for this to defer, drop or \
-                       supersede an increment that is not going to be finished.",
+                       increment closes. `leftovers` answers for EVERY item scheduled for it and \
+                       not delivered: each `moves` (to another open increment, `to`), is `dropped` \
+                       from it (with its `reason`; the item itself keeps its status, so dropping \
+                       it here retires no intent), or, on a deferral only, `stays`. One missing, \
+                       doubled or unknown answer refuses the whole call, naming every problem, and \
+                       nothing is written. When an item leaves and the plan is not on the record \
+                       yet, `recorded_in` names an epoch that has HAPPENED to file the plan's \
+                       snapshot in. Writes one ChangeEvent with every fate and reason, linked to \
+                       what moved. `approver` is REQUIRED: the close is the owner's word. A \
+                       deferred increment leaves the open-increments list and is counted apart; \
+                       set_epoch_status reopens it. \
+                       Ask for this to defer, drop or supersede an increment that is not going to \
+                       be finished.",
         title = "Close an Increment",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

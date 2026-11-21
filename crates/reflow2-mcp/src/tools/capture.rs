@@ -2439,20 +2439,22 @@ impl ReflowService {
         with_capture_notes(reply, hint, found, revision, None)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - which is the black-box interface at that tier (`req:recursive-black-box-decomposition`:
+    //   every element of a design is a black box with inner function AND INTERFACES).
+    // - — deliberately domain-neutral so a biology or hardware design is not forced into software
+    //   words.
+    // - OMITTING A FIELD LEAVES IT ALONE, so two people describing the same thing from opposite ends
+    //   cannot overwrite each other; AN EMPTY LIST IS A STATEMENT ("takes nothing in" is a real
+    //   claim about a source or a generator)
     #[tool(
         description = "Record what a Capability TAKES IN and PUTS OUT \u{2014} its functional \
-                       signature, which is the black-box interface at that tier \
-                       (`req:recursive-black-box-decomposition`: every element of a design is a \
-                       black box with inner function AND INTERFACES). Pass `inputs` / `outputs` as \
-                       lists; the JSON encoding the schema stores is done for you. \
-                       `capability_type` is free text \u{2014} validation / transform / query / \
-                       persistence / decision / actuation / io / compute \u{2014} deliberately \
-                       domain-neutral so a biology or hardware design is not forced into software \
-                       words. OMITTING A FIELD LEAVES IT ALONE, so two people describing the same \
-                       thing from opposite ends cannot overwrite each other; AN EMPTY LIST IS A \
-                       STATEMENT (\"takes nothing in\" is a real claim about a source or a \
-                       generator) and is distinct from nobody having said; and an unknown id is \
-                       REFUSED rather than created.",
+                       signature, the black-box interface at that tier. Pass `inputs` / `outputs` \
+                       as lists; the JSON encoding the schema stores is done for you. \
+                       `capability_type` is free text, e.g. validation / transform / query / \
+                       persistence / decision / actuation / io / compute. OMITTING A FIELD LEAVES \
+                       IT ALONE; AN EMPTY LIST IS A STATEMENT (\"takes nothing in\"), distinct \
+                       from nobody having said; and an unknown id is REFUSED rather than created.",
         title = "Set Capability Signature",
         annotations(
             read_only_hint = false,
@@ -2701,17 +2703,23 @@ impl ReflowService {
         with_approval_note(node, note)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Choose how much this project lets a machine change its design on its own:
+    // - `flexible` (apply_heal applies structural repairs)
+    // - — said plainly because the older schema wording, "design is the source of truth", promised a
+    //   breadth the code does not implement.
+    // - Until 2026-07-30 the mode could only be set at genesis, so every design ever made carried
+    //   the `flexible` DEFAULT and could never move off it — a governance choice nobody made and
+    //   nobody could revisit.
+    // - The default records that nobody has chosen, not that flexible was chosen
+    //   (req:mode-is-chosen-and-changeable).
     #[tool(
-        description = "Choose how much this project lets a machine change its design on its own: \
-                       `flexible` (apply_heal applies structural repairs) or `rigid` (apply_heal \
-                       proposes them and stops, so a human decides). That one gate is ALL the \
-                       mode currently changes — said plainly because the older schema wording, \
-                       \"design is the source of truth\", promised a breadth the code does not \
-                       implement. ASK THE USER; do not pick for them. Until 2026-07-30 the mode \
-                       could only be set at genesis, so every design ever made carried the \
-                       `flexible` DEFAULT and could never move off it — a governance choice \
-                       nobody made and nobody could revisit. The default records that nobody \
-                       has chosen, not that flexible was chosen (req:mode-is-chosen-and-changeable).",
+        description = "Choose this project's governance mode — how much it lets a machine change \
+                       its design on its own: `flexible` (apply_heal applies its repairs) or \
+                       `rigid` (apply_heal proposes them and stops, so a human decides). That one \
+                       gate is ALL the mode currently changes. ASK THE USER; do not pick for them. \
+                       The `flexible` default records that no choice was made, not that flexible \
+                       was chosen.",
         title = "Set Project Mode",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3708,24 +3716,30 @@ impl ReflowService {
         ok_json(reply)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - which stays COMPUTED from the golden thread.
+    // - `model` means the deliverable IS the design change — a re-decomposition, a retirement, a
+    //   governance ruling, a correction to a model that was wrong about the world — so there is no
+    //   file to point at and the passing check is the whole of the evidence.
+    // - BOTH KINDS STILL DEMAND A CHECK: this loosens WHICH evidence is required, never WHETHER any
+    //   is, so it is not a way to mark something done.
+    // - WHY IT EXISTS: arrival_delta reported an increment's genuinely delivered capabilities as
+    //   `outstanding` because delivery required a file, and `outstanding` means 'nobody has said
+    //   whether this was deferred or dropped' — a false question about finished work, asked again
+    //   every run.
+    // - NOT INFERRED FROM A MISSING FILE, deliberately: the commonest reason a capability has no
+    //   artifact is that nobody has built it yet, so inferring would report unbuilt work as
+    //   delivered.
+    // - Same shape as set_interface_designation — you declare the one thing only you can know, and
+    //   the computation earns the rest.
     #[tool(
-        description = "Declare WHAT KIND of thing delivers a capability — and never whether it \
-                       was delivered, which stays COMPUTED from the golden thread. `artifact` \
-                       (the default) means a file realizes it, and delivery needs BOTH the file \
-                       and a passing check. `model` means the deliverable IS the design change — \
-                       a re-decomposition, a retirement, a governance ruling, a correction to a \
-                       model that was wrong about the world — so there is no file to point at \
-                       and the passing check is the whole of the evidence. BOTH KINDS STILL \
-                       DEMAND A CHECK: this loosens WHICH evidence is required, never WHETHER \
-                       any is, so it is not a way to mark something done. WHY IT EXISTS: \
-                       arrival_delta reported an increment's genuinely delivered capabilities as \
-                       `outstanding` because delivery required a file, and `outstanding` means \
-                       'nobody has said whether this was deferred or dropped' — a false question \
-                       about finished work, asked again every run. NOT INFERRED FROM A MISSING \
-                       FILE, deliberately: the commonest reason a capability has no artifact is \
-                       that nobody has built it yet, so inferring would report unbuilt work as \
-                       delivered. Same shape as set_interface_designation — you declare the one \
-                       thing only you can know, and the computation earns the rest.",
+        description = "Declare WHAT KIND of thing delivers a capability — never whether it was \
+                       delivered, which stays computed. `artifact` (the default): a file realizes \
+                       it, and delivery needs BOTH the file and a passing check. `model`: the \
+                       deliverable IS the change to the model itself (a re-decomposition, a \
+                       retirement, a governance ruling, a corrected model), so the passing check \
+                       is the whole of the evidence. Both kinds still demand a check, so this is \
+                       not a way to mark something done. Never inferred when there is no file.",
         title = "Set Capability Delivery",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
