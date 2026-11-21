@@ -31,6 +31,162 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.102.0] — 2026-11-21
+
+**Minor. Fewer calls for the steps agents always run together, shorter replies from a search
+across designs, and every write cleaned of hidden characters.** It contains #848 to #854.
+**What to do:** install the new binary on every machine that opens the design. Nothing to
+migrate: the schema does not move. Nothing is removed. Two things are announced for removal in
+the next release (see Deprecated): three per-design lists in a multi-design `search_design`
+reply, and the `record_the_build` tool. Each has its replacement in this release.
+
+**No tool is added or removed; ten take new or changed arguments.** Measured against the
+published 0.101.0 binary (sha256 `a3e21922…` for its linux-x86_64 archive, checked against
+`checksums.txt`), over stdio on a fresh store: 200 tools on each.
+- New or changed arguments: `add_change_event`, `add_constraint`, `add_decision`,
+  `add_interface` and `search_design`. The input schemas of `add_readiness`,
+  `ingest_corpus_step`, `ingest_step`, `set_capability_signature` and `withdraw_question` change
+  only in their field descriptions.
+- `search_design`'s reply gains `found_in`, `searched` and `budget`.
+- 30 tool descriptions change: 29 trimmed, plus `record_the_build`'s deprecation mark. The tool
+  list, measured the same way on each binary, goes from 577,218 to 573,669 characters.
+- Skills stay at 36, none changed. The connect-time instructions are unchanged (2,911 characters
+  on stdio, the same text).
+- `toolsnap` on the release build: all 200 match.
+
+- **The schema does not move.** Measured at this cut with the published 0.101.0 binary: it opens
+  a store this release has written, with its "behind" warning, and writes to it; this release
+  then reads that write. It refuses this release's exports, and with `accept_newer: true` imports
+  one whole (13 nodes, 7 edges).
+- **Telling the people who rely on the MCP server** about the two deprecations is done by
+  Anthony before this release is tagged (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`).
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.102.0 release build beside the published 0.101.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design.** The 0.101.0 binary refuses
+  every new argument by name ("`checksums` is not a parameter of this tool"), and still opens the
+  store afterwards with its "behind" warning.
+- **`reflow2 write add_change_event '{…,"checksums":[{"artifact_id":"art:a"}]}'`** accepts each
+  file's checksum against the change in the same call. A checksum left out is measured on your
+  machine from the artifact's `location` (`checksum_basis: measured`). A file nobody registered is
+  refused, and nothing is written.
+- **`add_interface` with `provided_by`/`consumed_by`**, **`add_decision` with
+  `authored_by`/`documented_by`**, and **`add_constraint` with `constrains`** draw their edges in
+  the one call, and the reply names each under `edges_drawn`.
+- **`reflow2 write record_the_build …`** still works, and its reply carries a
+  `deprecation_notice` saying what to call instead.
+- **`reflow2 read search_design '{"query":…,"budget_chars":…}'`** takes the budget. The search
+  across several designs that the deprecated lists belong to runs through a hub's address, so
+  that part needs flo2.io (or `tracked_designs` on a hub kept on disk).
+- **A write holding hidden characters** is stored without them, and says so under `sanitized`.
+  An id holding one is refused.
+
+### Added
+
+- **`add_decision` names its authors and the documents behind it, in the same call.** It takes
+  `authored_by` (each a contributor, with an optional `role` and `acted_at`) and `documented_by`
+  (each an artifact, with an optional `doc_kind`). It draws AUTHORED_BY and DOCUMENTS exactly as
+  `authored_by` and `documents` do. On flo2.io, 45 of 51 `authored_by` runs came with an
+  `add_decision`. Where reflow2 is served for others, a signature is still the caller's own.
+- **`add_constraint` names what it constrains, in the same call.** It takes `constrains` (each a
+  target, with `constrains`' own fields: contribution, unit, source, basis, measured_at, note).
+  On flo2.io, 13 of 17 `constrains` runs came right after an `add_constraint`.
+- In both, an entry that cannot be drawn refuses the whole call, and nothing is written. The edge
+  tools stay served for every other use.
+
+- **`add_interface` names who provides and who consumes the interface, in the same call.** It
+  takes `provided_by` (components) and `consumed_by` (components, or actors outside the design), and
+  draws PROVIDES and CONSUMES exactly as `provides` and `consumes` do. An id naming nothing is
+  refused, and nothing is written. On a revise, a side is added and none is removed. The two edge
+  tools still work as before. On flo2.io they ran next to each other in 31 of 34 and 33 of 35 runs
+  and never alone, so recording a seam took three calls where it now takes one.
+
+### Changed
+
+- **`add_change_event` takes `checksums`, and accepts those files' checksums against the change in
+  the same call.** Each item is `{artifact_id, checksum?}`. The file is drawn as CHANGED, so it
+  need not be listed in `affected` too. Its checksum is accepted as `design_updated`, and one
+  left out is measured where the file can be read, including by a local client. Every file is
+  checked before anything is written, and an acceptance that is refused takes the whole call
+  back. Measured on flo2.io from 10-30 to 11-20: in 137 of 163 runs, recording a change was
+  followed by accepting its checksums, a median of 16 seconds later. That second call is now
+  part of the first. A change that touches registered files and does not accept them still says
+  so under `next_step`, which now names `checksums` first.
+
+- **`search_design` takes `budget_chars`, and a search through a hub's address is held to it
+  whole.** Through a hub of 29 designs a search at `limit` 2 answered 5,746 characters, 1,314 of
+  them hits, and nothing held the reply. Over the budget, the per-design lists give way first,
+  then whole hits from the tail; every count stays, and `budget` says what was withheld.
+- **A search over several designs carries `searched` and `found_in`.** `searched` is the one total
+  of nodes the searches ran over (the key a single design's search already answers with), and
+  `found_in` names only the designs that returned hits, with their counts.
+
+- **The doc check now finds counts itself.** Any count of tools, served skills, node types, edge
+  types or modules in a current-state doc (README, AGENTS.md, SKILLS.md, the consumer kit's
+  AGENTS.md, docs/overview.md, docs/interaction-surfaces.md, the crates' lib.rs headers) must
+  match the build, or CI fails naming the file, what it says and what the build says. Prose about
+  the past is listed by its exact words in the check. **What to do:** when you add a tool or a
+  skill, update the counts the failure names.
+- **AGENTS.md has a size ceiling.** CI fails a change that makes it larger than the byte count in
+  `tools/agents_md_ceiling.txt`. **What to do:** put new standing guidance in the design or at the
+  step it bears on; lower the ceiling when the file shrinks; raise it only as its own reviewed
+  change that says why.
+
+- **The 29 tools nobody called on flo2.io in eight weeks have shorter descriptions.** Each still
+  says its job, its arguments' rules and what it refuses. The dates, measurements and reasons
+  behind each rule moved into the source beside the code. Nothing is added, removed or unlisted,
+  and every tool works as before. The 29 now take 49,180 characters of the tool list, where they
+  took 58,852, and the whole list went from 556,940 to 547,268. `find_tools` still ranks each tool
+  first for its own job, and `pair_designs` now does where it did not before.
+
+### Deprecated
+
+- **`record_the_build`** is going in the next release. Agents called it 8 times in three weeks
+  while doing its steps by hand, so its job moves into the tool they already call. It still
+  works in this release, and it is marked as deprecated in the tool list. **What to do:** call
+  `add_change_event` with `checksums`, which accepts the files' checksums against the change in the
+  same call. Record the check with `add_verification`, and mark the work built with
+  `set_capability_status`.
+
+Three per-design lists in a `search_design` reply over several designs (through a hub's address,
+or with `tracked_designs`) are going in the next release. They list every design whatever the
+answer, so the reply grew with the number of designs. Each still arrives in this release, and a
+reply that carries one says so under `deprecation_notice`.
+
+- **`search_design`'s `view`.** It names the same designs as `designs_searched`. **What to do:**
+  read `designs_searched`, which names them with the hub first.
+- **`search_design`'s `searched_by_design`.** **What to do:** read `searched`, the total the
+  searches ran over; a design whose search failed is named in `failed`.
+- **`search_design`'s `found_by_design`.** **What to do:** read `found_in`, which names each design
+  that returned hits with its count; a design searched and absent from it returned none.
+
+### Fixed
+
+- **The README, AGENTS.md and the core crate's header state the right counts again** (200 tools,
+  36 served skills, 99 core modules, 71 edge types). They said 165, 25, 59 and 60 while the doc
+  check stayed green, because it checked only the sentences written into its own list.
+- **The README no longer says there is no service at all.** It says nothing leaves your machine
+  with the default install, and adds a short paragraph on serving designs over the network
+  (`--http`, the Docker image, flo2.io).
+
+### Security
+
+- **Every write is cleaned of hidden characters, and says so.** Text a write tool stores no
+  longer keeps Unicode tag characters (an invisible alphabet), bidirectional overrides or
+  zero-width formatting. Until now only text brought in through INGEST was cleaned, so on a design
+  several people write to, someone else's hidden text reached your agent unchanged. A write that
+  removed any says what and from which fields, under `sanitized` in its reply. The zero-width
+  joiner emoji use is kept.
+- **An id holding hidden characters is refused.** The store accepted them, so two ids that read
+  the same could be different ids. Cleaning one would quietly address the other, so it is refused,
+  naming the field. **What to do:** send the id without them.
+- **An import reports hidden characters and stores the document as given.** An export's content
+  is its identity, so `import_graph` does not rewrite it. Its reply names every field holding them
+  under `hidden_characters`. **What to do:** clean them in the source and import it again if they
+  should not be there.
+
 ## [0.101.0] — 2026-11-18
 
 **Minor. `graph_report` names the open increments by id, with every count, so a design's own
