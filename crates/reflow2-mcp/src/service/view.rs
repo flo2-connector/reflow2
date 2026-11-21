@@ -419,7 +419,8 @@ async fn serve_in_view(
         tool: &tool,
     };
     if tool == "search_design" {
-        view.merged_search(replies, policy, tracked_asked)
+        let budget = budget_for(hub, &request);
+        view.merged_search(replies, policy, tracked_asked, budget)
     } else {
         view.by_design(replies, policy)
     }
@@ -1039,6 +1040,7 @@ impl View<'_> {
         replies: Vec<(String, Result<CallToolResponse, McpError>)>,
         policy: ContentPolicy,
         tracked_asked: bool,
+        budget: Option<usize>,
     ) -> Result<CallToolResponse, McpError> {
         let mut payload = self.merged_search_payload(replies);
         // `tracked_designs` asks a design to search the designs it PINS by
@@ -1049,6 +1051,41 @@ impl View<'_> {
             o.insert(
                 "tracked_note".into(),
                 JsonValue::String(super::tracked::THROUGH_A_HUBS_ADDRESS.to_string()),
+            );
+        }
+        // THE NOTICE (crate::deprecation): the merged reply is built here, not
+        // in call_tool_unshaped, so it is told here what it carries that is
+        // going (dec:a-hub-search-reply-announces-its-per-design-lists-and-the-
+        // next-release-removes-them).
+        let used = crate::deprecation::used_by(
+            crate::deprecation::REGISTRY,
+            self.tool,
+            None,
+            Some(&payload),
+        );
+        if !used.is_empty()
+            && let Some(o) = payload.as_object_mut()
+        {
+            o.insert(
+                crate::deprecation::NOTICE_KEY.into(),
+                JsonValue::Array(used.iter().map(|d| d.to_json()).collect()),
+            );
+        }
+        // THE WHOLE MERGED REPLY IS HELD TO THE CALLER'S BUDGET: the
+        // per-design lists give way before the hits; every count stays.
+        if let Some(budget) = budget {
+            payload = crate::reply_budget::bound_reply_rows_first(
+                payload,
+                budget,
+                "raise `budget_chars`, lower `limit`, or search one member with `member`",
+                &[
+                    "view",
+                    "searched_by_design",
+                    "found_by_design",
+                    "designs_searched",
+                    "hits",
+                ],
+                &[],
             );
         }
         let sentence = format!(
@@ -1147,15 +1184,25 @@ impl View<'_> {
             hits.truncate(n);
         }
         let withheld = ranked - hits.len();
+        // ONE TOTAL, the key a single design's search answers with, and ONLY
+        // THE DESIGNS THAT RETURNED HITS: what the per-design lists said,
+        // without a row per design whatever the answer.
+        let searched_total: u64 = searched.values().filter_map(JsonValue::as_u64).sum();
+        let found_in: JsonMap<String, JsonValue> = found
+            .iter()
+            .filter(|(_, n)| n.as_u64().is_some_and(|n| n > 0))
+            .map(|(k, v)| (k.clone(), v.clone()))
+            .collect();
         let note = format!(
             "search_design through hub {}'s view: every design's hits ranked together by score, \
              each member's node_id prefixed with its graph_id ('<graph_id>:<id>') and the hub's \
              own unprefixed; `design` names where each hit came from. Scores come from each \
              design's own index, so the order across designs is a guide, not a measurement. The \
              one `limit` bounds this merged list: each design was asked for that many, \
-             `found_by_design` says how many each returned (a design at the limit may hold \
-             more), and `hits_withheld` counts the ranked hits that fell outside it — raise \
-             `limit`, or search a member's own address, to see them.{}",
+             `found_in` says how many each design with hits returned (a design at the limit may \
+             hold more), `searched` how many nodes the searches ran over in all, and \
+             `hits_withheld` counts the ranked hits that fell outside it — raise `limit`, or \
+             search a member's own address, to see them.{}",
             self.hub_id,
             self.unreachable_sentence()
         );
@@ -1163,6 +1210,8 @@ impl View<'_> {
             "hits": hits,
             "limit": limit,
             "hits_withheld": withheld,
+            "found_in": found_in,
+            "searched": searched_total,
             "found_by_design": found,
             "designs_searched": designs_searched,
             "searched_by_design": searched,
@@ -1176,8 +1225,8 @@ impl View<'_> {
                 o.insert(
                     "empty_because".into(),
                     JsonValue::String(
-                        "no design in the view matched the query; `searched_by_design` says \
-                         how many nodes each design's search ran over"
+                        "no design in the view matched the query; `searched` says how many \
+                         nodes the searches ran over in all"
                             .to_string(),
                     ),
                 );

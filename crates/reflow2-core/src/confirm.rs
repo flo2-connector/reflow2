@@ -205,8 +205,14 @@ impl DesignGraph {
     ///
     /// A delegation to [`confirmation_ledger`], kept so no caller changed when
     /// the reading moved behind `ifc:graph-read`.
+    ///
+    /// Worked out once per state of the design and kept until the next write
+    /// ([`DesignGraph::kept`]): 0.31 to 0.33 s of every repeat `loop_status`
+    /// on reflow2's own design, measured 2026-11-13. The free function below
+    /// is the reading itself and keeps nothing, so a caller holding another
+    /// `GraphRead` computes as it always did.
     pub fn confirmation_ledger(&self) -> Result<ConfirmationLedger, DynoError> {
-        confirmation_ledger(self)
+        self.kept("confirmation_ledger", || confirmation_ledger(self))
     }
 }
 

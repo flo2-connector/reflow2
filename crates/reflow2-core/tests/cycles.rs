@@ -146,10 +146,20 @@ fn two_independent_loops_are_reported_separately() {
     assert_eq!(found[1], vec!["cmp:x", "cmp:y"]);
 }
 
+/// No door writes a self-dependency since 2026-11-07 (DEPENDS_ON is declared
+/// irreflexive), but a restore keeps one a document written before that
+/// holds, so the detector must still catch a stored one.
 #[test]
 fn a_self_dependency_is_caught() {
-    let mut g = project_with(&[("cmp:a", "A")]);
-    depends(&mut g, "cmp:a", "cmp:a");
+    let mut doc = project_with(&[("cmp:a", "A")]).export_graph().unwrap();
+    doc.edges.push(reflow2_core::export::ExportedEdge {
+        edge_type: "DEPENDS_ON".to_string(),
+        from_id: "cmp:a".to_string(),
+        to_id: "cmp:a".to_string(),
+        properties: Default::default(),
+    });
+    let mut g = reflow2_core::DesignGraph::open_in_memory().unwrap();
+    g.import_graph(&doc).unwrap();
 
     let found = cycles(&g);
     assert_eq!(found.len(), 1, "a node depending on itself is a loop");

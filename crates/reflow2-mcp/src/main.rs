@@ -2385,6 +2385,21 @@ async fn run() -> anyhow::Result<()> {
                 eprintln!("  {r}");
             }
         }
+        // Edges from a node to itself on a relation that cannot hold to itself,
+        // which every other door refuses: kept, as a restore keeps what its
+        // document holds, and said here so the CLI restore is no quieter about
+        // them than the import_graph tool.
+        if !report.self_loops_kept.is_empty() {
+            eprintln!(
+                "reflow2: {} edge(s) from a node to itself on a relation that cannot hold to \
+                 itself were kept as the document holds them; nothing rests on them, and \
+                 delete_edge removes each:",
+                report.self_loops_kept.len()
+            );
+            for k in &report.self_loops_kept {
+                eprintln!("  {k}");
+            }
+        }
         // Edges written as something other than they arrived. Carried by the
         // report since 2026-09-23 and printed by nothing here until the twin
         // repair joined it, which made a CLI restore the one door that did

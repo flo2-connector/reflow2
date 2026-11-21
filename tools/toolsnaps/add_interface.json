@@ -3,11 +3,22 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Create or revise an Interface node — a contract between parts (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). Model one whenever two Components talk to each other, then pair it with `provides` and `consumes`: that pairing is what makes a change on one side of a boundary surface the other side. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this to record where two parts meet — the contract at the seam.",
+  "description": "Create or revise an Interface node — a contract where two parts meet (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). Name its sides with `provided_by` and `consumed_by`: that pairing is what makes a change on one side of a boundary surface the other side. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this to record where two parts meet — the contract at the seam.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "consumed_by": {
+        "default": null,
+        "description": "Its consumers, by id (a Component, or an Actor outside the design): each\ndraws CONSUMES in this call, refused and added as `provided_by` is.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "description": {
         "default": null,
         "description": "WHAT THIS IS, in prose. Added 2026-09-07: an Interface declares\n`description` as the ONLY prose field it has, so until this landed the\nsurface let a caller name an interface and never say what it was\n(`fact:six-constructors-cannot-write-any-prose-because-the-class-was-fixed-one-report-at-a-time-and-never-swept`).\nSince 2026-09-19 this struct has ONE user, `add_interface`; `add_project`\nhas its own (`ProjectReq`), because the two types had come to share a\nstruct where half the fields were \"ignored for the other\".",
@@ -34,6 +45,17 @@
         "description": "Human-readable name.",
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "provided_by": {
+        "default": null,
+        "description": "Components that provide it, by id: each draws PROVIDES in this call. A\nmissing id is refused and nothing is written; a revise only adds.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

@@ -21,6 +21,75 @@
   "description": "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is not the same as settling it, so reaching `accepted` is a separate act (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is deliberate — an accepted Decision is what where-am-i reads back to the user as \"what you decided\", so asserting it on their behalf would be the forgery dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
   "inputSchema": {
     "$defs": {
+      "DocumentedByReq": {
+        "additionalProperties": false,
+        "description": "One artifact `add_decision` names in `documented_by`.",
+        "properties": {
+          "artifact_id": {
+            "description": "The Artifact (`art:…`) that documents the decision.",
+            "type": "string"
+          },
+          "doc_kind": {
+            "default": null,
+            "description": "What kind of document, as `documents` takes it.",
+            "enum": [
+              "design_doc",
+              "adr",
+              "readme",
+              "runbook",
+              "agent_instructions",
+              "dataflow",
+              "sequence_diagram",
+              "arch_diagram",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "artifact_id"
+        ],
+        "type": "object"
+      },
+      "NamedAuthorReq": {
+        "additionalProperties": false,
+        "description": "One contributor `add_decision` names in `authored_by`.",
+        "properties": {
+          "acted_at": {
+            "default": null,
+            "description": "When they acted, as a plain date.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contributor_id": {
+            "description": "The `Contributor` whose word the decision is.",
+            "type": "string"
+          },
+          "role": {
+            "default": null,
+            "description": "`author` (default) / `reviewer` / `approver`.",
+            "enum": [
+              "author",
+              "reviewer",
+              "approver",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "contributor_id"
+        ],
+        "type": "object"
+      },
       "RelationLinkReq": {
         "additionalProperties": false,
         "description": "One relation for `review_relations`.",
@@ -180,6 +249,30 @@
           "null"
         ]
       },
+      "authored_by": {
+        "description": "WHOSE WORD THIS IS, beyond the caller's own credit: each entry draws\nAUTHORED_BY in this call, exactly as `authored_by` draws it (on flo2.io\n45 of 51 authored_by runs came with an add_decision). A signature is\nthe caller's own wherever reflow2 is served for others.",
+        "items": {
+          "$ref": "#/$defs/NamedAuthorReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "closing_it": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE\nCLAIM IT SERVES — `closes` (it is a premise that finishes a route to\nthat claim), `narrows` (a special case, or a class ruled out such as a\ncounterexample pruning: it cannot close the claim) or `restates` (an\nequivalent form: closing it closes the claim, and it is no smaller a\nstep). The search map reads it along the path to the target and says\nwhether closing the hole could close the target. Refused without\n`serves`, on this call or stored. NO DEFAULT: left out, it reads\nunsaid, never `closes`.",
+        "enum": [
+          "closes",
+          "narrows",
+          "restates",
+          null
+        ],
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "decision": {
         "default": null,
         "description": "What was decided.",
@@ -199,6 +292,16 @@
           "null"
         ]
       },
+      "documented_by": {
+        "description": "THE ARTIFACTS THAT DOCUMENT IT: each draws DOCUMENTS from the artifact\nin this call, exactly as `documents` draws it.",
+        "items": {
+          "$ref": "#/$defs/DocumentedByReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "echo": {
         "default": "receipt",
         "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
@@ -207,6 +310,14 @@
           "node"
         ],
         "type": "string"
+      },
+      "hole": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: THE STATEMENT THAT MUST BE SHOWN, by\nid — the lemma, conjecture or theorem this decision point is the hole\nfor (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-\nit-closes-that-claim). It must name a node of this design, and never\nthis decision. reasoning_report's search map (`map: true`) places the\nhole's routes and failed routes under it.",
+        "type": [
+          "string",
+          "null"
+        ]
       },
       "id": {
         "description": "The decision's id — `dec:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives. An exploratory idea is conventionally `dec:idea-…`.",
@@ -266,6 +377,14 @@
         },
         "type": [
           "array",
+          "null"
+        ]
+      },
+      "serves": {
+        "default": null,
+        "description": "ON A PROOF HOLE'S DECISION POINT: THE CLAIM THIS HOLE SERVES, by id —\nthe claim above it whose route needs it, or another hole's decision\npoint. Leave it out on the target's own hole. It must name a node of\nthis design, and never this decision or its `hole`. A property, never\nan edge: serving a claim is not supporting it.",
+        "type": [
+          "string",
           "null"
         ]
       },

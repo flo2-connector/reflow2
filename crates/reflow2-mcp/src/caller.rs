@@ -287,31 +287,33 @@ impl CallerRule {
     /// The sentence the handshake leads with on an engine served for others,
     /// so every session knows what a signature means here before it writes
     /// one. Empty on a local engine, whose handshake is unchanged.
+    ///
+    /// SHORTENED 2026-11-01, meaning kept: the whole handshake, this included,
+    /// must fit a client's 4,096-character cap with a host's preamble in front
+    /// (`tests/the_handshake_fits_the_clients_cap.rs`). The refusals
+    /// themselves, which name everything at the moment they fire, are
+    /// unchanged.
     pub fn handshake_note(&self) -> String {
         match self {
             CallerRule::Local => String::new(),
             CallerRule::TrustedGateway { name } => format!(
-                "🔏 THIS SERVER IS SERVED FOR OTHERS BEHIND A TRUSTED GATEWAY (`{name}`), which \
-                 authenticates every caller and names them on each call. Every AUTHORED_BY a \
-                 call writes, author or approver, is the caller's own: an approval, an \
-                 `approver`, or any signature naming someone else is REFUSED, and nothing is \
-                 written. Sign as yourself.\n\n"
+                "🔏 SERVED FOR OTHERS BEHIND A TRUSTED GATEWAY (`{name}`), which names the \
+                 caller on each call. Every signature a call writes (AUTHORED_BY, author or \
+                 approver) is the caller's own: one naming anyone else is REFUSED, and nothing \
+                 is written. Sign as yourself.\n\n"
             ),
             CallerRule::BearerToken { issuer, mapping } => format!(
-                "🔏 THIS SERVER IS AN OAUTH 2.0 RESOURCE SERVER: EVERY REQUEST CARRIES A BEARER \
-                 TOKEN from `{issuer}`, verified here, and the caller is the Contributor the \
-                 operator's mapping {mapping} derives from it. Every AUTHORED_BY a call writes, \
-                 author or approver, is the caller's own: an approval, an `approver`, or any \
-                 signature naming someone else is REFUSED, and nothing is written. Neither \
-                 `writes_for` nor _meta[\"{GATEWAY_NAMES_THE_CALLER_IN}\"] can name anyone \
-                 else. Sign as yourself.\n\n"
+                "🔏 AN OAUTH 2.0 RESOURCE SERVER: each request's BEARER token, from `{issuer}`, \
+                 is verified here and names the caller through the operator's mapping {mapping}. \
+                 Every signature a call writes (AUTHORED_BY, author or approver) is the caller's \
+                 own: one naming anyone else, by `writes_for` or _meta, is REFUSED, and nothing is \
+                 written. Sign as yourself.\n\n"
             ),
             CallerRule::Undeclared { exposure } => format!(
-                "🔏 THIS SERVER IS SERVED FOR OTHERS ({exposure}) AND DOES NOT KNOW WHO IS \
-                 CALLING. Reads and proposals work. Nothing can be signed or settled here: an \
-                 approver, an accepted or deferred decision, a requirement past proposed, or a \
-                 rule's `enforced` is REFUSED, and nothing is written. The owner settles intent \
-                 on a server that establishes who they are.\n\n"
+                "🔏 SERVED FOR OTHERS ({exposure}) WITHOUT KNOWING WHO IS CALLING: reads and \
+                 proposals work, and nothing can be signed or settled (an approver, an accepted \
+                 or deferred decision, a requirement past proposed, a rule's `enforced`) — each \
+                 is REFUSED, and nothing is written.\n\n"
             ),
         }
     }

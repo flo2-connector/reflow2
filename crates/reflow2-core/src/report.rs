@@ -398,6 +398,15 @@ pub struct GraphReport {
     pub declining: Vec<DimensionDrift>,
     /// Declining dimensions beyond the shown top.
     pub declining_truncated: usize,
+    /// EVERY INCREMENT THAT WAS PLANNED AND NEVER CLOSED, oldest first: how
+    /// much of what was scheduled for each is delivered and which unfinished
+    /// signals it shows ([`crate::open_increments`]). The counts are the whole
+    /// design's; the list is the oldest
+    /// [`OPEN_INCREMENTS_LISTED`](crate::open_increments::OPEN_INCREMENTS_LISTED).
+    /// The same answer `loop_status` carries, which the Markdown report lists;
+    /// the JSON `graph_report` names these by id
+    /// ([`OpenIncrements::by_id`](crate::open_increments::OpenIncrements::by_id)).
+    pub open_increments: crate::open_increments::OpenIncrements,
 }
 
 /// The coherence loop's outstanding debt — what CHANGE→DETECT→SURFACE→RESOLVE
@@ -416,7 +425,8 @@ pub struct LoopStatus {
     /// Open *anchored* gaps DETECT finds right now that no Question was ever
     /// asked about — intent was captured and never surfaced to the user.
     /// Phase nudges don't count: they say what comes next, not what is owed.
-    pub unsurfaced_gaps: usize,
+    /// NULL WHEN GAP DETECTION WAS NOT COMPUTED THIS CALL (`not_computed`).
+    pub unsurfaced_gaps: Option<usize>,
     /// Questions put to the user, still waiting on them.
     pub unanswered_questions: usize,
     /// Questions the user answered whose gap is still OPEN. THAT IS THE WHOLE
@@ -427,7 +437,8 @@ pub struct LoopStatus {
     /// than debt. Renamed from `unwritten_answers` on 2026-09-02: that name
     /// asserted the half this count cannot reach, and three projects each
     /// diagnosed the resulting message from scratch.
-    pub answered_with_open_gap: usize,
+    /// Null when gap detection was not computed this call.
+    pub answered_with_open_gap: Option<usize>,
     /// How many of `answered_with_open_gap` NAME the design record that
     /// answered them, via an `ANSWERS` edge.
     ///
@@ -435,7 +446,8 @@ pub struct LoopStatus {
     /// `answered_with_open_gap` is what nobody has said either way — NOT a
     /// count of answers that went unwritten. Every design predating the
     /// `ANSWERS` edge (2026-09-02) reports 0 here and is not thereby in debt.
-    pub answered_naming_their_record: usize,
+    /// Null when gap detection was not computed this call.
+    pub answered_naming_their_record: Option<usize>,
     /// Decisions left `proposed` that a NAMED person has been asked to settle —
     /// an `AUTHORED_BY` edge carrying `role=approver`.
     ///
@@ -456,15 +468,17 @@ pub struct LoopStatus {
     /// prose has none — so making it fire would mean inventing file paths that
     /// do not exist.
     pub unsettled_assigned_decisions: usize,
-    /// Structural defects HEAL reports right now.
-    pub structural_defects: usize,
+    /// Structural defects HEAL reports right now. Null when defect detection
+    /// was not computed this call.
+    pub structural_defects: Option<usize>,
     /// Capabilities claiming `realized`/`verified` with no passing check.
     pub unproven_capabilities: usize,
     /// Recorded divergences (`DriftEvent`) awaiting a disposition.
     pub undispositioned_drift: usize,
     /// Built capabilities nobody has ever checked against reality
-    /// (the confirmation ledger's `unexamined`).
-    pub unexamined_claims: usize,
+    /// (the confirmation ledger's `unexamined`). Null when the ledger was not
+    /// computed this call.
+    pub unexamined_claims: Option<usize>,
     /// Follow-ups captured and never revisited: TemporalFacts with
     /// `fact_type: follow_up`, no `valid_to`, and nothing claiming to have
     /// answered them (no incoming INVALIDATES). The one-word capture
@@ -526,6 +540,18 @@ pub struct LoopStatus {
     /// `repair_report` (`dec:loop-status-carries-one-repair-line`). One line
     /// in `next`; never counted in `clean`.
     pub repairs: crate::repair::RepairLine,
+    /// EVERY INCREMENT THAT WAS PLANNED AND NEVER CLOSED, oldest first: how
+    /// much of what was scheduled for each is delivered, and which unfinished
+    /// signals it shows — done but not closed, overtaken, empty
+    /// ([`crate::open_increments`]). The counts are the whole design's; the
+    /// list is the oldest
+    /// [`OPEN_INCREMENTS_LISTED`](crate::open_increments::OPEN_INCREMENTS_LISTED),
+    /// and `full_list` names the call that shows the rest. The same answer
+    /// `graph_report` carries. One line in `next`; never counted in `clean`:
+    /// an increment left open is something to mention at the start or end of
+    /// a session, not a debt the loop owes. The whole design's, whoever the
+    /// answer is narrowed to.
+    pub open_increments: crate::open_increments::OpenIncrements,
     /// The debt as ordered to-do lines, most blocking first. Empty when the
     /// loop is clean — and emptiness is asserted, not implied.
     pub next: Vec<String>,
@@ -545,7 +571,8 @@ pub struct LoopStatus {
     /// is to SHOW it, not to hold it against them — so a design that has never
     /// fed a run back can still be clean. It is in `next` rather than only
     /// here because a field beside the list is measured not to be read.
-    pub loop_closure: crate::loop_closure::LoopClosure,
+    /// Null when it was not computed this call (`not_computed`).
+    pub loop_closure: Option<crate::loop_closure::LoopClosure>,
     /// WHAT THE REASONING STILL OWES, on a design that holds Inference steps:
     /// its unconfirmed steps, its uncited premises, and its claims that read
     /// `shown` but not `proven` (req:the-loop-sees-unconfirmed-steps-and-
@@ -596,7 +623,168 @@ pub struct LoopStatus {
     /// Every counter zero. **When `scope` is set this means "nothing is
     /// assigned to that person"** — not that the design is clean. `scope`
     /// carries what could not be attributed, and `next` says so in words.
+    /// Never true while `not_computed` names anything.
     pub clean: bool,
+    /// THE WHOLE-DESIGN ANALYSES THIS CALL DID NOT COMPUTE, each with the
+    /// fields it left null and the call that computes it alone. Empty when the
+    /// answer is whole, which is every answer with no stop scope open
+    /// (`crate::stop`). A caller that gave a time budget gets the floor and
+    /// the analyses that fit, cheapest first, and this names the rest
+    /// (req:loop-status-answers-within-a-time-budget-and-names-the-sections-it-did-not-compute).
+    pub not_computed: Vec<NotComputed>,
+}
+
+/// One whole-design analysis `loop_status` ran under its caller's budget,
+/// in the order it runs them: cheapest first, as measured on reflow2's own
+/// design on 2026-11-07 (8,696 nodes, a dev box, its own check points): the
+/// confirmation ledger 1.3 s, the reasoning 1.2 s, whether a result ever came
+/// back 4.8 s, gap detection 12.3 s, defect detection 7.6 s after it (which
+/// shares what gap detection built; alone, 8.0 s against gap detection's 7.8).
+#[derive(Debug)]
+pub struct LoopSection {
+    /// The section's key in `not_computed` (`gaps`).
+    pub key: &'static str,
+    /// What it is, in words (`gap detection`).
+    pub what: &'static str,
+    /// The fields of the reply it fills, which read null when it is not run.
+    pub fields: &'static [&'static str],
+    /// The call that computes it alone.
+    pub call: &'static str,
+    /// Its check point, asked before it starts.
+    checkpoint: &'static str,
+}
+
+/// The five, in the order `loop_status` runs them.
+pub const LOOP_SECTIONS: [&LoopSection; 5] = [
+    &SECTION_LEDGER,
+    &SECTION_REASONING,
+    &SECTION_LOOP_CLOSURE,
+    &SECTION_GAPS,
+    &SECTION_DEFECTS,
+];
+
+const SECTION_LEDGER: LoopSection = LoopSection {
+    key: "confirmation_ledger",
+    what: "the confirmation ledger",
+    fields: &["unexamined_claims"],
+    call: "confirmation_ledger",
+    checkpoint: "loop_status:confirmation_ledger",
+};
+const SECTION_REASONING: LoopSection = LoopSection {
+    key: "reasoning",
+    what: "what the reasoning owes",
+    fields: &["reasoning"],
+    call: "reasoning_report",
+    checkpoint: "loop_status:reasoning",
+};
+/// Not in the floor although it reads one kind of record: it asks each
+/// passing check for its kept record, and a check whose `location` names no
+/// Artifact by id is matched against every Artifact's location — 4.8 s of the
+/// 29.3 on reflow2's own design, measured. Nothing else serves it alone.
+const SECTION_LOOP_CLOSURE: LoopSection = LoopSection {
+    key: "loop_closure",
+    what: "whether a real result has ever come back",
+    fields: &["loop_closure"],
+    call: "loop_status with a larger `time_budget_ms` (no other call computes it)",
+    checkpoint: "loop_status:loop_closure",
+};
+const SECTION_GAPS: LoopSection = LoopSection {
+    key: "gaps",
+    what: "gap detection",
+    fields: &[
+        "unsurfaced_gaps",
+        "answered_with_open_gap",
+        "answered_naming_their_record",
+        "gaps_on_owned_ground",
+    ],
+    call: "detect_gaps (and open_questions for the answered questions whose gap is open)",
+    checkpoint: "loop_status:gaps",
+};
+const SECTION_DEFECTS: LoopSection = LoopSection {
+    key: "defects",
+    what: "defect detection",
+    fields: &["structural_defects"],
+    call: "detect_defects",
+    checkpoint: "loop_status:defects",
+};
+
+/// A section `loop_status` did not compute this call — see
+/// [`LoopStatus::not_computed`].
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct NotComputed {
+    /// `confirmation_ledger`, `reasoning`, `gaps` or `defects`.
+    pub section: &'static str,
+    /// What it is, in words.
+    pub what: &'static str,
+    /// The fields it fills, null in this reply (`reasoning` absent).
+    pub fields: &'static [&'static str],
+    /// The call that computes it on its own.
+    pub call: &'static str,
+    /// Why it stopped: `budget` (the call's time ran out) or `caller_gone`
+    /// (the caller cancelled or went away).
+    pub why: &'static str,
+    /// Whether it had begun when it was stopped. A section begun and stopped
+    /// kept nothing: what it had worked out is discarded, never reported.
+    pub started: bool,
+    /// The check point it stopped at.
+    pub stopped_at: String,
+}
+
+impl NotComputed {
+    /// Its line in `next`.
+    pub fn line(&self) -> String {
+        let why = match self.why {
+            "caller_gone" => "the caller gave up on this call",
+            _ => "this call's time budget ran out",
+        };
+        format!(
+            "NOT COMPUTED THIS CALL — {what}: {why} {when}, so {fields} read null here and \
+             nothing about them is known from this answer, which is therefore not clean. Call \
+             {call} on its own; a loop_status after it, with no write in between, reads its \
+             result from the server instead of computing it again (or raise `time_budget_ms`)",
+            what = self.what,
+            when = if self.started {
+                "part-way through it"
+            } else {
+                "before it began"
+            },
+            fields = self.fields.join(", "),
+            call = self.call,
+        )
+    }
+}
+
+/// Run one whole-design analysis under the caller's budget: `Some` with its
+/// result, or `None` with the section named in `not_computed` when a check
+/// point said stop. Any other error is the call's own and is returned.
+fn section<T>(
+    not_computed: &mut Vec<NotComputed>,
+    s: &LoopSection,
+    compute: impl FnOnce() -> Result<T, DynoError>,
+) -> Result<Option<T>, DynoError> {
+    let run = crate::stop::checkpoint(s.checkpoint).and_then(|()| compute());
+    match run {
+        Ok(v) => Ok(Some(v)),
+        Err(e) => match crate::stop::stopped(&e) {
+            Some(reason) => {
+                let stopped_at = match &e {
+                    DynoError::Stopped { at, .. } => at.clone(),
+                    _ => String::new(),
+                };
+                not_computed.push(NotComputed {
+                    section: s.key,
+                    what: s.what,
+                    fields: s.fields,
+                    call: s.call,
+                    why: reason.as_str(),
+                    started: stopped_at != s.checkpoint,
+                    stopped_at,
+                });
+                Ok(None)
+            }
+            None => Err(e),
+        },
+    }
 }
 
 /// A gap standing on ground a contributor owns.
@@ -903,50 +1091,62 @@ impl DesignGraph {
     /// point is that a reader sees recency wherever they look, and two
     /// implementations would eventually disagree about which surface tells the
     /// truth.
+    ///
+    /// Worked out once per state of the design and kept until the next write
+    /// ([`DesignGraph::kept`]). It asks each computed check for its kept
+    /// record, which is why it was about half of the 0.62 to 0.68 s the floor
+    /// of a repeat `loop_status` took on reflow2's own design, measured
+    /// 2026-11-13.
     pub fn verification_recency(&self) -> Result<Vec<VerificationRecency>, DynoError> {
-        let mut out = Vec::new();
-        for v in self.scan_nodes(node::VERIFICATION)? {
-            let verifies = self.outgoing(&v.node_id, Some(edge::VERIFIES))?.len();
-            out.push(VerificationRecency {
-                verification_id: v.node_id.clone(),
-                name: prop_str(&v, "name", &v.node_id).to_string(),
-                status: prop_str(&v, "status", "planned").to_string(),
-                last_run_at: v
-                    .properties
-                    .get("last_run_at")
-                    .and_then(crate::foundation::core::Value::as_str)
-                    .filter(|t| !t.is_empty())
-                    .map(str::to_string),
-                verifies,
-                // A KEPT CALCULATOR RECORD IS AN EXECUTABLE FORM (item 11 of
-                // req:small-read-back-faults-from-the-cogito-trial-are-fixed):
-                // calc re-runs a pinned `.calc.json`, so a computed check with
-                // one is not "a sentence with nothing to run".
-                has_executable_form: !self
-                    .incoming(&v.node_id, Some(edge::IMPLEMENTS))?
-                    .is_empty()
-                    || self.computed_with_a_kept_record(&v.node_id, &v.properties)?,
+        // The reading stays inside this function: it is the one the derived
+        // relations' declarations and the list of edge readers name
+        // (schema/derived), so the work is a closure here and not a second
+        // function beside it.
+        self.kept("verification_recency", || {
+            let mut out = Vec::new();
+            for v in self.scan_nodes(node::VERIFICATION)? {
+                let verifies = self.outgoing(&v.node_id, Some(edge::VERIFIES))?.len();
+                out.push(VerificationRecency {
+                    verification_id: v.node_id.clone(),
+                    name: prop_str(&v, "name", &v.node_id).to_string(),
+                    status: prop_str(&v, "status", "planned").to_string(),
+                    last_run_at: v
+                        .properties
+                        .get("last_run_at")
+                        .and_then(crate::foundation::core::Value::as_str)
+                        .filter(|t| !t.is_empty())
+                        .map(str::to_string),
+                    verifies,
+                    // A KEPT CALCULATOR RECORD IS AN EXECUTABLE FORM (item 11 of
+                    // req:small-read-back-faults-from-the-cogito-trial-are-fixed):
+                    // calc re-runs a pinned `.calc.json`, so a computed check with
+                    // one is not "a sentence with nothing to run".
+                    has_executable_form: !self
+                        .incoming(&v.node_id, Some(edge::IMPLEMENTS))?
+                        .is_empty()
+                        || self.computed_with_a_kept_record(&v.node_id, &v.properties)?,
+                });
+            }
+            // Failing first, then by id: the loud ones lead, and a stable order
+            // means a diff of two reports shows what CHANGED, not what moved.
+            out.sort_by(|a, b| {
+                let rank = |s: &str| match s {
+                    "failing" => 0,
+                    "blocked" => 1,
+                    "skipped" => 2,
+                    "passing" => 3,
+                    // A superseded check sorts BELOW a passing one: it is retired,
+                    // not merely quiet, and it is the one status a reader never
+                    // needs to act on.
+                    "superseded" => 5,
+                    _ => 4,
+                };
+                rank(&a.status)
+                    .cmp(&rank(&b.status))
+                    .then_with(|| a.verification_id.cmp(&b.verification_id))
             });
-        }
-        // Failing first, then by id: the loud ones lead, and a stable order
-        // means a diff of two reports shows what CHANGED, not what moved.
-        out.sort_by(|a, b| {
-            let rank = |s: &str| match s {
-                "failing" => 0,
-                "blocked" => 1,
-                "skipped" => 2,
-                "passing" => 3,
-                // A superseded check sorts BELOW a passing one: it is retired,
-                // not merely quiet, and it is the one status a reader never
-                // needs to act on.
-                "superseded" => 5,
-                _ => 4,
-            };
-            rank(&a.status)
-                .cmp(&rank(&b.status))
-                .then_with(|| a.verification_id.cmp(&b.verification_id))
-        });
-        Ok(out)
+            Ok(out)
+        })
     }
 
     /// Follow-ups captured and not yet settled, oldest first. A follow-up is
@@ -1012,601 +1212,740 @@ impl DesignGraph {
     /// **A scoped answer attributes assignment and nothing else** — see
     /// [`LoopScope`] for why that restraint is the design rather than a
     /// shortcut.
+    ///
+    /// THE WHOLE ANSWER IS KEPT until the next write, per person asked about
+    /// (`req:a-loop-check-asked-again-with-no-write-since-answers-from-what-it-kept`),
+    /// so an ask that follows no write works nothing out: not the analyses,
+    /// each of which is kept on its own, and not the floor under them, which
+    /// was 0.62 to 0.68 s of a repeat ask on reflow2's own design, measured
+    /// 2026-11-13. Only a WHOLE answer is kept. One that names a section it
+    /// did not compute belongs to the call that was told to stop.
+    ///
+    /// ⚠️ A CALLER'S STOP SCOPE IS STILL ASKED (`crate::stop`). Before a kept
+    /// answer is handed back, each section's check point is asked in the
+    /// order the sections run, as it would have been had they been worked
+    /// out. If any says stop, the kept answer is NOT served and the call goes
+    /// the long way, naming what it left out exactly as before: a caller told
+    /// to stop at a named check point stops there whether or not an earlier
+    /// call happened to finish. With no scope open nothing is asked.
     pub fn loop_status_for(&self, contributor: Option<&str>) -> Result<LoopStatus, DynoError> {
-        // One evaluation for everything this reads (inference/memo.rs).
-        let _shared = self.reasoning_scope();
-        // A contributor we cannot find is an ERROR, not an empty answer. The
-        // failure mode being avoided is specific: a mistyped or renamed id
-        // silently produces "nothing is owed to you", which is both the most
-        // reassuring possible response and the one nobody thinks to question.
-        if let Some(id) = contributor
-            && self.get_node(node::CONTRIBUTOR, id)?.is_none()
-        {
-            return Err(DynoError::NodeNotFound {
-                node_type: node::CONTRIBUTOR.to_string(),
-                node_id: id.to_string(),
-            });
-        }
-        let questions = self.open_questions()?;
-        // Put to THIS person by name and still unanswered, in batch order.
-        let mut questions_put_to_them: Vec<QuestionPutTo> = match contributor {
-            Some(id) => questions
-                .iter()
-                .filter(|q| q.status == "asked" && q.asked_of.as_deref() == Some(id))
-                .map(|q| QuestionPutTo {
-                    question_id: q.question_id.clone(),
-                    question: q.question.clone(),
-                    batch: q.batch.clone(),
-                    batch_position: q.batch_position,
-                })
-                .collect(),
-            None => Vec::new(),
-        };
-        questions_put_to_them.sort_by(|a, b| {
-            (&a.batch, a.batch_position, &a.question_id).cmp(&(
-                &b.batch,
-                b.batch_position,
-                &b.question_id,
-            ))
-        });
-        let surfaced: std::collections::BTreeSet<&str> =
-            questions.iter().map(|q| q.gap_id.as_str()).collect();
-        // Acknowledged gaps are already absent from detect_gaps, so what
-        // remains unsurfaced is: open right now, anchored to real nodes, and
-        // never asked about. Anchored only — a phase nudge says what comes
-        // next, not what is owed (dec:anchored-first), and counting nudges as
-        // debt would make `clean` unreachable on a healthy design.
-        let unsurfaced: Vec<_> = self
-            .detect_gaps()?
-            .into_iter()
-            .filter(|g| !g.affected_ids.is_empty() && !surfaced.contains(g.id.as_str()))
-            .collect();
-        let unsurfaced_gaps = unsurfaced.len();
-
-        // Gaps standing on ground this contributor OWNS. This is the second
-        // thing that can honestly be attributed to a person, and the reason
-        // OWNED_BY was built: before it, a scoped answer could speak only about
-        // decisions somebody had been ASKED to settle, and reported every gap
-        // as "I cannot tell whose this is".
-        //
-        // Ownership makes it answerable without guessing — if a gap's affected
-        // set touches a node you own, it is on your ground. That is a fact, not
-        // an inference, which is why this is safe where the reverse question
-        // ("what has NO owner?") is not: dec:idea-detect-ownership-orphans is
-        // open precisely because absence of an owner is ordinary.
-        let owned = match contributor {
-            Some(id) => self.owned_by_contributor(id)?,
-            None => Default::default(),
-        };
-        let gaps_on_owned_ground: Vec<GapOnOwnedGround> = if owned.is_empty() {
-            Vec::new()
-        } else {
-            unsurfaced
-                .iter()
-                .filter(|g| g.affected_ids.iter().any(|id| owned.contains(id)))
-                .map(|g| GapOnOwnedGround {
-                    gap_id: g.id.clone(),
-                    title: g.title.clone(),
-                    owned_ids: g
-                        .affected_ids
-                        .iter()
-                        .filter(|id| owned.contains(*id))
-                        .cloned()
-                        .collect(),
-                })
-                .collect()
-        };
-        let unanswered_questions = questions.iter().filter(|q| q.status == "asked").count();
-        let answered_with_open_gap = questions.iter().filter(|q| q.status == "answered").count();
-        // HOW MANY OF THOSE NAME THE RECORD THAT ANSWERED THEM. This is the
-        // half the old message ASSERTED and never checked.
-        //
-        // AN `ANSWERS` EDGE IS POSITIVE EVIDENCE AND ITS ABSENCE IS "NOBODY
-        // SAID", never "not written in". Every design written before the edge
-        // existed (2026-09-02) has answered Questions and no ANSWERS edges, so
-        // reading absence as debt would invent work on every existing graph —
-        // the mixed-vintage hazard AGENTS.md names for any additive schema
-        // change. The message below says the count and declines the inference.
-        let mut answered_naming_their_record = 0usize;
-        for q in questions.iter().filter(|q| q.status == "answered") {
-            if !self
-                .incoming(&q.question_id, Some(edge::ANSWERS))?
-                .is_empty()
+        // The reading stays inside this function: it is the one the derived
+        // relations' declarations and the list of edge readers name
+        // (schema/derived), so the work is a closure here and not a second
+        // function beside it.
+        let work_out = || -> Result<LoopStatus, DynoError> {
+            // One evaluation for everything this reads (inference/memo.rs).
+            let _shared = self.reasoning_scope();
+            // A contributor we cannot find is an ERROR, not an empty answer. The
+            // failure mode being avoided is specific: a mistyped or renamed id
+            // silently produces "nothing is owed to you", which is both the most
+            // reassuring possible response and the one nobody thinks to question.
+            if let Some(id) = contributor
+                && self.get_node(node::CONTRIBUTOR, id)?.is_none()
             {
-                answered_naming_their_record += 1;
+                return Err(DynoError::NodeNotFound {
+                    node_type: node::CONTRIBUTOR.to_string(),
+                    node_id: id.to_string(),
+                });
             }
-        }
+            // ⭐ THE FLOOR FIRST, THEN THE WHOLE-DESIGN ANALYSES, CHEAPEST FIRST
+            // (req:loop-status-answers-within-a-time-budget-and-names-the-sections-it-did-not-compute).
+            // The floor reads the records the debt is ABOUT — questions, decisions,
+            // capabilities, divergences, follow-ups, breaches, kept outputs — each
+            // in one pass over its own records, and is always computed. The four
+            // analyses below it read the whole design and are what made the call
+            // cross flo2.io's 30 s door on reflow2's own design (38.1 s there on
+            // 2026-11-07: gap detection and defect detection about half each,
+            // fact:root-cause-loop-status-on-reflow2s-design-takes-38-s-on-flo2-io-past-its-30-s-door-gaps-and-defects-each-about-half-2026-11-07).
+            // Each runs as a `section`: when the caller's budget runs out, or the
+            // caller has gone (`crate::stop`), the ones left are NOT COMPUTED, their
+            // counts read null, `not_computed` names each with the call that
+            // computes it alone, and the answer is never `clean`. With no stop scope
+            // open every section runs, exactly as before.
+            crate::stop::mark("loop_status:floor");
+            // Questions put to the user and still waiting: their own records, read
+            // WITHOUT gap detection (an empty set of open gaps keeps exactly the
+            // `asked` ones), so this count never waits on the costliest analysis.
+            let asked = self.open_questions_among(&std::collections::HashSet::new(), None)?;
+            let unanswered_questions = asked.len();
+            // Put to THIS person by name and still unanswered, in batch order.
+            let mut questions_put_to_them: Vec<QuestionPutTo> = match contributor {
+                Some(id) => asked
+                    .iter()
+                    .filter(|q| q.status == "asked" && q.asked_of.as_deref() == Some(id))
+                    .map(|q| QuestionPutTo {
+                        question_id: q.question_id.clone(),
+                        question: q.question.clone(),
+                        batch: q.batch.clone(),
+                        batch_position: q.batch_position,
+                    })
+                    .collect(),
+                None => Vec::new(),
+            };
+            questions_put_to_them.sort_by(|a, b| {
+                (&a.batch, a.batch_position, &a.question_id).cmp(&(
+                    &b.batch,
+                    b.batch_position,
+                    &b.question_id,
+                ))
+            });
 
-        // A Decision that is still `proposed` AND carries an approver edge:
-        // somebody was asked to decide and nothing else says so. The approver
-        // edge is the discriminator — without it a `proposed` Decision is a
-        // brainstorm, and staying quiet about those is deliberate.
-        let mut assigned_decisions = Vec::new();
-        for dec in self.scan_nodes(node::DECISION)? {
-            let proposed = dec
-                .properties
-                .get("status")
-                .and_then(crate::foundation::core::Value::as_str)
-                == Some("proposed");
-            if !proposed {
-                continue;
+            // Gaps standing on ground this contributor OWNS. This is the second
+            // thing that can honestly be attributed to a person, and the reason
+            // OWNED_BY was built: before it, a scoped answer could speak only about
+            // decisions somebody had been ASKED to settle, and reported every gap
+            // as "I cannot tell whose this is".
+            //
+            // Ownership makes it answerable without guessing — if a gap's affected
+            // set touches a node you own, it is on your ground. That is a fact, not
+            // an inference, which is why this is safe where the reverse question
+            // ("what has NO owner?") is not: dec:idea-detect-ownership-orphans is
+            // open precisely because absence of an owner is ordinary.
+            let owned = match contributor {
+                Some(id) => self.owned_by_contributor(id)?,
+                None => Default::default(),
+            };
+
+            // A Decision that is still `proposed` AND carries an approver edge:
+            // somebody was asked to decide and nothing else says so. The approver
+            // edge is the discriminator — without it a `proposed` Decision is a
+            // brainstorm, and staying quiet about those is deliberate.
+            let mut assigned_decisions = Vec::new();
+            for dec in self.scan_nodes(node::DECISION)? {
+                let proposed = dec
+                    .properties
+                    .get("status")
+                    .and_then(crate::foundation::core::Value::as_str)
+                    == Some("proposed");
+                if !proposed {
+                    continue;
+                }
+                for edge in self.outgoing(&dec.node_id, Some(edge::AUTHORED_BY))? {
+                    if !crate::graph::edge_has_role(&edge, "approver") {
+                        continue;
+                    }
+                    // Scoping happens HERE, on the one edge that names a person,
+                    // and nowhere else in this function.
+                    if contributor.is_some_and(|want| want != edge.to_id) {
+                        continue;
+                    }
+                    assigned_decisions.push(AssignedDecision::from_approver_edge(
+                        &dec.node_id,
+                        dec.properties
+                            .get("name")
+                            .and_then(crate::foundation::core::Value::as_str)
+                            .unwrap_or_default(),
+                        &edge,
+                    ));
+                }
             }
-            for edge in self.outgoing(&dec.node_id, Some(edge::AUTHORED_BY))? {
-                if !crate::graph::edge_has_role(&edge, "approver") {
-                    continue;
+            let unsettled_assigned_decisions = assigned_decisions.len();
+
+            // A component-granularity check clears this debt (BL-73): the claim
+            // HAS a passing check, one hop away — the coverage line says at which
+            // granularity, and the per-component gap asks whether that is enough.
+            crate::stop::mark("loop_status:floor:unproven_capabilities");
+            let mut unproven_capabilities = 0usize;
+            for cap in self.scan_nodes(node::CAPABILITY)? {
+                let claims_built = cap
+                    .properties
+                    .get("status")
+                    .and_then(crate::foundation::core::Value::as_str)
+                    .map(|s| s == "realized" || s == "verified")
+                    .unwrap_or(false);
+                if claims_built
+                    && self.capability_verification(&cap.node_id)?
+                        == crate::verify::CapabilityVerification::Unchecked
+                {
+                    unproven_capabilities += 1;
                 }
-                // Scoping happens HERE, on the one edge that names a person,
-                // and nowhere else in this function.
-                if contributor.is_some_and(|want| want != edge.to_id) {
-                    continue;
+            }
+
+            let undispositioned_drift = self
+                .scan_nodes(node::DRIFT_EVENT)?
+                .into_iter()
+                .filter(|d| {
+                    !d.properties
+                        .get("resolved")
+                        .and_then(crate::foundation::core::Value::as_bool)
+                        .unwrap_or(false)
+                })
+                .count();
+
+            crate::stop::mark("loop_status:floor:follow_ups");
+            let follow_ups = self.open_follow_ups()?;
+            let follow_ups_open = follow_ups.len();
+            let deferrals = self.open_deferrals()?;
+            let deferrals_open = deferrals.len();
+            crate::stop::mark("loop_status:floor:breaches");
+            let mut breaches = self.open_breaches()?;
+            let breaches_open = breaches.len();
+            breaches.truncate(BREACHES_LISTED);
+            crate::stop::mark("loop_status:floor:owed_computations");
+            let owed = self.owed_computations()?;
+            let computations_owed = owed.computations.len();
+            let stale_number_dependents = owed.resting_on_stale_numbers.len();
+            let mut owed_computations = owed.computations;
+            owed_computations.truncate(OWED_LISTED);
+            let mut resting_on_stale_numbers = owed.resting_on_stale_numbers;
+            resting_on_stale_numbers.truncate(OWED_LISTED);
+
+            // The rest of the floor, read BEFORE the analyses rather than after
+            // them, so that once the budget runs out nothing but assembling the
+            // answer is left (measured: these two cost 1.4 s after the stop when
+            // they came last).
+            crate::stop::mark("loop_status:floor:repairs");
+            let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
+            let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
+            crate::stop::mark("loop_status:floor:open_increments");
+            let open_increments = self
+                .open_increments()?
+                .listed(crate::open_increments::OPEN_INCREMENTS_LISTED);
+            crate::stop::mark("loop_status:floor:verification_recency");
+            let verifications = self.verification_recency()?;
+
+            // ---- THE WHOLE-DESIGN ANALYSES, each under the caller's budget ----
+            let mut not_computed: Vec<NotComputed> = Vec::new();
+            let unexamined_claims = section(&mut not_computed, &SECTION_LEDGER, || {
+                Ok(self.confirmation_ledger()?.unexamined)
+            })?;
+            let reasoning = section(&mut not_computed, &SECTION_REASONING, || {
+                self.reasoning_debt()
+            })?
+            .flatten();
+            let loop_closure = section(&mut not_computed, &SECTION_LOOP_CLOSURE, || {
+                self.loop_closure()
+            })?;
+            let gaps = section(&mut not_computed, &SECTION_GAPS, || {
+                // Acknowledged gaps are already absent from detect_gaps, so what
+                // remains unsurfaced is: open right now, anchored to real nodes,
+                // and never asked about. Anchored only — a phase nudge says what
+                // comes next, not what is owed (dec:anchored-first), and counting
+                // nudges as debt would make `clean` unreachable on a healthy design.
+                let open = self.detect_gaps()?;
+                let still_open: std::collections::HashSet<String> =
+                    open.iter().map(|g| g.id.clone()).collect();
+                let questions = self.open_questions_among(&still_open, None)?;
+                let surfaced: std::collections::BTreeSet<&str> =
+                    questions.iter().map(|q| q.gap_id.as_str()).collect();
+                let unsurfaced: Vec<_> = open
+                    .into_iter()
+                    .filter(|g| !g.affected_ids.is_empty() && !surfaced.contains(g.id.as_str()))
+                    .collect();
+                let answered_with_open_gap =
+                    questions.iter().filter(|q| q.status == "answered").count();
+                // HOW MANY OF THOSE NAME THE RECORD THAT ANSWERED THEM. This is the
+                // half the old message ASSERTED and never checked.
+                //
+                // AN `ANSWERS` EDGE IS POSITIVE EVIDENCE AND ITS ABSENCE IS "NOBODY
+                // SAID", never "not written in". Every design written before the
+                // edge existed (2026-09-02) has answered Questions and no ANSWERS
+                // edges, so reading absence as debt would invent work on every
+                // existing graph — the mixed-vintage hazard AGENTS.md names for any
+                // additive schema change. The message below says the count and
+                // declines the inference.
+                let mut answered_naming_their_record = 0usize;
+                for q in questions.iter().filter(|q| q.status == "answered") {
+                    if !self
+                        .incoming(&q.question_id, Some(edge::ANSWERS))?
+                        .is_empty()
+                    {
+                        answered_naming_their_record += 1;
+                    }
                 }
-                assigned_decisions.push(AssignedDecision::from_approver_edge(
-                    &dec.node_id,
-                    dec.properties
-                        .get("name")
-                        .and_then(crate::foundation::core::Value::as_str)
-                        .unwrap_or_default(),
-                    &edge,
+                let gaps_on_owned_ground: Vec<GapOnOwnedGround> = if owned.is_empty() {
+                    Vec::new()
+                } else {
+                    unsurfaced
+                        .iter()
+                        .filter(|g| g.affected_ids.iter().any(|id| owned.contains(id)))
+                        .map(|g| GapOnOwnedGround {
+                            gap_id: g.id.clone(),
+                            title: g.title.clone(),
+                            owned_ids: g
+                                .affected_ids
+                                .iter()
+                                .filter(|id| owned.contains(*id))
+                                .cloned()
+                                .collect(),
+                        })
+                        .collect()
+                };
+                Ok((
+                    unsurfaced.len(),
+                    answered_with_open_gap,
+                    answered_naming_their_record,
+                    gaps_on_owned_ground,
+                ))
+            })?;
+            let structural_defects = section(&mut not_computed, &SECTION_DEFECTS, || {
+                Ok(self.open_defects()?.len())
+            })?;
+            let (unsurfaced_gaps, answered_with_open_gap, answered_naming_their_record) =
+                match &gaps {
+                    Some((u, a, n, _)) => (Some(*u), Some(*a), Some(*n)),
+                    None => (None, None, None),
+                };
+            let gaps_on_owned_ground = gaps.map(|(_, _, _, g)| g).unwrap_or_default();
+
+            let mut next = Vec::new();
+            if unanswered_questions > 0 {
+                next.push(format!(
+                    "{unanswered_questions} question(s) are waiting on the user — follow up, \
+                     don't re-ask (open_questions)"
                 ));
             }
-        }
-        let unsettled_assigned_decisions = assigned_decisions.len();
-
-        let structural_defects = self.open_defects()?.len();
-
-        // A component-granularity check clears this debt (BL-73): the claim
-        // HAS a passing check, one hop away — the coverage line says at which
-        // granularity, and the per-component gap asks whether that is enough.
-        let mut unproven_capabilities = 0usize;
-        for cap in self.scan_nodes(node::CAPABILITY)? {
-            let claims_built = cap
-                .properties
-                .get("status")
-                .and_then(crate::foundation::core::Value::as_str)
-                .map(|s| s == "realized" || s == "verified")
-                .unwrap_or(false);
-            if claims_built
-                && self.capability_verification(&cap.node_id)?
-                    == crate::verify::CapabilityVerification::Unchecked
+            if let (Some(answered_with_open_gap), Some(answered_naming_their_record)) =
+                (answered_with_open_gap, answered_naming_their_record)
+                && answered_with_open_gap > 0
             {
-                unproven_capabilities += 1;
+                // SAYS ONLY WHAT THE FILTER ABOVE SUPPORTS. The old wording —
+                // "never reached the design — write the answer in, or acknowledge
+                // the gap" — asserted a fact about design nodes that nothing here
+                // looks for, and both remedies it named were wrong for the
+                // commonest case: a deferral the genesis skill itself prescribes,
+                // recorded as an open Decision, whose gap is legitimately open.
+                next.push(format!(
+                    "{answered_with_open_gap} answered question(s) still have an open gap, \
+                     {answered_naming_their_record} of which name the record that answered them. \
+                     An unnamed one is NOT evidence the answer went unwritten — nothing here \
+                     looks for it: read them (open_questions), and draw `answers` as you write \
+                     each answer in, so a later session can tell the two apart"
+                ));
             }
-        }
-
-        let undispositioned_drift = self
-            .scan_nodes(node::DRIFT_EVENT)?
-            .into_iter()
-            .filter(|d| {
-                !d.properties
-                    .get("resolved")
-                    .and_then(crate::foundation::core::Value::as_bool)
-                    .unwrap_or(false)
-            })
-            .count();
-
-        let unexamined_claims = self.confirmation_ledger()?.unexamined;
-        let follow_ups = self.open_follow_ups()?;
-        let follow_ups_open = follow_ups.len();
-        let deferrals = self.open_deferrals()?;
-        let deferrals_open = deferrals.len();
-        let mut breaches = self.open_breaches()?;
-        let breaches_open = breaches.len();
-        breaches.truncate(BREACHES_LISTED);
-        let owed = self.owed_computations()?;
-        let computations_owed = owed.computations.len();
-        let stale_number_dependents = owed.resting_on_stale_numbers.len();
-        let mut owed_computations = owed.computations;
-        owed_computations.truncate(OWED_LISTED);
-        let mut resting_on_stale_numbers = owed.resting_on_stale_numbers;
-        resting_on_stale_numbers.truncate(OWED_LISTED);
-
-        let mut next = Vec::new();
-        if unanswered_questions > 0 {
-            next.push(format!(
-                "{unanswered_questions} question(s) are waiting on the user — follow up, \
-                 don't re-ask (open_questions)"
-            ));
-        }
-        if answered_with_open_gap > 0 {
-            // SAYS ONLY WHAT THE FILTER ABOVE SUPPORTS. The old wording —
-            // "never reached the design — write the answer in, or acknowledge
-            // the gap" — asserted a fact about design nodes that nothing here
-            // looks for, and both remedies it named were wrong for the
-            // commonest case: a deferral the genesis skill itself prescribes,
-            // recorded as an open Decision, whose gap is legitimately open.
-            next.push(format!(
-                "{answered_with_open_gap} answered question(s) still have an open gap, \
-                 {answered_naming_their_record} of which name the record that answered them. \
-                 An unnamed one is NOT evidence the answer went unwritten — nothing here \
-                 looks for it: read them (open_questions), and draw `answers` as you write \
-                 each answer in, so a later session can tell the two apart"
-            ));
-        }
-        if unsettled_assigned_decisions > 0 {
-            next.push(format!(
-                "{unsettled_assigned_decisions} open decision(s) name someone who was asked \
-                 to settle them — decide (set_decision_status), or drop the approver if \
-                 nobody was actually asked"
-            ));
-        }
-        // BEFORE the gap line, and not inside it: a breach is a record that
-        // something IS broken, where most gaps say something is unsaid.
-        // Counted apart, so the one cannot hide in the other's total.
-        if breaches_open > 0 {
-            next.push(format!(
-                "{breaches_open} open breach(es) — something the design records as broken \
-                 and nothing has closed: a defect finding, a limit its own readings exceed, \
-                 a VIOLATES edge into a limit, or a rule violation ruled must-fix (listed in \
-                 `breaches`, newest first; each is an `open_breach` gap that says how it \
-                 closes). Close each one, or rule on its gap if it stands on purpose"
-            ));
-        }
-        if computations_owed > 0 {
-            next.push(format!(
-                "{computations_owed} kept output(s) owed a re-run or a redraw: an input they used \
-                 moved since they were made, and {stale_number_dependents} decision(s), limit(s) \
-                 or check(s) rest on a stale number until they are re-run (listed in \
-                 `owed_computations` and `resting_on_stale_numbers`, nearest first). Re-run each \
-                 in its calculator, then register its new version with what it used \
-                 (set_artifact_checksums, then add_artifact `inputs`); propagate_from on the \
-                 changed input gives the whole redo list"
-            ));
-        }
-        if unsurfaced_gaps > 0 {
-            next.push(format!(
-                "{unsurfaced_gaps} open gap(s) have never been put to the user — run \
-                 detect-and-ask"
-            ));
-        }
-        if structural_defects > 0 {
-            // The IMPERATIVE names the read-only tool; the skill is named as
-            // context, and its destructive step is named with it.
-            //
-            // This line used to read "run check-health (detect_defects)", which
-            // is ambiguous in the dangerous direction: `check-health` is the
-            // SKILL and its step 3 applies merges, while `detect_defects` in the
-            // brackets only reads. dev_storyflow reported it five times across
-            // four seats in two days — one of them filed deliberately as a
-            // duplicate so recurrence would be visible — because `next` is the
-            // most authoritative-feeling string in the payload to a session that
-            // has just arrived, and a session that follows it literally, which
-            // is what `next` is FOR, walked into ten irreversible node
-            // deletions. Two of their people read past it in their own sessions
-            // and said so. They ended up posting a fleet-wide stop-order at the
-            // top of their worker board to counteract one string this tool
-            // emits into a call every worker is required to make.
-            //
-            // The general rule, worth applying to any future entry here: when a
-            // skill contains an irreversible step, the loop's own to-do list
-            // must not name that skill as the thing to do. Note the contrast
-            // with the `detect-and-ask` line above, which names a skill quite
-            // deliberately — that skill only reads and asks.
-            next.push(format!(
-                "{structural_defects} structural defect(s) outstanding — run detect_defects to \
-                 read them (the check-health skill is the wider workflow; its repair step can \
-                 delete nodes, so read what it proposes before applying)"
-            ));
-        }
-        if unproven_capabilities > 0 {
-            next.push(format!(
-                "{unproven_capabilities} capability(ies) claim realized/verified with no \
-                 passing check — add or run their Verification"
-            ));
-        }
-        if undispositioned_drift > 0 {
-            next.push(format!(
-                "{undispositioned_drift} recorded divergence(s) await a disposition \
-                 (set_artifact_checksums)"
-            ));
-        }
-        if unexamined_claims > 0 {
-            next.push(format!(
-                "{unexamined_claims} built capability(ies) never checked against reality \
-                 (reconcile_artifacts)"
-            ));
-        }
-
-        // Narrowing, and saying what the narrowing left out. Everything above
-        // except `assigned_decisions` and `gaps_on_owned_ground` is a fact about
-        // the DESIGN, not about a person, so a scoped answer names those counts
-        // rather than zeroing them — the difference between "nothing is owed to
-        // you" and "I cannot tell whose this is", which must never be the same
-        // answer.
-        //
-        // The gap line now subtracts what ownership DID attribute, so the
-        // not-attributable count shrinks as a design records more ownership.
-        // That is the whole payoff of OWNED_BY on this surface.
-        if follow_ups_open > 0 {
-            // By tag, because settling follows the tag: the count alone read
-            // the same whether the pile was ten issues or ten ideas.
-            let count =
-                |t: Option<&str>| follow_ups.iter().filter(|f| f.tag.as_deref() == t).count();
-            let (issues, ideas, untagged) =
-                (count(Some("issue")), count(Some("idea")), count(None));
-            let other = follow_ups_open - issues - ideas - untagged;
-            let other = if other > 0 {
-                format!(", {other} otherwise tagged")
-            } else {
-                String::new()
-            };
-            next.push(format!(
-                "{follow_ups_open} follow-up(s) captured and never revisited ({issues} issue, \
-                 {ideas} idea, {untagged} untagged{other}) — listed in `follow_ups`, each with \
-                 `settle_toward`. An issue goes to root-cause, then a finding with a cause or a \
-                 planned check; an idea to brainstorm or capture-intent; an untagged one is sorted \
-                 with the person. Close each with `invalidates` from the record that answered it, \
-                 or `valid_to` on the fact if it simply lapsed"
-            ));
-        }
-        if deferrals_open > 0 {
-            next.push(format!(
-                "{deferrals_open} part(s) captured structurally with intent deliberately deferred — \
-                 listed in `deferrals`; `frontier` says where to resume. Settle each by recovering \
-                 the intent (adopt Phase 3) and closing the marker: `valid_to` on the fact, or \
-                 `invalidates` from the record that answered it"
-            ));
-        }
-        let gaps_not_attributable = unsurfaced_gaps.saturating_sub(gaps_on_owned_ground.len());
-        let scope = contributor.map(|id| {
-            let mut not_attributable = Vec::new();
-            for (n, what) in [
-                (gaps_not_attributable, "open gap(s) on ground nobody owns"),
-                (
-                    unanswered_questions.saturating_sub(questions_put_to_them.len()),
-                    "question(s) waiting on an answer and not put to them by name",
-                ),
-                (
-                    answered_with_open_gap,
-                    "answered question(s) whose gap is still open",
-                ),
-                (structural_defects, "structural defect(s)"),
-                (
-                    unproven_capabilities,
-                    "capability(ies) claiming built with no passing check",
-                ),
-                (
-                    undispositioned_drift,
-                    "recorded divergence(s) awaiting a disposition",
-                ),
-                (
-                    unexamined_claims,
-                    "built capability(ies) never checked against reality",
-                ),
-                (follow_ups_open, "follow-up(s) captured and never revisited"),
-                (deferrals_open, "part(s) with intent deliberately deferred"),
-                (breaches_open, "open breach(es)"),
-                (computations_owed, "kept output(s) owed a re-run"),
-            ] {
-                if n > 0 {
-                    not_attributable.push(format!("{n} {what}"));
-                }
-            }
-            LoopScope {
-                contributor_id: id.to_string(),
-                not_attributable,
-            }
-        });
-
-        // What awaits an owner's word — scoped answers only, so the call every
-        // session makes stays as cheap as it was. See `LoopStatus::awaiting_word`.
-        let awaiting_word = if contributor.is_some() {
-            self.awaiting_word()?
-        } else {
-            Vec::new()
-        };
-
-        if let Some(s) = &scope {
-            next.clear();
             if unsettled_assigned_decisions > 0 {
                 next.push(format!(
-                    "{unsettled_assigned_decisions} open decision(s) name {} as the person \
-                     asked to settle them — decide (set_decision_status), or drop the \
-                     approver if nobody was actually asked. They are listed in \
-                     `assigned_decisions`.",
-                    s.contributor_id
+                    "{unsettled_assigned_decisions} open decision(s) name someone who was asked \
+                     to settle them — decide (set_decision_status), or drop the approver if \
+                     nobody was actually asked"
                 ));
-            } else if questions_put_to_them.is_empty() {
-                next.push(format!("Nothing is assigned to {}.", s.contributor_id));
             }
-            if !questions_put_to_them.is_empty() {
+            // BEFORE the gap line, and not inside it: a breach is a record that
+            // something IS broken, where most gaps say something is unsaid.
+            // Counted apart, so the one cannot hide in the other's total.
+            if breaches_open > 0 {
                 next.push(format!(
-                    "{n} question(s) were put to {who} by name and are waiting on their \
-                     answer — listed in `questions_put_to_them`. open_questions(asked_of: \
-                     {who}) returns them as the batch they were put in, each with the \
-                     evidence it rests on as links to read; record each reply with \
-                     answer_question(answered_by: {who}, record: <what it became>).",
-                    n = questions_put_to_them.len(),
-                    who = s.contributor_id
+                    "{breaches_open} open breach(es) — something the design records as broken \
+                     and nothing has closed: a defect finding, a limit its own readings exceed, \
+                     a VIOLATES edge into a limit, or a rule violation ruled must-fix (listed in \
+                     `breaches`, newest first; each is an `open_breach` gap that says how it \
+                     closes). Close each one, or rule on its gap if it stands on purpose"
                 ));
             }
-            if !gaps_on_owned_ground.is_empty() {
+            if computations_owed > 0 {
                 next.push(format!(
-                    "{} open gap(s) stand on ground {} owns — listed in \
-                     `gaps_on_owned_ground` with the owned nodes each one touches.",
-                    gaps_on_owned_ground.len(),
-                    s.contributor_id
+                    "{computations_owed} kept output(s) owed a re-run or a redraw: an input they used \
+                     moved since they were made, and {stale_number_dependents} decision(s), limit(s) \
+                     or check(s) rest on a stale number until they are re-run (listed in \
+                     `owed_computations` and `resting_on_stale_numbers`, nearest first). Re-run each \
+                     in its calculator, then register its new version with what it used \
+                     (set_artifact_checksums, then add_artifact `inputs`); propagate_from on the \
+                     changed input gives the whole redo list"
                 ));
             }
-            if !awaiting_word.is_empty() {
-                let requirements = awaiting_word
-                    .iter()
-                    .filter(|a| a.kind == crate::awaiting::AwaitingKind::DeliveredRequirement)
-                    .count();
+            if let Some(unsurfaced_gaps) = unsurfaced_gaps
+                && unsurfaced_gaps > 0
+            {
                 next.push(format!(
-                    "{n} built item(s) await an owner's word to close: {requirements} proposed \
-                     requirement(s) already delivered and {ideas} open idea(s) whose promotion \
-                     landed — listed in `awaiting_word`, each with what delivers it and the call \
-                     that closes it. A requirement closes with set_requirement_status (`accepted` \
-                     if it is the need they want, `met`, or `dropped`; left `proposed` if what \
-                     was built does not answer it); an idea with set_decision_status `accepted`, \
-                     the owner as approver and what answered it in the rationale. They are \
-                     design-wide: nothing records whose word closes them, so they are not \
-                     counted as {who}'s and `clean` does not include them. Closing one is the \
-                     owner's act, never an agent's.",
-                    n = awaiting_word.len(),
-                    ideas = awaiting_word.len() - requirements,
-                    who = s.contributor_id
+                    "{unsurfaced_gaps} open gap(s) have never been put to the user — run \
+                     detect-and-ask"
                 ));
             }
-            if !s.not_attributable.is_empty() {
-                // Said in words rather than left to the reader to infer from a
-                // field, because `next` is the line an agent reads aloud.
+            if let Some(structural_defects) = structural_defects
+                && structural_defects > 0
+            {
+                // The IMPERATIVE names the read-only tool; the skill is named as
+                // context, and its destructive step is named with it.
+                //
+                // This line used to read "run check-health (detect_defects)", which
+                // is ambiguous in the dangerous direction: `check-health` is the
+                // SKILL and its step 3 applies merges, while `detect_defects` in the
+                // brackets only reads. dev_storyflow reported it five times across
+                // four seats in two days — one of them filed deliberately as a
+                // duplicate so recurrence would be visible — because `next` is the
+                // most authoritative-feeling string in the payload to a session that
+                // has just arrived, and a session that follows it literally, which
+                // is what `next` is FOR, walked into ten irreversible node
+                // deletions. Two of their people read past it in their own sessions
+                // and said so. They ended up posting a fleet-wide stop-order at the
+                // top of their worker board to counteract one string this tool
+                // emits into a call every worker is required to make.
+                //
+                // The general rule, worth applying to any future entry here: when a
+                // skill contains an irreversible step, the loop's own to-do list
+                // must not name that skill as the thing to do. Note the contrast
+                // with the `detect-and-ask` line above, which names a skill quite
+                // deliberately — that skill only reads and asks.
                 next.push(format!(
-                    "The rest of the loop's debt carries no per-person attribution and is \
-                     NOT counted as {}'s: {}. Call loop_status without a contributor for \
-                     the design-wide picture.",
-                    s.contributor_id,
-                    s.not_attributable.join(", ")
+                    "{structural_defects} structural defect(s) outstanding — run detect_defects to \
+                     read them (the check-health skill is the wider workflow; its repair step can \
+                     delete nodes, so read what it proposes before applying)"
                 ));
             }
-        }
+            if unproven_capabilities > 0 {
+                next.push(format!(
+                    "{unproven_capabilities} capability(ies) claim realized/verified with no \
+                     passing check — add or run their Verification"
+                ));
+            }
+            if undispositioned_drift > 0 {
+                next.push(format!(
+                    "{undispositioned_drift} recorded divergence(s) await a disposition \
+                     (set_artifact_checksums)"
+                ));
+            }
+            if let Some(unexamined_claims) = unexamined_claims
+                && unexamined_claims > 0
+            {
+                next.push(format!(
+                    "{unexamined_claims} built capability(ies) never checked against reality \
+                     (reconcile_artifacts)"
+                ));
+            }
 
-        // Scoped, `clean` means "nothing is owed by this person" — it is
-        // deliberately NOT `next.is_empty()`, because a scoped answer always
-        // carries the not-attributable line and would otherwise never be clean.
-        //
-        // Both attributable kinds count: a gap on your own ground is owed by you
-        // as surely as a decision you were asked to settle, and a `clean: true`
-        // that ignored it would be the same confident lie in a new place.
-        let clean = match &scope {
-            Some(_) => {
-                unsettled_assigned_decisions == 0
-                    && gaps_on_owned_ground.is_empty()
-                    && questions_put_to_them.is_empty()
+            // Narrowing, and saying what the narrowing left out. Everything above
+            // except `assigned_decisions` and `gaps_on_owned_ground` is a fact about
+            // the DESIGN, not about a person, so a scoped answer names those counts
+            // rather than zeroing them — the difference between "nothing is owed to
+            // you" and "I cannot tell whose this is", which must never be the same
+            // answer.
+            //
+            // The gap line now subtracts what ownership DID attribute, so the
+            // not-attributable count shrinks as a design records more ownership.
+            // That is the whole payoff of OWNED_BY on this surface.
+            if follow_ups_open > 0 {
+                // By tag, because settling follows the tag: the count alone read
+                // the same whether the pile was ten issues or ten ideas.
+                let count =
+                    |t: Option<&str>| follow_ups.iter().filter(|f| f.tag.as_deref() == t).count();
+                let (issues, ideas, untagged) =
+                    (count(Some("issue")), count(Some("idea")), count(None));
+                let other = follow_ups_open - issues - ideas - untagged;
+                let other = if other > 0 {
+                    format!(", {other} otherwise tagged")
+                } else {
+                    String::new()
+                };
+                next.push(format!(
+                    "{follow_ups_open} follow-up(s) captured and never revisited ({issues} issue, \
+                     {ideas} idea, {untagged} untagged{other}) — listed in `follow_ups`, each with \
+                     `settle_toward`. An issue goes to root-cause, then a finding with a cause or a \
+                     planned check; an idea to brainstorm or capture-intent; an untagged one is sorted \
+                     with the person. Close each with `invalidates` from the record that answered it, \
+                     or `valid_to` on the fact if it simply lapsed"
+                ));
             }
-            None => next.is_empty(),
+            if deferrals_open > 0 {
+                next.push(format!(
+                    "{deferrals_open} part(s) captured structurally with intent deliberately deferred — \
+                     listed in `deferrals`; `frontier` says where to resume. Settle each by recovering \
+                     the intent (adopt Phase 3) and closing the marker: `valid_to` on the fact, or \
+                     `invalidates` from the record that answered it"
+                ));
+            }
+            // A section NOT COMPUTED counts nothing here: `not_computed` names it,
+            // and its line leads `next` whether or not the answer is scoped.
+            let gaps_not_attributable = unsurfaced_gaps
+                .unwrap_or(0)
+                .saturating_sub(gaps_on_owned_ground.len());
+            let scope = contributor.map(|id| {
+                let mut not_attributable = Vec::new();
+                for (n, what) in [
+                    (gaps_not_attributable, "open gap(s) on ground nobody owns"),
+                    (
+                        unanswered_questions.saturating_sub(questions_put_to_them.len()),
+                        "question(s) waiting on an answer and not put to them by name",
+                    ),
+                    (
+                        answered_with_open_gap.unwrap_or(0),
+                        "answered question(s) whose gap is still open",
+                    ),
+                    (structural_defects.unwrap_or(0), "structural defect(s)"),
+                    (
+                        unproven_capabilities,
+                        "capability(ies) claiming built with no passing check",
+                    ),
+                    (
+                        undispositioned_drift,
+                        "recorded divergence(s) awaiting a disposition",
+                    ),
+                    (
+                        unexamined_claims.unwrap_or(0),
+                        "built capability(ies) never checked against reality",
+                    ),
+                    (follow_ups_open, "follow-up(s) captured and never revisited"),
+                    (deferrals_open, "part(s) with intent deliberately deferred"),
+                    (breaches_open, "open breach(es)"),
+                    (computations_owed, "kept output(s) owed a re-run"),
+                ] {
+                    if n > 0 {
+                        not_attributable.push(format!("{n} {what}"));
+                    }
+                }
+                LoopScope {
+                    contributor_id: id.to_string(),
+                    not_attributable,
+                }
+            });
+
+            // What awaits an owner's word — scoped answers only, so the call every
+            // session makes stays as cheap as it was. See `LoopStatus::awaiting_word`.
+            let awaiting_word = if contributor.is_some() {
+                self.awaiting_word()?
+            } else {
+                Vec::new()
+            };
+
+            if let Some(s) = &scope {
+                next.clear();
+                if unsettled_assigned_decisions > 0 {
+                    next.push(format!(
+                        "{unsettled_assigned_decisions} open decision(s) name {} as the person \
+                         asked to settle them — decide (set_decision_status), or drop the \
+                         approver if nobody was actually asked. They are listed in \
+                         `assigned_decisions`.",
+                        s.contributor_id
+                    ));
+                } else if questions_put_to_them.is_empty() {
+                    next.push(format!("Nothing is assigned to {}.", s.contributor_id));
+                }
+                if !questions_put_to_them.is_empty() {
+                    next.push(format!(
+                        "{n} question(s) were put to {who} by name and are waiting on their \
+                         answer — listed in `questions_put_to_them`. open_questions(asked_of: \
+                         {who}) returns them as the batch they were put in, each with the \
+                         evidence it rests on as links to read; record each reply with \
+                         answer_question(answered_by: {who}, record: <what it became>).",
+                        n = questions_put_to_them.len(),
+                        who = s.contributor_id
+                    ));
+                }
+                if !gaps_on_owned_ground.is_empty() {
+                    next.push(format!(
+                        "{} open gap(s) stand on ground {} owns — listed in \
+                         `gaps_on_owned_ground` with the owned nodes each one touches.",
+                        gaps_on_owned_ground.len(),
+                        s.contributor_id
+                    ));
+                }
+                if !awaiting_word.is_empty() {
+                    let requirements = awaiting_word
+                        .iter()
+                        .filter(|a| a.kind == crate::awaiting::AwaitingKind::DeliveredRequirement)
+                        .count();
+                    next.push(format!(
+                        "{n} built item(s) await an owner's word to close: {requirements} proposed \
+                         requirement(s) already delivered and {ideas} open idea(s) whose promotion \
+                         landed — listed in `awaiting_word`, each with what delivers it and the call \
+                         that closes it. A requirement closes with set_requirement_status (`accepted` \
+                         if it is the need they want, `met`, or `dropped`; left `proposed` if what \
+                         was built does not answer it); an idea with set_decision_status `accepted`, \
+                         the owner as approver and what answered it in the rationale. They are \
+                         design-wide: nothing records whose word closes them, so they are not \
+                         counted as {who}'s and `clean` does not include them. Closing one is the \
+                         owner's act, never an agent's.",
+                        n = awaiting_word.len(),
+                        ideas = awaiting_word.len() - requirements,
+                        who = s.contributor_id
+                    ));
+                }
+                if !s.not_attributable.is_empty() {
+                    // Said in words rather than left to the reader to infer from a
+                    // field, because `next` is the line an agent reads aloud.
+                    next.push(format!(
+                        "The rest of the loop's debt carries no per-person attribution and is \
+                         NOT counted as {}'s: {}. Call loop_status without a contributor for \
+                         the design-wide picture.",
+                        s.contributor_id,
+                        s.not_attributable.join(", ")
+                    ));
+                }
+            }
+
+            // Scoped, `clean` means "nothing is owed by this person" — it is
+            // deliberately NOT `next.is_empty()`, because a scoped answer always
+            // carries the not-attributable line and would otherwise never be clean.
+            //
+            // Both attributable kinds count: a gap on your own ground is owed by you
+            // as surely as a decision you were asked to settle, and a `clean: true`
+            // that ignored it would be the same confident lie in a new place.
+            // WHAT THIS CALL DID NOT COMPUTE LEADS `next`, scoped or not, and an
+            // answer that left a section out is never clean: a null count is not a
+            // zero, and "the budget ran out before I looked" must never read like
+            // "I looked and found nothing".
+            for (i, n) in not_computed.iter().enumerate() {
+                next.insert(i, n.line());
+            }
+            let clean = not_computed.is_empty()
+                && match &scope {
+                    Some(_) => {
+                        unsettled_assigned_decisions == 0
+                            && gaps_on_owned_ground.is_empty()
+                            && questions_put_to_them.is_empty()
+                    }
+                    None => next.is_empty(),
+                };
+
+            // AFTER `clean`, like `loop_closure`: two lines about how repairs are
+            // RECORDED, each one line however many events it counts. Never
+            // counted in `clean` (see the fields' notes). Unscoped answers only:
+            // they are facts about the design, not about a person.
+            // `fixes_answering_nothing` and `repairs` were read with the floor.
+            if scope.is_none() {
+                if fixes_answering_nothing > 0 {
+                    next.push(format!(
+                        "{fixes_answering_nothing} fix(es) (defect_fix or test_failure_fix) name no \
+                         finding they answered — revise each with add_change_event's `answers`: the \
+                         findings it closed (INVALIDATES is drawn in the same call), or `answers: \
+                         []` if it answered none. Not counted against `clean`."
+                    ));
+                }
+                if let Some(line) = repairs.line() {
+                    next.push(line);
+                }
+                // AFTER `clean`, like the two above: an increment left open is
+                // said at a boundary, and is not a debt.
+                // `open_increments` was read with the floor.
+                if open_increments.open > 0 {
+                    next.push(format!(
+                        "{}. `open_increments` lists the oldest, at most {}, each with how \
+                         much of what was scheduled for it is delivered. Mention them at the \
+                         start or end of a session, never mid-task; an increment leaves the \
+                         list when it is closed. Not counted against `clean`.",
+                        open_increments.counts_line(),
+                        crate::open_increments::OPEN_INCREMENTS_LISTED
+                    ));
+                }
+            }
+
+            // AFTER `clean`, deliberately: see `LoopStatus::loop_closure`. Only an
+            // unscoped answer says it — it is a fact about the design, and the
+            // scoped `next` already names what it leaves out.
+            // `loop_closure` was worked out among the analyses above, under the budget.
+            if scope.is_none()
+                && let Some(loop_closure) = &loop_closure
+                && loop_closure.state == crate::loop_closure::LoopClosureState::NeverClosed
+            {
+                next.push(format!(
+                    "NO REAL RESULT HAS EVER COME BACK: {} Not counted against `clean` — feeding \
+                     runs back is the owner's choice — but say it when reporting status. The \
+                     route in is reconcile_verification with record_events and a detected_at.",
+                    loop_closure.summary
+                ));
+            }
+
+            // AFTER `clean`, like `loop_closure`: what the reasoning owes waits on
+            // the owner's word, and the gap is what puts it to them.
+            // `reasoning` was worked out among the analyses above, under the budget.
+            if scope.is_none()
+                && let Some(r) = reasoning.as_ref().filter(|r| r.is_owed())
+            {
+                if r.confirmation_owed() {
+                    next.push(format!(
+                        "THE REASONING OWES: {} unconfirmed step(s) of {}, {} uncited premise(s), {} \
+                         claim(s) shown but not proven, {} unverified citation(s). Not counted \
+                         against `clean` — confirming a step is the owner's word — but say it when \
+                         reporting status; reasoning_report reads each one.",
+                        r.unconfirmed_steps,
+                        r.steps,
+                        r.uncited_premises,
+                        r.shown_not_proven,
+                        r.unverified_citations
+                    ));
+                }
+                if r.not_as_stated() {
+                    next.push(format!(
+                        "THE REASONING IS NOT AS STATED: {} assumption(s) never discharged, {} \
+                         generalization(s) that do not hold (a variable something beneath fixes, or \
+                         an assumption still open names), {} stated independence(s) the lines do \
+                         not bear out, {} case split(s) nothing declares exhaustive, {} \
+                         inconsistenc(ies). Each is a `reasoning_not_as_stated` gap; \
+                         reasoning_report reads them.",
+                        r.undischarged_assumptions,
+                        r.generalizations_not_holding,
+                        r.independence_not_borne_out,
+                        r.cases_not_declared_exhaustive,
+                        r.inconsistencies
+                    ));
+                }
+                // WHAT HAS LOST ITS REASON NOW (req:what-has-lost-its-reason-now-
+                // is-one-read): the state, read whole, not a what-if's delta.
+                if r.reasons_lost_now() {
+                    next.push(format!(
+                        "WHAT HAS LOST ITS REASON NOW: {} requirement(s) whose reason to exist is \
+                         lost or stands on its Decision's acceptance alone ({}), {} accepted \
+                         decision(s) no line of whose chain holds ({}), {} stale check(s) whose \
+                         conditions no longer hold ({}). reasoning_report reads each one.",
+                        r.reasons_lost,
+                        r.reason_lost_ids.join(", "),
+                        r.decisions_without_a_holding_chain,
+                        r.decision_without_a_holding_chain_ids.join(", "),
+                        r.stale_checks,
+                        r.stale_check_ids.join(", ")
+                    ));
+                }
+                // WHAT AWAITS THE OWNER'S WORD (dec:a-premise-says-whether-it-
+                // rests-on-intent-or-delivery): a need a design choice rests on as
+                // intent that nobody accepted. Accepting it is the owner's word.
+                if r.awaiting_the_owners_word > 0 {
+                    next.push(format!(
+                        "WHAT AWAITS THE OWNER'S WORD: {} requirement(s), capabilit(ies) or                      interface(s) a design choice rests on as its owner's intent, which nobody                      has accepted ({}). What rests on them does not hold until the owner accepts                      them; reasoning_report reads each choice.",
+                        r.awaiting_the_owners_word,
+                        r.awaiting_the_owners_word_ids.join(", ")
+                    ));
+                }
+            }
+
+            crate::stop::mark("loop_status:done");
+            Ok(LoopStatus {
+                reasoning,
+                unsurfaced_gaps,
+                unanswered_questions,
+                answered_with_open_gap,
+                answered_naming_their_record,
+                unsettled_assigned_decisions,
+                structural_defects,
+                unproven_capabilities,
+                undispositioned_drift,
+                unexamined_claims,
+                follow_ups_open,
+                follow_ups,
+                deferrals_open,
+                deferrals,
+                breaches_open,
+                breaches,
+                computations_owed,
+                owed_computations,
+                stale_number_dependents,
+                resting_on_stale_numbers,
+                fixes_answering_nothing,
+                repairs,
+                open_increments,
+                verifications,
+                loop_closure,
+                assigned_decisions,
+                gaps_on_owned_ground,
+                questions_put_to_them,
+                awaiting_word,
+                scope,
+                clean,
+                next,
+                not_computed,
+            })
         };
-
-        // AFTER `clean`, like `loop_closure`: two lines about how repairs are
-        // RECORDED, each one line however many events it counts. Never
-        // counted in `clean` (see the fields' notes). Unscoped answers only:
-        // they are facts about the design, not about a person.
-        let fixes_answering_nothing = crate::repair::fixes_answering_nothing(self)?.len();
-        let repairs = crate::repair::RepairLine::of(&self.repair_report()?);
-        if scope.is_none() {
-            if fixes_answering_nothing > 0 {
-                next.push(format!(
-                    "{fixes_answering_nothing} fix(es) (defect_fix or test_failure_fix) name no \
-                     finding they answered — revise each with add_change_event's `answers`: the \
-                     findings it closed (INVALIDATES is drawn in the same call), or `answers: \
-                     []` if it answered none. Not counted against `clean`."
-                ));
+        let name = match contributor {
+            Some(id) => format!("loop_status:{id}"),
+            None => "loop_status".to_string(),
+        };
+        match self.kept_read::<LoopStatus>(&name) {
+            Some(whole) => {
+                let told_to_stop = LOOP_SECTIONS
+                    .iter()
+                    .any(|s| crate::stop::checkpoint(s.checkpoint).is_err());
+                if told_to_stop { work_out() } else { Ok(whole) }
             }
-            if let Some(line) = repairs.line() {
-                next.push(line);
-            }
+            None => self.kept_when(&name, |s: &LoopStatus| s.not_computed.is_empty(), work_out),
         }
-
-        // AFTER `clean`, deliberately: see `LoopStatus::loop_closure`. Only an
-        // unscoped answer says it — it is a fact about the design, and the
-        // scoped `next` already names what it leaves out.
-        let loop_closure = self.loop_closure()?;
-        if scope.is_none()
-            && loop_closure.state == crate::loop_closure::LoopClosureState::NeverClosed
-        {
-            next.push(format!(
-                "NO REAL RESULT HAS EVER COME BACK: {} Not counted against `clean` — feeding \
-                 runs back is the owner's choice — but say it when reporting status. The \
-                 route in is reconcile_verification with record_events and a detected_at.",
-                loop_closure.summary
-            ));
-        }
-
-        // AFTER `clean`, like `loop_closure`: what the reasoning owes waits on
-        // the owner's word, and the gap is what puts it to them.
-        let reasoning = self.reasoning_debt()?;
-        if scope.is_none()
-            && let Some(r) = reasoning.as_ref().filter(|r| r.is_owed())
-        {
-            if r.confirmation_owed() {
-                next.push(format!(
-                    "THE REASONING OWES: {} unconfirmed step(s) of {}, {} uncited premise(s), {} \
-                     claim(s) shown but not proven, {} unverified citation(s). Not counted \
-                     against `clean` — confirming a step is the owner's word — but say it when \
-                     reporting status; reasoning_report reads each one.",
-                    r.unconfirmed_steps,
-                    r.steps,
-                    r.uncited_premises,
-                    r.shown_not_proven,
-                    r.unverified_citations
-                ));
-            }
-            if r.not_as_stated() {
-                next.push(format!(
-                    "THE REASONING IS NOT AS STATED: {} assumption(s) never discharged, {} \
-                     generalization(s) that do not hold (a variable something beneath fixes, or \
-                     an assumption still open names), {} stated independence(s) the lines do \
-                     not bear out, {} case split(s) nothing declares exhaustive, {} \
-                     inconsistenc(ies). Each is a `reasoning_not_as_stated` gap; \
-                     reasoning_report reads them.",
-                    r.undischarged_assumptions,
-                    r.generalizations_not_holding,
-                    r.independence_not_borne_out,
-                    r.cases_not_declared_exhaustive,
-                    r.inconsistencies
-                ));
-            }
-            // WHAT HAS LOST ITS REASON NOW (req:what-has-lost-its-reason-now-
-            // is-one-read): the state, read whole, not a what-if's delta.
-            if r.reasons_lost_now() {
-                next.push(format!(
-                    "WHAT HAS LOST ITS REASON NOW: {} requirement(s) whose reason to exist is \
-                     lost or stands on its Decision's acceptance alone ({}), {} accepted \
-                     decision(s) no line of whose chain holds ({}), {} stale check(s) whose \
-                     conditions no longer hold ({}). reasoning_report reads each one.",
-                    r.reasons_lost,
-                    r.reason_lost_ids.join(", "),
-                    r.decisions_without_a_holding_chain,
-                    r.decision_without_a_holding_chain_ids.join(", "),
-                    r.stale_checks,
-                    r.stale_check_ids.join(", ")
-                ));
-            }
-            // WHAT AWAITS THE OWNER'S WORD (dec:a-premise-says-whether-it-
-            // rests-on-intent-or-delivery): a need a design choice rests on as
-            // intent that nobody accepted. Accepting it is the owner's word.
-            if r.awaiting_the_owners_word > 0 {
-                next.push(format!(
-                    "WHAT AWAITS THE OWNER'S WORD: {} requirement(s), capabilit(ies) or                      interface(s) a design choice rests on as its owner's intent, which nobody                      has accepted ({}). What rests on them does not hold until the owner accepts                      them; reasoning_report reads each choice.",
-                    r.awaiting_the_owners_word,
-                    r.awaiting_the_owners_word_ids.join(", ")
-                ));
-            }
-        }
-
-        Ok(LoopStatus {
-            reasoning,
-            unsurfaced_gaps,
-            unanswered_questions,
-            answered_with_open_gap,
-            answered_naming_their_record,
-            unsettled_assigned_decisions,
-            structural_defects,
-            unproven_capabilities,
-            undispositioned_drift,
-            unexamined_claims,
-            follow_ups_open,
-            follow_ups,
-            deferrals_open,
-            deferrals,
-            breaches_open,
-            breaches,
-            computations_owed,
-            owed_computations,
-            stale_number_dependents,
-            resting_on_stale_numbers,
-            fixes_answering_nothing,
-            repairs,
-            verifications: self.verification_recency()?,
-            loop_closure,
-            assigned_decisions,
-            gaps_on_owned_ground,
-            questions_put_to_them,
-            awaiting_word,
-            scope,
-            clean,
-            next,
-        })
     }
 
     /// Count how much of the design carries its own verification.
@@ -2023,6 +2362,9 @@ impl DesignGraph {
             confirmation,
             declining,
             declining_truncated,
+            open_increments: self
+                .open_increments()?
+                .listed(crate::open_increments::OPEN_INCREMENTS_LISTED),
         })
     }
 }
@@ -2157,6 +2499,52 @@ impl GraphReport {
                     m,
                     "\n_{cut} gap(s) above are CUT SHORT — titles at {GAP_TITLE_WORDS} words, \
                      prose at {GAP_PROSE_WORDS}. `detect_gaps` carries the full text._"
+                );
+            }
+            let _ = writeln!(m);
+        }
+
+        // Open increments: planned and never closed. Omitted when none is.
+        let inc = &self.open_increments;
+        if inc.open > 0 {
+            let _ = writeln!(m, "## Open increments\n");
+            let _ = writeln!(
+                m,
+                "**{}** open (planned and never closed): {} done but not closed · {} overtaken · \
+                 {} empty · {} showing none of these. Oldest first.\n",
+                inc.open, inc.done_but_not_closed, inc.overtaken, inc.empty, inc.no_signal
+            );
+            for i in &inc.increments {
+                let _ = writeln!(m, "- {}", i.line());
+            }
+            if let Some(full) = &inc.full_list {
+                let more = inc.open.saturating_sub(inc.increments.len());
+                let _ = writeln!(m, "- _…and {more} more. {full}_");
+            }
+            let _ = writeln!(
+                m,
+                "\n_\"Changes since it moved\" counts the design's {} recorded change(s), newest \
+                 first, back to the last one that named anything scheduled for the increment or \
+                 something that delivers it. Nothing is called stalled._",
+                inc.changes_recorded
+            );
+            // Where the order is not known, the document says so: "oldest
+            // first" and a count are both only as good as the times kept.
+            if inc.increments_with_no_recorded_time > 0 {
+                let _ = writeln!(
+                    m,
+                    "\n_The store kept no creation time for {} of the {} open increment(s): \
+                     they are listed first, as the oldest, by id among themselves._",
+                    inc.increments_with_no_recorded_time, inc.open
+                );
+            }
+            if inc.changes_with_no_recorded_time > 0 {
+                let _ = writeln!(
+                    m,
+                    "\n_It kept none for {} of the {} change(s) either: they count as older than \
+                     every change it kept one for, and a count that rests on one reads \"or \
+                     more\"._",
+                    inc.changes_with_no_recorded_time, inc.changes_recorded
                 );
             }
             let _ = writeln!(m);

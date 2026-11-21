@@ -1246,10 +1246,12 @@ pub fn resolve_merge(
         stamp: ours.stamp.clone(),
         content_hash: None,
         prev_content_hash: None,
+        reading_notes: BTreeMap::new(),
         graph_id: ours.graph_id.clone(),
         nodes,
         edges,
     };
+    merged.note_what_the_records_leave_out();
     merged.content_hash = Some(merged.compute_content_hash());
     merged.prev_content_hash = Some(ours.effective_content_hash());
     Ok(merged)

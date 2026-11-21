@@ -28,6 +28,17 @@
           "node_type": "DesignRule",
           "property": "enforced",
           "when": "present"
+        },
+        {
+          "node_type": "DesignEpoch",
+          "property": "status",
+          "when": {
+            "in": [
+              "deferred",
+              "dropped",
+              "superseded"
+            ]
+          }
         }
       ],
       "unsigned": "refused",

@@ -101,6 +101,30 @@
         ],
         "type": "string"
       },
+      "fails_at": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE ONLY: THE STEP AT WHICH IT FAILS, in words.\nSearched. Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "fails_at_step": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE ONLY: THE STEP OR STATEMENT OF THIS DESIGN AT WHICH\nIT FAILS, by id, when the design holds it. A reference, never an edge:\nthat step's reading never moves. Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "fails_because": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE ONLY: WHY IT FAILS THERE, in words — the\nobstruction. Searched. Omitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "fixes": {
         "default": null,
         "description": "THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all\nthe primes`) or a bare name. A step that generalizes over a variable\ndoes not hold while anything it rests on fixes it. Omitted: nothing is\nwritten.",
@@ -206,6 +230,25 @@
           "null"
         ]
       },
+      "route_rests_on": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE ONLY: WHAT IT RESTS ON, by id — the records the\nroute built on. Never premises: nothing rests on a failed route, and a\nwhat-if on one of these never reaches it. Each must name a node of\nthis design. Overwrites; omitted: nothing is written.",
+        "items": {
+          "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "route_to": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE (`statement_kind: failed_route`) ONLY, and refused\non any other statement: THE CLAIM IT WAS A ROUTE TO, by id — the hole\nit tried to close (a step is read under the claim it concludes).\nreasoning_report reads the route under that claim; the claim's own\nreading never moves. Refused unless it names a node of this design.\nOmitted: nothing is written.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "same_formula_as": {
         "default": null,
         "description": "THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula\nderived under several suppositions (⊥ in each reductio) is one record\nper occurrence, each naming the first; the read-back groups them. It\nchanges no truth. Omitted: nothing is written.",
@@ -260,7 +303,7 @@
       },
       "statement_kind": {
         "default": null,
-        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\n`evidence` (a report, study or measurement: \"the report says X\") reads\n`cited_as_evidence` when a pinned source documents it, and what rests\non it is supported, never proven; `judgement` is an analytic judgement\ndrawn from evidence, with its `confidence`.\nOmitted: nothing is written.",
+        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\n`evidence` (a report, study or measurement: \"the report says X\") reads\n`cited_as_evidence` when a pinned source documents it, and what rests\non it is supported, never proven; `judgement` is an analytic judgement\ndrawn from evidence, with its `confidence`.\n`failed_route` is a route that was tried and fails, a record of its own:\n`statement` says what was tried, with `route_to`, `fails_at`,\n`fails_because`, `route_rests_on` and `would_hold_if` below. It reads `failed_route`,\nsupports and refutes nothing, and is read back under the claim it was\na route to.\nOmitted: nothing is written.",
         "enum": [
           "theorem",
           "lemma",
@@ -278,6 +321,7 @@
           "evidence",
           "judgement",
           "bridge",
+          "failed_route",
           null
         ],
         "type": [
@@ -317,6 +361,14 @@
         },
         "type": [
           "array",
+          "null"
+        ]
+      },
+      "would_hold_if": {
+        "default": null,
+        "description": "FOR A FAILED ROUTE ONLY: THE NATURAL CONDITION UNDER WHICH IT WOULD GO\nTHROUGH, in words with its connective (\"if f is Boolean-valued\",\n\"with exp(d) in place of poly(d)\"). Only when the condition is natural,\nnever a trivial one. Read back with the route; it moves no reading and\nis neither a hypothesis of the claim nor a result shown. Searched.\nOmitted: nothing is written.",
+        "type": [
+          "string",
           "null"
         ]
       }

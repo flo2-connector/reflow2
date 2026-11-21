@@ -232,4 +232,16 @@ async fn a_plain_tool_search_rarely_carries_relations() {
 /// on main 4bc0811d5 — the same 89 tools, measured on both builds — so the
 /// share over the corpus moved from 95/199 to 89/184 with no reply changing.
 /// The ratchet holds from here: lower it when the share falls.
-const RELATION_SHARE_CEILING: f64 = 0.485;
+///
+/// LOWERED 2026-11-13, from 0.485 to 0.430. A relation is now weighed over the
+/// tools alone, the scale of the top tool it is compared with
+/// (`find_relations::rank`). Before, every edge type the schema gained raised
+/// every relation's score: two placeholder types took main from 89 to 91 of
+/// 184 and failed this ceiling, with no relation's words changing
+/// (`fact:root-cause-a-relations-score-rises-whenever-the-schema-gains-an-edge-type-so-the-relation-share-ratchet-fails-2026-11-12`).
+/// Measured on main 3133057e6 with the change, built from empty target
+/// folders: 79 of 184 (42.9%), and 79 again with the two placeholder types
+/// added. The relation corpus reads 25 of 25; its 26th question moved to
+/// `known_misses`, where its measured reason is written (it was found only
+/// through the word "with").
+const RELATION_SHARE_CEILING: f64 = 0.430;

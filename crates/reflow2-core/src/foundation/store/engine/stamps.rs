@@ -418,6 +418,35 @@ impl StorageEngine {
         }))
     }
 
+    /// When each node of one type was CREATED, as stored, in ONE scan of the
+    /// type: `(node id, creation stamp)`, in key order. `None` for a node
+    /// written before stamping began.
+    ///
+    /// ⚠️ THE SEAL IS NOT CHECKED. This is for a reader that needs an ORDER
+    /// over a whole type (which change is newer, which increment is older)
+    /// and would otherwise pay [`node_stamp`](Self::node_stamp)'s read and
+    /// seal check once per node. A time this returns is one to SORT by, and
+    /// never one to tell a person "this server recorded it then": that claim
+    /// is `node_stamp`'s `recorded_here`.
+    pub fn created_stamps(
+        &self,
+        graph_id: &str,
+        node_type: &str,
+    ) -> Result<Vec<(String, Option<String>)>, DynoError> {
+        let prefix = crate::foundation::store::keys::node_type_prefix(graph_id, node_type);
+        let mut out = Vec::new();
+        for (key, bytes) in self.prefix_scan(CF_NODES, &prefix)? {
+            let props: HashMap<String, Value> = rmp_serde::from_slice(&bytes)
+                .map_err(|e| DynoError::Serialization(e.to_string()))?;
+            let node_id = decode_key_segment(&key[prefix.len()..], "node key node_id suffix")?;
+            out.push((
+                node_id,
+                stamp_str(&props, STAMP_CREATED).map(str::to_string),
+            ));
+        }
+        Ok(out)
+    }
+
     /// The stamp properties the node carries, exactly as stored — what an
     /// export writes back into the node so they travel.
     pub fn stamp_properties(

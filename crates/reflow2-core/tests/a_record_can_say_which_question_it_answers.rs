@@ -121,9 +121,10 @@ fn the_loop_counts_answers_that_name_their_record_and_infers_nothing_from_the_re
     // BEFORE: the answer exists in the graph but nothing links it. The loop
     // must NOT call this unwritten — that was the defect fixed the same day.
     let before = g.loop_status().unwrap();
-    assert_eq!(before.answered_with_open_gap, 1);
+    assert_eq!(before.answered_with_open_gap, Some(1));
     assert_eq!(
-        before.answered_naming_their_record, 0,
+        before.answered_naming_their_record,
+        Some(0),
         "nothing names its record yet"
     );
     let line = before
@@ -152,9 +153,14 @@ fn the_loop_counts_answers_that_name_their_record_and_infers_nothing_from_the_re
     .unwrap();
 
     let after = g.loop_status().unwrap();
-    assert_eq!(after.answered_with_open_gap, 1, "the gap is still open");
     assert_eq!(
-        after.answered_naming_their_record, 1,
+        after.answered_with_open_gap,
+        Some(1),
+        "the gap is still open"
+    );
+    assert_eq!(
+        after.answered_naming_their_record,
+        Some(1),
         "and now the answer names what it became"
     );
 }
@@ -167,7 +173,7 @@ fn a_design_written_before_the_edge_existed_is_not_reported_as_in_debt() {
     // it does not.
     let (g, _qid) = answered_question();
     let s = g.loop_status().unwrap();
-    assert_eq!(s.answered_naming_their_record, 0);
+    assert_eq!(s.answered_naming_their_record, Some(0));
     let line = s
         .next
         .iter()

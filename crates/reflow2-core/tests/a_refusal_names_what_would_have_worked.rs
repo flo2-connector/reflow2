@@ -144,3 +144,60 @@ fn a_real_contributor_still_records_authorship() {
     )
     .expect("a real Contributor must still be accepted");
 }
+
+/// A DISPLAY NAME IS ANSWERED WITH THE ID THAT HOLDS IT
+/// (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09).
+/// A work hub gave a person's display name where an id was wanted and was told
+/// to create them, although they existed under another id. Doing that would
+/// mint a second record of one person. The refusal stays, and names the id.
+#[test]
+fn a_display_name_is_refused_with_the_id_that_holds_it() {
+    let mut g = graph();
+    g.add_contributor("who:pat", "Pat Doe", Some("person"), None, None)
+        .expect("a contributor");
+    let msg = refusal(&mut g, "pat doe");
+    assert!(
+        msg.contains("`pat doe` is the display name of Contributor `who:pat`")
+            && msg.contains("pass its id, `who:pat`"),
+        "the refusal names the id that holds the name, matched without regard to case: {msg}"
+    );
+    assert!(
+        !msg.contains("CALL `add_contributor` FIRST"),
+        "and never tells the caller to create a person who already exists: {msg}"
+    );
+}
+
+#[test]
+fn a_display_name_two_contributors_share_names_both_ids() {
+    let mut g = graph();
+    g.add_contributor("who:sam-a", "Sam Lee", Some("person"), None, None)
+        .unwrap();
+    g.add_contributor("who:sam-b", "Sam Lee", Some("person"), None, None)
+        .unwrap();
+    let msg = refusal(&mut g, "Sam Lee");
+    assert!(
+        msg.contains("2 Contributors (`who:sam-a`, `who:sam-b`)")
+            && msg.contains("pass the id of the one you mean"),
+        "a shared name is never resolved for the caller; both ids are named: {msg}"
+    );
+}
+
+#[test]
+fn claim_region_names_the_id_for_a_display_name_too() {
+    let mut g = graph();
+    g.add_contributor("who:pat", "Pat Doe", Some("person"), None, None)
+        .unwrap();
+    let msg = g
+        .claim_region(
+            "Pat Doe",
+            "dec:the-gate-uses-the-civil-date",
+            2,
+            None,
+            None,
+            Some("seat:t"),
+        )
+        .expect_err("a display name is not a contributor id")
+        .to_string();
+    assert!(msg.contains("pass its id, `who:pat`"), "{msg}");
+    assert!(!msg.contains("CALL `add_contributor` FIRST"), "{msg}");
+}

@@ -179,6 +179,15 @@ pub const SETTLES: &[Settles] = &[
         approver: "approver",
         unsigned: Unsigned::RecordedWithNote,
     },
+    // Closing an increment without it arriving (deferred, dropped,
+    // superseded) is the owner's word, every time (2026-11-17).
+    Settles {
+        tool: "close_increment",
+        argument: None,
+        when: When::Always,
+        approver: "approver",
+        unsigned: Unsigned::Refused,
+    },
     // Choosing a fork's winner moves the Decision to `accepted`.
     Settles {
         tool: "collapse_decision",

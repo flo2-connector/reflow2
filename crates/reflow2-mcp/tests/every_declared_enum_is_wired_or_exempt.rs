@@ -125,7 +125,6 @@ const WIRED: &[(&str, &str, &str, &str)] = &[
         "Capability",
         "delivery",
     ),
-    ("set_epoch_status", "status", "DesignEpoch", "status"),
     (
         "set_interface_designation",
         "designation",
@@ -179,6 +178,15 @@ const WIRED_NESTED: &[(&str, &str, &str, &str, &str)] = &[
 ///
 /// Each of these shares a NAME with a declared enum and means something else.
 const EXEMPT: &[(&str, &str, &str)] = &[
+    (
+        "DesignEpoch",
+        "status",
+        "TWO DOORS, EACH PUBLISHING ITS OWN PART OF THE SET (2026-11-17): set_epoch_status and \
+         add_epoch publish `planned` and `arrived`, the epoch's tense; close_increment \
+         publishes `deferred`, `dropped` and `superseded` as `how`, because a close answers \
+         for every unfinished item and carries the owner's word, which a status argument \
+         cannot. Publishing the whole set on either door would offer values it refuses.",
+    ),
     (
         "DEPENDS_ON",
         "used_basis",

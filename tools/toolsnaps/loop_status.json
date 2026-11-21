@@ -29,6 +29,16 @@
         "default": false,
         "description": "Also report what is owed on ground the COMMITTED EXPORT does not hold —\nthe closest thing to \"what did this session introduce\" that a design\nwith no clock can answer.\n\nOFF BY DEFAULT AND THAT IS A COST DECISION: it reads and parses the\ncommitted export, which the ordinary orientation call has no reason to\npay for. Everything else in the reply stays design-wide either way.\n\nAlso returns `unexported`: what the store holds that the export does\nnot, grouped by who wrote it (the contributor and agent the store\ncredits, and the epoch) with counts, a few ids each and the dates they\ncarry — so another session's work in progress can be seen before an\nexport. Bounded; `compare_designs` lists every change.",
         "type": "boolean"
+      },
+      "time_budget_ms": {
+        "default": null,
+        "description": "How many MILLISECONDS this call may spend before it answers with what\nit has (default 20,000, or the server's REFLOW2_LOOP_STATUS_BUDGET_MS).\n\nThe floor (questions, decisions, checks, divergences, follow-ups,\nbreaches, kept outputs) is always computed. Then the whole-design\nanalyses run cheapest first: the confirmation ledger, the reasoning,\nwhether a real result ever came back, gap detection, defect detection.\nAny the time does not reach are listed\nin `not_computed` with the call that computes each alone, their counts\nread null, and the answer is never `clean`. The clock starts before the\ncall waits for the design, and 20 s is two thirds of flo2.io's 30 s\ndoor. `0` asks for the floor alone; raise it where nothing in front of\nthe server gives up sooner.",
+        "format": "uint64",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
       }
     },
     "type": "object"

@@ -83,13 +83,20 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<GapScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // STOPS WHEN ITS CALLER HAS GONE, at the next detector
+        // (`crate::time_budget::CallBudget::caller_only`): a sweep nobody is
+        // waiting for is not run to its end holding the design.
+        let stop = crate::time_budget::CallBudget::caller_only();
         let g = self.graph.read().await;
         let budget = req.budget_chars.unwrap_or(DEFAULT_REPLY_BUDGET_CHARS);
         match req.scope.as_deref() {
             None => ok_json_or_why(
                 lift_parks_route(
-                    serde_json::to_value(g.detect_gaps_within(budget).map_err(dyno_err)?)
-                        .map_err(ser_err)?,
+                    serde_json::to_value(
+                        stop.run(|| g.detect_gaps_within(budget))
+                            .map_err(dyno_err)?,
+                    )
+                    .map_err(ser_err)?,
                 ),
                 "no open gap: every anchored gap has been put to the user or accepted — or the design holds nothing yet to have a gap about",
             ),
@@ -225,9 +232,12 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<LoopScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // THE CLOCK STARTS BEFORE THE LOCK (`crate::time_budget`): a wait
+        // behind a writer is spent from the budget, not added to it.
+        let budget = crate::time_budget::CallBudget::start(req.time_budget_ms);
         let g = self.graph.read().await;
-        let status = g
-            .loop_status_for(req.contributor_id.as_deref())
+        let status = budget
+            .run(|| g.loop_status_for(req.contributor_id.as_deref()))
             .map_err(dyno_err)?;
         let mut payload = serde_json::to_value(&status).map_err(ser_err)?;
         // The debt rollup is seven integers and a to-do list; the per-check roll
@@ -594,7 +604,20 @@ impl ReflowService {
         // 2,367 nodes carry `created_at`, so a time-based session boundary was
         // never computable; what the durable record does not yet hold is, and
         // is the more useful question anyway.
-        if req.since_export
+        // What this session introduced re-reads gap and defect detection, so
+        // an answer that did not compute them does not compute them here
+        // either, outside the budget.
+        if req.since_export && !status.not_computed.is_empty() {
+            if let Some(obj) = payload.as_object_mut() {
+                obj.insert(
+                    "since_export_unavailable".into(),
+                    json!(
+                        "not computed this call: it reads gap and defect detection, and this \
+                         answer did not compute all of them (`not_computed`)"
+                    ),
+                );
+            }
+        } else if req.since_export
             && let Some(graph_path) = self.graph_path.as_deref()
         {
             let mut baseline: std::collections::BTreeSet<String> =
@@ -927,6 +950,12 @@ impl ReflowService {
                 }
             }
         }
+        // WHAT THIS CALL WAS GIVEN AND SPENT, and whether the answer is whole
+        // (`crate::time_budget`). Always present, so a partial answer and a
+        // whole one never share a shape a reader could mistake.
+        if let Some(obj) = payload.as_object_mut() {
+            obj.insert("time_budget".into(), budget.block(&status.not_computed));
+        }
         // HELD TO THE REPLY BUDGET, LAST, so the reply that has to fit is the
         // one the caller receives. The scoped answer's `awaiting_word` grows
         // with the design — measured 2026-10-14 at 27,951 of 38,939 characters
@@ -942,7 +971,7 @@ impl ReflowService {
             req.budget_chars
                 .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
             "awaiting_word",
-            &["next"],
+            &["next", "not_computed"],
             "Each list is counted beside it (`breaches_open`, `next`). Read a row in full with \
              get_node on its id, the breaches with detect_gaps, or pass a larger budget_chars.",
         ))
@@ -1310,12 +1339,16 @@ impl ReflowService {
         match req.format.as_deref() {
             None | Some("json") => {}
             Some("markdown") => {
-                if req.include_verifications || req.budget_chars.is_some() {
+                if req.include_verifications
+                    || req.include_open_increments
+                    || req.budget_chars.is_some()
+                {
                     return Err(McpError::invalid_params(
                         "graph_report: `format: \"markdown\"` is the report as a document, \
-                         which withholds the per-check roll and is not budgeted; \
-                         `include_verifications` and `budget_chars` shape the JSON report. Pass \
-                         either, or `format: \"markdown\"` alone. Nothing was read.",
+                         which withholds the per-check roll, lists the oldest open increments \
+                         and is not budgeted; `include_verifications`, \
+                         `include_open_increments` and `budget_chars` shape the JSON report. \
+                         Pass any of them, or `format: \"markdown\"` alone. Nothing was read.",
                         None,
                     ));
                 }
@@ -1356,6 +1389,19 @@ impl ReflowService {
                 g.invalidated_verifications(&ids).map_err(dyno_err)?
             })
             .map_err(ser_err)?
+        };
+        // EVERY OPEN INCREMENT IN FULL when asked; otherwise every count and
+        // the oldest ten BY ID (dec:graph-reports-default-names-open-
+        // increments-by-id-and-count-2026-11-18), since loop_status carries
+        // the rows. Both from the one computation (`DesignGraph::
+        // open_increments`, kept until the next write) the markdown report's
+        // list is cut from, so every surface counts the same.
+        let open = g.open_increments().map_err(dyno_err)?;
+        report["open_increments"] = if req.include_open_increments {
+            serde_json::to_value(open).map_err(ser_err)?
+        } else {
+            serde_json::to_value(open.by_id(reflow2_core::open_increments::OPEN_INCREMENTS_LISTED))
+                .map_err(ser_err)?
         };
         let mut served = served_by();
         if let Some(behind) = crate::service::behind_record(self.written_by.as_deref()) {
@@ -1446,9 +1492,11 @@ impl ReflowService {
         &self,
         Parameters(req): Parameters<ScopeReq>,
     ) -> Result<CallToolResult, McpError> {
+        // Stops when its caller has gone, as detect_gaps does.
+        let stop = crate::time_budget::CallBudget::caller_only();
         let g = self.graph.read().await;
         let mut out = match req.scope.as_deref() {
-            None => serde_json::to_value(g.detect_defects().map_err(dyno_err)?),
+            None => serde_json::to_value(stop.run(|| g.detect_defects()).map_err(dyno_err)?),
             Some(seed) => serde_json::to_value(
                 g.detect_defects_in_scope(seed, req.depth.unwrap_or(DEFAULT_SCOPE_DEPTH))
                     .map_err(dyno_err)?,
@@ -1554,8 +1602,29 @@ impl ReflowService {
         ok_json(json!({ "withdrawn": withdrawn, "defect_id": req.defect_id }))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - circular dependencies, single points of failure, duplicates, disconnected communities
+    // - NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept
+    // - Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what
+    //   each proposes before applying; the check-health skill is the workflow around this.
+    // - WHICH NODE A MERGE KEEPS IS A PERSON'S CHOICE: each merge's `survivor` ranks both candidates
+    //   with their reasons (provenance, standing, priority, status, connections, and which is newer)
+    //   and recommends one — the `keep_id` — only when a real difference separates them; when
+    //   nothing does, `survivor.needs_choice` is true, the reason says a person must pick, and the
+    //   node id never decides.
+    // - AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a
+    //   mechanical repair (a SPOF is a design question, not a heal) — the reply names which.
     #[tool(
-        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept, and a project in `rigid` mode makes even that stop at a proposal. Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what each proposes before applying; the check-health skill is the workflow around this. WHICH NODE A MERGE KEEPS IS A PERSON'S CHOICE: each merge's `survivor` ranks both candidates with their reasons (provenance, standing, priority, status, connections, and which is newer) and recommends one — the `keep_id` — only when a real difference separates them; when nothing does, `survivor.needs_choice` is true, the reason says a person must pick, and the node id never decides. AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a mechanical repair (a SPOF is a design question, not a heal) — the reply names which. Ask for this when you want suggested repairs for the design's structural problems, to review before anything changes.",
+        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — \
+                       circular dependencies, SPOFs, duplicates, disconnected communities — as a \
+                       list of repairs with what each would change. NEVER MUTATES: `apply_heal` \
+                       applies the ones you accept, and a project in `rigid` mode makes even that \
+                       stop at a proposal. Some repairs DELETE nodes, so read each before \
+                       applying; the check-health skill is the workflow. A merge's `survivor` \
+                       recommends a `keep_id` only when a real difference separates the two; \
+                       otherwise `survivor.needs_choice` is true and a person must pick. \
+                       Ask for this when you want suggested repairs for the design's structural \
+                       problems, to review before anything changes.",
         title = "Propose a Heal",
         annotations(read_only_hint = true)
     )]
@@ -1585,8 +1654,23 @@ impl ReflowService {
         ok_json(g.evaluate_allocation().map_err(dyno_err)?)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - ⚠️ IT ANSWERS THE PERFORMANCE QUESTION SPECIFICALLY (least cross-boundary chatter), and
+    //   other quality targets want other partitions: reliability may deliberately duplicate a
+    //   function, security follows trust boundaries rather than coupling at all.
+    // - ⚠️ AND IT CLUSTERS ON EDGES MOST DESIGNS NEVER DECLARE: on reflow2's own graph that is one
+    //   DEPENDS_ON across 238 capabilities, so it returned one cluster per capability — and now SAYS
+    //   SO, reporting how many edges it had to work with, so 238 singletons cannot be read as a
+    //   proposal.
     #[tool(
-        description = "Propose a capability→component allocation by Leiden clustering over the DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never applied; `allocate` records what you actually decide. ⚠️ IT ANSWERS THE PERFORMANCE QUESTION SPECIFICALLY (least cross-boundary chatter), and other quality targets want other partitions: reliability may deliberately duplicate a function, security follows trust boundaries rather than coupling at all. ⚠️ AND IT CLUSTERS ON EDGES MOST DESIGNS NEVER DECLARE: on reflow2's own graph that is one DEPENDS_ON across 238 capabilities, so it returned one cluster per capability — and now SAYS SO, reporting how many edges it had to work with, so 238 singletons cannot be read as a proposal. Ask for this when you want it to suggest how to group capabilities into components based on their dependencies — a starting grouping to argue with, after checking the reply says it had enough edges to mean anything.",
+        description = "Propose a capability→component allocation by Leiden clustering over the \
+                       DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never \
+                       applied; `allocate` records what you actually decide. It answers the \
+                       performance question (least cross-boundary chatter); other quality targets \
+                       want other partitions. The reply says how many edges it had to work with. \
+                       Ask for this when you want it to suggest how to group capabilities into \
+                       components based on their dependencies — a starting grouping to argue with, \
+                       after checking the reply says it had enough edges to mean anything.",
         title = "Propose an Allocation",
         annotations(read_only_hint = true)
     )]
@@ -1646,9 +1730,21 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could
+    //   drift), observations exist but none declined, or every decline is already dispositioned —
+    //   the reply names which, because "nothing is getting worse" and "nobody is measuring" must
+    //   never read the same.
+    // - (its observations over time, and whether the latest is worse; a null says which null)
     #[tool(
-        description = "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. Pass `target_id` and `dimension` to read ONE node on one axis (its observations over time, and whether the latest is worse; a null says which null), or either alone to narrow the sweep. Ask for this when you want to know what in the design is getting worse. \
-                       Ask for this to see which quality measures are sliding across the whole design.",
+        description = "All declining quality dimensions across the design, worst first — every \
+                       node whose latest recorded observation on some `-ility` is worse than the \
+                       one before, ranked by how far it fell. An empty list says which empty: \
+                       nothing recorded, none declined, or every decline already dispositioned. \
+                       Pass `target_id` and `dimension` to read ONE node on one axis, or either \
+                       alone to narrow the sweep. \
+                       Ask for this when you want to know what in the design is getting worse. Ask \
+                       for this to see which quality measures are sliding across the whole design.",
         title = "All Quality Drifts",
         annotations(read_only_hint = true)
     )]
@@ -1969,9 +2065,19 @@ impl ReflowService {
         ok_json(body)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered
+    //   —
+    // - returns `withdrawn: false` and names that, exactly as documented;
     #[tool(
-        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. Withdrawing an acknowledgement that does not exist returns `withdrawn: false` and names that, exactly as documented; it does not invent one to withdraw. Ask for this when a review turns out to have been wrong and a parked gap needs attention again. \
-                       Ask for this to reopen a gap you previously accepted.",
+        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is \
+                       marked `superseded` — kept, not deleted — and the gap returns to \
+                       `detect_gaps`' open list on its next run. Withdrawing an acknowledgement \
+                       that does not exist returns `withdrawn: false`; it does not invent one to \
+                       withdraw. \
+                       Ask for this when a review turns out to have been wrong and a parked gap \
+                       needs attention again. Ask for this to reopen a gap you previously \
+                       accepted.",
         title = "Withdraw a Gap Acknowledgement",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -2127,7 +2233,19 @@ impl ReflowService {
             .unwrap_or(reflow2_core::derived::DEFAULT_DERIVED_SAMPLE)
             .min(20);
         let g = self.graph.read().await;
-        ok_json(g.derived_report(&req.only, sample).map_err(dyno_err)?)
+        let full = serde_json::to_value(g.derived_report(&req.only, sample).map_err(dyno_err)?)
+            .map_err(crate::service::ser_err)?;
+        // Prose only, never the list: the relations are a catalogue, and a
+        // sample of a catalogue reads as the whole of it. The thirtieth
+        // declared relation took the whole reply past 30,000 characters on a
+        // design of realistic size (31,169 against main's 29,660, measured
+        // 2026-11-14 by tools/replies_are_bounded.py), with nowhere to bound it.
+        ok_json(crate::reply_budget::bound_reply(
+            full,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "Read named relations whole with `only`.",
+        ))
     }
 
     #[tool(

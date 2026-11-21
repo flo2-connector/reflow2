@@ -181,7 +181,17 @@ schema_enum!(
 schema_enum!(constraint_direction_opt, "Constraint", "direction", opt);
 schema_enum!(constraint_priority_opt, "Constraint", "priority", opt);
 schema_enum!(decision_kind_opt, "Decision", "kind", opt);
-schema_enum!(design_epoch_status_req, "DesignEpoch", "status", req);
+schema_enum!(decision_closing_it_opt, "Decision", "closing_it", opt);
+// `set_epoch_status` moves an epoch between these two only. The schema's
+// other three values (deferred, dropped, superseded) are closes, written by
+// `close_increment` alone, so this door does not offer them.
+list_enum!(design_epoch_status_req, &["planned", "arrived"], req);
+list_enum!(
+    increment_close_req,
+    &["deferred", "dropped", "superseded"],
+    req
+);
+list_enum!(leftover_fate_req, &["stays", "moves", "dropped"], req);
 schema_enum!(
     dimension_assessment_dimension_req,
     "DimensionAssessment",
@@ -257,7 +267,8 @@ schema_enum!(
     opt
 );
 schema_enum!(epoch_type_opt, "DesignEpoch", "epoch_type", opt);
-schema_enum!(epoch_status_opt, "DesignEpoch", "status", opt);
+// add_epoch's tense: planned or arrived. A close is close_increment's alone.
+list_enum!(epoch_status_opt, &["planned", "arrived"], opt);
 schema_enum!(project_status_opt, "Project", "status", opt);
 schema_enum!(repair_req, "ChangeEvent", "repair", opt);
 schema_enum!(decision_status_req, "Decision", "status", req);

@@ -62,4 +62,11 @@ pub enum DynoError {
 
     #[error("Serialization error: {0}")]
     Serialization(String),
+
+    /// A long read was told to stop at a check point (`crate::stop`): its
+    /// time budget ran out (`reason: budget`) or its caller gave up
+    /// (`caller_gone`). Never a fault: whoever opened the scope says what was
+    /// not computed.
+    #[error("Stopped ({reason}) at {at}")]
+    Stopped { reason: String, at: String },
 }

@@ -467,6 +467,23 @@ impl ReflowService {
             crate::nulls::Nullable<AddEpochReq>,
         >,
     ) -> Result<CallToolResult, McpError> {
+        if let Some(s) = req
+            .status
+            .as_deref()
+            .filter(|s| reflow2_core::close_increment::is_closed_status(s))
+        {
+            // A close answers for every unfinished item and carries the
+            // owner's word; a tense argument on a constructor does neither.
+            return Err(McpError::invalid_params(
+                format!(
+                    "`add_epoch`: `{s}` closes an increment without it arriving, which only \
+                     close_increment does (it asks what becomes of each unfinished item, and \
+                     carries the owner's word). Nothing was written. `status` here is the \
+                     epoch's tense: planned or arrived."
+                ),
+                None,
+            ));
+        }
         let mut g = self.write_lock().await?;
         let ty = reflow2_core::nodes::node::DESIGN_EPOCH;
         refuse_without_a_sequence_hint(&g, &req)?;
@@ -585,6 +602,97 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word:
+    // - NO UNFINISHED ITEM IS DEFAULTED: `leftovers` answers for every item scheduled for it and not
+    //   delivered,
+    // - (to another open increment, `to`: a recorded slip)
+    // - so arrival_delta reads each item as moved or dropped rather than the plan as always smaller.
+    #[tool(
+        description = "CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, on the owner's word: \
+                       `deferred` (still meant, later), `dropped` (no longer meant; `reason` says \
+                       why) or `superseded` (by the increment `superseded_by` names). Only an open \
+                       increment closes. `leftovers` answers for EVERY item scheduled for it and \
+                       not delivered: each `moves` (to another open increment, `to`), is `dropped` \
+                       from it (with its `reason`; the item itself keeps its status, so dropping \
+                       it here retires no intent), or, on a deferral only, `stays`. One missing, \
+                       doubled or unknown answer refuses the whole call, naming every problem, and \
+                       nothing is written. When an item leaves and the plan is not on the record \
+                       yet, `recorded_in` names an epoch that has HAPPENED to file the plan's \
+                       snapshot in. Writes one ChangeEvent with every fate and reason, linked to \
+                       what moved. `approver` is REQUIRED: the close is the owner's word. A \
+                       deferred increment leaves the open-increments list and is counted apart; \
+                       set_epoch_status reopens it. \
+                       Ask for this to defer, drop or supersede an increment that is not going to \
+                       be finished.",
+        title = "Close an Increment",
+        annotations(read_only_hint = false, destructive_hint = false)
+    )]
+    pub async fn close_increment(
+        &self,
+        Parameters(req): Parameters<crate::service::CloseIncrementReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let how = reflow2_core::close_increment::CloseAs::parse(&req.how).ok_or_else(|| {
+            McpError::invalid_params(
+                format!(
+                    "`close_increment`: `how` is `{}`; an increment closes as deferred, dropped \
+                     or superseded. To say it HAPPENED, use set_epoch_status `arrived`.",
+                    req.how
+                ),
+                None,
+            )
+        })?;
+        let Some(approver) = req.approver.as_deref().filter(|a| !a.trim().is_empty()) else {
+            return Err(McpError::invalid_params(
+                "`close_increment`: no `approver`, so nothing was written. Closing an increment \
+                 without it arriving is the owner's word: name the Contributor whose it is.",
+                None,
+            ));
+        };
+        let mut leftovers = Vec::with_capacity(req.leftovers.len());
+        for l in &req.leftovers {
+            use reflow2_core::close_increment::{Leftover, LeftoverFate};
+            let fate = match l.fate.as_str() {
+                "stays" => LeftoverFate::Stays,
+                "moves" => LeftoverFate::Moves {
+                    to: l.to.clone().unwrap_or_default(),
+                },
+                "dropped" => LeftoverFate::Dropped {
+                    reason: l.reason.clone().unwrap_or_default(),
+                },
+                other => {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "`close_increment`: '{}' has fate `{other}`; a leftover stays, moves \
+                             or is dropped.",
+                            l.item_id
+                        ),
+                        None,
+                    ));
+                }
+            };
+            leftovers.push(Leftover {
+                item_id: l.item_id.clone(),
+                fate,
+            });
+        }
+        let mut g = self.write_lock().await?;
+        crate::tools::capture::approver_must_exist(&g, Some(approver), "close_increment")?;
+        let closed = g
+            .close_increment(&reflow2_core::close_increment::IncrementClose {
+                epoch_id: &req.epoch_id,
+                how,
+                reason: req.reason.as_deref(),
+                superseded_by: req.superseded_by.as_deref(),
+                leftovers: &leftovers,
+                recorded_in: req.recorded_in.as_deref(),
+                approver,
+                acted_at: req.acted_at.as_deref(),
+            })
+            .map_err(dyno_err)?;
+        ok_json(closed)
+    }
+
     #[tool(
         description = "Create or revise a dated finding or defect as a TemporalFact — what was observed, \
                        about which node, on what date. Use it the moment you have something to \
@@ -636,6 +744,22 @@ impl ReflowService {
                 None,
             ));
         }
+        // A FINDING IS NEVER ITS OWN CAUSE: CAUSES cannot hold from a node to
+        // itself, and the store refuses that edge on every door. Refused here
+        // too, before the finding is written, so the refusal never leaves a
+        // finding with its cause missing
+        // (fact:root-cause-a-finding-can-name-itself-as-its-cause-and-create-edge-draws-a-causes-self-loop-2026-10-30).
+        if req.caused_by.as_deref() == Some(req.id.as_str()) {
+            return Err(McpError::invalid_params(
+                format!(
+                    "`caused_by` names this finding itself ({:?}): a finding cannot be its own \
+                     cause, and CAUSES cannot hold from a node to itself. Name the node whose \
+                     behaviour caused what this finding records. Nothing was written.",
+                    req.id
+                ),
+                None,
+            ));
+        }
         let g0 = self.write_lock().await?;
         let mut __rf = crate::service::RequiredFields::new(
             &g0,
@@ -659,6 +783,30 @@ impl ReflowService {
             .default_on_create(req.basis.as_deref(), "measured")
             .map(str::to_string);
         __rf.refuse_nulled(&nulled)?;
+        // A ROUND OF A PROOF SEARCH RECORDS HOW THE PATH READS WHEN IT ENDS
+        // (dec:a-round-records-how-the-path-reads-when-it-ends): the server
+        // writes the readings into `value` when the round is recorded, because
+        // a reading is computed from the design as it stands and nothing else
+        // says later what a claim read then. The readings are the server's,
+        // never the caller's, so a `value` passed on a round is refused.
+        let is_round = fact_type
+            .clone()
+            .or_else(|| __rf.stored_str("fact_type"))
+            .as_deref()
+            == Some(reflow2_core::search_map::ROUND_FACT);
+        let creating = !__rf.revising();
+        if is_round && (req.value.is_some() || nulled.iter().any(|f| f == "value")) {
+            return Err(McpError::invalid_params(
+                format!(
+                    "`value` on a `{}` finding is written by reflow2, never passed: when the \
+                     round is recorded the server writes how each claim on the path to the \
+                     target reads at that moment, which the search map compares round by round \
+                     to count the rounds since progress. Leave `value` out. Nothing was written.",
+                    reflow2_core::search_map::ROUND_FACT
+                ),
+                None,
+            ));
+        }
         __rf.finish()?;
         drop(g0);
 
@@ -710,6 +858,9 @@ impl ReflowService {
             if let Some(v) = v {
                 props = props.set(k, v);
             }
+        }
+        if is_round && creating {
+            props = props.set("value", g.round_value(&subject_id).map_err(dyno_err)?);
         }
         // Where the lesson is DELIVERED (req:a-lesson-is-served-at-the-step-it-
         // concerns): validated against what this server serves, so a typo cannot
@@ -818,14 +969,14 @@ impl ReflowService {
                        event propagatable. TWO QUESTIONS, NOT ONE: `change_type` says WHY, and `subject` says \
                        WHICH AXIS — `system` (the thing changed) or `record` (the thing did not change and only \
                        the design's knowledge of it did, e.g. a first baseline, a re-sync, a question settled). \
-                       Leaving `subject` out is a true answer and is never inferred from `change_type`, because \
-                       the mapping is not total. Use `defect_fix` when the design was right and the code was \
+                       Leaving `subject` out is a true answer, never inferred from `change_type`. Use `defect_fix` when the design was right and the code was \
                        wrong, and `test_failure_fix` only when a check actually caught it. Use `documentation` \
                        when the thing was right and only its description of itself was wrong; the test is \
                        behavioural, not file-shaped, so a normative document that changes what somebody DOES \
                        takes a real label instead. TEXT GOES IN `summary` (what changed — indexed and \
-                       searchable) and `rationale` (why, and the lesson). THERE IS NO `description` FIELD: \
-                       reaching for one is the commonest mistake, and it is answered with a redirect. \
+                       searchable) and `rationale` (why, and the lesson). THERE IS NO `description` FIELD. \
+                       Pass `checksums` (`{artifact_id, checksum?}`) to accept each artifact's checksum \
+                       against this event in the same call. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: \
                        call it again with the same id and only what you are changing \u{2014} omitted fields \
                        keep their stored value, so correcting one never means re-sending a 2 KB field you did \
@@ -837,9 +988,185 @@ impl ReflowService {
     )]
     pub async fn add_change_event(
         &self,
-        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
-            crate::nulls::Nullable<AddChangeEventReq>,
-        >,
+        Parameters(crate::nulls::Nullable {
+            mut req,
+            mut nulled,
+        }): Parameters<crate::nulls::Nullable<AddChangeEventReq>>,
+    ) -> Result<CallToolResult, McpError> {
+        // `checksums` is an instruction to this call, never a stored property.
+        nulled.retain(|k| k != "checksums");
+        let files = req.checksums.take().unwrap_or_default();
+        if files.is_empty() {
+            return self.change_event_steps(req, nulled, &[]).await;
+        }
+        if CallScope::current().is_some() {
+            return self.change_event_with_files(req, nulled, files).await;
+        }
+        // Driven directly, outside a served call: open the unit a served call
+        // gets, so the change and its files' acceptances are one write here too.
+        let unit = CallUnit::for_graph(&self.graph);
+        let scope = CallScope {
+            tool: "add_change_event".into(),
+            unit: Some(unit.clone()),
+        };
+        let answer = scope
+            .run(self.change_event_with_files(req, nulled, files))
+            .await;
+        let succeeded = matches!(&answer, Ok(r) if r.is_error != Some(true));
+        match unit.settle(succeeded).await {
+            Settled::Committed(wrote) => {
+                if wrote > 0 {
+                    self.announce_write();
+                }
+                answer
+            }
+            Settled::Untouched | Settled::Discarded => answer,
+            Settled::CommitFailed(why) => Err(McpError::internal_error(
+                format!(
+                    "add_change_event: the change and its files' acceptances succeeded but \
+                     the write could not be committed, so NOTHING WAS WRITTEN. Send the same \
+                     call again. ({why})"
+                ),
+                None,
+            )),
+        }
+    }
+
+    /// THE FILES STEP FOLDED INTO THE CHANGE
+    /// (dec:recording-a-change-accepts-its-files-checksums-and-record-the-build-is-announced-for-removal,
+    /// Anthony 2026-11-21). Measured on flo2.io, 10-30 to 11-20: in 137 of 163
+    /// runs holding both, add_change_event was followed by
+    /// set_artifact_checksums a median 15.6 s later, with no call between in
+    /// 115, while record_the_build, which does both, was called 8 times
+    /// (fact:root-cause-record-the-build-is-skipped-because-nothing-an-agent-
+    /// reads-names-it-and-the-change-reply-names-the-step-2026-11-21). The job
+    /// moves into the tool agents already call. Every file is checked before
+    /// anything is written; an acceptance refused after the change is written
+    /// takes the whole call back (the call is one write unit).
+    async fn change_event_with_files(
+        &self,
+        mut req: AddChangeEventReq,
+        nulled: Vec<String>,
+        files: Vec<ChangeFileReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let mut ids: Vec<String> = Vec::new();
+        {
+            let g = self.write_lock().await?;
+            for f in &files {
+                if g.get_node(reflow2_core::nodes::node::ARTIFACT, &f.artifact_id)
+                    .map_err(dyno_err)?
+                    .is_none()
+                {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: no registered Artifact {:?}. Nothing was written: every file \
+                             a change accepts must already be registered (add_artifact, or \
+                             link_artifact), and its checksum is then accepted here.",
+                            f.artifact_id
+                        ),
+                        None,
+                    ));
+                }
+                if ids.contains(&f.artifact_id) {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: {:?} is named twice. Nothing was written.",
+                            f.artifact_id
+                        ),
+                        None,
+                    ));
+                }
+                ids.push(f.artifact_id.clone());
+            }
+        }
+        let affected = req.affected.get_or_insert_with(Vec::new);
+        for id in &ids {
+            match affected.iter().find(|a| &a.node_id == id) {
+                Some(a) if a.action.as_deref() == Some("removed") => {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: {id:?} is in `affected` as `removed`, and a removed file has \
+                             no content to accept. Nothing was written."
+                        ),
+                        None,
+                    ));
+                }
+                Some(_) => {}
+                None => affected.push(AffectedNodeReq {
+                    node_id: id.clone(),
+                    node_type: Some(reflow2_core::nodes::node::ARTIFACT.to_string()),
+                    action: None,
+                }),
+            }
+        }
+        let change_id = req.id.clone();
+        let at = req.detected_at.clone();
+        let changed = self.change_event_steps(req, nulled, &ids).await?;
+        if changed.is_error == Some(true) {
+            return Ok(changed);
+        }
+        let accepts: Vec<JsonValue> = files
+            .iter()
+            .map(|f| {
+                let mut a = json!({
+                    "artifact_id": f.artifact_id,
+                    "disposition": "design_updated",
+                    "design_change_event_id": change_id,
+                });
+                if let Some(c) = &f.checksum {
+                    a["checksum"] = json!(c);
+                }
+                if let Some(at) = &at {
+                    a["at"] = json!(at);
+                }
+                a
+            })
+            .collect();
+        let set_req: SetChecksumsReq = serde_json::from_value(json!({ "accepts": accepts }))
+            .map_err(|e| McpError::internal_error(e.to_string(), None))?;
+        let accepted = match self.set_artifact_checksums(Parameters(set_req)).await {
+            Err(e) => {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "checksums: accepting them against {change_id:?} was refused, so \
+                         NOTHING WAS WRITTEN, the change included: {}",
+                        e.message
+                    ),
+                    None,
+                ));
+            }
+            Ok(r) if r.is_error == Some(true) => {
+                let why = r
+                    .content
+                    .iter()
+                    .filter_map(|c| c.as_text().map(|t| t.text.clone()))
+                    .collect::<Vec<_>>()
+                    .join(" ");
+                return Err(McpError::invalid_params(
+                    format!(
+                        "checksums: accepting them against {change_id:?} was refused, so \
+                         NOTHING WAS WRITTEN, the change included: {why}"
+                    ),
+                    None,
+                ));
+            }
+            Ok(r) => r.structured_content.unwrap_or(JsonValue::Null),
+        };
+        let mut out = changed.structured_content.unwrap_or_else(|| json!({}));
+        let mut accepted = accepted;
+        if let Some(o) = accepted.as_object_mut() {
+            o.remove("next_step");
+            o.remove("the_person_you_are_talking_to");
+        }
+        out["checksums"] = accepted;
+        ok_json(out)
+    }
+
+    async fn change_event_steps(
+        &self,
+        req: AddChangeEventReq,
+        nulled: Vec<String>,
+        covered: &[String],
     ) -> Result<CallToolResult, McpError> {
         // The commonest mistake, caught where it is made. `description` is not a
         // ChangeEvent field; accepting it (rather than letting serde refuse with
@@ -1016,7 +1343,10 @@ impl ReflowService {
             )
             .map_err(dyno_err)?;
             changed.push(json!({ "node_id": a.node_id, "action": action }));
-            if a_type == reflow2_core::nodes::node::ARTIFACT && action != "removed" {
+            if a_type == reflow2_core::nodes::node::ARTIFACT
+                && action != "removed"
+                && !covered.contains(&a.node_id)
+            {
                 touched_files += 1;
             }
         }
@@ -1091,11 +1421,17 @@ impl ReflowService {
         // came within two writes of add_change_event, 207 of them right after
         // it, and nothing in this reply named that step. Said only when an
         // Artifact is among `affected`, the case the step is owed for.
+        // Since 2026-11-21 the step is this call's own `checksums`, so a file
+        // accepted there is not owed and the cue names `checksums` first
+        // (dec:recording-a-change-accepts-its-files-checksums-and-record-the-
+        // build-is-announced-for-removal).
         if touched_files > 0 {
             out["next_step"] = JsonValue::String(format!(
-                "this change touched {touched_files} registered file(s): accept their checksums \
-                 against it with set_artifact_checksums (disposition `design_updated`, \
-                 `design_change_event_id` {:?}), so the files and the change are one record",
+                "this change touched {touched_files} registered file(s) whose checksums it did \
+                 not accept: send this call again with them in `checksums` (each \
+                 `{{artifact_id, checksum?}}`), or accept them with set_artifact_checksums \
+                 (disposition `design_updated`, `design_change_event_id` {:?}), so the files \
+                 and the change are one record",
                 req.id
             ));
         }

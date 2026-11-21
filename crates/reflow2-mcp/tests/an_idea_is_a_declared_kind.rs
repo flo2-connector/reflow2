@@ -36,6 +36,8 @@ async fn svc() -> ReflowService {
 
 fn dec(id: &str, kind: Option<&str>) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(format!("A node called {id}")),
         decision: Some("Some text distinctive enough to avoid a near-match refusal.".into()),
@@ -48,6 +50,9 @@ fn dec(id: &str, kind: Option<&str>) -> DecisionReq {
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

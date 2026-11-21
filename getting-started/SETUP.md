@@ -74,7 +74,10 @@ touched, and
 `reflow2 update` refuses in that project from then on, so it never brings the kit back.
 `reflow2 init .` installs it again. Deleting the kit by hand is read the same way once none of
 the files the receipt records is left; deleting ONE kit file still means "give me reflow2's
-copy" on the next update.
+copy" on the next update. A kit kept in part, where every file of one part (all the skills,
+all the prompts) is gone and the rest stays, also makes `reflow2 update` refuse and change
+nothing. The refusal names what is gone and what is still here. `reflow2 init .` brings the
+whole kit back, and `reflow2 init --remove` takes out the rest.
 
 ### VS Code where MCP is blocked: the terminal route
 

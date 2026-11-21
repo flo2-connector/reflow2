@@ -213,6 +213,11 @@ schema:
     # read them as causal: they are traceability edges in nodes.rs's table, and
     # the change walk reads them through the step's rule (crate::inference).
     PREMISE_OF:
+      # IRREFLEXIVE: this relation cannot hold from a node to itself, so the graph's one
+      # edge write refuses an edge from a node to itself on every door (a restore keeps
+      # what its document holds and says so). Declared once here rather than per door
+      # (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+      irreflexive: true
       # TARGET PINNED, SOURCE DELIBERATELY OPEN: anything a design records can be
       # a premise — a requirement, a check, a decision, a constraint, another
       # step, or a record whose truth reflow2 cannot compute (it reads unknown).
@@ -243,6 +248,7 @@ schema:
         and make it a premise beside its antecedent, so the support stays acyclic.
 
     CONCLUDES:
+      irreflexive: true
       # SOURCE PINNED, TARGET DELIBERATELY OPEN. ONE INFERENCE CONCLUDES EXACTLY
       # ONE NODE: a second CONCLUDES from the same step is refused. A node may be
       # concluded by several Inferences — alternative derivations, read as ANY.
@@ -254,6 +260,7 @@ schema:
         step's rule holds over its premises. One step, one conclusion.
 
     CAUSES:
+      irreflexive: true
       from: "*"
       to: "*"
       # SEVERAL RELATIONS UNDER ONE NAME, told apart per edge (measured
@@ -302,6 +309,7 @@ schema:
       extraction_hint: Source brings about or makes target possible — a cause or an enabling condition (event/decision → outcome).
 
     BLOCKS:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "primitive", primitive: "causes", polarity: "-", modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
@@ -313,6 +321,9 @@ schema:
       extraction_hint: Source prevents or stalls target.
 
     TRIGGERS:
+      # NOT irreflexive, though review_relations refuses one for an idea: a step
+      # of a process may trigger itself (a retry), which a Flow models on purpose
+      # (tests/flow.rs, a_self_trigger_is_a_degenerate_cycle_not_a_silent_drop).
       from: "*"
       to: "*"
       reading: { form: "primitive", primitive: "causes", polarity: "+", modality: "initiating", modifiers: { confidence: "confidence", evidence: "evidence", role: "mechanism" }, basis: "classified" }
@@ -330,6 +341,7 @@ schema:
       extraction_hint: Source is the event/condition that initiates target.
 
     CONTRADICTS:
+      irreflexive: true
       from: "*"
       to: "*"
       reading:
@@ -392,6 +404,7 @@ schema:
     # the unvalidated_capability gap.
 
     VIOLATES:
+      irreflexive: true
       deliberately_open:
         from: []
         to: [Constraint, DesignRule, Requirement]
@@ -406,6 +419,7 @@ schema:
       extraction_hint: Source breaks a Constraint/DesignRule/Requirement target.
 
     RISKS:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "primitive", primitive: "causes", polarity: "-", modality: "possible", modifiers: { confidence: "confidence", evidence: "evidence", severity: "strength" }, basis: "classified" }
@@ -418,6 +432,7 @@ schema:
       extraction_hint: Source introduces a risk to target.
 
     MITIGATES:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "composite", composition: "MITIGATES(m,t) := ∃r: causes(−)(m, r) ∧ causes(−, possible)(r, t)", components: ["causes"], modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }
@@ -429,6 +444,7 @@ schema:
       extraction_hint: Source reduces a risk affecting target.
 
     EVOLVES_INTO:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "primitive", primitive: "becomes", sub: "transforms", modifiers: { confidence: "confidence" }, basis: "classified" }
@@ -439,6 +455,7 @@ schema:
       extraction_hint: Source is an earlier form that becomes target over time.
 
     OBSOLETES:
+      irreflexive: true
       deliberately_open:
         from: [Decision]
         to: []
@@ -471,6 +488,7 @@ schema:
         afresh — that cascade is deliberate.
 
     DUPLICATES:
+      irreflexive: true
       from: "*"
       to: "*"
       reading:
@@ -498,6 +516,7 @@ schema:
     # MERGING them, which would have destroyed the map. Two statements a cited or
     # proven biconditional shows equivalent are two statements, not one.
     EQUIVALENT_TO:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "composite", composition: "EQUIVALENT_TO(a,b) := compares(=)(a,b) ∧ ¬same-as(a,b)", components: ["compares", "same-as"], modifiers: { by: "other", evidence: "evidence" }, basis: "classified" }
@@ -521,6 +540,7 @@ schema:
         option c). Draw it once, either way round: it reads the same both ways.
 
     ANTICIPATES:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "composite", composition: "ANTICIPATES(x,y) := before(x,y) ∧ about(x,y)", components: ["before", "about"], modifiers: { confidence: "confidence" }, basis: "classified" }
@@ -531,6 +551,7 @@ schema:
       extraction_hint: Source plans for or foreshadows a future target need.
 
     MASKS:
+      irreflexive: true
       from: "*"
       to: "*"
       reading: { form: "composite", composition: "MASKS(x,y) := causes(−)(x, about(o, y)) — x prevents an observer o knowing y's problem or property", components: ["causes", "about"], modifiers: { confidence: "confidence", evidence: "evidence" }, basis: "classified" }

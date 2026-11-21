@@ -407,9 +407,11 @@ fn a_held_read_answers_a_held_write_refuses_and_nothing_is_written_beside_the_st
 
 /// Keys that legitimately differ between two processes answering the same
 /// question about the same design: who is asking (a seat is minted per
-/// process), and whether the answering service may write (a copy may not —
-/// that difference is the point, and it is reported, not hidden).
-const PER_PROCESS: &[&str] = &["seat", "read_only"];
+/// process), whether the answering service may write (a copy may not —
+/// that difference is the point, and it is reported, not hidden), and how long
+/// this one call took (`loop_status`'s `time_budget.elapsed_ms`, a measurement
+/// of the call, never of the design).
+const PER_PROCESS: &[&str] = &["seat", "read_only", "elapsed_ms"];
 
 fn normalised(mut v: serde_json::Value) -> serde_json::Value {
     fn walk(v: &mut serde_json::Value) {

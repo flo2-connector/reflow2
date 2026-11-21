@@ -181,8 +181,13 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
     let mut all = ok(&c, "describe_schema", json!({"budget_chars": 10_000_000})).await;
     // The registry may list TOOLS already removed (their stub release, the two
     // renamed stubs since 2026-10-25): those entries say "removed in the next
-    // release" of a tool nothing serves. Every entry must be such a tool, and
-    // the rest of the served text holds to the rule below.
+    // release" of a tool nothing serves. It may also list an item THIS build
+    // still serves and announces (a reply field, since 2026-11-20, Anthony:
+    // "Narrow it to Anchor"; a whole tool, since 2026-11-21, "Allow served
+    // tools too"): its mark is true, and is taken out of the text
+    // below, so what this checks is the bug it was written for, a mark left on
+    // something already gone, or one with no registry entry behind it.
+    let mut marks: Vec<String> = Vec::new();
     if let Some(going) = all.as_object_mut().and_then(|o| o.remove("deprecations")) {
         for d in going.as_array().into_iter().flatten() {
             // A COUNTED REFUSING STUB is listed on purpose (2026-10-30): its
@@ -192,20 +197,52 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
             }
             let tool = d["item"]["tool"].as_str().unwrap_or_default();
             assert!(
-                !tool.is_empty() && !tools.iter().any(|t| t.name == tool),
-                "a deprecation listed beside the Anchor removal names a tool that is gone: {d}"
+                !tool.is_empty(),
+                "a deprecation listed beside the Anchor removal names no tool: {d}"
             );
+            let served = tools.iter().any(|t| t.name == tool);
+            match d["item"]["kind"].as_str() {
+                // A removed tool's entry: nothing serves it, and its mark is in
+                // the registry alone.
+                Some("tool") if !served => {}
+                // A tool going in the NEXT release, still served (2026-11-21,
+                // Anthony: "Allow served tools too", for record_the_build):
+                // its mark is the true one, as a field's is.
+                Some("tool") => marks.push(format!(
+                    "DEPRECATED in {}, removed in the next release: {}",
+                    d["deprecated_in"].as_str().unwrap_or_default(),
+                    d["what_to_do"].as_str().unwrap_or_default()
+                )),
+                // A field or argument going in the NEXT release: the tool that
+                // carries it is served, and its mark is the true one.
+                Some("reply_field" | "argument") => {
+                    assert!(
+                        served,
+                        "a deprecation names a field of a tool that is gone: {d}"
+                    );
+                    marks.push(format!(
+                        "DEPRECATED in {}, removed in the next release: {}",
+                        d["deprecated_in"].as_str().unwrap_or_default(),
+                        d["what_to_do"].as_str().unwrap_or_default()
+                    ));
+                }
+                other => panic!(
+                    "a deprecation of a {other:?} is listed beside the Anchor removal, which \
+                     removed the only schema item ever announced: {d}"
+                ),
+            }
         }
     }
     for (what, text) in [("tools/list", listed), ("describe_schema", all.to_string())] {
+        let text = marks.iter().fold(text, |t, m| t.replace(m.as_str(), ""));
         assert!(
             !text.contains("removed in the next release"),
-            "{what} says something is removed in the next release, and this release \
-             removes nothing it still serves"
+            "{what} says something is removed in the next release that no registry entry \
+             still serving it announces"
         );
         assert!(
             !text.contains("DEPRECATED in"),
-            "{what} marks something deprecated with an empty registry"
+            "{what} marks something deprecated that no registry entry announces"
         );
         assert!(
             !names_anchor(&text),

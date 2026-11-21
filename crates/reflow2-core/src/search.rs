@@ -63,6 +63,14 @@ pub struct SearchHit {
     /// [`LINKED_PER_HIT`]; absent when nothing is linked.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub linked: Vec<LinkedRecord>,
+    /// ONLY ON A FAILED ROUTE (`statement_kind: failed_route`): THE CLAIM IT
+    /// WAS A ROUTE TO, by id, so a hit on a route that was tried and fails
+    /// says which line of reasoning it belongs to
+    /// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-
+    /// reasoning). Its references are properties, never edges, so `linked`
+    /// never carries it. Absent on every other hit, which reads as before.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub route_to: Option<String>,
 }
 
 /// One record linked to a search hit.
@@ -292,6 +300,14 @@ impl DesignGraph {
                         .map(str::to_string),
                     age: self.claim_age_of(&h.node_id, &node.properties, &today)?,
                     linked: self.linked_records(&h.node_id)?,
+                    route_to: crate::failed_route::is_failed_route(&node.properties)
+                        .then(|| {
+                            node.properties
+                                .get("route_to")
+                                .and_then(crate::foundation::core::Value::as_str)
+                                .map(str::to_string)
+                        })
+                        .flatten(),
                     node_id: h.node_id,
                     node_type: h.node_type,
                     score: h.score,

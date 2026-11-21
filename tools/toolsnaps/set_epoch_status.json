@@ -22,7 +22,7 @@
         "type": "string"
       },
       "status": {
-        "description": "`arrived` (it has happened) or `planned` (a claim about one that has\nnot). `planned` → `arrived` is ARRIVAL.",
+        "description": "To close an increment WITHOUT it arriving (deferred, dropped,\nsuperseded), use close_increment. `arrived` (it has happened) or\n`planned` (a claim about one that has not). `planned` → `arrived` is\nARRIVAL.",
         "enum": [
           "planned",
           "arrived"

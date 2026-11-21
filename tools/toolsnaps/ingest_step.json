@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Extract a design from freeform text, with YOU as the model — no LLM provider is involved. Call it with no `answers`; it replies `status: needs_llm` and a list of prompts; answer each in context and call again with the SAME input and fragment_id plus EVERY answer so far, including earlier rounds. Repeat until `status: done`. Usually three rounds, because later passes are gated on the discovery classifier and threaded with the ids the earlier ones produced, so they cannot be asked up front. NOTHING IS WRITTEN until the final round: the earlier ones replay against a throwaway graph, so an abandoned handshake leaves no half-design behind. There is no server-side session — each call is self-contained, so it survives a restart and works across seats sharing one server. Prefer this over calling add_* yourself for anything document-shaped: it is what gives you provenance Fragments back to the source, snapshot-before-overwrite when a re-ingest changes something, the resolution bands that ask instead of guessing, and the structural pass that catches `Auth` versus `Authentication Service`. Ask for this to extract requirements and parts from a brief or a spec.",
+  "description": "Extract a design from freeform text, with YOU as the model — no LLM provider is involved. Call it with no `answers`; it replies `status: needs_llm` and a list of prompts; answer each in context and call again with the SAME input and fragment_id plus EVERY answer so far, including earlier rounds. Repeat until `status: done` (usually three rounds). NOTHING IS WRITTEN until the final round, and each call is self-contained. Prefer this over calling add_* yourself for anything document-shaped. Ask for this to extract requirements and parts from a brief or a spec.",
   "inputSchema": {
     "$defs": {
       "AgentAnswerReq": {
@@ -47,14 +47,14 @@
       },
       "epoch_id": {
         "default": null,
-        "description": "The epoch matched-evolved snapshots pin to. Pass ONE epoch for a whole\ncorpus run, or 500 documents open 500 epochs and the history reads as\nfive hundred unrelated events instead of one ingest.",
+        "description": "The epoch matched-evolved snapshots pin to. Pass ONE epoch for a whole\ncorpus run.",
         "type": [
           "string",
           "null"
         ]
       },
       "fragment_id": {
-        "description": "Provenance Fragment id for this run. Distinct per document: reusing one\nis refused, because it would overwrite the prior run's Fragment and\nreopen its epoch.",
+        "description": "Provenance Fragment id for this run. Distinct per document: reusing one\nis refused.",
         "type": "string"
       },
       "fragment_title": {

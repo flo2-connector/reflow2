@@ -1725,7 +1725,18 @@ impl DesignGraph {
     /// so an empty answer says which empty it is. Callers that only want the
     /// findings take `.defects`; the scoped sibling has always answered this
     /// way, and the two now agree.
+    ///
+    /// The whole sweep, what it looked at included, is worked out once per
+    /// state of the design and kept until the next write
+    /// ([`DesignGraph::kept`]). The open defects were already kept
+    /// (`open_defects_counting`); what the sweep LOOKED AT was not, and asked
+    /// again with no write since it was 1.6 s on reflow2's own design,
+    /// measured 2026-11-13.
     pub fn detect_defects(&self) -> Result<DefectSweep, DynoError> {
+        self.kept("detect_defects", || self.detect_defects_computed())
+    }
+
+    fn detect_defects_computed(&self) -> Result<DefectSweep, DynoError> {
         // One evaluation for everything this reads (inference/memo.rs).
         let _shared = self.reasoning_scope();
         // ONE SWEEP FEEDS BOTH HALVES. The suppression counts are accumulated by
@@ -1766,7 +1777,9 @@ impl DesignGraph {
             }
         }
         let mut open = Vec::new();
-        for issue in self.all_defects(suppressed)? {
+        let all = self.all_defects(suppressed)?;
+        crate::stop::checkpoint("defects:acknowledgements")?;
+        for issue in all {
             if self.defect_acknowledgement(&issue.id)?.is_none() {
                 open.push(issue);
             }
@@ -2198,9 +2211,14 @@ impl DesignGraph {
             return Err(DynoError::Validation {
                 node_type: node::DECISION.to_string(),
                 property: "approver".into(),
-                message: format!(
-                    "no Contributor `{who}` in this design, so the acknowledgement was NOT recorded. An approver who does not exist attaches the owner's authority to a name nobody can check, which is worse than recording none. Create them with add_contributor, or omit `approver` and the reply will say the judgement carries nobody's name."
-                ),
+                message: match self.contributor_name_hint(who)? {
+                    Some(hint) => format!(
+                        "no Contributor has the id `{who}` in this design, so the acknowledgement was NOT recorded. {hint}"
+                    ),
+                    None => format!(
+                        "no Contributor `{who}` in this design, so the acknowledgement was NOT recorded. An approver who does not exist attaches the owner's authority to a name nobody can check, which is worse than recording none. Create them with add_contributor, or omit `approver` and the reply will say the judgement carries nobody's name."
+                    ),
+                },
             });
         }
         // AND THE SIGNATURE IS THE CALLER'S OWN (`crate::intent::Signer`),
@@ -2351,6 +2369,7 @@ impl DesignGraph {
     /// including ones already reviewed. [`detect_defects`](Self::detect_defects)
     /// is the filtered view callers want.
     fn all_defects(&self, suppressed: &mut Suppressed) -> Result<Vec<HealIssue>, DynoError> {
+        crate::stop::checkpoint("defects:index")?;
         let index = self.node_type_index()?;
         let mut issues = Vec::new();
         // Nodes whose unattached state an ACCEPTED ruling declares correct.
@@ -2360,6 +2379,7 @@ impl DesignGraph {
         // (`req:a-deliberate-state-is-not-a-defect`).
         let parked: BTreeSet<String> = self.parked_nodes()?.into_iter().collect();
 
+        crate::stop::checkpoint("defects:dangling_reference")?;
         // dangling_reference — a declared node-reference property naming a node
         // that is not here. RUN FIRST, because the zero-degree rule below skips
         // whatever this reports: an edgeless node with a broken pointer is ONE
@@ -2410,6 +2430,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:dangling_edge_reference")?;
         // The same rule for an EDGE property that names a node — `argued_by`,
         // the claim that argues for an edge
         // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
@@ -2449,6 +2470,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:refused_by_schema")?;
         // refused_by_schema — a stored node or edge the current schema refuses,
         // judged by the write rule itself (`crate::narrowing`). See
         // `HealCategory::RefusedBySchema`. Parking does not suppress it: a
@@ -2458,6 +2480,7 @@ impl DesignGraph {
             issues.push(refused_by_schema_issue(refusal));
         }
 
+        crate::stop::checkpoint("defects:untriaged_report")?;
         // untriaged_report — a document parked under a methodology rule that
         // produced no finding. See `HealCategory::UntriagedReport` for the
         // predicate, why parking must not suppress it, and why it could not be
@@ -2500,6 +2523,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:orphan_node")?;
         // orphan_node — missing golden-thread links, scoped to the ones DETECT
         // does not already ask about.
         //
@@ -2597,6 +2621,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:zero_degree")?;
         // A node reachable from NOTHING — no edges at all, in either
         // direction.
         //
@@ -2751,6 +2776,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:contradiction")?;
         // contradiction — a CONTRADICTS edge (unresolved in this increment).
         //
         // `alignment: supporting` is NOT a contradiction and must not be
@@ -2768,6 +2794,35 @@ impl DesignGraph {
         // corroboration at all. A property the detector ignores is a property
         // that lies.
         for e in self.all_edges_of_type(edge::CONTRADICTS, &index)? {
+            // A NODE RECORDED AS CONTRADICTING ITSELF is no pair to reconcile:
+            // CONTRADICTS cannot hold from a node to itself, and since
+            // 2026-11-07 no door writes one. One stored before that (a restore
+            // keeps it) is said as what it is, with what removes it, and never
+            // passed over as an objection or a refutation below. Until then it
+            // read "'X' and 'X' contradict each other", with a Decision to
+            // reconcile them as the fix
+            // (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+            if e.from_id == e.to_id {
+                let affected = vec![e.from_id.clone(), e.to_id.clone()];
+                issues.push(HealIssue {
+                    id: issue_id(HealCategory::Contradiction, &affected),
+                    category: HealCategory::Contradiction,
+                    severity: HealSeverity::Warning,
+                    message: format!(
+                        "'{}' is recorded as contradicting itself: CONTRADICTS cannot hold \
+                         from a node to itself, so the edge means nothing and nothing rests on \
+                         it. It was written before the store refused one; remove it with \
+                         delete_edge (CONTRADICTS, from and to '{}').",
+                        e.from_id, e.from_id
+                    ),
+                    suggested_fix_type: None,
+                    repair_is_a_judgement: None,
+                    affected_ids: affected,
+                    hubs: Vec::new(),
+                    refusal: None,
+                });
+                continue;
+            }
             if e.properties
                 .get("alignment")
                 .and_then(Value::as_str)
@@ -2952,6 +3007,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:duplicate")?;
         // duplicate — a DUPLICATES edge a HUMAN asserted (fixable by merge).
         //
         // `basis` is checked here rather than at the merge, because a merge that
@@ -3016,6 +3072,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:unresolved_setup")?;
         // unresolved_setup — an ANTICIPATES edge (info).
         //
         // This loop had NO endpoint filter of any kind, so "if we did X we would
@@ -3110,6 +3167,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:structural")?;
         self.detect_structural_defects(&mut issues, suppressed)?;
 
         annotate_hubs(&mut issues);
@@ -3324,6 +3382,7 @@ impl DesignGraph {
         issues: &mut Vec<HealIssue>,
         suppressed: &mut Suppressed,
     ) -> Result<(), DynoError> {
+        crate::stop::checkpoint("defects:design_network")?;
         let net = self.design_network()?;
 
         // unthreaded_cluster — islands of ≥2 nodes cut off from the main
@@ -3468,6 +3527,7 @@ impl DesignGraph {
             }
         }
 
+        crate::stop::checkpoint("defects:single_point_of_failure")?;
         // single_point_of_failure — articulation points that actually separate
         // ≥2 subsystems (not the leaf-cutting every tree-internal node does),
         // and that name something which can *fail*.
@@ -3551,6 +3611,7 @@ impl DesignGraph {
         // claim rests on, so losing it leaves the claim unsupported — checked
         // by counting it lost, never inferred from shape. Silent on a design
         // with no Inference.
+        crate::stop::checkpoint("defects:reasoning_single_points")?;
         for sp in self.reasoning_single_points()? {
             let affected = vec![sp.node.clone(), sp.claim.clone()];
             issues.push(HealIssue {
@@ -3577,6 +3638,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:circular_dependency")?;
         // circular_dependency — parts that depend on each other in a loop, via
         // DEPENDS_ON or through the contracts they provide/consume. Not
         // auto-fixable: breaking a cycle is a design decision (introduce an
@@ -3685,6 +3747,7 @@ impl DesignGraph {
             });
         }
 
+        crate::stop::checkpoint("defects:dead_end")?;
         // dead_end — an isolated Component (no traceability edges at all).
         //
         // "Isolated" is judged in the design network, which excludes CONTAINS
@@ -3852,6 +3915,17 @@ impl DesignGraph {
                         issue.message
                     ),
                 }),
+                // A node recorded as contradicting itself is no pair to
+                // reconcile: what removes it is a delete_edge, said in its
+                // message, and no Decision is drafted for it.
+                HealCategory::Contradiction
+                    if issue.affected_ids.first() == issue.affected_ids.last() =>
+                {
+                    skipped_operations.push(SkippedOperation {
+                        reference: issue.id.clone(),
+                        reason: issue.message.clone(),
+                    })
+                }
                 HealCategory::Contradiction => generated_content.push(GeneratedContentStub {
                     for_issue: issue.id.clone(),
                     kind: "Decision".to_string(),

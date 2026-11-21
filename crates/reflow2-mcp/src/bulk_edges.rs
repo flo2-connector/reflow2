@@ -289,6 +289,23 @@ fn sentence_of(reply: &JsonValue) -> Option<String> {
     ))
 }
 
+/// Every edge one helper's reply says it drew: the edge the reply describes,
+/// then the ones its `edges_drawn` block names (`part_of_flow` draws a step's
+/// PUTS_TOGETHER and CLOSES edges with it), so a batch names all of them.
+fn sentences_of(reply: &JsonValue) -> Vec<String> {
+    sentence_of(reply)
+        .into_iter()
+        .chain(
+            reply
+                .get("edges_drawn")
+                .and_then(JsonValue::as_array)
+                .into_iter()
+                .flatten()
+                .filter_map(|s| s.as_str().map(str::to_string)),
+        )
+        .collect()
+}
+
 /// The `draw_edges` reply for a batch report over `(index, item)` pairs.
 pub(crate) fn reply(
     report: BulkReport<(usize, String, JsonValue)>,
@@ -302,7 +319,7 @@ pub(crate) fn reply(
     let sentences: Vec<String> = report
         .written
         .iter()
-        .filter_map(|(_, _, r)| sentence_of(r))
+        .flat_map(|(_, _, r)| sentences_of(r))
         .collect();
     let written: Vec<JsonValue> = report
         .written

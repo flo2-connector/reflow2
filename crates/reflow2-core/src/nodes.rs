@@ -255,6 +255,16 @@ pub mod edge {
     /// `Capability → Flow` — a capability is a step of an ordered process
     /// (`step_order` carries its position).
     pub const PART_OF_FLOW: &str = "PART_OF_FLOW";
+    /// `Capability → Component` — a step of a process puts this part together
+    /// with the others it names: it places, joins or assembles it
+    /// (req:a-step-of-a-process-names-the-parts-it-puts-together). Drawn by
+    /// [`crate::DesignGraph::puts_together`]; an `assembly` Flow's report reads
+    /// it back as the step's instructions.
+    pub const PUTS_TOGETHER: &str = "PUTS_TOGETHER";
+    /// `Capability → Interface` — a step of a process makes this join: after
+    /// it, what the Interface says must hold there holds, to be checked by the
+    /// step's verifications. Drawn by [`crate::DesignGraph::closes`].
+    pub const CLOSES: &str = "CLOSES";
     /// `Actor → *` — somebody outside the system reads, writes or triggers a
     /// capability, flow or interface. In the schema since the functional layer
     /// landed; it had no constant until [`crate::consumption`] needed to read
@@ -601,6 +611,20 @@ pub(crate) fn structural_rule(edge_type: &str) -> Option<EdgeRule> {
         // WEAKENED is not this table's to say — the walk reads each step's rule
         // (crate::inference, `inference_walk`) and carries it on every radius.
         "PREMISE_OF" | "CONCLUDES" => (Some(Downstream), Some(Upstream)),
+        // HOW A THING IS PUT TOGETHER: step PUTS_TOGETHER part, step CLOSES
+        // join (req:a-step-of-a-process-names-the-parts-it-puts-together).
+        // Same shape as REALIZES and VERIFIES: the part and the join are what
+        // the design says the thing IS, and a step is how it is made, shaped
+        // by them. So from the part or the join (incoming) a change reaches
+        // every step that puts it together or closes it — a changed bezel seat
+        // reaches the step that sets the stone, a changed band the step that
+        // prints it (downstream) — and from a changed step (outgoing) it
+        // reaches the parts and joins that may no longer come out as the
+        // design says (upstream). NOT lateral, as PART_OF_FLOW is: a step is
+        // not a peer of the part it makes. ASKED BEFORE A DETECTOR COMPLAINED,
+        // as GATED_ON and PREMISE_OF were: absent from this table, a changed
+        // join would reach nothing that makes it.
+        "PUTS_TOGETHER" | "CLOSES" => (Some(Upstream), Some(Downstream)),
         // HAS_READINESS is deliberately NOT here, and the omission is the same
         // call `HAS_OBSERVATION` and `ASSESSED_ON` already carry: an assessment
         // is a reading ABOUT a node, not a coupling BETWEEN two design nodes.

@@ -415,7 +415,12 @@ mod tests {
         // proven biconditional shows equivalent, never duplicates
         // (req:two-statements-can-be-recorded-as-proven-equivalent). It moves
         // the stamp; the upgrade note is owed at the next cut.
-        assert_eq!(schema.edge_types.len(), 69, "expected 69 edge types");
+        // 71 since PUTS_TOGETHER + CLOSES (2026-11-12): a step of a process
+        // names the parts it puts together and the joins it closes
+        // (req:a-step-of-a-process-names-the-parts-it-puts-together). They move
+        // the stamp, with Flow.flow_type's `assembly`; the upgrade note is owed
+        // at the next cut.
+        assert_eq!(schema.edge_types.len(), 71, "expected 71 edge types");
     }
 
     #[test]

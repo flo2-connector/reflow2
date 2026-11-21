@@ -47,7 +47,7 @@ fn three_rollups_with_no_write_run_the_defect_scan_once() {
     );
     assert_eq!(
         c.structural_defects,
-        a.len(),
+        Some(a.len()),
         "loop_status counts the same defects"
     );
     // detect_gaps is a second memoised scan; loop_status runs it too. So the

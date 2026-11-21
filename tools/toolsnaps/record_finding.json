@@ -140,7 +140,7 @@
       },
       "value": {
         "default": null,
-        "description": "JSON of an asserted value, when the finding carries one.",
+        "description": "JSON of an asserted value, when the finding carries one. On a\n`search_round` finding reflow2 writes it, and one passed is refused:\nhow each claim on the path to the target reads when the round ends.",
         "type": [
           "string",
           "null"

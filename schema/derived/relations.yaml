@@ -232,12 +232,12 @@ relations:
 
   impact:
     name: "impact / blast radius"
-    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW, PREMISE_OF only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST, CONCLUDES only) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES, EQUIVALENT_TO), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
+    reading: { form: composite, composition: "affected(x, y) := closure over { norm (binds, meets, evaluates), instance-of·realizes, located-at (allocation, deployment), causes (dependence), part-of (DECOMPOSES, INCLUDES, PART_OF_FLOW, PREMISE_OF only), during (SCHEDULED_FOR), source-of (CALIBRATED_AGAINST, CONCLUDES only), causes (PUTS_TOGETHER, CLOSES: a step and the part or join it makes) } ∪ { every edge of the inference module, carried as causal whatever it reads as: causes (CAUSES, BLOCKS, TRIGGERS, RISKS, MITIGATES, MASKS), compares (CONTRADICTS, DUPLICATES, EQUIVALENT_TO), norm (VIOLATES, OBSOLETES), becomes (EVOLVES_INTO), before ∧ about (ANTICIPATES) }", components: [about, before, becomes, causes, compares, during, instance-of, located-at, norm, part-of, source-of] }
     rule: "Change propagates along a hand-kept table of edge types (structural_rule) with Upstream/Downstream/Lateral labels, and along every edge type of the schema's inference module as causal, transitively. Crossing a risk edge (RISK_EDGES: RISKS, BLOCKS, CONTRADICTS, VIOLATES, MASKS) marks the hop as a risk. Every radius also carries the stated steps its seeds are premises of, each read BROKEN or WEAKENED by its own rule (the `follows` relation's walk)."
     stated_over_readings: partial
     not_yet_stated: "which relations carry change is decided per EDGE TYPE, not per primitive (part-of propagates along DECOMPOSES and INCLUDES but not CONTAINS; source-of along CALIBRATED_AGAINST but not AUTHORED_BY), and the inference edges are chosen by their schema MODULE, not their reading; the closure needs transitivity, which no reading declares as algebra yet."
     inference: deduced
-    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS, EQUIVALENT_TO, HAS_TEMPORAL_FACT]
+    edges: [SATISFIES, DECOMPOSES, CONSTRAINS, ALLOCATED_TO, REALIZES, VERIFIES, GOVERNED_BY, PROVIDES, CONSUMES, DEPENDS_ON, PART_OF_FLOW, PUTS_TOGETHER, CLOSES, DEPLOYED_TO, REQUIRES_RESOURCE, INCLUDES, SCHEDULED_FOR, CALIBRATED_AGAINST, GATED_ON, PREMISE_OF, CONCLUDES, CAUSES, BLOCKS, TRIGGERS, CONTRADICTS, VIOLATES, RISKS, MITIGATES, EVOLVES_INTO, OBSOLETES, DUPLICATES, ANTICIPATES, MASKS, EQUIVALENT_TO, HAS_TEMPORAL_FACT]
     over: [follows, redo_list]
     code:
       - { file: nodes.rs, function: structural_rule, dedicated: true }
@@ -408,14 +408,32 @@ relations:
   flow_step_order:
     name: "flow step order"
     reading: { form: composite, composition: "before(c1, c2) := part-of(c1, f) ∧ part-of(c2, f) ∧ order(c1) < order(c2)", components: [part-of, before] }
-    rule: "PART_OF_FLOW (part-of, before) edges carry step_order, which sorts a flow's steps; TRIGGERS between steps is read beside it."
+    rule: "PART_OF_FLOW (part-of, before) edges carry step_order, which sorts a flow's steps; TRIGGERS between steps is read beside it. Each step carries its instructions beside its place in the order (assembly_instructions)."
     stated_over_readings: partial
     not_yet_stated: "order(c) is PART_OF_FLOW.step_order, an edge property; entry and exit points are node properties. flow_report also reads TRIGGERS, for the transitions it lists beside the order; a transition does not order steps, so the composition does not state it."
     inference: deduced
     edges: [PART_OF_FLOW, TRIGGERS]
+    over: [assembly_instructions]
     code:
       - { file: flow.rs, function: flow_report, dedicated: true }
     counts: "one ordered pair of steps in one flow"
+    cost: bounded
+
+  assembly_instructions:
+    name: "assembly instructions, and the joins no step closes"
+    reading: { form: composite, composition: "instruction(s, f) := part-of(s, f) ∧ parts(s) ∧ joins(s) ∧ performers(s) ∧ checks(s) ∧ limits(s), where parts(s) := {p : causes·puts-together(s, p)}, joins(s) := {j : causes·closes(s, j)}, performers(s) := {a : causes·performs(a, s)}, checks(s) := {v : norm·evaluates(v, s)}, limits(s) := {c : norm·binds(c, s)}; unclosed(j, f) := ∃ p ≠ q ∈ parts(f): source-of·offers(p, j) ∧ causes(q, j) ∧ ¬∃ s: part-of(s, f) ∧ j ∈ joins(s), where parts(f) := ∪ {parts(s) : part-of(s, f)}", components: [part-of, causes, norm, source-of] }
+    rule: "A step's instructions are what it names: the parts it puts together (PUTS_TOGETHER), the joins it closes (CLOSES) with what each Interface says must hold there, who performs it (INTERACTS_WITH with interaction performs), its checks (VERIFIES) and its limits (CONSTRAINS). A join between two of a flow's own parts — an Interface one part the flow puts together PROVIDES and another CONSUMES — that no step of the flow CLOSES is unclosed. flow_report reads every step's parts and joins, and only an assembly flow's performers, checks and limits and unclosed joins (req:a-step-of-a-process-names-the-parts-it-puts-together)."
+    stated_over_readings: partial
+    not_yet_stated: "which actors perform a step is INTERACTS_WITH's `interaction` value `performs`, a split of a free-text property; what a join must hold is the Interface's description, a node property; only an assembly is asked about its unclosed joins, which is Flow.flow_type, a node property."
+    inference: deduced
+    edges: [PART_OF_FLOW, PUTS_TOGETHER, CLOSES, INTERACTS_WITH, VERIFIES, CONSTRAINS, PROVIDES, CONSUMES]
+    code:
+      - { file: flow.rs, function: step_parts_and_joins, dedicated: true }
+      - { file: flow.rs, function: step_performers_checks_and_limits, dedicated: true }
+      - { file: flow.rs, function: joins_between, dedicated: true }
+      - { file: flow.rs, function: assembly_joins, dedicated: true }
+      - { file: flow.rs, function: confess_what_instructions_lack, dedicated: true }
+    counts: "one join between two parts an assembly flow puts together, closed or not"
     cost: bounded
 
   readiness_gate:
@@ -443,9 +461,30 @@ relations:
     code:
       - { file: temporal.rs, function: arrival_delta, dedicated: true }
       - { file: temporal.rs, function: live_schedule, dedicated: true }
+      - { file: temporal.rs, function: live_schedule_in, dedicated: true }
+      - { file: temporal.rs, function: scheduled_now, dedicated: true }
       - { file: temporal.rs, function: scheduled_item, dedicated: true }
       - { file: temporal.rs, function: snapshots_of, dedicated: true }
     counts: "one scheduled item classified"
+    cost: bounded
+
+  open_increments:
+    name: "open increments (planned and never closed), and what each shows"
+    reading: { form: composite, composition: "open(e) := e.status = planned; done(e) := open(e) ∧ ∃x: norm[modality](during(delivered(x), ≤ e)) ∧ ¬∃x so scheduled: outstanding(x); overtaken(e) := open(e) ∧ ∃l: before⁺(e, l) ∧ l.status = arrived; empty(e) := open(e) ∧ ¬∃x still intended: norm[modality](during(delivered(x), ≤ e)); moved(c, e) := ∃x scheduled for e: causes(c, x) ∨ ∃y: causes(c, y) ∧ (norm·meets(y, x) ∨ instance-of·realizes(y, x) ∨ ∃k: norm·meets(k, x) ∧ instance-of·realizes(y, k))", components: [norm, during, before, causes, instance-of] }
+    rule: "An increment (a DesignEpoch whose status is planned) is OPEN until it is closed. It reads DONE BUT NOT CLOSED when something still intended is SCHEDULED_FOR it and nothing scheduled for it is outstanding, each item read as arrival delta reads it; OVERTAKEN when an epoch it PRECEDES, directly or down a chain of PRECEDES edges, has arrived (the drawn order only: `sequence` is never read); EMPTY when nothing still intended is scheduled for it. Beside them it carries a COUNT and no verdict: how many of the design's recorded changes, newest first by the creation time the store kept, have passed since a ChangeEvent CHANGED an item scheduled for it, something that SATISFIES that item, or a file that REALIZES the item or what satisfies it; `never` when none did. Nothing is called stalled (the requirement accepted 2026-11-14, as its owner settled it that day)."
+    stated_over_readings: partial
+    not_yet_stated: "an epoch's status is a node property; the order of the changes is the creation time the store keeps for each record, which no reading declares; and the count is arithmetic over that order."
+    inference: deduced
+    edges: [PRECEDES, CHANGED, SATISFIES, REALIZES]
+    over: [arrival_delta]
+    code:
+      - { file: open_increments.rs, function: open_increments, dedicated: true }
+      - { file: open_increments.rs, function: open_increments_now, dedicated: true }
+      - { file: open_increments.rs, function: overtaken_by, dedicated: true }
+      - { file: open_increments.rs, function: changes_by_recency, dedicated: true }
+      - { file: open_increments.rs, function: what_moves, dedicated: true }
+      - { file: open_increments.rs, function: last_change_naming, dedicated: true }
+    counts: "one open increment"
     cost: bounded
 
   closure:
