@@ -4744,6 +4744,11 @@ pub struct AddConstraintReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::constraint_priority_opt")]
     pub priority: Option<String>,
+    /// WHAT IT CONSTRAINS: each entry draws CONSTRAINS in this call, exactly
+    /// as `constrains` draws it (on flo2.io 13 of 17 constrains runs came
+    /// right after an add_constraint).
+    #[serde(default)]
+    pub constrains: Option<Vec<ConstrainedTargetReq>>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -5300,6 +5305,74 @@ pub struct DecisionReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::decision_closing_it_opt")]
     pub closing_it: Option<String>,
+    /// WHOSE WORD THIS IS, beyond the caller's own credit: each entry draws
+    /// AUTHORED_BY in this call, exactly as `authored_by` draws it (on flo2.io
+    /// 45 of 51 authored_by runs came with an add_decision). A signature is
+    /// the caller's own wherever reflow2 is served for others.
+    #[serde(default)]
+    pub authored_by: Option<Vec<NamedAuthorReq>>,
+    /// THE ARTIFACTS THAT DOCUMENT IT: each draws DOCUMENTS from the artifact
+    /// in this call, exactly as `documents` draws it.
+    #[serde(default)]
+    pub documented_by: Option<Vec<DocumentedByReq>>,
+}
+
+/// One contributor `add_decision` names in `authored_by`.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct NamedAuthorReq {
+    /// The `Contributor` whose word the decision is.
+    pub contributor_id: String,
+    /// `author` (default) / `reviewer` / `approver`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::authored_by_role_opt")]
+    pub role: Option<String>,
+    /// When they acted, as a plain date.
+    #[serde(default)]
+    pub acted_at: Option<String>,
+}
+
+/// One artifact `add_decision` names in `documented_by`.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct DocumentedByReq {
+    /// The Artifact (`art:…`) that documents the decision.
+    pub artifact_id: String,
+    /// What kind of document, as `documents` takes it.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::doc_kind_opt")]
+    pub doc_kind: Option<String>,
+}
+
+/// One target `add_constraint` names in `constrains`: `constrains`' own
+/// fields, less the constraint, which is the one being written.
+#[derive(Debug, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ConstrainedTargetReq {
+    /// The constrained node.
+    pub target_id: String,
+    /// Its type; resolved from the id when omitted.
+    #[serde(default)]
+    pub target_type: Option<String>,
+    /// This target's spend, in the Constraint's unit (may be negative).
+    #[serde(default)]
+    pub contribution: Option<f64>,
+    /// The unit `contribution` is in.
+    #[serde(default)]
+    pub unit: Option<String>,
+    /// Who or what the contribution came from, by id where one exists.
+    #[serde(default)]
+    pub source: Option<String>,
+    /// `estimated` (default) / `evidence` / `measured`.
+    #[serde(default)]
+    #[schemars(schema_with = "crate::enum_schema::constrains_basis_opt")]
+    pub basis: Option<String>,
+    /// When a measured contribution was observed.
+    #[serde(default)]
+    pub measured_at: Option<String>,
+    /// Why this Constraint binds this target.
+    #[serde(default)]
+    pub note: Option<String>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

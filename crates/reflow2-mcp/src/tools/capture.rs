@@ -3434,6 +3434,8 @@ impl ReflowService {
         >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        // `constrains` is an argument, not a property: a `null` is "none".
+        let nulled: Vec<String> = nulled.into_iter().filter(|f| f != "constrains").collect();
         let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
         let node_ty = reflow2_core::nodes::node::CONSTRAINT;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
@@ -3530,6 +3532,29 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
+        // WHAT IT CONSTRAINS, drawn in this call through `constrains`' own body
+        // (req:a-constructor-draws-the-edges-it-is-nearly-always-followed-by-in-the-same-call).
+        for t in req.constrains.iter().flatten() {
+            let e = reflow2_core::nodes::edge::CONSTRAINS;
+            let present =
+                crate::drawn_edges::present(&g, &req.id, e, &t.target_id).map_err(dyno_err)?;
+            Self::constrains_on(
+                &mut g,
+                ConstrainsReq {
+                    constraint_id: req.id.clone(),
+                    constraint_type: Some(reflow2_core::nodes::node::CONSTRAINT.to_string()),
+                    target_type: t.target_type.clone(),
+                    target_id: t.target_id.clone(),
+                    contribution: t.contribution,
+                    unit: t.unit.clone(),
+                    source: t.source.clone(),
+                    basis: t.basis.clone(),
+                    measured_at: t.measured_at.clone(),
+                    note: t.note.clone(),
+                },
+            )?;
+            edges.record(&req.id, e, &t.target_id, present);
+        }
         let unset = crate::nulls::unset_nulled(
             &mut g,
             reflow2_core::nodes::node::CONSTRAINT,
@@ -4136,6 +4161,12 @@ impl ReflowService {
         >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        // `authored_by` and `documented_by` are arguments, not properties: a
+        // `null` for either is "none", never an unset.
+        let nulled: Vec<String> = nulled
+            .into_iter()
+            .filter(|f| f != "authored_by" && f != "documented_by")
+            .collect();
         let node_ty = reflow2_core::nodes::node::DECISION;
         // Which calls settle is DECLARED (crate::settles), served on the tool,
         // and read here — never re-derived per handler.
@@ -4396,6 +4427,42 @@ impl ReflowService {
                 req.approver.as_deref(),
                 req.acted_at.as_deref(),
             )?;
+        }
+        // THE EDGES A DECISION IS NEARLY ALWAYS FOLLOWED BY, drawn in this call
+        // through the edge tools' own bodies
+        // (req:a-constructor-draws-the-edges-it-is-nearly-always-followed-by-in-the-same-call).
+        // A refusal discards the whole call (`crate::service::unit`), and a
+        // signature is still checked where it is written.
+        for a in req.authored_by.iter().flatten() {
+            let e = reflow2_core::nodes::edge::AUTHORED_BY;
+            let present =
+                crate::drawn_edges::present(&g, &req.id, e, &a.contributor_id).map_err(dyno_err)?;
+            Self::authored_by_on(
+                &mut g,
+                AuthoredByReq {
+                    from_type: Some(node_ty.to_string()),
+                    from_id: req.id.clone(),
+                    contributor_id: a.contributor_id.clone(),
+                    role: a.role.clone(),
+                    acted_at: a.acted_at.clone(),
+                },
+            )?;
+            edges.record(&req.id, e, &a.contributor_id, present);
+        }
+        for d in req.documented_by.iter().flatten() {
+            let e = reflow2_core::nodes::edge::DOCUMENTS;
+            let present =
+                crate::drawn_edges::present(&g, &d.artifact_id, e, &req.id).map_err(dyno_err)?;
+            Self::documents_on(
+                &mut g,
+                DocumentsReq {
+                    artifact_id: d.artifact_id.clone(),
+                    target_type: Some(node_ty.to_string()),
+                    target_id: req.id.clone(),
+                    doc_kind: d.doc_kind.clone(),
+                },
+            )?;
+            edges.record(&d.artifact_id, e, &req.id, present);
         }
         // After the owner's word, so where a replaced decision stands is read
         // from the status this call just settled.

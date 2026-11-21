@@ -41,6 +41,8 @@ const TEXT: &str = "The outdoor unit sends cumulative totals rather than deltas,
 
 fn idea(id: &str) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some("OPEN — should the unit send cumulative totals rather than deltas?".into()),
         decision: Some(TEXT.into()),

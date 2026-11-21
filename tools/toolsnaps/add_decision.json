@@ -21,6 +21,75 @@
   "description": "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is not the same as settling it, so reaching `accepted` is a separate act (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is deliberate — an accepted Decision is what where-am-i reads back to the user as \"what you decided\", so asserting it on their behalf would be the forgery dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
   "inputSchema": {
     "$defs": {
+      "DocumentedByReq": {
+        "additionalProperties": false,
+        "description": "One artifact `add_decision` names in `documented_by`.",
+        "properties": {
+          "artifact_id": {
+            "description": "The Artifact (`art:…`) that documents the decision.",
+            "type": "string"
+          },
+          "doc_kind": {
+            "default": null,
+            "description": "What kind of document, as `documents` takes it.",
+            "enum": [
+              "design_doc",
+              "adr",
+              "readme",
+              "runbook",
+              "agent_instructions",
+              "dataflow",
+              "sequence_diagram",
+              "arch_diagram",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "artifact_id"
+        ],
+        "type": "object"
+      },
+      "NamedAuthorReq": {
+        "additionalProperties": false,
+        "description": "One contributor `add_decision` names in `authored_by`.",
+        "properties": {
+          "acted_at": {
+            "default": null,
+            "description": "When they acted, as a plain date.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contributor_id": {
+            "description": "The `Contributor` whose word the decision is.",
+            "type": "string"
+          },
+          "role": {
+            "default": null,
+            "description": "`author` (default) / `reviewer` / `approver`.",
+            "enum": [
+              "author",
+              "reviewer",
+              "approver",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "contributor_id"
+        ],
+        "type": "object"
+      },
       "RelationLinkReq": {
         "additionalProperties": false,
         "description": "One relation for `review_relations`.",
@@ -180,6 +249,16 @@
           "null"
         ]
       },
+      "authored_by": {
+        "description": "WHOSE WORD THIS IS, beyond the caller's own credit: each entry draws\nAUTHORED_BY in this call, exactly as `authored_by` draws it (on flo2.io\n45 of 51 authored_by runs came with an add_decision). A signature is\nthe caller's own wherever reflow2 is served for others.",
+        "items": {
+          "$ref": "#/$defs/NamedAuthorReq"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
       "closing_it": {
         "default": null,
         "description": "ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE\nCLAIM IT SERVES — `closes` (it is a premise that finishes a route to\nthat claim), `narrows` (a special case, or a class ruled out such as a\ncounterexample pruning: it cannot close the claim) or `restates` (an\nequivalent form: closing it closes the claim, and it is no smaller a\nstep). The search map reads it along the path to the target and says\nwhether closing the hole could close the target. Refused without\n`serves`, on this call or stored. NO DEFAULT: left out, it reads\nunsaid, never `closes`.",
@@ -207,6 +286,16 @@
         "description": "Ids you read and judged a DIFFERENT thing from this one, when reflow2\nhas already told you something close exists — one of the THREE answers\nto that check: sharpen the existing node (call with ITS id), say this one\nis different (here), or say it takes an older one's place (`replaces`).\nTHE JUDGEMENT IS KEPT: the ids are written onto the node as\n`distinct_from`, so a later reader can tell a node its writer compared\nfrom one nobody did. Omit it on a first attempt — the refusal, if any,\nlists exactly what to put here.",
         "items": {
           "type": "string"
+        },
+        "type": [
+          "array",
+          "null"
+        ]
+      },
+      "documented_by": {
+        "description": "THE ARTIFACTS THAT DOCUMENT IT: each draws DOCUMENTS from the artifact\nin this call, exactly as `documents` draws it.",
+        "items": {
+          "$ref": "#/$defs/DocumentedByReq"
         },
         "type": [
           "array",

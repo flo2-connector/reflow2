@@ -124,6 +124,8 @@ fn capability(id: &str, name: &str) -> CapabilityReq {
 
 fn decision(id: &str, name: &str, kind: Option<&str>) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(name.into()),
         decision: Some(IDEA.into()),
