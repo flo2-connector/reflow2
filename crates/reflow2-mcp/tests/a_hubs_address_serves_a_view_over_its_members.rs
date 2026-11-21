@@ -118,39 +118,56 @@ pub(super) fn mint_holding(dir: &Path, requirements: &[(String, String)]) -> Str
         let name = id.strip_prefix("req:").unwrap_or(id);
         lines.push(json!({"jsonrpc":"2.0","id": 3 + i as u64,"method":"tools/call","params":{"name":"add_requirement","arguments":{"id": id, "name": name, "statement": statement}}}));
     }
-    let last_id = format!(r#""id":{}"#, 2 + requirements.len());
+    let writes = 1 + requirements.len();
     {
         let stdin = child.stdin.as_mut().expect("stdin");
         for l in &lines {
             writeln!(stdin, "{l}").expect("write a line to the minting server");
         }
     }
-    // Read until the last write's reply so the store holds it before stdin closes.
+    // Read EVERY write's reply before stdin closes, so the store holds them
+    // all, and fail loudly when they do not all come.
+    //
+    // `fact:root-cause-the-routed-read-budget-test-minted-as-many-requirements-as-the-box-wrote-in-60-seconds-2026-11-21`:
+    // this used to stop reading at a 60-second deadline and go on as if every
+    // write had landed. On a slow box (each write commits the search index)
+    // 160 requirements did not, the design held however many the box had
+    // written by then (a whole scan of 740 characters on ajs77, 14,058 in CI,
+    // 16,762 when the test was written), and the budget test ran on whatever
+    // that was: on 11-07 too few for the prefixes to overrun, so nothing was
+    // held and it failed at "the reply says it was held".
     {
+        let started = Instant::now();
         let stdout = child.stdout.as_mut().expect("stdout");
         let mut reader = BufReader::new(stdout);
         let mut line = String::new();
-        let deadline = Instant::now() + Duration::from_secs(60);
-        loop {
+        let deadline = started + Duration::from_secs(900);
+        let mut answered = std::collections::BTreeSet::new();
+        while answered.len() < writes && Instant::now() < deadline {
             line.clear();
-            if reader.read_line(&mut line).unwrap_or(0) == 0 || Instant::now() > deadline {
+            if reader.read_line(&mut line).unwrap_or(0) == 0 {
                 break;
             }
-            if line.contains(r#""id":2"#) {
-                assert!(
-                    !line.contains(r#""isError":true"#),
-                    "minting the contributor failed: {line}"
-                );
-            } else if line.contains(r#""id":"#) {
-                assert!(
-                    !line.contains(r#""isError":true"#),
-                    "minting a requirement failed: {line}"
-                );
-            }
-            if line.contains(&last_id) {
-                break;
-            }
+            let Ok(reply) = serde_json::from_str::<Value>(&line) else {
+                continue;
+            };
+            let Some(id) = reply["id"].as_u64().filter(|id| *id >= 2) else {
+                continue;
+            };
+            assert!(
+                reply.get("error").is_none() && reply["result"]["isError"] != true,
+                "minting write {id} failed: {line}"
+            );
+            answered.insert(id);
         }
+        assert_eq!(
+            answered.len(),
+            writes,
+            "minting answered {} of its {writes} writes in {:?}: the design would hold \
+             fewer requirements than the test asked for",
+            answered.len(),
+            started.elapsed()
+        );
     }
     drop(child.stdin.take());
     let _ = child.wait_timeout_kill(Duration::from_secs(60));

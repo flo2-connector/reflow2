@@ -388,7 +388,12 @@ async fn serve_in_view(
             let budget = budget_for(hub, &request);
             let own = &own;
             let answer = within_budget(budget, request, &note, |request| {
-                Box::pin(on_one(hub, request, own.clone()))
+                let own = own.clone();
+                Box::pin(async move {
+                    let answer = on_one(hub, request, own).await;
+                    let answered = payload_chars(&answer);
+                    (answer, answered)
+                })
             })
             .await;
             return shaped(policy, answer);
@@ -610,23 +615,33 @@ async fn route(
     let answer = within_budget(budget, request, &note, |request| {
         let forwarded = forwarded.clone();
         Box::pin(async move {
-            let held = registry
-                .member(member)
-                .await
-                .map_err(|r| member_refusal(member, r))?;
+            let held = match registry.member(member).await {
+                Ok(held) => held,
+                Err(r) => return (Err(member_refusal(member, r)), None),
+            };
             let answer = on_one(held.service(), request, forwarded).await;
+            // Measured before the prefixes go on: what the member itself
+            // answered, which `within_budget` lowers from.
+            let answered = payload_chars(&answer);
             let answer = prefix_reply(answer, member, held.service(), passed).await;
             drop(held);
-            answer
+            (answer, answered)
         })
     })
     .await;
     shaped(policy, answer)
 }
 
-/// One call on one design, as [`within_budget`] makes it (perhaps twice).
+/// One call on one design, as [`within_budget`] makes it (perhaps twice): the
+/// reply as the hub sends it on, and the characters of the design's OWN
+/// payload, measured before the hub added anything (`None` for a refusal or a
+/// reply with no payload).
 type OneCall<'a> = std::pin::Pin<
-    Box<dyn std::future::Future<Output = Result<CallToolResponse, McpError>> + Send + 'a>,
+    Box<
+        dyn std::future::Future<Output = (Result<CallToolResponse, McpError>, Option<usize>)>
+            + Send
+            + 'a,
+    >,
 >;
 
 /// Tools whose reply is a whole document unless the caller names a cap
@@ -678,17 +693,29 @@ fn payload_chars(answer: &Result<CallToolResponse, McpError>) -> Option<usize> {
 
 /// Run `call`, put `note` on its reply as its `view_note`, and hold the
 /// whole — what the hub adds included — to `budget`: when it arrives over,
-/// ask the design again with `budget_chars` lowered by the overshoot, and
-/// say so in the note. A reply that fits the first time is exactly what the
-/// call answered, noted. A tool that pages or withholds by its own rules
-/// keeps them: the hub only lowers the budget it is asked at.
+/// ask the design again with `budget_chars` set to what it ANSWERED less the
+/// overshoot, and say so in the note. A reply that fits the first time is
+/// exactly what the call answered, noted. A tool that pages or withholds by
+/// its own rules keeps them: the hub only lowers the budget it is asked at.
+///
+/// LOWERED FROM WHAT THE DESIGN ANSWERED, NEVER FROM WHAT IT WAS ASKED.
+/// `fact:root-cause-the-hubs-budget-hold-lowered-from-the-ask-and-a-members-slack-ate-its-retries-2026-11-21`:
+/// a design lists whole rows until the next would pass its budget, so its
+/// reply sits anywhere up to one row below what it was asked. Lowering the
+/// ASK by the overshoot spent that slack first and left the reply unchanged;
+/// CI run 44918690824 answered 9 over after its four asks, each lowered by 9.
+/// Lowered from the answer, the design must give up at least the overshoot,
+/// and what the hub adds does not grow when it does (fewer ids to prefix, an
+/// `asked at` with no more digits), so the second re-ask fits — the first
+/// may not, only because it is the one that lengthens the note.
 async fn within_budget<'a>(
     budget: Option<usize>,
     request: CallToolRequestParams,
     note: &str,
     call: impl Fn(CallToolRequestParams) -> OneCall<'a>,
 ) -> Result<CallToolResponse, McpError> {
-    let mut answer = noted(call(request.clone()).await, note);
+    let (first, mut answered) = call(request.clone()).await;
+    let mut answer = noted(first, note);
     let Some(budget) = budget else {
         return answer;
     };
@@ -700,7 +727,8 @@ async fn within_budget<'a>(
         if size <= budget {
             break;
         }
-        let lower = asked.saturating_sub(size - budget);
+        let base = answered.map_or(asked, |a| a.min(asked));
+        let lower = base.saturating_sub(size - budget);
         if lower == 0 || lower == asked {
             break;
         }
@@ -714,7 +742,9 @@ async fn within_budget<'a>(
             "{note} This reply was held to budget_chars {budget} with what the hub adds counted \
              (each id's design prefix and this note): the design was asked at {asked}."
         );
-        answer = noted(call(again).await, &held);
+        let (again, own) = call(again).await;
+        answered = own;
+        answer = noted(again, &held);
     }
     answer
 }
@@ -1767,5 +1797,105 @@ mod tests {
     fn seam_coverage_is_fanned_out_and_seam_report_is_not() {
         assert!(!NOT_VIEWED.contains(&"seam_coverage"));
         assert!(NOT_VIEWED.contains(&"seam_report"));
+    }
+
+    /// A FAKE DESIGN THAT PAGES THE WAY scan_nodes DOES: it keeps a reserve
+    /// back from its budget for the paging fields, uses less than that, and
+    /// lists whole rows into the rest, so its reply sits well below what it
+    /// was asked (the member answered 11,980 asked at 13,858 in CI). Through
+    /// the hub it must still arrive within the budget, at EVERY budget, in at
+    /// most two re-asks.
+    ///
+    /// `fact:root-cause-the-hubs-budget-hold-lowered-from-the-ask-and-a-members-slack-ate-its-retries-2026-11-21`:
+    /// CI run 44918690824 answered 13,867 asked at 13,858. Lowering the ask by
+    /// the overshoot spent the design's slack and left its reply unchanged, four
+    /// times. Swept over a range of budgets here because which budgets fail
+    /// depends on where the row edges fall, which is what made the on_disk test
+    /// pass on most runs and fail on some.
+    #[tokio::test]
+    async fn a_hold_through_the_hub_fits_whatever_slack_the_design_leaves() {
+        const PREFIX: &str = "0123456789abcdef:";
+        // Rows of one width, as a brief scan's are.
+        let rows: Vec<JsonValue> = (0..160)
+            .map(|i| {
+                json!({"node_id": format!("req:r{i:03}"), "node_type": "Requirement",
+                       "name": format!("r{i:03}"), "status": "proposed",
+                       "discontinued": false})
+            })
+            .collect();
+        // What it keeps back beyond what its envelope uses, as scan_nodes'
+        // SCAN_REPLY_RESERVE_CHARS does.
+        const KEPT_BACK: usize = 1_000;
+        let tail = "a read hint the paging fields come with ".repeat(20);
+        // The reply listing the first k rows, for every k, measured once.
+        let replies: Vec<(JsonValue, usize)> = (0..=rows.len())
+            .map(|k| {
+                let v = if k == rows.len() {
+                    json!({"items": rows, "total": rows.len(), "hint": tail})
+                } else {
+                    json!({"items": rows[..k], "total": rows.len(),
+                           "omitted": rows.len() - k, "next_offset": k, "hint": tail})
+                };
+                let n = crate::reply_budget::chars_of(&v);
+                (v, n)
+            })
+            .collect();
+        let replies = &replies;
+        // The most rows whose reply, with the reserve kept back, fits `asked`.
+        let answer_at = move |asked: usize| -> JsonValue {
+            replies
+                .iter()
+                .rev()
+                .find(|(_, n)| n + KEPT_BACK <= asked)
+                .unwrap_or(&replies[0])
+                .0
+                .clone()
+        };
+        let whole = replies[rows.len()].1 + KEPT_BACK;
+        let note = "This call ran on design 0123456789abcdef alone, a member of this hub's \
+                    view. Ids that design holds carry its graph_id as a prefix \
+                    ('0123456789abcdef:<id>'); pass one back through this hub, or pass \
+                    `member: \"0123456789abcdef\"`, and the call goes to 0123456789abcdef again.";
+        let mut most_calls = 0;
+        for budget in (whole - 3_000)..whole {
+            let calls = std::sync::atomic::AtomicUsize::new(0);
+            let calls = &calls;
+            let mut args = JsonMap::new();
+            args.insert("budget_chars".into(), json!(budget));
+            let request = CallToolRequestParams::new("scan_nodes").with_arguments(args);
+            let through = within_budget(Some(budget), request, note, |request| {
+                calls.fetch_add(1, std::sync::atomic::Ordering::SeqCst);
+                let asked = request
+                    .arguments
+                    .as_ref()
+                    .and_then(|a| a.get("budget_chars"))
+                    .and_then(JsonValue::as_u64)
+                    .unwrap() as usize;
+                Box::pin(async move {
+                    let mut own = answer_at(asked);
+                    let answered = crate::reply_budget::chars_of(&own);
+                    assert!(answered <= asked, "the fake design holds its own budget");
+                    for item in own["items"].as_array_mut().unwrap() {
+                        let id = item["node_id"].as_str().unwrap().to_string();
+                        item["node_id"] = json!(format!("{PREFIX}{id}"));
+                    }
+                    let reply = CallToolResponse::Complete(CallToolResult::structured(own));
+                    (Ok(reply), Some(answered))
+                })
+            })
+            .await;
+            let size = payload_chars(&through).unwrap();
+            let calls = calls.load(std::sync::atomic::Ordering::SeqCst);
+            assert!(
+                size <= budget,
+                "asked at {budget} through the hub, answered {size} after {calls} call(s) \
+                 (the whole is {whole})"
+            );
+            most_calls = most_calls.max(calls);
+        }
+        assert!(
+            most_calls <= 3,
+            "the hold settles in at most two re-asks, took {most_calls} calls"
+        );
     }
 }
