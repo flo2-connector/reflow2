@@ -58,8 +58,9 @@ published 0.101.0 binary (sha256 `a3e21922…` for its linux-x86_64 archive, che
   a store this release has written, with its "behind" warning, and writes to it; this release
   then reads that write. It refuses this release's exports, and with `accept_newer: true` imports
   one whole (13 nodes, 7 edges).
-- **Telling the people who rely on the MCP server** about the two deprecations is done by
-  Anthony before this release is tagged (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`).
+- **The two deprecations are announced here, in the tool list's mark, and in each reply that uses
+  them** (`deprecation_notice`). No separate note to the MCP users is owed before a release
+  (`dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, Anthony 2026-11-21).
 
 **In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
 Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
