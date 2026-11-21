@@ -443,17 +443,21 @@ impl ReflowService {
         ok_json(g.release_report(&req.release_id).map_err(dyno_err)?)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (BL-68)
+    // - CONVENTION: this is an observation, not a plan.
+    // - — recording a projection as an observation puts a fiction inside the machinery the roadmap
+    //   is computed from, where it propagates.
+    // - — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB
+    //   field you did not touch.
     #[tool(
-        description = "Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an \
-                       enabling technology — the input fact a derived roadmap is computed from (BL-68). CONVENTION: this is an observation, not a plan. A level you \
-                       EXPECT a technology to reach later is a forecast, never this — \
-                       recording a projection as an observation puts a fiction inside the \
-                       machinery the roadmap is computed from, where it propagates. A rung \
-                       outside 1-9 is refused rather than clamped. \
-                       CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
-                       again with the same id and only what you are changing \u{2014} omitted \
-                       fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch. \
+        description = "Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) \
+                       for an enabling technology \u{2014} the input fact a derived roadmap is \
+                       computed from. An observation, not a plan: a level you EXPECT a technology \
+                       to reach later is a forecast, never this. A rung outside 1-9 is refused \
+                       rather than clamped. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO \
+                       REVISE: call it again with the same id and only what you are changing; \
+                       omitted fields keep their stored value. \
                        Ask for this to record how mature a technology is, like a TRL rung.",
         title = "Add a Readiness Level",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -630,21 +634,25 @@ impl ReflowService {
         ok_json(g.readiness_report(&req.subject_id).map_err(dyno_err)?)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — the as-fielded reconcile, sibling of reconcile_artifacts one phase later (BL-9).
+    // - Reports deployment_missing (declared active, not running), deployment_undeclared (running,
+    //   never declared) and deployment_contradicted (running while declared planned/rolled_back),
+    //   plus ids the design has never heard of.
+    // - — components and libraries never produce drift here.
+    // - (and an unresolved_drift gap) that a later reconcile resolves automatically when the
+    //   divergence is gone;
     #[tool(
         description = "Compare what is observed RUNNING against what DEPLOYED_TO declares — the \
-                       as-fielded reconcile, sibling of reconcile_artifacts one phase later \
-                       (BL-9). Supply one entry per environment you actually looked at, listing \
-                       the releases running there (empty list = nothing runs, a positive \
-                       statement). Reports deployment_missing (declared active, not running), \
-                       deployment_undeclared (running, never declared) and \
-                       deployment_contradicted (running while declared planned/rolled_back), \
-                       plus ids the design has never heard of. Only Releases run and only \
-                       Environments host — components and libraries never produce drift here. \
-                       With record_events each divergence becomes a persistent DriftEvent (and \
-                       an unresolved_drift gap) that a later reconcile resolves automatically \
-                       when the divergence is gone; the design-side fix is deploy_to with the \
-                       true status. \
-                       Ask for this to see whether what is deployed agrees with the design — does it, and where does it not?",
+                       as-fielded sibling of reconcile_artifacts. Supply one entry per environment \
+                       you actually looked at, listing the releases running there (empty list = \
+                       nothing runs, a positive statement). Reports deployment_missing, \
+                       deployment_undeclared and deployment_contradicted, plus ids the design has \
+                       never heard of. Only Releases run and only Environments host. With \
+                       record_events each divergence becomes a persistent DriftEvent that a later \
+                       reconcile resolves; the design-side fix is deploy_to with the true status. \
+                       Ask for this to see whether what is deployed agrees with the design — does \
+                       it, and where does it not?",
         title = "Reconcile Deployments",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

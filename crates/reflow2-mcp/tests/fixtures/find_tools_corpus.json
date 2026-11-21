@@ -42,6 +42,7 @@
     "claim_region": "mark that I am working on this part so nobody else collides with me",
     "claim_report": "who is working on what right now and are any two people overlapping",
     "closure_report": "is the design done, verified and closed, and what is still open before it can be",
+    "close_increment": "this milestone is never going to get finished, so set it aside for later, abandon it, or say another one replaced it",
     "collapse_decision": "pick the winning alternative and retire the others",
     "compare_designs": "how does the live design differ from the committed one",
     "complies_with": "record that this part meets that regulation",

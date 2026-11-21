@@ -3,9 +3,10 @@
 //! Reflow 2.0 captures a design's whole lifecycle (concept → operations) in one
 //! knowledge graph and keeps it coherent when anything changes. This crate is
 //! the LLM-free foundation of that system: it stands up the graph **store**
-//! (dynograph-foundation) configured with the reflow2 **schema** (28 node
-//! types, 60 edge types across 11 domains) and exposes schema-validated CRUD
-//! over the design graph.
+//! (its own `foundation` module, absorbed from dynograph-foundation on
+//! 2026-08-24) configured with the reflow2 **schema** (28 node types, 71 edge
+//! types across 11 domains) and exposes schema-validated CRUD over the design
+//! graph.
 //!
 //! It is deliberately neutral to the interaction surface (MCP / CLI / hosted /
 //! library) and to any LLM provider — those plug in later
@@ -38,6 +39,7 @@ pub mod balance;
 pub mod budget;
 pub mod bulk;
 pub mod claims;
+pub mod close_increment;
 pub mod closure;
 pub mod compare;
 pub mod compose;
@@ -57,6 +59,7 @@ pub mod drift;
 pub mod edge_prose;
 pub mod equivalence;
 pub mod export;
+pub mod failed_route;
 pub mod far;
 pub mod fielded;
 pub mod flow;
@@ -86,6 +89,7 @@ pub mod narrowing;
 pub mod neighbourhood;
 pub mod node_edges;
 pub mod nodes;
+pub mod open_increments;
 pub mod operate;
 pub mod owed;
 pub mod prediction_order;
@@ -105,6 +109,7 @@ pub mod schema;
 pub mod scope;
 pub mod seam;
 pub mod search;
+pub mod search_map;
 // Absorbed from dynograph-foundation at v0.12.0 — private on purpose; see each
 // module header for what was taken, what was left, and why an absorbed file
 // does not widen the public surface.
@@ -115,6 +120,7 @@ pub mod foundation;
 mod fuzzy;
 mod graphalg;
 mod stats;
+pub mod stop;
 pub mod structure;
 pub mod supersede;
 pub mod surprises;
@@ -186,7 +192,10 @@ pub use export::{
 pub use fielded::{
     FieldedDriftKind, FieldedFinding, FieldedOptions, FieldedReport, ObservedEnvironment,
 };
-pub use flow::{FlowCycle, FlowReport, FlowStep, FlowTransition};
+pub use flow::{
+    AssemblyJoin, FlowCycle, FlowReport, FlowStep, FlowStepDrawn, FlowTransition, StepCheck,
+    StepJoin, StepNamed,
+};
 pub use flowdown::{ReceivedIntent, SEND_KINDS, SentIntent};
 pub use fork::{ChangeSince, ForkEpoch, ForkPoint, Reopened};
 pub use frontier::{DEFERRED_DERIVATION, Deferral, FrontierItem, FrontierReport};
@@ -217,6 +226,10 @@ pub use merge::{
     AutoResolution, ConflictKind, MergeAction, MergeApplyReport, MergeConflict, MergeError,
     MergeProposal, MergeSummary, MergeUnit, Resolution, Source, merge_designs, resolve_merge,
 };
+pub use open_increments::{
+    IncrementId, OPEN_INCREMENTS_LISTED, OpenIncrement, OpenIncrements, OpenIncrementsById,
+    SinceMoved,
+};
 pub use preserve::{
     ClassifiedFinding, DivergenceClass, FUNCTION_PRESERVATION_INVARIANT, PreservationCertificate,
     PreservationCounts, PreservationVerdict, certify_preservation, classify_node_type,
@@ -233,8 +246,9 @@ pub use regions::{
     DEFAULT_REGION_DEPTH, DesignRegion, DesignRegions, REGION_SEED_TYPES, RegionCoverage,
 };
 pub use report::{
-    AllocationSummary, CertaintyBreakdown, FOLLOW_UP_FACT_TYPE, FollowUp, GraphReport, LoopStatus,
-    RankedDecision, RequirementCertainty, ShapingDecision, WhatNext, follow_up_tag,
+    AllocationSummary, CertaintyBreakdown, FOLLOW_UP_FACT_TYPE, FollowUp, GraphReport,
+    LOOP_SECTIONS, LoopSection, LoopStatus, NotComputed, RankedDecision, RequirementCertainty,
+    ShapingDecision, WhatNext, follow_up_tag,
 };
 pub use sanitize::{SanitizeReport, sanitize_text};
 pub use schema::load_schema;

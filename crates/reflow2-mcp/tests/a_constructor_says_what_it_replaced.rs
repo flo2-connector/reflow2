@@ -75,6 +75,12 @@ fn req(id: &str, name: &str, statement: &str) -> RequirementReq {
         reported_at: None,
         confidence: None,
         silent_on: None,
+        route_to: None,
+        fails_at: None,
+        fails_at_step: None,
+        fails_because: None,
+        route_rests_on: None,
+        would_hold_if: None,
         same_formula_as: None,
         claimed_by: None,
         variables: None,
@@ -84,6 +90,8 @@ fn req(id: &str, name: &str, statement: &str) -> RequirementReq {
 
 fn decision(id: &str, name: &str, text: &str, rationale: Option<&str>) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(name.into()),
         decision: Some(text.into()),
@@ -96,6 +104,9 @@ fn decision(id: &str, name: &str, text: &str, rationale: Option<&str>) -> Decisi
         status: None,
         approver: None,
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 

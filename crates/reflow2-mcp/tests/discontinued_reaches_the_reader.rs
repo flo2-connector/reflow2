@@ -105,6 +105,8 @@ async fn withdrawn() -> ReflowService {
     )));
     j!(s.add_decision(Parameters(
         DecisionReq {
+            authored_by: None,
+            documented_by: None,
             id: "dec:discontinue".into(),
             name: Some("The store is discontinued".into()),
             decision: Some("Built, shipped, correct, and used zero times.".into()),
@@ -117,6 +119,9 @@ async fn withdrawn() -> ReflowService {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));
@@ -248,6 +253,8 @@ async fn a_proposed_decision_discontinues_nothing() {
     )));
     j!(s.add_decision(Parameters(
         DecisionReq {
+            authored_by: None,
+            documented_by: None,
             id: "dec:proposed".into(),
             name: Some("Should we withdraw it?".into()),
             decision: Some("Not settled.".into()),
@@ -260,6 +267,9 @@ async fn a_proposed_decision_discontinues_nothing() {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));
@@ -365,6 +375,12 @@ async fn it_is_not_a_capability_only_field() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -374,6 +390,8 @@ async fn it_is_not_a_capability_only_field() {
     )));
     j!(s.add_decision(Parameters(
         DecisionReq {
+            authored_by: None,
+            documented_by: None,
             id: "dec:drop".into(),
             name: Some("We no longer need it".into()),
             decision: Some("Withdrawn.".into()),
@@ -386,6 +404,9 @@ async fn it_is_not_a_capability_only_field() {
             status: None,
             approver: None,
             acted_at: None,
+            hole: None,
+            serves: None,
+            closing_it: None,
         }
         .into()
     )));

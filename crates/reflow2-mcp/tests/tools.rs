@@ -103,6 +103,12 @@ async fn seeded() -> ReflowService {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -271,6 +277,12 @@ async fn genesis_bootstraps_then_detect_hands_off() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -576,6 +588,8 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
             name: Some("Game state feed".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));
@@ -629,6 +643,8 @@ async fn a_contract_with_no_provider_surfaces_as_a_gap_over_the_surface() {
             name: Some("Game state feed".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));
@@ -861,6 +877,7 @@ async fn the_surface_can_say_that_nothing_moved() {
     assert!(
         s.add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 description: None,
                 detected_at: None,
                 rationale_basis: None,
@@ -1089,6 +1106,8 @@ async fn describe_schema_returns_the_whole_vocabulary() {
     );
     assert_eq!(
         v["edge_types"].as_array().unwrap().len(),
+        // 71 since PUTS_TOGETHER + CLOSES (2026-11-12, a step names the
+        // parts it puts together and the joins it closes);
         // 69 since EQUIVALENT_TO (2026-10-23, two statements proven
         // equivalent);
         // 68 since PREMISE_OF + CONCLUDES (2026-10-14, the two links of a
@@ -1106,7 +1125,7 @@ async fn describe_schema_returns_the_whole_vocabulary() {
         // places on purpose: the schema loader, describe_vocabulary, and here
         // at the SERVED surface. An edge type that existed but was not
         // discoverable through the tool would be vocabulary nobody could reach.
-        69,
+        71,
         "every edge type is discoverable"
     );
 }
@@ -1496,6 +1515,12 @@ async fn marking_a_requirement_dropped_stops_the_nagging() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -1830,6 +1855,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: None,
         limit: None,
         tracked_designs: None,
+        budget_chars: None,
     })));
     let hits = result["hits"].as_array().expect("hits list");
     assert!(
@@ -1848,6 +1874,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: Some("Capability".into()),
         limit: Some(5),
         tracked_designs: None,
+        budget_chars: None,
     })));
     let cap_hits = caps["hits"].as_array().unwrap();
     assert!(!cap_hits.is_empty(), "cap:flight mentions flight: {caps}");
@@ -1858,6 +1885,7 @@ async fn search_finds_the_design_by_its_own_words() {
         node_type: None,
         limit: None,
         tracked_designs: None,
+        budget_chars: None,
     })));
     assert!(none["hits"].as_array().unwrap().is_empty());
 }
@@ -1881,6 +1909,10 @@ async fn documents_links_a_doc_over_the_surface_and_refuses_a_ghost() {
             source_reliability: None,
             information_credibility: None,
             inputs: None,
+            refuter: None,
+            waiting: None,
+            promise: None,
+            promise_rank: None,
         }
         .into()
     )));
@@ -2463,6 +2495,7 @@ async fn change_event_declares_what_it_changed_atomically() {
     let refused = s
         .add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 description: None,
                 detected_at: None,
                 rationale_basis: None,
@@ -2500,6 +2533,7 @@ async fn change_event_declares_what_it_changed_atomically() {
     let bad_action = s
         .add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 description: None,
                 detected_at: None,
                 rationale_basis: None,
@@ -2527,6 +2561,7 @@ async fn change_event_declares_what_it_changed_atomically() {
     // The valid call draws the CHANGED edges in the same write.
     let res = j!(s.add_change_event(Parameters(
         AddChangeEventReq {
+            checksums: None,
             description: None,
             detected_at: None,
             rationale_basis: None,
@@ -2626,6 +2661,7 @@ async fn temporal_resource_and_realization_tools_round_trip() {
 
     j!(s.add_change_event(Parameters(
         AddChangeEventReq {
+            checksums: None,
             description: None,
             detected_at: None,
             rationale_basis: None,
@@ -2698,6 +2734,10 @@ async fn temporal_resource_and_realization_tools_round_trip() {
             source_reliability: None,
             information_credibility: None,
             inputs: None,
+            refuter: None,
+            waiting: None,
+            promise: None,
+            promise_rank: None,
         }
         .into()
     )));
@@ -2941,6 +2981,12 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -2985,6 +3031,12 @@ async fn a_read_after_a_write_does_not_carry_a_loop_debt_hint() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -4202,6 +4254,12 @@ async fn get_node_resolves_by_id_alone_and_refuses_a_collision() {
             reported_at: None,
             confidence: None,
             silent_on: None,
+            route_to: None,
+            fails_at: None,
+            fails_at_step: None,
+            fails_because: None,
+            route_rests_on: None,
+            would_hold_if: None,
             same_formula_as: None,
             claimed_by: None,
             variables: None,
@@ -4259,6 +4317,8 @@ async fn interface_auth_refusal_says_it_is_authentication_not_authorization() {
             name: Some("X".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));

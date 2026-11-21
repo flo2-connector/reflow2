@@ -11,6 +11,7 @@ use rmcp::handler::server::wrapper::Parameters;
 
 fn event(id: &str) -> AddChangeEventReq {
     AddChangeEventReq {
+        checksums: None,
         description: None,
         id: id.into(),
         name: Some("Export button moved to the File menu".into()),
@@ -43,6 +44,7 @@ async fn a_recalled_change_is_stored_with_its_basis_and_its_commits() {
     let s = ReflowService::in_memory().expect("service");
     s.add_change_event(Parameters(
         AddChangeEventReq {
+            checksums: None,
             rationale_basis: Some("recalled".into()),
             commits: Some("3f2a9c1d, 77b01e2 ".into()),
             ..event("chg:recalled")
@@ -64,6 +66,7 @@ async fn a_repair_disposition_rides_the_same_call() {
     let s = ReflowService::in_memory().expect("service");
     s.add_change_event(Parameters(
         AddChangeEventReq {
+            checksums: None,
             change_type: Some("defect_fix".into()),
             repair: Some("contained_symptom".into()),
             stands_in_for: Some("store every timestamp in UTC end to end".into()),
@@ -88,6 +91,7 @@ async fn what_is_not_a_commit_is_refused_and_nothing_is_written() {
         let err = s
             .add_change_event(Parameters(
                 AddChangeEventReq {
+                    checksums: None,
                     commits: Some(bad.into()),
                     ..event("chg:bad")
                 }
@@ -118,6 +122,7 @@ async fn a_workaround_must_name_the_fix_it_stands_in_for() {
     let err = s
         .add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 repair: Some("contained_symptom".into()),
                 ..event("chg:unnamed-patch")
             }
@@ -134,6 +139,7 @@ async fn an_undeclared_basis_is_refused_naming_the_legal_ones() {
     let err = s
         .add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 rationale_basis: Some("remembered".into()),
                 ..event("chg:odd-basis")
             }

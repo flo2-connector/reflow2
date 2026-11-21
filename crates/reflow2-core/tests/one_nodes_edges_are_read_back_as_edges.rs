@@ -512,18 +512,22 @@ fn the_reply_budget_bounds_the_list_by_size_and_lists_each_edge_whole() {
     assert_eq!(tiny.capped_by, Some("size"));
 }
 
+/// A store can still hold a self-loop: no door writes one where the relation
+/// cannot hold to itself (DEPENDS_ON among them, since 2026-11-07), but a
+/// restore keeps one a document written before that holds, so the reader
+/// still counts it once.
 #[test]
 fn a_self_loop_is_one_edge() {
-    let mut g = design();
-    g.create_edge(
-        edge::DEPENDS_ON,
-        node::REQUIREMENT,
-        "req:base",
-        node::REQUIREMENT,
-        "req:base",
-        Props::new(),
-    )
-    .expect("self loop");
+    let mut doc = design().export_graph().expect("export");
+    doc.edges.push(reflow2_core::export::ExportedEdge {
+        edge_type: edge::DEPENDS_ON.to_string(),
+        from_id: "req:base".to_string(),
+        to_id: "req:base".to_string(),
+        properties: Default::default(),
+    });
+    let mut g = DesignGraph::open_in_memory().expect("in-memory graph");
+    g.import_graph(&doc)
+        .expect("a document holding a self-loop restores");
     let e = read(&g, node::REQUIREMENT, "req:base", &EdgeQuery::default());
     // req:r DEPENDS_ON req:base (in) + the loop.
     assert_eq!(e.total, 2, "{:#?}", e.items);

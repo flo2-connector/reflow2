@@ -609,10 +609,7 @@ impl DesignGraph {
             // step, or a step's conclusion, is related to the intent the step
             // joins it to (the primes trial's F12: a proof's lemmas read as
             // unlinked intent).
-            if self.takes_part_in_reasoning(id)? {
-                return Ok(true);
-            }
-            Ok(false)
+            self.takes_part_in_reasoning(id)
         };
         let mut out = Vec::new();
         for r in self.scan_nodes(node::REQUIREMENT)? {
@@ -624,6 +621,13 @@ impl DesignGraph {
                 continue;
             }
             if r.properties.contains_key("no_relation_note") || self.is_parked(&r.node_id)? {
+                continue;
+            }
+            // A FAILED ROUTE IS NOT INTENT (crate::failed_route): it records a
+            // route ruled out, joined to its claim by `route_to`, a field and
+            // never an edge. One that names no claim is said in the
+            // read-back (`missing`), never raised: a thinner map is not a debt.
+            if crate::failed_route::is_failed_route(&r.properties) {
                 continue;
             }
             if !linked_by(&r.node_id)? {

@@ -133,6 +133,62 @@ pub struct DesignGraph {
     /// open. Kept so `loop_status` can say it, for the reason `repaired_on_open`
     /// is kept.
     pub(crate) identity_on_open: Option<crate::identity::IdentityNote>,
+    /// How many times this graph read its store, by what was read, once
+    /// [`count_store_reads`](Self::count_store_reads) asked for the count.
+    /// `None` is every graph that did not ask, so the default costs one
+    /// branch a read and takes no lock. See [`StoreReads`].
+    pub(crate) store_reads: Option<std::sync::Mutex<StoreReads>>,
+}
+
+/// How many times a graph read its store, by what was read: whole scans by
+/// node type, and one node's relations by direction and relation type.
+///
+/// WHY IT EXISTS. Measured 2026-11-13 on reflow2's own design at 8,916 nodes,
+/// a third of one loop check after a write was a read repeated for every item
+/// of a pass: all 833 file records read once for each of 200 checks, and what
+/// each change had changed counted 7,751 times for 550 defects. Every guard
+/// then counted how many times a PART was worked out
+/// ([`DesignGraph::kept_builds`]), and none counted what a part READ, so a
+/// part worked out once could read the same thing two hundred times unseen.
+/// This is the count a test holds a pass to: reads that do not grow with the
+/// items of the pass.
+///
+/// A count, never a duration: no load on the machine moves it.
+#[derive(Debug, Default, Clone, PartialEq, Eq)]
+pub struct StoreReads {
+    scans: std::collections::BTreeMap<String, u64>,
+    outgoing: std::collections::BTreeMap<String, u64>,
+    incoming: std::collections::BTreeMap<String, u64>,
+}
+
+impl StoreReads {
+    /// How many times every node of `node_type` was read
+    /// ([`DesignGraph::scan_nodes`]).
+    pub fn scans_of(&self, node_type: &str) -> u64 {
+        self.scans.get(node_type).copied().unwrap_or(0)
+    }
+
+    /// How many times one node's outgoing relations were read, asked for as
+    /// `relation` alone ([`DesignGraph::outgoing`]). A read that asked for
+    /// every type is under the empty name.
+    pub fn outgoing_of(&self, relation: &str) -> u64 {
+        self.outgoing.get(relation).copied().unwrap_or(0)
+    }
+
+    /// [`outgoing_of`](Self::outgoing_of), for incoming relations
+    /// ([`DesignGraph::incoming`]).
+    pub fn incoming_of(&self, relation: &str) -> u64 {
+        self.incoming.get(relation).copied().unwrap_or(0)
+    }
+
+    fn count(counts: &mut std::collections::BTreeMap<String, u64>, what: &str) {
+        match counts.get_mut(what) {
+            Some(n) => *n += 1,
+            None => {
+                counts.insert(what.to_string(), 1);
+            }
+        }
+    }
 }
 
 /// How an open settled the store's identity, before anything was written.
@@ -213,6 +269,51 @@ pub struct DerivedMemo {
     /// How many times the adjacency was actually BUILT. Its own counter, for
     /// the reason the two above have theirs.
     pub adjacency_builds: u64,
+    /// The readings of other designs (`crate::far`) that `defects`, `gaps`
+    /// and everything in `kept` were worked out under.
+    ///
+    /// A reference to another design reads, as a premise, what the server
+    /// handed in for THIS call, and two callers may be handed different
+    /// readings: the far design changed (no write lands here when it does),
+    /// or one caller may read it and the other may not. So a result that
+    /// rests on a premise's truth is kept together with the readings it read,
+    /// and a call that brings different ones works it out again
+    /// (`req:a-loop-check-asked-again-with-no-write-since-answers-from-what-it-kept`:
+    /// "kept only together with what it read, or is not kept"). The entries
+    /// that read only this design's own nodes and edges (`discontinued`,
+    /// `node_types`, `betweenness`, `adjacency`) are not dropped for it.
+    pub far: Option<std::sync::Arc<crate::far::FarReadings>>,
+    /// Whole results kept by name until the next write, each behind
+    /// [`DesignGraph::kept`]: the passes `loop_status` is made of that read
+    /// only the design, and its whole answer per contributor.
+    ///
+    /// MEASURED 2026-11-13 on this design at 8,916 nodes
+    /// (`fact:measured-the-four-measurements-the-loop-check-idea-asked-for-2026-11-13`):
+    /// a `loop_status` asked again with no write since took 3.1 to 3.4 s,
+    /// against a 2,000 ms budget (`con:loop-status-warm-latency-ms`), because
+    /// only gap and defect detection were kept. Loop closure alone was 1.9 to
+    /// 2.2 s of it, worked out again on every ask from records no write had
+    /// touched.
+    pub kept: std::collections::HashMap<String, std::sync::Arc<dyn std::any::Any + Send + Sync>>,
+    /// How many times each name in `kept` was actually WORKED OUT, by name,
+    /// over this graph's lifetime. A counter per name, for the reason
+    /// `betweenness_builds` has its own: a test pins "once per state of the
+    /// design" for one pass without another pass moving the number under it.
+    pub kept_builds: std::collections::HashMap<String, u64>,
+}
+
+/// Whether two calls were handed the same readings of other designs: the same
+/// allocation (every access within one call), or equal content (two calls the
+/// server read the same far truths for).
+fn same_readings(
+    a: &Option<std::sync::Arc<crate::far::FarReadings>>,
+    b: &Option<std::sync::Arc<crate::far::FarReadings>>,
+) -> bool {
+    match (a, b) {
+        (None, None) => true,
+        (Some(a), Some(b)) => std::sync::Arc::ptr_eq(a, b) || **a == **b,
+        _ => false,
+    }
 }
 
 /// Every edge of a graph, indexed by both endpoints. One build serves every
@@ -251,6 +352,7 @@ impl DesignGraph {
     /// written since they were computed. Callers then hit or fill ONE entry.
     pub(crate) fn derived_at_current_generation(&self) -> std::sync::MutexGuard<'_, DerivedMemo> {
         let now = self.engine.write_generation();
+        let far = crate::far::in_scope();
         let mut memo = self.derived.lock().expect("derived memo poisoned");
         if memo.generation != Some(now) {
             memo.generation = Some(now);
@@ -260,8 +362,105 @@ impl DesignGraph {
             memo.node_types = None;
             memo.betweenness = None;
             memo.adjacency = None;
+            memo.kept.clear();
+        } else if !same_readings(&memo.far, &far) {
+            // This call reads other designs differently from the one these
+            // were worked out for: what rests on a premise's truth goes, what
+            // reads only this design's own records stays (see `far`).
+            memo.defects = None;
+            memo.gaps = None;
+            memo.kept.clear();
         }
+        // Always this call's own, so the next access within it is a pointer
+        // comparison and never a comparison of contents.
+        memo.far = far;
         memo
+    }
+
+    /// `compute`, worked out at most once per state of the design and handed
+    /// back from what was kept until the next write
+    /// (`req:a-loop-check-asked-again-with-no-write-since-answers-from-what-it-kept`).
+    ///
+    /// For a result that is a function of the design alone, or of the design
+    /// and the readings of other designs this call was handed (`crate::far`):
+    /// a call handed different readings works it out again. Anything else a
+    /// result depends on (who is asking) goes in `name`.
+    ///
+    /// WHAT IS NEVER KEPT:
+    /// - an error, a stop at a check point included (`crate::stop`): a pass
+    ///   stopped part-way keeps nothing, and the next ask works it out;
+    /// - a result whose write generation moved while `compute` ran. A write
+    ///   takes `&mut self`, so through this type's own API none can land while
+    ///   a `&self` read is working one out, and no test can make it happen.
+    ///   The comparison costs one number and holds the rule if a later
+    ///   arrangement ever lets a write in beside a read: the memo's lock is
+    ///   not held while `compute` runs.
+    pub(crate) fn kept<T>(
+        &self,
+        name: &str,
+        compute: impl FnOnce() -> Result<T, DynoError>,
+    ) -> Result<T, DynoError>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        self.kept_when(name, |_| true, compute)
+    }
+
+    /// [`kept`](Self::kept), keeping the result only when `keep` says so. For
+    /// a result that can come back PARTIAL without being an error:
+    /// `loop_status` told to stop names the sections it left out, and that
+    /// answer is the stopped call's alone.
+    pub(crate) fn kept_when<T>(
+        &self,
+        name: &str,
+        keep: impl FnOnce(&T) -> bool,
+        compute: impl FnOnce() -> Result<T, DynoError>,
+    ) -> Result<T, DynoError>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        let began_at = {
+            let memo = self.derived_at_current_generation();
+            if let Some(v) = memo.kept.get(name).and_then(|v| v.downcast_ref::<T>()) {
+                return Ok(v.clone());
+            }
+            memo.generation
+        };
+        let v = compute()?;
+        let mut memo = self.derived_at_current_generation();
+        *memo.kept_builds.entry(name.to_string()).or_default() += 1;
+        if memo.generation == began_at && keep(&v) {
+            memo.kept
+                .insert(name.to_string(), std::sync::Arc::new(v.clone()));
+        }
+        Ok(v)
+    }
+
+    /// What is kept under `name` for the design as it stands and the readings
+    /// this call was handed, if anything is. Never works anything out.
+    pub(crate) fn kept_read<T>(&self, name: &str) -> Option<T>
+    where
+        T: Clone + Send + Sync + 'static,
+    {
+        self.derived_at_current_generation()
+            .kept
+            .get(name)
+            .and_then(|v| v.downcast_ref::<T>())
+            .cloned()
+    }
+
+    /// How many times the result kept under `name` has actually been WORKED
+    /// OUT in this graph's lifetime (see [`DerivedMemo::kept_builds`]). The
+    /// structural assertion behind [`kept`](Self::kept): across N asks with no
+    /// write between them this moves by one, not N.
+    pub fn kept_builds(&self, name: &str) -> u64 {
+        self.derived
+            .lock()
+            .expect("derived memo poisoned")
+            .kept_builds
+            .get(name)
+            .copied()
+            .unwrap_or(0)
     }
 
     /// How many times a memoised derived scan has actually RUN in this
@@ -382,6 +581,7 @@ impl DesignGraph {
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
             identity_on_open: None,
+            store_reads: None,
         })
     }
 
@@ -606,6 +806,7 @@ impl DesignGraph {
             repaired_on_open: Default::default(),
             search_rebuilt_on_open: None,
             identity_on_open: identity_note,
+            store_reads: None,
         };
         // Stamping starts before anything below writes: a repair on open that
         // changes a node's content is a change this server made, now.
@@ -711,14 +912,30 @@ impl DesignGraph {
 
     /// When this server recorded the node's creation and its last content
     /// change, and whether this store vouches for those times — the only way
-    /// the stamps are read (every node read leaves them out). `None` when the
-    /// node does not exist.
+    /// a stamp is read as a TIME (every node read leaves them out;
+    /// [`created_stamps`](Self::created_stamps) reads creation as an order
+    /// only). `None` when the node does not exist.
     pub fn node_stamp(
         &self,
         node_type: &str,
         id: &str,
     ) -> Result<Option<crate::foundation::store::NodeStamp>, DynoError> {
         self.engine.node_stamp(&self.graph_id, node_type, id)
+    }
+
+    /// When each node of `node_type` was created, as the store holds it, in
+    /// one scan of the type: `(id, creation stamp)`. For ORDERING a whole
+    /// type; the seal is not checked, so this is never a time to vouch for
+    /// (that is [`node_stamp`](Self::node_stamp)).
+    pub fn created_stamps(
+        &self,
+        node_type: &str,
+    ) -> Result<Vec<(String, Option<String>)>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.scans, node_type);
+        }
+        self.engine.created_stamps(&self.graph_id, node_type)
     }
 
     /// The node's stamp properties exactly as stored, for an export to carry.
@@ -1286,13 +1503,16 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, false)
     }
 
-    /// [`Self::create_edge`] with the edge's node-reference guard NOT run here
-    /// — reserved for [`Self::import_graph`], which reports a dangling
-    /// reference rather than refusing the restore, exactly as it does for a
-    /// node's (`ImportReport::dangling_node_refs`).
+    /// [`Self::create_edge`] as a RESTORE writes it — reserved for
+    /// [`Self::import_graph`]. The edge's node-reference guard is NOT run here:
+    /// the import reports a dangling reference rather than refusing the
+    /// restore, exactly as it does for a node's
+    /// (`ImportReport::dangling_node_refs`). Nor is the refusal of a self-loop
+    /// on a relation that cannot hold to itself: the import keeps what its
+    /// document holds and names it (`ImportReport::self_loops_kept`).
     pub(crate) fn create_edge_refs_checked_later(
         &mut self,
         edge_type: &str,
@@ -1302,7 +1522,7 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, false)
+        self.create_edge_with(edge_type, from_type, from_id, to_type, to_id, props, true)
     }
 
     #[allow(clippy::too_many_arguments)]
@@ -1314,7 +1534,7 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
-        check_refs: bool,
+        restoring: bool,
     ) -> Result<StoredEdge, DynoError> {
         let mut props = props.into();
         // AN AUTHORSHIP WRITTEN THROUGH AN AGENT (`crate::acting`): the roles
@@ -1323,7 +1543,7 @@ impl DesignGraph {
         // comes in below this, at `create_edge_unstamped`.
         let through = self.stamp_through_acting_agent(edge_type, from_id, to_id, &mut props)?;
         let stored = self.create_edge_unstamped_with(
-            edge_type, from_type, from_id, to_type, to_id, props, check_refs,
+            edge_type, from_type, from_id, to_type, to_id, props, restoring,
         )?;
         if let Some(acting) = through {
             self.record_acts_for(&acting, to_id)?;
@@ -1342,7 +1562,7 @@ impl DesignGraph {
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
     ) -> Result<StoredEdge, DynoError> {
-        self.create_edge_unstamped_with(edge_type, from_type, from_id, to_type, to_id, props, true)
+        self.create_edge_unstamped_with(edge_type, from_type, from_id, to_type, to_id, props, false)
     }
 
     #[allow(clippy::too_many_arguments)]
@@ -1354,7 +1574,7 @@ impl DesignGraph {
         to_type: &str,
         to_id: &str,
         props: impl Into<std::collections::HashMap<String, Value>>,
-        check_refs: bool,
+        restoring: bool,
     ) -> Result<StoredEdge, DynoError> {
         // BOTH ENDPOINTS MUST EXIST. The schema validates the endpoint TYPES
         // against the edge's declared `from`/`to`, which is a different question
@@ -1409,7 +1629,7 @@ impl DesignGraph {
         // (`refuse_dangling_node_refs`): `argued_by`, the claim that argues
         // for the edge, must name a node this design holds
         // (req:an-edge-names-the-claim-that-argues-for-it-and-a-governed-requirement-reads-its-reason-to-exist).
-        if check_refs {
+        if !restoring {
             for (prop, target) in self.declared_edge_node_refs(edge_type, &props) {
                 if self.node_types_holding(&target)?.is_empty() {
                     return Err(Self::dangling_node_ref_error(edge_type, &prop, &target));
@@ -1429,6 +1649,15 @@ impl DesignGraph {
         // or a second conclusion for one step. Answers nothing for any other
         // edge type.
         self.refuse_an_unsound_step_link(edge_type, from_id, to_id)?;
+        // A FAILED ROUTE SUPPORTS, CONCLUDES AND OBJECTS TO NOTHING
+        // (crate::failed_route), refused here for the same reason.
+        self.refuse_a_failed_route_link(edge_type, from_id, to_id, &props)?;
+        // A RELATION THAT CANNOT HOLD FROM A NODE TO ITSELF (the schema's
+        // `irreflexive`), refused here so no door can draw one; a restore
+        // keeps what its document holds and the import names it.
+        if !restoring {
+            self.refuse_a_self_loop_that_means_nothing(edge_type, from_id, to_id)?;
+        }
         self.engine.create_edge(
             &self.graph_id,
             edge_type,
@@ -1440,6 +1669,53 @@ impl DesignGraph {
         )
     }
 
+    /// A RELATION THAT CANNOT HOLD FROM A NODE TO ITSELF IS REFUSED WHERE IT IS
+    /// WRITTEN, on every door: the schema declares it once per edge type
+    /// (`EdgeTypeDef::irreflexive`), and this, at the store's one edge write,
+    /// is the only place it is enforced. Re-writing an edge already stored is
+    /// never refused (an upsert); answers nothing for an edge between two
+    /// different nodes or a relation that may hold to itself.
+    ///
+    /// ⭐ THE CLASS (walked with the root-cause skill, 2026-11-07): the rule was
+    /// kept per door, so the doors that kept no copy drew "X CAUSES X"
+    /// (`record_finding`, `create_edge`, 2026-10-30) and "X CONTRADICTS X"
+    /// (`register_alternative` registering an alternative again, 2026-11-07,
+    /// fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+    pub(crate) fn refuse_a_self_loop_that_means_nothing(
+        &self,
+        edge_type: &str,
+        from_id: &str,
+        to_id: &str,
+    ) -> Result<(), DynoError> {
+        if from_id != to_id
+            || !self
+                .schema()
+                .edge_types
+                .get(edge_type)
+                .is_some_and(|d| d.irreflexive)
+        {
+            return Ok(());
+        }
+        if self
+            .outgoing(from_id, Some(edge_type))?
+            .iter()
+            .any(|e| e.to_id == to_id)
+        {
+            return Ok(());
+        }
+        Err(DynoError::EdgeValidation {
+            edge_type: edge_type.to_string(),
+            property: "endpoints".to_string(),
+            message: format!(
+                "'{from_id}' cannot be joined to itself by {edge_type}: {edge_type} is a \
+                 relation between two different nodes (the schema declares it irreflexive), so \
+                 an edge from a node to itself means nothing. Nothing was written. Name the \
+                 other node it relates to; if you meant to update this node, its own tool \
+                 does that without drawing an edge."
+            ),
+        })
+    }
+
     /// Outgoing edges from `from_id`, optionally filtered to one edge type.
     /// This is the primitive the golden-thread walk (PROPAGATE) builds on.
     pub fn outgoing(
@@ -1447,6 +1723,10 @@ impl DesignGraph {
         from_id: &str,
         edge_type: Option<&str>,
     ) -> Result<Vec<StoredEdge>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.outgoing, edge_type.unwrap_or(""));
+        }
         self.engine
             .scan_outgoing_edges(&self.graph_id, from_id, edge_type)
     }
@@ -1461,6 +1741,10 @@ impl DesignGraph {
         to_id: &str,
         edge_type: Option<&str>,
     ) -> Result<Vec<StoredEdge>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.incoming, edge_type.unwrap_or(""));
+        }
         self.engine
             .scan_incoming_edges(&self.graph_id, to_id, edge_type)
     }
@@ -1468,7 +1752,27 @@ impl DesignGraph {
     /// All nodes of a type. Used by PROPAGATE to build an id→type index (edge
     /// adjacency stores only endpoint ids, not their types).
     pub fn scan_nodes(&self, node_type: &str) -> Result<Vec<StoredNode>, DynoError> {
+        if let Some(reads) = &self.store_reads {
+            let mut reads = reads.lock().expect("store reads poisoned");
+            StoreReads::count(&mut reads.scans, node_type);
+        }
         self.engine.scan_nodes(&self.graph_id, node_type)
+    }
+
+    /// Start counting this graph's reads of its store ([`StoreReads`]), from
+    /// zero. Nothing counts until this is called: a served graph never calls
+    /// it, so its reads take no lock for it.
+    pub fn count_store_reads(&mut self) {
+        self.store_reads = Some(Default::default());
+    }
+
+    /// The reads counted since [`count_store_reads`](Self::count_store_reads),
+    /// and all zeros on a graph that never asked for the count.
+    pub fn store_reads(&self) -> StoreReads {
+        self.store_reads
+            .as_ref()
+            .map(|reads| reads.lock().expect("store reads poisoned").clone())
+            .unwrap_or_default()
     }
 
     /// Build an id→type index over the whole project subgraph. Edge adjacency
@@ -1569,6 +1873,24 @@ impl DesignGraph {
             self.refresh_generated_step_name(to_id)?;
         }
         Ok(deleted)
+    }
+
+    /// Remove one `SCHEDULED_FOR` WITHOUT the unrecorded-plan guard, for a
+    /// caller that has just put the whole plan on the record itself.
+    ///
+    /// `guard_schedule_loss` asks that the LATEST snapshot equal the live
+    /// plan, so a close that moves three items off one increment would pass
+    /// it for the first and be refused for the second, the plan having moved
+    /// since its snapshot. `close_increment` snapshots the plan (or finds it
+    /// recorded) before any item leaves, checks every answer first, and only
+    /// then calls this, so nothing is lost that the guard protects.
+    pub(crate) fn delete_schedule_edge_on_the_record(
+        &mut self,
+        item_id: &str,
+        target_id: &str,
+    ) -> Result<bool, DynoError> {
+        self.engine
+            .delete_edge(&self.graph_id, edge::SCHEDULED_FOR, item_id, target_id)
     }
 
     // ---- Atomic batches (HEAL's apply step, import, the bulk forms) --------
@@ -3112,6 +3434,59 @@ impl DesignGraph {
     /// rather than lazy: it is the confusion actually observed, and the only
     /// other person-shaped node type, so a general cross-type scan would cost
     /// every caller a sweep to report a case that cannot arise.
+    /// The ids of every Contributor whose display name (`name`) is `text`,
+    /// compared trimmed and without regard to case, sorted. An empty answer
+    /// means no Contributor carries that name.
+    pub fn contributors_named(&self, text: &str) -> Result<Vec<String>, DynoError> {
+        let want = text.trim().to_lowercase();
+        if want.is_empty() {
+            return Ok(Vec::new());
+        }
+        let mut ids: Vec<String> = self
+            .scan_nodes(node::CONTRIBUTOR)?
+            .into_iter()
+            .filter(|c| {
+                matches!(c.properties.get("name"),
+                    Some(Value::String(n)) if n.trim().to_lowercase() == want)
+            })
+            .map(|c| c.node_id)
+            .collect();
+        ids.sort();
+        Ok(ids)
+    }
+
+    /// WHAT A REFUSAL OF AN UNKNOWN CONTRIBUTOR ID SAYS WHEN THE TEXT IS
+    /// SOMEONE'S DISPLAY NAME: the id (or ids) that hold that name. `None`
+    /// when no Contributor is called that.
+    ///
+    /// The refusal stays a refusal. A signature names one person for
+    /// certain, and a display name two people may share cannot. But the
+    /// refusal has the answer in hand, so it says it
+    /// (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09:
+    /// a work hub's add_decision was refused for an approver given by display
+    /// name, told only "check the id"). Every refusal of an id that names no
+    /// Contributor asks this before it says what to do.
+    pub fn contributor_name_hint(&self, text: &str) -> Result<Option<String>, DynoError> {
+        let ids = self.contributors_named(text)?;
+        let why = "A Contributor is named by its id, never by its display name, so that the \
+                   record names one person for certain.";
+        Ok(match ids.as_slice() {
+            [] => None,
+            [one] => Some(format!(
+                "`{text}` is the display name of Contributor `{one}`: pass its id, `{one}`. {why}"
+            )),
+            many => Some(format!(
+                "`{text}` is the display name of {} Contributors ({}): pass the id of the one \
+                 you mean. {why}",
+                many.len(),
+                many.iter()
+                    .map(|id| format!("`{id}`"))
+                    .collect::<Vec<_>>()
+                    .join(", ")
+            )),
+        })
+    }
+
     pub(crate) fn require_contributor(
         &self,
         id: &str,
@@ -3130,6 +3505,10 @@ impl DesignGraph {
                  `add_contributor` for the human (its id may differ from '{id}'), then call \
                  `{tool}` again with that id."
             )
+        } else if let Some(hint) = self.contributor_name_hint(id)? {
+            // A display name, not an id: telling the caller to add_contributor
+            // here would mint a second record of a person who already has one.
+            format!("no Contributor has the id '{id}', so there is nobody to {verb}. {hint}")
         } else {
             format!(
                 "no Contributor '{id}' exists yet, so there is nobody to {verb}. CALL \

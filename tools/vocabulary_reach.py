@@ -143,6 +143,8 @@ BASELINE = REPO / "tools/vocabulary_reach_baseline.json"
 # KEEP THIS SHORT. Every entry is a place where the schema and the surface
 # disagree on a name, and the better answer is usually to make them agree.
 ALIASED = {
+    # 2026-11-17: the owner's reason for closing an increment without it arriving.
+    ("DesignEpoch", "close_reason"): "close_increment's `reason` parameter",
     ("Component", "purpose"): "add_component's `description` parameter",
     ("Project", "closure_legs"): "set_closure_criterion's `legs` parameter",
     ("Project", "closure_threshold"): "set_closure_criterion's `threshold` parameter",

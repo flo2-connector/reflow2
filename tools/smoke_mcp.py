@@ -386,7 +386,9 @@ def run(binary: str, graph_path: str) -> int:
     # 2026-10-17, Anchor removed: 29 -> 28 node types, and once more this
     # file was found last, by running it.
     # 2026-10-23, EQUIVALENT_TO (two statements proven equivalent): 69.
-    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 69,
+    # 2026-11-12, PUTS_TOGETHER + CLOSES (a step names the parts it puts
+    # together and the joins it closes): 71.
+    c.ok("every edge type is discoverable", len(vocab.get("edge_types", [])) == 71,
          len(vocab.get("edge_types", [])))
 
     exact = s.call("describe_schema", {"from": "Capability", "to": "Component"})

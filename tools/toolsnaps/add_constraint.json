@@ -5,6 +5,85 @@
   },
   "description": "Create or revise a Constraint — a limit or rule the design must respect, vs a Requirement which is a goal to achieve. IT NEED NOT BE NUMERIC: only `name` and `statement` are required, so a prohibition (\"no PII leaves the device\") or a closed set of permitted values (\"status is one of draft/submitted/paid\") belongs here too. Reading this type as budgets-only once cost a design 11 prohibitions left as Requirements that report unsatisfied forever. For a numeric budget set `quantity` (unit-bearing, e.g. mass_kg, latency_ms), `limit`, and `direction` (maximum = stay at or under, the default). Then attach the spenders with `constrains` and read the rollup with `budget_report`; `composition` (sum/path/each) says which rollup its verdict reads. `category: kpp` marks a KEY PERFORMANCE PARAMETER — inviolable intent, a threshold that if missed fails the whole effort — and its violations are computed and ranked above ordinary gaps. On a kpp, `limit` is the threshold and `objective` is what success looks like. Never set kpp on your own reading of the wording: criticality is a claim about consequence, so ask the user first (the kpp-proposal skill). CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this to record a hard cap, a forbidden value, or a budget figure the design must stay inside.",
   "inputSchema": {
+    "$defs": {
+      "ConstrainedTargetReq": {
+        "additionalProperties": false,
+        "description": "One target `add_constraint` names in `constrains`: `constrains`' own\nfields, less the constraint, which is the one being written.",
+        "properties": {
+          "basis": {
+            "default": null,
+            "description": "`estimated` (default) / `evidence` / `measured`.",
+            "enum": [
+              "estimated",
+              "evidence",
+              "measured",
+              null
+            ],
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "contribution": {
+            "default": null,
+            "description": "This target's spend, in the Constraint's unit (may be negative).",
+            "format": "double",
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "measured_at": {
+            "default": null,
+            "description": "When a measured contribution was observed.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "note": {
+            "default": null,
+            "description": "Why this Constraint binds this target.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "default": null,
+            "description": "Who or what the contribution came from, by id where one exists.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_id": {
+            "description": "The constrained node.",
+            "type": "string"
+          },
+          "target_type": {
+            "default": null,
+            "description": "Its type; resolved from the id when omitted.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit": {
+            "default": null,
+            "description": "The unit `contribution` is in.",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "target_id"
+        ],
+        "type": "object"
+      }
+    },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
@@ -82,6 +161,16 @@
         ],
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "constrains": {
+        "description": "WHAT IT CONSTRAINS: each entry draws CONSTRAINS in this call, exactly\nas `constrains` draws it (on flo2.io 13 of 17 constrains runs came\nright after an add_constraint).",
+        "items": {
+          "$ref": "#/$defs/ConstrainedTargetReq"
+        },
+        "type": [
+          "array",
           "null"
         ]
       },

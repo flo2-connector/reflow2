@@ -96,6 +96,16 @@ const CONTEXT: &[(&str, &str, &str)] = &[
     // A node reference: the formula an occurrence names must exist.
     ("add_requirement", "same_formula_as", "req:seed"),
     ("add_constraint", "same_formula_as", "req:seed"),
+    // A failed route's references must name records the design holds
+    // (reflow2_core::failed_route); kept only beside `statement_kind:
+    // failed_route`, below in ONLY_WITH.
+    ("add_requirement", "route_to", "req:seed"),
+    ("add_requirement", "fails_at_step", "req:seed"),
+    // A proof hole's decision point names the claim it serves and the
+    // statement it is the hole for, each a node of the design and never the
+    // same one (reflow2_core::search_map); the two seeds stand in.
+    ("add_decision", "serves", "req:seed"),
+    ("add_decision", "hole", "who:seed"),
 ];
 
 /// Enum values a tool publishes and then refuses on this path, with the reason
@@ -110,12 +120,46 @@ const RESERVED_VALUES: &[(&str, &str, &str, &str)] = &[(
 /// A property that means something only beside another one's value, and is
 /// refused otherwise. Keyed `(tool, param, needs_param, needs_value)`: the
 /// param is synthesised only when the create also carries that value.
-const ONLY_WITH: &[(&str, &str, &str, &str)] = &[(
-    "add_change_event",
-    "stands_in_for",
-    "repair",
-    "contained_symptom",
-)];
+const ONLY_WITH: &[(&str, &str, &str, &str)] = &[
+    (
+        "add_change_event",
+        "stands_in_for",
+        "repair",
+        "contained_symptom",
+    ),
+    // A failed route's own fields, refused on any other statement
+    // (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning).
+    (
+        "add_requirement",
+        "route_to",
+        "statement_kind",
+        "failed_route",
+    ),
+    (
+        "add_requirement",
+        "fails_at",
+        "statement_kind",
+        "failed_route",
+    ),
+    (
+        "add_requirement",
+        "fails_at_step",
+        "statement_kind",
+        "failed_route",
+    ),
+    (
+        "add_requirement",
+        "fails_because",
+        "statement_kind",
+        "failed_route",
+    ),
+    (
+        "add_requirement",
+        "would_hold_if",
+        "statement_kind",
+        "failed_route",
+    ),
+];
 
 /// Parameters one tool takes that are not properties of the node it writes —
 /// a reference to another node, drawn as an edge, or a parameter the tool

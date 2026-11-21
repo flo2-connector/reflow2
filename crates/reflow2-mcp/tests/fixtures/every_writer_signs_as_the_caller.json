@@ -244,6 +244,15 @@
       }
     ],
     [
+      "plan_epoch",
+      {
+        "id": "epoch:e3",
+        "name": "Third, closed by close_increment",
+        "sequence": 3,
+        "epoch_type": "milestone"
+      }
+    ],
+    [
       "add_release",
       {
         "id": "rel:1",
@@ -521,6 +530,12 @@
       "contributor_id": "who:alice",
       "seed_id": "cmp:a",
       "seat": "writer-seat"
+    },
+    "close_increment": {
+      "epoch_id": "epoch:e3",
+      "how": "dropped",
+      "reason": "Not needed.",
+      "approver": "who:alice"
     },
     "collapse_decision": {
       "decision_id": "dec:alt",

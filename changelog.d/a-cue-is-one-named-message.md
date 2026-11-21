@@ -10,11 +10,15 @@
   read with `get_node`) or `related` (the nearest of a write's
   `search_first.near_matches`). **The counts choose what goes in:** a cue
   measured as followed ranks first, the most often followed within five calls
-  first (`mint_seat`'s pointer to `claim_region`, 38 of 38; the owner's
-  settling cue, 23 of 190; `loop_status`); a cue offered at least 20 times and
-  never followed is left out of the block (`loop_hint/detect_gaps`, 0 of 103;
-  `loop_hint/get_skill:detect-and-ask`, 0 of 81; `loop_hint/governed_by`, 0 of
-  31); uncounted cues follow, by type. **Every read the block names is asked
+  first (`mint_seat`'s pointer to `claim_region`, 38 of 38; `add_change_event`'s
+  step to `set_artifact_checksums`, 67 of 118; `loop_status`, 17 of 228; the
+  owner's settling cue, 16 of 320); a cue offered at least 20 times and never
+  followed is left out of the block (`loop_status`'s cues to `repair_report`,
+  0 of 67, `detect_defects`, 0 of 64, the check-health skill, 0 of 51,
+  `answers` and `open_questions`, 0 of 46 each); uncounted cues follow, by
+  type. The counts are `usage_report`'s on flo2.io for reflow2's design and
+  flo2's, 2026-10-31 to 2026-11-21, summed; `carry_it` was not counted there
+  yet, so its figure is the call log's to 2026-10-30. **Every read the block names is asked
   for with a small budget** (`args.budget_chars` 4,000, or `args.limit` 5 for a
   search), or says its size (`size_chars`, for a skill, whose body comes
   whole), or is left out, so following a cue never spends most of a small

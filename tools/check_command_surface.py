@@ -18,7 +18,7 @@ in another project actually meets.
 WHAT IT CHECKS, and each is a FAIL because each has already happened or is one
 edit away:
 
-  1. The three skill directories are byte-identical.
+  1. The two skill mirrors hold the served source's local version.
   2. The command source and its in-repo copy are byte-identical.
   3. Every served skill is reachable by some command.
   4. Every command either invokes a skill that exists, or is one of the
@@ -40,6 +40,9 @@ import filecmp
 import pathlib
 import re
 import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import skill_variants  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKILL_DIRS = [
@@ -90,15 +93,19 @@ def aliases_from_rust() -> dict[str, str]:
     return dict(re.findall(r'\(\s*"([a-z0-9-]+)"\s*,\s*Ok\("([a-z0-9-]+)"\)\s*\)', text))
 
 
-# 1 — the skill directories
+# 1 — the skill directories. Each mirror holds the source's LOCAL version:
+# byte-identical, except that a SKILL.md's local/hosted marking is rendered for
+# a local install (tools/skill_variants.py, since 2026-11-01).
 source = SKILL_DIRS[0]
+stale = skill_variants.stale_mirrors()
 for other in SKILL_DIRS[1:]:
     if not other.is_dir():
         findings.append(f"skill directory missing entirely: {other.relative_to(ROOT)}")
         continue
-    if diff := same_tree(source, other):
+    if diff := stale.get(str(other.relative_to(ROOT))):
         findings.append(
-            f"{other.relative_to(ROOT)} has drifted from the served source: {sorted(diff)}"
+            f"{other.relative_to(ROOT)} has drifted from the served source's local version: "
+            f"{diff} — run python3 tools/skill_variants.py --write-mirrors"
         )
 
 # 2 — the command directories

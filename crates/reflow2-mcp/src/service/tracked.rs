@@ -548,8 +548,8 @@ async fn search(
             "empty_because".into(),
             JsonValue::String(format!(
                 "no design searched matched the query: this design and {k} pinned design(s) \
-                 read from their exports; `searched_by_design` says how many nodes each search \
-                 ran over. {not_sentence}"
+                 read from their exports; `searched` says how many nodes the searches ran over \
+                 in all. {not_sentence}"
             )),
         );
     }
@@ -562,8 +562,9 @@ async fn search(
              where each came from, a pinned design's node_id prefixed with its graph_id \
              ('<graph_id>:<id>', which get_node opens) and this design's own unprefixed. Scores \
              come from each design's own index, so the order across designs is a guide, not a \
-             measurement. The one `limit` bounds the merged list: `found_by_design` says how \
-             many each returned and `hits_withheld` counts what fell outside it. {not_sentence}"
+             measurement. The one `limit` bounds the merged list: `found_in` says how many \
+             each design with hits returned and `hits_withheld` counts what fell outside it. \
+             {not_sentence}"
         )),
     );
     o.insert("read_from".into(), JsonValue::Object(read_from));

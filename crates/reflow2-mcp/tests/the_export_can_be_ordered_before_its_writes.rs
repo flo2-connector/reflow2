@@ -50,6 +50,7 @@ use rmcp::handler::server::wrapper::Parameters;
 
 fn event(id: &str) -> AddChangeEventReq {
     AddChangeEventReq {
+        checksums: None,
         description: None,
         id: id.into(),
         name: Some("A change".into()),
@@ -89,6 +90,12 @@ fn requirement(id: &str) -> RequirementReq {
         reported_at: None,
         confidence: None,
         silent_on: None,
+        route_to: None,
+        fails_at: None,
+        fails_at_step: None,
+        fails_because: None,
+        route_rests_on: None,
+        would_hold_if: None,
         same_formula_as: None,
         claimed_by: None,
         variables: None,

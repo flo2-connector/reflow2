@@ -144,12 +144,16 @@ pub const INSTRUCTIONS_OFFER: [&str; 2] =
 /// back, it says which is in force: on that design the search ranked the
 /// OLDEST of eleven per-batch summaries first
 /// (`fact:root-cause-the-search-for-current-state-ranks-the-oldest-of-several-state-records-first-2026-10-31`).
+///
+/// HELD SHORT (merged with main 2026-11-21): the whole handshake has to fit a
+/// client's 4,096-character cap (`tests/the_handshake_fits_the_clients_cap.rs`,
+/// shortened on main 2026-11-01), so the sentence keeps the order, the two
+/// costs and which record is in force, and drops the rest; the hooks' copy
+/// (`tools/loop_nudge.py`) keeps the longer form.
 pub const FIRST_READ_CUE: &str = "TO LEARN WHERE THIS DESIGN STANDS, `search_design` \
-     \"current state\" (or \"status as of\") first: a design that keeps its own record of where \
-     things stand returns it in about 2 KB for ten hits, and when several come back the newest is \
-     the one in force. Then, if your reading allows, `graph_report` with `format` `markdown` (what \
-     the design holds, what is delivered, the top open gaps): about 6 KB on a design of a few \
-     thousand records, and it takes no budget.";
+     \"current state\" (or \"status as of\") first: about 2 KB for ten hits, and the newest is the \
+     one in force. Then, if your reading allows, `graph_report` with `format` `markdown`: about \
+     6 KB, unbudgeted.";
 
 /// THE CUES OFFERED ONCE PER BATCH OF WRITES, not on every write
 /// (`epoch:planned-the-tool-surface-refined-from-the-counts`, increment 7).
@@ -788,22 +792,39 @@ pub struct Measured {
 }
 
 /// THE COUNTS THE BLOCK IS CHOSEN BY, as measured, under the ids they are
-/// counted by now ([`canonical`]). Two windows, summed, each by id and
-/// attributable offers only:
+/// counted by now ([`canonical`]), attributable offers only (offered minus
+/// `unattributable`), in rank order.
 ///
-/// - increment 3's six writer sessions on 0.94.0, from their usage ledger
-///   (`fact:the-recall-pilot-after-the-cues-scored-25-full-16-kit-cued-at-12kb-3-uncued-2026-10-30`);
-/// - flo2.io's ledger for reflow2's own design on 0.95.0, 2026-10-29 to
-///   10-31 (`usage_report` with `since`, read 2026-10-31);
+/// RE-RANKED 2026-11-21 FROM FRESH COUNTS: `usage_report` (`since`
+/// 2026-10-31, `peek`, read through the hub 2026-11-21, server 0.102.0) on
+/// flo2.io's ledgers for reflow2's own design and for flo2's
+/// (`1a97fc1f1de4d5d2`), the two summed, 2026-10-31 to 2026-11-21. The 11-20
+/// re-count of the tools
+/// (`fact:the-tool-counts-re-run-on-0-101-0-three-weeks-later-2026-11-20`)
+/// did not count cues, so this is the first count of them since the 10-30
+/// table this one replaces. What moved: `next_step/set_artifact_checksums`
+/// (67 of 118 within five calls) and loop_status's `next/add_change_event` are
+/// the most-followed counted cues; `loop_hint/detect_gaps`,
+/// `loop_hint/get_skill:detect-and-ask` and `loop_hint/governed_by`, never
+/// followed in the 10-30 window, were each followed later in the session
+/// (governed_by twice within five calls, the other two never), so they are
+/// ranked rather than left out; and six of loop_status's `next` cues and both halves of the
+/// handshake's first-read cue were never followed in 46 or more attributable
+/// offers each.
 ///
-/// and `carry_it/claim_region` from flo2.io's call log, 2026-09-24 to 10-30,
-/// where every one of 38 `mint_seat` runs was followed by `claim_region`
+/// `carry_it/claim_region` is NOT in the fresh count: the server that wrote
+/// these ledgers (0.102.0) does not count `carry_it` yet (this increment makes
+/// it a cue). Its row is still the 10-30 one, from flo2.io's call log,
+/// 2026-09-24 to 10-30, where every one of 38 `mint_seat` runs was followed by
+/// `claim_region`
 /// (`fact:the-served-tools-sorted-by-their-counts-109-used-5-cued-unfollowed-40-never-reached-6-steps-39-close-2026-10-30`).
-/// The recall pilot's replayed counts (0.93.1) are by call, not by id, and
-/// are not summed here; they agree in every case. An id not listed is
-/// UNCOUNTED, and so is one with fewer than [`MIN_EVIDENCE`] offers and no
-/// follow. Re-read at the next count (`epoch:planned-recall-pilot-after` and
-/// the December re-count): a table, so the change is a reviewed diff.
+///
+/// `instructions/graph_report` sums `instructions/graph_report_markdown`
+/// (its id through 2026-10-30), which the 0.102.0 counter still lists apart.
+/// An id not listed is UNCOUNTED, and so is one with fewer than
+/// [`MIN_EVIDENCE`] offers and no follow. Re-read at the next count (the
+/// December re-count, about 2026-12-23): a table, so the change is a reviewed
+/// diff.
 pub const MEASURED: &[Measured] = &[
     Measured {
         id: "carry_it/claim_region",
@@ -812,62 +833,134 @@ pub const MEASURED: &[Measured] = &[
         followed_at_all: 38,
     },
     Measured {
-        id: "loop_hint/set_decision_status",
-        offered: 190,
-        followed_within_5: 23,
-        followed_at_all: 128,
+        id: "next_step/set_artifact_checksums",
+        offered: 118,
+        followed_within_5: 67,
+        followed_at_all: 95,
     },
     Measured {
-        id: "instructions/search_design",
-        offered: 42,
-        followed_within_5: 3,
-        followed_at_all: 3,
+        id: "next/add_change_event",
+        offered: 67,
+        followed_within_5: 9,
+        followed_at_all: 64,
+    },
+    Measured {
+        id: "loop_hint/governed_by",
+        offered: 25,
+        followed_within_5: 2,
+        followed_at_all: 24,
     },
     Measured {
         id: "loop_hint/loop_status",
-        offered: 178,
-        followed_within_5: 5,
-        followed_at_all: 178,
+        offered: 228,
+        followed_within_5: 17,
+        followed_at_all: 221,
+    },
+    Measured {
+        id: "next/set_decision_status",
+        offered: 45,
+        followed_within_5: 3,
+        followed_at_all: 43,
+    },
+    Measured {
+        id: "loop_hint/set_decision_status",
+        offered: 320,
+        followed_within_5: 16,
+        followed_at_all: 312,
     },
     Measured {
         id: "loop_hint/detect_gaps",
-        offered: 103,
+        offered: 122,
         followed_within_5: 0,
-        followed_at_all: 0,
+        followed_at_all: 68,
     },
     Measured {
         id: "loop_hint/get_skill:detect-and-ask",
-        offered: 81,
+        offered: 120,
+        followed_within_5: 0,
+        followed_at_all: 6,
+    },
+    Measured {
+        id: "loop_hint/reconcile_artifacts",
+        offered: 73,
+        followed_within_5: 0,
+        followed_at_all: 21,
+    },
+    Measured {
+        id: "next/get_skill:detect-and-ask",
+        offered: 125,
+        followed_within_5: 0,
+        followed_at_all: 8,
+    },
+    Measured {
+        id: "next/reconcile_artifacts",
+        offered: 96,
+        followed_within_5: 0,
+        followed_at_all: 3,
+    },
+    Measured {
+        id: "next/external_dependency",
+        offered: 46,
+        followed_within_5: 0,
+        followed_at_all: 21,
+    },
+    Measured {
+        id: "next/detect_gaps",
+        offered: 12,
+        followed_within_5: 0,
+        followed_at_all: 4,
+    },
+    Measured {
+        id: "instructions/search_design",
+        offered: 158,
         followed_within_5: 0,
         followed_at_all: 0,
     },
     Measured {
         id: "instructions/graph_report",
-        offered: 42,
+        offered: 158,
         followed_within_5: 0,
         followed_at_all: 0,
     },
     Measured {
-        id: "loop_hint/governed_by",
-        offered: 31,
+        id: "next/repair_report",
+        offered: 67,
         followed_within_5: 0,
         followed_at_all: 0,
     },
     Measured {
-        id: "loop_hint/detect_defects",
-        offered: 17,
+        id: "next/detect_defects",
+        offered: 64,
         followed_within_5: 0,
         followed_at_all: 0,
     },
     Measured {
-        id: "loop_hint/get_skill:check-health",
-        offered: 17,
+        id: "next/get_skill:check-health",
+        offered: 51,
         followed_within_5: 0,
         followed_at_all: 0,
     },
     Measured {
-        id: "next/get_skill:detect-and-ask",
-        offered: 12,
+        id: "next/answers",
+        offered: 46,
+        followed_within_5: 0,
+        followed_at_all: 0,
+    },
+    Measured {
+        id: "next/open_questions",
+        offered: 46,
+        followed_within_5: 0,
+        followed_at_all: 0,
+    },
+    Measured {
+        id: "next/reasoning_report",
+        offered: 19,
+        followed_within_5: 0,
+        followed_at_all: 0,
+    },
+    Measured {
+        id: "next/confirmation_ledger",
+        offered: 9,
         followed_within_5: 0,
         followed_at_all: 0,
     },
@@ -1318,6 +1411,8 @@ mod tests {
                 "get_skill",
                 "add_decision",
                 "governed_by",
+                "repair_report",
+                "open_questions",
             ]
             .map(String::from),
             ["detect-and-ask", "root-cause"].map(String::from),
@@ -1419,7 +1514,7 @@ mod tests {
             canonical("hint/get_skill:root-cause"),
             "hint/get_skill:root-cause"
         );
-        let lines = vec![
+        let lines = [
             // Before the fold: the old id, followed by the old tool.
             line("cue", "", "s1", &["instructions/graph_report_markdown"]),
             line("call", "graph_report_markdown", "s1", &[]),
@@ -1440,9 +1535,11 @@ mod tests {
     }
 
     /// The table is read under the ids it is counted by, and says what the
-    /// brief's measurements say: carry_it and the settling cue followed,
-    /// detect_gaps, detect-and-ask, governed_by and the report never followed,
-    /// detect_defects too few to say.
+    /// 2026-11-21 counts say: carry_it, the checksum step and the settling cue
+    /// followed, detect_gaps followed late; loop_status's repair, defect,
+    /// health, answers and open-questions cues and both halves of the
+    /// handshake's first read never followed; confirmation_ledger too few to
+    /// say.
     #[test]
     fn the_counts_table_is_read_under_the_ids_it_counts_by() {
         let mut seen = BTreeSet::new();
@@ -1459,15 +1556,27 @@ mod tests {
             standing("loop_hint/set_decision_status"),
             Standing::Followed { .. }
         ));
+        assert!(matches!(
+            standing("next_step/set_artifact_checksums"),
+            Standing::Followed { per_mille: 567 }
+        ));
+        assert_eq!(
+            standing("loop_hint/detect_gaps"),
+            Standing::Followed { per_mille: 0 }
+        );
         for never in [
-            "loop_hint/detect_gaps",
-            "loop_hint/get_skill:detect-and-ask",
-            "loop_hint/governed_by",
+            "next/repair_report",
+            "next/detect_defects",
+            "next/get_skill:check-health",
+            "next/answers",
+            "next/open_questions",
+            "instructions/search_design",
             "instructions/graph_report",
             "instructions/graph_report_markdown",
         ] {
             assert_eq!(standing(never), Standing::NeverFollowed, "{never}");
         }
+        assert_eq!(standing("next/confirmation_ledger"), Standing::Uncounted);
         assert_eq!(standing("loop_hint/detect_defects"), Standing::Uncounted);
         assert_eq!(standing("near_matches/get_node"), Standing::Uncounted);
     }
@@ -1478,10 +1587,15 @@ mod tests {
     #[test]
     fn the_block_ranks_by_the_counts_and_leaves_out_what_was_never_followed() {
         let v = bounded();
+        // Ranked by the 2026-11-21 table: carry_it (38 of 38), loop_status
+        // (17 of 228), the settling cue (16 of 320), then detect_gaps and
+        // detect-and-ask (followed late, never within five); repair_report and
+        // open_questions, never followed, are left out whatever the room.
         let reply = json!({
             "loop_hint": "loop: run detect_gaps, then get_skill detect-and-ask; \
                           set_decision_status carries the owner's word; loop_status says \
                           what else is owed",
+            "next": ["call repair_report", "then open_questions"],
             "carry_it": "Pass this as `seat` on claim_region",
         });
         let b = block(&v.offers(&reply, "add_decision"), &v, 30_000).expect("a block");
@@ -1489,16 +1603,29 @@ mod tests {
             cues_of(&b),
             vec![
                 "carry_it/claim_region",
-                "loop_hint/set_decision_status",
-                "loop_hint/loop_status"
+                "loop_hint/loop_status",
+                "loop_hint/set_decision_status"
             ]
         );
-        assert_eq!(b["left_out"], 2, "detect_gaps and detect-and-ask: {b}");
+        assert_eq!(
+            b["left_out"], 4,
+            "repair_report and open_questions never followed, detect_gaps and \
+             detect-and-ask past three: {b}"
+        );
         let items = b["items"].as_array().unwrap();
         assert_eq!(items[0]["type"], "next_call");
         assert_eq!(items[1]["type"], "owed");
         assert!(items[0].get("args").is_none(), "a write needs no bound");
-        assert_eq!(items[2]["args"], json!({"budget_chars": CUE_READ_BUDGET}));
+        assert_eq!(items[1]["args"], json!({"budget_chars": CUE_READ_BUDGET}));
+        assert!(items[2].get("args").is_none(), "a write needs no bound");
+
+        // With room for every followed cue, the never-followed ones are still
+        // left out: only they are, when the rest fits.
+        let few = json!({"next": ["call repair_report", "then open_questions"],
+                         "loop_hint": "loop_status says what is owed"});
+        let b = block(&v.offers(&few, "add_decision"), &v, 30_000).expect("a block");
+        assert_eq!(cues_of(&b), vec!["loop_hint/loop_status"]);
+        assert_eq!(b["left_out"], 2, "{b}");
     }
 
     /// Uncounted cues come after every followed one, by type: the next call,

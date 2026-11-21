@@ -441,7 +441,7 @@ python3 tools/render_skills_and_tools.py --check         # docs/skills-and-tools
 > and the Python suites — `phase_trial`, `coherent_erosion_trial`, `model_the_loop`,
 > `stateless_seat_probe`, `test_init`, `test_shared_sessions`, `test_merge_driver`,
 > `test_degraded_server`, `test_nudge_path`, `test_loop_nudge`, `test_render_views`,
-> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`,
+> `test_stale_seat`, `test_reflow2_check`, `test_impact_of_diff`, `test_why_history`, `check_doc_versions`, `test_check_doc_versions`, `check_agents_md_size`, `test_check_agents_md_size`,
 > `test_skill_lint`, `test_check_intent_authority`, `test_check_consumer_reach`, `test_check_verification_ratchet`, `test_vocabulary_reach`,
 > `test_export_to_reaches_the_daemon`, `test_shared_attach_from_another_folder`, `test_one_meaning_for_an_artifact_location`, `test_feedback_is_a_computed_tally`,
 > `test_a_lesson_is_served_at_the_step`, `test_release_workflow`, `test_dependency_currency`, `test_changelog_fragments`,
@@ -756,9 +756,23 @@ each time arrived at the step (`req:a-lesson-is-served-at-the-step-it-concerns`)
 (core tests, clippy `-D warnings`, fmt, schema, installer suite, skill lint) and a full job
 (workspace tests, the smoke test and the exit-zero instruments against the real binary). Green
 locally but red in CI means your local run skipped a gate — believe CI. The skill lint checks
-the skills' *contract* (served tool names, mirrors byte-identical, frontmatter, the standing
-rule); their semantic quality stays evidenced by trials, per docs/sharpening.md — deliberately
-no LLM evals in CI.
+the skills' *contract* (served tool names, mirrors holding the local version, frontmatter against the Agent
+Skills specification, the standing rule, and every count a skill states against the list under it
+or the surface it counts); their semantic quality stays evidenced by trials, per
+docs/sharpening.md — deliberately no LLM evals in CI.
+
+**A skill line that is true only on a local install is written twice** (since 2026-11-01,
+`dec:a-skill-line-that-differs-when-hosted-has-a-local-and-a-hosted-version`): between
+`<!-- reflow2:local -->`, `<!-- reflow2:hosted -->` and `<!-- reflow2:end -->`, each alone on its
+line, and the engine serves the side for how it runs (`src/skill_variants.rs`; Local gets the
+local side, an engine served for others the hosted one). Mark only what really differs; a line
+that can be worded once so it is true everywhere is worded once.
+`tests/a_served_skill_says_what_is_true_where_it_is_served.rs` fails on a local-only claim in the
+hosted text. After any skill edit, `python3 tools/skill_variants.py --write-mirrors` refreshes
+`.claude/skills/` and `.grok/skills/`, which hold the local version. And each skill names itself
+in the handshake with its `use_when` (at most eight words): the whole handshake must fit a
+client's 4,096-character cap with a host's preamble, and
+`tests/the_handshake_fits_the_clients_cap.rs` fails when it does not.
 
 ### Branch, then PR — nothing lands on `main` directly
 
@@ -832,7 +846,7 @@ not the centre.
   visible dependency into an invisible one — the pin carried a written reason for every bump
   and in-tree code has no successor to that record. Those headers are that successor, and
   `tools/check_doc_versions.py` reads the tag out of them rather than out of prose.
-- The **schema is the vocabulary** (28 node types, 69 edge types across 11 `schema/*.yaml`
+- The **schema is the vocabulary** (28 node types, 71 edge types across 11 `schema/*.yaml`
   domains): the node/edge names are load-bearing. `src/schema.rs` embeds all ten YAML files
   via `include_str!` and merges them with `Schema::from_multiple_yamls` — the same files
   `tools/validate_schema.py` checks, so there is one source of truth. Terminology in code
@@ -935,17 +949,11 @@ joined by *traceability* edges) for HEAL's topology detectors.
     **What to do:** line, and every item this release removes (a tool removed now answers its
     old name with a refusal saying what to do, for this one release). Set each new entry's
     `deprecated_in` to this release's version; `every_deprecation_is_announced_in_the_changelog`
-    checks the assembled section. **Telling the people who rely on the MCP server is owed before
-    the release ships** — a deprecation nobody hears about is a removal with extra steps.
-    Anthony decided how on 2026-10-14
-    (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`):
-    - The agent cutting the release drafts a short note for Alex from this release's
-      `### Deprecated` and `### Removed` entries and their **What to do:** lines, in plain words,
-      and gives it to Anthony.
-    - Anthony sends it, however he normally reaches Alex. On his request the agent may put it
-      in his Gmail as a draft; the agent never sends it.
-    - **The release is not tagged until Anthony says he has told Alex.** A release that
-      deprecates and removes nothing owes no note.
+    checks the assembled section. **No separate note to the MCP users is owed** (Anthony,
+    2026-11-21, `dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, replacing the
+    2026-10-14 rule): a deprecation is announced in the notes, in the tool list's mark, and in
+    each reply that uses it (`deprecation_notice`), and the tag waits only for his merge word
+    and his sentence naming the tag.
 - **Structural topology detectors are selective.** A design's golden thread is tree-shaped,
   where every internal node is a naive articulation point — so `single_point_of_failure`
   only fires when a node separates ≥2 real subsystems (see `structure.rs`).
@@ -1059,7 +1067,7 @@ extraction pipeline with the calling agent as the model, so INGEST is finally re
 session rather than only from a test. See the coverage
 matrix for the exact deferral list. Everything else in the loop — the MCP surface, GENESIS,
 INGEST's core, the consumer kit, search, the reconcile family — is built and shipping as of
-v0.95.0.
+v0.102.0.
 
 ---
 
@@ -1115,7 +1123,7 @@ Three complementary lenses on the graph: **phases** (P0–P5 lifecycle), **three
 
 ## Current state (important)
 
-**Shipping at v0.95.0.** The deterministic core, the agent-native MCP surface, and the consumer
+**Shipping at v0.102.0.** The deterministic core, the agent-native MCP surface, and the consumer
 kit are all built, released as prebuilt binaries, and cold-start-verified. As of v0.12.0 the kit
 is *served* rather than installed: a project holds a pointer file and the MCP config, and both the
 skills and the working instructions come from the binary (`req:thin-install`). The interaction
@@ -1140,7 +1148,7 @@ decision or assume the surface doesn't exist — it is the binary a consumer run
   (as-built linking, releases/environments, process flows, provenance, the rollup report,
   BM25 search, schema discovery, portable export/import). Fast dev/test build:
   `cargo test -p reflow2-core --no-default-features`.
-- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs`, ~78 tools; `dto.rs`;
+- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs` and `tools/`, 200 tools; `dto.rs`;
   `main.rs`). Thin: every tool locks the graph, calls one core op, returns. It carries the
   `rocksdb` feature ON BY DEFAULT, so every installed build has on-disk storage, and development
   builds without it (`cargo dev-test`); see its own AGENTS.md.
@@ -1149,7 +1157,7 @@ Still unbuilt (see "What's deliberately not here yet" above and the coverage mat
 LLM provider backends (deferred — unneeded agent-native), SME, generative HEAL content, and the
 embedding seam. The `ingest` MCP handshake (SP-3b) shipped in v0.16.0.
 
-- `schema/*.yaml` — 11 composable schema domains (28 node types, 69 edge types), in the
+- `schema/*.yaml` — 11 composable schema domains (28 node types, 71 edge types), in the
   format defined by `src/foundation/core/schema.rs`. This is the foundation everything builds on.
 - `docs/*.md` — the vision, design, and process specifications; `docs/overview.md` maps them.
 - `getting-started/` — the consumer kit installed into a project being designed (never a build

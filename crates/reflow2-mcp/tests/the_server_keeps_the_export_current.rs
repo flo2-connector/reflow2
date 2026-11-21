@@ -74,6 +74,12 @@ fn req(id: &str) -> RequirementReq {
         reported_at: None,
         confidence: None,
         silent_on: None,
+        route_to: None,
+        fails_at: None,
+        fails_at_step: None,
+        fails_because: None,
+        route_rests_on: None,
+        would_hold_if: None,
         same_formula_as: None,
         claimed_by: None,
         variables: None,
@@ -207,6 +213,7 @@ async fn a_hand_edit_is_left_alone_and_loop_status_says_so() {
         contributor_id: None,
         since_export: false,
         budget_chars: None,
+        time_budget_ms: None,
     })));
     let skipped = status
         .get("auto_export")

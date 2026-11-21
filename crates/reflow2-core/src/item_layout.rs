@@ -431,10 +431,15 @@ pub fn assemble(stamp: DesignStamp, items: Vec<ParsedItem>) -> Result<Assembled,
         stamp: None,
         content_hash: None,
         prev_content_hash: None,
+        // Never written to the layout (design.json refuses fields it does not
+        // know); derived again on read, so the document read back says what
+        // the single file would.
+        reading_notes: BTreeMap::new(),
         graph_id: stamp.graph_id.clone(),
         nodes: nodes.into_values().collect(),
         edges: edges.into_values().collect(),
     };
+    export.note_what_the_records_leave_out();
     export.content_hash = Some(export.compute_content_hash());
     Ok(Assembled {
         export,

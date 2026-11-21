@@ -142,6 +142,11 @@ pub struct EdgeTypeSpec {
     pub also_called: AlsoCalled,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub properties: Vec<PropertySpec>,
+    /// True when the relation cannot hold from a node to itself: an edge from
+    /// a node to itself is refused (`EdgeTypeDef::irreflexive`). Served where
+    /// the whole reading is, where a caller is choosing between edges.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub irreflexive: bool,
 }
 
 /// An edge type that accepts a specific `from`/`to` pair, and on what basis.
@@ -326,6 +331,10 @@ fn edge_spec(name: &str, def: &EdgeTypeDef, detail: ReadingDetail) -> EdgeTypeSp
         },
         also_called: def.also_called.clone(),
         properties,
+        irreflexive: match detail {
+            ReadingDetail::Full => def.irreflexive,
+            ReadingDetail::OneLine => false,
+        },
     }
 }
 
@@ -924,9 +933,10 @@ mod tests {
         // relations); 61 since OWNED_BY (2026-08-09, the third "who" axis);
         // 60 since GATED_ON + HAS_READINESS (2026-08-02, BL-68); 58 before
         // that, since CALIBRATED_AGAINST (2026-08-01, req:a-fit-is-not-a-test).
-        // 69 since EQUIVALENT_TO (2026-10-23, two statements proven
-        // equivalent).
-        assert_eq!(v.edge_types.len(), 69, "all edge types are listed");
+        // 71 since PUTS_TOGETHER + CLOSES (2026-11-12, a step names the parts
+        // it puts together and the joins it closes); 69 since EQUIVALENT_TO
+        // (2026-10-23, two statements proven equivalent).
+        assert_eq!(v.edge_types.len(), 71, "all edge types are listed");
     }
 
     #[test]

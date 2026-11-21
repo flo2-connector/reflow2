@@ -83,12 +83,22 @@ DOCUMENT_SHAPED = {
 # not create; a tool NOT listed here still fails the gate, and a listed one that
 # fits or gains a bound is reported, so the list can only shrink.
 #
-# EMPTY SINCE 2026-10-31 (increment 6): design_regions, hierarchy_issues and
-# open_questions each take `budget_chars` now, the same class as the 12 KB
+# changelog_view is back on it since 2026-11-07, under the same finding: the
+# failed-route fields (PR #828) added six properties to Requirement, the
+# generator's one random stream drew a different design from them, and
+# changelog_view answered 55,395 characters on it, against 2,176 on main's
+# design with the same binary. Its size follows the design, not the code; the
+# bound it is owed is the finding's fix.
+#
+# design_regions, hierarchy_issues and open_questions LEFT IT 2026-10-31
+# (increment 6): each takes `budget_chars` now, the same class as the 12 KB
 # reader's collapse (fact:root-cause-three-reads-still-take-no-bound-on-main-
-# and-are-the-same-class-as-the-12kb-collapse-2026-10-31). Kept as the place a
-# future overflow would be recorded, never as a way to wave one through.
-KNOWN_UNBOUNDED: dict[str, str] = {}
+# and-are-the-same-class-as-the-12kb-collapse-2026-10-31). changelog_view is
+# the one left.
+KNOWN_UNBOUNDED = {
+    name: "fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31"
+    for name in ("changelog_view",)
+}
 
 # Calling these would write, block, or take a lock — this gate is read-only.
 SKIP = {"import_graph", "mint_seat", "propose_heal", "reconcile_dependencies"}

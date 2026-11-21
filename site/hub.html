@@ -202,8 +202,9 @@
         At a hub's own address on flo2.io, the ordinary tools work across the hub and every member
         you can read. A read runs on each design and answers design by design.
         <code>search_design</code> ranks every design's hits together and applies your one
-        <code>limit</code> to the merged list; the reply says how many hits each design found
-        (<code>found_by_design</code>) and how many fell outside the limit (<code>hits_withheld</code>).
+        <code>limit</code> to the merged list; the reply names each design that returned hits, with
+        its count (<code>found_in</code>), and how many fell outside the limit
+        (<code>hits_withheld</code>), and it fits the <code>budget_chars</code> you pass.
         An id written as <code>&lt;member&gt;:&lt;id&gt;</code> sends the call to that member alone, and
         <code>member</code>, a member's graph id, does the same for any tool, including the ones that
         take no id, such as <code>loop_status</code>, <code>detect_gaps</code> and
@@ -237,7 +238,7 @@
         <a href="https://github.com/flo2-connector/reflow2">Source and issues on GitHub</a> ·
         <a href="https://github.com/flo2-connector/reflow2/releases/latest">Releases</a> ·
         Apache License 2.0 ·
-        Checked against reflow2 v0.95.0.
+        Checked against reflow2 v0.102.0.
       </p>
     </footer>
   </main>

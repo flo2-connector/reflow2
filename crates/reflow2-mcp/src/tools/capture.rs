@@ -951,14 +951,21 @@ pub(crate) fn approver_must_exist(
             .may_sign(who, "approver")
             .map_err(|e| McpError::invalid_params(format!("`{tool}`: {e}"), None));
     }
-    Err(McpError::invalid_params(
-        format!(
+    // A display name, not an id: say which id holds it
+    // (fact:root-cause-an-approver-named-by-display-name-is-refused-and-the-refusal-never-names-the-id-that-holds-the-name-2026-11-09),
+    // rather than "create them", which would mint a second record of them.
+    let message = match g.contributor_name_hint(who).map_err(dyno_err)? {
+        Some(hint) => format!(
+            "`{tool}`: no Contributor has the id `{who}` in this design, so nothing was \
+             written. {hint}"
+        ),
+        None => format!(
             "`{tool}`: no Contributor `{who}` in this design, so nothing was written. An \
              approver who does not exist would attach the owner's authority to a name nobody \
              can check. Create them with add_contributor first, or check the id."
         ),
-        None,
-    ))
+    };
+    Err(McpError::invalid_params(message, None))
 }
 
 /// A constructor's status is checked against the schema BEFORE anything is
@@ -966,6 +973,171 @@ pub(crate) fn approver_must_exist(
 /// node behind. (Until 2026-10-19 an unknown Decision status was not refused at
 /// all: it did not settle, so it was not written, and the node landed
 /// `proposed` without a word.)
+/// A FAILED ROUTE'S FIELDS FIT, OR NOTHING IS WRITTEN
+/// (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning,
+/// reflow2_core::failed_route): `route_to`, `fails_at`, `fails_at_step`,
+/// `fails_because`, `route_rests_on` and `would_hold_if` belong to a statement of kind
+/// `failed_route` and are refused on any other; every id they name must be a
+/// node of this design, and `route_to` not the route itself; and a record that
+/// already takes part in a step or objects to something cannot become one.
+/// Checked before the node is written, so a refusal leaves nothing behind.
+fn failed_route_fields_must_fit(
+    g: &reflow2_core::graph::DesignGraph,
+    req: &RequirementReq,
+    prior: Option<&reflow2_core::StoredNode>,
+) -> Result<(), McpError> {
+    use reflow2_core::failed_route::FAILED_ROUTE;
+    let refuse = |m: String| Err(McpError::invalid_params(m, None));
+    let was_one = prior.is_some_and(|n| reflow2_core::failed_route::is_failed_route(&n.properties));
+    let will_be_one = match req.statement_kind.as_deref() {
+        Some(k) => k == FAILED_ROUTE,
+        None => was_one,
+    };
+    let given: Vec<&str> = [
+        ("route_to", req.route_to.is_some()),
+        ("fails_at", req.fails_at.is_some()),
+        ("fails_at_step", req.fails_at_step.is_some()),
+        ("fails_because", req.fails_because.is_some()),
+        ("route_rests_on", req.route_rests_on.is_some()),
+        ("would_hold_if", req.would_hold_if.is_some()),
+    ]
+    .into_iter()
+    .filter_map(|(f, said)| said.then_some(f))
+    .collect();
+    if !will_be_one {
+        if !given.is_empty() {
+            return refuse(format!(
+                "{} belong to a FAILED ROUTE only: a statement of kind `failed_route`, a route \
+                 that was tried and fails. Pass `statement_kind: failed_route` to record '{}' as \
+                 one, or leave them out",
+                given
+                    .iter()
+                    .map(|f| format!("`{f}`"))
+                    .collect::<Vec<_>>()
+                    .join(", "),
+                req.id
+            ));
+        }
+        return Ok(());
+    }
+    if !was_one && let Some(why) = g.failed_route_conflict(&req.id).map_err(dyno_err)? {
+        return refuse(why);
+    }
+    let mut named: Vec<(&str, &str)> = Vec::new();
+    for (field, value) in [
+        ("route_to", req.route_to.as_deref()),
+        ("fails_at_step", req.fails_at_step.as_deref()),
+    ] {
+        if let Some(v) = value.map(str::trim).filter(|v| !v.is_empty()) {
+            named.push((field, v));
+        }
+    }
+    for v in req.route_rests_on.iter().flatten() {
+        let v = v.trim();
+        if !v.is_empty() {
+            named.push(("route_rests_on", v));
+        }
+    }
+    for (field, id) in named {
+        if field == "route_to" && id == req.id {
+            return refuse(format!(
+                "`route_to` names '{id}' itself: a failed route is a route TO another claim — \
+                 the hole it tried to close"
+            ));
+        }
+        if id != req.id && g.node_types_holding(id).map_err(dyno_err)?.is_empty() {
+            return refuse(format!(
+                "`{field}` names '{id}', which names no node in this design. A failed route's \
+                 references must name records the design holds; check the id, or record that \
+                 node first. Nothing was written"
+            ));
+        }
+    }
+    Ok(())
+}
+
+/// A PROOF HOLE'S FIELDS FIT, OR NOTHING IS WRITTEN
+/// (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-it-closes-that-claim,
+/// reflow2_core::search_map): `closing_it` is one of `closes`, `narrows`,
+/// `restates`, and says what closing the hole does to the claim it `serves`,
+/// so it is refused with no `serves` on this call or stored; `hole` and
+/// `serves` name nodes of this design, never the decision itself, and never
+/// each other. Checked before the node is written.
+fn hole_fields_must_fit(
+    g: &reflow2_core::graph::DesignGraph,
+    req: &DecisionReq,
+    prior: Option<&reflow2_core::StoredNode>,
+    nulled: &[String],
+) -> Result<(), McpError> {
+    use reflow2_core::search_map::CLOSING_IT;
+    let refuse = |m: String| Err(McpError::invalid_params(m, None));
+    let stored = |k: &str| {
+        prior
+            .and_then(|n| n.properties.get(k))
+            .and_then(reflow2_core::Value::as_str)
+            .map(str::to_string)
+    };
+    let given = |v: &Option<String>| {
+        v.as_deref()
+            .map(str::trim)
+            .filter(|v| !v.is_empty())
+            .map(str::to_string)
+    };
+    let serves = given(&req.serves).or_else(|| {
+        if nulled.iter().any(|n| n == "serves") {
+            None
+        } else {
+            stored("serves")
+        }
+    });
+    let hole = given(&req.hole).or_else(|| stored("hole"));
+    if let Some(c) = req.closing_it.as_deref() {
+        if !CLOSING_IT.contains(&c) {
+            return refuse(format!(
+                "`closing_it` is `{c}`, and it says what closing a proof hole does to the claim it \
+                 serves: one of `closes` (a premise that finishes a route to it), `narrows` (a \
+                 special case or a class ruled out, which cannot close it) or `restates` (an \
+                 equivalent form). Leave it out when nobody can say: unsaid reads unsaid. \
+                 Nothing was written"
+            ));
+        }
+        if serves.is_none() {
+            return refuse(format!(
+                "`closing_it: {c}` says what closing '{}' does to the claim it serves, and it \
+                 names none: pass `serves` with that claim's id (or the decision point of the \
+                 hole above it). The target's own hole serves nothing and leaves `closing_it` \
+                 out. Nothing was written",
+                req.id
+            ));
+        }
+    }
+    for (field, v) in [("hole", given(&req.hole)), ("serves", given(&req.serves))] {
+        let Some(v) = v else { continue };
+        if v == req.id {
+            return refuse(format!(
+                "`{field}` names '{}' itself: a hole's decision point names the claim it is the \
+                 hole for and the claim it serves, never itself. Nothing was written",
+                req.id
+            ));
+        }
+        if g.node_types_holding(&v).map_err(dyno_err)?.is_empty() {
+            return refuse(format!(
+                "`{field}` names '{v}', which names no node in this design. Record that claim \
+                 first, or check the id. Nothing was written"
+            ));
+        }
+    }
+    if let (Some(h), Some(sv)) = (&hole, &serves)
+        && h == sv
+    {
+        return refuse(format!(
+            "`serves` and `hole` both name '{h}': a hole serves a claim ABOVE it, never the claim \
+             it is the hole for. Nothing was written"
+        ));
+    }
+    Ok(())
+}
+
 pub(crate) fn status_must_be_known(
     tool: &str,
     node_type: &str,
@@ -1497,6 +1669,42 @@ pub(crate) fn set_optional_props(
     Ok(Some(g.upsert_node(node_type, id, props).map_err(dyno_err)?))
 }
 
+/// A route's rough rank is a whole number from 1, the most promising
+/// (reflow2_core::search_map). Refused before anything is written.
+pub(crate) fn promise_rank_must_fit(rank: Option<i64>) -> Result<(), McpError> {
+    match rank {
+        Some(r) if r < 1 => Err(McpError::invalid_params(
+            format!(
+                "`promise_rank` is {r}: a route's rough rank counts from 1, the most promising, \
+                 and a larger number is less promising. Leave it out for an unranked branch. \
+                 Nothing was written"
+            ),
+            None,
+        )),
+        _ => Ok(()),
+    }
+}
+
+/// Write a route's `promise_rank`, when said.
+pub(crate) fn set_promise_rank(
+    g: &mut reflow2_core::graph::DesignGraph,
+    id: &str,
+    rank: Option<i64>,
+) -> Result<Option<reflow2_core::StoredNode>, McpError> {
+    promise_rank_must_fit(rank)?;
+    let Some(r) = rank else {
+        return Ok(None);
+    };
+    Ok(Some(
+        g.upsert_node(
+            reflow2_core::nodes::node::ARTIFACT,
+            id,
+            reflow2_core::nodes::Props::new().set("promise_rank", r),
+        )
+        .map_err(dyno_err)?,
+    ))
+}
+
 /// [`set_optional_props`] for one boolean: written only when the caller said.
 pub(crate) fn set_optional_bool(
     g: &mut reflow2_core::graph::DesignGraph,
@@ -1895,6 +2103,7 @@ impl ReflowService {
         approver_must_exist(&g, req.approver.as_deref(), "add_requirement")?;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        failed_route_fields_must_fit(&g, &req, prior.as_ref())?;
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let statement = __rf.str("statement", req.statement);
@@ -1987,6 +2196,13 @@ impl ReflowService {
                 ("reported_at", req.reported_at.as_deref()),
                 ("confidence", req.confidence.as_deref()),
                 ("same_formula_as", req.same_formula_as.as_deref()),
+                // A FAILED ROUTE's own fields (reflow2_core::failed_route),
+                // checked above by `failed_route_fields_must_fit`.
+                ("route_to", req.route_to.as_deref()),
+                ("fails_at", req.fails_at.as_deref()),
+                ("fails_at_step", req.fails_at_step.as_deref()),
+                ("fails_because", req.fails_because.as_deref()),
+                ("would_hold_if", req.would_hold_if.as_deref()),
             ],
         )?;
         set_optional_lists(
@@ -1997,6 +2213,7 @@ impl ReflowService {
                 ("variables", req.variables.as_ref()),
                 ("silent_on", req.silent_on.as_ref()),
                 ("fixes", req.fixes.as_ref()),
+                ("route_rests_on", req.route_rests_on.as_ref()),
             ],
         )?;
         if not_drawn.is_none() {
@@ -2222,20 +2439,22 @@ impl ReflowService {
         with_capture_notes(reply, hint, found, revision, None)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - which is the black-box interface at that tier (`req:recursive-black-box-decomposition`:
+    //   every element of a design is a black box with inner function AND INTERFACES).
+    // - — deliberately domain-neutral so a biology or hardware design is not forced into software
+    //   words.
+    // - OMITTING A FIELD LEAVES IT ALONE, so two people describing the same thing from opposite ends
+    //   cannot overwrite each other; AN EMPTY LIST IS A STATEMENT ("takes nothing in" is a real
+    //   claim about a source or a generator)
     #[tool(
         description = "Record what a Capability TAKES IN and PUTS OUT \u{2014} its functional \
-                       signature, which is the black-box interface at that tier \
-                       (`req:recursive-black-box-decomposition`: every element of a design is a \
-                       black box with inner function AND INTERFACES). Pass `inputs` / `outputs` as \
-                       lists; the JSON encoding the schema stores is done for you. \
-                       `capability_type` is free text \u{2014} validation / transform / query / \
-                       persistence / decision / actuation / io / compute \u{2014} deliberately \
-                       domain-neutral so a biology or hardware design is not forced into software \
-                       words. OMITTING A FIELD LEAVES IT ALONE, so two people describing the same \
-                       thing from opposite ends cannot overwrite each other; AN EMPTY LIST IS A \
-                       STATEMENT (\"takes nothing in\" is a real claim about a source or a \
-                       generator) and is distinct from nobody having said; and an unknown id is \
-                       REFUSED rather than created.",
+                       signature, the black-box interface at that tier. Pass `inputs` / `outputs` \
+                       as lists; the JSON encoding the schema stores is done for you. \
+                       `capability_type` is free text, e.g. validation / transform / query / \
+                       persistence / decision / actuation / io / compute. OMITTING A FIELD LEAVES \
+                       IT ALONE; AN EMPTY LIST IS A STATEMENT (\"takes nothing in\"), distinct \
+                       from nobody having said; and an unknown id is REFUSED rather than created.",
         title = "Set Capability Signature",
         annotations(
             read_only_hint = false,
@@ -2484,17 +2703,23 @@ impl ReflowService {
         with_approval_note(node, note)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Choose how much this project lets a machine change its design on its own:
+    // - `flexible` (apply_heal applies structural repairs)
+    // - — said plainly because the older schema wording, "design is the source of truth", promised a
+    //   breadth the code does not implement.
+    // - Until 2026-07-30 the mode could only be set at genesis, so every design ever made carried
+    //   the `flexible` DEFAULT and could never move off it — a governance choice nobody made and
+    //   nobody could revisit.
+    // - The default records that nobody has chosen, not that flexible was chosen
+    //   (req:mode-is-chosen-and-changeable).
     #[tool(
-        description = "Choose how much this project lets a machine change its design on its own: \
-                       `flexible` (apply_heal applies structural repairs) or `rigid` (apply_heal \
-                       proposes them and stops, so a human decides). That one gate is ALL the \
-                       mode currently changes — said plainly because the older schema wording, \
-                       \"design is the source of truth\", promised a breadth the code does not \
-                       implement. ASK THE USER; do not pick for them. Until 2026-07-30 the mode \
-                       could only be set at genesis, so every design ever made carried the \
-                       `flexible` DEFAULT and could never move off it — a governance choice \
-                       nobody made and nobody could revisit. The default records that nobody \
-                       has chosen, not that flexible was chosen (req:mode-is-chosen-and-changeable).",
+        description = "Choose this project's governance mode — how much it lets a machine change \
+                       its design on its own: `flexible` (apply_heal applies its repairs) or \
+                       `rigid` (apply_heal proposes them and stops, so a human decides). That one \
+                       gate is ALL the mode currently changes. ASK THE USER; do not pick for them. \
+                       The `flexible` default records that no choice was made, not that flexible \
+                       was chosen.",
         title = "Set Project Mode",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -2901,12 +3126,11 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create or revise an Interface node — a contract between parts (an API, event, data \
-                       feed, CLI, library boundary, physical/human connection point, or a procedural contract \
-                       between institutions). \
-                       Model one whenever two Components talk to each other, then pair it with \
-                       `provides` and `consumes`: that pairing is what makes a change on one \
-                       side of a boundary surface the other side. \
+        description = "Create or revise an Interface node — a contract where two parts meet (an \
+                       API, event, data feed, CLI, library boundary, physical/human connection \
+                       point, or a procedural contract between institutions). Name its sides with \
+                       `provided_by` and `consumed_by`: that pairing is what makes a change on \
+                       one side of a boundary surface the other side. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
@@ -2925,10 +3149,57 @@ impl ReflowService {
         let node_ty = reflow2_core::nodes::node::INTERFACE;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        // The two sides are arguments, not properties: a `null` for either is
+        // "none", never an unset of a property the node does not hold.
+        let nulled: Vec<String> = nulled
+            .into_iter()
+            .filter(|f| f != "provided_by" && f != "consumed_by")
+            .collect();
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
+        // THE TWO SIDES ARE RESOLVED AND REFUSED BEFORE ANYTHING IS WRITTEN, so
+        // an interface is never left behind carrying half a seam to a mistyped
+        // id (the rule add_capability's satisfies keeps).
+        let provided_by = req.provided_by.unwrap_or_default();
+        let consumed_by = req.consumed_by.unwrap_or_default();
+        for id in &provided_by {
+            if g.get_node(reflow2_core::nodes::node::COMPONENT, id)
+                .map_err(dyno_err)?
+                .is_none()
+            {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "`provided_by` names '{id}', and there is no Component '{id}' in this \
+                         design, so nothing was written. Create it first, or leave it out and \
+                         draw `provides` later."
+                    ),
+                    None,
+                ));
+            }
+        }
+        let mut consumers: Vec<(String, String)> = Vec::new();
+        for id in &consumed_by {
+            let ty = crate::service::resolve_node_type_or(
+                &g,
+                None,
+                id,
+                "consumed_by",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            if g.get_node(&ty, id).map_err(dyno_err)?.is_none() {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "`consumed_by` names '{id}', and there is no {ty} '{id}' in this design, \
+                         so nothing was written. Create it first, or leave it out and draw \
+                         `consumes` later."
+                    ),
+                    None,
+                ));
+            }
+            consumers.push((ty, id.clone()));
+        }
         let stored = g.add_interface(&req.id, &name).map_err(dyno_err)?;
         let stored = set_optional_props(
             &mut g,
@@ -2941,14 +3212,41 @@ impl ReflowService {
         )?
         .unwrap_or(stored);
         let node = crate::nulls::node_after_unset(&mut g, node_ty, &req.id, &nulled, stored)?;
+        // THE SIDES, through the same graph calls `provides` and `consumes` make,
+        // each named in the reply; a side already drawn is reported, not doubled.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        for id in &provided_by {
+            let e = reflow2_core::nodes::edge::PROVIDES;
+            let present = crate::drawn_edges::present(&g, id, e, &req.id).map_err(dyno_err)?;
+            if !present {
+                g.provides(id, &req.id).map_err(dyno_err)?;
+            }
+            edges.record(id, e, &req.id, present);
+        }
+        for (ty, id) in &consumers {
+            let e = reflow2_core::nodes::edge::CONSUMES;
+            let present = crate::drawn_edges::present(&g, id, e, &req.id).map_err(dyno_err)?;
+            if !present {
+                g.consumes_from(ty, id, &req.id).map_err(dyno_err)?;
+            }
+            edges.record(id, e, &req.id, present);
+        }
+        let sides_named = !provided_by.is_empty() || !consumers.is_empty();
         let found = search_first(&g, &req.id, existed, &name);
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        let mut node = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut node);
         with_capture_notes(
             node,
             // The detect_defects clause is a batch cue (`crate::cues::BATCH_CUES`).
             &format!(
-                "loop: structural change — wire provides/consumes{}",
+                "{}{}",
+                if sides_named {
+                    "loop: structural change — the sides named here are drawn"
+                } else {
+                    "loop: structural change — name its sides with provided_by/consumed_by"
+                },
                 crate::cues::batch_clause(
                     &[
                         "loop_hint/detect_defects",
@@ -3025,7 +3323,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence.",
+        description = "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step WITHOUT `step_order` is listed after the ordered ones, and the report says so. Where the flow starts and ends is COMPUTED from the order, so it cannot go stale. A capability may be a step of several flows. A step names the parts it puts together (`puts_together`) and the joins it makes (`closes`) in the same call, all or nothing. Ask for this when you want to record that a capability is one step in a larger sequence.",
         title = "Add a Step to a Flow",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3043,7 +3341,8 @@ impl ReflowService {
                        are its design, so they do not appear in detect_defects (whose circular_dependency stays \
                        scoped to DEPENDS_ON and contracts, where a cycle really is a defect). Anything the \
                        model left unstated (an unmatched entry/exit point, steps without step_order, \
-                       transitions without a role) is confessed by name. Ask for this when you want to walk \
+                       transitions without a role) is confessed by name. A flow of `flow_type: assembly` \
+                       reads back as instructions, and says what they lack. Ask for this when you want to walk \
                        through an end-to-end process step by step and see what is missing from it.",
         title = "Flow Report",
         annotations(read_only_hint = true)
@@ -3135,6 +3434,8 @@ impl ReflowService {
         >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        // `constrains` is an argument, not a property: a `null` is "none".
+        let nulled: Vec<String> = nulled.into_iter().filter(|f| f != "constrains").collect();
         let watch = crate::service::watch_attacks(&g, Some(&req.id), &[])?;
         let node_ty = reflow2_core::nodes::node::CONSTRAINT;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
@@ -3231,6 +3532,29 @@ impl ReflowService {
             req.distinct_from.as_ref(),
             &mut edges,
         )?;
+        // WHAT IT CONSTRAINS, drawn in this call through `constrains`' own body
+        // (req:a-constructor-draws-the-edges-it-is-nearly-always-followed-by-in-the-same-call).
+        for t in req.constrains.iter().flatten() {
+            let e = reflow2_core::nodes::edge::CONSTRAINS;
+            let present =
+                crate::drawn_edges::present(&g, &req.id, e, &t.target_id).map_err(dyno_err)?;
+            Self::constrains_on(
+                &mut g,
+                ConstrainsReq {
+                    constraint_id: req.id.clone(),
+                    constraint_type: Some(reflow2_core::nodes::node::CONSTRAINT.to_string()),
+                    target_type: t.target_type.clone(),
+                    target_id: t.target_id.clone(),
+                    contribution: t.contribution,
+                    unit: t.unit.clone(),
+                    source: t.source.clone(),
+                    basis: t.basis.clone(),
+                    measured_at: t.measured_at.clone(),
+                    note: t.note.clone(),
+                },
+            )?;
+            edges.record(&req.id, e, &t.target_id, present);
+        }
         let unset = crate::nulls::unset_nulled(
             &mut g,
             reflow2_core::nodes::node::CONSTRAINT,
@@ -3417,24 +3741,30 @@ impl ReflowService {
         ok_json(reply)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - which stays COMPUTED from the golden thread.
+    // - `model` means the deliverable IS the design change — a re-decomposition, a retirement, a
+    //   governance ruling, a correction to a model that was wrong about the world — so there is no
+    //   file to point at and the passing check is the whole of the evidence.
+    // - BOTH KINDS STILL DEMAND A CHECK: this loosens WHICH evidence is required, never WHETHER any
+    //   is, so it is not a way to mark something done.
+    // - WHY IT EXISTS: arrival_delta reported an increment's genuinely delivered capabilities as
+    //   `outstanding` because delivery required a file, and `outstanding` means 'nobody has said
+    //   whether this was deferred or dropped' — a false question about finished work, asked again
+    //   every run.
+    // - NOT INFERRED FROM A MISSING FILE, deliberately: the commonest reason a capability has no
+    //   artifact is that nobody has built it yet, so inferring would report unbuilt work as
+    //   delivered.
+    // - Same shape as set_interface_designation — you declare the one thing only you can know, and
+    //   the computation earns the rest.
     #[tool(
-        description = "Declare WHAT KIND of thing delivers a capability — and never whether it \
-                       was delivered, which stays COMPUTED from the golden thread. `artifact` \
-                       (the default) means a file realizes it, and delivery needs BOTH the file \
-                       and a passing check. `model` means the deliverable IS the design change — \
-                       a re-decomposition, a retirement, a governance ruling, a correction to a \
-                       model that was wrong about the world — so there is no file to point at \
-                       and the passing check is the whole of the evidence. BOTH KINDS STILL \
-                       DEMAND A CHECK: this loosens WHICH evidence is required, never WHETHER \
-                       any is, so it is not a way to mark something done. WHY IT EXISTS: \
-                       arrival_delta reported an increment's genuinely delivered capabilities as \
-                       `outstanding` because delivery required a file, and `outstanding` means \
-                       'nobody has said whether this was deferred or dropped' — a false question \
-                       about finished work, asked again every run. NOT INFERRED FROM A MISSING \
-                       FILE, deliberately: the commonest reason a capability has no artifact is \
-                       that nobody has built it yet, so inferring would report unbuilt work as \
-                       delivered. Same shape as set_interface_designation — you declare the one \
-                       thing only you can know, and the computation earns the rest.",
+        description = "Declare WHAT KIND of thing delivers a capability — never whether it was \
+                       delivered, which stays computed. `artifact` (the default): a file realizes \
+                       it, and delivery needs BOTH the file and a passing check. `model`: the \
+                       deliverable IS the change to the model itself (a re-decomposition, a \
+                       retirement, a governance ruling, a corrected model), so the passing check \
+                       is the whole of the evidence. Both kinds still demand a check, so this is \
+                       not a way to mark something done. Never inferred when there is no file.",
         title = "Set Capability Delivery",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -3831,6 +4161,12 @@ impl ReflowService {
         >,
     ) -> Result<CallToolResult, McpError> {
         let mut g = self.write_lock().await?;
+        // `authored_by` and `documented_by` are arguments, not properties: a
+        // `null` for either is "none", never an unset.
+        let nulled: Vec<String> = nulled
+            .into_iter()
+            .filter(|f| f != "authored_by" && f != "documented_by")
+            .collect();
         let node_ty = reflow2_core::nodes::node::DECISION;
         // Which calls settle is DECLARED (crate::settles), served on the tool,
         // and read here — never re-derived per handler.
@@ -3850,6 +4186,7 @@ impl ReflowService {
         approver_must_exist(&g, req.approver.as_deref(), "add_decision")?;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        hole_fields_must_fit(&g, &req, prior.as_ref(), &nulled)?;
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         let decision = __rf.str("decision", req.decision);
@@ -3865,6 +4202,20 @@ impl ReflowService {
         let mut stored = g
             .add_decision(&req.id, &name, &decision, req.rationale.as_deref())
             .map_err(dyno_err)?;
+        // A PROOF HOLE'S THREE FIELDS (reflow2_core::search_map), checked
+        // above by `hole_fields_must_fit` before anything was written.
+        if let Some(n) = set_optional_props(
+            &mut g,
+            node_ty,
+            &req.id,
+            &[
+                ("hole", req.hole.as_deref()),
+                ("serves", req.serves.as_deref()),
+                ("closing_it", req.closing_it.as_deref()),
+            ],
+        )? {
+            stored = n;
+        }
         // The kind rides THIS call rather than a follow-up setter. Two
         // order-dependent calls is precisely the hazard #392 documented, and
         // `cap:a-decision-can-be-created-already-settled` exists because the
@@ -4076,6 +4427,42 @@ impl ReflowService {
                 req.approver.as_deref(),
                 req.acted_at.as_deref(),
             )?;
+        }
+        // THE EDGES A DECISION IS NEARLY ALWAYS FOLLOWED BY, drawn in this call
+        // through the edge tools' own bodies
+        // (req:a-constructor-draws-the-edges-it-is-nearly-always-followed-by-in-the-same-call).
+        // A refusal discards the whole call (`crate::service::unit`), and a
+        // signature is still checked where it is written.
+        for a in req.authored_by.iter().flatten() {
+            let e = reflow2_core::nodes::edge::AUTHORED_BY;
+            let present =
+                crate::drawn_edges::present(&g, &req.id, e, &a.contributor_id).map_err(dyno_err)?;
+            Self::authored_by_on(
+                &mut g,
+                AuthoredByReq {
+                    from_type: Some(node_ty.to_string()),
+                    from_id: req.id.clone(),
+                    contributor_id: a.contributor_id.clone(),
+                    role: a.role.clone(),
+                    acted_at: a.acted_at.clone(),
+                },
+            )?;
+            edges.record(&req.id, e, &a.contributor_id, present);
+        }
+        for d in req.documented_by.iter().flatten() {
+            let e = reflow2_core::nodes::edge::DOCUMENTS;
+            let present =
+                crate::drawn_edges::present(&g, &d.artifact_id, e, &req.id).map_err(dyno_err)?;
+            Self::documents_on(
+                &mut g,
+                DocumentsReq {
+                    artifact_id: d.artifact_id.clone(),
+                    target_type: Some(node_ty.to_string()),
+                    target_id: req.id.clone(),
+                    doc_kind: d.doc_kind.clone(),
+                },
+            )?;
+            edges.record(&d.artifact_id, e, &req.id, present);
         }
         // After the owner's word, so where a replaced decision stands is read
         // from the status this call just settled.
@@ -4682,10 +5069,36 @@ impl ReflowService {
         g: &mut reflow2_core::DesignGraph,
         req: PartOfFlowReq,
     ) -> Result<CallToolResult, McpError> {
-        ok_json(EdgeDto::from(
-            g.part_of_flow(&req.capability_id, &req.flow_id, req.step_order)
-                .map_err(dyno_err)?,
-        ))
+        // EVERY EDGE THE CALL DRAWS IS NAMED IN ITS REPLY (crate::drawn_edges),
+        // read BEFORE the write so a part named again reads as already there.
+        // The reply is the step's own edge, as it always was; the block is
+        // silent when the call names no part and no join.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        let mut seen = std::collections::BTreeSet::new();
+        for (relation, ids) in [
+            (reflow2_core::nodes::edge::PUTS_TOGETHER, &req.puts_together),
+            (reflow2_core::nodes::edge::CLOSES, &req.closes),
+        ] {
+            for id in ids {
+                if seen.insert((relation, id.as_str())) {
+                    edges
+                        .classify(g, &req.capability_id, relation, id)
+                        .map_err(dyno_err)?;
+                }
+            }
+        }
+        let drawn = g
+            .draw_flow_step(
+                &req.capability_id,
+                &req.flow_id,
+                req.step_order,
+                &req.puts_together,
+                &req.closes,
+            )
+            .map_err(dyno_err)?;
+        let mut reply = serde_json::to_value(EdgeDto::from(drawn.step)).map_err(ser_err)?;
+        edges.attach(&mut reply);
+        ok_json(reply)
     }
 
     /// The body of [`Self::provides`] over a graph the caller already holds: the

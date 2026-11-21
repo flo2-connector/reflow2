@@ -35,6 +35,7 @@
     "topic": "everything we have written down about batteries, all in one place",
     "triage-feedback": "work through this field report the way the rules require",
     "where-am-i": "where does the design stand right now, in my own words",
-    "why": "the agents can read our code but not what each change over the years was for, so interview me"
+    "why": "the agents can read our code but not what each change over the years was for, so interview me",
+    "work-a-proof-hole": "one step in my proof will not go through; try several ways to close it, test each against what would kill it, and keep a record of the ones that fail"
   }
 }

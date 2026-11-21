@@ -158,6 +158,31 @@
           "null"
         ]
       },
+      "promise": {
+        "default": null,
+        "description": "ON A ROUTE REGISTERED UNDER A PROOF HOLE: its stated promise, a short\nline. Omitted: nothing is written; `null` unsets it.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "promise_rank": {
+        "default": null,
+        "description": "ON A ROUTE REGISTERED UNDER A PROOF HOLE: its rough rank, 1 the most\npromising. Omitted: nothing is written; `null` unsets it.",
+        "format": "int64",
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "refuter": {
+        "default": null,
+        "description": "ON A ROUTE REGISTERED UNDER A PROOF HOLE: what result would show the\nroute cannot close the hole, written before it is worked. Omitted:\nnothing is written; `null` unsets it.",
+        "type": [
+          "string",
+          "null"
+        ]
+      },
       "source_reliability": {
         "default": null,
         "description": "THE SOURCE'S RELIABILITY, on the Admiralty scale evidence uses: `A`\ncompletely reliable … `D` not usually reliable, `E` unreliable, `F`\ncannot be judged. Graded D to F, it checks no citation: what it\ndocuments reads unverified. Omitted: nothing is written.",
@@ -187,6 +212,14 @@
         ],
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "waiting": {
+        "default": null,
+        "description": "ON A ROUTE REGISTERED UNDER A PROOF HOLE: `true` while it is an\nuntried branch, charted and not worked. Send `null` to open it.\nOmitted: nothing is written.",
+        "type": [
+          "boolean",
           "null"
         ]
       }

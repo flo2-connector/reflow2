@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step recorded WITHOUT `step_order` is listed after the ordered steps and the report says so rather than inventing a position. Where the flow starts and ends is COMPUTED from the order — the lowest and highest positions — so it is never stated separately and cannot go stale. A capability may be a step of several flows. Ask for this when you want to record that a capability is one step in a larger sequence. MANY AT ONCE: `draw_edges` with `edges`: [{\"tool\": \"part_of_flow\", \"arguments\": {…}}], same checks, all or nothing.",
+  "description": "Record that a Capability is a step of a Flow (PART_OF_FLOW), with its position in `step_order`. A flow is an ordered sequence of capabilities — a use case, a process, a data path — and `flow_report` walks it in order. A step WITHOUT `step_order` is listed after the ordered ones, and the report says so. Where the flow starts and ends is COMPUTED from the order, so it cannot go stale. A capability may be a step of several flows. A step names the parts it puts together (`puts_together`) and the joins it makes (`closes`) in the same call, all or nothing. Ask for this when you want to record that a capability is one step in a larger sequence. MANY AT ONCE: `draw_edges` with `edges`: [{\"tool\": \"part_of_flow\", \"arguments\": {…}}], same checks, all or nothing.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -11,6 +11,14 @@
       "capability_id": {
         "description": "The Capability (`cap:…`) that is a step of the flow.",
         "type": "string"
+      },
+      "closes": {
+        "default": [],
+        "description": "The JOINS this step makes — after it, what each Interface says must\nhold there holds — as Interface ids (`ifc:…`): one CLOSES from the step\nto each. Every id must name an Interface, or the WHOLE call is refused\nnaming each one that does not, and nothing is written. Additive, like\n`puts_together`.",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
       },
       "echo": {
         "default": "receipt",
@@ -24,6 +32,14 @@
       "flow_id": {
         "description": "The Flow (`flow:…`, from `add_flow`) the capability is a step of.",
         "type": "string"
+      },
+      "puts_together": {
+        "default": [],
+        "description": "The PARTS this step puts together — places, joins or assembles —\nas Component ids (`cmp:…`): one PUTS_TOGETHER from the step to each.\nEvery id must name a Component, or the WHOLE call is refused naming\neach one that does not, and nothing is written. Additive: a part an\nearlier call named and this one leaves out is kept (`delete_edge`\ntakes one away).",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
       },
       "step_order": {
         "default": null,

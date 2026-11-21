@@ -43,6 +43,10 @@ fn artifact(id: &str, status: Option<&str>) -> AddArtifactReq {
         source_reliability: None,
         information_credibility: None,
         inputs: None,
+        refuter: None,
+        waiting: None,
+        promise: None,
+        promise_rank: None,
     }
 }
 

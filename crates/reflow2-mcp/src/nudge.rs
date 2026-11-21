@@ -61,6 +61,34 @@ pub enum NudgeStatus {
 }
 
 impl NudgeStatus {
+    /// The same news in a line short enough for the handshake, or `None` when
+    /// there is nothing to say. [`Self::advisory`]'s fuller wording stays where
+    /// there is room (`loop_status`); the handshake has to fit a client's
+    /// 4,096-character cap with every skill named after it
+    /// (`tests/the_handshake_fits_the_clients_cap.rs`, 2026-11-01). Each keeps
+    /// what the reader acts on: what reflow2 looked at and found, that a
+    /// harness may have its own, and the call to make instead.
+    pub fn handshake_line(&self) -> Option<String> {
+        match self {
+            NudgeStatus::Installed | NudgeStatus::Unknown => None,
+            NudgeStatus::Absent => Some(
+                "REFLOW2 HAS NOT INSTALLED A SESSION-END NUDGE here (your harness may have its \
+                 own): call `loop_status` before you finish a session that changed the design."
+                    .to_string(),
+            ),
+            NudgeStatus::Broken { command } => Some(format!(
+                "THE SESSION-END NUDGE IS REGISTERED BUT BROKEN (the hook runs `{command}`, which \
+                 is not there): fix or remove it, and call `loop_status` yourself before \
+                 finishing."
+            )),
+            NudgeStatus::NoHookForThisHarness { harnesses } => Some(format!(
+                "THERE IS NO SESSION-END NUDGE FOR THIS HARNESS ({harnesses}), and nothing of \
+                 reflow2's is missing: call `loop_status` before you finish a session that \
+                 changed the design."
+            )),
+        }
+    }
+
     /// The sentence for the agent, or `None` when there is nothing to say.
     pub fn advisory(&self) -> Option<String> {
         match self {

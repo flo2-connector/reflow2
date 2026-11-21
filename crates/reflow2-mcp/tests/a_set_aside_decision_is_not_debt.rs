@@ -61,6 +61,8 @@ async fn owner(s: &ReflowService) -> Value {
 fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionReq {
     let subject = id.trim_start_matches("dec:").replace('-', " ");
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(format!("Whether the {subject} goes left or right")),
         decision: Some(format!(
@@ -78,6 +80,9 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
         status: status.map(str::to_string),
         approver: approver.map(str::to_string),
         acted_at: None,
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 
@@ -112,6 +117,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
         contributor_id: None,
         since_export: false,
         budget_chars: None,
+        time_budget_ms: None,
     })));
     assert!(
         ids_in(&before, "assigned_decisions", "decision_id").contains(&"dec:the-one".to_string()),
@@ -136,6 +142,7 @@ async fn the_same_decision_is_debt_while_proposed_and_not_while_deferred() {
         contributor_id: None,
         since_export: false,
         budget_chars: None,
+        time_budget_ms: None,
     })));
     assert!(
         !ids_in(&after, "assigned_decisions", "decision_id").contains(&"dec:the-one".to_string()),
@@ -287,6 +294,10 @@ async fn a_deferred_decision_cannot_have_alternatives_registered() {
             artifact_id: "art:road-a".into(),
             name: "Road A".into(),
             location: "designs/alt-a.json".into(),
+            refuter: None,
+            waiting: None,
+            promise: None,
+            promise_rank: None,
         }))
         .await
         .expect_err("a deferred decision is not an open decision point");

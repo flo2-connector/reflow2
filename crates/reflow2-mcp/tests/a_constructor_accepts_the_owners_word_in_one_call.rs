@@ -90,6 +90,8 @@ async fn node_exists(s: &ReflowService, id: &str) -> bool {
 
 fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some("Cumulative totals, not deltas".into()),
         decision: Some(
@@ -104,6 +106,9 @@ fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionR
         status: status.map(str::to_string),
         approver: approver.map(str::to_string),
         acted_at: Some("2026-09-06".into()),
+        hole: None,
+        serves: None,
+        closing_it: None,
     }
 }
 
@@ -129,6 +134,12 @@ fn requirement(id: &str, status: Option<&str>, approver: Option<&str>) -> Requir
         reported_at: None,
         confidence: None,
         silent_on: None,
+        route_to: None,
+        fails_at: None,
+        fails_at_step: None,
+        fails_because: None,
+        route_rests_on: None,
+        would_hold_if: None,
         same_formula_as: None,
         claimed_by: None,
         variables: None,

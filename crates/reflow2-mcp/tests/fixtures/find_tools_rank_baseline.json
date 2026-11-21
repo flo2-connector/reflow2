@@ -14,7 +14,6 @@
     "governed_by",
     "ingest_corpus_step",
     "owned_by",
-    "pair_designs",
     "precedes",
     "provides",
     "realizes",
@@ -42,10 +41,6 @@
     [
       "add_artifact",
       "realizes"
-    ],
-    [
-      "add_change_event",
-      "invalidated_findings"
     ],
     [
       "add_change_event",
@@ -78,10 +73,6 @@
     [
       "add_interface",
       "provides"
-    ],
-    [
-      "add_interface",
-      "seam_report"
     ],
     [
       "add_project",

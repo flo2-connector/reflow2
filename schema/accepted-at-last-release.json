@@ -1,5 +1,5 @@
 {
-  "reflow2_version": "0.95.0",
+  "reflow2_version": "0.102.0",
   "node_types": {
     "Actor": {
       "actor_type": {
@@ -92,6 +92,15 @@
       "not_read": {
         "type": "bool"
       },
+      "promise": {
+        "type": "string"
+      },
+      "promise_rank": {
+        "type": "int"
+      },
+      "refuter": {
+        "type": "string"
+      },
       "signature": {
         "type": "string"
       },
@@ -122,6 +131,9 @@
           "living",
           "stable"
         ]
+      },
+      "waiting": {
+        "type": "bool"
       }
     },
     "Capability": {
@@ -522,6 +534,14 @@
       "chose": {
         "type": "string"
       },
+      "closing_it": {
+        "type": "enum",
+        "values": [
+          "closes",
+          "narrows",
+          "restates"
+        ]
+      },
       "decision": {
         "type": "string",
         "required": true,
@@ -529,6 +549,9 @@
       },
       "distinct_from": {
         "type": "list:string"
+      },
+      "hole": {
+        "type": "string"
       },
       "kind": {
         "type": "enum",
@@ -562,6 +585,9 @@
       "rationale": {
         "type": "string"
       },
+      "serves": {
+        "type": "string"
+      },
       "status": {
         "type": "enum",
         "values": [
@@ -576,6 +602,9 @@
     },
     "DesignEpoch": {
       "checksum": {
+        "type": "string"
+      },
+      "close_reason": {
         "type": "string"
       },
       "created_at": {
@@ -606,8 +635,14 @@
         "type": "enum",
         "values": [
           "arrived",
-          "planned"
+          "deferred",
+          "dropped",
+          "planned",
+          "superseded"
         ]
+      },
+      "superseded_by": {
+        "type": "string"
       }
     },
     "DesignRule": {
@@ -848,6 +883,7 @@
       "flow_type": {
         "type": "enum",
         "values": [
+          "assembly",
           "capture",
           "control_flow",
           "data_flow",
@@ -1361,6 +1397,15 @@
       "distinct_from": {
         "type": "list:string"
       },
+      "fails_at": {
+        "type": "string"
+      },
+      "fails_at_step": {
+        "type": "string"
+      },
+      "fails_because": {
+        "type": "string"
+      },
       "fixes": {
         "type": "list:string"
       },
@@ -1423,6 +1468,12 @@
       "reported_at": {
         "type": "string"
       },
+      "route_rests_on": {
+        "type": "list:string"
+      },
+      "route_to": {
+        "type": "string"
+      },
       "same_formula_as": {
         "type": "string"
       },
@@ -1457,6 +1508,7 @@
           "corollary",
           "definition",
           "evidence",
+          "failed_route",
           "falsum",
           "hypothesis",
           "judgement",
@@ -1484,6 +1536,9 @@
       },
       "variables": {
         "type": "list:string"
+      },
+      "would_hold_if": {
+        "type": "string"
       }
     },
     "Resource": {
@@ -1964,6 +2019,14 @@
           "type": "string"
         }
       }
+    },
+    "CLOSES": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Interface"
+      ]
     },
     "COMPLEMENTS": {
       "from": [
@@ -2675,6 +2738,14 @@
           ]
         }
       }
+    },
+    "PUTS_TOGETHER": {
+      "from": [
+        "Capability"
+      ],
+      "to": [
+        "Component"
+      ]
     },
     "REALIZES": {
       "from": [

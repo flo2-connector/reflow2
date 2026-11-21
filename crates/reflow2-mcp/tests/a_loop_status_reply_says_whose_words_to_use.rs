@@ -63,6 +63,7 @@ async fn loop_status(s: &ReflowService) -> serde_json::Value {
         contributor_id: None,
         since_export: false,
         budget_chars: None,
+        time_budget_ms: None,
     })))
 }
 

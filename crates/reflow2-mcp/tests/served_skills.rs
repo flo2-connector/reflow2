@@ -58,7 +58,10 @@ fn every_skill_in_the_kit_is_served() {
 #[test]
 fn a_served_skill_is_byte_identical_to_its_source() {
     // Not "looks right": the same bytes. An agent following a paraphrase of a
-    // skill is following something nobody wrote.
+    // skill is following something nobody wrote. `body` is the source as
+    // written, its local/hosted marking included; what a reader is served is
+    // `served_body` for how the engine runs, held to this source line for line
+    // in a_served_skill_says_what_is_true_where_it_is_served.rs.
     for skill in SKILLS {
         let on_disk = std::fs::read_to_string(kit().join(skill.name).join("SKILL.md"))
             .unwrap_or_else(|e| panic!("{}: {e}", skill.name));

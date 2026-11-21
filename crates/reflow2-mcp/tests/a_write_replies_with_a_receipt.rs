@@ -537,6 +537,10 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
     const REPORT: &[(&str, &str)] = &[
         ("acknowledge_gaps", "one line per gap the call acknowledged"),
         (
+            "close_increment",
+            "the close and one line per unfinished item the caller answered for",
+        ),
+        (
             "apply_heal",
             "the operations of the proposal it was handed: applied, skipped, verified",
         ),

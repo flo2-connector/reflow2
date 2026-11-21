@@ -106,6 +106,12 @@ fn requirement(id: &str, name: &str, statement: &str) -> RequirementReq {
         reported_at: None,
         confidence: None,
         silent_on: None,
+        route_to: None,
+        fails_at: None,
+        fails_at_step: None,
+        fails_because: None,
+        route_rests_on: None,
+        would_hold_if: None,
         same_formula_as: None,
         claimed_by: None,
         variables: None,
@@ -116,6 +122,7 @@ fn requirement(id: &str, name: &str, statement: &str) -> RequirementReq {
 async fn seed_change_event(s: &ReflowService) {
     s.add_change_event(Parameters(
         AddChangeEventReq {
+            checksums: None,
             description: None,
             id: "chg:client-elects-its-own-build".into(),
             name: Some("A client elects a server of its own build".into()),

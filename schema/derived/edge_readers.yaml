@@ -47,6 +47,7 @@ readers:
   budget.rs::constrains_by: { kind: unjudged, edges: [CONSTRAINS] }
   claims.rs::claim_region: { kind: unjudged, edges: [CLAIMS] }
   claims.rs::release_claim: { kind: unjudged, edges: [CLAIMS] }
+  close_increment.rs::close_increment: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: closes an increment on the owner's word, reading which items are scheduled for it (arrival_delta's own reading, through scheduled_now) only to check that every unfinished one is answered for, then moving or removing those SCHEDULED_FOR edges." }
   compare.rs::changelog_point: { kind: unjudged, edges: [AT_EPOCH] }
   compare.rs::changelog_view: { kind: unjudged, edges: [AT_EPOCH, CHANGED] }
   compare.rs::manifest_of: { kind: unjudged, edges: [INCLUDES] }
@@ -63,7 +64,7 @@ readers:
   detect.rs::detect_blocked_verifications: { kind: not_derived, edges: [VERIFIES], why: "A detector over one node's status: it reads a blocked check's VERIFIES targets one hop, only to name and anchor what the gap is about. It derives no relation." }
   detect.rs::detect_compliance_gaps: { kind: unjudged, edges: [COMPLIES_WITH, VIOLATES_RULE] }
   detect.rs::breaches_not_closed: { kind: not_derived, edges: [VIOLATES, VIOLATES_RULE], why: "Lists every recorded breach still standing so open_breach can ASK about each and loop_status can count it: a VIOLATES edge into a Constraint, and a VIOLATES_RULE edge ruled rejected (must fix) with no resolved_at. It derives no relation and draws none: each edge is read as the record it already is (dec:every-recorded-breach-still-standing-is-one-open-breach)." }
-  detect.rs::changes_that_may_have_fixed: { kind: not_derived, edges: [CAUSES, CHANGED, MITIGATES, REALIZES], why: "Ranks the changes that MAY have fixed one open defect — joined to it by CAUSES, MITIGATES or a repair CHANGED it, or a dated repair that CHANGED its subject or a file realizing that subject alone — so defect_overtaken_by_change can ASK which did. It asserts no relation: the answer is the owner's, recorded as INVALIDATES or an acknowledgement." }
+  detect.rs::changes_that_may_have_fixed: { kind: not_derived, edges: [CAUSES, CHANGED, MITIGATES, REALIZES], why: "Ranks the changes that MAY have fixed one open defect — joined to it by CAUSES, MITIGATES or a repair CHANGED it, or a dated repair that CHANGED its subject or a file realizing that subject alone — so defect_overtaken_by_change can ASK which did. For each change it offers, and no other, it counts how many records that change CHANGED (its breadth, the last ranking tie-break): a one-hop out-degree. It asserts no relation: the answer is the owner's, recorded as INVALIDATES or an acknowledgement." }
   detect.rs::detect_encoding_undecided: { kind: unjudged, edges: [GOVERNED_BY] }
   detect.rs::detect_failing_verifications: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_fix_without_recorded_cause: { kind: unjudged, edges: [CAUSES, CHANGED, INVALIDATES] }
@@ -90,11 +91,10 @@ readers:
   detect.rs::detect_unverified_capabilities: { kind: unjudged, edges: [ALLOCATED_TO, REALIZES, VERIFIES] }
   detect.rs::detect_unverified_enforced_rules: { kind: unjudged, edges: [VERIFIES] }
   detect.rs::detect_unverified_published_contracts: { kind: unjudged, edges: [VERIFIES] }
-  detect.rs::fix_candidate: { kind: not_derived, edges: [CHANGED], why: "Reads one ChangeEvent's own record for the overtaken-defect question: its type, its date, and how many records it CHANGED (its breadth, a ranking tie-break). One node and its one-hop out-degree; it composes nothing." }
   detect.rs::ideas_whose_promotion_landed: { kind: not_derived, edges: [EVOLVES_INTO], why: "A listing: each live, proposed, unparked Decision with the EVOLVES_INTO targets whose promotion has landed, one hop, as arrival.rs reads it (promotion_has_landed). It composes nothing past that shared predicate; it is the one population decision_overtaken_by_promotion reports and awaiting_word lists, so the two cannot disagree." }
   detect.rs::owner_claims_built: { kind: unjudged, edges: [ALLOCATED_TO] }
   detect.rs::ask_own_question: { kind: not_derived, edges: [ASKS_ABOUT], why: "A writer: draws the Question an asker put of its own ASKS_ABOUT each node it names as what the question is about (req:an-agent-asks-the-owner-its-own-question-about-a-node). It reads no relation." }
-  detect.rs::open_questions_for: { kind: not_derived, edges: [ANSWERS, ASKS_ABOUT], why: "A read of each open Question's OWN one-hop links, returned as it lists them: the nodes it ASKS_ABOUT (its evidence, handed to an addressee as links) and the records that ANSWER it. It composes nothing past the Question's direct edges (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
+  detect.rs::open_questions_among: { kind: not_derived, edges: [ANSWERS, ASKS_ABOUT], why: "A read of each open Question's OWN one-hop links, returned as it lists them: the nodes it ASKS_ABOUT (its evidence, handed to an addressee as links) and the records that ANSWER it. It composes nothing past the Question's direct edges (req:a-question-is-addressed-to-a-person-and-records-who-answered)." }
   detect.rs::record_asked_question: { kind: unjudged, edges: [ASKS_ABOUT] }
   detect.rs::recorded_as_fixing_another: { kind: not_derived, edges: [CAUSES, INVALIDATES, MITIGATES], why: "A one-hop guard for the overtaken-defect question: is this change already on record as the fix of ANOTHER finding (it INVALIDATES or MITIGATES one, or one CAUSES it)? Such a change is not offered by nearness alone. It composes nothing past those one-hop reads." }
   detect.rs::repairs_judged_for: { kind: not_derived, edges: [GOVERNED_BY], why: "Reads back what an acknowledgement recorded: the changes GOVERNED_BY the same accepted decision:ack Decision as the defect, so a change already judged not to be its fix is not asked about again. It reads a judgement somebody wrote, and derives none." }
@@ -112,9 +112,15 @@ readers:
   export.rs::export_surface: { kind: unjudged, edges: [CONSUMES, CONTAINS, PROVIDES, REALIZES, SPECIFIES, VERIFIES] }
   export.rs::mirror_surface_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The mirror's refresh guard: it lists every local edge touching a node the new surface withdraws, one hop either way, and leaves out a signature (AUTHORED_BY) and an edge to bookkeeping, which are no dependency; the refresh then keeps those nodes, marked superseded. It derives no relation." }
   export.rs::import_graph_with: { kind: not_derived, edges: [AUTHORED_BY], why: "The import: writes a document's nodes and edges, normalising a legacy AUTHORED_BY on the way in; its edge rewrites come from narrowing::edge_rewrite_for. It answers one restore and derives no relation." }
+  failed_route.rs::failed_route_conflict: { kind: not_derived, edges: [CONCLUDES, CONTRADICTS, PREMISE_OF], why: "A guard on add_requirement: says why a record that already takes part in a step (a premise of one, or concluded by one) or objects to something cannot become a failed route. One hop over its own links; it answers one write and derives no relation." }
+  failed_route.rs::refuse_a_failed_route_link: { kind: not_derived, edges: [CONCLUDES, CONTRADICTS, PREMISE_OF], why: "A guard on the store's one edge write: refuses a PREMISE_OF from a failed route, a CONCLUDES to one, and an opposing or conceding CONTRADICTS from one, so a failed route supports, concludes and objects to nothing. It answers one write and derives no relation." }
   far.rs::reasoning_references: { kind: not_derived, edges: [CONTRADICTS], why: "A listing: which of this design's references to another design take part in its reasoning (either end of an objection, or a premise or conclusion of a step), one hop each, so the server knows which far nodes to read before a call. It derives no relation." }
   fielded.rs::reconcile_deployment: { kind: unjudged, edges: [DEPENDS_ON, DEPLOYED_TO] }
+  flow.rs::closes: { kind: not_derived, edges: [CLOSES], why: "A writer: draws step CLOSES join, after refusing an end of the wrong type by name." }
+  flow.rs::draw_flow_step: { kind: not_derived, edges: [PART_OF_FLOW], why: "A writer: draws a step with its parts and joins in one batch, after checking every id it names and refusing the whole call, naming each one of the wrong type, before anything is written. It names PART_OF_FLOW only to label that refusal." }
   flow.rs::part_of_flow: { kind: unjudged, edges: [PART_OF_FLOW] }
+  flow.rs::puts_together: { kind: not_derived, edges: [PUTS_TOGETHER], why: "A writer: draws step PUTS_TOGETHER part, after refusing an end of the wrong type by name." }
+  flow.rs::refuse_a_wrong_end: { kind: not_derived, edges: [CLOSES, PUTS_TOGETHER], why: "A guard on one write: says what an end of a step's edge IS when it is not the type the edge takes, naming the edge that takes it (a join handed to PUTS_TOGETHER belongs to CLOSES, and a part handed to CLOSES to PUTS_TOGETHER). It derives no relation." }
   flowdown.rs::receive_from_design: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY], why: "A writer: holds a requirement another design sent, and draws DECOMPOSES (a piece) or GOVERNED_BY (a derived requirement) to the reference standing in for the sender's node." }
   flowdown.rs::send_to_design: { kind: not_derived, edges: [DECOMPOSES, GOVERNED_BY, OBSOLETES, SATISFIES], why: "A writer and a guard: draws the sending side (OBSOLETES for a move, DECOMPOSES for a piece, GOVERNED_BY for a derived requirement) and refuses a move while a capability still SATISFIES the requirement here." }
   fork.rs::fork_point: { kind: unjudged, edges: [AT_EPOCH, CHANGED, GOVERNED_BY, OBSOLETES] }
@@ -132,6 +138,7 @@ readers:
   graph.rs::decomposes: { kind: unjudged, edges: [DECOMPOSES] }
   graph.rs::delete_edge: { kind: not_derived, edges: [AUTHORED_BY, PREMISE_OF, SCHEDULED_FOR], why: "A writer: deletes one edge, refusing a SCHEDULED_FOR removal the plan has not recorded, and an AUTHORED_BY removal the call's signer may not make (intent::Signer); a deleted PREMISE_OF refreshes the step's generated name, which is a stored label, not a derived relation." }
   graph.rs::delete_node: { kind: unjudged, edges: [SCHEDULED_FOR] }
+  graph.rs::delete_schedule_edge_on_the_record: { kind: not_derived, edges: [SCHEDULED_FOR], why: "A writer: removes one SCHEDULED_FOR for close_increment, after it has put the whole plan on the record itself." }
   graph.rs::depends_on_between: { kind: unjudged, edges: [DEPENDS_ON] }
   graph.rs::governed_by: { kind: unjudged, edges: [GOVERNED_BY] }
   graph.rs::migrate_authored_by_roles: { kind: unjudged, edges: [AUTHORED_BY] }
@@ -217,6 +224,7 @@ readers:
   scope.rs::reasoning_held_by: { kind: not_derived, edges: [CONTRADICTS], why: "Lists the line of reasoning a Project seed holds: every step, what it concludes and rests on, and what objects to them, less what another Project contains. It lists a region; it derives nothing." }
   search.rs::claim_age_of: { kind: unjudged, edges: [INVALIDATES] }
   search.rs::linked_records: { kind: not_derived, edges: [ANTICIPATES, BLOCKS, CAUSES, CONTRADICTS, DECOMPOSES, DEPENDS_ON, DUPLICATES, EVOLVES_INTO, MASKS, MITIGATES, OBSOLETES, RISKS, TRIGGERS, VIOLATES], why: "A one-hop read for a search hit: lists the records directly linked to it by a review relation or DECOMPOSES, so a linked family comes back together. It returns the edges as they are and computes no relation." }
+  search_map.rs::hole_candidates: { kind: not_derived, edges: [GOVERNED_BY], why: "A listing for the search map: the routes registered under each decision point that reads as a proof hole, one hop over GOVERNED_BY from an Artifact, as alternatives_for lists them. It places nothing by the edge and derives no relation." }
   structure.rs::couples_only_as_a_library: { kind: unjudged, edges: [PROVIDES] }
   structure.rs::dependency_pairs: { kind: unjudged, edges: [CONSUMES, DEPENDS_ON, PROVIDES] }
   supersede.rs::inherited_edges: { kind: not_derived, edges: [ALLOCATED_TO, SATISFIES], why: "A table, not a read: which edges a successor inherits from the node it replaces (a Capability's SATISFIES, the ALLOCATED_TO pointing at a Component). It names edge types and walks nothing." }

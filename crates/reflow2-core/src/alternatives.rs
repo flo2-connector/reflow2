@@ -269,6 +269,16 @@ impl DesignGraph {
     /// pointing at its export, `GOVERNED_BY` the Decision and `CONTRADICTS` its
     /// siblings. Refuses on a decision that is not proposed — you fork only an
     /// open choice.
+    ///
+    /// REGISTERING ONE AGAIN IS AN UPDATE (its name or where its export lives):
+    /// its siblings are the OTHER alternatives under the decision. Until
+    /// 2026-11-07 they were every Artifact GOVERNED_BY it, the one being
+    /// registered again included, so each re-registration drew "X CONTRADICTS
+    /// X" — two were found in a proof trial's design after round 16, and five
+    /// more had been deleted by hand as they appeared
+    /// (fact:defect-two-alternatives-in-the-aa-attempts-reflow2-design-carry-a-contradicts-edge-to-themselves-2026-11-07).
+    /// The store now refuses that edge on every door, which is the class; this
+    /// is the door that drew it.
     pub fn register_alternative(
         &mut self,
         decision_id: &str,
@@ -293,7 +303,11 @@ impl DesignGraph {
                 ),
             });
         }
-        let siblings = self.alternatives_for(decision_id)?;
+        let siblings: Vec<AlternativeRef> = self
+            .alternatives_for(decision_id)?
+            .into_iter()
+            .filter(|sib| sib.id != artifact_id)
+            .collect();
 
         self.begin_batch();
         let result = (|| -> Result<(), DynoError> {

@@ -49,7 +49,7 @@ every domain; they map onto the loop like this:
 - [interaction-surfaces.md](interaction-surfaces.md) — how a human drives the system (MCP/skills vs. hosted app vs. …) and the LLM-sourcing consequence. **The decision it framed has since been made and built** (agent-native MCP — see surface-plan.md); kept as the option analysis.
 - [skills/README.md](skills/README.md) — where the consumer kit's skills and MCP config have to be installed for each harness to find them, distilled from the Claude Code / Grok / Copilot docs kept alongside it. Reading it is how we learned the kit's skills are invisible to two of the three (BL-22).
 - [surface-plan.md](surface-plan.md) — that decision, made: the **agent-native** surface (grok build / claude code on a shared graph) and the next-phase build order to make reflow2 drivable by a coding agent.
-- `../schema/*.yaml` — the 11 composable dynograph domains (28 node types, 69 edge types); run `../tools/validate_schema.py` to check them.
+- `../schema/*.yaml` — the 11 composable dynograph domains (28 node types, 71 edge types); run `../tools/validate_schema.py` to check them.
 
 ### 3 · Process — *how it runs (the coherence loop)*
 - [extraction-plan.md](extraction-plan.md) — INGEST: the phase-aware multi-pass extraction pipeline.
@@ -113,6 +113,26 @@ Three records, three questions — kept separate on purpose:
   there, and where each idea from the field report stands.
 
 ### 3½ · Upgrade notes — *read before updating a consumer project*
+- [upgrading-to-v0.100.0.md](upgrading-to-v0.100.0.md) — **upgrade every seat together, before
+  anyone closes an increment**: the stamp moves by vocabulary (`DesignEpoch.status` gains
+  `deferred`, `dropped` and `superseded`); no type is added. A v0.99.0 binary opens a v0.100.0
+  store with its "behind" warning until an increment in it is closed, and refuses it from then on;
+  snapshot first. Nothing to migrate. Also: every planned epoch now reads as an open increment,
+  and `derived_report` takes `budget_chars`.
+- [upgrading-to-v0.99.0.md](upgrading-to-v0.99.0.md) — **upgrade every seat together**: the stamp
+  moves by two edge types (`PUTS_TOGETHER`, `CLOSES`; 69 → 71), and `Flow.flow_type` gains
+  `assembly`. A v0.98.0 binary refuses any store a v0.99.0 binary has opened, even once and only
+  to read; snapshot first, because that is the way back. Nothing to migrate. Also: `loop_status`
+  is faster on a large design, and building from source needs Rust 1.99 or newer.
+- [upgrading-to-v0.98.0.md](upgrading-to-v0.98.0.md) — **upgrade every seat**: the stamp moves
+  by an enum vocabulary (`Decision.closing_it`, new). A v0.97.0 binary opens a v0.98.0 store with
+  its "behind" warning and keeps the new fields, but cannot read a proof search's map, and a round
+  it records cannot be judged. Nothing to migrate. Also: one claim larger than the budget reads in
+  parts, and seventeen relations cannot be drawn from a node to itself.
+- [upgrading-to-v0.97.0.md](upgrading-to-v0.97.0.md) — **upgrade everywhere, together**: the stamp
+  moves by an enum value (`Requirement.statement_kind` gains `failed_route`). A v0.96.0 binary
+  opens a v0.97.0 store with its "behind" warning and refuses one holding a failed route. Nothing
+  to migrate. Also: `loop_status` answers within a time budget, and an export's `reading_notes`.
 - [upgrading-to-v0.78.0.md](upgrading-to-v0.78.0.md) — **upgrade everywhere, together**: the stamp
   moves by an enum value (`Verification.last_reconciled_outcome` gains `blocked`). A v0.77.0
   binary does NOT refuse a design that stores it: it opens the design, re-stamps it, and writes an

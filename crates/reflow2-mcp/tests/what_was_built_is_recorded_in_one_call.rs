@@ -517,5 +517,9 @@ async fn the_two_renamed_stubs_are_removed_and_their_names_say_what_to_use() {
         let refused = s.call(gone, json!({})).await.unwrap_err();
         assert!(refused.contains(instead), "{gone}: {refused}");
     }
-    assert_eq!(names.len(), 199, "200 + 1 process tool - 2 stubs");
+    assert_eq!(
+        names.len(),
+        200,
+        "200 + 1 process tool - 2 stubs + close_increment (2026-11-17)"
+    );
 }

@@ -31,6 +31,1390 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.102.0] — 2026-11-21
+
+**Minor. Fewer calls for the steps agents always run together, shorter replies from a search
+across designs, and every write cleaned of hidden characters.** It contains #848 to #854.
+**What to do:** install the new binary on every machine that opens the design. Nothing to
+migrate: the schema does not move. Nothing is removed. Two things are announced for removal in
+the next release (see Deprecated): three per-design lists in a multi-design `search_design`
+reply, and the `record_the_build` tool. Each has its replacement in this release.
+
+**No tool is added or removed; ten take new or changed arguments.** Measured against the
+published 0.101.0 binary (sha256 `a3e21922…` for its linux-x86_64 archive, checked against
+`checksums.txt`), over stdio on a fresh store: 200 tools on each.
+- New or changed arguments: `add_change_event`, `add_constraint`, `add_decision`,
+  `add_interface` and `search_design`. The input schemas of `add_readiness`,
+  `ingest_corpus_step`, `ingest_step`, `set_capability_signature` and `withdraw_question` change
+  only in their field descriptions.
+- `search_design`'s reply gains `found_in`, `searched` and `budget`.
+- 30 tool descriptions change: 29 trimmed, plus `record_the_build`'s deprecation mark. The tool
+  list, measured the same way on each binary, goes from 577,218 to 573,669 characters.
+- Skills stay at 36, none changed. The connect-time instructions are unchanged (2,911 characters
+  on stdio, the same text).
+- `toolsnap` on the release build: all 200 match.
+
+- **The schema does not move.** Measured at this cut with the published 0.101.0 binary: it opens
+  a store this release has written, with its "behind" warning, and writes to it; this release
+  then reads that write. It refuses this release's exports, and with `accept_newer: true` imports
+  one whole (13 nodes, 7 edges).
+- **The two deprecations are announced here, in the tool list's mark, and in each reply that uses
+  them** (`deprecation_notice`). No separate note to the MCP users is owed before a release
+  (`dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, Anthony 2026-11-21).
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.102.0 release build beside the published 0.101.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design.** The 0.101.0 binary refuses
+  every new argument by name ("`checksums` is not a parameter of this tool"), and still opens the
+  store afterwards with its "behind" warning.
+- **`reflow2 write add_change_event '{…,"checksums":[{"artifact_id":"art:a"}]}'`** accepts each
+  file's checksum against the change in the same call. A checksum left out is measured on your
+  machine from the artifact's `location` (`checksum_basis: measured`). A file nobody registered is
+  refused, and nothing is written.
+- **`add_interface` with `provided_by`/`consumed_by`**, **`add_decision` with
+  `authored_by`/`documented_by`**, and **`add_constraint` with `constrains`** draw their edges in
+  the one call, and the reply names each under `edges_drawn`.
+- **`reflow2 write record_the_build …`** still works, and its reply carries a
+  `deprecation_notice` saying what to call instead.
+- **`reflow2 read search_design '{"query":…,"budget_chars":…}'`** takes the budget. The search
+  across several designs that the deprecated lists belong to runs through a hub's address, so
+  that part needs flo2.io (or `tracked_designs` on a hub kept on disk).
+- **A write holding hidden characters** is stored without them, and says so under `sanitized`.
+  An id holding one is refused.
+
+### Added
+
+- **`add_decision` names its authors and the documents behind it, in the same call.** It takes
+  `authored_by` (each a contributor, with an optional `role` and `acted_at`) and `documented_by`
+  (each an artifact, with an optional `doc_kind`). It draws AUTHORED_BY and DOCUMENTS exactly as
+  `authored_by` and `documents` do. On flo2.io, 45 of 51 `authored_by` runs came with an
+  `add_decision`. Where reflow2 is served for others, a signature is still the caller's own.
+- **`add_constraint` names what it constrains, in the same call.** It takes `constrains` (each a
+  target, with `constrains`' own fields: contribution, unit, source, basis, measured_at, note).
+  On flo2.io, 13 of 17 `constrains` runs came right after an `add_constraint`.
+- In both, an entry that cannot be drawn refuses the whole call, and nothing is written. The edge
+  tools stay served for every other use.
+
+- **`add_interface` names who provides and who consumes the interface, in the same call.** It
+  takes `provided_by` (components) and `consumed_by` (components, or actors outside the design), and
+  draws PROVIDES and CONSUMES exactly as `provides` and `consumes` do. An id naming nothing is
+  refused, and nothing is written. On a revise, a side is added and none is removed. The two edge
+  tools still work as before. On flo2.io they ran next to each other in 31 of 34 and 33 of 35 runs
+  and never alone, so recording a seam took three calls where it now takes one.
+
+### Changed
+
+- **`add_change_event` takes `checksums`, and accepts those files' checksums against the change in
+  the same call.** Each item is `{artifact_id, checksum?}`. The file is drawn as CHANGED, so it
+  need not be listed in `affected` too. Its checksum is accepted as `design_updated`, and one
+  left out is measured where the file can be read, including by a local client. Every file is
+  checked before anything is written, and an acceptance that is refused takes the whole call
+  back. Measured on flo2.io from 10-30 to 11-20: in 137 of 163 runs, recording a change was
+  followed by accepting its checksums, a median of 16 seconds later. That second call is now
+  part of the first. A change that touches registered files and does not accept them still says
+  so under `next_step`, which now names `checksums` first.
+
+- **`search_design` takes `budget_chars`, and a search through a hub's address is held to it
+  whole.** Through a hub of 29 designs a search at `limit` 2 answered 5,746 characters, 1,314 of
+  them hits, and nothing held the reply. Over the budget, the per-design lists give way first,
+  then whole hits from the tail; every count stays, and `budget` says what was withheld.
+- **A search over several designs carries `searched` and `found_in`.** `searched` is the one total
+  of nodes the searches ran over (the key a single design's search already answers with), and
+  `found_in` names only the designs that returned hits, with their counts.
+
+- **The doc check now finds counts itself.** Any count of tools, served skills, node types, edge
+  types or modules in a current-state doc (README, AGENTS.md, SKILLS.md, the consumer kit's
+  AGENTS.md, docs/overview.md, docs/interaction-surfaces.md, the crates' lib.rs headers) must
+  match the build, or CI fails naming the file, what it says and what the build says. Prose about
+  the past is listed by its exact words in the check. **What to do:** when you add a tool or a
+  skill, update the counts the failure names.
+- **AGENTS.md has a size ceiling.** CI fails a change that makes it larger than the byte count in
+  `tools/agents_md_ceiling.txt`. **What to do:** put new standing guidance in the design or at the
+  step it bears on; lower the ceiling when the file shrinks; raise it only as its own reviewed
+  change that says why.
+
+- **The 29 tools nobody called on flo2.io in eight weeks have shorter descriptions.** Each still
+  says its job, its arguments' rules and what it refuses. The dates, measurements and reasons
+  behind each rule moved into the source beside the code. Nothing is added, removed or unlisted,
+  and every tool works as before. The 29 now take 49,180 characters of the tool list, where they
+  took 58,852, and the whole list went from 556,940 to 547,268. `find_tools` still ranks each tool
+  first for its own job, and `pair_designs` now does where it did not before.
+
+### Deprecated
+
+- **`record_the_build`** is going in the next release. Agents called it 8 times in three weeks
+  while doing its steps by hand, so its job moves into the tool they already call. It still
+  works in this release, and it is marked as deprecated in the tool list. **What to do:** call
+  `add_change_event` with `checksums`, which accepts the files' checksums against the change in the
+  same call. Record the check with `add_verification`, and mark the work built with
+  `set_capability_status`.
+
+Three per-design lists in a `search_design` reply over several designs (through a hub's address,
+or with `tracked_designs`) are going in the next release. They list every design whatever the
+answer, so the reply grew with the number of designs. Each still arrives in this release, and a
+reply that carries one says so under `deprecation_notice`.
+
+- **`search_design`'s `view`.** It names the same designs as `designs_searched`. **What to do:**
+  read `designs_searched`, which names them with the hub first.
+- **`search_design`'s `searched_by_design`.** **What to do:** read `searched`, the total the
+  searches ran over; a design whose search failed is named in `failed`.
+- **`search_design`'s `found_by_design`.** **What to do:** read `found_in`, which names each design
+  that returned hits with its count; a design searched and absent from it returned none.
+
+### Fixed
+
+- **The README, AGENTS.md and the core crate's header state the right counts again** (200 tools,
+  36 served skills, 99 core modules, 71 edge types). They said 165, 25, 59 and 60 while the doc
+  check stayed green, because it checked only the sentences written into its own list.
+- **The README no longer says there is no service at all.** It says nothing leaves your machine
+  with the default install, and adds a short paragraph on serving designs over the network
+  (`--http`, the Docker image, flo2.io).
+
+### Security
+
+- **Every write is cleaned of hidden characters, and says so.** Text a write tool stores no
+  longer keeps Unicode tag characters (an invisible alphabet), bidirectional overrides or
+  zero-width formatting. Until now only text brought in through INGEST was cleaned, so on a design
+  several people write to, someone else's hidden text reached your agent unchanged. A write that
+  removed any says what and from which fields, under `sanitized` in its reply. The zero-width
+  joiner emoji use is kept.
+- **An id holding hidden characters is refused.** The store accepted them, so two ids that read
+  the same could be different ids. Cleaning one would quietly address the other, so it is refused,
+  naming the field. **What to do:** send the id without them.
+- **An import reports hidden characters and stores the document as given.** An export's content
+  is its identity, so `import_graph` does not rewrite it. Its reply names every field holding them
+  under `hidden_characters`. **What to do:** clean them in the source and import it again if they
+  should not be there.
+
+## [0.101.0] — 2026-11-18
+
+**Minor. `graph_report` names the open increments by id, with every count, so a design's own
+overview fits the reply it is read in.** It contains #846. **What to do:** install the new binary
+on every machine that opens the design. Nothing to migrate: the schema does not move. A client
+that read each open increment's name, delivery or signals from the default `graph_report` reads
+them from `loop_status`, or passes `include_open_increments: true`.
+
+**One tool changes shape; none is added or removed.** Measured against the published 0.100.0
+binary (sha256 `78f5d9ab…` for its linux-x86_64 archive, checked against `checksums.txt`), over
+stdio on a fresh store: 200 tools on each. `graph_report`'s input schema changes only in
+`include_open_increments`'s description, and its reply changes as below. Skills stay at 36,
+none changed; `list_skills`, `get_instructions` and `describe_schema` read the same. The
+connect-time instructions are unchanged: 2,911 characters on stdio and 3,169 behind
+`--http-trusted-gateway flo2.io`. `toolsnap` on the release build: all 200 match.
+
+- **The schema does not move.** Measured at this cut with the published 0.100.0 binary: it opens
+  a store this release has written, with its "behind" warning, and writes to it; this release
+  then reads that write. It refuses this release's exports without `--accept-newer`, and with it
+  imports one whole.
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.101.0 release build beside the published 0.100.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design.** The 0.100.0 binary still
+  opens the store afterwards, with its "behind" warning.
+- **`reflow2 read graph_report '{}'`** carries `open_increments` with every count and the oldest
+  ten as `{"epoch_id": ...}`, and `full_list` reads "graph_report with include_open_increments:
+  true lists all N in full."
+- **`reflow2 read graph_report '{"include_open_increments":true}'`** and **`reflow2 read
+  loop_status '{}'`** give each row in full, as in 0.100.0: its name, `scheduled`, `delivered`,
+  `signals` and `changes_since_it_moved`.
+
+### Changed
+
+- **`graph_report` names the open increments by id** (its reply changes shape). Left
+  without `include_open_increments`, its `open_increments` keeps every count and lists the
+  oldest ten as `{"epoch_id": ...}` only. `full_list` (under 80 characters, so no budget cuts
+  it) names `include_open_increments: true` as the call that lists every one in full;
+  `loop_status` still gives the oldest ten in full. `reads` is no longer in this view, since it
+  explains fields the view does not carry. Unchanged: `include_open_increments: true`,
+  `loop_status`, and `format: "markdown"`'s **Open increments** lines. Why: measured
+  2026-11-18 on flo2's own design under 0.100.0, the report was 28,728 characters, 2,647 of
+  them the seven full rows, and it no longer fit the 28,000 that flo2's chat door reads it in,
+  so flo2's test that its design reads back whole failed (Anthony, 2026-11-18, option A: keep
+  the guard and fix it here). **What to do:** a client that read each row's name, delivery or
+  signals from the default `graph_report` reads them from `loop_status`, or passes
+  `include_open_increments: true`.
+
+## [0.100.0] — 2026-11-17
+
+**Minor. An increment that was started and never finished is found and listed where a session
+starts and ends, and one that will not be finished is closed honestly, on the owner's word:
+deferred, dropped or superseded, with every unfinished item moved or dropped and none
+defaulted.** It contains #843 and #844. **What to do:** upgrade every seat together
+([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)), and snapshot a served store
+first. An older seat goes on opening the design until someone closes an increment; from then on
+it is refused. On the VS Code terminal route, run `reflow2 update` in each repository after
+installing (In your setup, below).
+
+**One tool is added and seven change shape; none is removed.** Measured against the published
+0.99.0 binary (sha256 `8b713c04…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on 0.99.0, 200 here. `close_increment` is added. Seven
+tools change: `graph_report` takes `include_open_increments`; `derived_report` takes
+`budget_chars`; `add_epoch`, `plan_epoch` and `set_epoch_status` say, on their `status`, that a
+close is `close_increment`'s alone (they still offer only `planned` and `arrived`); and
+`create_node` and `create_nodes` declare, in `_meta` `reflow2/settles`, that a `DesignEpoch`
+written with one of the three closes settles. `loop_status`'s schema and description are
+unchanged; its reply gains `open_increments`. Skills stay at 36, and two change: plan-increments
+and where-am-i. `list_skills` reads the same (each name and summary unchanged). `get_instructions`
+is unchanged; `describe_schema` gains the three `DesignEpoch.status` values and the two
+properties. The connect-time instructions are unchanged: 2,911 characters on stdio and 3,169
+behind `--http-trusted-gateway flo2.io`, as in 0.99.0. `toolsnap` on the release build: all 200
+match.
+
+- **The schema stamp moves by vocabulary**: `DesignEpoch.status` gains `deferred`, `dropped` and
+  `superseded`. Node types stay at 28, edge types at 71 and enum vocabularies at 84. Measured at
+  this cut with the published 0.99.0 binary: it opens a store this release has opened, with its
+  "behind" warning, and refuses one that holds a closed increment. It refuses this release's
+  exports without `--accept-newer`; with it, it imports whole an export that holds no closed
+  increment and refuses whole any other
+  ([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two fragments are corrected at the cut.** #843 said an increment leaves the open list only
+  when it is marked `arrived`; #844 added the three closes, so the entry says both. #844 said the
+  schema stamp does not move. Measured, its types do not and its vocabulary does, so the entry
+  says that, and the first entry under Added says what an older seat does.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release. Checked through the door (`reflow2 read|write
+TOOL JSON --graph-path …`) on the 0.100.0 release build beside the published 0.99.0 binary, each
+on a design on disk:
+- **Install the new binary on every machine that opens the design, then run `reflow2 update` in
+  each repository.** On a repository set up by the 0.99.0 kit with `--harness vscode-cli`,
+  `reflow2 update` changes no file you commit (84 files, 79 of them under `.github/`; none
+  differs). The two skills that changed are served: their stubs under `.github/` carry each
+  skill's name and description and point to the served copy, and neither changed. It backs the
+  design up to `.reflow2/backups/` and then opens the store, which moves the store's stamp to
+  0.100.0. The 0.99.0 binary still opens that store afterwards, with its "behind" warning, until
+  an increment in it is closed.
+- **The open increments are listed.** `reflow2 read loop_status` carries `open_increments`: the
+  whole counts, then the oldest ten at most, each with how much of what was scheduled for it is
+  delivered, its signs and its `changes_since_it_moved`. `reflow2 read graph_report
+  '{"include_open_increments":true}'` lists every one, and with `format` `markdown` the report
+  shows them under **Open increments**. 0.99.0's `loop_status` has no such section, and its
+  `graph_report` refuses `include_open_increments` (exit 2). The session-start hook does not name
+  them; the where-am-i skill reads them back.
+- **An increment is closed here.** `reflow2 write close_increment` refuses (exit 1), and writes
+  nothing, when an unfinished item has no answer (it names each one), when there is no
+  `approver`, or when an item leaves and no `recorded_in` names an arrived epoch to file the
+  plan in. With all three, it closes, and the reply names the close's ChangeEvent and the plan's
+  snapshot. `loop_status` then counts the increment under `deferred` and no longer lists it, and
+  `reflow2 read arrival_delta` reads a moved item as deferred, with where it is now due.
+  `set_epoch_status` with `deferred` is refused before it runs (exit 2), naming
+  `close_increment`, and a superseded increment cannot be marked `arrived` without being
+  reopened (exit 1). `reflow2 read close_increment` is refused by name, since it writes. 0.99.0
+  has no `close_increment` (exit 1, "no tool named `close_increment` is served").
+- **`derived_report` fits a budget.** On a nine-record design its whole reply is 28,597
+  characters; `reflow2 read derived_report '{"budget_chars":3000}'` cuts the declarations' text
+  to fit and says so at `budget`, and every relation, count and example id stays.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries
+`close_increment` and `graph_report`'s `include_open_increments`, and `loop_status` there counts a
+closed increment under `deferred`. A close the gateway names its caller for is signed by that
+caller: one whose `approver` names somebody else is refused, and nothing is written. flo2.io gets
+these once its engine moves to 0.100.0 and is deployed. **The engine's first open of each hosted
+design moves that design's stamp**, and a 0.99.0 engine still opens it until an increment there
+is closed. After that, going back means restoring the stores from a backup taken before, and
+every local binary that opens an export from flo2.io moves with it. The list of skills flo2.io
+shows a chat keeps each skill's name, shortcut and summary, and none of those changes (36
+skills, the same summaries), so regenerating it at the re-pin moves only its version line. As
+before, the hosted hub view and reads across designs by graph id need flo2.io. These lines get
+checked again on the published binary once the release is out.
+
+### Added
+
+- **🛑 Upgrade every seat together, before anyone closes an increment: the schema stamp moves
+  by vocabulary.** No node or edge type is added or removed (28 and 71, as in 0.99.0), and the
+  enum vocabularies stay at 84; `DesignEpoch.status` gains `deferred`, `dropped` and
+  `superseded`. The two new properties, `close_reason` and `superseded_by`, are not in the
+  stamp. Measured with the published 0.99.0 binary (its release checksum checked) on stores and
+  exports this build wrote:
+  - 0.99.0 opens a store this build has written, with its "behind" warning, and reads and
+    writes it, while no increment in it is closed. This build opens a 0.99.0 store and says so
+    ("Additive only — everything in it still reads"), and the open moves the store's stamp.
+  - 0.99.0 REFUSES to open a store that holds one closed increment, to read or to write, naming
+    the value ("this graph holds `DesignEpoch.status = "deferred"` — 1 value(s) this reflow2
+    does not know, on a property it DOES know"). The same holds for `dropped` and `superseded`.
+    A deferred increment reopened with `set_epoch_status` `planned` holds none of them, and
+    0.99.0 opens that store again.
+  - 0.99.0 refuses a plain import of any export this build wrote. With `--accept-newer` it
+    imports whole an export that holds no closed increment, and refuses whole one that holds a
+    single closed increment ("invalid enum value 'deferred', expected one of ["planned",
+    "arrived"]"), naming each record that rests on it.
+  **What to do:** snapshot a served store, then upgrade every seat together, flo2.io included
+  ([docs/upgrading-to-v0.100.0.md](docs/upgrading-to-v0.100.0.md)), before anyone calls
+  `close_increment`. Stop any shared server still on the old binary (`reflow2-mcp --graph-path
+  <path> --stop-shared`). Nothing needs migrating.
+- **`loop_status` and `graph_report` now list every increment that was started and never
+  finished.** An increment is a planned epoch; it is open until it arrives. Both replies carry a
+  new `open_increments` section, and `graph_report` with `format` `markdown` shows it under
+  **Open increments**. It gives the whole counts, then at most the oldest ten increments, each
+  with how much of what was scheduled for it is delivered and which of three signs it shows:
+  `done_but_not_closed` (everything scheduled is delivered and it still reads planned),
+  `overtaken` (an epoch it was drawn before, with `precedes`, has arrived) and `empty` (nothing is
+  scheduled for it). Each row also says how many of the design's recorded changes have passed
+  since anything scheduled for it moved, or `"never"`. Nothing is called stalled: the count is a
+  number of changes and no threshold is applied to it. Oldest first is the order the store
+  recorded each epoch in, never its `sequence` and never a date somebody typed. The list is not
+  counted against `clean`. **What to do:** nothing; to see every open increment rather than the
+  oldest ten, call `graph_report` with the new option `include_open_increments` set to true. A
+  list is never cut there, so on a design with many open increments the whole list can take the
+  report past its budget, and the reply's `budget` block says so (31 of them did, by 1,651
+  characters, on reflow2's own design on 2026-11-14). An increment leaves the list when
+  `set_epoch_status` marks it `arrived`, or when `close_increment` closes it (below).
+- **The where-am-i skill reads the open increments back**, at the start or the end of a session or
+  when asked, and `derived_report` counts a new declared relation, `open_increments`.
+- **`derived_report` takes `budget_chars`** (default 30,000), like the other long reads. The
+  thirtieth declared relation took its whole reply past 30,000 characters on a design of
+  realistic size, the size at which a client refuses a reply. Over the budget, the declarations'
+  text is cut and the reply says so at `budget`; every relation stays listed and every count and
+  example id is untouched. **What to do:** nothing; `only` reads named relations whole.
+- **`close_increment` closes an increment that will not be finished, honestly, on the owner's
+  word.** Until now an increment could only stay `planned`, listed as open at every session's
+  start and end, or be marked `arrived`, which is false. It now closes three more ways:
+  `deferred` (still meant, later), `dropped` (no longer meant; `reason` is required) and
+  `superseded` (by the increment `superseded_by` names). No unfinished item is defaulted:
+  `leftovers` answers for every item scheduled for it and not delivered. Each one `moves` to
+  another open increment, keeping its modality, is `dropped` from this one with its reason, or,
+  on a deferral only, `stays` with it. A dropped item keeps its own status, so closing a plan
+  retires no intent. One missing, doubled or unknown answer refuses the whole call, naming every
+  problem, and nothing is written. When an item leaves and the plan is not on the record yet,
+  `recorded_in` names an arrived epoch to snapshot the plan in first, so `arrival_delta` on the
+  closed increment reads each item as moved or dropped rather than the plan as always smaller.
+  The close writes one dated ChangeEvent with every fate and reason, linked to what moved.
+  `approver` is required, and the tool declares that every call settles (`_meta`
+  `reflow2/settles`), so a gateway signing for its caller reads the rule. **What to do:**
+  nothing; to close one, call `close_increment`.
+- **`DesignEpoch.status` gains `deferred`, `dropped` and `superseded`**, with two new properties,
+  `close_reason` and `superseded_by`. These are new values and properties, not new types: the
+  stamp's types do not move, and its vocabulary does (the first entry here). A closed increment
+  never happened, so `snapshot_before_change` refuses to record history into one, as it refuses
+  a planned one.
+- **`loop_status` and `graph_report` count deferred increments apart** (`open_increments` →
+  `deferred`). A deferred increment is closed for now and not listed; `set_epoch_status`
+  `planned` reopens it, which clears its `close_reason` and `superseded_by` (the close's
+  ChangeEvent keeps both).
+- **The plan-increments skill has a step for an increment that will not be finished**, and
+  where-am-i points to it.
+
+### Changed
+
+- **`set_epoch_status` and `add_epoch` refuse `deferred`, `dropped` and `superseded`**, naming
+  `close_increment`; their `status` still offers only `planned` and `arrived`. `set_epoch_status`
+  also refuses to mark a dropped or superseded increment `arrived` without reopening it first,
+  since what was unfinished in it was moved or dropped at the close.
+- **A closed increment is the owner's settle** in the authority check
+  (`tools/check_intent_authority.py` and `reflow2_core::intent::SETTLING`): one written without
+  an `AUTHORED_BY` approver fails the design gate, as an unsigned accepted requirement does.
+  **What to do:** nothing; no design held one before this release.
+
+## [0.99.0] — 2026-11-14
+
+**Minor. A process can be recorded as how a thing is made: each step names the parts it puts
+together and the joins it closes, and an assembly reads back as instructions that say what they
+lack. `loop_status` is faster on a large design, asked again and after a write.** It contains
+#835 to #841. **What to do:** upgrade every seat together
+([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)), and snapshot a served store
+first. This move is not like 0.98.0's: a seat left on 0.98.0 is refused a design from the first
+time a 0.99.0 seat opens it, even once and only to read. On the VS Code terminal route, run
+`reflow2 update` in each repository after installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.98.0 binary (sha256 `919d1d9d…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Three tools change: `add_flow`'s `flow_type`
+takes `assembly`, and its description says what an assembly is; `part_of_flow` takes
+`puts_together` and `closes`; `flow_report`'s description says an assembly reads back as
+instructions. Skills stay at 36, and none changes. `get_instructions` is unchanged;
+`describe_schema` gains the two edge types and `assembly`, and `INTERACTS_WITH`'s `interaction`
+names `performs`. The connect-time instructions are unchanged: 2,911 characters on stdio and
+3,169 behind `--http-trusted-gateway flo2.io`, as in 0.98.0. `toolsnap` on the release build: all
+199 match.
+
+- **The schema stamp moves by two edge types**: `PUTS_TOGETHER` and `CLOSES`, so edge types go
+  from 69 to 71. Node types stay at 28 and enum vocabularies at 84; `Flow.flow_type` gains the
+  value `assembly`. Measured at this cut with the published 0.98.0 binary: it refuses to open
+  any store this release has opened, and one read by this release is enough. It refuses this
+  release's exports without `--accept-newer`; with it, it imports whole an export in which no
+  flow is an assembly and no step names a part or a join, and refuses whole any other
+  ([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two pairs of fragments are folded here.** #837 recorded a hold on `jsonwebtoken` 12.0.0 and
+  #838 lifted it, before either shipped. A reader of 0.98.0 never saw the hold, so only the move
+  to 12.0.0 is listed, under Security. #840 said the first `loop_status` after a write was not
+  faster, and #841 then made it faster, so the two entries under Changed read as the release
+  behaves.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets the assembly reading whole, and part of the `loop_status`
+speed-up. Checked through the door (`reflow2 read|write TOOL JSON --graph-path …`) on the 0.99.0
+release build beside the published 0.98.0 binary, each on a design on disk:
+- **Install the new binary on every machine that opens the design, then run `reflow2 update` in
+  each repository.** On a repository set up by the 0.98.0 kit with `--harness vscode-cli`,
+  `reflow2 update` changes no file you commit (103 files, none differs): no skill and no command
+  changed. It backs the design up to `.reflow2/backups/` and then opens the store, which moves
+  the store's stamp to 0.99.0. From then on the 0.98.0 binary refuses that store, to read or to
+  write, naming `CLOSES` and `PUTS_TOGETHER`. One `reflow2 read get_node` by 0.99.0 does the
+  same.
+- **A step names its parts and joins here.** `reflow2 write add_flow` with `flow_type: assembly`
+  is stored, and `reflow2 write part_of_flow` with `puts_together` and `closes` replies with
+  `edges_drawn` (two `PUTS_TOGETHER`, one `CLOSES`). 0.98.0 refuses each (exit 2: `assembly` is
+  not one of its flow types, and `puts_together` and `closes` are not parameters). Naming an
+  Interface as a part, or an id that names nothing, refuses the whole call and names each one
+  (exit 1); nothing is written.
+- **An assembly reads back as instructions.** On a three-step assembly (a ring: set the stone,
+  polish, fit the bezel), `reflow2 read flow_report` gives the first step its `puts_together`
+  (bezel, stone), its `closes` (the stone seat, with `what_must_hold` from the Interface's
+  description) and its `performed_by` (an Actor drawn with `interaction: performs`). It
+  confesses four things: one step names no part and no join, two name no one who performs them,
+  none has a check, and the join between the band and the bezel is closed by no step.
+  `reflow2 read derived_report` counts the joins under `assembly_instructions` (2 joins, 1
+  closed by no step).
+- **A changed part reaches its step.** `reflow2 read propagate_from` from the stone names the
+  step that sets it in its first ring, through `PUTS_TOGETHER`, and from the stone seat names
+  the same step through `CLOSES`.
+- **`loop_status` on a large design.** A one-shot call starts a new engine each time, so it gets
+  the faster check and not the kept answer. On a copy of reflow2's own design (8,981 nodes) on
+  disk, on one idle machine, `reflow2 read loop_status` took 8.6 to 8.9 s on 0.98.0 and takes
+  5.7 to 6.0 s, asked again or straight after a write (8.9 s, now 6.0 s). `reflow2 read
+  detect_gaps` went from 4.2 s to 3.0 s. A small design sees no difference.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries `puts_together`,
+`closes` and `assembly`, and an assembly written through it reads back as instructions. flo2.io
+gets these, and the faster `loop_status`, once its engine moves to 0.99.0 and is deployed; its
+engine stays up between calls, so the repeat ask arrives there. Measured on the same copy of
+reflow2's design, served over `--http` with the engine left up: the first `loop_status` took 7.7 s
+on 0.98.0 and takes 4.7 s; asked again with no write, 2.4 s and now 0.1 s; after a write, 7.8 s
+and now 4.9 s. **The engine's first open of
+each hosted design moves that design's stamp**, so after the move a 0.98.0 engine cannot open
+it: going back means restoring the stores from a backup taken before, and every local binary
+that opens an export from flo2.io moves with it. The list of skills flo2.io shows a chat keeps
+each skill's name, shortcut and summary, and none of those changes (36 skills, the same
+summaries), so regenerating it at the re-pin moves only its version line. As before, the hosted
+hub view and reads across designs by graph id need flo2.io. These lines get checked again on the
+published binary once the release is out.
+
+### Added
+
+- **🛑 Upgrade every seat together: the schema stamp moves.** Two edge types
+  are added, `PUTS_TOGETHER` and `CLOSES` (69 → 71), `Flow.flow_type` gains
+  `assembly`, and `INTERACTS_WITH.interaction` names a fifth value,
+  `performs` (free text, as before). Measured with the published 0.98.0
+  binary (its release checksum checked) on stores and an export this build
+  wrote:
+  - 0.98.0 REFUSES to open ANY store this build has written, even one
+    holding neither addition, naming the types it lacks ("it has never heard
+    of CLOSES, PUTS_TOGETHER"): a new edge type moves both halves of the
+    stamp.
+  - This build opens a 0.98.0 store and says so ("Additive only —
+    everything in it still reads"). That open moves the store's stamp to
+    0.99.0, whether the call was a read or a write, and 0.98.0 refuses the
+    store from then on: one `get_node` by this build is enough.
+  - 0.98.0 refuses a plain import of any export this build wrote. With
+    `--accept-newer` it imports whole an export in which no flow is an
+    assembly and no step names a part or a join, and then reads and writes
+    the copy. It refuses whole, all or nothing, an export holding an assembly
+    flow or a single `PUTS_TOGETHER` or `CLOSES`, naming each item it cannot
+    read.
+  **What to do:** snapshot a served store, then upgrade every seat
+  together, flo2.io included
+  ([docs/upgrading-to-v0.99.0.md](docs/upgrading-to-v0.99.0.md)); stop any
+  shared server still on the old binary (`reflow2-mcp --graph-path <path>
+  --stop-shared`). Nothing needs migrating.
+- **A step of a process names the parts it puts together and the joins it
+  closes.** `part_of_flow` takes two optional lists: `puts_together`
+  (Component ids; one `PUTS_TOGETHER` from the step to each part it places,
+  joins or assembles) and `closes` (Interface ids; one `CLOSES` to each join
+  it makes, after which what the Interface says must hold there holds). One
+  call records a step with its parts and joins, and `draw_edges` takes the
+  same lists. All or nothing: an id that is not a Component, or not an
+  Interface, or that names nothing, refuses the whole call naming each one,
+  and nothing is written. Re-sending a step keeps the parts and joins it
+  leaves out (`delete_edge` takes one away). The reply names every edge the
+  call drew in `edges_drawn`, and one that was already there apart. A step
+  named without either list reads and replies exactly as before
+  (req:a-step-of-a-process-names-the-parts-it-puts-together).
+- **An assembly reads back as instructions.** A Flow of `flow_type:
+  assembly` (how a thing is made and put together: printed, cast, polished,
+  plated, set) reads back in `flow_report` with, on each step:
+  `puts_together`, `closes` (each join with `what_must_hold`, the
+  Interface's own description), `performed_by` (each Actor that
+  INTERACTS_WITH the step with `interaction: performs`), `checks` (each
+  Verification that VERIFIES it, with its `method` and `status`) and
+  `limits` (each Constraint or DesignRule that CONSTRAINS it). Each list is
+  written only when it has something in it. Its confessions say, in plain
+  words, a step that puts together no part and closes no join, a step
+  nobody performs, a step nothing checks, and a join between two of the
+  flow's own parts (an Interface one part PROVIDES and another CONSUMES)
+  that no step closes. `derived_report` counts those joins
+  (`assembly_instructions`). Every other flow reads byte for byte as it
+  did: a step of a process already carries checks, limits and actors, and
+  its report does not start listing them. A flow of another type whose
+  steps name parts or joins lists those, and says it is not read as
+  instructions until it is recorded with `flow_type: assembly`.
+- **A changed part or join reaches the step that makes it.**
+  `propagate_from` walks `PUTS_TOGETHER` and `CLOSES` as it walks
+  `REALIZES`: from a changed bezel seat to the step that sets the stone,
+  from a changed band to the step that prints it, and from a changed step
+  to the parts and joins it makes.
+
+### Changed
+
+- **`loop_status` asked again with no write since answers from what the engine kept.** On
+  reflow2's own design (8,916 nodes) a repeat ask took 3.1 s and now takes 0.1 s, measured
+  2026-11-13 on one machine with the 0.98.0 engine beside this one. Until now only gap and
+  defect detection were kept between asks; whether each check ever came back with a real
+  result, the list of checks, the confirmation ledger and the reasoning debt were worked out
+  again every time, from records no write had touched. Each is now worked out once per state
+  of the design, and a whole answer is kept per person asked about. Any write drops all of
+  it, so nothing is served stale. `detect_defects` asked again with no write went from 1.6 s
+  to under 0.05 s, and a `loop_status` with `time_budget_ms: 0` from 0.63 s to 0.35 s. The first
+  ask after a write is the next entry. What is kept lives in the running engine and uses
+  memory there; it is gone when the design is closed, so a one-shot call, which starts a new
+  engine each time, does not get it. **What to do:** nothing.
+
+- **The first `loop_status` after a write is about a third faster on a large design.** On
+  reflow2's own design (8,916 nodes) it took 8.7 s and now takes 5.5 to 5.6 s, measured
+  2026-11-13 on one machine, the engine before this change beside the engine after it. Two
+  parts of the check read the same thing again for every item they looked at. Asking whether
+  each check ever came back with a real result read every file record once per check to find
+  the one at the check's location (all 833, for each of 200 checks, 1.8 s); the file records
+  are now read once per state of the design. The question "was this defect fixed by a later
+  change?" counted everything each nearby change had changed, for every defect, to rank the
+  few changes it then offered (7,751 counts for 550 defects, 1.2 s); it now counts only for
+  the changes it offers. The answers are the same. `detect_gaps` alone after a write went
+  from 3.8 s to 2.3 s on that design. A small design sees no difference, and a repeat ask
+  with no write between is the entry above. **This is not "check only what changed"**, which
+  is recorded and not built: the rest of the time is each rule reading the whole design once.
+  **What to do:** nothing.
+
+- **The repo now names the Rust it is built and checked with: 1.100.0, in
+  `rust-toolchain.toml`.** CI and the release builds install that version, not
+  whatever `stable` is on the day. A step fails if the compiler that ran is not
+  the pinned one, or if a workflow asks for `stable` again. A compiler upgrade
+  is now a commit that changes one line. On 2026-08-24, and again on
+  2026-11-13 when Rust 1.100 came out, a new stable release made every open
+  pull request fail on code nobody had changed. The oldest Rust the crates
+  build on, `rust-version` in `Cargo.toml`, rises from 1.98 to 1.99: stable
+  minus one, as before. The floor job now really builds at it; the toolchain
+  file would otherwise have overridden it. **What to do:** building from
+  source, rustup installs 1.100.0 the first time you run `cargo` here. A build
+  on your own older compiler needs 1.99 or newer.
+
+### Fixed
+
+- **`find_tools` no longer shows more relations each time the schema gains an
+  edge type.** A relation comes back beside the tools only when it scores
+  close to the top tool. The relation's words were weighed over the tools and
+  the schema's edge types together, and the top tool's over the tools alone,
+  so every added edge type raised every relation's score and none of the
+  tools'. Two placeholder edge types, with words no query uses, took the share
+  of plain tool searches carrying relations from 89 to 91 of 184 and failed
+  its ceiling. Relations are now weighed over the tools, the same scale, and
+  the same two types change no reply: 79 of 184 (42.9%) with or without them.
+  The ceiling is lowered to 43.0%. Tool rankings do not change. One
+  relation question in the corpus, "which capabilities does this user role
+  work with", no longer finds `INTERACTS_WITH`: it was found only through the
+  word "with", and it joins its sibling "connect a user role to the feature
+  they use" among the known misses. **What to do:** nothing. A design whose
+  schema adds its own edge types now gets the same relations back as before
+  it added them.
+
+- **`detect_gaps` asked twice with no write between could answer the second call from the
+  first call's readings of another design.** Since 0.89.0 a premise that lives in another
+  design reads as it reads there, from readings each call brings. The kept gap scan was only
+  dropped by a write to this design, so a call that brought different readings (the other
+  design changed, or the caller can read different designs) got the gaps worked out for the
+  call before, until the next write here. Shown at the core library; how often it was met in
+  use was not measured. The engine now notes which readings its kept results were worked out
+  under and drops them when a call brings different ones. **What to do:** nothing. If a
+  design that rests on another one showed a gap that did not match the other design, ask
+  again on this version.
+
+- **A refusal for a Contributor given by display name now names the id that holds that
+  name.** `add_decision` (and every tool that takes an `approver`, the defect and gap
+  acknowledgements, `authored_by`, `owned_by`, `ask_question`, `claim_region` and the other
+  who-edges) refused `"Pat Doe"` with "no Contributor ... check the id", although a
+  Contributor `who:pat` named Pat Doe was in the design. Some of those refusals even said to
+  create the person, which would have made a second record of them. The refusal stays,
+  because an approval must name one person for certain, but it now says "`Pat Doe` is the
+  display name of Contributor `who:pat`: pass its id". When several Contributors share the
+  name, it names them all. **What to do:** nothing; pass the id the refusal names.
+
+- **Eleven server tests no longer fail to start the server when cargo builds
+  tests in its new location.** Cargo 1.100 builds a test program under
+  `target/<profile>/build/` instead of beside the server binary in
+  `target/<profile>/deps`. These tests worked the server's path out from
+  their own, so 55 of them failed with "spawn reflow2-mcp: No such file or
+  directory". They now take the path cargo gives (`CARGO_BIN_EXE_reflow2-mcp`),
+  as the other 28 test files already did. **What to do:** nothing.
+
+- **`reflow2 update` no longer writes the whole kit back into a project that kept only part
+  of it.** A clone that kept only `REFLOW2.md` beside its team's own `AGENTS.md` had
+  `update --check` plan about 80 new files and a line appended to that team's `AGENTS.md`.
+  The guard added in 0.89.0 only refused when every recorded kit file was gone. Now, when
+  every file of one part of the kit (all the skills, all the prompts, a command tree) is gone,
+  `update` and `update --check` refuse and change nothing. The refusal names the parts that
+  are gone and the files still here. Deleting ONE kit file still means "give me reflow2's
+  copy". **What to do:** nothing in a project that carries the whole kit. In a project that
+  keeps part of it on purpose, leave it: `update` now leaves it alone. `reflow2 init .` brings
+  the whole kit back, and `reflow2 init --remove` takes out the rest. Update cannot yet refresh
+  only the files a project keeps.
+
+### Security
+
+- **An exposed `--http` server checks bearer tokens with `jsonwebtoken`
+  12.0.0.** The new release is stricter in ways that apply to a token check:
+  - a token whose header lists a "critical" extension it does not know is
+    refused, as RFC 7515 requires;
+  - the remaining confusion between a string and a list in `sub`, `iss` and
+    `aud` is fixed;
+  - empty HMAC keys are refused.
+
+  reflow2 accepts only RSA, RSA-PSS, ECDSA and Ed25519 tokens, never HMAC, and
+  still verifies them with `ring` through jsonwebtoken's provider interface; no
+  code changed. The build also sheds `base64` 0.22 and `rand_core` 0.6, which
+  were in the tree only through the old version. **What to do:** nothing. A token signed
+  with a header that names an unknown critical extension, which no common
+  issuer sends, is now refused where it was accepted before.
+
+## [0.98.0] — 2026-11-07
+
+**Minor. A proof search reads as one page, each hole says what it serves, a stalled search goes
+back to its most promising untried branch, progress means a claim on the path to the target
+moves, one claim larger than the budget reads in parts, and no tool draws an edge from a node to
+itself where that means nothing.** It contains #831 to #833. The proof-method changes came from
+two proof trials on public conjectures, Aaronson–Ambainis and Erdős–Sós. Both attempts ended
+without a proof and with no wrong step; in the first, both arms spent their late rounds on holes
+whose closing could not close the target, and the second showed that the go-back rule needs
+"progress" to mean a claim on the path moves. **What to do:** upgrade every seat
+([docs/upgrading-to-v0.98.0.md](docs/upgrading-to-v0.98.0.md)). A seat left on 0.97.0 still
+opens the design, but cannot read the map, and a round it records cannot be judged. On the VS
+Code terminal route, run `reflow2 update` in each repository after installing (In your setup,
+below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.97.0 binary (sha256 `57dfc5f3…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Five tools take new inputs or describe one anew:
+`add_decision` takes `hole`, `serves` and `closing_it`; `register_alternative` and `add_artifact`
+take `refuter`, `waiting`, `promise` and `promise_rank` (and `register_alternative`'s description
+grows); `reasoning_report` takes `map` and `part_offset`, and its description and `budget_chars`
+say how to read a map and a claim in parts; `record_finding`'s `value` says it is written by
+reflow2 on a round. Skills stay at 36: `design-a-proof` and `work-a-proof-hole` change in their
+own words, and `work-a-proof-hole`'s description changes. `get_instructions` is unchanged;
+`describe_schema` gains the new properties and values, and asked about a pair it says
+`irreflexive` on the relations that cannot hold from a node to itself. The connect-time
+instructions are unchanged: 2,911 characters on stdio and 3,169 behind `--http-trusted-gateway
+flo2.io`, as in 0.97.0. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp moves by vocabulary**: Decision gains `closing_it` (`closes`, `narrows`,
+  `restates`), so the stamp's enum vocabularies go from 83 to 84. Decision also gains `hole` and
+  `serves`, and Artifact gains `refuter`, `waiting`, `promise` and `promise_rank`, each optional.
+  No node or edge type is added (28 and 69, as in 0.97.0). Measured at this cut: a 0.97.0 seat
+  opens a store this release wrote, with its "behind" warning, even one holding every new field;
+  it reads those fields back as stored and keeps them through its own revise. It refuses this
+  release's exports without `--accept-newer`, and with it imports them whole. A round it records
+  carries no readings of the path, so this release's map reports it not judged and counts
+  nothing past it ([docs/upgrading-to-v0.98.0.md](docs/upgrading-to-v0.98.0.md)).
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **Two fragments are folded together here.** #833 changed how the map, added in #831, counts
+  progress, before either shipped. A reader of 0.97.0 never saw the earlier count, so its entries
+  are under Added, as the map now behaves.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets everything in this release. Checked through the door
+(`reflow2 read|write TOOL JSON --graph-path …`) on the 0.98.0 release build beside the published
+0.97.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** On a repository set up by the
+  0.97.0 kit with `--harness vscode-cli`, it changes one file,
+  `.github/skills/work-a-proof-hole/SKILL.md` (the skill's description), and nothing else.
+- **A proof search reads as one page here.** `reflow2 write add_decision` with `hole`, `serves`
+  and `closing_it`, and `reflow2 write register_alternative` with `refuter`, `waiting`,
+  `promise` and `promise_rank`, are stored; 0.97.0 refuses each (exit 2, not a parameter).
+  `reflow2 read reasoning_report '{"claim": "req:t", "map": true}'` answers the map, 4,801
+  characters on a small search (a conjecture, three lemmas, two holes, three charted routes):
+  `rounds`, `holes`, `closed`,
+  `forks_with_an_untried_branch` (the target's hole first) and `untried_branches_by_promise`
+  (the rank-1 waiting route first). 0.97.0 refuses `map` (exit 2).
+- **Progress means a claim on the path moves.** After three recorded rounds (a lemma on the path
+  reduced, a failed route toward it, a side lemma shown beneath it), the map reads
+  `since_progress` 3. When the last premise is shown, `this_round.progress` names the lemma and
+  the target, each moving from unproven to shown, and after the round is recorded
+  `since_progress` reads 0 with `last_progress.round` 4. Each round's finding carries a `value`
+  written by reflow2 (`path_readings`), and `reflow2 write record_finding` with a `value` on a
+  round is refused (exit 1); 0.97.0 stores it.
+- **One claim larger than the budget reads in parts.** A target under 15 failed routes reads
+  whole at 73,936 characters. At `budget_chars` 6,000 and 30,000, `reflow2 read
+  reasoning_report` gives its head with `in_parts` counting 1 step, 15 routes and 0 objections;
+  reading on with `part_offset` gives all 16 parts (in 3 pages at 30,000, the largest reply
+  29,120 characters). At 3,000 the summary leaves no room, and the reply names the budget the head
+  needs (4,500). 0.97.0 answers no claim at all three budgets.
+- **No self-loop where it means nothing.** `reflow2 write register_alternative` called again for
+  an alternative leaves it with no CONTRADICTS to itself (0.97.0 drew one), and `reflow2 write
+  create_edge` for CONTRADICTS from a node to itself and `record_finding` naming itself as its
+  cause are refused, each naming why (exit 1; 0.97.0 wrote both).
+- **The skills are served here.** `reflow2 read get_skill '{"name": "work-a-proof-hole"}'`
+  serves the new text (28,026 characters, with the quick kills, the sieve and the map; 0.97.0's
+  is 17,000), and `list_skills` names 36.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the tool list there carries `map`,
+`part_offset` and the hole fields, `get_skill` serves the new work-a-proof-hole, and a search
+written through it reads back as a map. flo2.io gets these once its engine moves to 0.98.0 and
+is deployed. The list of skills flo2.io shows a chat keeps each skill's name, shortcut and
+summary, and none of those changes (36 skills, the same summaries), so regenerating it at the
+re-pin moves only its version line. As before, the hosted hub view and reads across designs by
+graph id need flo2.io. These lines get checked
+again on the published binary once the release is out.
+
+### Added
+
+- **A proof search reads as one page: `reasoning_report` with `map: true`.** Pass `claim` the
+  target and the reply holds the target and how it reads, every hole under the claim it serves
+  with its routes (open with what would refute it, failed with where and why, waiting with its
+  stated promise and rank), each closed result in one line, the rounds since a claim on the path
+  to the target last moved, the forks that hold an untried branch, and the untried branches
+  anywhere on the chart, most promising first. It fits one reply at any size, naming in
+  `page.withheld` what it held back, and carries no step's warrant: read each argument by id
+  with `get_node`. Built after a 16-round proof trial on the Aaronson–Ambainis conjecture, where
+  both arms spent their late rounds on holes that could not close the target.
+- **A hole says what it serves, and what closing it does.** `add_decision` takes `hole`,
+  `serves` and `closing_it` (`closes`, `narrows` or `restates`) on a hole's decision point. The
+  map says along the path whether closing each hole could close the target; a hole that only
+  narrows it is shown as such, and an unsaid link reads unsaid, never `closes`.
+- **A route says what would refute it, and an idea can be charted before it is judged.**
+  `register_alternative` and `add_artifact` take `refuter`, `waiting`, `promise` and
+  `promise_rank` on a route under a hole. A charted idea needs no reason until it is worked.
+- **Rounds are counted, and progress means a claim on the path to the target moves.** A round is
+  recorded when it ends, as `record_finding` with `fact_type: search_round` about the target.
+  The map's `rounds.since_progress` resets only when the target, or the claim of a hole whose
+  every link up to the target closes or restates, comes to hold, is refuted, or comes to rest on
+  fewer premises. Steps closed and routes failed beneath an open claim on the path are still
+  recorded, and do not reset the count; neither does work on a special case that only narrows
+  the target. In the Erdős–Sós trial, refuting the attempt's own side conjectures beneath the
+  open lemma on the path was counted as progress, so the go-back rule never fired while that
+  lemma stayed open and unchanged for four rounds; the count as first built in #831 reset on the
+  same shape. `rounds.last_progress` and `rounds.this_round.progress` name the claims that moved,
+  with how each read before and after.
+- **A round's finding records how the path read when the round ended.** `record_finding` with
+  `fact_type: search_round` writes into the finding's `value` how each claim on the path reads at
+  that moment, and the map compares each round with the one before. A `value` passed on such a
+  finding is refused. A round the record cannot judge (one recorded by an older reflow2, or a
+  claim on the path that reads settled with no earlier reading) stops the count: it reads
+  `at_least`, or `null` when no later round could be judged, and `rounds.not_judged` lists those
+  rounds. **What to do:** record each round with `record_finding` when it ends, and leave `value`
+  out.
+- **work-a-proof-hole starts each round from the map** and, after three rounds with no progress
+  toward the target, goes back to the most promising untried branch on the chart and records the
+  turn with its cause. It charts every candidate at a fork, one line each, and ends each round
+  with a new-ideas pass. **What to do:** nothing for a recorded proof to keep reading as before;
+  to use the map, give each hole's decision point `hole`, `serves` and `closing_it`, and record
+  each round's end.
+- **work-a-proof-hole spends a fifth of each round on quick kills, and sieves new candidates.**
+  Each round sets aside a slice of its budget (a fifth, as a starting guess) for the cheapest
+  refuters of the unranked and lowest-ranked candidates anywhere on the chart, each time-boxed
+  and recorded as a failed route; a barrier that rules out several is recorded against each.
+  The design keeps a standing sieve of the field's known tight or extremal examples, each a
+  statement with its source, and every new candidate is tested against it before it is ranked.
+
+### Fixed
+
+- **`reasoning_report` never answers zero claims because one claim is larger
+  than the budget.** A claim with many failed routes under it could read at
+  39,000 characters: at `budget_chars` 3,000 the read answered "0 of 28 claims"
+  with `next_offset` 0, and through a reply door of about 30,000 characters it
+  could not be read whole at any budget. Such a claim now comes as its **head**
+  (what it says, how it reads and why, and everything it carries but its parts)
+  with `in_parts` counting its steps of support, failed routes and objections,
+  and as many of those **parts** as fit, each whole, in `parts` (each naming
+  the list it belongs to in `in`). Every page keeps to its budget. **What to
+  do:** read on through a claim's parts with the new `part_offset` argument
+  (the claim's `in_parts.next_part_offset`, with the same `offset`);
+  `next_offset` still goes on to the next claim, so a reader that follows only
+  it still reads every claim's head. A claim whose words alone are larger than
+  the budget is still answered with no claim and the budget it needs.
+- **No tool draws an edge from a node to itself where that means nothing.**
+  `register_alternative`, called again for an alternative already registered
+  under a decision (to move where its export lives, say), drew "X CONTRADICTS
+  X"; `record_finding` with `caused_by` equal to its own id drew "X CAUSES X";
+  and `create_edge` and `create_edges` drew either. The schema now declares, per
+  edge type, the seventeen relations that cannot hold from a node to itself
+  (`irreflexive: true`: CONTRADICTS, CAUSES, DEPENDS_ON, DUPLICATES,
+  EVOLVES_INTO, DECOMPOSES, EQUIVALENT_TO, the two links of a step and the rest
+  that a review already refused, TRIGGERS excepted, since a step of a process
+  may retry itself), and the graph's one edge write refuses such an edge on
+  every door, naming the relation. Registering an alternative again is now an
+  update that keeps its siblings' CONTRADICTS. `describe_schema`, asked about a
+  pair, says `irreflexive` on the relations it applies to. **What to do:**
+  nothing for new work. A design that already holds such an edge still imports
+  whole: the import keeps it and names it in `self_loops_kept`, and
+  `detect_defects` reports a node recorded as contradicting itself as what it
+  is; remove one with `delete_edge`.
+
+## [0.97.0] — 2026-11-07
+
+**Minor. A route tried in a proof that fails is a record of its own, a served skill works one
+hole in a proof refute-first, `loop_status` answers within a time budget and names what it left
+out, a saved design says where an accepted checksum is, and the macOS binaries are built on
+macOS 15.** It contains #826 to #829. On a design of 8,696 nodes `loop_status` took 38.1 s on
+flo2.io's hardware, past the 30 s its gateway waits, so the call every session is told to make
+answered nothing; it now stops at 20 s by default and says which analyses it did not reach.
+**What to do:** upgrade every seat together before anyone records a failed route
+([docs/upgrading-to-v0.97.0.md](docs/upgrading-to-v0.97.0.md)). On the VS Code terminal route,
+run `reflow2 update` in each repository after installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is added or removed.** Measured against the published
+0.96.0 binary (sha256 `83324513…` for its linux-x86_64 archive, checked against `checksums.txt`),
+over stdio on a fresh store: 199 tools on both. Two tools take new inputs: `add_requirement` takes
+`route_to`, `fails_at`, `fails_at_step`, `fails_because`, `route_rests_on` and `would_hold_if`,
+and `loop_status` takes `time_budget_ms`. `search_design`'s output schema declares `route_to`, and
+`reasoning_report`'s description names failed routes. New in replies: `loop_status`'s
+`time_budget` and `not_computed`, `reasoning_report`'s `failed_routes`, `get_node`'s
+`failed_route`, and an export's `reading_notes`. Skills go from 35 to 36: `work-a-proof-hole` is
+added, and `design-a-proof` and `help` change in their own words. `get_instructions` is
+unchanged; `describe_schema` gains the new value and properties. The connect-time instructions
+grow by the new skill's line: 2,911 characters on stdio (0.96.0: 2,862) and 3,169 behind
+`--http-trusted-gateway flo2.io` (0.96.0: 3,120), both measured on the machine 0.96.0's figures
+came from. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp moves by vocabulary**: `Requirement.statement_kind` gains `failed_route`, and
+  Requirement gains the six optional properties above. No node or edge type is added (28 and 69,
+  and 83 enum vocabularies, as in 0.96.0). Measured at this cut: a 0.96.0 seat opens a store this
+  release wrote, with its "behind" warning, and refuses one holding a failed route; it refuses
+  this release's exports without `--accept-newer`, and with it still refuses one holding a failed
+  route ([docs/upgrading-to-v0.97.0.md](docs/upgrading-to-v0.97.0.md)). Upgrade every seat
+  together.
+- **Nothing is deprecated and nothing is removed**, so no notice is owed to anyone who runs their
+  own MCP server.
+- **A symptom contained, not a cause fixed.** `changelog_view` takes no reply bound. In #828 it
+  answered 55,395 characters on the test suite's generated design, after that design's random
+  stream moved, and failed `replies_are_bounded`. #828 put it back on that check's register of
+  known-unbounded reads, which makes the check pass and bounds nothing. Measured at this cut on a
+  copy of reflow2's own design (8,499 nodes): `changelog_view` from v0.90.0 to v0.95.0 answers
+  382,900 characters, and from v0.94.0 to v0.95.0 15,304. A host that holds replies to 30,000
+  characters, as flo2.io does, refuses the larger one. The fix is still owed: `changelog_view`
+  takes `budget_chars` like the other bounded reads
+  (`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`, which
+  names three more reads in the same state). Until then, ask it for a narrow window.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets everything here that is not about a server. Checked through the
+door (`reflow2 read|write --graph-path … TOOL …`) on the 0.97.0 release build beside the
+published 0.96.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** On a repository set up by the
+  0.96.0 kit with `--harness vscode-cli`, it adds the new skill's two files,
+  `.github/skills/work-a-proof-hole/` and `.github/prompts/work-a-proof-hole.prompt.md`, and
+  changes nothing else.
+- **`loop_status` answers within its budget.** `reflow2 read loop_status` carries `time_budget`
+  (`budget_ms` 20,000, `set_by` `default`, `complete` true). `reflow2 read loop_status
+  '{"time_budget_ms": 0}'` prints the floor alone, never clean, with `not_computed` naming
+  `confirmation_ledger`, `reasoning`, `loop_closure`, `gaps` and `defects` and their counts
+  `null`. On a copy of reflow2's own design (8,499 nodes) on this machine, the whole answer took
+  14.4 to 17.9 s of the engine's clock (16.0 to 20.3 s wall) and the floor 1.2 s (3.1 s wall);
+  0.96.0 took 16.8 s wall for the same answer and refuses `time_budget_ms` (exit 2). A one-shot
+  call has no caller to give up, so the entry about cancellation is for a server.
+- **A failed route is written and read here.** `reflow2 write add_requirement` with
+  `statement_kind` `failed_route`, `route_to`, `fails_at`, `fails_because` and `would_hold_if` is
+  stored (0.96.0: exit 2, `route_to` is not a parameter). `reflow2 read get_node` reads it as
+  `failed_route`, `reflow2 read reasoning_report` counts it under `failed_routes` (1 route, 1 with
+  its step and reason), and `reflow2 read search_design` finds it first by the words of its
+  reason, with `route_to`.
+- **The new skill is served here.** `reflow2 read get_skill '{"name": "work-a-proof-hole"}'`
+  serves it, and `list_skills` names 36. 0.96.0 refuses the name (exit 1) and names 35.
+- **An export says where an accepted checksum is.** On a design with a file's checksum accepted
+  by a change, `reflow2 read export_graph` carries `reading_notes.artifact_checksums`. 0.96.0's
+  export has no such key.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: `loop_status` answers there with its
+budget (20,000 ms by default; `time_budget_ms` 0 gives the floor), and the skills served there are
+the hosted ones, `work-a-proof-hole` among them and `design-a-proof` with its section on failed
+routes. flo2.io gets these once its engine moves to 0.97.0 and is deployed. A `loop_status` that
+would run past flo2.io's 30 s door stops there only if the gateway sends
+`notifications/cancelled` when it stops waiting, because on an HTTP session a dropped connection
+cancels nothing; that is a change to flo2.io's gateway, not to this release. flo2.io serves each
+skill's text from its engine, so the new skill and design-a-proof's section on failed routes
+arrive with the engine. The list of skills flo2.io shows a chat is generated from the engine's at
+each re-pin, and names `work-a-proof-hole` only once it is regenerated. As before, the hosted hub view and reads across designs by graph id need flo2.io. These lines get
+checked again on the published binary once the release is out.
+
+### Added
+
+- **A route that was tried and fails is a record of its own, read back with the
+  line of reasoning it belongs to** (req:a-failed-route-is-a-record-of-its-own-read-back-with-the-reasoning,
+  Anthony 2026-10-30). Working a hole in a proof leaves approaches that did not
+  go through; until now they could only be prose on a finding, which nobody
+  could find or count, or DEPENDS_ON edges to the failing steps, which put the
+  finding in every what-if's blast radius (the heat rung, 2026-10-22). Record
+  one with `add_requirement` and `statement_kind: failed_route`: `statement`
+  says what was tried, `route_to` names the claim it was a route to (the hole),
+  `fails_at` says the step at which it fails (and `fails_at_step` names that
+  step or statement when the design holds it), `fails_because` says why, and
+  `route_rests_on` names what it rests on.
+  - **A route can say what would make it go through.** `would_hold_if` holds
+    the natural condition under which the route WOULD hold ("if f is
+    Boolean-valued", "with exp(d) in place of poly(d)"), so a dead end for one
+    claim is kept as a possible result for another
+    (req:a-failed-route-records-the-natural-condition-under-which-it-would-hold).
+    It is read back with the route and moves no reading: the route still fails
+    for its claim, and the condition is neither a hypothesis of that claim nor
+    a result shown.
+  - **It supports nothing and refutes nothing.** It reads `failed_route`, never
+    `open`, `stated` or `unproven`, and its truth never holds. It is never a
+    premise, an assumption or the conclusion of a step, and never an objection:
+    `add_inference` and the store refuse each link, and `add_requirement`
+    refuses to turn a record that already takes part in a step into one. No
+    claim reads proven, refuted, contested or open because of it, and it is
+    never a gap, a debt or an unsupported claim. On the committed Riemann map,
+    every gap, defect, debt count and claim reading is the same with a failed
+    route recorded as without it.
+  - **No walk crosses it.** Its references are fields, not edges, so a what-if
+    on the step it fails at, or on anything it rests on, never reaches it.
+  - **Where it is read.** `reasoning_report` reads each route whole under the
+    claim it was a route to (that claim's new `failed_routes`) and tallies them
+    in the report's new `failed_routes`: how many, how many name both the step
+    and the reason (`with_step_and_reason`, what working a hole is scored on),
+    which do not, and in full any whose claim the read did not walk. `get_node`
+    on a route adds `failed_route`, the record read whole with each id it names
+    resolved. `search_design` finds it by what was tried, where it fails and
+    why, and a hit on a route carries `route_to`.
+  - **The design-a-proof skill says how** (section 5a): how to record a failed
+    route, never to draw DEPENDS_ON to the step that fails, and how to record a
+    turn in the search (a Decision whose `decision` names the route left and
+    the route taken, with CAUSES from the source or result that forced it).
+  - **Additive only.** A design that records no failed route reads exactly as
+    before: no new field appears in any reply, and every existing call answers
+    as it did. The tool list gains six optional `add_requirement` fields, each
+    refused on any statement that is not a failed route. It works the same on
+    every door — the MCP server, `reflow2 write add_requirement` / `--call`,
+    and a design hosted on flo2.io once flo2.io runs this release, which also
+    serves design-a-proof's section on it from its engine.
+
+- **A saved design says where an Artifact's accepted checksum is.** Since 0.79.0
+  an accepted checksum is written once, on the CHANGED edge from the change that
+  accepted it, and left off the Artifact's own record while the two are equal;
+  reflow2's import puts it back. Nothing in the file said so, and a person or a
+  script that opened a committed export with plain JSON read the missing
+  `checksum` as a dropped one: twice in one project, which then concluded its
+  design gate could not see those files change. It could: one byte added to one
+  of them failed the gate. Now a single-file export that leaves at least one
+  checksum off a record carries a top-level `reading_notes.artifact_checksums`
+  saying which edge holds it, which fields, which acceptance is current (the
+  highest `accepted_seq`), and that the kit's `tools/design_io.py`
+  `current_acceptances` applies the rule. The note is outside the content hash,
+  so no design's hash changes and two exports of one design stay byte-identical;
+  a design with no accepted checksums gets no note. An agent that calls
+  `export_graph` gets the note in the document it is handed. **What to do:**
+  nothing. A script that reads checksums from an export should read them with
+  `current_acceptances`, or import the export and read the records. The item
+  layout's `design.json` does not carry the note yet: it refuses fields it does
+  not know, so adding one would break older binaries reading a newer layout.
+
+- **`loop_status` answers within a time budget, and names what it did not
+  compute.** On a design of 8,696 nodes it took 38.1 s on flo2.io's hardware,
+  past the 30 s its gateway waits, so the call every session is told to make
+  answered nothing. It now computes its floor first (questions, decisions,
+  checks, divergences, follow-ups, breaches, kept outputs), then the five
+  whole-design analyses cheapest first: the confirmation ledger, the
+  reasoning, whether a real result ever came back, gap detection, defect
+  detection. When the budget runs out, the analyses it did not reach are
+  listed in `not_computed`, each with the fields it left null and the call
+  that computes it alone (`detect_gaps`, `detect_defects`,
+  `confirmation_ledger`, `reasoning_report`; `loop_closure` has none, so a
+  larger `time_budget_ms`); a line for
+  each leads `next`; and the answer is never `clean`. A new `time_budget`
+  block says what the call was given and spent, and whether the answer is
+  whole. The default is 20 s, two thirds of flo2.io's door; the clock starts
+  when the call arrives, so a wait for the design is spent from it, and a
+  hub's view spends one budget across its designs. **What to do:** nothing.
+  Pass `time_budget_ms` to raise or lower it for one call (`0` is the floor
+  alone), or set `REFLOW2_LOOP_STATUS_BUDGET_MS` on a server behind a
+  different door.
+
+- **A long read stops when its caller has gone.** `loop_status`,
+  `detect_gaps` and `detect_defects` check between their detectors whether
+  the request was cancelled, and stop there instead of running to the end
+  while holding the design. rmcp cancels a request when its client sends
+  `notifications/cancelled` for it (any transport), or when a stateless HTTP
+  client (MCP 2026-07-28) disconnects. It does NOT on an HTTP session
+  (before 2026-07-28): a client there that gives up must send
+  `notifications/cancelled`. **What to do:** a client that times a call out
+  should send that notification.
+
+- **A served skill works one hole in a proof: `work-a-proof-hole`
+  (`/work-a-proof-hole`)** (req:a-served-skill-works-a-proof-hole-refute-first-with-each-candidate-a-path-in-the-graph).
+  It runs root-cause's refute-first steps on a proof's open step or lemma. It
+  states the hole as an observation, then searches the design and the given
+  sources for precedent, including the failed routes already recorded toward
+  it. It generates at least three candidate routes, each with a stated reason,
+  and registers each as an alternative under the hole's decision point
+  (`register_alternative`), with no more than three open at once. Before a
+  route is worked, it writes into the decision point what would refute it, and
+  it works the routes cheapest refuter first. A route that fails becomes a
+  `failed_route` record with where and why it fails, and a change of route is
+  a decision with `CAUSES` from the source or result that forced it. It never
+  lets a step read proven on the agent's word, and leaves settling the decision
+  point to the owner. Each session ends with what is closed, what is open, the
+  failed routes counted from `reasoning_report`, and the next route, written
+  into the design so that a fresh agent can start from it.
+  - **It adds no record type and no tool.** It composes what this release
+    serves: `failed_route` (above), the fork tools, `review_relations` and
+    design-a-proof's statements and steps. design-a-proof points to it from its
+    section on failed routes.
+  - **The cap and the order are discipline, not enforcement.** Nothing refuses a
+    fourth open route or a route worked before its refuter is written; the
+    record shows both, for whoever judges the session. reflow2 does not compute
+    the most efficient route over a proof's graph.
+
+### Changed
+
+- **`loop_status`'s `unsurfaced_gaps`, `answered_with_open_gap`,
+  `answered_naming_their_record`, `structural_defects`, `unexamined_claims`
+  and `loop_closure` read `null` when their analysis was not computed this
+  call**, never `0`. A whole answer reads exactly as before. **What to do:** a
+  script that adds these up should treat `null` as "not known from this
+  answer", and read `not_computed`.
+
+### Fixed
+
+- **The macOS binaries are built on macOS 15.** GitHub retired its macOS 14 runner images on 2026-11-02, and its brownout the day before failed both macOS legs of the v0.96.0 release, so nothing was published until the release was run again from this fix (v0.96.0's assets went out the same day). The release workflow now names `macos-15`. Nothing to do as a user.
+
+## [0.96.0] — 2026-11-01
+
+**Minor. Every served skill now reaches the agent when it connects, and says what is true where
+it is served; fifteen tools are retired as counted refusing stubs; and the step for when a batch
+of writes lands is offered once per batch.** It contains #818 to #823. Claude Code keeps 4,096
+characters of a server's connect-time instructions, and 0.95.0's ran past that, so most skills
+never reached the agent with their trigger. On a local engine where reflow2's session-end nudge
+is installed, they now run 2,862 characters, down from 0.95.0's 9,961 (measured on both builds;
+the Fixed entry below gives every door). A skill served for others, as flo2.io serves them, no
+longer tells its reader the design is on their machine. **What to do:** nothing for the skills
+or the cues. If you call one of the fifteen retired tools, call what its answer names (under
+Deprecated). On the VS Code terminal route, run `reflow2 update` in each repository after
+installing (In your setup, below).
+
+**The MCP surface changes shape; no tool is removed.** Measured against the published 0.95.0
+binary (sha256 `93298747…` for its linux-x86_64 archive, checked against `checksums.txt`), over
+stdio on a fresh store: 199 tools on both, none added or removed. Two tools take new inputs:
+`graph_report` takes `format` (`markdown` returns the document `graph_report_markdown` did), and
+`dimension_drifts` takes `target_id` and `dimension`. The fifteen stubs keep their names and say
+what they are in their descriptions and titles. The five of them that wrote
+(`set_artifact_checksum`, `acknowledge_gap`, `verifies`, `forecast_readiness`, `gate_on`) are now
+marked read-only and no longer take `echo`, because they write nothing. Twenty-two more tools change only in their prose, which now
+names the survivor of a fold. New in replies: `add_change_event`'s `next_step` and
+`usage_report`'s `retired_stubs`. All 35 skills change (their frontmatter, a `use_when` line,
+and the local and hosted wording), and so does `list_skills`; `get_instructions` and
+`describe_schema` change in prose only. `toolsnap` on the release build: all 199 match.
+
+- **The schema stamp does not move**: 28 node types, 69 edge types and the same 83 enum
+  vocabularies as 0.95.0; only `reflow2_version` differs. No upgrade doc is owed. 0.95.0 opens a
+  store this release wrote, with its usual warning that it is behind; it refuses an export this
+  release wrote, as every older reflow2 refuses a newer export.
+- **Fifteen tools are deprecated** and serve as counted refusing stubs until the re-count (about
+  2026-12-23). The people who run their own MCP server are told before the release is tagged.
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets every change here that is not about hosting. Checked through the
+door (`reflow2 read|write --graph-path … TOOL -`) on the 0.96.0 release build beside the
+published 0.95.0 binary, each on a fresh design on disk:
+- **Run `reflow2 update` in each repository after installing.** The instructions file `reflow2
+  init --harness vscode-cli` wrote names `reflow2 read graph_report_markdown` as the first read,
+  and 0.96.0 answers that with exit 1 and the call that replaces it. `reflow2 update` rewrites
+  the line to `reflow2 read graph_report '{"format": "markdown"}'`, which prints the Markdown
+  report (0.95.0 refused `format`, exit 2). On a repository set up by 0.95.0 it refreshes 8
+  files: that instructions file, one prompt and six skills' descriptions.
+- **A retired tool still answers and changes nothing.** `reflow2 read set_artifact_checksum …`
+  (a stub is read-only, so `read` runs it) exits 1 with the exact `set_artifact_checksums` call
+  to make, built from its arguments, and `reflow2 read graph_report_markdown` exits 1 naming
+  `graph_report` with `format` `markdown`. Each
+  such call is written to the usage ledger under the stub's own name, and `reflow2 write
+  usage_report '{"peek": true}'` lists all fifteen stubs under `retired_stubs` with their
+  counts, zeros included. It is `write`, not `read`, because without `peek` the report leaves a
+  marker.
+- **The batch cue is offered once per batch here too.** Three `reflow2 write add_requirement`
+  calls in a row named detect_gaps on the first and "named earlier in the batch" on the next
+  two; after `reflow2 read detect_gaps` the next write named it again. 0.95.0 named it on every
+  write.
+- **`add_change_event` names its checksum step** when `affected` names a registered file: its
+  `next_step` says to accept the file's checksum with `set_artifact_checksums` against that
+  change. 0.95.0 said nothing.
+- **A number reads back as it was written.** A Constraint `limit` of `0.11458333333333333`
+  written through the door reads back exactly; 0.95.0 read it back as `0.11458333333333331`.
+- **The skills served here are the local ones**: `reflow2 read get_skill` serves help's local
+  text ("a program that runs on your own machine") with no variant markers, detect-and-ask's
+  questions in rounds, string `metadata` and a `use_when` line. The connect-time instructions
+  are part of an MCP handshake, which this route does not have; `reflow2 read get_instructions`
+  still serves the rules in full.
+
+**Still needs flo2.io's gateway.** Checked by serving the release build with `--http
+--http-trusted-gateway flo2.io`, as flo2.io runs it: the hosted side of the skills (help says
+"Your design is kept by that host, not on your machine", where 0.95.0 said "Nothing leaves your
+machine"), and connect-time instructions that fit a chat connector's 4,096-character cap
+with flo2.io's preamble in front (Fixed, below). flo2.io gets these once its engine moves to
+0.96.0 and is deployed. As before, the hosted hub view and reads across designs by graph id need
+flo2.io. These lines get checked again on the published binary once the release is out.
+
+### Added
+
+- **add_change_event names its next step when the change touched a registered
+  file.** Its reply carries `next_step`: accept the files' checksums against
+  this change with set_artifact_checksums (disposition `design_updated`,
+  `design_change_event_id` this change). On flo2.io, 227 of
+  set_artifact_checksums' 327 runs came within two writes of add_change_event,
+  207 of them right after it, and nothing in the reply named that step. Said
+  only when an Artifact is among `affected` and not removed; counted as the cue
+  `next_step/set_artifact_checksums`. Inside record_the_build, which runs that
+  step itself, the change step's receipt does not repeat it.
+
+- **`skill_lint` checks every served skill against the specification and against what is
+  served.** It fails the build on a frontmatter field the specification does not define, a
+  `name` or `description` past its limits (64 and 1,024 characters), a `metadata` value that is
+  not a string, or a value strict YAML refuses. It also fails when a count that introduces a list
+  is not the list's length, or when a skill's count of something served (renamed skills, slash
+  commands, the gate's failure kinds) disagrees with the surface, computed on every run.
+
+- **Two tests hold this.** One serves every skill both ways and fails on a claim only a local
+  install can make in what a hosted engine serves; the other measures the handshake on every
+  door, with room for a host's 496-character preamble, against the 4,096-character cap.
+
+### Changed
+
+- **The step for when a batch of writes lands is offered once per batch, not on
+  every write.** Six cues named that step on every write: `loop_hint/detect_gaps`,
+  `loop_hint/get_skill:detect-and-ask`, `loop_hint/detect_defects`,
+  `loop_hint/get_skill:check-health`, `loop_hint/loop_status` and
+  `loop_hint/governed_by`. Measured on 0.94.0, over the six writer sessions of
+  the recall re-run: detect_gaps was offered 97 times and followed 0,
+  detect-and-ask 75 and 0, governed_by 31 and 0, detect_defects and check-health
+  17 and 0 each, and loop_status 162 times, followed within five calls twice and
+  otherwise only at the end of each round. The tools themselves are called where
+  they are needed (flo2.io, 2026-09-24 to 10-30: detect_gaps 211 calls,
+  loop_status 397, governed_by 226), so the cue was offered at the wrong moment.
+  **What changed, exactly:** a write is still offered each of these cues on the
+  first write of a batch. It is not offered one again while that cue was offered
+  within the same session's last 25 calls and 15 minutes and nothing since has
+  made the call it names; making that call (or the batch running past 25 calls
+  or 15 minutes) ends the batch, and the next write offers it again. The session
+  is the one the cue counts already use: the seat, and the `--call` door's calls
+  as one sequence. It is decided from the design's usage ledger, so an
+  in-memory design, which has none, offers every cue as before. Where a hint is
+  only that step (add_requirement, create_node, add_component, add_design_rule
+  with its power stated), the withheld reply's `loop_hint` reads "loop: the step
+  for when this batch lands was named earlier in the batch and is not repeated
+  on every write", which names no call. Where a hint also says something about
+  the node just written, that half is said every time and only the batch half
+  is dropped: replace_text keeps its settlement clause, add_capability keeps
+  "wire satisfies", add_constraint keeps "wire it", an accepted decision keeps
+  "it reads back as what was decided", link_artifact keeps its
+  reconcile_artifacts clause. Each cue's id and words are unchanged when it is
+  offered, so increment 6 compares like with like. `loop_hint/set_decision_status`
+  (the owner-only cue 0.94.0 and 0.95.0 fixed) is not affected. **What to do:**
+  nothing; run detect_gaps, detect_defects, loop_status when your batch lands,
+  as the first write said.
+
+- **detect-and-ask, genesis and design-an-argument put their questions to the
+  person in rounds.** A round holds every question that is ready now, meaning
+  its prerequisites are settled. Each question is numbered and worded so "yes"
+  accepts the recommended answer, so "yes", or "yes to all but Q3", is a whole
+  reply. A question that depends on one still open waits for a later round. A
+  fact the agent can look up (in the design, the files, a document the person
+  gave) is looked up while the round goes out, and never asked. detect-and-ask
+  still orders the questions inside a round by the severity `detect_gaps` gives
+  them; dependency decides which round a question is in. How one question is put
+  has not changed: the recommendation first, what would change it, options to
+  pick from with their consequences, the person's own language and their own
+  field's words. For a person who is not in the chat, each round is one `batch`
+  of `gaps_to_prompts` or `ask_question`. detect-and-ask also counted its
+  obligations as six and listed seven; it says seven now. The technique is
+  adapted from the grilling skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skills carry it.
+- **plan-increments says how to cut an increment, not only how to order one.**
+  Each increment is a vertical slice that can be shown working on its own, end
+  to end: in software, one request answered from the screen to the stored
+  record; in a building, one room finished and inspected; in a proof, one case
+  carried to its conclusion. Restructuring that makes the work easier goes
+  first, as its own increment. A change that reaches everything (a part every
+  drawing cites, a unit every interface carries) takes three increments: add
+  the new beside the old, move each user over, then remove the old. Before the
+  plan is recorded, the agent asks two things: is each increment the right
+  size, and is each dependency between increments real? The technique is
+  adapted from the to-tickets skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skill carries it.
+- **root-cause builds one repeatable check that shows the failure before any
+  cause is weighed.** In code it is a command that goes red on the exact
+  symptom; in a building model, a query; in numbers, a calculation record that
+  re-runs; in a physical piece, a test procedure written down before it is run.
+  The check is cut down until every piece left matters, measurements in steps ④
+  and ⑤ answer to it, and it is kept so it shows the fix; step ⑦'s failing test
+  is the code case of it. It is fast and runs with nobody at the controls where
+  the design allows, and is never required to where it cannot. When no check
+  can be built, the agent says so and step ⑨ says the cause rests on a failure
+  nobody could show again. The steps keep their numbers. The technique is
+  adapted from the diagnosing-bugs skill of mattpocock/skills (MIT) at 4ae2317.
+  **What to do:** nothing; the served skill carries it.
+- `skill_lint.py` checks that each of the five skills states its new rule.
+
+- **Two surface gates and two core tests read a generated design instead of reflow2's own.**
+  `replies_are_bounded` and `a_reply_is_sent_once` need a design big enough to make replies
+  large, and the item-layout round trip and the hydrate measurement need one of realistic
+  size. `tools/generated_design.py` (and its Rust twin in the core tests) makes one from the
+  schema: reflow2's own size and mix, every node type and edge type the schema declares, every
+  value shape, and odd ids on purpose. `vocabulary_reach.py --check` now reads reachability
+  from the surface alone, which guards 17 more properties than before; `--export` adds the
+  adoption columns.
+- **Examples and test fixtures use neutral names** (a work hub, a lab instrument, a deploy
+  repository, a storage service) in the skills, tool help, source comments and docs.
+
+- **The first-read cue names `graph_report` with `format` `markdown`.** The
+  connect-time instructions, `get_instructions` step 0a, the VS Code terminal
+  route and both SessionStart texts read "read `graph_report` with `format`
+  `markdown` first". **The cue's id changes** from
+  `instructions/graph_report_markdown` to `instructions/graph_report` (a cue id
+  is `<field>/<named call>` and never its arguments), so a count compared across
+  this release reads the two ids as one cue.
+- **Three pairs that read alike say which is which** in their first words:
+  `report_manual_work` WRITES one record and `manual_work_ledger` READS them
+  all; `add_epoch` is the past and `plan_epoch` the future; `scan_nodes` lists
+  every node of one TYPE and `search_design` finds nodes by what they SAY. No
+  name changes.
+- **The remote client no longer measures for the retired one-artifact
+  accept.** A `set_artifact_checksum` call is forwarded as it came, so the
+  server answers it and counts it; `link_artifact`, `set_artifact_checksums`
+  and `reconcile_artifacts` are measured as before.
+
+### Deprecated
+
+- **Fifteen tools are retired as counted refusing stubs, on the owner's word
+  (Anthony, 2026-10-30, "Yes, go with B").** Each name stays listed and
+  callable, changes nothing when called, and answers with the exact call that
+  now does its job — or, for a retired report, that it was retired and to say
+  so if it was needed. Every call to one is counted in the usage ledger under
+  its own name, and `usage_report` lists each stub with its count, zeros
+  included, under `retired_stubs`. **The re-count is about 2026-12-23** (the
+  90-day re-run of the flo2.io usage baseline): a stub nobody called is deleted,
+  and one somebody called is restored as the tool it was. Why: the 2026-10-30
+  counts found six tools whose job a twin already does and nine reports nobody
+  reached, and an absent tool is silent (an agent works around it and says
+  nothing) while a listed stub turns "it was missed" into a count. The computing
+  code stays in place until the re-count, so a restore re-points the handler.
+  find_tools does not offer a stub, and the served skills, instructions and
+  replies name the survivor instead, so the count measures need rather than the
+  text pointing at it. **MCP users (Alex among them) hear with this release**: a client of 0.95.0
+  that calls one of these names gets the refusal below, with what to do.
+- **`set_artifact_checksum` folds into `set_artifact_checksums`.**
+  **What to do:** call `set_artifact_checksums` with a one-item `accepts` list; each item
+  takes the same fields (`artifact_id`, `checksum`, `disposition`,
+  `change_type`, `design_change_event_id`, `note`, `at`). The stub hands back
+  that call, built from the arguments it was given.
+- **`acknowledge_gap` folds into `acknowledge_gaps`.** **What to do:** call
+  `acknowledge_gaps` with a one-item `gaps` list (`gap_id`, `reason`,
+  `affected_ids`, `approver`, `acted_at`).
+- **`dimension_drift` folds into `dimension_drifts`.** **What to do:** call
+  `dimension_drifts` with `target_id` and `dimension`, which now reads one
+  node's drift on one dimension exactly as `dimension_drift` did (either alone
+  narrows the sweep).
+- **`propagate_change` folds into `propagate_from`.** **What to do:** call
+  `propagate_from` with the ChangeEvent's id as its one seed (`seed_ids:
+  ["chg:…"]`), which now reads that change's blast radius from the nodes it
+  CHANGED, with the stale edge prose beside it, exactly as `propagate_change`
+  did (`max_depth`, `full`, `offset` and `budget_chars` unchanged). Its reply
+  says `seeded_by_change`.
+- **`verifies` folds into `add_verification`.** **What to do:** call
+  `add_verification` with the check's `id` and `verifies: [{"target_id": …}]`;
+  on an existing check every field you leave out keeps its stored value. In
+  `draw_edges`, an item naming `verifies` (or `gate_on`) is refused with the
+  stub's answer.
+- **`graph_report_markdown` folds into `graph_report`.** **What to do:** call
+  `graph_report` with `format: "markdown"`, which returns the same document.
+  Without `format` (or with `json`) `graph_report` answers exactly as before.
+- **Nine reports are retired: `evidence_report`, `forecast_readiness`,
+  `frontier`, `ility_report`, `granularity_report`, `consumption_report`,
+  `surprising_connections`, `readiness_report` and `gate_on`.** Each answers
+  that it was retired on 2026-10-30 at the owner's word and that nothing was
+  computed or written. **What to do:** nothing replaces them; if you needed
+  one, say so to the person you work for (report-friction records it) — a
+  retired tool somebody called is restored at the re-count. What other tools
+  computed from them is unchanged: `graph_report` still carries its
+  granularity and surprising-connection sections, and the derived relations
+  still read evidence and readiness.
+
+### Removed
+
+- **The copy of reflow2's own design is no longer committed to the repository.** reflow2's
+  design has been hosted on flo2.io since 2026-10-10, where it is private; the copy that CI
+  read at `docs/design/reflow2/`, the tool that refreshed it (`tools/reflow2_design_copy.py`,
+  with its one-design-PR-at-a-time hold) and the home page's counts of reflow2's design
+  (`tools/site_counts.py`) are gone. `/docs/design/` is now git-ignored, so a copy exported
+  there for local work cannot be committed by accident. Git history is unchanged. **What to
+  do:** nothing, unless you worked on reflow2's own design from the copy: write through
+  flo2.io, and claim `proj:reflow2` before a design PR as before (AGENTS.md says how).
+- **The CI gates that read that copy are retired until a nightly check replaces them.** The
+  design coherence gate (`reflow2_check.py --export`), `self_host_uses_documents`,
+  `check_intent_authority`, `check_consumer_reach`, `check_verification_ratchet` and
+  `the_served_surface_names_no_real_person` no longer run in CI on reflow2's own design; each
+  tool stays, and each hermetic suite still runs. The design is not checked against the code
+  until a scheduled check on flo2.io's box runs reflow2's own client against the hosted design
+  (accepted, not built yet). Projects that run these tools on their own designs are not
+  affected.
+
+### Fixed
+
+- **Every served skill's frontmatter now conforms to the Agent Skills specification.** Each skill
+  carried `metadata: {composes: [..]}` (and two `demanded_by: [..]`), a list where the
+  specification allows only string values, so a strict host could skip all 35 skills. Both are
+  now one string of words (`composes: "STANDING WRITES"`). Five descriptions held a `: ` that
+  strict YAML reads as a second key (check-health, link-ideas, onboarding, plan-increments,
+  where-am-i); they are reworded. Nothing to do: the skills are served, so the next release
+  carries them.
+- **The counts the skills state are true again.** help said eight skills answer to another word
+  (ten do: `/taxonomy` and `/triage` were missing) and spoke of a list of twenty-eight commands
+  (forty ship); ci-gate said the build fails on any of four causes while `reflow2_check.py` fails
+  on ten, and now names all ten (PHANTOM, INTEGRITY, STORED TWINS, DEPEND and GAPS were
+  undocumented); governance-proposal said two findings over a list of three.
+
+- **A skill served from flo2.io (or any host) no longer tells its reader the design is on their
+  own machine.** Every skill was served unchanged wherever reflow2 ran, written for a local
+  install: on flo2.io, `help` said "a program that runs on your own machine … Nothing leaves your
+  machine" about a design kept on flo2.io, and 33 skills pointed a chat at an AGENTS.md it does
+  not have. The lines that really differ are now written twice in the SKILL.md, a local version
+  and a hosted one, and reflow2 serves the one for how it runs: a local engine the local side,
+  an engine served for others (behind a trusted gateway, as an OAuth resource server, or exposed
+  with no caller rule) the hosted side. help, parallel-work, report-friction and ci-gate carry
+  both; the AGENTS.md pointer is reworded once in every skill ("The standing rule is in the
+  server's instructions"). Nothing to do: the skills are served.
+- **Every skill reaches the agent at connect time.** Claude Code keeps 4,096 characters of a
+  server's initialize instructions. 0.95.0's ran 10,327 characters locally (9,961 where a
+  session-end nudge is installed) and 10,656 behind a trusted gateway, 11,154 with flo2.io's
+  preamble in front, so 27 of the 35 skills fell past the cut with nothing to say so. The
+  handshake now states the standing rules first, shortened, and names every skill with a "use
+  when" line of at most eight words (a new `use_when` metadata field);
+  the full triggers stay in `list_skills` and `get_skill`, and the long form of the rules in
+  `get_instructions`. Measured on the built binary, it now runs 3,018 characters locally (2,862
+  with a nudge) and 3,276 behind a trusted gateway, 3,774 with flo2.io's preamble.
+
+- **A number saved in a design reads back as the same number.** serde_json parsed some
+  shortest-form floats one unit in the last place off (`0.11458333333333333`, which is 11/96,
+  came back `0.11458333333333331`), so an untouched design could read as tampered in the item
+  layout, or fail its own content hash as a single file. Its exact parser
+  (`float_roundtrip`) is now on. Found by the generated design; reflow2's own design never
+  held one of the values that change.
+
+### Security
+
+- **CI refuses a change that names a private work program.** `tools/check_private_terms.py`
+  checks every tracked file, the pull request's title and body, and its commit messages
+  against a pattern held in the repository secret `PRIVATE_TERMS`, and prints only where it
+  matched (`path:line`, `PR title`, `PR body`, a commit sha), never what. A pull request from a
+  fork has no secrets and passes with a notice; the push to main checks it.
+
 ## [0.95.0] — 2026-10-30
 
 **Minor. A trusted gateway can now tell the engine who owns the design a call is on, and which
