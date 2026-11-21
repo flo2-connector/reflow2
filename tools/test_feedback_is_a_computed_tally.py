@@ -194,7 +194,7 @@ def main() -> int:
         check(
             "the handshake offers the first-read cue to this session",
             len(offers) == 1
-            and offers[0].get("cues") == ["instructions/graph_report", "instructions/search_design"]
+            and offers[0].get("cues") == ["instructions/search_design", "instructions/graph_report"]
             and offers[0].get("seat") == calls[0].get("seat"),
             str(offers),
         )
@@ -211,6 +211,33 @@ def main() -> int:
             meta.get("reflow2/cues") == by_tool.get("add_requirement", {}).get("cues"),
             str(meta),
         )
+        # THE ONE NAMED CUE MESSAGE (increment 6, crates/reflow2-mcp/src/cues.rs):
+        # the same reply carries a `cues` block at the top of its structured
+        # content, drawn from the ids the ledger counts, ranked by the counts
+        # (the never-followed detect_gaps and detect-and-ask left out), each
+        # read asked for with a small budget, and the field it came from kept.
+        sc = structured(first_reply) or {}
+        block = sc.get("cues") or {}
+        items = block.get("items") or []
+        ids = by_tool.get("add_requirement", {}).get("cues") or []
+        check(
+            "a reply's cues block sits at the top level, every item a counted id with its type and call",
+            bool(items) and all(set(i) >= {"cue", "type", "call"} and i["cue"] in ids for i in items),
+            json.dumps(block)[:400],
+        )
+        check(
+            "the block is ranked and budgeted: at most three, never-followed cues left out",
+            len(items) <= 3
+            and not any(i["cue"] in ("loop_hint/detect_gaps", "loop_hint/get_skill:detect-and-ask") for i in items)
+            and block.get("left_out", 0) >= 1,
+            json.dumps(block)[:400],
+        )
+        check(
+            "a read in the block is asked for with a small budget",
+            all((i.get("args") or {}).get("budget_chars") == 4000 for i in items if i["call"] == "loop_status"),
+            json.dumps(items)[:400],
+        )
+        check("the field the block is drawn from is untouched", "loop_hint" in sc, str(list(sc))[:300])
 
         # ---- the report ----
         r = s.call("usage_report", {})

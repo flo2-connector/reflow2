@@ -597,6 +597,11 @@ NON_TOOL_TERMS = {
     "path",
     "base_path",
     "next",
+    # The one named cue message (crates/reflow2-mcp/src/cues.rs, increment 6):
+    # the reply's `cues` block and its `related` type, which capture-intent
+    # names beside `search_first.near_matches`. Reply fields, not tools.
+    "cues",
+    "related",
     "accepted",
     "met",
     "proposed",

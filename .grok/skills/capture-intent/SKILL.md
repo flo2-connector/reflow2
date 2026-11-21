@@ -109,7 +109,8 @@ record itself is never a premise, since a file carries no truth.
    GIVE IS KEPT.** It refuses only for a match of the SAME type, and never between two
    statements of a line of reasoning (each carrying a `statement_kind`). A match of another
    type, or within a proof, is a note on a write that succeeded: it comes back in
-   `search_first.near_matches`, each with its type. Read it, and link or revise if it covers
+   `search_first.near_matches`, each with its type, and the nearest is the `related` cue in the
+   reply's `cues` block, asked for with a small budget. Read it, and link or revise if it covers
    the same need. The refusal lists what it matched; read those nodes, then:
    - **SHARPEN** — the new words belong on the existing node: call the same tool with ITS id.
    - **DISTINCT** — it is a different thing: call again with `distinct_from: [<ids>]`. The new

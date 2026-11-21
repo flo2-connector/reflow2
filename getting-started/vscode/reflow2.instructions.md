@@ -40,10 +40,12 @@ What a call's exit code means:
 
 ## Start of a session
 
-1. `reflow2 read graph_report '{"format": "markdown"}'` says where the design stands, in a few KB: what it holds,
-   what is delivered, the top open gaps. Read it first, before anything longer. If the design keeps
-   its own record of where things stand,
-   `reflow2 read search_design '{"query": "current state"}'` finds it.
+1. `reflow2 read search_design '{"query": "current state"}'` first: a design that keeps its own
+   record of where things stand returns it in about 2 KB, and when several come back the newest
+   is the one in force. Then, if your reading allows,
+   `reflow2 read graph_report '{"format": "markdown"}'` says where the design stands: what it
+   holds, what is delivered, the top open gaps, about 6 KB on a design of a few thousand records.
+   A reply's `cues` block names the next calls worth making, each read with a small budget.
 2. `reflow2 read loop_status` says what the coherence loop is owed. This project's SessionStart
    hook may already have put its reading in your context.
 3. `reflow2 read get_instructions` gives the full working instructions, served by the binary you

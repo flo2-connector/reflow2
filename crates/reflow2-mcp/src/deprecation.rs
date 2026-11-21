@@ -643,6 +643,23 @@ pub fn is_stub(entries: &[Deprecation], name: &str) -> bool {
     stub_names(entries).contains(&name)
 }
 
+/// THE TOOL A FOLDED STUB'S JOB MOVED TO: for a counted refusing stub whose
+/// what-to-do begins "call `<survivor>`", that survivor; `None` for any other
+/// name, a retired report included (nothing replaces it). Read off the entry's
+/// own sentence, so the stub's refusal and the survivor a count reads are one
+/// record. Used to count a cue whose call moved as the same cue
+/// (`crate::cues::canonical`): `instructions/graph_report_markdown` is
+/// `instructions/graph_report` from 2026-10-30.
+pub fn survivor<'a>(entries: &'a [Deprecation], name: &str) -> Option<&'a str> {
+    entries
+        .iter()
+        .filter(|d| d.is_stub())
+        .find(|d| matches!(&d.item, Item::Tool { tool } if tool.as_ref() == name))
+        .and_then(|d| d.what_to_do.as_ref().strip_prefix("call `"))
+        .and_then(|rest| rest.split('`').next())
+        .filter(|s| !s.is_empty())
+}
+
 /// THE STUB'S ANSWER: when `name` is a counted refusing stub, the refusal its
 /// call gets — that it changed nothing, what to do, and, when the caller's own
 /// arguments map onto it, `exact_call`: the survivor's name and the arguments

@@ -157,10 +157,21 @@ impl ReflowService {
         Parameters(req): Parameters<RegionsReq>,
     ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
-        ok_json(
+        let regions = serde_json::to_value(
             g.design_regions(req.depth.unwrap_or(DEFAULT_REGION_DEPTH))
                 .map_err(dyno_err)?,
         )
+        .map_err(ser_err)?;
+        // BOUNDED since 2026-10-31 (fact:four-reads-take-no-bound-and-overflow-
+        // on-a-design-of-realistic-size-2026-10-31: 44,586 characters on the
+        // generated design of reflow2's size). Rows are ordered by how much is
+        // open there, so a shortened list keeps the parts with the most open.
+        ok_json(crate::reply_budget::bound_reply_sampling(
+            regions,
+            req.budget_chars
+                .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS),
+            "Rows are ordered by how much is open there; narrow with a smaller `depth`, or read one part with detect_gaps `scope`.",
+        ))
     }
 
     #[tool(
@@ -1603,12 +1614,27 @@ impl ReflowService {
         title = "Hierarchy Issues",
         annotations(read_only_hint = true)
     )]
-    pub async fn hierarchy_issues(&self) -> Result<CallToolResult, McpError> {
+    pub async fn hierarchy_issues(
+        &self,
+        Parameters(req): Parameters<crate::reply_budget::BudgetReq>,
+    ) -> Result<CallToolResult, McpError> {
         let g = self.graph.read().await;
-        ok_json_or_why(
-            g.hierarchy_issues().map_err(dyno_err)?,
-            "walked every CONTAINS edge between Components: none has two parents and no level is out of order — or there are no contained Components to walk, which reads the same and is not the same",
-        )
+        let issues = g.hierarchy_issues().map_err(dyno_err)?;
+        if issues.is_empty() {
+            return ok_json_or_why(
+                issues,
+                "walked every CONTAINS edge between Components: none has two parents and no level is out of order — or there are no contained Components to walk, which reads the same and is not the same",
+            );
+        }
+        // BOUNDED since 2026-10-31 (fact:four-reads-take-no-bound-and-overflow-
+        // on-a-design-of-realistic-size-2026-10-31: 40,327 characters on the
+        // generated design of reflow2's size): prose first, then issues from
+        // the end of the ranking, every count kept.
+        ok_json(crate::reply_budget::bound_reply_sampling(
+            envelope(serde_json::to_value(issues).map_err(ser_err)?),
+            req.budget(),
+            "Issues are ranked by position on the declared ladder; read one component's tree with get_node and `include_edges`.",
+        ))
     }
 
     #[tool(

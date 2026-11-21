@@ -5393,6 +5393,18 @@ pub struct GetNodeReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::include_edges::schema")]
     pub include_edges: crate::include_edges::IncludeEdges,
+    /// The most characters of JSON this whole reply may spend, the node
+    /// included. Omitted, the node comes back WHOLE, as it always has (and the
+    /// edges, when asked for, within their own budget). Passed, a longer
+    /// record has its prose withheld progressively — the longest text first —
+    /// until it fits, and `budget` says how much and how to read it whole;
+    /// every id, number and status survives. FOR A READER WITH A SMALL BUDGET:
+    /// one record can be tens of thousands of characters (a guide written
+    /// into a description measured 22.6 KB), and nothing said so before the
+    /// read was paid for
+    /// (`fact:the-recall-pilot-after-the-cues-scored-25-full-16-kit-cued-at-12kb-3-uncued-2026-10-30`).
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]
@@ -5932,6 +5944,14 @@ pub struct RegionsReq {
     /// it to see which parts differ.
     #[serde(default)]
     pub depth: Option<usize>,
+    /// How many characters of JSON this reply may spend (default 30,000).
+    /// Over it, prose goes first, then rows from the END of the list — the
+    /// parts with the least open — and `budget` names what was withheld;
+    /// every count survives. Unbounded until 2026-10-31, when the generated
+    /// design of reflow2's size answered 44,586 characters
+    /// (`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`).
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -7598,6 +7618,15 @@ pub struct OpenQuestionsReq {
     /// Contributor is REFUSED rather than answered empty.
     #[serde(default)]
     pub asked_of: Option<String>,
+    /// How many characters of JSON this reply may spend (default 30,000).
+    /// Over it, prose goes first (the wording each question carried, its
+    /// context), then questions from the end of the list, and `budget` names
+    /// what was withheld; `count` and every question id survive. Unbounded
+    /// until 2026-10-31, when the generated design of reflow2's size answered
+    /// 58,916 characters
+    /// (`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`).
+    #[serde(default)]
+    pub budget_chars: Option<usize>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -8363,6 +8392,34 @@ impl ReflowService {
         json_result(v)
     }
 
+    /// `ok_read`, held to `budget` WITH ITS LOOP_HINT COUNTED: the hint goes
+    /// on first and the whole reply is bounded after, so a read-side hint can
+    /// never carry a bounded reply past the budget the caller named.
+    /// `sampling` permits shortening lists (`bound_reply_sampling`); without
+    /// it only prose gives (`bound_reply`). `None` is [`Self::ok_read`]
+    /// exactly.
+    pub(crate) fn ok_read_bounded<T: serde::Serialize>(
+        &self,
+        g: &DesignGraph,
+        value: T,
+        budget: Option<usize>,
+        sampling: bool,
+        hint: &str,
+    ) -> Result<CallToolResult, McpError> {
+        let Some(budget) = budget else {
+            return self.ok_read(g, value);
+        };
+        let mut v = envelope(serde_json::to_value(value).map_err(ser_err)?);
+        if let (Some(loop_hint), Some(obj)) = (self.read_loop_hint(g)?, v.as_object_mut()) {
+            obj.insert("loop_hint".into(), JsonValue::String(loop_hint));
+        }
+        json_result(if sampling {
+            crate::reply_budget::bound_reply_sampling(v, budget, hint)
+        } else {
+            crate::reply_budget::bound_reply(v, budget, hint)
+        })
+    }
+
     /// `ok_read`, except that an EMPTY answer is never allowed to come back
     /// bare — the throttle that `ok_read` applies is exactly wrong here.
     ///
@@ -8738,13 +8795,34 @@ impl ReflowService {
         VOCABULARY.get_or_init(|| {
             // A counted refusing stub is not a call a cue may offer: it is
             // listed only so a call to its old name is counted.
+            let tools: Vec<rmcp::model::Tool> = self
+                .tool_router
+                .list_all()
+                .into_iter()
+                .filter(|t| !crate::deprecation::is_stub(crate::deprecation::REGISTRY, &t.name))
+                .collect();
+            // HOW EACH READ IS BOUNDED, read off its own published schema, so
+            // the `cues` block can ask a read for a small reply
+            // (`crate::cues::ReadBound`): never a hand-kept list.
+            let reads = tools
+                .iter()
+                .filter(|t| !crate::receipt::is_write(t))
+                .map(|t| {
+                    let props = t.input_schema.get("properties").and_then(|p| p.as_object());
+                    let has = |k: &str| props.is_some_and(|p| p.contains_key(k));
+                    let bound = crate::cues::read_bound(&t.name, has("budget_chars"), has("limit"));
+                    (t.name.to_string(), bound)
+                })
+                .collect::<Vec<_>>();
             crate::cues::Vocabulary::new(
-                self.tool_router
-                    .list_all()
-                    .into_iter()
-                    .map(|t| t.name.to_string())
-                    .filter(|n| !crate::deprecation::is_stub(crate::deprecation::REGISTRY, n)),
+                tools.iter().map(|t| t.name.to_string()),
                 crate::skills::SKILLS.iter().map(|s| s.name.to_string()),
+            )
+            .with_bounds(
+                reads,
+                crate::skills::SKILLS
+                    .iter()
+                    .map(|s| (s.name.to_string(), s.body.chars().count())),
             )
         })
     }
@@ -9291,6 +9369,17 @@ impl ReflowService {
         // this build is retiring anything, so an empty registry costs nothing.
         let arguments_for_notice = (!self.deprecations.is_empty())
             .then(|| serde_json::Value::Object(request.arguments.clone().unwrap_or_default()));
+        // THE REPLY'S OWN BUDGET, which the `cues` block may never push it
+        // past (`crate::cues::attach_block`): the caller's top-level
+        // `budget_chars`, else the shared default. A number, never an object.
+        let reply_budget = request
+            .arguments
+            .as_ref()
+            .and_then(|a| a.get("budget_chars"))
+            .and_then(serde_json::Value::as_u64)
+            .map_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS, |n| {
+                usize::try_from(n).unwrap_or(usize::MAX)
+            });
         // THE USAGE LEDGER (`crate::usage`) reads the verb and never the
         // object: the tool, who connected, and — for `get_skill` alone, whose
         // argument is reflow2's own vocabulary — which skill. No other
@@ -9496,16 +9585,24 @@ impl ReflowService {
             None => answer,
         };
         // THE CUES THIS REPLY OFFERS (`crate::cues`): every call its cue
-        // fields name, as ids — written on the ledger line below and carried
-        // in the reply's `_meta` at the end. A refusal offers none.
-        let cues = match &answer {
+        // fields name, and the lesson or near-match it points at, as ids —
+        // written on the ledger line below and carried in the reply's `_meta`
+        // at the end — and, ranked and budgeted, as the reply's one `cues`
+        // block. Read off the reply the handler built, before any receipt cuts
+        // it. A refusal offers none.
+        let offers = match &answer {
             Ok(rmcp::model::CallToolResponse::Complete(r)) if r.is_error != Some(true) => r
                 .structured_content
                 .as_ref()
-                .map(|v| self.cue_vocabulary().offered(v, &tool_name))
+                .map(|v| self.cue_vocabulary().offers(v, &tool_name))
                 .unwrap_or_default(),
             _ => Vec::new(),
         };
+        let cues: Vec<String> = offers
+            .iter()
+            .map(|o| o.id.clone())
+            .take(crate::cues::MAX_PER_REPLY)
+            .collect();
         self.record_usage(
             &tool_name,
             &answer,
@@ -9569,8 +9666,15 @@ impl ReflowService {
         // THE CUE IDS ride the reply's `_meta` (`crate::cues::META_KEY`):
         // protocol metadata a model is not shown, so naming a cue costs the
         // reader nothing. Nothing is added to a reply that offered none.
+        //
+        // AND THE `cues` BLOCK rides the reply itself, after the receipt so
+        // no receipt cuts it: the cues that earn a place, ranked by the counts,
+        // each read asked for with a small budget, inside what is left of the
+        // reply's own budget (`crate::cues::attach_block`). The fields they
+        // come from are untouched.
         let answer = match answer {
             Ok(rmcp::model::CallToolResponse::Complete(mut r)) => {
+                crate::cues::attach_block(&mut r, &offers, self.cue_vocabulary(), reply_budget);
                 crate::cues::attach(&mut r, &cues);
                 Ok(rmcp::model::CallToolResponse::Complete(r))
             }

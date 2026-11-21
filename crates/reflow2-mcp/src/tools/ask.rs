@@ -322,8 +322,21 @@ impl ReflowService {
         // An empty answer here is the one that gets read as permission, so it
         // is the one that must say what it is (BL-91's hint, un-throttled).
         let empty = records.is_empty();
+        // BOUNDED since 2026-10-31 (fact:four-reads-take-no-bound-and-overflow-
+        // on-a-design-of-realistic-size-2026-10-31: 58,916 characters on the
+        // generated design of reflow2's size). An empty answer is a sentence,
+        // never over any budget, so only a list is held: prose first (the
+        // wording each question carried), then questions from the end; `count`
+        // and every id survive.
+        let budget = req
+            .budget_chars
+            .unwrap_or(crate::reply_budget::DEFAULT_REPLY_BUDGET_CHARS);
+        const MORE: &str = "Read one question's gap in full with get_node on its gap or question id, or pass `asked_of` to read one person's batch.";
         let Some(who) = req.asked_of else {
-            return self.ok_read_empty_speaks(&g, records, empty);
+            if empty {
+                return self.ok_read_empty_speaks(&g, records, empty);
+            }
+            return self.ok_read_bounded(&g, records, Some(budget), true, MORE);
         };
         // SCOPED, THE READ SAYS WHAT IT LEFT OUT: a filtered list must never
         // pass for the whole one, so the count of open questions put to
@@ -335,7 +348,10 @@ impl ReflowService {
             "asked_of": who,
             "not_put_to_them": all - records.len(),
         });
-        self.ok_read_empty_speaks(&g, reply, empty)
+        if empty {
+            return self.ok_read_empty_speaks(&g, reply, empty);
+        }
+        self.ok_read_bounded(&g, reply, Some(budget), true, MORE)
     }
 
     #[tool(
