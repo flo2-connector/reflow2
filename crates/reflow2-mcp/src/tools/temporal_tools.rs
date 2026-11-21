@@ -969,14 +969,14 @@ impl ReflowService {
                        event propagatable. TWO QUESTIONS, NOT ONE: `change_type` says WHY, and `subject` says \
                        WHICH AXIS — `system` (the thing changed) or `record` (the thing did not change and only \
                        the design's knowledge of it did, e.g. a first baseline, a re-sync, a question settled). \
-                       Leaving `subject` out is a true answer and is never inferred from `change_type`, because \
-                       the mapping is not total. Use `defect_fix` when the design was right and the code was \
+                       Leaving `subject` out is a true answer, never inferred from `change_type`. Use `defect_fix` when the design was right and the code was \
                        wrong, and `test_failure_fix` only when a check actually caught it. Use `documentation` \
                        when the thing was right and only its description of itself was wrong; the test is \
                        behavioural, not file-shaped, so a normative document that changes what somebody DOES \
                        takes a real label instead. TEXT GOES IN `summary` (what changed — indexed and \
-                       searchable) and `rationale` (why, and the lesson). THERE IS NO `description` FIELD: \
-                       reaching for one is the commonest mistake, and it is answered with a redirect. \
+                       searchable) and `rationale` (why, and the lesson). THERE IS NO `description` FIELD. \
+                       Pass `checksums` (`{artifact_id, checksum?}`) to accept each artifact's checksum \
+                       against this event in the same call. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: \
                        call it again with the same id and only what you are changing \u{2014} omitted fields \
                        keep their stored value, so correcting one never means re-sending a 2 KB field you did \
@@ -988,9 +988,185 @@ impl ReflowService {
     )]
     pub async fn add_change_event(
         &self,
-        Parameters(crate::nulls::Nullable { req, nulled }): Parameters<
-            crate::nulls::Nullable<AddChangeEventReq>,
-        >,
+        Parameters(crate::nulls::Nullable {
+            mut req,
+            mut nulled,
+        }): Parameters<crate::nulls::Nullable<AddChangeEventReq>>,
+    ) -> Result<CallToolResult, McpError> {
+        // `checksums` is an instruction to this call, never a stored property.
+        nulled.retain(|k| k != "checksums");
+        let files = req.checksums.take().unwrap_or_default();
+        if files.is_empty() {
+            return self.change_event_steps(req, nulled, &[]).await;
+        }
+        if CallScope::current().is_some() {
+            return self.change_event_with_files(req, nulled, files).await;
+        }
+        // Driven directly, outside a served call: open the unit a served call
+        // gets, so the change and its files' acceptances are one write here too.
+        let unit = CallUnit::for_graph(&self.graph);
+        let scope = CallScope {
+            tool: "add_change_event".into(),
+            unit: Some(unit.clone()),
+        };
+        let answer = scope
+            .run(self.change_event_with_files(req, nulled, files))
+            .await;
+        let succeeded = matches!(&answer, Ok(r) if r.is_error != Some(true));
+        match unit.settle(succeeded).await {
+            Settled::Committed(wrote) => {
+                if wrote > 0 {
+                    self.announce_write();
+                }
+                answer
+            }
+            Settled::Untouched | Settled::Discarded => answer,
+            Settled::CommitFailed(why) => Err(McpError::internal_error(
+                format!(
+                    "add_change_event: the change and its files' acceptances succeeded but \
+                     the write could not be committed, so NOTHING WAS WRITTEN. Send the same \
+                     call again. ({why})"
+                ),
+                None,
+            )),
+        }
+    }
+
+    /// THE FILES STEP FOLDED INTO THE CHANGE
+    /// (dec:recording-a-change-accepts-its-files-checksums-and-record-the-build-is-announced-for-removal,
+    /// Anthony 2026-11-21). Measured on flo2.io, 10-30 to 11-20: in 137 of 163
+    /// runs holding both, add_change_event was followed by
+    /// set_artifact_checksums a median 15.6 s later, with no call between in
+    /// 115, while record_the_build, which does both, was called 8 times
+    /// (fact:root-cause-record-the-build-is-skipped-because-nothing-an-agent-
+    /// reads-names-it-and-the-change-reply-names-the-step-2026-11-21). The job
+    /// moves into the tool agents already call. Every file is checked before
+    /// anything is written; an acceptance refused after the change is written
+    /// takes the whole call back (the call is one write unit).
+    async fn change_event_with_files(
+        &self,
+        mut req: AddChangeEventReq,
+        nulled: Vec<String>,
+        files: Vec<ChangeFileReq>,
+    ) -> Result<CallToolResult, McpError> {
+        let mut ids: Vec<String> = Vec::new();
+        {
+            let g = self.write_lock().await?;
+            for f in &files {
+                if g.get_node(reflow2_core::nodes::node::ARTIFACT, &f.artifact_id)
+                    .map_err(dyno_err)?
+                    .is_none()
+                {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: no registered Artifact {:?}. Nothing was written: every file \
+                             a change accepts must already be registered (add_artifact, or \
+                             link_artifact), and its checksum is then accepted here.",
+                            f.artifact_id
+                        ),
+                        None,
+                    ));
+                }
+                if ids.contains(&f.artifact_id) {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: {:?} is named twice. Nothing was written.",
+                            f.artifact_id
+                        ),
+                        None,
+                    ));
+                }
+                ids.push(f.artifact_id.clone());
+            }
+        }
+        let affected = req.affected.get_or_insert_with(Vec::new);
+        for id in &ids {
+            match affected.iter().find(|a| &a.node_id == id) {
+                Some(a) if a.action.as_deref() == Some("removed") => {
+                    return Err(McpError::invalid_params(
+                        format!(
+                            "checksums: {id:?} is in `affected` as `removed`, and a removed file has \
+                             no content to accept. Nothing was written."
+                        ),
+                        None,
+                    ));
+                }
+                Some(_) => {}
+                None => affected.push(AffectedNodeReq {
+                    node_id: id.clone(),
+                    node_type: Some(reflow2_core::nodes::node::ARTIFACT.to_string()),
+                    action: None,
+                }),
+            }
+        }
+        let change_id = req.id.clone();
+        let at = req.detected_at.clone();
+        let changed = self.change_event_steps(req, nulled, &ids).await?;
+        if changed.is_error == Some(true) {
+            return Ok(changed);
+        }
+        let accepts: Vec<JsonValue> = files
+            .iter()
+            .map(|f| {
+                let mut a = json!({
+                    "artifact_id": f.artifact_id,
+                    "disposition": "design_updated",
+                    "design_change_event_id": change_id,
+                });
+                if let Some(c) = &f.checksum {
+                    a["checksum"] = json!(c);
+                }
+                if let Some(at) = &at {
+                    a["at"] = json!(at);
+                }
+                a
+            })
+            .collect();
+        let set_req: SetChecksumsReq = serde_json::from_value(json!({ "accepts": accepts }))
+            .map_err(|e| McpError::internal_error(e.to_string(), None))?;
+        let accepted = match self.set_artifact_checksums(Parameters(set_req)).await {
+            Err(e) => {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "checksums: accepting them against {change_id:?} was refused, so \
+                         NOTHING WAS WRITTEN, the change included: {}",
+                        e.message
+                    ),
+                    None,
+                ));
+            }
+            Ok(r) if r.is_error == Some(true) => {
+                let why = r
+                    .content
+                    .iter()
+                    .filter_map(|c| c.as_text().map(|t| t.text.clone()))
+                    .collect::<Vec<_>>()
+                    .join(" ");
+                return Err(McpError::invalid_params(
+                    format!(
+                        "checksums: accepting them against {change_id:?} was refused, so \
+                         NOTHING WAS WRITTEN, the change included: {why}"
+                    ),
+                    None,
+                ));
+            }
+            Ok(r) => r.structured_content.unwrap_or(JsonValue::Null),
+        };
+        let mut out = changed.structured_content.unwrap_or_else(|| json!({}));
+        let mut accepted = accepted;
+        if let Some(o) = accepted.as_object_mut() {
+            o.remove("next_step");
+            o.remove("the_person_you_are_talking_to");
+        }
+        out["checksums"] = accepted;
+        ok_json(out)
+    }
+
+    async fn change_event_steps(
+        &self,
+        req: AddChangeEventReq,
+        nulled: Vec<String>,
+        covered: &[String],
     ) -> Result<CallToolResult, McpError> {
         // The commonest mistake, caught where it is made. `description` is not a
         // ChangeEvent field; accepting it (rather than letting serde refuse with
@@ -1167,7 +1343,10 @@ impl ReflowService {
             )
             .map_err(dyno_err)?;
             changed.push(json!({ "node_id": a.node_id, "action": action }));
-            if a_type == reflow2_core::nodes::node::ARTIFACT && action != "removed" {
+            if a_type == reflow2_core::nodes::node::ARTIFACT
+                && action != "removed"
+                && !covered.contains(&a.node_id)
+            {
                 touched_files += 1;
             }
         }
@@ -1242,11 +1421,17 @@ impl ReflowService {
         // came within two writes of add_change_event, 207 of them right after
         // it, and nothing in this reply named that step. Said only when an
         // Artifact is among `affected`, the case the step is owed for.
+        // Since 2026-11-21 the step is this call's own `checksums`, so a file
+        // accepted there is not owed and the cue names `checksums` first
+        // (dec:recording-a-change-accepts-its-files-checksums-and-record-the-
+        // build-is-announced-for-removal).
         if touched_files > 0 {
             out["next_step"] = JsonValue::String(format!(
-                "this change touched {touched_files} registered file(s): accept their checksums \
-                 against it with set_artifact_checksums (disposition `design_updated`, \
-                 `design_change_event_id` {:?}), so the files and the change are one record",
+                "this change touched {touched_files} registered file(s) whose checksums it did \
+                 not accept: send this call again with them in `checksums` (each \
+                 `{{artifact_id, checksum?}}`), or accept them with set_artifact_checksums \
+                 (disposition `design_updated`, `design_change_event_id` {:?}), so the files \
+                 and the change are one record",
                 req.id
             ));
         }

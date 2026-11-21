@@ -32,6 +32,8 @@
 //!    wording (`crate::measure::NotMeasured::reason`) and nothing is sent: an
 //!    accept must never move a baseline to a guess, and the server's own
 //!    `checksum_or_measure` refuses the same way.
+//!    Every checksum-less item of `add_change_event`'s `checksums` is measured the
+//!    same way (2026-11-21), since those items are accepted as these are.
 //! 3. `reconcile_artifacts` with no `observed`: every Artifact is paged with an
 //!    internal `scan_nodes`, measured, and sent as `observed` the way the
 //!    server's own `measure_registered` builds it — absent → `present: false`,
@@ -127,6 +129,9 @@ pub enum Rewrite {
 /// The tools whose checksum-less calls this fills in.
 const LINK: &str = "link_artifact";
 const SET_MANY: &str = "set_artifact_checksums";
+/// `add_change_event`, whose `checksums` items are accepted the way `set_artifact_checksums`
+/// items are (dec:recording-a-change-accepts-its-files-checksums-and-record-the-build-is-announced-for-removal).
+const CHANGE: &str = "add_change_event";
 const RECONCILE: &str = "reconcile_artifacts";
 
 impl ClientMeasure {
@@ -149,7 +154,7 @@ impl ClientMeasure {
     pub fn banner(&self) -> String {
         match &self.root {
             Some((root, source)) => format!(
-                "files named by {LINK}, {SET_MANY} and {RECONCILE} are measured on \
+                "files named by {LINK}, {SET_MANY}, {CHANGE}'s `checksums` and {RECONCILE} are measured on \
                  this machine under {} ({}); the server cannot see this disk and records each \
                  value as asserted",
                 root.display(),
@@ -160,7 +165,7 @@ impl ClientMeasure {
             ),
             None => format!(
                 "no root to measure files under: this session was started with no \
-                 .reflow2.toml folder and no --tree-root, so {LINK}, {SET_MANY} and \
+                 .reflow2.toml folder and no --tree-root, so {LINK}, {SET_MANY}, {CHANGE}'s `checksums` and \
                  {RECONCILE} called without a checksum are sent as they came and the reply says \
                  nothing was measured here. The current directory is never guessed."
             ),
@@ -171,7 +176,7 @@ impl ClientMeasure {
     pub fn notice(&self) -> Option<String> {
         self.root.as_ref().map(|(root, _)| {
             format!(
-                "📏 FILES ARE MEASURED HERE. {LINK}, {SET_MANY} and {RECONCILE} \
+                "📏 FILES ARE MEASURED HERE. {LINK}, {SET_MANY}, {CHANGE}'s `checksums` and {RECONCILE} \
                  called without a checksum hash the folder's own files on this machine under {} \
                  (sha256, never content) and send the result; the server cannot see this disk and \
                  records each value as asserted, and the reply's `measurement` block says so. \
@@ -209,8 +214,12 @@ impl ClientMeasure {
 
         let wants = match name.as_str() {
             LINK => lacks(&args, "checksum"),
-            SET_MANY => args
-                .get("accepts")
+            SET_MANY | CHANGE => args
+                .get(if name == SET_MANY {
+                    "accepts"
+                } else {
+                    "checksums"
+                })
                 .and_then(Value::as_array)
                 .is_some_and(|items| {
                     items
@@ -237,7 +246,20 @@ impl ClientMeasure {
                 Some(x) => x,
                 None => return unchanged(),
             },
-            SET_MANY => match self.set_many(root, args, &id, up).await {
+            SET_MANY | CHANGE => match self
+                .set_many(
+                    root,
+                    args,
+                    if name == SET_MANY {
+                        "accepts"
+                    } else {
+                        "checksums"
+                    },
+                    &id,
+                    up,
+                )
+                .await
+            {
                 Ok(x) => x,
                 Err(refusal) => return Prepared::Answer(vec![refusal_message(&id, &refusal)]),
             },
@@ -286,19 +308,21 @@ impl ClientMeasure {
         ))
     }
 
-    /// `set_artifact_checksums`: every checksum-less item measured; ALL OF IT
+    /// `set_artifact_checksums` (its `accepts`) and `add_change_event` (its
+    /// `checksums`): every checksum-less item measured; ALL OF IT
     /// OR NONE OF IT, as the server's own batch — one unmeasurable item refuses
     /// the call, named.
     async fn set_many<F: Forwarder>(
         &self,
         root: &Path,
         mut args: Map<String, Value>,
+        key: &str,
         id: &Value,
         up: &F,
     ) -> Result<(Map<String, Value>, Rewrite), String> {
         let mut measured = Vec::new();
         let mut accepts = args
-            .get("accepts")
+            .get(key)
             .and_then(Value::as_array)
             .cloned()
             .unwrap_or_default();
@@ -324,7 +348,7 @@ impl ClientMeasure {
             o.insert("checksum".into(), Value::String(m.checksum.clone()));
             measured.push((artifact_id, m));
         }
-        args.insert("accepts".into(), Value::Array(accepts));
+        args.insert(key.into(), Value::Array(accepts));
         Ok((
             args,
             Rewrite::Checksums {

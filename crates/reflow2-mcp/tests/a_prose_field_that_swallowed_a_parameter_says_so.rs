@@ -168,6 +168,7 @@ async fn add_change_event_reports_it_too() {
     let out = s
         .add_change_event(Parameters(
             AddChangeEventReq {
+                checksums: None,
                 description: None,
                 id: "chg:swallowed".into(),
                 name: Some("Something moved".into()),

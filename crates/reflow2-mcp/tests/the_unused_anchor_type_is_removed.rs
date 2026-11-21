@@ -183,7 +183,8 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
     // renamed stubs since 2026-10-25): those entries say "removed in the next
     // release" of a tool nothing serves. It may also list an item THIS build
     // still serves and announces (a reply field, since 2026-11-20, Anthony:
-    // "Narrow it to Anchor"): its mark is true, and is taken out of the text
+    // "Narrow it to Anchor"; a whole tool, since 2026-11-21, "Allow served
+    // tools too"): its mark is true, and is taken out of the text
     // below, so what this checks is the bug it was written for, a mark left on
     // something already gone, or one with no registry entry behind it.
     let mut marks: Vec<String> = Vec::new();
@@ -201,11 +202,17 @@ async fn no_served_text_says_anything_is_removed_in_the_next_release() {
             );
             let served = tools.iter().any(|t| t.name == tool);
             match d["item"]["kind"].as_str() {
-                // A removed tool's entry: nothing serves it.
-                Some("tool") => assert!(
-                    !served,
-                    "a deprecated tool still served is not what this release removes: {d}"
-                ),
+                // A removed tool's entry: nothing serves it, and its mark is in
+                // the registry alone.
+                Some("tool") if !served => {}
+                // A tool going in the NEXT release, still served (2026-11-21,
+                // Anthony: "Allow served tools too", for record_the_build):
+                // its mark is the true one, as a field's is.
+                Some("tool") => marks.push(format!(
+                    "DEPRECATED in {}, removed in the next release: {}",
+                    d["deprecated_in"].as_str().unwrap_or_default(),
+                    d["what_to_do"].as_str().unwrap_or_default()
+                )),
                 // A field or argument going in the NEXT release: the tool that
                 // carries it is served, and its mark is the true one.
                 Some("reply_field" | "argument") => {

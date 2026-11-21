@@ -7332,6 +7332,26 @@ pub struct AddChangeEventReq {
     /// nothing is written. `invalidates` still answers one after the fact.
     #[serde(default)]
     pub answers: Option<Vec<AnswerReq>>,
+    /// THE ARTIFACTS THIS CHANGE TOUCHED, each one's checksum accepted
+    /// against this change in the same call (`design_updated`) and drawn
+    /// CHANGED, so it need not be listed in `affected` too. Each item is
+    /// `{artifact_id, checksum?}`; a checksum left out is measured where it
+    /// can be read. Every artifact must already exist, or nothing is
+    /// written; one whose acceptance is refused takes the whole call back.
+    #[serde(default)]
+    pub checksums: Option<Vec<ChangeFileReq>>,
+}
+
+/// One artifact a change touched, for `add_change_event`'s `checksums`.
+#[derive(Debug, Deserialize, serde::Serialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+pub struct ChangeFileReq {
+    /// The Artifact (`art:...`) the change touched.
+    pub artifact_id: String,
+    /// Its new checksum. Left out, it is measured where it can be read (a
+    /// server holding the tree, or a local client); elsewhere pass it.
+    #[serde(default)]
+    pub checksum: Option<String>,
 }
 
 /// One finding a change answered, for `add_change_event`'s `answers` list.
