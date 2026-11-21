@@ -949,17 +949,11 @@ joined by *traceability* edges) for HEAL's topology detectors.
     **What to do:** line, and every item this release removes (a tool removed now answers its
     old name with a refusal saying what to do, for this one release). Set each new entry's
     `deprecated_in` to this release's version; `every_deprecation_is_announced_in_the_changelog`
-    checks the assembled section. **Telling the people who rely on the MCP server is owed before
-    the release ships** — a deprecation nobody hears about is a removal with extra steps.
-    Anthony decided how on 2026-10-14
-    (`dec:anthony-tells-the-mcp-users-of-a-deprecation-before-the-release-ships`):
-    - The agent cutting the release drafts a short note for Alex from this release's
-      `### Deprecated` and `### Removed` entries and their **What to do:** lines, in plain words,
-      and gives it to Anthony.
-    - Anthony sends it, however he normally reaches Alex. On his request the agent may put it
-      in his Gmail as a draft; the agent never sends it.
-    - **The release is not tagged until Anthony says he has told Alex.** A release that
-      deprecates and removes nothing owes no note.
+    checks the assembled section. **No separate note to the MCP users is owed** (Anthony,
+    2026-11-21, `dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, replacing the
+    2026-10-14 rule): a deprecation is announced in the notes, in the tool list's mark, and in
+    each reply that uses it (`deprecation_notice`), and the tag waits only for his merge word
+    and his sentence naming the tag.
 - **Structural topology detectors are selective.** A design's golden thread is tree-shaped,
   where every internal node is a naive articulation point — so `single_point_of_failure`
   only fires when a node separates ≥2 real subsystems (see `structure.rs`).
