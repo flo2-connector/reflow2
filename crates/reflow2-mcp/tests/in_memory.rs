@@ -41,6 +41,7 @@ mod a_closure_criterion_is_declared_on_the_served_surface;
 mod a_composed_prompt_serves_its_pieces;
 mod a_composed_reply_holds_its_budget;
 mod a_constructor_accepts_the_owners_word_in_one_call;
+mod a_constructor_draws_the_edges_it_is_nearly_always_followed_by;
 mod a_constructor_names_every_edge_it_drew;
 mod a_constructor_says_what_it_replaced;
 mod a_constructor_stores_the_status_it_was_given;

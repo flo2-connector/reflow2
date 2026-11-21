@@ -61,6 +61,8 @@ async fn owner(s: &ReflowService) -> Value {
 fn decision(id: &str, status: Option<&str>, approver: Option<&str>) -> DecisionReq {
     let subject = id.trim_start_matches("dec:").replace('-', " ");
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(format!("Whether the {subject} goes left or right")),
         decision: Some(format!(

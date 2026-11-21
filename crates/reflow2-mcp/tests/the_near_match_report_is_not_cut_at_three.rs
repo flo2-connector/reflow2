@@ -85,6 +85,8 @@ const WINDOW: usize = 12;
 
 fn decision(id: &str, name: &str, body: &str) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(name.into()),
         decision: Some(body.into()),
