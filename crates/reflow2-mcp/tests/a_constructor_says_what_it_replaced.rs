@@ -90,6 +90,8 @@ fn req(id: &str, name: &str, statement: &str) -> RequirementReq {
 
 fn decision(id: &str, name: &str, text: &str, rationale: Option<&str>) -> DecisionReq {
     DecisionReq {
+        authored_by: None,
+        documented_by: None,
         id: id.into(),
         name: Some(name.into()),
         decision: Some(text.into()),
