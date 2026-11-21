@@ -2134,6 +2134,14 @@ pub struct IdName {
     /// carried one and no tool could set it.
     #[serde(default)]
     pub spec: Option<String>,
+    /// Components that provide it, by id: each draws PROVIDES in this call. A
+    /// missing id is refused and nothing is written; a revise only adds.
+    #[serde(default)]
+    pub provided_by: Option<Vec<String>>,
+    /// Its consumers, by id (a Component, or an Actor outside the design): each
+    /// draws CONSUMES in this call, refused and added as `provided_by` is.
+    #[serde(default)]
+    pub consumed_by: Option<Vec<String>>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]

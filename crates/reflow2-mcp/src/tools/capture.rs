@@ -3118,12 +3118,11 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Create or revise an Interface node — a contract between parts (an API, event, data \
-                       feed, CLI, library boundary, physical/human connection point, or a procedural contract \
-                       between institutions). \
-                       Model one whenever two Components talk to each other, then pair it with \
-                       `provides` and `consumes`: that pairing is what makes a change on one \
-                       side of a boundary surface the other side. \
+        description = "Create or revise an Interface node — a contract where two parts meet (an \
+                       API, event, data feed, CLI, library boundary, physical/human connection \
+                       point, or a procedural contract between institutions). Name its sides with \
+                       `provided_by` and `consumed_by`: that pairing is what makes a change on \
+                       one side of a boundary surface the other side. \
                        CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
                        again with the same id and only what you are changing \u{2014} omitted \
                        fields keep their stored value, so correcting one never means re-sending \
@@ -3142,10 +3141,57 @@ impl ReflowService {
         let node_ty = reflow2_core::nodes::node::INTERFACE;
         let prior = g.get_node(node_ty, &req.id).map_err(dyno_err)?;
         let existed = prior.is_some();
+        // The two sides are arguments, not properties: a `null` for either is
+        // "none", never an unset of a property the node does not hold.
+        let nulled: Vec<String> = nulled
+            .into_iter()
+            .filter(|f| f != "provided_by" && f != "consumed_by")
+            .collect();
         let mut __rf = crate::service::RequiredFields::new(&g, node_ty, &req.id)?;
         let name = __rf.str("name", req.name);
         __rf.refuse_nulled(&nulled)?;
         __rf.finish()?;
+        // THE TWO SIDES ARE RESOLVED AND REFUSED BEFORE ANYTHING IS WRITTEN, so
+        // an interface is never left behind carrying half a seam to a mistyped
+        // id (the rule add_capability's satisfies keeps).
+        let provided_by = req.provided_by.unwrap_or_default();
+        let consumed_by = req.consumed_by.unwrap_or_default();
+        for id in &provided_by {
+            if g.get_node(reflow2_core::nodes::node::COMPONENT, id)
+                .map_err(dyno_err)?
+                .is_none()
+            {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "`provided_by` names '{id}', and there is no Component '{id}' in this \
+                         design, so nothing was written. Create it first, or leave it out and \
+                         draw `provides` later."
+                    ),
+                    None,
+                ));
+            }
+        }
+        let mut consumers: Vec<(String, String)> = Vec::new();
+        for id in &consumed_by {
+            let ty = crate::service::resolve_node_type_or(
+                &g,
+                None,
+                id,
+                "consumed_by",
+                reflow2_core::nodes::node::COMPONENT,
+            )?;
+            if g.get_node(&ty, id).map_err(dyno_err)?.is_none() {
+                return Err(McpError::invalid_params(
+                    format!(
+                        "`consumed_by` names '{id}', and there is no {ty} '{id}' in this design, \
+                         so nothing was written. Create it first, or leave it out and draw \
+                         `consumes` later."
+                    ),
+                    None,
+                ));
+            }
+            consumers.push((ty, id.clone()));
+        }
         let stored = g.add_interface(&req.id, &name).map_err(dyno_err)?;
         let stored = set_optional_props(
             &mut g,
@@ -3158,14 +3204,41 @@ impl ReflowService {
         )?
         .unwrap_or(stored);
         let node = crate::nulls::node_after_unset(&mut g, node_ty, &req.id, &nulled, stored)?;
+        // THE SIDES, through the same graph calls `provides` and `consumes` make,
+        // each named in the reply; a side already drawn is reported, not doubled.
+        let mut edges = crate::drawn_edges::DrawnEdges::new();
+        for id in &provided_by {
+            let e = reflow2_core::nodes::edge::PROVIDES;
+            let present = crate::drawn_edges::present(&g, id, e, &req.id).map_err(dyno_err)?;
+            if !present {
+                g.provides(id, &req.id).map_err(dyno_err)?;
+            }
+            edges.record(id, e, &req.id, present);
+        }
+        for (ty, id) in &consumers {
+            let e = reflow2_core::nodes::edge::CONSUMES;
+            let present = crate::drawn_edges::present(&g, id, e, &req.id).map_err(dyno_err)?;
+            if !present {
+                g.consumes_from(ty, id, &req.id).map_err(dyno_err)?;
+            }
+            edges.record(id, e, &req.id, present);
+        }
+        let sides_named = !provided_by.is_empty() || !consumers.is_empty();
         let found = search_first(&g, &req.id, existed, &name);
         preserve_prior(&mut g, prior.as_ref(), &node);
         let revision = revision_of(&g, prior.as_ref(), &node);
+        let mut node = serde_json::to_value(node).map_err(ser_err)?;
+        edges.attach(&mut node);
         with_capture_notes(
             node,
             // The detect_defects clause is a batch cue (`crate::cues::BATCH_CUES`).
             &format!(
-                "loop: structural change — wire provides/consumes{}",
+                "{}{}",
+                if sides_named {
+                    "loop: structural change — the sides named here are drawn"
+                } else {
+                    "loop: structural change — name its sides with provided_by/consumed_by"
+                },
                 crate::cues::batch_clause(
                     &[
                         "loop_hint/detect_defects",
