@@ -588,6 +588,8 @@ async fn interface_tools_pair_both_sides_of_a_contract() {
             name: Some("Game state feed".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));
@@ -641,6 +643,8 @@ async fn a_contract_with_no_provider_surfaces_as_a_gap_over_the_surface() {
             name: Some("Game state feed".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));
@@ -4308,6 +4312,8 @@ async fn interface_auth_refusal_says_it_is_authentication_not_authorization() {
             name: Some("X".into()),
             description: None,
             spec: None,
+            provided_by: None,
+            consumed_by: None,
         }
         .into()
     )));

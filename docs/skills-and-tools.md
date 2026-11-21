@@ -116,7 +116,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `add_contributor` | **write** | Create or revise a Contributor — who authors and decides the DESIGN itself: a person, an automated coding agent, or an organization. |
 | `add_decision` | **write** | Create or revise a Decision and why it was made (an ADR). |
 | `add_flow` | **write** | Create or revise a Flow — an ordered process linking Capabilities end to end (a user journey, an assembly sequence, an operating loop). |
-| `add_interface` | **write** | Create or revise an Interface node — a contract between parts (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). |
+| `add_interface` | **write** | Create or revise an Interface node — a contract where two parts meet (an API, event, data feed, CLI, library boundary, physical/human connection point, or a procedural contract between institutions). |
 | `add_project` | **write** | Create or revise a Project node. |
 | `add_requirement` | **write** | Create or revise a Requirement node. |
 | `allocate` | **write** | Allocate a Capability to a Component (ALLOCATED_TO) — say WHICH PART of the design will provide the function. |
