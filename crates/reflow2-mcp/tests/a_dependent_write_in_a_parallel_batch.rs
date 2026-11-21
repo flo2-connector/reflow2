@@ -52,6 +52,7 @@ fn epoch(id: &str) -> AddEpochReq {
 
 fn event(id: &str) -> AddChangeEventReq {
     AddChangeEventReq {
+        checksums: None,
         description: None,
         id: id.into(),
         name: Some("A change".into()),

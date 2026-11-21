@@ -291,7 +291,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `reconcile_dependencies` | **read** | Check the declared dependencies against what the build ACTUALLY resolves, and return the reflow2.toml manifest. |
 | `upstream_status` | **read** | Has the design this one DEPENDS ON moved since the declaration was made? |
 | `wall_check` | **read** | DOES THE DECOMPOSITION I DECLARED MATCH THE COUPLING THE CODE ACTUALLY HAS? |
-| `record_the_build` | **write** | Record what you built in one call, at the end of a piece of work: its passing verification, its change event and the findings it answered, its files' checksums, and the work marked built. |
+| `record_the_build` | **write** | DEPRECATED in 0.102.0, removed in the next release: call `add_change_event` with `checksums`, which accepts the files' checksums against the change in the same call; record the check with `add_verification` and mark the work built with `set_capability_status` Record what you built in one call, at the end of a piece of work: its passing verification, its change event and the findings it answered, its files' checksums, and the work marked built. |
 
 ### Time — epochs, change, and what a claim was true of
 

@@ -624,6 +624,18 @@ pub const REGISTRY: &[Deprecation] = &[
         "read `found_in`",
         HUB_SEARCH_DECISION,
     ),
+    // RECORDING WHAT WAS BUILT FOLDS INTO THE CHANGE (Anthony, 2026-11-21,
+    // "Fold into the change"): record_the_build was called 8 times while its
+    // change-then-checksums pair ran by hand in 137 runs, so add_change_event
+    // takes `files` in 0.102.0 and record_the_build goes in the release after.
+    Deprecation::tool(
+        "record_the_build",
+        "0.102.0",
+        "call `add_change_event` with `checksums`, which accepts the files' checksums against \
+         the change in the same call; record the check with `add_verification` and mark the work \
+         built with `set_capability_status`",
+        "dec:recording-a-change-accepts-its-files-checksums-and-record-the-build-is-announced-for-removal",
+    ),
 ];
 
 /// The Decision that announces a hub search reply's three per-design lists.
