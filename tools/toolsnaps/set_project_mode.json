@@ -3,7 +3,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Choose how much this project lets a machine change its design on its own: `flexible` (apply_heal applies structural repairs) or `rigid` (apply_heal proposes them and stops, so a human decides). That one gate is ALL the mode currently changes — said plainly because the older schema wording, \"design is the source of truth\", promised a breadth the code does not implement. ASK THE USER; do not pick for them. Until 2026-07-30 the mode could only be set at genesis, so every design ever made carried the `flexible` DEFAULT and could never move off it — a governance choice nobody made and nobody could revisit. The default records that nobody has chosen, not that flexible was chosen (req:mode-is-chosen-and-changeable).",
+  "description": "Choose this project's governance mode — how much it lets a machine change its design on its own: `flexible` (apply_heal applies its repairs) or `rigid` (apply_heal proposes them and stops, so a human decides). That one gate is ALL the mode currently changes. ASK THE USER; do not pick for them. The `flexible` default records that no choice was made, not that flexible was chosen.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,

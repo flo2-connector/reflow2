@@ -50,23 +50,25 @@ use crate::service::*;
 
 #[tool_router(router = ingest_tools_router, vis = "pub")]
 impl ReflowService {
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Repeat until `status: done`. Usually three rounds, because later passes are gated on the
+    //   discovery classifier and threaded with the ids the earlier ones produced, so they cannot be
+    //   asked up front.
+    // - NOTHING IS WRITTEN until the final round: the earlier ones replay against a throwaway graph,
+    //   so an abandoned handshake leaves no half-design behind. There is no server-side session —
+    //   each call is self-contained, so it survives a restart and works across seats sharing one
+    //   server.
+    // - it is what gives you provenance Fragments back to the source, snapshot-before-overwrite when
+    //   a re-ingest changes something, the resolution bands that ask instead of guessing, and the
+    //   structural pass that catches `Auth` versus `Authentication Service`.
     #[tool(
         description = "Extract a design from freeform text, with YOU as the model — no LLM \
-                       provider is involved. Call it with no `answers`; it replies \
-                       `status: needs_llm` and a list of prompts; answer each in context and call \
-                       again with the SAME input and fragment_id plus EVERY answer so far, \
-                       including earlier rounds. Repeat until `status: done`. Usually three \
-                       rounds, because later passes are gated on the discovery classifier and \
-                       threaded with the ids the earlier ones produced, so they cannot be asked \
-                       up front. NOTHING IS WRITTEN until the final round: the earlier ones \
-                       replay against a throwaway graph, so an abandoned handshake leaves no \
-                       half-design behind. There is no server-side session — each call is \
-                       self-contained, so it survives a restart and works across seats sharing \
-                       one server. Prefer this over calling add_* yourself for anything \
-                       document-shaped: it is what gives you provenance Fragments back to the \
-                       source, snapshot-before-overwrite when a re-ingest changes something, the \
-                       resolution bands that ask instead of guessing, and the structural pass \
-                       that catches `Auth` versus `Authentication Service`. \
+                       provider is involved. Call it with no `answers`; it replies `status: \
+                       needs_llm` and a list of prompts; answer each in context and call again \
+                       with the SAME input and fragment_id plus EVERY answer so far, including \
+                       earlier rounds. Repeat until `status: done` (usually three rounds). NOTHING \
+                       IS WRITTEN until the final round, and each call is self-contained. Prefer \
+                       this over calling add_* yourself for anything document-shaped. \
                        Ask for this to extract requirements and parts from a brief or a spec.",
         title = "Ingest a Document",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -92,23 +94,32 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (cap:corpus-ingest)
+    // - it gathers the prompts for EVERY document into one round, so a hundred documents cost the
+    //   same ~3 rounds a single document does instead of three hundred.
+    // - — reflow2 performs no file I/O — and hand over `text` per document plus an opaque `source`
+    //   locator it stores and never parses.
+    // - so an abandoned corpus leaves no half-design behind. WHAT IT DOES THAT A LOOP CANNOT: one
+    //   epoch for the whole run rather than one per file; cross-document identity, so the same
+    //   component named in forty specs converges on ONE node; and the ambiguous near-match band
+    //   gathered across the corpus and DEDUPLICATED into one question instead of the same question
+    //   forty times.
+    // - RE-RUNNING IS SAFE AND IS THE RESUME PATH: a document whose fragment_id already exists comes
+    //   back `skipped`, not `failed`,
+    // - it names every document that could not be taken.
     #[tool(
-        description = "Turn a WHOLE FOLDER of documents into one design, with you as the model \
-                       (cap:corpus-ingest). The corpus sibling of ingest_step, and preferable to looping it: it \
-                       gathers the prompts for EVERY document into one round, so a hundred documents cost the \
-                       same ~3 rounds a single document does instead of three hundred. YOU walk the directory \
-                       and read the files — reflow2 performs no file I/O — and hand over `text` per document \
-                       plus an opaque `source` locator it stores and never parses. Drive it like ingest_step: \
-                       call with no `answers`, answer everything it returns, call again with the SAME documents \
-                       plus every answer so far, until `status: done`. NOTHING IS WRITTEN until that final \
-                       round, so an abandoned corpus leaves no half-design behind. WHAT IT DOES THAT A LOOP \
-                       CANNOT: one epoch for the whole run rather than one per file; cross-document identity, \
-                       so the same component named in forty specs converges on ONE node; and the ambiguous \
-                       near-match band gathered across the corpus and DEDUPLICATED into one question instead of \
-                       the same question forty times. RE-RUNNING IS SAFE AND IS THE RESUME PATH: a document \
-                       whose fragment_id already exists comes back `skipped`, not `failed`, so pointing it at a \
-                       grown folder ingests only what is new. Read `failures` before you trust the result — it \
-                       names every document that could not be taken. Ask for this to extract design content from a set of documents.",
+        description = "Turn a WHOLE FOLDER of documents into one design, with you as the model — \
+                       the corpus sibling of ingest_step, and preferable to looping it. YOU walk \
+                       the directory and read the files, and pass each one in `documents` with an \
+                       opaque `source` locator. Drive it like ingest_step: call with no `answers`, \
+                       answer everything it returns, call again with the SAME documents plus every \
+                       answer so far, until `status: done`. NOTHING IS WRITTEN until that final \
+                       round. One epoch for the whole run; the same component named in many \
+                       documents converges on ONE node. Re-running is safe: a document already \
+                       ingested comes back `skipped`, so pointing it at a grown folder ingests \
+                       only what is new. Read `failures` before you trust the result. \
+                       Ask for this to extract design content from a set of documents.",
         title = "Ingest a Corpus",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

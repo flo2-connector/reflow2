@@ -4280,14 +4280,17 @@ pub struct AddReadinessReq {
     pub target_type: Option<String>,
     #[serde(default)]
     pub target_id: Option<String>,
-    /// `TRL` (technology) or `MRL` (manufacturing). Required: the two ladders
-    /// are not interchangeable, and a technology can be demonstrable and
-    /// unmanufacturable — which is exactly the case a roadmap must state.
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Required: the two ladders are not interchangeable, and a technology can be demonstrable
+    //   and unmanufacturable — which is exactly the case a roadmap must state.
+    /// `TRL` (technology) or `MRL` (manufacturing). Required.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::readiness_kind_opt")]
     pub kind: Option<String>,
-    /// The rung, 1-9 inclusive. Refused outside that range rather than clamped:
-    /// a clamped 12 silently becomes 9 and reports a technology as mature.
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Refused outside that range rather than clamped: a clamped 12 silently becomes 9 and
+    //   reports a technology as mature.
+    /// The rung, 1-9 inclusive. Refused outside that range rather than clamped.
     #[serde(default)]
     pub level: Option<i64>,
     /// What was demonstrated, where, by whom.
@@ -6234,16 +6237,19 @@ pub struct RegionsReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct CapabilitySignatureReq {
-    /// The Capability whose signature this is. Refused if it does not exist —
-    /// a typo must not mint a capability whose only content is a signature.
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Refused if it does not exist — a typo must not mint a capability whose only content is
+    //   a signature.
+    /// The Capability whose signature this is. Refused if it does not exist.
     #[serde(alias = "id")]
     #[serde(alias = "node_id")]
     #[schemars(extend("x-reflow2-aliases" = ["id", "node_id"]))]
     pub capability_id: String,
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Free text and domain-neutral, so a biology or hardware design is not forced into
+    //   software words.
     /// What KIND of capability this is: validation / transform / query /
-    /// persistence / decision / actuation / io / compute. Free text and
-    /// domain-neutral, so a biology or hardware design is not forced into
-    /// software words.
+    /// persistence / decision / actuation / io / compute. Free text.
     #[serde(default)]
     pub capability_type: Option<String>,
     /// What the capability CONSUMES, as a list of names or types.
@@ -6682,9 +6688,11 @@ pub struct IngestStepReq {
     /// The freeform design material to extract from — a brief, a spec, a review
     /// note, one document out of a folder.
     pub input: String,
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - reusing one is refused, because it would overwrite the prior run's Fragment and reopen
+    //   its epoch.
     /// Provenance Fragment id for this run. Distinct per document: reusing one
-    /// is refused, because it would overwrite the prior run's Fragment and
-    /// reopen its epoch.
+    /// is refused.
     pub fragment_id: String,
     /// Human title for the provenance Fragment (e.g. the file name).
     #[serde(default)]
@@ -6693,9 +6701,11 @@ pub struct IngestStepReq {
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_provenance_opt")]
     pub provenance: Option<String>,
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Pass ONE epoch for a whole corpus run, or 500 documents open 500 epochs and the history
+    //   reads as five hundred unrelated events instead of one ingest.
     /// The epoch matched-evolved snapshots pin to. Pass ONE epoch for a whole
-    /// corpus run, or 500 documents open 500 epochs and the history reads as
-    /// five hundred unrelated events instead of one ingest.
+    /// corpus run.
     #[serde(default)]
     pub epoch_id: Option<String>,
     /// Every answer gathered so far, earlier rounds included — the run is
@@ -6730,9 +6740,10 @@ pub struct IngestCorpusStepReq {
     /// which document's Fragment a shared node is first attributed to; it does
     /// NOT affect the merged name, which is settled from the two strings alone.
     pub documents: Vec<CorpusDocumentReq>,
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - never one epoch per document, which is what makes 500 files read as 500 unrelated events.
     /// The ONE epoch the whole run pins to. Omit and it is
-    /// `epoch:corpus-ingest` — never one epoch per document, which is what
-    /// makes 500 files read as 500 unrelated events.
+    /// `epoch:corpus-ingest` — never one epoch per document.
     #[serde(default)]
     pub epoch_id: Option<String>,
     /// How this content entered the graph. Defaults to `imported`, because a
@@ -7999,12 +8010,12 @@ pub struct OpenQuestionsReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct WithdrawQuestionReq {
+    // HISTORY moved out of the served argument text on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - (item 6 of req:small-read-back-faults-from-the-cogito-trial-are-fixed: a self-asked
+    //   question could not be withdrawn, so a correction had to be asked instead)
     /// The question to withdraw: the `gap_id` it was asked ABOUT, or — for a
     /// question asked with `ask_question`, which no gap stands behind — its
-    /// own `question_id`, as `open_questions` carries both. Either names it
-    /// (item 6 of req:small-read-back-faults-from-the-cogito-trial-are-fixed:
-    /// a self-asked question could not be withdrawn, so a correction had to
-    /// be asked instead).
+    /// own `question_id`, as `open_questions` carries both. Either names it.
     #[serde(alias = "question_id")]
     #[schemars(extend("x-reflow2-aliases" = ["question_id"]))]
     pub gap_id: String,

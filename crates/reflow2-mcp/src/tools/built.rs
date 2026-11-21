@@ -341,15 +341,17 @@ impl ReflowService {
         ok_json(payload)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Catches the two opposite failures: the build taking something nothing declares (the reliance
+    //   nobody agreed to, which breaks with nobody at fault) and a declaration the build no longer
+    //   takes (a stale promise).
     #[tool(
         description = "Check the declared dependencies against what the build ACTUALLY resolves, \
-                       and return the reflow2.toml manifest. Catches the two opposite failures: \
-                       the build taking something nothing declares (the reliance nobody agreed \
-                       to, which breaks with nobody at fault) and a declaration the build no \
-                       longer takes (a stale promise). Pass `observed` read fresh from the build \
-                       files — Cargo.toml, docker-compose.yml, versions.env, whatever holds the \
-                       pins. Declaring nothing reads as 'nobody has said', never as 'depends on \
-                       nothing'.",
+                       and return the reflow2.toml manifest. Catches both the build taking \
+                       something nothing declares and a declaration the build no longer takes. \
+                       Pass `observed` read fresh from the build files — Cargo.toml, \
+                       docker-compose.yml, versions.env, whatever holds the pins. Declaring \
+                       nothing reads as 'nobody has said', never as 'depends on nothing'.",
         title = "Reconcile Dependencies",
         annotations(read_only_hint = true)
     )]
@@ -374,24 +376,33 @@ impl ReflowService {
         ok_json(serde_json::json!({ "report": report, "manifest": manifest }))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — DEPENDS_ON, PROVIDES/CONSUMES, CONTAINS at every level — reporting cycles at each level,
+    //   coupling lifted through containment, and both directions of disagreement: a coupling the
+    //   source has that nobody declared, and a contract the design declares that no import backs.
+    // - NO CONFIGURATION: the file set is the design's own registered artifacts, so you get this the
+    //   moment link-artifacts has run.
+    // - IT NEVER QUIETLY GUESSES — files in a language it cannot read, files the design names and
+    //   disk lacks, imports resolving to no registered file, and source files the design has never
+    //   heard of are each COUNTED AND NAMED.
+    // - IT REPORTS AND NEVER WRITES: an import is coupling, not a contract, so a declared pair the
+    //   source lacks is reported as exactly that, and nothing here becomes a CONSUMES edge — that is
+    //   your call, made with evidence.
+    // - A Python instrument (the same file as tools/wall_check.py) run by the server against the
+    //   live design; a missing python3 is refused with what to do.
+    // - Served since 2026-09-14 because a consumer re-wrote it by hand 25 days after it was built
+    //   here.
     #[tool(
-        description = "DOES THE DECOMPOSITION I DECLARED MATCH THE COUPLING THE CODE ACTUALLY HAS? Walks the \
-                       imports of every file the design registers (Artifact `location` + REALIZES → \
-                       Component) and holds them against the walls the design declares — DEPENDS_ON, \
-                       PROVIDES/CONSUMES, CONTAINS at every level — reporting cycles at each level, coupling \
-                       lifted through containment, and both directions of disagreement: a coupling the source \
-                       has that nobody declared, and a contract the design declares that no import backs. NO \
-                       CONFIGURATION: the file set is the design's own registered artifacts, so you get this \
-                       the moment link-artifacts has run. IT NEVER QUIETLY GUESSES — files in a language it \
-                       cannot read, files the design names and disk lacks, imports resolving to no registered \
-                       file, and source files the design has never heard of are each COUNTED AND NAMED. IT \
-                       REPORTS AND NEVER WRITES: an import is coupling, not a contract, so a declared pair the \
-                       source lacks is reported as exactly that, and nothing here becomes a CONSUMES edge — \
-                       that is your call, made with evidence. A Python instrument (the same file as \
-                       tools/wall_check.py) run by the server against the live design; a missing python3 is \
-                       refused with what to do. Served since 2026-09-14 because a consumer re-wrote it by hand \
-                       25 days after it was built here. `root` points at another checkout; `budget_chars` \
-                       bounds the report.",
+        description = "DOES THE DECOMPOSITION I DECLARED MATCH THE COUPLING THE CODE ACTUALLY HAS? \
+                       Walks the imports of every file the design registers (Artifact `location` + \
+                       REALIZES → Component) and holds them against the walls the design declares \
+                       (DEPENDS_ON, PROVIDES/CONSUMES, CONTAINS at every level): cycles at each \
+                       level, coupling lifted through containment, couplings nobody declared, and \
+                       declared contracts no import backs. Needs no configuration once \
+                       link-artifacts has run. Files it cannot read or resolve are COUNTED AND \
+                       NAMED, never guessed. IT REPORTS AND NEVER WRITES: no CONSUMES edge is \
+                       drawn. A missing python3 is refused. `root` points at another checkout; \
+                       `budget_chars` bounds the report.",
         title = "Wall Check",
         annotations(read_only_hint = true)
     )]

@@ -136,12 +136,12 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `provides` | **write** | Record that a Component PROVIDES an Interface — it is the side that implements the contract. |
 | `review_relations` | **write** | Record what a node relates to — or that nothing does. |
 | `satisfies` | **write** | Link a Capability to a Requirement it SATISFIES — the first half of the golden thread, from a stated need to the function that serves it. |
-| `set_capability_delivery` | **write** | Declare WHAT KIND of thing delivers a capability — and never whether it was delivered, which stays COMPUTED from the golden thread. |
-| `set_capability_signature` | **write** | Record what a Capability TAKES IN and PUTS OUT — its functional signature, which is the black-box interface at that tier (`req:recursive-black-box-decomposition`: every element of a design is a black box with inner function AND INTERFACES). |
+| `set_capability_delivery` | **write** | Declare WHAT KIND of thing delivers a capability — never whether it was delivered, which stays computed. |
+| `set_capability_signature` | **write** | Record what a Capability TAKES IN and PUTS OUT — its functional signature, the black-box interface at that tier. |
 | `set_capability_status` | **write** | Set a Capability's lifecycle status: `planned` (the default) / `in_progress` / `realized` / `verified`. |
 | `set_interface_designation` | **write** | Give an Interface its external ROLE, which is what makes composition computable: `published` (this design OFFERS the contract and others may rely on it), `required` (this design NEEDS one of these FROM OUTSIDE), `both` (rare, and therefore meaningful), or `internal` (plumbing its owner may change freely). |
 | `set_interface_spec` | **write** | Fill in what a consumer of this contract must AGREE with — the paradigm (sync/async), the payload format, the field-level schema, the endpoint and permitted operations, authentication, transport security, and the error model. |
-| `set_project_mode` | **write** | Choose how much this project lets a machine change its design on its own: `flexible` (apply_heal applies structural repairs) or `rigid` (apply_heal proposes them and stops, so a human decides). |
+| `set_project_mode` | **write** | Choose this project's governance mode — how much it lets a machine change its design on its own: `flexible` (apply_heal applies its repairs) or `rigid` (apply_heal proposes them and stops, so a human decides). |
 | `set_provenance` | **write** | Record how a node entered the graph: `authored` (the default, someone stated it) / `planned` / `inferred` (read back out of an existing system) / `healed` / `reconciled` / `imported`. |
 | `set_requirement_designation` | **write** | Designate a Requirement as a PROMISE THIS DESIGN PUBLISHES — a behavioural commitment a consumer may rely on — or back to INTERNAL intent nobody outside sees. |
 | `set_requirement_lineage` | **write** | Set where a Requirement came from — `original` (the stakeholder's own word, stated directly), `decomposed` (a 1:1 split of a parent, normally set for you by `decomposes`), or `derived` (brought into existence by a Decision: a technical necessity nobody asked for that a design decision forced, or the owner's words chosen through a Decision — the option they picked, stated as intent; pair it with governed_by to that Decision, whose support get_node then reads as the requirement's `reason_to_exist`). |
@@ -194,7 +194,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `vocabulary_coverage` | read | Which of the design VOCABULARY this design has ever actually used — node types, edge types, and properties on the types that have instances |
 | `what_next` | read | Which decisions to settle next — a rough guide, not an ordering, for a design with more open questions than anyone can hold at once |
 | `withdraw_defect_acknowledgement` | **write** | Withdraw a defect's acknowledgement, returning it to the open list. |
-| `withdraw_gap_acknowledgement` | **write** | Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. |
+| `withdraw_gap_acknowledgement` | **write** | Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted — and the gap returns to `detect_gaps`' open list on its next run. |
 | `confirmation_ledger` | **read** | The confirmation ledger (BL-35): for every capability with built artifacts, when was its claim last checked against reality, and what was the answer — drift events and whether each was resolved, accept claims split into design_holds vs design_updated, first baselines counted apart from both (they are not accepts), clean-reconcile confirmations with when they last happened, design edits on the record, and a state per capability: drifting (an observed divergence is unanswered), confirmed (examined, with the claim history visible), or unexamined (nobody has ever looked — NOT the same as confirmed). |
 | `consumption_report` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `design_regions` | **read** | What parts this design has, so a session that holds NOTHING can pick where to stand. |
@@ -213,7 +213,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `propagate_change` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `propagate_from` | **read** | Speculative blast radius from seed node ids — what would touching these reach? |
 | `propose_allocation` | **read** | Propose a capability→component allocation by Leiden clustering over the DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never applied; `allocate` records what you actually decide. |
-| `propose_heal` | **read** | Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. |
+| `propose_heal` | **read** | Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, SPOFs, duplicates, disconnected communities — as a list of repairs with what each would change. |
 | `reviewed_defects` | **read** | Structural defects that were reviewed and accepted, each with the reason given. |
 | `reviewed_gaps` | **read** | Gaps that were reviewed and accepted, each with the reason somebody gave — the record `acknowledge_gaps` writes, kept as a Decision node so it outlives the session. |
 | `seam_coverage` | **read** | Which boundaries between parts are covered by a contract — ANSWERED AT THE ALTITUDE YOU ASK AT. |
@@ -257,7 +257,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `calibrated_against` | **write** | Record that a value was FITTED to a piece of evidence, so that same evidence can no longer count as its validation (CALIBRATED_AGAINST). |
 | `coverage_report` | read | What has the design never been told about? |
 | `evidence_report` | read | Where did each capability's evidence actually come from? |
-| `performed_in` | **write** | Record WHERE a check was actually carried out (PERFORMED_IN). |
+| `performed_in` | **write** | Record WHERE a check was actually carried out (PERFORMED_IN): a Verification to the Environment it ran in. |
 | `reconcile_verification` | **write** | Compare what a real test run REPORTED against what each Verification records — the P4 reconcile, last of the three feedback loops (BL-30): reconcile_artifacts asks about the code, this about the outcomes, reconcile_deployment about what runs. |
 | `set_evidence_scope` | **write** | Record what a check HELD FIXED and what it VARIED for one claim — the input scope of its evidence. |
 | `set_verification_kind` | **write** | Set a Verification's kind: `verification` (built right — checks the spec) or `validation` (the right thing — checks the operational intent). |
@@ -312,21 +312,21 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `report_manual_work` | **write** | WRITES ONE RECORD (manual_work_ledger READS them all): record work THIS SESSION did BY HAND that reflow2 already serves, or should — the negative space. |
 | `manual_work_ledger` | **read** | READS THEM ALL (report_manual_work WRITES one): every piece of hand-rolled work this design has recorded, with the diagnosis that separates a MISSING tool from an UNFINDABLE one. |
 | `snapshot_before_change` | **write** | Record a change to a node in an epoch (snapshots the prior state). |
-| `close_increment` | **write** | CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, honestly, on the owner's word: `deferred` (still meant, later), `dropped` (no longer meant; `reason` says why) or `superseded` (by the increment `superseded_by` names). |
+| `close_increment` | **write** | CLOSE AN INCREMENT THAT WILL NOT BE FINISHED, on the owner's word: `deferred` (still meant, later), `dropped` (no longer meant; `reason` says why) or `superseded` (by the increment `superseded_by` names). |
 
 ### Operate — releases, environments, resources, readiness
 
 | tool | | what it does |
 |---|---|---|
 | `add_environment` | **write** | Create or revise an Environment — where a Release runs: a cloud region, a lab bench, a physical site. |
-| `add_readiness` | **write** | Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an enabling technology — the input fact a derived roadmap is computed from (BL-68). |
+| `add_readiness` | **write** | Create or revise an OBSERVED technology-readiness level (TRL or MRL, 1-9) for an enabling technology — the input fact a derived roadmap is computed from. |
 | `add_release` | **write** | Create or revise a Release record — a packaged, operable version: a container image, a published package, a manufactured build. |
 | `add_resource` | **write** | Create or revise a Resource the built thing needs — a database, a queue, a secret, a GPU, power. |
 | `deploy_to` | **write** | Deploy a Release to an Environment (DEPLOYED_TO), with the deployment's state — `planned`, `active` or `rolled_back`. |
 | `forecast_readiness` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `gate_on` | **read** | RETIRED on 2026-10-30 (0.96.0): a refusing stub that changes nothing, and every call to it is counted; at the re-count (about 2026-12-23) it is deleted if nobody called it and restored if somebody did. |
 | `readiness_report` | read | The DERIVED roadmap for one increment (BL-68): the earliest epoch by which every technology it is GATED_ON clears the level demanded of it, with the reason named — 'cannot deliver before 2035, because the converter is TRL 3 today, projected 7 at 2035, and this increment needs 7' |
-| `reconcile_deployment` | **write** | Compare what is observed RUNNING against what DEPLOYED_TO declares — the as-fielded reconcile, sibling of reconcile_artifacts one phase later (BL-9). |
+| `reconcile_deployment` | **write** | Compare what is observed RUNNING against what DEPLOYED_TO declares — the as-fielded sibling of reconcile_artifacts. |
 | `release_includes` | **write** | Record that a Release ships an Artifact or Component (INCLUDES) — the as-released view. |
 | `release_includes_all` | **write** | Derive a Release's whole INCLUDES manifest from the design in one call: every Artifact and every Component, with each artifact's current checksum frozen as shipped. |
 | `release_report` | read | The as-released view (BL-34): what a Release actually shipped — artifacts with their frozen cut-time checksums, components, the capabilities that build covers, the built capabilities it leaves out, and where it is deployed |
@@ -346,9 +346,9 @@ description, which an agent sees in the tool schema; this table is for a person 
 |---|---|---|
 | `alternatives_for` | read | List the alternatives registered under a decision point (BL-70) — the Artifact pointers GOVERNED_BY the Decision, with their export locations |
 | `analyze_alternatives` | read | Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70) |
-| `apply_merge` | **write** | Apply a resolved three-way merge into the live design — the write side of merge_designs (BL-80). |
+| `apply_merge` | **write** | Apply a resolved three-way merge into the live design — the write side of merge_designs. |
 | `certify_preservation` | read | Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling |
-| `collapse_decision` | **write** | Collapse a decision point (BL-70): choose the winning alternative. |
+| `collapse_decision` | **write** | Collapse a decision point: choose the winning alternative. |
 | `compare_designs` | read | Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality |
 | `compose_and_analyse` | read | Analyse THIS design together with another one — a dependency, a partner system — and report what only shows up when both are present |
 | `export_graph` | read | The whole design as one portable document — every node and edge, sorted so two exports of an unchanged graph are byte-identical |
@@ -362,17 +362,17 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `register_alternative` | **write** | Register an alternative under a proposed decision point (BL-70): a lightweight Artifact pointer that names where the alternative's design export lives (branch-by-file), GOVERNED_BY the Decision and CONTRADICTS its siblings. |
 | `seam_report` | read | Compare paired boundaries across a seam and say where two designs DISAGREE — the check the ordinary detectors cannot do, because they reason about structure and a contract mismatch is a comparison of PROPERTIES ACROSS A PAIR |
 | `set_decision_status` | **write** | Set a Decision's lifecycle status — proposed / accepted / deferred / contested / superseded / rejected (BL-70). |
-| `alternatives_for` | **read** | List the alternatives registered under a decision point (BL-70) — the Artifact pointers GOVERNED_BY the Decision, each with its export location, ready to feed to analyze_alternatives. |
-| `analyze_alternatives` | **read** | Compare parallel design alternatives on the same measures — an analysis of alternatives (BL-70). |
-| `certify_preservation` | **read** | Decide whether a restructuring PRESERVED FUNCTION — compare_designs' verdict-bearing sibling. |
+| `alternatives_for` | **read** | List the alternatives registered under a decision point — the Artifact pointers GOVERNED_BY the Decision, each with its export location, ready to feed to analyze_alternatives. |
+| `analyze_alternatives` | **read** | Compare parallel design alternatives side by side on the same measures. |
+| `certify_preservation` | **read** | Decide whether a restructuring PRESERVED FUNCTION. |
 | `compare_designs` | **read** | Compare two as-designed records — the design-vs-design sibling of the reconcile family, which only ever compares design against reality. |
 | `compose_and_analyse` | **read** | Analyse THIS design together with other designs — a dependency, a partner system, a hub's members — and report the problems at the join: what only shows up when they are present together. |
 | `export_graph` | **read** | The whole design as one portable document — every node and edge, sorted so two exports of an unchanged graph are byte-identical. |
 | `export_surface` | **read** | Export ONLY the published surface — the contracts others are entitled to rely on, and nothing internal. |
-| `merge_designs` | **read** | Propose a three-way merge of two divergent designs against their common ancestor — compare's write-side sibling (BL-80). |
+| `merge_designs` | **read** | Propose a three-way merge of two divergent designs against their common ancestor, per node, per property and for edges: only one side changed → take it; both changed the same way → take it; both changed differently → a conflict, surfaced as a Question for the human, never guessed. |
 | `mirrors` | **read** | The designs this one is composed with, and the version each was pinned to: project id, source graph, surface content hash, and when the mirror was taken. |
-| `pair_designs` | **read** | Compute the seam between this design and another by COMPLEMENTARY ROLE, instead of hand-asserting which boundaries correspond. |
-| `recall_resolutions` | **read** | Recall recorded conflict resolutions (rerere) by their content keys — the advisory half of merge (BL-80 #5). |
+| `pair_designs` | **read** | Compute the seam between this design and another by COMPLEMENTARY ROLE: each boundary declares a role on `Interface.designation`, and `published`/`both` pairs with `required`/`both` when their NAMES match fuzzily AND they agree on medium, transport_security and auth. |
+| `recall_resolutions` | **read** | Recall recorded conflict resolutions (rerere) by their content keys — the advisory half of merge. |
 | `relation_candidates` | **read** | WHICH NODES MIGHT THIS ONE RELATE TO — offered, never drawn. |
 | `seam_report` | **read** | Compare paired boundaries across a seam and say where two designs DISAGREE — the check the ordinary detectors cannot do, because they reason about structure and a contract mismatch is a comparison of PROPERTIES ACROSS A PAIR. |
 | `set_quality_target` | **write** | Declare that this Decision states the quality attribute the design is BUILT FOR — the answer to "what is this system for?". |
@@ -405,7 +405,7 @@ description, which an agent sees in the tool schema; this table is for a person 
 
 | tool | | what it does |
 |---|---|---|
-| `ingest_corpus_step` | **write** | Turn a WHOLE FOLDER of documents into one design, with you as the model (cap:corpus-ingest). |
+| `ingest_corpus_step` | **write** | Turn a WHOLE FOLDER of documents into one design, with you as the model — the corpus sibling of ingest_step, and preferable to looping it. |
 | `ingest_step` | **write** | Extract a design from freeform text, with YOU as the model — no LLM provider is involved. |
 
 ### Skills — reaching the served procedures

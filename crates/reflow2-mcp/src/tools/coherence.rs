@@ -1602,8 +1602,29 @@ impl ReflowService {
         ok_json(json!({ "withdrawn": withdrawn, "defect_id": req.defect_id }))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - circular dependencies, single points of failure, duplicates, disconnected communities
+    // - NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept
+    // - Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what
+    //   each proposes before applying; the check-health skill is the workflow around this.
+    // - WHICH NODE A MERGE KEEPS IS A PERSON'S CHOICE: each merge's `survivor` ranks both candidates
+    //   with their reasons (provenance, standing, priority, status, connections, and which is newer)
+    //   and recommends one — the `keep_id` — only when a real difference separates them; when
+    //   nothing does, `survivor.needs_choice` is true, the reason says a person must pick, and the
+    //   node id never decides.
+    // - AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a
+    //   mechanical repair (a SPOF is a design question, not a heal) — the reply names which.
     #[tool(
-        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — circular dependencies, single points of failure, duplicates, disconnected communities — as a list of repairs with what each would change. NEVER MUTATES: review the plan, then `apply_heal` applies the ones you accept, and a project in `rigid` mode makes even that stop at a proposal. Some repairs DELETE nodes (a duplicate merge keeps one and removes the other), so read what each proposes before applying; the check-health skill is the workflow around this. WHICH NODE A MERGE KEEPS IS A PERSON'S CHOICE: each merge's `survivor` ranks both candidates with their reasons (provenance, standing, priority, status, connections, and which is newer) and recommends one — the `keep_id` — only when a real difference separates them; when nothing does, `survivor.needs_choice` is true, the reason says a person must pick, and the node id never decides. AN EMPTY PLAN SAYS WHICH EMPTY: no defects were found, or defects were found but none has a mechanical repair (a SPOF is a design question, not a heal) — the reply names which. Ask for this when you want suggested repairs for the design's structural problems, to review before anything changes.",
+        description = "Propose a HEAL plan for the structural defects `detect_defects` finds — \
+                       circular dependencies, SPOFs, duplicates, disconnected communities — as a \
+                       list of repairs with what each would change. NEVER MUTATES: `apply_heal` \
+                       applies the ones you accept, and a project in `rigid` mode makes even that \
+                       stop at a proposal. Some repairs DELETE nodes, so read each before \
+                       applying; the check-health skill is the workflow. A merge's `survivor` \
+                       recommends a `keep_id` only when a real difference separates the two; \
+                       otherwise `survivor.needs_choice` is true and a person must pick. \
+                       Ask for this when you want suggested repairs for the design's structural \
+                       problems, to review before anything changes.",
         title = "Propose a Heal",
         annotations(read_only_hint = true)
     )]
@@ -1633,8 +1654,23 @@ impl ReflowService {
         ok_json(g.evaluate_allocation().map_err(dyno_err)?)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - ⚠️ IT ANSWERS THE PERFORMANCE QUESTION SPECIFICALLY (least cross-boundary chatter), and
+    //   other quality targets want other partitions: reliability may deliberately duplicate a
+    //   function, security follows trust boundaries rather than coupling at all.
+    // - ⚠️ AND IT CLUSTERS ON EDGES MOST DESIGNS NEVER DECLARE: on reflow2's own graph that is one
+    //   DEPENDS_ON across 238 capabilities, so it returned one cluster per capability — and now SAYS
+    //   SO, reporting how many edges it had to work with, so 238 singletons cannot be read as a
+    //   proposal.
     #[tool(
-        description = "Propose a capability→component allocation by Leiden clustering over the DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never applied; `allocate` records what you actually decide. ⚠️ IT ANSWERS THE PERFORMANCE QUESTION SPECIFICALLY (least cross-boundary chatter), and other quality targets want other partitions: reliability may deliberately duplicate a function, security follows trust boundaries rather than coupling at all. ⚠️ AND IT CLUSTERS ON EDGES MOST DESIGNS NEVER DECLARE: on reflow2's own graph that is one DEPENDS_ON across 238 capabilities, so it returned one cluster per capability — and now SAYS SO, reporting how many edges it had to work with, so 238 singletons cannot be read as a proposal. Ask for this when you want it to suggest how to group capabilities into components based on their dependencies — a starting grouping to argue with, after checking the reply says it had enough edges to mean anything.",
+        description = "Propose a capability→component allocation by Leiden clustering over the \
+                       DEPENDS_ON edges between capabilities — a SUGGESTED grouping, never \
+                       applied; `allocate` records what you actually decide. It answers the \
+                       performance question (least cross-boundary chatter); other quality targets \
+                       want other partitions. The reply says how many edges it had to work with. \
+                       Ask for this when you want it to suggest how to group capabilities into \
+                       components based on their dependencies — a starting grouping to argue with, \
+                       after checking the reply says it had enough edges to mean anything.",
         title = "Propose an Allocation",
         annotations(read_only_hint = true)
     )]
@@ -1694,9 +1730,21 @@ impl ReflowService {
         )
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could
+    //   drift), observations exist but none declined, or every decline is already dispositioned —
+    //   the reply names which, because "nothing is getting worse" and "nobody is measuring" must
+    //   never read the same.
+    // - (its observations over time, and whether the latest is worse; a null says which null)
     #[tool(
-        description = "All declining quality dimensions across the design, worst first — every node whose latest recorded observation on some `-ility` is worse than the one before, ranked by how far it fell. AN EMPTY LIST SAYS WHICH EMPTY: no observations have been recorded at all (nothing could drift), observations exist but none declined, or every decline is already dispositioned — the reply names which, because \"nothing is getting worse\" and \"nobody is measuring\" must never read the same. Pass `target_id` and `dimension` to read ONE node on one axis (its observations over time, and whether the latest is worse; a null says which null), or either alone to narrow the sweep. Ask for this when you want to know what in the design is getting worse. \
-                       Ask for this to see which quality measures are sliding across the whole design.",
+        description = "All declining quality dimensions across the design, worst first — every \
+                       node whose latest recorded observation on some `-ility` is worse than the \
+                       one before, ranked by how far it fell. An empty list says which empty: \
+                       nothing recorded, none declined, or every decline already dispositioned. \
+                       Pass `target_id` and `dimension` to read ONE node on one axis, or either \
+                       alone to narrow the sweep. \
+                       Ask for this when you want to know what in the design is getting worse. Ask \
+                       for this to see which quality measures are sliding across the whole design.",
         title = "All Quality Drifts",
         annotations(read_only_hint = true)
     )]
@@ -2017,9 +2065,19 @@ impl ReflowService {
         ok_json(body)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered
+    //   —
+    // - returns `withdrawn: false` and names that, exactly as documented;
     #[tool(
-        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is marked `superseded` — kept, not deleted, so the record shows the gap was once judged fine and then reconsidered — and the gap returns to `detect_gaps`' open list on its next run. Withdrawing an acknowledgement that does not exist returns `withdrawn: false` and names that, exactly as documented; it does not invent one to withdraw. Ask for this when a review turns out to have been wrong and a parked gap needs attention again. \
-                       Ask for this to reopen a gap you previously accepted.",
+        description = "Withdraw a gap's acceptance: the Decision `acknowledge_gaps` minted is \
+                       marked `superseded` — kept, not deleted — and the gap returns to \
+                       `detect_gaps`' open list on its next run. Withdrawing an acknowledgement \
+                       that does not exist returns `withdrawn: false`; it does not invent one to \
+                       withdraw. \
+                       Ask for this when a review turns out to have been wrong and a parked gap \
+                       needs attention again. Ask for this to reopen a gap you previously \
+                       accepted.",
         title = "Withdraw a Gap Acknowledgement",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

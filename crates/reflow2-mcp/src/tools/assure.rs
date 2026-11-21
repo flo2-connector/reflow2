@@ -381,18 +381,19 @@ impl ReflowService {
         ))
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Agreement with that evidence afterwards is a FIT, NOT A TEST, so a check resting on it is
+    //   consumed and does not count as independent evidence.
+    // - This has to be recorded rather than detected: no check inside a design can establish its own
+    //   independence, so nothing can find the circularity by analysis.
     #[tool(
         description = "Record that a value was FITTED to a piece of evidence, so that same \
-                       evidence can no longer count as its validation (CALIBRATED_AGAINST). Use \
-                       it for any empirically-calibrated value — a coefficient fitted to a \
-                       published anchor, a constant tuned to a dataset, a model matched to a \
-                       measurement. Agreement with that evidence afterwards is a FIT, NOT A \
-                       TEST, so a check resting on it is consumed and does not count as \
-                       independent evidence. This has to be recorded rather \
-                       than detected: no check inside a design can establish its own \
-                       independence, so nothing can find the circularity by analysis. Also a \
-                       traceability edge — correcting the anchor puts every value fitted to it \
-                       in the blast radius.",
+                       evidence can no longer count as its validation (CALIBRATED_AGAINST). Use it \
+                       for any empirically-calibrated value — a coefficient fitted to a published \
+                       anchor, a constant tuned to a dataset, a model matched to a measurement. A \
+                       check resting on that evidence is then a FIT, NOT A TEST, and does not \
+                       count as independent evidence. Also a traceability edge — correcting the \
+                       anchor puts every value fitted to it in the blast radius.",
         title = "Record a Calibration Against Evidence",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
@@ -566,13 +567,16 @@ impl ReflowService {
         ok_json(payload)
     }
 
+    // HISTORY moved out of the served description on 2026-11-21 (req:a-tool-nobody-calls-is-not-listed-by-default-and-stays-findable-and-callable):
+    // - Without it a check run on a simulation rig and the same check run in the field are
+    //   indistinguishable, so a capability proven only against a model reads exactly like one proven
+    //   against reality.
+    // - Point it at an Environment whose `env_type` says what kind of place that is
     #[tool(
-        description = "Record WHERE a check was actually carried out (PERFORMED_IN). Without it a \
-                       check run on a simulation rig and the same check run in the field are \
-                       indistinguishable, so a capability proven only against a model reads \
-                       exactly like one proven against reality. Point it at an Environment whose \
-                       `env_type` says what kind of place that is — `simulation` for a rig, a \
-                       digital twin, a physics model. \
+        description = "Record WHERE a check was actually carried out (PERFORMED_IN): a \
+                       Verification to the Environment it ran in. The Environment's `env_type` \
+                       says what kind of place that is — `simulation` for a rig, a digital twin, a \
+                       physics model. \
                        Ask for this to record where a test was run.",
         title = "Record Where a Check Ran",
         annotations(read_only_hint = false, destructive_hint = false)
