@@ -241,11 +241,33 @@ impl TextIndex {
     }
 
     /// Build the writer + reader over an opened index.
+    ///
+    /// THE READER RELOADS ONLY WHEN THIS INDEX COMMITS ([`commit`](Self::commit)
+    /// reloads it, holding the writer), never on its own
+    /// (`fact:root-cause-a-search-scored-twice-differently-because-the-index-reader-reloaded-itself-with-nothing-written-2026-11-21`).
+    /// Tantivy's `OnCommitWithDelay` also reloaded it, on a thread of its own,
+    /// after every change to the index's meta, a commit's or a background
+    /// merge's, so what a search read could change with nothing written:
+    ///
+    /// - a merge finishing changed the scores, because BM25 here counts a
+    ///   segment's deleted documents (each upsert deletes the node's previous
+    ///   one) until a merge drops them (measured: the tests below fail on
+    ///   `OnCommitWithDelay`);
+    /// - CI run 44937601647 asked one query twice in a row and got 1.1349,
+    ///   then 1.1407, which is exactly the score over the index as it stood
+    ///   ONE COMMIT EARLIER (9 documents and 32 tokens against 10 and 33).
+    ///   A reload stores the searcher it built with no check that it is the
+    ///   newest, so a self-reload that read an older meta and stored last
+    ///   explains it; not reproduced here.
+    ///
+    /// This process holds the only writer, so every change worth seeing
+    /// arrives through `commit`, and a finished merge is picked up with the
+    /// next one.
     fn finish(index: Index, fields: Fields, path: String) -> Result<Self, TextError> {
         let writer: IndexWriter = index.writer(writer_heap_bytes())?;
         let reader = index
             .reader_builder()
-            .reload_policy(ReloadPolicy::OnCommitWithDelay)
+            .reload_policy(ReloadPolicy::Manual)
             .try_into()?;
         Ok(Self {
             index,
@@ -428,11 +450,16 @@ impl TextIndex {
 
     /// Commit buffered writes and make them visible to [`search`](Self::search).
     /// Forces a reader reload so results are consistent immediately on return.
+    ///
+    /// The reload is made holding the writer, so two commits from two threads
+    /// cannot reload out of order and leave the older one standing: a reload
+    /// stores the searcher it built whether or not a newer one is already in
+    /// place.
     pub fn commit(&self) -> Result<(), TextError> {
         let mut writer = self.writer("commit")?.lock().unwrap();
         writer.commit()?;
-        drop(writer);
         self.reader.reload()?;
+        drop(writer);
         Ok(())
     }
 
@@ -972,5 +999,111 @@ mod tests {
             .unwrap();
         idx.commit().unwrap();
         assert!(idx.search("g1", "hello", None, 0).unwrap().is_empty());
+    }
+
+    /// THE SAME SEARCH ON AN INDEX NOBODY WROTE ANSWERS THE SAME, scores
+    /// included, while Tantivy merges segments in the background
+    /// (`fact:root-cause-a-search-scored-twice-differently-because-the-index-reader-reloaded-itself-with-nothing-written-2026-11-21`).
+    /// BM25 here counts a segment's DELETED documents (every upsert deletes
+    /// the node's previous document) until a merge drops them, and the reader
+    /// used to reload itself whenever a merge rewrote the index's meta.
+    ///
+    /// The set-up makes merges certain: every commit adds one new document
+    /// and replaces a hot one, so each segment keeps a deleted document and
+    /// there are more segments than Tantivy's merge policy lets stand. A round
+    /// counts only when a merge lands AFTER its first search (the segments on
+    /// record then differ from the ones that search read); a box quick enough
+    /// to finish every merge first gets another round.
+    fn a_search_is_unchanged_by_a_background_merge(idx: &TextIndex) {
+        use std::collections::BTreeSet;
+        use std::time::{Duration, Instant};
+        idx.upsert(
+            "g1",
+            "Document",
+            "target",
+            &fields(&[("body", "firewall datastream")]),
+        )
+        .unwrap();
+        let score =
+            |idx: &TextIndex| idx.search("g1", "datastream firewall", None, 1).unwrap()[0].score;
+        let on_record = || -> BTreeSet<String> {
+            idx.index
+                .searchable_segment_ids()
+                .unwrap()
+                .iter()
+                .map(|s| s.uuid_string())
+                .collect()
+        };
+        let mut n = 0;
+        for _round in 0..20 {
+            for _ in 0..12 {
+                n += 1;
+                let id = format!("filler-{n}");
+                idx.upsert(
+                    "g1",
+                    "Document",
+                    &id,
+                    &fields(&[("body", "firewall other words")]),
+                )
+                .unwrap();
+                idx.upsert(
+                    "g1",
+                    "Document",
+                    "hot",
+                    &fields(&[("body", &format!("firewall hot {n}"))]),
+                )
+                .unwrap();
+                idx.commit().unwrap();
+            }
+            // The score first, then the segments: a reload only ever moves
+            // forward, so segments read unmerged mean the score was too.
+            let first = score(idx);
+            let read: BTreeSet<String> = idx
+                .reader
+                .searcher()
+                .segment_readers()
+                .iter()
+                .map(|r| r.segment_id().uuid_string())
+                .collect();
+            let deadline = Instant::now() + Duration::from_secs(3);
+            while on_record() == read && Instant::now() < deadline {
+                std::thread::sleep(Duration::from_millis(10));
+            }
+            if on_record() == read {
+                continue;
+            }
+            // A merge rewrote the index since that search. Give a reload it
+            // might set off time to land, then ask again.
+            std::thread::sleep(Duration::from_millis(1_500));
+            assert_eq!(
+                score(idx),
+                first,
+                "the same search on an index nobody wrote must score the same, \
+                 a background merge between the two notwithstanding"
+            );
+            // A commit still shows what was written, the merge with it.
+            idx.upsert(
+                "g1",
+                "Document",
+                "late",
+                &fields(&[("body", "datastream late")]),
+            )
+            .unwrap();
+            idx.commit().unwrap();
+            assert_eq!(idx.search("g1", "late", None, 10).unwrap().len(), 1);
+            return;
+        }
+        panic!("no merge landed after a search in 20 rounds, so this proved nothing");
+    }
+
+    #[test]
+    fn a_search_in_ram_is_unchanged_by_a_background_merge() {
+        a_search_is_unchanged_by_a_background_merge(&TextIndex::open_in_ram().unwrap());
+    }
+
+    #[test]
+    fn a_search_on_disk_is_unchanged_by_a_background_merge() {
+        let (_d, idx) = open_tmp();
+        a_search_is_unchanged_by_a_background_merge(&idx);
     }
 }
