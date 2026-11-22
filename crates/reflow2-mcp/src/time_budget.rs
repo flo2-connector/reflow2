@@ -1,4 +1,6 @@
-//! How long `loop_status` may take, and the question its check points ask.
+//! How long `loop_status` may take, and the question its check points ask —
+//! and, below ([`ViewBudget`]), how long a read through a hub's address that
+//! fans out over its designs may take.
 //!
 //! **Why it exists.** `loop_status` on reflow2's own design (8,696 nodes) took
 //! 38.1 s on flo2.io's hardware on 2026-11-07, and the gateway in front of it
@@ -71,19 +73,26 @@ impl SetBy {
 /// said on stderr once and ignored, never read as zero.
 fn server_budget() -> (u64, SetBy) {
     static READ: std::sync::OnceLock<(u64, SetBy)> = std::sync::OnceLock::new();
-    *READ.get_or_init(|| match std::env::var(ENV) {
+    *READ.get_or_init(|| read_budget_env(ENV, DEFAULT_MS, "loop_status"))
+}
+
+/// A budget from the environment variable `env`, or `default` — what `who`
+/// then keeps, said on stderr once — when it is not a whole number of
+/// milliseconds.
+fn read_budget_env(env: &str, default: u64, who: &str) -> (u64, SetBy) {
+    match std::env::var(env) {
         Ok(v) => match v.trim().parse::<u64>() {
             Ok(ms) => (ms, SetBy::Server),
             Err(_) => {
                 eprintln!(
-                    "reflow2: {ENV}={v:?} is not a whole number of milliseconds; loop_status \
-                     keeps its default budget of {DEFAULT_MS} ms"
+                    "reflow2: {env}={v:?} is not a whole number of milliseconds; {who} keeps \
+                     its default budget of {default} ms"
                 );
-                (DEFAULT_MS, SetBy::Default)
+                (default, SetBy::Default)
             }
         },
-        Err(_) => (DEFAULT_MS, SetBy::Default),
-    })
+        Err(_) => (default, SetBy::Default),
+    }
 }
 
 /// One call's budget, started when the handler starts.
@@ -184,5 +193,112 @@ impl CallBudget {
             ));
         }
         b
+    }
+}
+
+// ─── A HUB'S FAN-OUT READ ───────────────────────────────────────────────────
+//
+// `req:a-hub-wide-read-answers-within-its-time-budget-and-names-the-designs-it-did-not-reach`,
+// answering
+// `fact:root-cause-a-hub-wide-read-after-a-quiet-spell-reopens-and-reindexes-every-member-one-at-a-time-2026-11-22`:
+// a read through a hub's address runs on the hub and then on each member in
+// turn, and a member closed for idleness is reopened (its full-text index
+// rebuilt) inside that turn. A cold search over 29 designs on flo2.io took a
+// median of 13.5 s and four took past the 30 s door, losing the whole answer
+// although most designs had been reached. The view now spends ONE budget
+// across its designs ([`ViewBudget`]) and answers with the designs it reached
+// when it runs out, naming the rest (`service::view`).
+
+/// The budget a read through a hub's address that fans out over its designs
+/// gets when the server names none: 25 s, five below flo2.io's 30 s door.
+///
+/// Why five and not loop_status's ten: this budget is a DEADLINE, not a
+/// question asked at check points. When it passes, the view stops waiting at
+/// once — an open still under way, a member's call still running — so what
+/// is left after it is only building the merged reply (milliseconds), the
+/// synchronous stretch of a member's call that cannot be interrupted between
+/// two awaits (a search on an open design: well under a second), and the
+/// reply's way back through the gateway. And it is five ABOVE loop_status's
+/// own [`DEFAULT_MS`], so loop_status through a hub, which stops its
+/// analyses at 20 s on every design, still has time to answer its floor on
+/// the design it is on.
+pub const VIEW_DEFAULT_MS: u64 = 25_000;
+
+/// The server-wide budget of a hub's fan-out read, in milliseconds, for an
+/// operator whose door is not flo2.io's 30 s. Set it with [`ENV`]: the two
+/// are read apart, and loop_status through a hub stops at the smaller.
+pub const VIEW_ENV: &str = "REFLOW2_HUB_VIEW_BUDGET_MS";
+
+/// The view's budget: [`VIEW_ENV`] when it holds a whole number of
+/// milliseconds, else [`VIEW_DEFAULT_MS`]. Read once per process.
+fn view_server_budget() -> (u64, SetBy) {
+    static VIEW_READ: std::sync::OnceLock<(u64, SetBy)> = std::sync::OnceLock::new();
+    *VIEW_READ.get_or_init(|| read_budget_env(VIEW_ENV, VIEW_DEFAULT_MS, "a hub's fan-out read"))
+}
+
+/// One fan-out read's budget through a hub's address, started when the CALL
+/// arrived (`crate::service::call_started`), so the hub's own turn is spent
+/// from it as every member's is.
+pub struct ViewBudget {
+    started: Instant,
+    budget: Duration,
+    set_by: SetBy,
+}
+
+impl ViewBudget {
+    /// Start the clock for one fan-out. `asked` is the call's own
+    /// `time_budget_ms`, for a tool that takes one (`loop_status`): the view
+    /// then allows that plus the margin the two defaults keep
+    /// ([`VIEW_DEFAULT_MS`] − [`DEFAULT_MS`]), so a caller who raises or
+    /// lowers loop_status's budget moves the view's with it. Any other tool
+    /// takes the server's budget.
+    pub fn start(asked: Option<u64>) -> Self {
+        let (ms, set_by) = match asked {
+            Some(ms) => (
+                ms.saturating_add(VIEW_DEFAULT_MS - DEFAULT_MS),
+                SetBy::Argument,
+            ),
+            None => view_server_budget(),
+        };
+        ViewBudget {
+            started: crate::service::call_started().unwrap_or_else(Instant::now),
+            budget: Duration::from_millis(ms),
+            set_by,
+        }
+    }
+
+    /// The moment the view stops waiting.
+    pub fn deadline(&self) -> tokio::time::Instant {
+        let at = self
+            .started
+            .checked_add(self.budget)
+            // A budget too large to add is no deadline at all: a century.
+            .unwrap_or_else(|| Instant::now() + Duration::from_secs(100 * 365 * 24 * 3600));
+        tokio::time::Instant::from_std(at)
+    }
+
+    /// Whether the budget is gone: a design not begun by then is not begun.
+    pub fn spent(&self) -> bool {
+        self.started.elapsed() >= self.budget
+    }
+
+    /// The reply's `time_budget` block for a fan-out that did not reach
+    /// `not_reached` of its `designs` designs: loop_status's block, in its
+    /// words, saying the answer is partial.
+    pub fn block(&self, not_reached: usize, designs: usize) -> Value {
+        json!({
+            "budget_ms": self.budget.as_millis() as u64,
+            "set_by": self.set_by.as_str(),
+            "elapsed_ms": self.started.elapsed().as_millis() as u64,
+            "complete": not_reached == 0,
+            "note": format!(
+                "This answer is PARTIAL: {not_reached} of the {designs} designs of this view were \
+                 not reached in time — the hub's time budget ran out first — and are named in \
+                 `not_reached`, each with the call that reaches it alone. Nothing they hold is \
+                 in this answer, and no count here covers them. Every other design answered in \
+                 full. An open already begun goes on, so the same call made again may reach \
+                 more."
+            ),
+        })
     }
 }
