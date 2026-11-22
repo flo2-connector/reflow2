@@ -1050,8 +1050,16 @@ async fn call_one_tool(cli: &Cli, tool: &str, prepared: PreparedCall) -> anyhow:
     // The call succeeded. A write is in the store, so the export it owes is
     // written now, before the process exits — and a run that could not write
     // it says so and ends 3, because the design DID change.
+    //
+    // EXCEPT A CALL THAT ONLY CHECKED (`import_graph` with `check_only`): it
+    // is served as a writing tool and wrote nothing, so it owes no export.
+    // Refreshing one would rewrite the committed record, and move this seat's
+    // record of being in step with it, on a call whose whole promise is that
+    // nothing changes.
     let mut code = 0;
-    if !read_only {
+    if !read_only && reflow2_mcp::call_export::only_checked(&body) {
+        eprintln!("{}", reflow2_mcp::call_export::checked_only(tool));
+    } else if !read_only {
         match (keeps, &export) {
             (Some((service, target)), _) => {
                 if let Some(flushed) = service.export_now().await {
@@ -2294,6 +2302,11 @@ async fn run() -> anyhow::Result<()> {
                 reflow2_core::export::ImportOptions {
                     accept_newer: cli.accept_newer,
                     merge: false,
+                    // `--import` is a restore: it writes, replaces and
+                    // settles as the document states.
+                    check_only: false,
+                    add_only: false,
+                    proposals_only: false,
                 },
             )
             .context("failed to import the design")?;

@@ -154,6 +154,91 @@ pub fn newly_settles(
     })
 }
 
+/// Why writing `after` over `stored` is MORE THAN A PROPOSAL, in words for the
+/// person whose document it is; `None` when the write only proposes.
+///
+/// What an import asked for `proposals_only` refuses on a node
+/// (`ImportOptions::proposals_only`), read off [`SETTLING`] like every other
+/// answer here, so no second list of types and statuses exists:
+/// - a node the design does not hold yet (`stored: None`) that would arrive
+///   settled ([`newly_settles`]);
+/// - a node the design holds whose settling property the write would change
+///   AT ALL: into a settled value, between two, and back OUT of one (accepted
+///   to proposed). [`newly_settles`] alone does not see the last, and a file
+///   that could quietly unsettle a record would move its owner's word as
+///   surely as one that settled it.
+///
+/// `after` is what WOULD BE STORED: after a merge, and after the schema's
+/// defaults are filled in. So a default that reset a held status is caught,
+/// and one that put a settling value on a node the document did not state it
+/// on would be too.
+pub fn more_than_a_proposal(
+    node_type: &str,
+    id: &str,
+    stored: Option<&HashMap<String, Value>>,
+    after: &HashMap<String, Value>,
+) -> Option<String> {
+    let sp = settling_property(node_type)?;
+    let Some(stored) = stored else {
+        return newly_settles(node_type, id, None, after).map(|settle| {
+            format!(
+                "this import takes proposals only, and this record arrives settled ({}): \
+                 settling a record is its owner's act on the design, never a file's",
+                settle.describe()
+            )
+        });
+    };
+    let old = stored.get(sp.property).filter(|v| !v.is_null());
+    let new = after.get(sp.property).filter(|v| !v.is_null());
+    if old == new {
+        return None;
+    }
+    let said = |v: Option<&Value>| match v {
+        None => "not stated".to_string(),
+        Some(Value::String(s)) => s.clone(),
+        Some(Value::Bool(b)) => b.to_string(),
+        Some(other) => format!("{other:?}"),
+    };
+    Some(format!(
+        "this import takes proposals only, and it would move this record's {} from {} to {}: \
+         a record the design holds is moved by its owner on the design, never by a file",
+        sp.property,
+        said(old),
+        said(new)
+    ))
+}
+
+/// Why an import asked for `proposals_only` refuses this `AUTHORED_BY` write;
+/// `None` when it carries no approval. `before` is the edge as the design held
+/// it before the document (`None`: it held none) and `after` is what would be
+/// stored, both in the set shape. Writing back exactly what is held changes
+/// nothing and is not refused.
+pub fn approval_more_than_a_proposal(
+    before: Option<&HashMap<String, Value>>,
+    after: &HashMap<String, Value>,
+) -> Option<String> {
+    let approves = |p: &HashMap<String, Value>| {
+        crate::graph::list_of_strings(p.get("roles"))
+            .iter()
+            .any(|r| r == "approver")
+    };
+    if before == Some(after) {
+        return None;
+    }
+    if approves(after) {
+        return Some(
+            "this import takes proposals only, and this signature carries the approver role: \
+             an approval is its owner's own act on the design, never carried in by a file"
+                .to_string(),
+        );
+    }
+    before.is_some_and(approves).then(|| {
+        "this import takes proposals only, and it would change an approval the design holds: \
+         an approval is its owner's own act on the design, never moved by a file"
+            .to_string()
+    })
+}
+
 impl DesignGraph {
     /// Does this node carry the owner's signature — an outgoing
     /// `AUTHORED_BY` whose role set holds `approver`?

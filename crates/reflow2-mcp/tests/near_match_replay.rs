@@ -119,7 +119,7 @@ fn replay_search_first_over_a_saved_design() {
         &doc,
         ImportOptions {
             accept_newer: true,
-            merge: false,
+            ..Default::default()
         },
     )
     .expect("import");

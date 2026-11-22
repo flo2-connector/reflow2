@@ -1735,6 +1735,9 @@ async fn a_design_round_trips_through_export_and_import() {
         path: None,
         accept_newer: None,
         merge: None,
+        check_only: None,
+        add_only: None,
+        proposals_only: None,
     })));
     assert_eq!(
         report["nodes_written"].as_u64().unwrap(),
@@ -1779,6 +1782,9 @@ async fn importing_something_that_is_not_an_export_fails_loud() {
             path: None,
             accept_newer: None,
             merge: None,
+            check_only: None,
+            add_only: None,
+            proposals_only: None,
         }))
         .await
         .is_err(),
