@@ -17,6 +17,10 @@
 
 #![cfg(all(feature = "rocksdb", feature = "fulltext"))]
 
+// This file is the root of the `on_disk_fulltext` test program (Cargo.toml):
+// every other file whose whole body needs both features is a module of it.
+mod a_designs_search_index_is_kept_with_its_store_and_reused_on_open;
+
 use reflow2_core::DesignGraph;
 
 fn written_and_closed(dir: &std::path::Path) -> String {

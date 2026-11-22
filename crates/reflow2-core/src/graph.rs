@@ -841,10 +841,11 @@ impl DesignGraph {
         // the feature, an index lost or restored from elsewhere. Every one of
         // those opened cleanly onto an empty index and answered "nothing
         // matched" for words the store held (measured 2026-10-02). So the open
-        // compares the two and rebuilds an index that does not hold what the
-        // store holds — the rebuild the shared server already ran at start, made
-        // a property of every open. A rebuild that fails fails the open, loudly,
-        // the way an index that cannot be opened already does.
+        // reuses the index only when it is PROVEN to match the store, and
+        // rebuilds it otherwise (`StorageEngine::ensure_fulltext_covers`,
+        // `req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+        // A rebuild that fails fails the open, loudly, the way an index that
+        // cannot be opened already does.
         #[cfg(feature = "fulltext")]
         {
             graph.search_rebuilt_on_open = graph
@@ -1085,6 +1086,15 @@ impl DesignGraph {
     /// Empty for an in-memory graph and for a store that was already in step.
     pub fn repaired_on_open(&self) -> &crate::twins::TwinRepairs {
         &self.repaired_on_open
+    }
+
+    /// How many times this design's search index has been rebuilt from the
+    /// store since the store was opened, the open's own rebuild included.
+    /// `0` right after an open means the index kept with the store was
+    /// reused (`req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+    #[cfg(feature = "fulltext")]
+    pub fn search_index_rebuilds(&self) -> u64 {
+        self.engine.fulltext_rebuilds()
     }
 
     /// What opening this store found wrong with its search index, when the open

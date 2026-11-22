@@ -12,8 +12,11 @@
 //! The index is a **derived, rebuildable sidecar** — the node store stays the
 //! source of truth. A graph written by a binary built *without* the feature
 //! has nodes the index never saw, which is why [`DesignGraph::reindex_search`]
-//! exists and is run once at server start: stale silence is worse than the
-//! cost of one bounded rebuild.
+//! exists. Every open of a store rebuilds the index unless the index kept with
+//! the store is PROVEN to match it, in which case it is reused
+//! (`StorageEngine::ensure_fulltext_covers`): stale silence is worse than the
+//! cost of one bounded rebuild, and a rebuild on every open was seconds on the
+//! request path of a hosted server.
 
 use crate::foundation::core::DynoError;
 
@@ -324,8 +327,8 @@ impl DesignGraph {
     }
 
     /// Rebuild the full-text index from the node store. Bounded by graph size
-    /// and idempotent; run at server start so a graph written by an older,
-    /// index-less binary becomes searchable instead of silently absent.
+    /// and idempotent. An open already rebuilds an index it cannot prove
+    /// current, so this is for a repair asked for by name.
     /// Returns the number of nodes indexed.
     pub fn reindex_search(&self) -> Result<usize, DynoError> {
         self.engine().reindex_fulltext(self.graph_id())

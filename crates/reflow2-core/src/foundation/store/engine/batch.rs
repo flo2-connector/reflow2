@@ -44,6 +44,7 @@ impl StorageEngine {
                 && let Err(e) = ti.commit()
             {
                 tracing::error!("full-text commit at begin_batch failed: {e}");
+                self.index_went_suspect();
             }
             *self.text_batch.lock().expect("text batch lock poisoned") = TextBatch::default();
         }
@@ -119,7 +120,9 @@ impl StorageEngine {
         // Apply the buffered ops atomically. The backend owns the
         // all-or-nothing semantics (RocksDB `WriteBatch`; the in-memory
         // backend an in-order loop) and the `PrefixDelete`-supersedes-
-        // earlier-puts ordering.
+        // earlier-puts ordering. Unsettled until the batch's text is in the
+        // index too (`unsettled_writes`).
+        self.unsettled_writes += 1;
         let landed = self.backend.commit_batch(buffer.into_ops());
         // Nothing landed on a failure, so the index must not say otherwise —
         // including any of this batch's text a search inside it already
@@ -127,6 +130,10 @@ impl StorageEngine {
         #[cfg(feature = "fulltext")]
         if landed.is_err() {
             self.revert_text(&text);
+        }
+        if landed.is_err() {
+            // Nothing landed, and the index was put back: settled.
+            self.unsettled_writes -= 1;
         }
         landed?;
 
@@ -141,6 +148,7 @@ impl StorageEngine {
             ti.commit()
                 .map_err(|e| DynoError::Storage(format!("full-text batch commit failed: {e}")))?;
         }
+        self.unsettled_writes -= 1;
 
         Ok(count)
     }
@@ -197,8 +205,9 @@ impl StorageEngine {
 
     /// Put the index back as the store holds it after the outermost batch was
     /// discarded, or failed to commit. Best effort, for the reason
-    /// `discard_batch` gives; a failure is logged and `reindex_fulltext`
-    /// (run at every server start) repairs it.
+    /// `discard_batch` gives; a failure is logged, and nothing vouches for
+    /// the index this session (`index_went_suspect`), so the next open
+    /// rebuilds it.
     #[cfg(feature = "fulltext")]
     fn revert_text(&self, text: &TextBatch) {
         let Some(ti) = &self.text_index else {
@@ -206,6 +215,7 @@ impl StorageEngine {
         };
         if let Err(e) = ti.rollback() {
             tracing::error!("full-text rollback after discard_batch failed: {e}");
+            self.index_went_suspect();
         }
         if !text.published {
             // None of the batch's text was ever committed, so the rollback
@@ -217,6 +227,7 @@ impl StorageEngine {
                 .map_err(|e| DynoError::Storage(format!("full-text commit failed: {e}")))
         });
         if let Err(e) = restored {
+            self.index_went_suspect();
             tracing::error!(
                 "full-text restore after a discarded batch failed: {e} — the index may name \
                  nodes that were never written until reindex_fulltext runs"
@@ -239,8 +250,10 @@ impl StorageEngine {
         }
         if let Err(e) = ti.rollback() {
             tracing::error!("full-text rollback after an inner discard failed: {e}");
+            self.index_went_suspect();
         }
         if let Err(e) = self.rederive_text(&tb) {
+            self.index_went_suspect();
             tracing::error!(
                 "full-text re-derive after an inner discard failed: {e} — reindex_fulltext \
                  repairs the index"
