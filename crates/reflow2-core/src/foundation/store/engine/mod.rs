@@ -82,6 +82,11 @@ pub struct StorageEngine {
     /// `&self` paths (an upsert inside `create_node`, a search).
     #[cfg(feature = "fulltext")]
     text_batch: Mutex<TextBatch>,
+    /// How many times this engine rebuilt a graph's full-text index from the
+    /// store (`reindex_fulltext`): the observable that says whether an open
+    /// reused the index it found or paid for a rebuild.
+    #[cfg(feature = "fulltext")]
+    fulltext_rebuilds: std::sync::atomic::AtomicU64,
 }
 
 /// The full-text side of an open batch.
@@ -311,6 +316,8 @@ impl StorageEngine {
             text_index,
             #[cfg(feature = "fulltext")]
             text_batch: Mutex::new(TextBatch::default()),
+            #[cfg(feature = "fulltext")]
+            fulltext_rebuilds: Default::default(),
         }
     }
 
@@ -353,6 +360,8 @@ impl StorageEngine {
             text_index,
             #[cfg(feature = "fulltext")]
             text_batch: Mutex::new(TextBatch::default()),
+            #[cfg(feature = "fulltext")]
+            fulltext_rebuilds: Default::default(),
         })
     }
 
@@ -392,6 +401,8 @@ impl StorageEngine {
             text_index: None,
             #[cfg(feature = "fulltext")]
             text_batch: Mutex::new(TextBatch::default()),
+            #[cfg(feature = "fulltext")]
+            fulltext_rebuilds: Default::default(),
         })
     }
 

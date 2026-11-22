@@ -8192,6 +8192,15 @@ impl ReflowService {
         Ok((service, provenance.note()))
     }
 
+    /// How many times this service's design has had its search index rebuilt
+    /// from the store since it was opened, the open's own rebuild included.
+    /// `0` right after an open means the index kept with the store was reused
+    /// (`req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+    /// Not a tool: what a test or an operator's instrument reads.
+    pub async fn search_index_rebuilds(&self) -> u64 {
+        self.graph.read().await.search_index_rebuilds()
+    }
+
     /// Open on disk for ONE command — the `--call` door's opener. Says the
     /// version verdict on stderr when there is one (`one_shot::open_store`).
     pub fn new(path: &str) -> Result<Self, DynoError> {

@@ -1087,6 +1087,15 @@ impl DesignGraph {
         &self.repaired_on_open
     }
 
+    /// How many times this design's search index has been rebuilt from the
+    /// store since the store was opened, the open's own rebuild included.
+    /// `0` right after an open means the index kept with the store was
+    /// reused (`req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+    #[cfg(feature = "fulltext")]
+    pub fn search_index_rebuilds(&self) -> u64 {
+        self.engine.fulltext_rebuilds()
+    }
+
     /// What opening this store found wrong with its search index, when the open
     /// rebuilt it; `None` when the index already held what the store holds.
     pub fn search_rebuilt_on_open(&self) -> Option<&crate::search::SearchIndexRebuild> {

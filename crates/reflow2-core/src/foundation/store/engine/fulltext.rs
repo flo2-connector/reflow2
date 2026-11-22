@@ -309,8 +309,20 @@ impl StorageEngine {
         };
         // Best-effort rollback to drop the uncommitted batch on failure;
         // surface the original rebuild error regardless of the rollback result.
+        self.fulltext_rebuilds
+            .fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         rebuild().inspect_err(|_| {
             let _ = ti.rollback();
         })
+    }
+
+    /// How many times this engine has rebuilt a graph's full-text index from
+    /// the store, by any path (an open that could not reuse what it found,
+    /// or an explicit `reindex_fulltext`). `0` after an open means the index
+    /// the store kept was reused as it was.
+    #[cfg(feature = "fulltext")]
+    pub fn fulltext_rebuilds(&self) -> u64 {
+        self.fulltext_rebuilds
+            .load(std::sync::atomic::Ordering::Relaxed)
     }
 }
