@@ -599,35 +599,18 @@ pub const REGISTRY: &[Deprecation] = &[
         STUB_DECISION,
     ),
     // A HUB'S SEARCH REPLY SAYS ITS ENVELOPE ONCE (Anthony, 2026-11-20,
-    // "Announce, remove next"): three per-design lists that grow with the
-    // number of designs, not the answer, announced in 0.102.0 and removed in
-    // the release after. Their replacements, `searched` and `found_in`, ship
-    // beside them in 0.102.0.
-    Deprecation::reply_field(
-        "search_design",
-        "view",
-        "0.102.0",
-        "read `designs_searched`",
-        HUB_SEARCH_DECISION,
-    ),
-    Deprecation::reply_field(
-        "search_design",
-        "searched_by_design",
-        "0.102.0",
-        "read `searched`",
-        HUB_SEARCH_DECISION,
-    ),
-    Deprecation::reply_field(
-        "search_design",
-        "found_by_design",
-        "0.102.0",
-        "read `found_in`",
-        HUB_SEARCH_DECISION,
-    ),
+    // "Announce, remove next"): `view`, `searched_by_design` and
+    // `found_by_design` were announced in 0.102.0 and are REMOVED in the
+    // release after. A reply field takes no call, so nothing is left to refuse
+    // and their three entries left with them; 0.102.0's notes and the surface
+    // record re-blessed from its binary keep what they were.
     // RECORDING WHAT WAS BUILT FOLDS INTO THE CHANGE (Anthony, 2026-11-21,
     // "Fold into the change"): record_the_build was called 8 times while its
     // change-then-checksums pair ran by hand in 137 runs, so add_change_event
-    // takes `files` in 0.102.0 and record_the_build goes in the release after.
+    // took `checksums` in 0.102.0, and record_the_build is REMOVED in the
+    // release after. This entry stays for that one release, so a call to the
+    // old name is refused with what to do (`removed_tool`); take it out in the
+    // release after that.
     Deprecation::tool(
         "record_the_build",
         "0.102.0",
@@ -637,10 +620,6 @@ pub const REGISTRY: &[Deprecation] = &[
         "dec:recording-a-change-accepts-its-files-checksums-and-record-the-build-is-announced-for-removal",
     ),
 ];
-
-/// The Decision that announces a hub search reply's three per-design lists.
-const HUB_SEARCH_DECISION: &str =
-    "dec:a-hub-search-reply-announces-its-per-design-lists-and-the-next-release-removes-them";
 
 /// The day the 2026-10-30 candidates became counted refusing stubs.
 pub const RETIRED_ON: &str = "2026-10-30";

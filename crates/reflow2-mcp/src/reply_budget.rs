@@ -849,30 +849,109 @@ pub fn bound_reply_rows_first(
             return out;
         }
         if shorten_by_chars(&mut lists, now - budget) == 0 {
-            // Every named list is at one row. The withheld rows' names go
-            // first (they are counted all the same); then what remains is
-            // prose, which the usual rungs cut, saying so in their own block.
-            let bare = assemble(&lists, &capped, false);
-            if chars_of(&bare) <= budget {
-                return bare;
-            }
-            let rows_note = bare;
-            let mut out = bound_reply(capped, budget, hint);
-            if let (Some(o), Some(b)) = (out.as_object_mut(), rows_note.get("budget")) {
-                match o.get_mut("budget").and_then(Value::as_object_mut) {
-                    Some(prose) => {
-                        prose.insert("lists_shortened".into(), b["lists_shortened"].clone());
-                    }
-                    None => {
-                        o.insert("budget".into(), b.clone());
-                    }
-                }
-            }
-            return out;
+            break;
         }
         capped = apply_caps(&full, &lists);
     }
-    assemble(&lists, &capped, false)
+    // EVERY NAMED LIST IS AT ONE ROW, or the rounds ran out: the same way down
+    // from either. The withheld rows' names go first (they are counted all the
+    // same), then the block says it short, then prose is cut, and whatever comes
+    // back is never larger than the reply it shortens.
+    let bare = assemble(&lists, &capped, false);
+    if chars_of(&bare) <= budget {
+        return bare;
+    }
+    // THE NOTE IS WHAT PUSHES IT OVER (2026-11-21: a hub search of 1,393
+    // characters asked at 1,044 answered 1,724): say the same thing short.
+    let short = compact_rows_note(&lists, &capped, budget, full_chars, hint);
+    if chars_of(&short) <= budget {
+        return short;
+    }
+    let rows_note = bare;
+    // The prose rung is asked to leave ROOM FOR THE BLOCK: given the whole
+    // budget, a reply whose rows already fit without a note is returned
+    // unchanged, and the note then pushes it over.
+    // Its block is the short one plus `prose_limit`, `fields_trimmed` and the
+    // clause naming the prose cut, so those are counted in.
+    let prose_clause = ", and prose cut to `prose_limit` characters";
+    let block_cost = chars_of(&short).saturating_sub(chars_of(&capped))
+        + prose_clause.len()
+        + r#","prose_limit":4000,"fields_trimmed":"#.len()
+        + 10;
+    let mut out = bound_reply(capped, budget.saturating_sub(block_cost), hint);
+    if let (Some(o), Some(b)) = (out.as_object_mut(), rows_note.get("budget")) {
+        match o.get_mut("budget").and_then(Value::as_object_mut) {
+            Some(prose) => {
+                prose.insert("lists_shortened".into(), b["lists_shortened"].clone());
+            }
+            None => {
+                o.insert("budget".into(), b.clone());
+            }
+        }
+    }
+    // And the prose rung's block in short as well: its long note can outweigh
+    // the prose it cut on a small reply, as the rows' did.
+    let mut terse = out.clone();
+    if let Some(o) = terse.as_object_mut() {
+        let had = o.get("budget").cloned().unwrap_or(Value::Null);
+        let mut block = short["budget"].clone();
+        for k in ["prose_limit", "fields_trimmed"] {
+            if let Some(v) = had.get(k) {
+                block[k] = v.clone();
+            }
+        }
+        block["note"] = json!(format!(
+            "WITHHELD TO FIT: rows from the end of each list in `lists_shortened`{prose_clause}. \
+             {hint}"
+        ));
+        o.insert("budget".into(), block);
+    }
+    let held = if chars_of(&terse) < chars_of(&out) {
+        terse
+    } else {
+        out
+    };
+    never_larger(held, short, full, full_chars)
+}
+
+/// The rows-first hold's budget block in short: what was withheld, by count,
+/// and the hint, for when the long note is what keeps the reply over.
+fn compact_rows_note(
+    lists: &[ListSlot],
+    capped: &Value,
+    budget: usize,
+    full_chars: usize,
+    hint: &str,
+) -> Value {
+    let shortened: Vec<Value> = lists
+        .iter()
+        .filter(|l| l.keep < l.total())
+        .map(|l| json!({"path": l.path, "shown": l.keep, "total": l.total()}))
+        .collect();
+    let mut out = capped.clone();
+    if let Some(o) = out.as_object_mut() {
+        o.insert(
+            "budget".into(),
+            json!({
+                "applied": true,
+                "budget_chars": budget,
+                "full_chars": full_chars,
+                "lists_shortened": shortened,
+                "note": format!("WITHHELD TO FIT: rows from the end of each list in `lists_shortened`. {hint}"),
+            }),
+        );
+    }
+    out
+}
+
+/// A reply held to a budget is NEVER LARGER FOR IT: of the held answers, the
+/// smaller is returned while it is smaller than the reply it shortens; when
+/// neither is, the reply comes back unchanged, which is the closest to the
+/// budget anything here can come.
+fn never_larger(held: Value, short: Value, full: Value, full_chars: usize) -> Value {
+    let (h, s) = (chars_of(&held), chars_of(&short));
+    let (best, n) = if s < h { (short, s) } else { (held, h) };
+    if n < full_chars { best } else { full }
 }
 
 /// The value at a dotted path, if every step is an object key.
@@ -1225,5 +1304,61 @@ mod tests {
         let out = bound_reply(v, 500, "hint");
         assert!(out.get("items").is_some());
         assert_eq!(out["budget"]["applied"], true);
+    }
+
+    /// A SMALL REPLY HELD TO A BUDGET IS NEVER LARGER FOR IT. Measured
+    /// 2026-11-21: a hub search of 1,393 characters asked at 1,044 cut its rows
+    /// and came back at 1,724, because the note saying what was withheld cost
+    /// more than the rows it withheld. The hold now says it in a short note
+    /// when the long one is what pushes the reply over, and never answers
+    /// larger than the reply it was asked to shorten.
+    #[test]
+    fn a_small_reply_held_to_a_budget_is_never_larger_for_it() {
+        let rows = |p: &str| -> Vec<Value> {
+            (0..8)
+                .map(|i| json!({"node_id": format!("{p}:{i}"), "name": format!("{p} row {i} {}", long(60))}))
+                .collect()
+        };
+        // Eight rows, so three quarters of the reply sits above its floor (one row
+        // per list, prose cut to nothing, and the block): a budget that can be met.
+        let full = json!({"hits": rows("h"), "designs_searched": ["hub", "a", "b"], "searched": 42,
+                          "view_note": long(300)});
+        let full_chars = chars_of(&full);
+        let budget = full_chars * 3 / 4;
+        let out = bound_reply_rows_first(
+            full.clone(),
+            budget,
+            "raise `budget_chars`",
+            &["designs_searched", "hits"],
+            &[],
+        );
+        let got = chars_of(&out);
+        assert!(
+            got <= full_chars,
+            "held at {budget}, a reply of {full_chars} answered {got}: {out}"
+        );
+        assert!(
+            got <= budget,
+            "a budget the rows can meet is met: {got} > {budget}: {out}"
+        );
+        assert_eq!(out["searched"], json!(42), "every count survives: {out}");
+        assert_eq!(
+            out["budget"]["applied"],
+            json!(true),
+            "it says it withheld: {out}"
+        );
+        // A budget no cut can meet: the reply is never larger than unheld.
+        let tiny = bound_reply_rows_first(
+            full.clone(),
+            10,
+            "raise `budget_chars`",
+            &["designs_searched", "hits"],
+            &[],
+        );
+        assert!(
+            chars_of(&tiny) <= full_chars,
+            "held at 10, a reply of {full_chars} answered {}: {tiny}",
+            chars_of(&tiny)
+        );
     }
 }

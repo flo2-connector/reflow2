@@ -1,4 +1,4 @@
-# What reflow2 offers: 36 skills and 200 tools
+# What reflow2 offers: 36 skills and 199 tools
 
 Generated from the **running server**, not from memory — the skill list came from `list_skills`,
 the tool list and every read/write marking from `tools/list`, and the command mapping from
@@ -98,7 +98,7 @@ Read one in full with `get_skill` before doing the work it covers.
 
 ---
 
-## The 200 tools
+## The 199 tools
 
 `read` never changes the design. **write** does. That marking is the tool's own `readOnlyHint`
 annotation, read off the served surface — 58 read, 97 write.
@@ -291,7 +291,6 @@ description, which an agent sees in the tool schema; this table is for a person 
 | `reconcile_dependencies` | **read** | Check the declared dependencies against what the build ACTUALLY resolves, and return the reflow2.toml manifest. |
 | `upstream_status` | **read** | Has the design this one DEPENDS ON moved since the declaration was made? |
 | `wall_check` | **read** | DOES THE DECOMPOSITION I DECLARED MATCH THE COUPLING THE CODE ACTUALLY HAS? |
-| `record_the_build` | **write** | DEPRECATED in 0.102.0, removed in the next release: call `add_change_event` with `checksums`, which accepts the files' checksums against the change in the same call; record the check with `add_verification` and mark the work built with `set_capability_status` Record what you built in one call, at the end of a piece of work: its passing verification, its change event and the findings it answered, its files' checksums, and the work marked built. |
 
 ### Time — epochs, change, and what a claim was true of
 

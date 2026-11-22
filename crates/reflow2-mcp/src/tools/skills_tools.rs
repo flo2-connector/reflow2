@@ -551,7 +551,7 @@ impl ReflowService {
                        stored key and appears in every export, so two designs can tell each other \
                        apart when they compose (mirror_surface). Pass `label` to RENAME the design; \
                        the id is untouched. Read this when a session needs to say WHICH design it \
-                       is working in. \
+                       is in. \
                        Ask for this when you want to know which design or project's model this session is connected to right now.",
         title = "Design Identity",
         annotations(read_only_hint = false, destructive_hint = false)

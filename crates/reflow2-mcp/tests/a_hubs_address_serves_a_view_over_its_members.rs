@@ -19,8 +19,8 @@
 //!     keyed H, A, B, with a text block saying the reply is a view
 //!   · MERGED SEARCH: `search_design` through H finds a word only B holds,
 //!     its hit prefixed "B:" and ranked with every design's hits; the
-//!     caller's one `limit` bounds the merged list, and `found_by_design`
-//!     says how many hits each design returned
+//!     caller's one `limit` bounds the merged list, and `found_in`
+//!     says how many hits each design with hits returned
 //!   · THE READABLE SET BINDS: with B outside it, B is absent from
 //!     `by_design`, named in `unreachable`, and nothing B holds is revealed;
 //!     a routed call to "B:<id>" is refused naming B and nothing else
@@ -651,7 +651,7 @@ fn search_through_the_hub_ranks_every_designs_hits_together() {
         "the one limit applied, search_design's default: {got}"
     );
     assert_eq!(
-        got["found_by_design"][b.as_str()],
+        got["found_in"][b.as_str()],
         json!(1),
         "how many hits each design returned: {got}"
     );
@@ -686,7 +686,7 @@ fn search_through_the_hub_ranks_every_designs_hits_together() {
 /// 10 and returned every design's hits merged. The hub's address is ONE design
 /// to the caller, so its `limit` bounds the one merged list; each design is
 /// still asked for the same limit (per-design top-k, then merged top-k, is
-/// exact), and `found_by_design` says how many each design returned, so a
+/// exact), and `found_in` says how many each design with hits returned, so a
 /// design that matched beyond what is shown is still named.
 #[test]
 fn search_through_the_hub_applies_the_limit_to_the_merged_list() {
@@ -731,7 +731,7 @@ fn search_through_the_hub_applies_the_limit_to_the_merged_list() {
     );
     for id in [&h, &a, &b] {
         assert_eq!(
-            got["found_by_design"][id.as_str()],
+            got["found_in"][id.as_str()],
             json!(2),
             "every design's own count is named, so a design that matched beyond what is \
              shown is not lost: {got}"

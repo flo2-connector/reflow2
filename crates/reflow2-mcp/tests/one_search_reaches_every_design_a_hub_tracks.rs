@@ -386,7 +386,7 @@ async fn the_one_limit_bounds_the_merged_list_and_says_what_it_withheld() {
         json!(1),
         "each design asked for 2: 1 + 2 ranked, 2 shown: {found}"
     );
-    assert_eq!(found["found_by_design"]["deploy"], json!(2), "{found}");
+    assert_eq!(found["found_in"]["deploy"], json!(2), "{found}");
 
     let none = call(
         &h.c,
