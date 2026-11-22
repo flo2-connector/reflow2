@@ -4,8 +4,20 @@
   },
   "description": "Decomposition and hierarchy issues — the matryoshka checks over Component.level and the CONTAINS spine: a part with two parents, a child at a level not finer than its parent's, a level that is not on this design's declared ladder (`unknown_level`), and a spine that skips a rung. Ranked by POSITION on the project's `decomposition_levels` list, not by a compiled-in order, so a domain that bottoms out at a bought engine or a code module is not told it is wrong. AN EMPTY LIST SAYS WHICH EMPTY: no components carry a level (nothing could be checked), components carry levels and every check held, or there is no CONTAINS spine at all — the reply names which, because clean and vacuous must never read the same. Ask for this when you want to know whether the component tree is consistent.",
   "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "properties": {},
+    "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend before prose is\nwithheld to make it fit (default 30,000).\n\nRAISE IT ONLY IF YOU KNOW THIS CLIENT HAS THE ROOM. The default sits\nbelow the smallest tool-output cap in use, because the failure it\nexists to stop is not a slow call — it is the CLIENT refusing the reply,\nat which point the session sees a wall of harness text and reflow2 never\ngets to suggest narrowing.\n\nEvery trimmed reply says what it withheld, at `budget`; counts and ids\nare never budgeted away, so a shorter answer is never a quieter one.",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    },
     "type": "object"
   },
   "name": "hierarchy_issues",

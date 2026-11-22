@@ -48,6 +48,24 @@ from reflow2_bin import default_bin  # noqa: E402  (one binary for every gate)
 REPO = pathlib.Path(__file__).resolve().parent.parent
 BINARY = pathlib.Path(default_bin())
 
+def measured_table() -> dict[str, tuple[int, int, int]]:
+    """cues::MEASURED as the server ranks by it: id -> (offered, within 5, at all).
+
+    Read from the source, so the wire pin below follows the reviewed table
+    when it is re-ranked instead of restating one window's counts."""
+    src = (REPO / "crates/reflow2-mcp/src/cues.rs").read_text()
+    table = src[src.index("pub const MEASURED: &[Measured] = &["):]
+    table = table[: table.index("\n];")]
+    rows = re.findall(
+        r'id: "([^"]+)",\s*offered: (\d+),\s*followed_within_5: (\d+),\s*followed_at_all: (\d+),',
+        table,
+    )
+    return {i: (int(o), int(w), int(a)) for i, o, w, a in rows}
+
+
+MIN_EVIDENCE = 20  # cues::MIN_EVIDENCE
+
+
 CLIENT_NAME = "feedback-probe"
 CLIENT_VERSION = "9.9.9"
 
@@ -194,7 +212,7 @@ def main() -> int:
         check(
             "the handshake offers the first-read cue to this session",
             len(offers) == 1
-            and offers[0].get("cues") == ["instructions/graph_report", "instructions/search_design"]
+            and offers[0].get("cues") == ["instructions/search_design", "instructions/graph_report"]
             and offers[0].get("seat") == calls[0].get("seat"),
             str(offers),
         )
@@ -211,6 +229,47 @@ def main() -> int:
             meta.get("reflow2/cues") == by_tool.get("add_requirement", {}).get("cues"),
             str(meta),
         )
+        # THE ONE NAMED CUE MESSAGE (increment 6, crates/reflow2-mcp/src/cues.rs):
+        # the same reply carries a `cues` block at the top of its structured
+        # content, drawn from the ids the ledger counts, ranked by the counts
+        # in cues::MEASURED (read from the source: a never-followed cue is left
+        # out, a followed one ranks by its rate within five calls), each read
+        # asked for with a small budget, and the field it came from kept.
+        sc = structured(first_reply) or {}
+        block = sc.get("cues") or {}
+        items = block.get("items") or []
+        ids = by_tool.get("add_requirement", {}).get("cues") or []
+        check(
+            "a reply's cues block sits at the top level, every item a counted id with its type and call",
+            bool(items) and all(set(i) >= {"cue", "type", "call"} and i["cue"] in ids for i in items),
+            json.dumps(block)[:400],
+        )
+        table = measured_table()
+        never = {i for i, (o, _, a) in table.items() if a == 0 and o >= MIN_EVIDENCE}
+        rate = {i: w * 1000 // max(o, 1) for i, (o, w, a) in table.items() if a > 0}
+        check(
+            "the counts table reads: a followed cue, and a never-followed one",
+            "loop_hint/loop_status" in rate and bool(never),
+            str(sorted(never))[:300],
+        )
+        shown = [i["cue"] for i in items]
+        followed_shown = [c for c in shown if c in rate]
+        check(
+            "the block is ranked and budgeted: at most three, never-followed cues left out, "
+            "followed ones first by their rate, and every other offer counted in left_out",
+            len(items) <= 3
+            and not any(c in never for c in shown)
+            and shown[: len(followed_shown)] == followed_shown
+            and followed_shown == sorted(followed_shown, key=lambda c: -rate[c])
+            and block.get("left_out") == len(set(ids)) - len(items),
+            json.dumps(block)[:400],
+        )
+        check(
+            "a read in the block is asked for with a small budget",
+            all((i.get("args") or {}).get("budget_chars") == 4000 for i in items if i["call"] == "loop_status"),
+            json.dumps(items)[:400],
+        )
+        check("the field the block is drawn from is untouched", "loop_hint" in sc, str(list(sc))[:300])
 
         # ---- the report ----
         r = s.call("usage_report", {})

@@ -1401,7 +1401,7 @@ async fn a_well_formed_hierarchy_reports_no_issues() {
         to_id: "cmp:leaf".into(),
     })));
 
-    let issues = jl!(s.hierarchy_issues());
+    let issues = jl!(s.hierarchy_issues(Parameters(Default::default())));
     assert_eq!(
         issues.as_array().unwrap().len(),
         0,
@@ -1433,7 +1433,7 @@ async fn skipping_a_level_is_reported() {
         to_id: "cmp:leaf".into(),
     })));
 
-    let issues = jl!(s.hierarchy_issues());
+    let issues = jl!(s.hierarchy_issues(Parameters(Default::default())));
     let arr = issues.as_array().unwrap();
     assert_eq!(
         arr.len(),
@@ -1470,7 +1470,7 @@ async fn nesting_two_defaulted_components_is_a_mismatch_not_silence() {
         to_id: "cmp:b".into(),
     })));
 
-    let arr = jl!(s.hierarchy_issues());
+    let arr = jl!(s.hierarchy_issues(Parameters(Default::default())));
     assert_eq!(
         arr.as_array().unwrap()[0]["kind"],
         "level_mismatch",

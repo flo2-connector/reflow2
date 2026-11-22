@@ -7,6 +7,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "The most characters of JSON this whole reply may spend, the node\nincluded. Omitted, the node comes back WHOLE, as it always has (and the\nedges, when asked for, within their own budget). Passed, a longer\nrecord has its prose withheld progressively — the longest text first —\nuntil it fits, and `budget` says how much and how to read it whole;\nevery id, number and status survives. FOR A READER WITH A SMALL BUDGET:\none record can be tens of thousands of characters (a guide written\ninto a description measured 22.6 KB), and nothing said so before the\nread was paid for\n(`fact:the-recall-pilot-after-the-cues-scored-25-full-16-kit-cued-at-12kb-3-uncued-2026-10-30`).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "id": {
         "description": "The node id. Its prefix (`req:`, `dec:`, `ver:` …) names the type by\nconvention, so `node_type` may be omitted.\n`node_id` — what search_design hands back — is accepted as an alias\n(dec:idea-one-way-to-name-which-node-across-the-tool-surface, option D).",
         "type": "string"

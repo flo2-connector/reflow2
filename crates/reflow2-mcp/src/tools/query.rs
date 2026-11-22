@@ -1034,16 +1034,35 @@ impl ReflowService {
             }
             return self.ok_read(&g, reply);
         }
-        let Some((query, budget_chars)) = query else {
-            return self.ok_read(&g, json!({ "node": node }));
+        // A BUDGET FOR THE WHOLE REPLY, when the caller names one: the record's
+        // prose gives first (`crate::reply_budget::bound_reply`, never a
+        // number or an id), so a small reader is never handed a 22 KB record
+        // it did not know the size of. Omitted, the node is whole, as always.
+        const WHOLE: &str =
+            "Read the record whole with get_node and no budget_chars, or a larger one.";
+        let Some((query, edge_budget)) = query else {
+            return self.ok_read_bounded(
+                &g,
+                json!({ "node": node }),
+                req.budget_chars,
+                false,
+                WHOLE,
+            );
         };
         // The node is sent whole, as it always is; the edges get what is left
-        // of the budget.
+        // of the budget — the smaller of their own and the whole reply's.
         let spent_chars = node.to_string().len();
+        let edge_budget = req.budget_chars.map_or(edge_budget, |b| b.min(edge_budget));
         let edges = g
-            .node_edges(&node_type, &req.id, &query, budget_chars, spent_chars)
+            .node_edges(&node_type, &req.id, &query, edge_budget, spent_chars)
             .map_err(dyno_err)?;
-        self.ok_read(&g, json!({ "node": node, "edges": edges }))
+        self.ok_read_bounded(
+            &g,
+            json!({ "node": node, "edges": edges }),
+            req.budget_chars,
+            false,
+            WHOLE,
+        )
     }
 
     #[tool(

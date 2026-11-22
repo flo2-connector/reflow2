@@ -83,7 +83,10 @@ So a plain-language mode would be wrong for both.
 
 **Tool replies are addressed to YOU, not to the person.** `loop_status`'s `next` list, the
 `loop_hint` on a write, the Stop nudge, a gap's title — these tell you what to do next, in
-reflow2's nouns. They are the last text you read before you write your closing words, and that is
+reflow2's nouns. **Look first in a reply's `cues` block**, at the top of its structured content:
+the few next calls that earn a place, ranked by how often agents were measured to follow them,
+each read already asked for with a small `budget_chars`, so following one never spends a small
+reading budget. The fields it is drawn from stay as they were. They are the last text you read before you write your closing words, and that is
 exactly when they get relayed verbatim: a session ended with *"6 structural findings and 1
 undispositioned drift"* to a person whose brother does not know either word. Never read a reply
 out. Say what it means for their design, and keep the field names in your tool calls.
@@ -123,10 +126,12 @@ loads it and it takes precedence over the served one of the same name.
 
 ## The loop
 
-0a. **On an existing design, orient first: read `graph_report` with `format` `markdown` first** — a few KB: what
-   the design holds, what is delivered, the top open gaps — before anything longer. If the design
-   keeps its own record of where things stand, `search_design` finds it ("current state",
-   "status as of"). This is the same first read the server's connect-time instructions and the
+0a. **On an existing design, orient first: `search_design` "current state" (or "status as of")
+   first** — a design that keeps its own record of where things stand returns it in about 2 KB,
+   and when several come back the newest is the one in force. Then, if your reading allows,
+   `graph_report` with `format` `markdown`: what the design holds, what is delivered, the top open
+   gaps, about 6 KB on a design of a few thousand records and not budgeted. This is the same first
+   read the server's connect-time instructions and the
    kit's session-start hook name. Then `open_questions` — anything there was already put to the
    user and is still waiting, so follow it up rather than asking again. Then,
    if the graph holds a Project, run the **where-am-i** skill: read the graph and tell the user what the design

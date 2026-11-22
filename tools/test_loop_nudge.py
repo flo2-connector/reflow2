@@ -138,9 +138,14 @@ class LoopNudge(unittest.TestCase):
         record is found. The server's instructions carry the same sentence."""
         r = run_hook(self.project, {"hook_event_name": "SessionStart",
                                     "session_id": "s1"})
-        self.assertIn("read graph_report with format markdown first", r.stdout)
-        self.assertIn("search_design", r.stdout)
-        self.assertIn("current state", r.stdout)
+        self.assertIn('search_design "current state"', r.stdout)
+        self.assertIn("first", r.stdout)
+        # The search before the report: the counts' order (increment 6,
+        # crates/reflow2-mcp/src/cues.rs INSTRUCTIONS_OFFER), each read with
+        # what it costs.
+        self.assertLess(r.stdout.index("search_design"), r.stdout.index("graph_report"))
+        self.assertIn("about 2 KB", r.stdout)
+        self.assertIn("about 6 KB", r.stdout)
 
     def test_session_start_names_both_doors_and_asserts_no_design(self):
         """A project set up minutes ago gets this line too.
@@ -1811,8 +1816,11 @@ class VsCodeHook(unittest.TestCase):
         self.assertEqual(spec["hookEventName"], "SessionStart")
         context = spec["additionalContext"]
         self.assertIn("reflow2 read", context, "the door's verbs, not MCP calls")
-        self.assertIn("reflow2 read graph_report ", context,
+        self.assertIn("reflow2 read search_design ", context,
                       "the first read for where the design stands, in the door's verbs")
+        self.assertLess(context.index("reflow2 read search_design "),
+                        context.index("reflow2 read graph_report "),
+                        "the search first, then the report (increment 6)")
         self.assertIn("2 open gap(s) never put to the person", context,
                       "the loop_status reading itself reaches the model")
         self.assertIn(["--graph-path", ".reflow2/graph", "read", "loop_status"], self.calls())

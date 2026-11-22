@@ -288,14 +288,23 @@ SKILL_OPS = {"get_skill"}
 # 5.5/25 from a design that held the answers until one line told it where the
 # current state was kept (17.5/25). graph_report with format markdown is the compact read
 # of where a design stands (6.3 KB on the pilot's 422-node design); reflow2
-# serves no compact read of the design's current VALUES, so the second half
-# points at the design's own record of them, when it keeps one.
+# serves no compact read of the design's current VALUES, so the cue points at
+# the design's own record of them, when it keeps one.
+#
+# THE SEARCH COMES FIRST SINCE 2026-10-31 (increment 6), because the counts
+# say so: on flo2.io the report half was followed 0 times in 42 attributable
+# offers and the search 3; the 12 KB reader that followed the report first in
+# the size sweep spent 6,575 of its 12,000 bytes on it and scored 5.5/25, and
+# the one that skipped it for the search scored 16 (cues.rs INSTRUCTIONS_OFFER
+# has the sources). Each read now says what it costs.
 SESSION_START_TEXT = (
     "reflow2: this project has reflow2 installed. Orient first, before touching "
-    "code. To learn where the design stands, read graph_report with format markdown first (a "
-    "few KB: what the design holds, what is delivered, the top open gaps); if the "
-    "design keeps its own record of where things stand, search_design finds it "
-    "(\"current state\", \"status as of\"). If this design is empty, start it with the "
+    "code. To learn where the design stands, search_design \"current state\" (or "
+    "\"status as of\") first: a design that keeps its own record of where things stand "
+    "returns it in about 2 KB, and when several come back the newest is the one in force. "
+    "Then, if your reading allows, graph_report with format markdown (what the design "
+    "holds, what is delivered, the top open gaps; about 6 KB on a large design). A "
+    "reply's cues block names the next calls worth making. If this design is empty, start it with the "
     "genesis skill (new project) or the adopt skill (code that already exists); "
     "if it is not, read it back with the where-am-i skill. Skills are SERVED, "
     "not installed: get_skill fetches one, list_skills names them all, find_skills "
@@ -1576,9 +1585,11 @@ VSCODE_SESSION_START_TEXT = (
     "(`reflow2 read --list` says which). Wherever reflow2's instructions, a skill or "
     "a reply says to call X, run X one of those two ways. Read "
     ".github/instructions/reflow2.instructions.md before the first design action. "
-    "To learn where the design stands, run `reflow2 read graph_report '{\"format\": \"markdown\"}'` "
-    "first (a few KB); if the design keeps its own record of where things stand, "
-    "`reflow2 read search_design '{\"query\": \"current state\"}'` finds it. "
+    "To learn where the design stands, run "
+    "`reflow2 read search_design '{\"query\": \"current state\"}'` first: a design that "
+    "keeps its own record of where things stand returns it in about 2 KB, the newest one "
+    "in force. Then, if your reading allows, "
+    "`reflow2 read graph_report '{\"format\": \"markdown\"}'` (about 6 KB on a large design). "
     "Skills are served: `reflow2 read get_skill '{\"name\": \"where-am-i\"}'` reads one "
     "and `reflow2 read list_skills` names them all. loop_status says what the "
     "coherence loop is owed; this project's Stop hook nudges once if design writes "

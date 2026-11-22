@@ -7,6 +7,16 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "properties": {
+      "budget_chars": {
+        "default": null,
+        "description": "How many characters of JSON this reply may spend (default 30,000).\nOver it, prose goes first, then rows from the END of the list — the\nparts with the least open — and `budget` names what was withheld;\nevery count survives. Unbounded until 2026-10-31, when the generated\ndesign of reflow2's size answered 44,586 characters\n(`fact:four-reads-take-no-bound-and-overflow-on-a-design-of-realistic-size-2026-10-31`).",
+        "format": "uint",
+        "minimum": 0,
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
       "depth": {
         "default": null,
         "description": "Hops from each named part, when sizing it (default 1).\n\nDELIBERATELY NOT the scoped detectors' default of 3, and the difference\nis measured rather than stylistic: at 3, on reflow2's own design, all 56\nComponents cover 595–903 nodes and hold 50–60 of the 83 gaps, so the\nrows stop telling a chooser anything apart. At 1 the same parts cover\n17–139 nodes and hold 0–19. Raise it to see a part's whole thread; leave\nit to see which parts differ.",
