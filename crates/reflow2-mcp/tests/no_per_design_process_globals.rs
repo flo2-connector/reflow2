@@ -247,6 +247,13 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          for every design it serves.",
     ),
     (
+        "reflow2-mcp/src/time_budget.rs",
+        "VIEW_READ",
+        "the time budget of a hub's fan-out read, read once from REFLOW2_HUB_VIEW_BUDGET_MS: \
+         a fact about how the process was launched (the door it is served behind), the same \
+         for every hub and every design it serves.",
+    ),
+    (
         "reflow2-core/src/inference/memo.rs",
         "thread_local!",
         "The declaration of TRUNCATIONS and SCOPE, below: the reasoning evaluation's \

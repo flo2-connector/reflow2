@@ -620,6 +620,14 @@ impl GraphRouter {
         let binding = self.resolve(graph_id)?;
         let path = binding.graph_path().to_string();
 
+        // A SLOW OPEN ON PURPOSE, in a debug build only (`TEST_OPEN_DELAY_ENV`):
+        // how a test makes one member cold for longer than a hub's time budget
+        // without a big design. A release build has no such seam.
+        #[cfg(debug_assertions)]
+        if let Some(delay) = test_open_delay(graph_id) {
+            tokio::time::sleep(delay).await;
+        }
+
         // ⚠️ OPENING IS BLOCKING AND SLOW — RocksDB plus a full-text index
         // rebuild, seconds on a large design. On the async runtime that
         // would stall every other connection this process is serving, which
@@ -803,6 +811,26 @@ impl Member {
     pub fn service(&self) -> &ReflowService {
         &self.svc
     }
+}
+
+/// DEBUG BUILDS ONLY: `<graph_id>=<ms>[,<graph_id>=<ms>…]`, a delay added to
+/// each named design's open, so a test can make a member slower to open than a
+/// hub's time budget (`tests/a_hub_wide_read_answers_within_its_time_budget.rs`).
+/// Read on every open, so no process-global holds it; a release build never
+/// reads it.
+#[cfg(debug_assertions)]
+pub const TEST_OPEN_DELAY_ENV: &str = "REFLOW2_TEST_OPEN_DELAY";
+
+#[cfg(debug_assertions)]
+fn test_open_delay(graph_id: &str) -> Option<Duration> {
+    let spec = std::env::var(TEST_OPEN_DELAY_ENV).ok()?;
+    spec.split(',').find_map(|one| {
+        let (id, ms) = one.split_once('=')?;
+        (id.trim() == graph_id)
+            .then(|| ms.trim().parse::<u64>().ok())
+            .flatten()
+            .map(Duration::from_millis)
+    })
 }
 
 /// The open design used least recently that has nothing in flight, if any.

@@ -196,6 +196,11 @@ impl Drop for Server {
 /// A registry over `root`, flo2.io's shape; `gateway` declares the trusted
 /// host the way a container does, or leaves the server with none.
 pub(super) fn serve(root: &Path, gateway: Option<&str>) -> Server {
+    serve_with(root, gateway, &[])
+}
+
+/// [`serve`], with these variables set in the server's environment.
+pub(super) fn serve_with(root: &Path, gateway: Option<&str>, env: &[(&str, &str)]) -> Server {
     let mut cmd = Command::new(bin());
     cmd.arg("--registry-root")
         .arg(root)
@@ -207,6 +212,9 @@ pub(super) fn serve(root: &Path, gateway: Option<&str>) -> Server {
         .stderr(Stdio::piped());
     if let Some(g) = gateway {
         cmd.env("REFLOW2_TRUSTED_GATEWAY", g);
+    }
+    for (k, v) in env {
+        cmd.env(k, v);
     }
     let mut child = cmd.spawn().expect("spawn the registry server");
     let stderr = child.stderr.take().expect("stderr piped");

@@ -30,7 +30,12 @@
 //! 5. **A write naming no member** — the hub's own design, exactly as before.
 //! 6. **Fan-out** — a read naming no member runs on the hub, then on each
 //!    readable member in turn, and answers `by_design`; `search_design` is
-//!    the one MERGED reply, every design's hits ranked together.
+//!    the one MERGED reply, every design's hits ranked together. ONE TIME
+//!    BUDGET covers the whole fan-out (`crate::time_budget::ViewBudget`, 25 s
+//!    by default, below flo2.io's 30 s door): a design the budget runs out
+//!    before is named in `not_reached`, with `time_budget` saying the answer
+//!    is partial, and the reply holds what the designs it reached returned
+//!    (req:a-hub-wide-read-answers-within-its-time-budget-and-names-the-designs-it-did-not-reach).
 //!
 //! EVERY ID IN A MEMBER'S REPLY CARRIES ITS DESIGN'S PREFIX: under the
 //! key-named rule ([`prefix_ids`]), AND any whole string value that is a node
@@ -402,26 +407,39 @@ async fn serve_in_view(
         Aim::FanOut => {}
     }
 
-    // FAN-OUT: the hub, then each readable member, one at a time.
+    // FAN-OUT: the hub, then each readable member, one at a time, within ONE
+    // time budget (`crate::time_budget::ViewBudget`,
+    // req:a-hub-wide-read-answers-within-its-time-budget-and-names-the-designs-it-did-not-reach).
     let tracked_asked = super::tracked::asks_for_tracked_designs(&tool, request.arguments.as_ref());
     let forwarded = forwarded(hub, &context);
+    let clock = crate::time_budget::ViewBudget::start(asked_time_budget(
+        hub,
+        &tool,
+        request.arguments.as_ref(),
+    ));
     let mut replies: Vec<(String, Result<CallToolResponse, McpError>)> = Vec::new();
-    replies.push((hub_id.clone(), on_one(hub, request.clone(), own).await));
-    for member in &reachable {
-        let answer = match registry.member(member).await {
-            Ok(held) => {
-                let answer = on_one(held.service(), request.clone(), forwarded.clone()).await;
-                prefix_reply(answer, member, held.service(), &HashSet::new()).await
-            }
-            Err(refusal) => Err(member_refusal(member, refusal)),
-        };
-        replies.push((member.clone(), answer));
+    let mut not_reached: Vec<JsonValue> = Vec::new();
+    match fan_out_hub(&clock, on_one(hub, request.clone(), own)).await {
+        Some(answer) => replies.push((hub_id.clone(), answer)),
+        None => not_reached.push(not_reached_entry(&tool, &hub_id, true)),
     }
+    for member in &reachable {
+        match on_member(&clock, &registry, member, &request, &forwarded).await {
+            Reached::Answered(answer) => replies.push((member.clone(), answer)),
+            Reached::NotInTime { started } => {
+                not_reached.push(not_reached_entry(&tool, member, started));
+            }
+        }
+    }
+    let time_budget =
+        (!not_reached.is_empty()).then(|| clock.block(not_reached.len(), 1 + reachable.len()));
     let view = View {
         hub_id: &hub_id,
         members: &members,
         unreachable: &unreachable,
         tool: &tool,
+        not_reached: &not_reached,
+        time_budget,
     };
     if tool == "search_design" {
         let budget = budget_for(hub, &request);
@@ -429,6 +447,102 @@ async fn serve_in_view(
     } else {
         view.by_design(replies, policy)
     }
+}
+
+/// The hub's own turn of a fan-out, within the view's budget: `None` when
+/// the budget ran out first. The call is a read (the view fans out nothing
+/// else), so stopping it mid-way drops its guard and changes nothing.
+async fn fan_out_hub(
+    clock: &crate::time_budget::ViewBudget,
+    call: impl std::future::Future<Output = Result<CallToolResponse, McpError>>,
+) -> Option<Result<CallToolResponse, McpError>> {
+    tokio::time::timeout_at(clock.deadline(), call).await.ok()
+}
+
+/// What one member's turn of a fan-out came to.
+enum Reached {
+    /// It answered (or was refused, or failed), within the budget.
+    Answered(Result<CallToolResponse, McpError>),
+    /// The budget ran out first. `started`: whether its open or its call had
+    /// begun by then.
+    NotInTime { started: bool },
+}
+
+/// One member's turn of a fan-out, within the view's budget.
+///
+/// ⭐ THE OPEN RUNS AS ITS OWN TASK, so the budget stops the WAIT, never the
+/// open: an open stopped half-way would leave its slot to be opened again
+/// while the first open still held the store, and RocksDB refuses that
+/// (`registry_http`, "never two copies of one store"). Left to finish, the
+/// open fills the design's slot as any open does, and the next call finds
+/// that design open. The member's own CALL is a read, under its own guard
+/// alone: stopping it drops that guard and changes nothing.
+async fn on_member(
+    clock: &crate::time_budget::ViewBudget,
+    registry: &RegistryHandle,
+    member: &str,
+    request: &CallToolRequestParams,
+    forwarded: &RequestContext<RoleServer>,
+) -> Reached {
+    if clock.spent() {
+        return Reached::NotInTime { started: false };
+    }
+    let opening = {
+        let registry = registry.clone();
+        let member = member.to_string();
+        tokio::spawn(async move { registry.member(&member).await })
+    };
+    let held = match tokio::time::timeout_at(clock.deadline(), opening).await {
+        Err(_) => return Reached::NotInTime { started: true },
+        Ok(Err(failed)) => {
+            return Reached::Answered(Err(McpError::internal_error(
+                format!("design {member} could not be opened: {failed}"),
+                None,
+            )));
+        }
+        Ok(Ok(Err(refusal))) => return Reached::Answered(Err(member_refusal(member, refusal))),
+        Ok(Ok(Ok(held))) => held,
+    };
+    let call = async {
+        let answer = on_one(held.service(), request.clone(), forwarded.clone()).await;
+        prefix_reply(answer, member, held.service(), &HashSet::new()).await
+    };
+    match tokio::time::timeout_at(clock.deadline(), call).await {
+        Ok(answer) => Reached::Answered(answer),
+        Err(_) => Reached::NotInTime { started: true },
+    }
+}
+
+/// The `time_budget_ms` a fan-out read passes for its own tool, when that
+/// tool takes one (`loop_status`): the view's budget follows it
+/// (`ViewBudget::start`).
+fn asked_time_budget(
+    hub: &ReflowService,
+    tool: &str,
+    args: Option<&rmcp::model::JsonObject>,
+) -> Option<u64> {
+    let served = hub.tool_router.get(tool)?;
+    let schema = crate::receipt::published_input_schema(served);
+    schema.get("properties")?.get(TIME_BUDGET_ARGUMENT)?;
+    args?.get(TIME_BUDGET_ARGUMENT)?.as_u64()
+}
+
+/// The argument a tool takes its own time budget by (`loop_status`).
+const TIME_BUDGET_ARGUMENT: &str = "time_budget_ms";
+
+/// One design a fan-out did not reach in time, as `not_reached` names it:
+/// why (`budget`, loop_status's word for the same stop), whether its turn
+/// had begun, and the call that reaches it alone.
+fn not_reached_entry(tool: &str, design: &str, started: bool) -> JsonValue {
+    json!({
+        "design": design,
+        "why": "budget",
+        "started": started,
+        "call": format!(
+            "{tool} with {MEMBER_ARGUMENT}: \"{design}\" through this hub's address, or {tool} \
+             on design {design}'s own address"
+        ),
+    })
 }
 
 /// Whether a call made to a hub's address is a composed check over several
@@ -1000,9 +1114,52 @@ pub(super) struct View<'a> {
     pub(super) members: &'a [String],
     pub(super) unreachable: &'a [String],
     pub(super) tool: &'a str,
+    /// The designs the view's time budget ran out before
+    /// ([`not_reached_entry`]); empty when every design answered.
+    pub(super) not_reached: &'a [JsonValue],
+    /// The `time_budget` block, present only when `not_reached` is not empty.
+    pub(super) time_budget: Option<JsonValue>,
 }
 
 impl View<'_> {
+    /// What the reply says when designs were not reached in time; empty when
+    /// every design answered.
+    fn not_reached_sentence(&self) -> String {
+        if self.not_reached.is_empty() {
+            return String::new();
+        }
+        let named: Vec<&str> = self
+            .not_reached
+            .iter()
+            .filter_map(|n| n["design"].as_str())
+            .collect();
+        format!(
+            " PARTIAL: {} design(s) were not reached in time ({}) — the hub's time budget ran \
+             out first — and are named in `not_reached`, each with the call that reaches it \
+             alone; nothing they hold is in this answer, and no count here covers them \
+             (`time_budget`).",
+            named.len(),
+            named.join(", ")
+        )
+    }
+
+    /// Put `not_reached` and `time_budget` in a payload, when any design was
+    /// not reached in time.
+    fn add_not_reached(&self, payload: &mut JsonValue) {
+        if self.not_reached.is_empty() {
+            return;
+        }
+        if let Some(o) = payload.as_object_mut() {
+            o.insert(
+                "not_reached".into(),
+                JsonValue::Array(self.not_reached.to_vec()),
+            );
+            if let Some(tb) = &self.time_budget {
+                o.insert("time_budget".into(), tb.clone());
+            }
+        }
+    }
+
     fn unreachable_sentence(&self) -> String {
         if self.unreachable.is_empty() {
             String::new()
@@ -1032,24 +1189,27 @@ impl View<'_> {
             "A VIEW over hub {} and its members: `{}` ran on each design in turn, and \
              `by_design` holds each design's own reply, keyed by graph_id ({} is the hub). Ids \
              in a member's reply carry its graph_id as a prefix ('<graph_id>:<id>'); pass one \
-             back through this hub and the call goes to that design alone.{}",
+             back through this hub and the call goes to that design alone.{}{}",
             self.hub_id,
             self.tool,
             self.hub_id,
-            self.unreachable_sentence()
+            self.unreachable_sentence(),
+            self.not_reached_sentence()
         );
-        let payload = json!({
+        let mut payload = json!({
             "view": self.members,
             "by_design": by_design,
             "unreachable": self.unreachable,
             "view_note": note,
         });
+        self.add_not_reached(&mut payload);
         let sentence = format!(
             "This reply is a VIEW over {} designs ({}): `{}` answered by each in turn, under \
-             `by_design`.",
+             `by_design`.{}",
             asked.len(),
             asked.join(", "),
-            self.tool
+            self.tool,
+            self.not_reached_sentence()
         );
         view_result(payload, policy, &sentence)
     }
@@ -1114,7 +1274,7 @@ impl View<'_> {
         }
         let sentence = format!(
             "This reply is a VIEW: search_design over {} design(s) ({}), the hits merged and \
-             ranked together.",
+             ranked together.{}",
             designs_searched_len(&payload),
             payload["designs_searched"]
                 .as_array()
@@ -1123,7 +1283,8 @@ impl View<'_> {
                     .filter_map(JsonValue::as_str)
                     .collect::<Vec<_>>()
                     .join(", "))
-                .unwrap_or_default()
+                .unwrap_or_default(),
+            self.not_reached_sentence()
         );
         view_result(payload, policy, &sentence)
     }
@@ -1226,9 +1387,10 @@ impl View<'_> {
              `found_in` says how many each design with hits returned (a design at the limit may \
              hold more), `searched` how many nodes the searches ran over in all, and \
              `hits_withheld` counts the ranked hits that fell outside it — raise `limit`, or \
-             search a member's own address, to see them.{}",
+             search a member's own address, to see them.{}{}",
             self.hub_id,
-            self.unreachable_sentence()
+            self.unreachable_sentence(),
+            self.not_reached_sentence()
         );
         let mut payload = json!({
             "hits": hits,
@@ -1245,11 +1407,18 @@ impl View<'_> {
             if hits_empty(o) {
                 o.insert(
                     "empty_because".into(),
-                    JsonValue::String(
+                    JsonValue::String(if self.not_reached.is_empty() {
                         "no design in the view matched the query; `searched` says how many \
                          nodes the searches ran over in all"
-                            .to_string(),
-                    ),
+                            .to_string()
+                    } else {
+                        format!(
+                            "no design SEARCHED matched the query, and {} design(s) of the view \
+                             were not reached in time (`not_reached`), so this is not an answer \
+                             for them; `searched` says how many nodes the searches ran over",
+                            self.not_reached.len()
+                        )
+                    }),
                 );
             }
             if !failed.is_empty() {
@@ -1269,6 +1438,7 @@ impl View<'_> {
                 o.insert("not_searched".into(), JsonValue::Array(pinned_unsearched));
             }
         }
+        self.add_not_reached(&mut payload);
         payload
     }
 }
