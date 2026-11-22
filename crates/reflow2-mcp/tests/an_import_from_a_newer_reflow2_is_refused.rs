@@ -49,6 +49,9 @@ async fn the_tool_refuses_a_document_from_the_future_and_names_the_way_through()
             path: None,
             accept_newer: None,
             merge: None,
+            check_only: None,
+            add_only: None,
+            proposals_only: None,
         }))
         .await
         .expect_err("refused by default");
@@ -70,6 +73,9 @@ async fn accepted_on_purpose_the_report_names_what_was_materialised() {
             path: None,
             accept_newer: Some(true),
             merge: None,
+            check_only: None,
+            add_only: None,
+            proposals_only: None,
         }))
         .await
         .expect("accepted")
@@ -96,6 +102,9 @@ async fn a_document_from_this_or_an_older_reflow2_imports_as_before() {
             path: None,
             accept_newer: None,
             merge: None,
+            check_only: None,
+            add_only: None,
+            proposals_only: None,
         }))
         .await
         .unwrap_or_else(|e| panic!("{v}: {e:?}"));

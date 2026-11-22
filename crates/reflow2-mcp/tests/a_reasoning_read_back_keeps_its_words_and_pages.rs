@@ -40,6 +40,9 @@ async fn trial() -> (ReflowService, BTreeMap<String, Value>) {
         path: None,
         accept_newer: None,
         merge: None,
+        check_only: None,
+        add_only: None,
+        proposals_only: None,
     }))
     .await
     .expect("the trial imports");

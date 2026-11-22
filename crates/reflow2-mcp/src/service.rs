@@ -7597,6 +7597,34 @@ pub struct ImportGraphReq {
     /// node not yet in the design is written as stated either way.
     #[serde(default)]
     pub merge: Option<bool>,
+    /// CHECK the document and WRITE NOTHING. Default false. true: the whole
+    /// import runs exactly as a real one would, with every other option as
+    /// given, and is then discarded whether or not it had faults. The design,
+    /// its identity and its committed export are left exactly as they were.
+    /// The reply says so (`checked_only: true`, `written: false`, a `note`)
+    /// and carries `would_be_refused`, `faults` (every item the same import
+    /// would be refused for, the same lines a refused import lists) and
+    /// `would_write` (the counts it would write). A check that finds faults is a normal
+    /// reply, not an error.
+    #[serde(default)]
+    pub check_only: Option<bool>,
+    /// ADD ONLY. Default false. true: a node whose id the design already
+    /// holds, under any type, is REFUSED, and so is an edge it already holds
+    /// (same type, same two ends); each is listed with every other fault and
+    /// nothing is written. New nodes are written, and so is a new edge between
+    /// nodes the design holds, or between one it holds and a new one.
+    #[serde(default)]
+    pub add_only: Option<bool>,
+    /// PROPOSALS ONLY. Default false. true: the document may propose and may
+    /// not settle. REFUSED, each listed with every other fault: a node that
+    /// would arrive settled (an accepted requirement or decision, a rule with
+    /// `enforced` stated, an increment closed without arriving); a node the
+    /// design holds whose settling property the document would change at all,
+    /// back out of a settled value included; an AUTHORED_BY edge it would
+    /// create or change that carries the `approver` role. Judged on what would
+    /// be stored, after `merge` and the schema's defaults.
+    #[serde(default)]
+    pub proposals_only: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -8715,6 +8743,22 @@ impl ReflowService {
     /// call: it gets no unit, so a write it made would land outside one, and
     /// the annotation that decides who gets a unit would be lying.
     pub(crate) async fn write_lock(&self) -> Result<GraphWrite<'_>, McpError> {
+        self.hold_to_write(true).await
+    }
+
+    /// The same hold, for a handler that will WRITE NOTHING: an import asked to
+    /// check its document (`ImportGraphReq::check_only`) runs the whole write
+    /// under the caller's signing policy and discards it, so it needs the
+    /// write side of the graph, and it must set off nothing a write sets off.
+    /// Outside a served call this announces no write (the write generation
+    /// does not move, the write-through is not rung). Inside one nothing is
+    /// announced either way: the call's unit commits nothing, and a unit that
+    /// wrote nothing announces nothing.
+    pub(crate) async fn write_lock_to_check(&self) -> Result<GraphWrite<'_>, McpError> {
+        self.hold_to_write(false).await
+    }
+
+    async fn hold_to_write(&self, announce: bool) -> Result<GraphWrite<'_>, McpError> {
         if self.read_only {
             // REFUSED LOUDLY, NAMING THE MODE AND THE REASON. A caller that
             // cannot tell "this server refuses writes" from "this write was
@@ -8749,7 +8793,9 @@ impl ReflowService {
             Some(_) => {}
             // Not a served call — a handler driven directly, a one-shot mode:
             // the write lands as it is made, so announce it now, as always.
-            None => self.announce_write(),
+            None if announce => self.announce_write(),
+            // A check: nothing will land, so nothing is announced.
+            None => {}
         }
         // Who this call writes for, when anybody said: recording starts under
         // the lock, so only this hold's writes are in the log it credits.

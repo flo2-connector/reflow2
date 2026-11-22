@@ -47,6 +47,57 @@ use reflow2_core::{
 use crate::dto::{EdgeDto, NodeDto};
 use crate::service::*;
 
+/// The reply of an import that only CHECKED its document
+/// (`ImportGraphReq::check_only`).
+///
+/// IT MUST NOT BE READABLE AS A WRITE. A check that succeeded and an import
+/// that succeeded are the two replies most easily taken for each other, and a
+/// caller that takes the first for the second goes on believing a design holds
+/// what was never written. So the reply says what it is (`checked_only`,
+/// `written: false`, a `note` in plain words), carries NO field a real import
+/// reports its writes in (`nodes_written`, `edges_written`), and counts what
+/// the import would write under a name of its own (`would_write`). `faults` is
+/// always present, empty when the import would be accepted.
+///
+/// Everything else the report holds is kept as it is, and reads as what the
+/// same import WOULD do; `twin_repairs`, whose own words are past tense, is
+/// served as `would_repair_twins`.
+fn checked_reply(report: reflow2_core::ImportReport) -> Result<JsonValue, McpError> {
+    let would_be_refused = !report.faults.is_empty();
+    let note = if would_be_refused {
+        "THIS WAS A CHECK, AND NOTHING WAS WRITTEN: the design is exactly as it was. As the \
+         design stands, the same import without `check_only` would be REFUSED and would write \
+         nothing either. `faults` lists every item it would be refused for."
+    } else {
+        "THIS WAS A CHECK, AND NOTHING WAS WRITTEN: the design is exactly as it was. As the \
+         design stands, the same import without `check_only` would be accepted and would write \
+         what `would_write` counts. To write it, send it again without `check_only`."
+    };
+    let mut reply = JsonMap::new();
+    reply.insert("checked_only".into(), json!(true));
+    reply.insert("written".into(), json!(false));
+    reply.insert("note".into(), json!(note));
+    reply.insert("would_be_refused".into(), json!(would_be_refused));
+    reply.insert("faults".into(), json!(report.faults));
+    let would = report.would_write.unwrap_or_default();
+    reply.insert(
+        "would_write".into(),
+        json!({"nodes": would.nodes, "edges": would.edges}),
+    );
+    if let JsonValue::Object(mut rest) = serde_json::to_value(report).map_err(ser_err)? {
+        for a_real_imports in ["nodes_written", "edges_written"] {
+            rest.remove(a_real_imports);
+        }
+        if let Some(repairs) = rest.remove("twin_repairs") {
+            rest.insert("would_repair_twins".into(), repairs);
+        }
+        for (key, value) in rest {
+            reply.entry(key).or_insert(value);
+        }
+    }
+    Ok(JsonValue::Object(reply))
+}
+
 /// THE OTHER DESIGN of a seam tool, from exactly one of two sources: inline,
 /// as always, or BY GRAPH_ID through the registry this design is served from
 /// (`req:every-cross-design-operation-takes-its-other-designs-by-graph-id-under-the-hosts-read-filter`),
@@ -479,22 +530,21 @@ impl ReflowService {
     #[tool(
         description = "Load an exported design into this graph. THE DOCUMENT SHAPE: \
                        {\"nodes\":[{\"node_type\":\"Requirement\",\"node_id\":\"req:x\",\"properties\":{...}}],\"edges\":[{\"edge_type\":\"SATISFIES\",\"from_id\":\"cap:x\",\"to_id\":\"req:x\",\"properties\":{}}]}. \
-                       Only `nodes` is required: `graph_id`, `stamp` and both hashes are OPTIONAL on the way \
-                       in, and `edges` may be omitted. Endpoint \
-                       types are recovered from the nodes in the document or from this graph; describe_schema \
-                       lists each node_type's properties. EACH NODE IS STATED WHOLE: a node already here is \
-                       replaced, so a property the document leaves out is removed; the reply counts each \
-                       removal and change in `properties_removed` / `properties_changed`. A node is refused only \
-                       when it lacks a required property. To EDIT existing nodes, pass `merge: true` (what the \
-                       document omits is kept) or use create_nodes. Anything not in the document is left \
-                       alone. Atomic: a document that fails validation leaves the graph untouched, and EVERY \
-                       invalid item is reported in one response; an edge whose endpoint is missing is reported, \
-                       not dropped. IDENTITY: an EMPTY store adopts the document's `graph_id` \
-                       (`adopted_identity`); a store already holding one keeps its name. A document from a NEWER \
-                       reflow2 is REFUSED unless `accept_newer`: it would write this binary's defaults onto \
-                       what the newer one left implicit. `materialized` names every \
-                       Type.property written that the document did not state. Ask for this when you want to \
-                       load a design or model file that someone exported or sent you.",
+                       Only `nodes` is required: `graph_id`, `stamp`, both hashes and `edges` are OPTIONAL. \
+                       Endpoint types come from the document's nodes or this graph; describe_schema lists each \
+                       node_type's properties. EACH NODE IS STATED WHOLE: a node already here is replaced, so a \
+                       property the document leaves out is removed (counted in `properties_removed` / \
+                       `properties_changed`). A node is refused only when it lacks a required property. To EDIT \
+                       existing nodes, pass `merge: true` (what the document omits is kept) or use create_nodes. \
+                       Anything not in the document is left alone. Atomic: a document that fails validation leaves \
+                       the graph untouched, and EVERY invalid item is reported at once; an edge whose endpoint is \
+                       missing is reported, not dropped. IDENTITY: an EMPTY store adopts the document's `graph_id` \
+                       (`adopted_identity`); any other keeps its name. A document from a NEWER reflow2 is REFUSED \
+                       unless `accept_newer`: this binary would write its defaults onto it. `materialized` names \
+                       every Type.property written and not stated. OPTIONS: `check_only` runs it all and WRITES \
+                       NOTHING; `add_only` REFUSES what the design already holds; `proposals_only` REFUSES what \
+                       settles or approves. Ask for this when you want to load a design or model file that someone \
+                       exported or sent you.",
         title = "Import a Design",
         annotations(read_only_hint = false, destructive_hint = true)
     )]
@@ -532,10 +582,30 @@ impl ReflowService {
                 ));
             }
         };
-        crate::saved_design::refuse_newer_schema(&read, req.accept_newer.unwrap_or(false))
-            .map_err(|e| McpError::invalid_params(e, None))?;
+        let check_only = req.check_only.unwrap_or(false);
+        if let Err(refusal) =
+            crate::saved_design::refuse_newer_schema(&read, req.accept_newer.unwrap_or(false))
+        {
+            // A check asked whether the import would be refused. It would,
+            // and that is its answer; a real import is refused as always.
+            if !check_only {
+                return Err(McpError::invalid_params(refusal, None));
+            }
+            return ok_json(checked_reply(reflow2_core::ImportReport {
+                checked_only: true,
+                faults: vec![refusal],
+                would_write: Some(Default::default()),
+                ..Default::default()
+            })?);
+        }
         let doc = &read.export;
-        let mut g = self.write_lock().await?;
+        // A check takes the hold that announces no write: it runs the whole
+        // import under the caller's signing policy and keeps none of it.
+        let mut g = if check_only {
+            self.write_lock_to_check().await?
+        } else {
+            self.write_lock().await?
+        };
         let watch = crate::settles::SettleWatch::before(
             &g,
             doc.nodes
@@ -548,10 +618,28 @@ impl ReflowService {
                 reflow2_core::export::ImportOptions {
                     accept_newer: req.accept_newer.unwrap_or(false),
                     merge: req.merge.unwrap_or(false),
+                    check_only,
+                    add_only: req.add_only.unwrap_or(false),
+                    proposals_only: req.proposals_only.unwrap_or(false),
                 },
             )
             .map_err(dyno_err)?;
         crate::saved_design::annotate_import(&read, &mut report);
+        if check_only {
+            // NOTHING WAS WRITTEN, so nothing a write is followed by happens:
+            // this seat is not recorded as in step with the file (it absorbed
+            // none of it), and no settle is reported (none was made). The
+            // hidden-character report stands: it is about the document.
+            drop(g);
+            let mut reply = checked_reply(report)?;
+            if let (Some(found), Some(o)) = (
+                crate::write_sanitize::scan_export(&read.export),
+                reply.as_object_mut(),
+            ) {
+                o.insert("hidden_characters".into(), found);
+            }
+            return ok_json(reply);
+        }
         // Absorbing a file puts this seat in step with it, which is exactly
         // what the stale-seat refusal tells people to do — so record it, or the
         // remedy would not clear the condition it names (req:stale-seat-knows).

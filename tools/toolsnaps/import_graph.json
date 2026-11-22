@@ -3,7 +3,7 @@
     "destructiveHint": true,
     "readOnlyHint": false
   },
-  "description": "Load an exported design into this graph. THE DOCUMENT SHAPE: {\"nodes\":[{\"node_type\":\"Requirement\",\"node_id\":\"req:x\",\"properties\":{...}}],\"edges\":[{\"edge_type\":\"SATISFIES\",\"from_id\":\"cap:x\",\"to_id\":\"req:x\",\"properties\":{}}]}. Only `nodes` is required: `graph_id`, `stamp` and both hashes are OPTIONAL on the way in, and `edges` may be omitted. Endpoint types are recovered from the nodes in the document or from this graph; describe_schema lists each node_type's properties. EACH NODE IS STATED WHOLE: a node already here is replaced, so a property the document leaves out is removed; the reply counts each removal and change in `properties_removed` / `properties_changed`. A node is refused only when it lacks a required property. To EDIT existing nodes, pass `merge: true` (what the document omits is kept) or use create_nodes. Anything not in the document is left alone. Atomic: a document that fails validation leaves the graph untouched, and EVERY invalid item is reported in one response; an edge whose endpoint is missing is reported, not dropped. IDENTITY: an EMPTY store adopts the document's `graph_id` (`adopted_identity`); a store already holding one keeps its name. A document from a NEWER reflow2 is REFUSED unless `accept_newer`: it would write this binary's defaults onto what the newer one left implicit. `materialized` names every Type.property written that the document did not state. Ask for this when you want to load a design or model file that someone exported or sent you.",
+  "description": "Load an exported design into this graph. THE DOCUMENT SHAPE: {\"nodes\":[{\"node_type\":\"Requirement\",\"node_id\":\"req:x\",\"properties\":{...}}],\"edges\":[{\"edge_type\":\"SATISFIES\",\"from_id\":\"cap:x\",\"to_id\":\"req:x\",\"properties\":{}}]}. Only `nodes` is required: `graph_id`, `stamp`, both hashes and `edges` are OPTIONAL. Endpoint types come from the document's nodes or this graph; describe_schema lists each node_type's properties. EACH NODE IS STATED WHOLE: a node already here is replaced, so a property the document leaves out is removed (counted in `properties_removed` / `properties_changed`). A node is refused only when it lacks a required property. To EDIT existing nodes, pass `merge: true` (what the document omits is kept) or use create_nodes. Anything not in the document is left alone. Atomic: a document that fails validation leaves the graph untouched, and EVERY invalid item is reported at once; an edge whose endpoint is missing is reported, not dropped. IDENTITY: an EMPTY store adopts the document's `graph_id` (`adopted_identity`); any other keeps its name. A document from a NEWER reflow2 is REFUSED unless `accept_newer`: this binary would write its defaults onto it. `materialized` names every Type.property written and not stated. OPTIONS: `check_only` runs it all and WRITES NOTHING; `add_only` REFUSES what the design already holds; `proposals_only` REFUSES what settles or approves. Ask for this when you want to load a design or model file that someone exported or sent you.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -11,6 +11,22 @@
       "accept_newer": {
         "default": null,
         "description": "Import a document stamped by a NEWER reflow2 than this server anyway.\nDefault false: such an import is REFUSED, because this binary would\nwrite its own schema defaults onto every record the newer reflow2 left\nimplicit (853 AUTHORED_BY edges gained `role: author` that way on\n2026-09-14) and nothing in the result would say so. Pass true only when\nyou mean to read it with this binary — the report's `materialized` field\nthen names exactly what was written that the document did not state.",
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "add_only": {
+        "default": null,
+        "description": "ADD ONLY. Default false. true: a node whose id the design already\nholds, under any type, is REFUSED, and so is an edge it already holds\n(same type, same two ends); each is listed with every other fault and\nnothing is written. New nodes are written, and so is a new edge between\nnodes the design holds, or between one it holds and a new one.",
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "check_only": {
+        "default": null,
+        "description": "CHECK the document and WRITE NOTHING. Default false. true: the whole\nimport runs exactly as a real one would, with every other option as\ngiven, and is then discarded whether or not it had faults. The design,\nits identity and its committed export are left exactly as they were.\nThe reply says so (`checked_only: true`, `written: false`, a `note`)\nand carries `would_be_refused`, `faults` (every item the same import\nwould be refused for, the same lines a refused import lists) and\n`would_write` (the counts it would write). A check that finds faults is a normal\nreply, not an error.",
         "type": [
           "boolean",
           "null"
@@ -47,6 +63,14 @@
         "description": "Read the document from this file instead — the committed design export,\nusually. Prefer this to inlining: it avoids carrying a large document\nthrough the conversation, and it records that this seat is now in step\nwith that file, which is what clears a `req:stale-seat-knows` refusal.",
         "type": [
           "string",
+          "null"
+        ]
+      },
+      "proposals_only": {
+        "default": null,
+        "description": "PROPOSALS ONLY. Default false. true: the document may propose and may\nnot settle. REFUSED, each listed with every other fault: a node that\nwould arrive settled (an accepted requirement or decision, a rule with\n`enforced` stated, an increment closed without arriving); a node the\ndesign holds whose settling property the document would change at all,\nback out of a settled value included; an AUTHORED_BY edge it would\ncreate or change that carries the `approver` role. Judged on what would\nbe stored, after `merge` and the schema's defaults.",
+        "type": [
+          "boolean",
           "null"
         ]
       }

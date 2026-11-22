@@ -1421,3 +1421,30 @@ pub fn adopt_on_import(
     write(graph_path, &identity)?;
     Ok(Some(identity))
 }
+
+/// The id [`adopt_on_import`] WOULD adopt, WRITING NOTHING: what an import
+/// that only checks its document asks (`ImportOptions::check_only`).
+///
+/// The same predicate, read through the same lookup, with every write left
+/// out: no identity file is written, copied beside the store or changed. An
+/// identity file the lookup refuses is the refusal the import itself would
+/// meet, and is returned as it.
+pub fn would_adopt_on_import(
+    graph_path: &str,
+    document_graph_id: &str,
+    holds_a_design: bool,
+) -> Result<Option<String>, DynoError> {
+    if holds_a_design || document_graph_id.is_empty() {
+        return Ok(None);
+    }
+    match locate(graph_path).decide() {
+        Located::Found(found) => {
+            Ok((found.identity.graph_id != document_graph_id)
+                .then(|| document_graph_id.to_string()))
+        }
+        Located::Refused(e) => Err(e),
+        // No identity file anywhere: the import would mint one and then give
+        // it the document's name.
+        Located::Absent => Ok(Some(document_graph_id.to_string())),
+    }
+}

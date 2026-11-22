@@ -36,7 +36,10 @@
 //! WHEN: after a call that WRITES by its served annotation and SUCCEEDED (exit
 //! 0). A read writes no export. A refused call (exit 1) and a reply the tool
 //! marked an error (exit 2) write none either — the call's write unit discarded
-//! everything they staged, so there is nothing new to carry.
+//! everything they staged, so there is nothing new to carry. Nor does a call
+//! of a writing tool that only CHECKED ([`only_checked`]: `import_graph` with
+//! `check_only`): it wrote nothing, so the committed export is left as it is,
+//! and one line on stderr says so.
 //!
 //! # Where the file comes from — the project's configuration, never the agent
 //!
@@ -141,6 +144,24 @@ pub enum Found {
     },
     /// The caller asked for no export (`--no-export`).
     NotAsked,
+}
+
+/// Did this reply come from a call that only CHECKED and wrote nothing? Read
+/// off the reply's own first word on the matter, `"checked_only": true`, which
+/// `import_graph` says under `check_only` and no write ever says.
+pub fn only_checked(reply: &serde_json::Value) -> bool {
+    reply
+        .get("checked_only")
+        .and_then(serde_json::Value::as_bool)
+        == Some(true)
+}
+
+/// The line a call that only checked prints in place of an export line.
+pub fn checked_only(tool: &str) -> String {
+    format!(
+        "reflow2: `{tool}` only CHECKED and wrote nothing, so no export was written: the \
+         committed export is as it was."
+    )
 }
 
 /// The line a writing call prints under `--no-export`.
@@ -568,6 +589,23 @@ pub fn report(tool: &str, target: &Target, flushed: &crate::auto_export::Flushed
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn only_a_reply_that_says_it_checked_is_one() {
+        assert!(only_checked(
+            &serde_json::json!({"checked_only": true, "written": false})
+        ));
+        for wrote in [
+            serde_json::json!({"nodes_written": 2, "edges_written": 1}),
+            serde_json::json!({"checked_only": false}),
+            serde_json::json!({"checked_only": "true"}),
+            serde_json::json!("checked_only"),
+            serde_json::Value::Null,
+        ] {
+            assert!(!only_checked(&wrote), "{wrote}");
+        }
+        assert!(checked_only("import_graph").contains("wrote nothing"));
+    }
 
     fn project() -> (tempfile::TempDir, PathBuf, PathBuf) {
         let d = tempfile::Builder::new()

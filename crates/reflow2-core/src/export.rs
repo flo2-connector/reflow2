@@ -381,10 +381,32 @@ impl GraphExport {
 
 /// What an import did. Reported rather than assumed — an import that quietly
 /// skipped half a design would be the worst kind of success.
-#[derive(Debug, Clone, PartialEq, Serialize)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize)]
 pub struct ImportReport {
+    /// `0` on a check ([`ImportOptions::check_only`]), which writes nothing:
+    /// what it WOULD write is `would_write`.
     pub nodes_written: usize,
     pub edges_written: usize,
+    /// True when this report is of a CHECK and NOTHING WAS WRITTEN
+    /// ([`ImportOptions::check_only`]). Every other field then describes what
+    /// the same import WOULD do, and `nodes_written` / `edges_written` are 0.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub checked_only: bool,
+    /// On a check, every item the import would be refused for: the strings a
+    /// refused import lists, one per item. Empty when the same import would be
+    /// accepted. Always empty on a real import, whose refusal is an `Err`
+    /// carrying the same list.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub faults: Vec<String>,
+    /// On a check, what the same import would write. Both counts are 0 when
+    /// `faults` is not empty: an import is all-or-nothing, so a refused one
+    /// writes nothing. `None` on a real import.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub would_write: Option<WouldWrite>,
+    /// On a check, the design identity the same import WOULD adopt
+    /// (`adopted_identity` on a real one). The check adopted nothing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub would_adopt_identity: Option<String>,
     /// Edges whose endpoints were not in the document and not already in the
     /// graph. Named, never dropped silently.
     pub skipped_edges: Vec<String>,
@@ -521,6 +543,27 @@ pub struct ImportReport {
     pub removed_note: Option<String>,
 }
 
+/// What a checked import would write ([`ImportOptions::check_only`]).
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize)]
+pub struct WouldWrite {
+    pub nodes: usize,
+    pub edges: usize,
+}
+
+impl ImportReport {
+    /// The report of a check whose import would be refused before a single
+    /// item is read (a document from a newer reflow2, an identity file that
+    /// cannot be read), carrying that refusal as its one fault.
+    fn of_a_check_refused_outright(refusal: &DynoError) -> Self {
+        Self {
+            checked_only: true,
+            faults: vec![refusal.to_string()],
+            would_write: Some(WouldWrite::default()),
+            ..Self::default()
+        }
+    }
+}
+
 /// How an import may deviate from the safe default.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
 pub struct ImportOptions {
@@ -535,6 +578,35 @@ pub struct ImportOptions {
     /// (`dec:import-merges-or-demands-whole-nodes`, accepted 2026-10-21: whole
     /// nodes unless the call asks to merge).
     pub merge: bool,
+    /// CHECK ONLY: run the whole import exactly as a real one would (every
+    /// validation, the caller's signing policy, the merge, the relations
+    /// stored twice brought into step) and then DISCARD it, whether or not it
+    /// had faults. NOTHING IS WRITTEN OR CHANGED: no node, no edge, no write
+    /// stamp, not the store's identity (an empty store adopts nothing), not
+    /// the record of who wrote what.
+    ///
+    /// A check whose import would be refused is an `Ok` report, not an `Err`:
+    /// `checked_only` is true, `faults` lists every item a real import would
+    /// refuse (the same strings), and `would_write` counts what it would
+    /// write. Asking is not failing. A store that cannot be read is still an
+    /// `Err`.
+    pub check_only: bool,
+    /// ADD ONLY: a node whose id the design already holds, under any type, is
+    /// a fault, and so is an edge the design already holds (same edge type,
+    /// same endpoints). A new edge between two nodes the design holds, or
+    /// between one it holds and a new one, is written. "Already holds" is the
+    /// design as it stood BEFORE this document: an id the document itself
+    /// names twice is not one.
+    pub add_only: bool,
+    /// PROPOSALS ONLY: the document may propose and may not settle. A fault,
+    /// per item: a node the write would newly settle; a node the design holds
+    /// whose settling property the write would change at all, back out of a
+    /// settled value included; an `AUTHORED_BY` edge the write would create or
+    /// change that carries the `approver` role (or would take one away).
+    /// Judged on what WOULD BE STORED, after the merge and the schema's
+    /// defaults, by the one table in `crate::intent`
+    /// ([`crate::intent::more_than_a_proposal`]).
+    pub proposals_only: bool,
 }
 
 /// How many existing nodes an import names in `removed_from`, at most.
@@ -677,7 +749,7 @@ impl DesignGraph {
             && crate::provenance::is_newer(&stamp.reflow2_version, env!("CARGO_PKG_VERSION"))
             && !options.accept_newer
         {
-            return Err(DynoError::Validation {
+            let refusal = DynoError::Validation {
                 node_type: "GraphExport".into(),
                 property: "stamp.reflow2_version".into(),
                 message: format!(
@@ -690,8 +762,44 @@ impl DesignGraph {
                     env!("CARGO_PKG_VERSION"),
                     crate::provenance::BEHIND_HAZARD
                 ),
-            });
+            };
+            return if options.check_only {
+                Ok(ImportReport::of_a_check_refused_outright(&refusal))
+            } else {
+                Err(refusal)
+            };
         }
+        if !options.check_only {
+            return self.import_document(doc, options);
+        }
+        // A CHECK LEAVES THE GRAPH AS IT FOUND IT (`ImportOptions::check_only`).
+        // The walk below runs whole, inside a batch it then discards. Two
+        // things live outside that batch, and each is put back here, on every
+        // path out, a refusal and a storage error included:
+        // - the id this graph answers to, which the walk moves to the one the
+        //   import would adopt so it reads the store the real import would;
+        // - the log of nodes written, which credits a call's writes to whoever
+        //   it writes for when the hold is released
+        //   (`crate::attribution`). A check wrote none, so it credits none.
+        let own_graph_id = self.graph_id.clone();
+        let logged = self.touch_log.as_ref().map(Vec::len);
+        let outcome = self.import_document(doc, options);
+        self.graph_id = own_graph_id;
+        if let (Some(log), Some(logged)) = (self.touch_log.as_mut(), logged) {
+            log.truncate(logged);
+        }
+        outcome
+    }
+
+    /// The walk of [`import_graph_with`](Self::import_graph_with): everything
+    /// after the newer-document refusal. On a check it discards its batch and
+    /// writes no identity; the caller above puts back what lives outside the
+    /// batch.
+    fn import_document(
+        &mut self,
+        doc: &GraphExport,
+        options: ImportOptions,
+    ) -> Result<ImportReport, DynoError> {
         // WHOSE DESIGN IS THIS? Answered before a single write, because the id
         // namespaces every stored key and the import writes under whatever name
         // the graph currently carries (BL-169).
@@ -714,10 +822,32 @@ impl DesignGraph {
         // own name, because layering an export onto a live design is an upsert,
         // not a restore, and taking the incoming name there would rename a
         // design to whatever was last imported into it.
+        //
+        // A CHECK ADOPTS NOTHING (`ImportOptions::check_only`): it asks the
+        // same predicate through `would_adopt_on_import`, which writes no
+        // identity file, and walks under the id the import would take so it
+        // reads the store the import would read. `import_graph_with` puts the
+        // graph's own id back.
         let mut adopted_identity = None;
+        let mut would_adopt_identity = None;
         if let Some(path) = self.store_path.clone() {
             let holds = self.holds_a_design();
-            if let Some(adopted) = crate::identity::adopt_on_import(&path, &doc.graph_id, holds)? {
+            if options.check_only {
+                match crate::identity::would_adopt_on_import(&path, &doc.graph_id, holds) {
+                    Ok(Some(id)) => {
+                        self.graph_id = id.clone();
+                        would_adopt_identity = Some(id);
+                    }
+                    Ok(None) => {}
+                    // The refusal the import itself would meet, before a
+                    // single item is read.
+                    Err(refusal) => {
+                        return Ok(ImportReport::of_a_check_refused_outright(&refusal));
+                    }
+                }
+            } else if let Some(adopted) =
+                crate::identity::adopt_on_import(&path, &doc.graph_id, holds)?
+            {
                 self.graph_id = adopted.graph_id.clone();
                 adopted_identity = Some(adopted.graph_id);
             }
@@ -731,6 +861,31 @@ impl DesignGraph {
             types.insert(n.node_id.as_str(), n.node_type.as_str());
         }
         let existing = self.node_type_index()?;
+
+        // WHAT THE DESIGN HELD BEFORE THIS DOCUMENT TOUCHED IT, for the two
+        // options that ask (`add_only`, `proposals_only`): each edge leaving a
+        // node the design already holds, by (type, from, to), with its
+        // properties. Read BEFORE the batch opens, so an edge this document
+        // draws, or one a node write of its draws as a relation stored twice,
+        // is never mistaken for one the design held. Only a node already here
+        // can hold an edge, so a document of new records costs no read.
+        let mut held_edges: std::collections::HashMap<
+            (String, String, String),
+            std::collections::HashMap<String, Value>,
+        > = std::collections::HashMap::new();
+        if options.add_only || options.proposals_only {
+            let mut read: std::collections::BTreeSet<&str> = std::collections::BTreeSet::new();
+            for e in &doc.edges {
+                let asked = options.add_only || e.edge_type == edge::AUTHORED_BY;
+                if !asked || !existing.contains_key(&e.from_id) || !read.insert(e.from_id.as_str())
+                {
+                    continue;
+                }
+                for held in self.outgoing(&e.from_id, None)? {
+                    held_edges.insert((held.edge_type, held.from_id, held.to_id), held.properties);
+                }
+            }
+        }
 
         self.begin_batch();
         let result = (|| -> Result<ImportReport, DynoError> {
@@ -772,6 +927,22 @@ impl DesignGraph {
             let mut removed_from: Vec<String> = Vec::new();
             let mut nodes_losing = 0usize;
             for (index, n) in doc.nodes.iter().enumerate() {
+                // ADD ONLY: an id the design held before this document, under
+                // any type, is refused and listed like every other fault.
+                if options.add_only
+                    && let Some(held_as) = existing.get(&n.node_id)
+                {
+                    faults.push(format!(
+                        "nodes[{index}] {}: the design already holds this record, and an \
+                         add-only import never changes one it holds",
+                        n.node_id
+                    ));
+                    // The record stays the one the design holds, so an edge
+                    // of this document reaches it as the type it is held
+                    // under, and one fault is not followed by a derived one.
+                    types.insert(n.node_id.as_str(), held_as.as_str());
+                    continue;
+                }
                 let mut stated = n.properties.clone();
                 fill_accepted_checksum(&n.node_type, &n.node_id, &mut stated, &accepted);
                 let before: Option<std::collections::HashMap<String, Value>> =
@@ -803,6 +974,18 @@ impl DesignGraph {
                 props.extend(n.stamps.iter().map(|(k, v)| (k.clone(), v.clone())));
                 match self.create_node_refs_checked_later(&n.node_type, &n.node_id, props) {
                     Ok(stored) => {
+                        // PROPOSALS ONLY, judged on what would be STORED: after
+                        // the merge above and the defaults the write filled in.
+                        if options.proposals_only
+                            && let Some(why) = crate::intent::more_than_a_proposal(
+                                &n.node_type,
+                                &n.node_id,
+                                before.as_ref(),
+                                &stored.properties,
+                            )
+                        {
+                            faults.push(format!("nodes[{index}] {}: {why}", n.node_id));
+                        }
                         for key in stored.properties.keys() {
                             // A default filled in is a key neither the
                             // document nor the node held. One the node
@@ -925,9 +1108,26 @@ impl DesignGraph {
                         // (`narrowing::EDGE_REWRITES`), read here, on every
                         // open, and by the recheck. Its old properties have
                         // no home on the new edge.
-                        let mut edge_type = e.edge_type.as_str();
-                        if let Some(r) = crate::narrowing::edge_rewrite_for(edge_type, ft, tt) {
-                            edge_type = r.becomes;
+                        let rewrite =
+                            crate::narrowing::edge_rewrite_for(e.edge_type.as_str(), ft, tt);
+                        let edge_type = rewrite.map_or(e.edge_type.as_str(), |r| r.becomes);
+                        // ADD ONLY: an edge the design held before this
+                        // document (the type it would be WRITTEN as, the same
+                        // endpoints) is refused and listed.
+                        let held = held_edges.get(&(
+                            edge_type.to_string(),
+                            e.from_id.clone(),
+                            e.to_id.clone(),
+                        ));
+                        if options.add_only && held.is_some() {
+                            faults.push(format!(
+                                "edges[{index}] {} {} -> {}: the design already holds this \
+                                 relation, and an add-only import never changes one it holds",
+                                e.edge_type, e.from_id, e.to_id
+                            ));
+                            continue;
+                        }
+                        if let Some(r) = rewrite {
                             props.clear();
                             migrated_edges.push(format!(
                                 "{} {} -> {} became {} ({})",
@@ -959,6 +1159,26 @@ impl DesignGraph {
                         ) {
                             Ok(stored) => {
                                 edges_written += 1;
+                                // PROPOSALS ONLY: a signature that approves, or
+                                // that would change an approval the design
+                                // holds, is its owner's act and never a file's.
+                                if options.proposals_only && edge_type == edge::AUTHORED_BY {
+                                    let in_set_shape =
+                                        |p: &std::collections::HashMap<String, Value>| {
+                                            let mut p = p.clone();
+                                            crate::graph::normalize_authored_by_props(&mut p);
+                                            p
+                                        };
+                                    if let Some(why) = crate::intent::approval_more_than_a_proposal(
+                                        held.map(in_set_shape).as_ref(),
+                                        &in_set_shape(&stored.properties),
+                                    ) {
+                                        faults.push(format!(
+                                            "edges[{index}] {} {} -> {}: {why}",
+                                            e.edge_type, e.from_id, e.to_id
+                                        ));
+                                    }
+                                }
                                 if a_self_loop_that_means_nothing {
                                     self_loops_kept.push(format!(
                                         "{edge_type} {} -> {} (a relation that cannot hold \
@@ -995,6 +1215,24 @@ impl DesignGraph {
                     )),
                 }
             }
+            // A CHECK WITH FAULTS IS AN ANSWER, NOT A FAILURE: the same list a
+            // refused import carries, in a report that says nothing would be
+            // written (`ImportOptions::check_only`).
+            if options.check_only && !faults.is_empty() {
+                return Ok(ImportReport {
+                    checked_only: true,
+                    faults,
+                    would_write: Some(WouldWrite::default()),
+                    would_adopt_identity: would_adopt_identity.clone(),
+                    skipped_edges,
+                    integrity_note: integrity_note(doc),
+                    provenance_note: provenance_note(doc, true),
+                    migrated_edges,
+                    dangling_node_refs,
+                    self_loops_kept,
+                    ..ImportReport::default()
+                });
+            }
             if !faults.is_empty() {
                 let n = faults.len();
                 return Err(DynoError::Validation {
@@ -1010,31 +1248,28 @@ impl DesignGraph {
             }
             // Inside the batch, so the repair lands with the document or not at all.
             let twin_repairs = self.repair_stored_twins()?;
+            // A check wrote nothing, so its counts are what it WOULD write.
+            let written = WouldWrite {
+                nodes: doc.nodes.len(),
+                edges: edges_written,
+            };
             Ok(ImportReport {
-                nodes_written: doc.nodes.len(),
-                edges_written,
+                nodes_written: if options.check_only { 0 } else { written.nodes },
+                edges_written: if options.check_only { 0 } else { written.edges },
+                checked_only: options.check_only,
+                faults: Vec::new(),
+                would_write: options.check_only.then_some(written),
+                would_adopt_identity: would_adopt_identity.clone(),
                 skipped_edges,
-                integrity_note: match doc.verify_content_hash() {
-                    Some(false) => Some(
-                        "the document's content_hash does not match its content — it was \
-                         edited outside reflow2 or corrupted since it was exported"
-                            .to_string(),
-                    ),
-                    _ => None,
-                },
-                provenance_note: doc.is_unstamped().then(|| {
-                    "the document had no stamp — imported as unstamped (a hand-authored or \
-                     third-party document, not one reflow2 exported); provenance and the \
-                     upgrade-direction check cannot be run on it"
-                        .to_string()
-                }),
+                integrity_note: integrity_note(doc),
+                provenance_note: provenance_note(doc, options.check_only),
                 adopted_identity: adopted_identity.clone(),
                 migrated_edges,
                 dangling_node_refs,
                 self_loops_kept,
                 materialized,
                 twin_repairs,
-                removed_note: removed_note(&properties_removed, nodes_losing),
+                removed_note: removed_note(&properties_removed, nodes_losing, options.check_only),
                 properties_removed,
                 properties_changed,
                 removed_from: {
@@ -1049,6 +1284,11 @@ impl DesignGraph {
             })
         })();
 
+        if options.check_only {
+            // Discarded whatever it found: a check keeps nothing.
+            self.discard_batch();
+            return result;
+        }
         match result {
             Ok(report) => {
                 self.commit_batch()?;
@@ -1063,13 +1303,56 @@ impl DesignGraph {
     }
 }
 
+/// What an import says of a document whose embedded hash does not match it.
+fn integrity_note(doc: &GraphExport) -> Option<String> {
+    match doc.verify_content_hash() {
+        Some(false) => Some(
+            "the document's content_hash does not match its content — it was edited outside \
+             reflow2 or corrupted since it was exported"
+                .to_string(),
+        ),
+        _ => None,
+    }
+}
+
+/// What an import says of a document that arrived with no stamp (on a check:
+/// what it would say, in the words of something that has not happened).
+fn provenance_note(doc: &GraphExport, check_only: bool) -> Option<String> {
+    let imported = if check_only {
+        "it would be imported as unstamped"
+    } else {
+        "imported as unstamped"
+    };
+    doc.is_unstamped().then(|| {
+        format!(
+            "the document had no stamp — {imported} (a hand-authored or third-party document, \
+             not one reflow2 exported); provenance and the upgrade-direction check cannot be \
+             run on it"
+        )
+    })
+}
+
 /// The sentence an import says when it removed properties from nodes the
-/// design already held. `None` when it removed none.
-fn removed_note(removed: &BTreeMap<String, usize>, nodes: usize) -> Option<String> {
+/// design already held (on a check: would remove). `None` when it removed none.
+fn removed_note(
+    removed: &BTreeMap<String, usize>,
+    nodes: usize,
+    check_only: bool,
+) -> Option<String> {
     if removed.is_empty() {
         return None;
     }
     let total: usize = removed.values().sum();
+    if check_only {
+        return Some(format!(
+            "This import WOULD REMOVE {total} stored value(s) from {nodes} node(s) the design \
+             already holds; this was a check, and nothing was removed. A document states each \
+             node whole, so what it leaves out is removed. `properties_removed` counts them by \
+             Type.property and `removed_from` names a few. If the document is meant to EDIT \
+             those nodes, import it with `merge: true` (or write the edits with create_nodes), \
+             which keeps what a call leaves out."
+        ));
+    }
     Some(format!(
         "This import REMOVED {total} stored value(s) from {nodes} node(s) the design already \
          held. A document states each node whole, so what it leaves out is removed: that is how \
