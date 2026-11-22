@@ -25,6 +25,10 @@
   reading budget. The block is held to 600 characters and never pushes a reply
   past the reply's own budget (the `budget_chars` you passed, else 30,000); a
   reply already at its budget, a refusal, and the Markdown report get none.
+  **A list reply gets none either**: a reply that is the bare list envelope,
+  `{count, items}` with nothing beside them but `loop_hint` or
+  `empty_because` (`open_questions`, and any read of that shape), keeps exactly
+  its shape, so a client that unwraps it into the list still does.
   **Nothing it is drawn from changes:** `loop_hint`, `hint`, `next`,
   `next_step`, `nudge`, `carry_it`, `lessons` and `search_first` stay exactly
   as they were, so a client reading them reads what it read before.

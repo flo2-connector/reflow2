@@ -54,6 +54,9 @@
 //! (a near-match a write found). The fields the cues come from stay exactly
 //! as they were: the block is computed from them, beside them, and replaces
 //! none (MCP changes are additive; a removal needs a deprecating release).
+//! A LIST REPLY carries none ([`is_list_envelope`]): clients unwrap the bare
+//! `{count, items}` envelope into the list, and a sibling they do not know
+//! stops the unwrap, so adding one there would not be additive.
 //!
 //! THE COUNTS CHOOSE WHAT GOES IN ([`MEASURED`], [`standing`]): a cue the
 //! counts show followed ranks first, by how often it was followed within five
@@ -1077,9 +1080,28 @@ pub fn block(offers: &[Offer], v: &Vocabulary, room: usize) -> Option<Value> {
 /// earns a place — and only within `budget`, the reply's own budget (the
 /// caller's `budget_chars`, else the 30,000 default): the block takes what
 /// is left of it and never pushes the reply past it. A reply over its budget
-/// already gets none. A document-shaped reply (no structured half) and a
-/// refusal get none; nothing is added to a reply that offers no cue, so it is
-/// byte for byte what it was.
+/// already gets none. A document-shaped reply (no structured half), a
+/// refusal and a LIST REPLY ([`is_list_envelope`]: Anthony, 2026-11-21, "Keep
+/// it off list replies", because clients unwrap that shape into the list and a
+/// sibling they do not know stops the unwrap) get none; nothing is added to a
+/// reply that offers no cue, so it is byte for byte what it was.
+/// The siblings a LIST REPLY may carry beside `count` and `items` and still be
+/// read as a bare list: the inert prose the server adds to an orientation read
+/// (`loop_hint`) and to an empty one (`empty_because`).
+pub const LIST_ENVELOPE_KEYS: [&str; 4] = ["count", "items", "loop_hint", "empty_because"];
+
+/// Whether a reply's structured content is the bare LIST ENVELOPE —
+/// `{count, items}` with nothing beside them but [`LIST_ENVELOPE_KEYS`] — the
+/// shape clients unwrap into the list itself (tools/smoke_mcp.py,
+/// tools/reflow2_cli.py, tools/reflow2_check.py). By shape, not by tool, so a
+/// list reply added later is covered too. A reply that built more around its
+/// list (detect_gaps' `budget` and `by_source`) is not this shape.
+pub fn is_list_envelope(obj: &serde_json::Map<String, Value>) -> bool {
+    obj.contains_key("count")
+        && obj.contains_key("items")
+        && obj.keys().all(|k| LIST_ENVELOPE_KEYS.contains(&k.as_str()))
+}
+
 pub fn attach_block(
     result: &mut rmcp::model::CallToolResult,
     offers: &[Offer],
@@ -1092,7 +1114,7 @@ pub fn attach_block(
     let Some(Value::Object(obj)) = result.structured_content.as_mut() else {
         return;
     };
-    if obj.contains_key(BLOCK_KEY) {
+    if obj.contains_key(BLOCK_KEY) || is_list_envelope(obj) {
         return;
     }
     let used = serde_json::to_string(obj)
@@ -1725,5 +1747,39 @@ mod tests {
         let mut doc = rmcp::model::CallToolResult::success(vec![]);
         attach_block(&mut doc, &v.offers(&small, "x"), &v, 30_000);
         assert!(doc.structured_content.is_none());
+    }
+
+    /// A LIST REPLY CARRIES NO BLOCK (Anthony, 2026-11-21: "Keep it off list
+    /// replies"). A reply whose structured content is the bare list envelope
+    /// clients unwrap (`{count, items}`, with at most `loop_hint` and
+    /// `empty_because` beside it: tools/smoke_mcp.py, tools/reflow2_cli.py,
+    /// tools/reflow2_check.py) is left byte for byte as it was, even when its
+    /// `loop_hint` names a call, whatever tool sent it. A reply that BUILT more
+    /// around its list (detect_gaps' `budget`) is not that shape, and gets the
+    /// block as any other reply does.
+    #[test]
+    fn a_list_shaped_reply_carries_no_block_and_is_unchanged() {
+        let v = bounded();
+        for list in [
+            json!({"count": 0, "items": [], "loop_hint": "nothing here, but that is not an all-clear — loop_status says what is owed"}),
+            json!({"count": 0, "items": [], "empty_because": "swept every question", "loop_hint": "run detect_gaps, then loop_status"}),
+            json!({"count": 2, "items": [{"id": "q:1"}, {"id": "q:2"}], "loop_hint": "loop_status says what is owed"}),
+        ] {
+            let offers = v.offers(&list, "open_questions");
+            assert!(!offers.is_empty(), "the hint names a call: {list}");
+            let mut r = rmcp::model::CallToolResult::structured(list.clone());
+            let before = serde_json::to_string(&r).unwrap();
+            attach_block(&mut r, &offers, &v, 30_000);
+            let got = r.structured_content.as_ref().unwrap();
+            assert!(got.get(BLOCK_KEY).is_none(), "a list reply carries no block: {got}");
+            assert_eq!(serde_json::to_string(&r).unwrap(), before, "byte for byte");
+        }
+        // Not the bare envelope: a payload built around the list keeps the block.
+        let built = json!({"count": 1, "items": [{"id": "gap:1"}], "budget": {"withheld": 0},
+                           "loop_hint": "loop_status says what is owed"});
+        let mut r = rmcp::model::CallToolResult::structured(built.clone());
+        attach_block(&mut r, &v.offers(&built, "detect_gaps"), &v, 30_000);
+        let got = r.structured_content.as_ref().unwrap();
+        assert_eq!(cues_of(&got[BLOCK_KEY]), vec!["loop_hint/loop_status"]);
     }
 }
