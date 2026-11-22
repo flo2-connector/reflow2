@@ -1078,13 +1078,7 @@ impl View<'_> {
                 payload,
                 budget,
                 "raise `budget_chars`, lower `limit`, or search one member with `member`",
-                &[
-                    "view",
-                    "searched_by_design",
-                    "found_by_design",
-                    "designs_searched",
-                    "hits",
-                ],
+                &["designs_searched", "hits"],
                 &[],
             );
         }
@@ -1177,8 +1171,8 @@ impl View<'_> {
         });
         // ONE limit, the caller's, on the merged list. Every design was asked
         // with the same limit, so the merged top-k is exact; what falls off
-        // the end is counted, and `found_by_design` still names every design
-        // that matched.
+        // the end is counted, and `found_in` still names every design that
+        // matched.
         let ranked = hits.len();
         if let Some(n) = limit.as_u64().map(|n| n as usize) {
             hits.truncate(n);
@@ -1212,11 +1206,8 @@ impl View<'_> {
             "hits_withheld": withheld,
             "found_in": found_in,
             "searched": searched_total,
-            "found_by_design": found,
             "designs_searched": designs_searched,
-            "searched_by_design": searched,
             "stale": stale,
-            "view": self.members,
             "unreachable": self.unreachable,
             "view_note": note,
         });

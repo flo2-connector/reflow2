@@ -8272,8 +8272,7 @@ impl ReflowService {
             + Self::built_router()
             + Self::exchange_router()
             + Self::query_router()
-            + Self::claims_tools_router()
-            + Self::process_router();
+            + Self::claims_tools_router();
         // Main's step (#656): an empty input schema is closed, so the served
         // surface refuses an argument no tool takes.
         crate::arguments::close_empty_schemas(router)

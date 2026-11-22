@@ -12,7 +12,9 @@
 //! this release the merged reply carries `searched` (one total) and
 //! `found_in` (only the designs with hits), announces that `view`,
 //! `searched_by_design` and `found_by_design` are going, and holds the whole
-//! reply to `budget_chars`. The next release removes the three.
+//! reply to `budget_chars`. The next release removes the three, and it has: since
+//! 2026-11-21 (after 0.102.0 shipped) the merged reply carries none of them and
+//! no notice, and this file checks they stay gone.
 
 use serde_json::{Value, json};
 
@@ -32,7 +34,7 @@ fn notice_paths(got: &Value) -> Vec<String> {
 }
 
 #[test]
-fn a_hub_search_carries_one_total_and_only_the_designs_with_hits_and_announces_the_lists_going() {
+fn a_hub_search_carries_one_total_and_only_the_designs_with_hits_and_no_per_design_lists() {
     let (root, h, a, b) = hub_and_members("envelope-once");
     let server = serve(&root, Some(GATEWAY));
     let mut on_h = Session::open(server.port, &h);
@@ -56,25 +58,36 @@ fn a_hub_search_carries_one_total_and_only_the_designs_with_hits_and_announces_t
         "only the designs with hits, with their counts: {got}"
     );
     // One total, the key a single design's search answers with.
+    // Each design's own search, asked through the hub with `member`, says how many
+    // nodes it ran over; the merged `searched` is their sum.
     let total: u64 = [&h, &a, &b]
         .iter()
-        .map(|id| got["searched_by_design"][id.as_str()].as_u64().unwrap())
+        .map(|id| {
+            let one = ok(
+                &on_h.call(
+                    "search_design",
+                    json!({"query": "zanzibar", "member": id.as_str()}),
+                    Some(&readable),
+                    Some(&view),
+                ),
+                "search_design on one member",
+            );
+            one["searched"].as_u64().unwrap()
+        })
         .sum();
     assert_eq!(got["searched"], json!(total), "{got}");
 
-    // The three lists still arrive this release, and the reply says they are going.
+    // REMOVED in the release after 0.102.0 announced them: the three lists are gone,
+    // and nothing is announced as going any more.
     for field in ["view", "searched_by_design", "found_by_design"] {
         assert!(
-            got.get(field).is_some(),
-            "{field} still served this release: {got}"
+            got.get(field).is_none(),
+            "{field} was removed after 0.102.0 announced it: {got}"
         );
     }
-    let mut paths = notice_paths(&got);
-    paths.sort();
-    assert_eq!(
-        paths,
-        vec!["found_by_design", "searched_by_design", "view"],
-        "the notice names each list that is going: {got}"
+    assert!(
+        notice_paths(&got).is_empty(),
+        "no deprecation notice is left on a hub search: {got}"
     );
 }
 

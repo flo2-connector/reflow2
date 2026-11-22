@@ -177,7 +177,7 @@ impl ReflowService {
     }
 
     #[tool(
-        description = "Record that an Environment imposes an EnvironmentRule (IMPOSES) — the codes, standards and physical laws a place holds the design to, one edge per rule. An EnvironmentRule is imposed from OUTSIDE (a building code, a radiation environment, a regulatory regime); a rule the project sets for itself is a DesignRule and is recorded with `governed_by`/`violates_rule` instead. `reconcile_deployment` and the environment reports read these edges to ask whether a release deployed somewhere meets what that somewhere imposes. Ask for this when you want to record that an environment holds the design to a code, standard or physical constraint.",
+        description = "Record that an Environment imposes an EnvironmentRule (IMPOSES) — the codes, standards and physical laws a place holds the design to, one edge per rule. An EnvironmentRule is imposed from OUTSIDE (a building code, a radiation environment, a regulatory regime); a rule the project sets for itself is a DesignRule and is recorded with `governed_by`/`violates_rule` instead. `reconcile_deployment` and the environment reports read these edges to ask whether a release deployed somewhere honours what that somewhere imposes. Ask for this when you want to record that an environment holds the design to a code, standard or physical constraint.",
         title = "Record a Rule an Environment Imposes",
         annotations(read_only_hint = false, destructive_hint = false)
     )]

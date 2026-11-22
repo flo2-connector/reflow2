@@ -296,12 +296,6 @@ EDGE_ONLY = {
     # it cannot be what makes a property reachable, and counting it would make every
     # string property on every type read as writable.
     "replace_text",
-    # A PROCESS TOOL (dec:record-what-was-built-in-one-call): it writes nothing
-    # itself and runs the tools it composes (add_verification, add_change_event,
-    # add_artifact, set_artifact_checksums, set_capability_status, replace_text),
-    # each placed here or in writers.json already. Its own parameters are the
-    # steps (`verification`, `change`, `files`, `built`), never a property.
-    "record_the_build",
 }
 
 # A tool that writes ONE NAMED PROPERTY on a type the CALLER chooses. It reaches
