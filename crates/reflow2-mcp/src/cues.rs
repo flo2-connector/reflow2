@@ -1771,7 +1771,10 @@ mod tests {
             let before = serde_json::to_string(&r).unwrap();
             attach_block(&mut r, &offers, &v, 30_000);
             let got = r.structured_content.as_ref().unwrap();
-            assert!(got.get(BLOCK_KEY).is_none(), "a list reply carries no block: {got}");
+            assert!(
+                got.get(BLOCK_KEY).is_none(),
+                "a list reply carries no block: {got}"
+            );
             assert_eq!(serde_json::to_string(&r).unwrap(), before, "byte for byte");
         }
         // Not the bare envelope: a payload built around the list keeps the block.
