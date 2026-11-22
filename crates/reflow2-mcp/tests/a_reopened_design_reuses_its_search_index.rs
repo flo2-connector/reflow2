@@ -34,12 +34,9 @@ async fn add(s: &ReflowService, id: &str, name: &str, statement: &str) {
 
 async fn found(s: &ReflowService, words: &str) -> Vec<String> {
     let out = s
-        .search_design(Parameters(SearchDesignReq {
-            query: words.into(),
-            node_type: None,
-            limit: None,
-            tracked_designs: None,
-        }))
+        .search_design(Parameters(
+            serde_json::from_value(json!({ "query": words })).unwrap(),
+        ))
         .await
         .expect("search")
         .structured_content
