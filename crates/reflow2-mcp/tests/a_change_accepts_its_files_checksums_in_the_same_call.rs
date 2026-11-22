@@ -219,17 +219,25 @@ async fn an_acceptance_refused_after_the_change_takes_the_change_back() {
 }
 
 #[tokio::test]
-async fn record_the_build_is_marked_for_removal_in_the_tool_list() {
+async fn record_the_build_is_removed_and_its_old_name_says_what_to_do() {
+    // DEPRECATED in 0.102.0, REMOVED in the release after: it is no longer
+    // listed, and a call to the old name is refused saying what to call
+    // instead, for the one release that removes it.
     let c = connect().await;
     let tools = c.list_all_tools().await.expect("tools/list");
-    let rtb = tools
-        .iter()
-        .find(|t| t.name == "record_the_build")
-        .expect("record_the_build is still served in this release");
-    let says = rtb.description.as_deref().unwrap_or_default();
     assert!(
-        says.contains("DEPRECATED in 0.102.0")
-            && says.contains("`add_change_event` with `checksums`"),
-        "the tool says it is going and what to do instead: {says}"
+        tools.iter().all(|t| t.name != "record_the_build"),
+        "record_the_build is no longer listed"
+    );
+    let refused = call(
+        &c,
+        "record_the_build",
+        json!({"change": {"id": "chg:x", "name": "x", "change_type": "refactor"}}),
+    )
+    .await
+    .expect_err("the removed tool's old name is refused");
+    assert!(
+        refused.contains("removed") && refused.contains("`add_change_event` with `checksums`"),
+        "the refusal says it was removed and what to do instead: {refused}"
     );
 }
