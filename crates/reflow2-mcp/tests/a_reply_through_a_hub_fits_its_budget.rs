@@ -9,6 +9,15 @@
 //!
 //! The class: any read that takes `budget_chars`, routed to a member, with
 //! enough ids in the reply that the prefixes alone pass the budget.
+//!
+//! IT FAILED ON SOME RUNS AND NOT OTHERS, for two causes, both fixed
+//! 2026-11-21: minting gave up at 60 s, so the member held as many
+//! requirements as the box wrote by then (the premise is now asserted), and
+//! the hub lowered its re-ask from what it ASKED rather than what the member
+//! answered, so a member's slack below its budget ate all four re-asks (CI
+//! run 44918690824: 9 over). The unit test
+//! `a_hold_through_the_hub_fits_whatever_slack_the_design_leaves` in
+//! `src/service/view.rs` sweeps the budgets this test lands on one of.
 
 use serde_json::{Value, json};
 
@@ -48,6 +57,9 @@ fn a_routed_read_asked_at_n_arrives_within_n_with_its_ids_prefixed() {
         ),
         "the member's own scan",
     );
+    // The premise, checked: the member holds every requirement minted, so the
+    // whole is the same on every box (it was not, when minting gave up at 60 s).
+    assert_eq!(whole["total"], json!(reqs.len()), "{whole}");
     // Just under the whole: the member gives a little to fit, and the
     // prefixes on 160 ids (17 characters each) would put it far over.
     let budget = size(&whole) - 200;
