@@ -65,6 +65,13 @@ impl StorageEngine {
             mode,
         );
 
+        let value =
+            rmp_serde::to_vec(&properties).map_err(|e| DynoError::Serialization(e.to_string()))?;
+
+        // From here the store changes, and the write is unsettled until it
+        // has reached the full-text index too (`unsettled_writes`): an early
+        // return below leaves it counted for good.
+        self.unsettled_writes += 1;
         // Create-or-replace semantics: if a node already exists at this id,
         // reconcile its reverse-index entries before overwriting. A bare
         // create would leave the prior (value -> node_id) entries dangling
@@ -73,10 +80,6 @@ impl StorageEngine {
         if has_indexed && let Some(old) = &old {
             self.delete_index_entries(graph_id, node_type, node_id, old)?;
         }
-
-        let value =
-            rmp_serde::to_vec(&properties).map_err(|e| DynoError::Serialization(e.to_string()))?;
-
         self.put(CF_NODES, key, value)?;
         stamps::strip(&mut properties);
         if has_indexed {
@@ -84,6 +87,7 @@ impl StorageEngine {
         }
         #[cfg(feature = "fulltext")]
         self.fulltext_upsert(graph_id, node_type, node_id, &properties)?;
+        self.unsettled_writes -= 1;
 
         Ok(StoredNode {
             graph_id: graph_id.to_string(),
@@ -165,6 +169,9 @@ impl StorageEngine {
         } else {
             None
         };
+        // Unsettled until the full-text document is gone too: see
+        // `create_node_stamped`.
+        self.unsettled_writes += 1;
         self.delete(CF_NODES, &key)?;
         if let Some(props) = old_properties {
             self.delete_index_entries(graph_id, node_type, node_id, &props)?;
@@ -221,6 +228,7 @@ impl StorageEngine {
         if existed {
             self.fulltext_delete(graph_id, node_type, node_id)?;
         }
+        self.unsettled_writes -= 1;
 
         Ok(existed)
     }
@@ -267,6 +275,9 @@ impl StorageEngine {
 
         let value =
             rmp_serde::to_vec(&properties).map_err(|e| DynoError::Serialization(e.to_string()))?;
+        // Unsettled until the full-text document is replaced too: see
+        // `create_node_stamped`.
+        self.unsettled_writes += 1;
         self.put(CF_NODES, key, value)?;
         stamps::strip(&mut properties);
 
@@ -282,6 +293,7 @@ impl StorageEngine {
         // document (if any) is overwritten with the new property values.
         #[cfg(feature = "fulltext")]
         self.fulltext_upsert(graph_id, node_type, node_id, &properties)?;
+        self.unsettled_writes -= 1;
 
         Ok(Some(StoredNode {
             graph_id: graph_id.to_string(),

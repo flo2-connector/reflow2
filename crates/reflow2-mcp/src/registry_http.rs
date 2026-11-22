@@ -620,10 +620,12 @@ impl GraphRouter {
         let binding = self.resolve(graph_id)?;
         let path = binding.graph_path().to_string();
 
-        // ⚠️ OPENING IS BLOCKING AND SLOW — RocksDB plus a full-text index
-        // rebuild, seconds on a large design. On the async runtime that
-        // would stall every other connection this process is serving, which
-        // is the whole point of holding many designs in one process.
+        // ⚠️ OPENING IS BLOCKING, AND CAN BE SLOW — RocksDB, plus a full-text
+        // index rebuild when the index the store kept cannot be proven to
+        // match it (seconds on a large design; reused otherwise since
+        // 2026-11-22). On the async runtime that would stall every other
+        // connection this process is serving, which is the whole point of
+        // holding many designs in one process.
         let opened = tokio::task::spawn_blocking(move || {
             ReflowService::new_reporting(&path).map(|(svc, _prov)| svc)
         })

@@ -289,8 +289,11 @@ fn a_missing_index_is_rebuilt() {
 fn a_corrupt_index_is_rebuilt() {
     let dir = tempfile::tempdir().expect("tempdir");
     let path = written_and_closed(dir.path());
-    std::fs::write(index_dir(&path).join("meta.json"), b"{ not the index's meta")
-        .expect("corrupt the index");
+    std::fs::write(
+        index_dir(&path).join("meta.json"),
+        b"{ not the index's meta",
+    )
+    .expect("corrupt the index");
 
     let g = DesignGraph::open_rocksdb(&path).expect("an unreadable index does not fail the open");
     assert_eq!(found(&g, "zebra"), vec!["req:stripes".to_string()]);

@@ -87,6 +87,55 @@ pub struct StorageEngine {
     /// reused the index it found or paid for a rebuild.
     #[cfg(feature = "fulltext")]
     fulltext_rebuilds: std::sync::atomic::AtomicU64,
+    /// Which graphs' full-text documents are KNOWN to match the store, and
+    /// what the store looked like when that became known — see
+    /// [`SearchTrust`]. What lets an open reuse the index kept with the store
+    /// instead of rebuilding it (`req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+    #[cfg(feature = "fulltext")]
+    search_trust: Mutex<SearchTrust>,
+    /// Set when a full-text step failed where the failure could only be
+    /// logged (a discarded batch's text not restored). The index may then be
+    /// out of step with the store, so nothing vouches for it this session.
+    #[cfg(feature = "fulltext")]
+    text_suspect: std::sync::atomic::AtomicBool,
+    /// Node writes begun and not finished. A node write changes the store and
+    /// then mirrors into the index; one that stopped between the two (an
+    /// error, or a panic) leaves this above zero for good, and nothing
+    /// vouches for the index afterwards. Read only where there is an index.
+    #[cfg_attr(not(feature = "fulltext"), allow(dead_code))]
+    unsettled_writes: u64,
+}
+
+/// What this engine knows about its full-text index against its store.
+///
+/// THE INDEX IS A COPY DERIVED FROM THE STORE, and a copy is reused on open
+/// only when it can be PROVEN to match, never because it looks about right (a
+/// count of documents cannot tell an index from a different state of the same
+/// store holding as many nodes). The proof is a voucher
+/// ([`fulltext::IndexVoucher`]) carried as the PAYLOAD OF THE INDEX'S OWN
+/// LAST COMMIT, written only when this engine knows the index and the store
+/// agree. It names the store's write sequence and anchor at that moment.
+/// It stands only while BOTH sides are as they were then:
+/// - any later commit to the index, by any writer of any reflow2 version,
+///   replaces the payload with none (a merge keeps it, and changes no
+///   document);
+/// - any later write to the store moves its write sequence;
+/// - a store copied and then written apart from its copy is told apart by
+///   the anchor, which a session that wrote replaces when it vouches.
+#[cfg(feature = "fulltext")]
+#[derive(Default)]
+struct SearchTrust {
+    /// The store's write sequence and anchor as last recorded: at open, then
+    /// at each voucher this engine writes. `None` on a backend that keeps no
+    /// sequence (in memory), where nothing is ever vouched for.
+    mark: Option<fulltext::StoreMark>,
+    /// Graph id -> the `fulltext_stamp` its documents are known to match the
+    /// store under: from the voucher found at open, or a rebuild since.
+    graphs: BTreeMap<String, String>,
+    /// The voucher standing in the index right now, as (store sequence, this
+    /// handle's commit count) when it was found or written. Equal to the
+    /// current pair means nothing moved and there is nothing to write.
+    standing: Option<(u64, u64)>,
 }
 
 /// The full-text side of an open batch.
@@ -109,7 +158,8 @@ pub struct StorageEngine {
 /// committed — so it re-derives every touched document from the store as it
 /// now stands (the backend, or the outer batch's view after an inner discard).
 /// The index stays what it always was: derived from the node store, which
-/// remains the authority, and rebuilt in full at server start.
+/// remains the authority, and rebuilt in full by any open that cannot prove
+/// it current (`SearchTrust`).
 #[cfg(feature = "fulltext")]
 #[derive(Default)]
 struct TextBatch {
@@ -318,6 +368,11 @@ impl StorageEngine {
             text_batch: Mutex::new(TextBatch::default()),
             #[cfg(feature = "fulltext")]
             fulltext_rebuilds: Default::default(),
+            #[cfg(feature = "fulltext")]
+            search_trust: Default::default(),
+            #[cfg(feature = "fulltext")]
+            text_suspect: Default::default(),
+            unsettled_writes: 0,
         }
     }
 
@@ -337,8 +392,7 @@ impl StorageEngine {
         #[cfg(feature = "fulltext")]
         let text_index = if schema.has_any_fulltext_properties() {
             let ft_dir = std::path::Path::new(path).join("fulltext");
-            let ti = crate::foundation::text::TextIndex::open(&ft_dir)
-                .map_err(|e| DynoError::Storage(format!("full-text index open failed: {e}")))?;
+            let ti = fulltext::open_kept_index(&ft_dir)?;
             // An index that holds nothing yet will hold only what this build
             // writes, so it says so; one that already holds documents keeps
             // what it said, and an open compares that (`fulltext_coverage`).
@@ -348,6 +402,11 @@ impl StorageEngine {
         } else {
             None
         };
+        // What the store looks like NOW, before this engine writes anything,
+        // and whether the index kept with it carries a voucher for exactly
+        // this (`SearchTrust`).
+        #[cfg(feature = "fulltext")]
+        let search_trust = fulltext::trust_at_open(&backend, text_index.as_ref(), &schema)?;
 
         Ok(Self {
             schema: Arc::new(schema),
@@ -362,6 +421,11 @@ impl StorageEngine {
             text_batch: Mutex::new(TextBatch::default()),
             #[cfg(feature = "fulltext")]
             fulltext_rebuilds: Default::default(),
+            #[cfg(feature = "fulltext")]
+            search_trust: Mutex::new(search_trust),
+            #[cfg(feature = "fulltext")]
+            text_suspect: Default::default(),
+            unsettled_writes: 0,
         })
     }
 
@@ -403,6 +467,11 @@ impl StorageEngine {
             text_batch: Mutex::new(TextBatch::default()),
             #[cfg(feature = "fulltext")]
             fulltext_rebuilds: Default::default(),
+            #[cfg(feature = "fulltext")]
+            search_trust: Default::default(),
+            #[cfg(feature = "fulltext")]
+            text_suspect: Default::default(),
+            unsettled_writes: 0,
         })
     }
 
@@ -857,6 +926,9 @@ impl StorageEngine {
     /// / snapshot-interaction caveats match every other write path.
     pub fn clear_graph(&mut self, graph_id: &str) -> Result<(), DynoError> {
         let prefix = crate::foundation::store::keys::graph_prefix(graph_id);
+        // Unsettled until the graph's documents are dropped too (see
+        // `unsettled_writes`).
+        self.unsettled_writes += 1;
         for cf in ALL_CFS {
             self.prefix_delete(cf, &prefix)?;
         }
@@ -875,6 +947,7 @@ impl StorageEngine {
                 tb.pending = true;
             }
         }
+        self.unsettled_writes -= 1;
         Ok(())
     }
 

@@ -211,32 +211,161 @@ impl StorageEngine {
         }))
     }
 
-    /// Make the index cover the store for `graph_id`, rebuilding it when it
-    /// does not. Returns what was found BEFORE a rebuild when one ran, and
-    /// `None` when the index already covered the store (or there is no
-    /// full-text to cover).
+    /// Make the index match the store for `graph_id`: REUSE it when it is
+    /// proven to match, and rebuild it otherwise. Returns what was found
+    /// BEFORE a rebuild when the index was found short of the store (fewer
+    /// documents than nodes, or built over other fields), and `None` when it
+    /// was reused, when it held what the store holds and was rebuilt only
+    /// because nothing proved it current, or when there is no full-text.
+    ///
+    /// ⭐ PROVEN, NOT GUESSED (`req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+    /// The index is reused only when the voucher its last commit carries names
+    /// this store exactly as it stood when this engine opened it (write
+    /// sequence and anchor), this reflow2 version, this index format and the
+    /// fields this build searches, and the graph is among those it vouches
+    /// for ([`SearchTrust`]). Anything else is rebuilt, including an index
+    /// whose document count equals the store's node count: a store restored
+    /// from a backup, or rewritten by a build that keeps no index, can hold as
+    /// many nodes saying different things, and a count cannot tell. Until
+    /// 2026-11-22 the count was all an open compared, and the hosted server
+    /// rebuilt on every open regardless, seconds on a large design, on the
+    /// request path (`fact:root-cause-a-hub-wide-read-after-a-quiet-spell-reopens-and-reindexes-every-member-one-at-a-time-2026-11-22`).
     ///
     /// Called when a store is opened, because that is the moment a store meets
     /// an index it may not have been written with — a copied directory, an
     /// older build's store, a lost `fulltext/`, an index built over fewer
     /// fields than this build searches — and the one moment a rebuild is
-    /// both cheap to justify and safe (nothing else holds the store yet). This
-    /// is what the live server already did at start (`reindex_search`), made a
-    /// property of every open instead of one caller's habit: the copy `--call`
-    /// reads while another process holds a design was opened through a path
-    /// that skipped it, and searched an empty index.
+    /// both cheap to justify and safe (nothing else holds the store yet). It
+    /// is a property of every open rather than one caller's habit: the copy
+    /// `--call` reads while another process holds a design was once opened
+    /// through a path that skipped it, and searched an empty index.
     #[cfg(feature = "fulltext")]
     pub fn ensure_fulltext_covers(
         &self,
         graph_id: &str,
     ) -> Result<Option<FulltextCoverage>, DynoError> {
-        match self.fulltext_coverage(graph_id)? {
-            Some(found) if !found.covers() => {
-                self.reindex_fulltext(graph_id)?;
-                Ok(Some(found))
-            }
-            _ => Ok(None),
+        if self.index_is_proven_for(graph_id) {
+            return Ok(None);
         }
+        let Some(found) = self.fulltext_coverage(graph_id)? else {
+            return Ok(None);
+        };
+        self.reindex_fulltext(graph_id)?;
+        // Vouch for the rebuilt index now, not only when this engine closes:
+        // a process stopped without closing (killed, redeployed) then still
+        // leaves an index the next open can reuse, as long as nothing was
+        // written in between. Never fails the open: an index nobody vouched
+        // for is only rebuilt again.
+        if let Err(e) = self.vouch_for_search_index() {
+            tracing::warn!("the rebuilt search index could not be vouched for: {e}");
+        }
+        Ok((!found.covers()).then_some(found))
+    }
+
+    /// Whether `graph_id`'s documents are KNOWN to match the store under the
+    /// fields this build searches: vouched for by the index at open, or
+    /// rebuilt since, with nothing since that could have put them out of step.
+    #[cfg(feature = "fulltext")]
+    fn index_is_proven_for(&self, graph_id: &str) -> bool {
+        let Some(ti) = &self.text_index else {
+            return false;
+        };
+        let stamp = self.schema.fulltext_stamp();
+        let trust = self
+            .search_trust
+            .lock()
+            .expect("search trust lock poisoned");
+        trust.graphs.get(graph_id) == Some(&stamp)
+            && ti.built_under(graph_id).as_deref() == Some(stamp.as_str())
+            && !self.index_is_suspect()
+    }
+
+    /// Whether anything this session did could have left the index out of
+    /// step with the store: a failed write to the index, a write to the
+    /// store that stopped before it reached the index, or a failure that
+    /// could only be logged.
+    #[cfg(feature = "fulltext")]
+    fn index_is_suspect(&self) -> bool {
+        self.unsettled_writes > 0
+            || self.text_suspect.load(std::sync::atomic::Ordering::SeqCst)
+            || self.text_index.as_ref().is_some_and(|ti| ti.faulted())
+    }
+
+    /// Note a full-text failure that could only be logged: nothing vouches
+    /// for the index again this session.
+    #[cfg(feature = "fulltext")]
+    pub(super) fn index_went_suspect(&self) {
+        self.text_suspect
+            .store(true, std::sync::atomic::Ordering::SeqCst);
+    }
+
+    /// Write a voucher into the index for every graph KNOWN to match the
+    /// store (see [`SearchTrust`]), so the next open of this store can reuse
+    /// the index instead of rebuilding it. Returns whether a voucher stands
+    /// afterwards.
+    ///
+    /// Writes nothing when nothing can be vouched for: a backend that keeps
+    /// no write sequence (in memory), an open batch, an index that may be out
+    /// of step ([`index_is_suspect`](Self::index_is_suspect)), or no graph
+    /// known to match. Writes nothing either when the voucher found at open,
+    /// or written since, still stands: neither side has moved.
+    ///
+    /// When the store was written since its anchor was last recorded, a
+    /// fresh anchor goes into the store first (one write), so a copy of this
+    /// store written apart from it can never match this voucher. The voucher
+    /// then names the sequence AFTER that write, read back from the store.
+    #[cfg(feature = "fulltext")]
+    fn vouch_for_search_index(&self) -> Result<bool, DynoError> {
+        let Some(ti) = &self.text_index else {
+            return Ok(false);
+        };
+        let Some(sequence_now) = self.backend.write_sequence() else {
+            return Ok(false);
+        };
+        if self.is_batching() || self.index_is_suspect() {
+            return Ok(false);
+        }
+        let stamp = self.schema.fulltext_stamp();
+        let mut trust = self
+            .search_trust
+            .lock()
+            .expect("search trust lock poisoned");
+        let graphs: Vec<String> = trust
+            .graphs
+            .iter()
+            .filter(|(g, s)| **s == stamp && ti.built_under(g).as_deref() == Some(stamp.as_str()))
+            .map(|(g, _)| g.clone())
+            .collect();
+        if graphs.is_empty() {
+            return Ok(false);
+        }
+        if trust.standing == Some((sequence_now, ti.commits())) {
+            return Ok(true);
+        }
+        let anchor = match &trust.mark {
+            Some(mark) if mark.sequence == sequence_now => mark.anchor.clone(),
+            _ => {
+                let fresh = uuid::Uuid::new_v4().to_string();
+                self.backend.set_index_anchor(fresh.as_bytes())?;
+                Some(fresh)
+            }
+        };
+        let sequence = self.backend.write_sequence().unwrap_or(sequence_now);
+        let voucher = IndexVoucher {
+            format: SEARCH_INDEX_FORMAT,
+            reflow2: env!("CARGO_PKG_VERSION").to_string(),
+            stamp,
+            store_sequence: sequence,
+            store_anchor: anchor.clone(),
+            graphs,
+        };
+        let payload =
+            serde_json::to_string(&voucher).map_err(|e| DynoError::Serialization(e.to_string()))?;
+        ti.commit_with_payload(&payload)
+            .map_err(|e| DynoError::Storage(format!("full-text voucher commit failed: {e}")))?;
+        trust.mark = Some(StoreMark { sequence, anchor });
+        trust.standing = Some((sequence, ti.commits()));
+        Ok(true)
     }
 
     /// Rebuild the full-text index for `graph_id` from the authoritative node
@@ -305,6 +434,13 @@ impl StorageEngine {
             // that exist.
             ti.mark_built_under(graph_id, &self.schema.fulltext_stamp())
                 .map_err(|e| DynoError::Storage(e.to_string()))?;
+            // And this engine now KNOWS the graph's documents match the
+            // store: it just derived them from it, under no open batch.
+            self.search_trust
+                .lock()
+                .expect("search trust lock poisoned")
+                .graphs
+                .insert(graph_id.to_string(), self.schema.fulltext_stamp());
             Ok(count)
         };
         // Best-effort rollback to drop the uncommitted batch on failure;
@@ -324,5 +460,130 @@ impl StorageEngine {
     pub fn fulltext_rebuilds(&self) -> u64 {
         self.fulltext_rebuilds
             .load(std::sync::atomic::Ordering::Relaxed)
+    }
+}
+
+/// The version of how reflow2 derives a search index from a store: which
+/// properties become a document, how they are joined, the Tantivy document
+/// schema. A voucher written under another number is never trusted. Raise it
+/// with any change to the derivation that a version bump alone would not
+/// mark (the reflow2 version is checked too).
+#[cfg(feature = "fulltext")]
+pub(super) const SEARCH_INDEX_FORMAT: u32 = 1;
+
+/// The store's write sequence and anchor at one moment.
+#[cfg(feature = "fulltext")]
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub(super) struct StoreMark {
+    pub(super) sequence: u64,
+    pub(super) anchor: Option<String>,
+}
+
+/// The payload of the index commit that vouches for it: "the documents of
+/// `graphs`, committed with this, were derived from the store at write
+/// sequence `store_sequence` and anchor `store_anchor`, by reflow2
+/// `reflow2`, index format `format`, over the fields `stamp` names."
+#[cfg(feature = "fulltext")]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub(super) struct IndexVoucher {
+    format: u32,
+    reflow2: String,
+    stamp: String,
+    store_sequence: u64,
+    store_anchor: Option<String>,
+    graphs: Vec<String>,
+}
+
+/// Open the search index kept at `dir`, setting aside and recreating one
+/// that cannot be read. The index is a copy derived from the store, so an
+/// unreadable one costs a rebuild, never the open. The rebuild that follows
+/// is reported (`ensure_fulltext_covers` finds the new index short of the
+/// store), so this is not a silent repair. An index ANOTHER WRITER holds is
+/// left alone and refuses, as before.
+#[cfg(all(feature = "fulltext", feature = "rocksdb"))]
+pub(super) fn open_kept_index(
+    dir: &std::path::Path,
+) -> Result<crate::foundation::text::TextIndex, DynoError> {
+    use crate::foundation::text::TextIndex;
+    let failed = |e: crate::foundation::text::TextError| {
+        DynoError::Storage(format!("full-text index open failed: {e}"))
+    };
+    match TextIndex::open(dir) {
+        Ok(ti) => Ok(ti),
+        Err(e) if e.is_held_by_another_writer() || !dir.exists() => Err(failed(e)),
+        Err(e) => {
+            tracing::warn!(
+                "the search index at {} could not be read ({e}); it is a copy derived from the \
+                 store, so it is set aside and rebuilt",
+                dir.display()
+            );
+            std::fs::remove_dir_all(dir).map_err(|io| {
+                DynoError::Storage(format!(
+                    "full-text index open failed: {e}; and the unreadable index at {} could \
+                     not be set aside to rebuild it: {io}",
+                    dir.display()
+                ))
+            })?;
+            TextIndex::open(dir).map_err(failed)
+        }
+    }
+}
+
+/// What an engine opening `backend` with `text_index` knows before it writes
+/// anything: the store's mark, and the graphs the index's voucher proves,
+/// when its voucher names this store exactly as it stands.
+#[cfg(all(feature = "fulltext", feature = "rocksdb"))]
+pub(super) fn trust_at_open(
+    backend: &dyn KvBackend,
+    text_index: Option<&crate::foundation::text::TextIndex>,
+    schema: &Schema,
+) -> Result<SearchTrust, DynoError> {
+    let Some(sequence) = backend.write_sequence() else {
+        return Ok(SearchTrust::default());
+    };
+    let anchor = backend
+        .index_anchor()?
+        .map(|bytes| String::from_utf8_lossy(&bytes).into_owned());
+    let mark = StoreMark { sequence, anchor };
+    let mut trust = SearchTrust {
+        mark: Some(mark.clone()),
+        ..SearchTrust::default()
+    };
+    let Some(ti) = text_index else {
+        return Ok(trust);
+    };
+    // A payload that cannot be read, or is not a voucher, vouches for nothing.
+    let voucher = ti
+        .committed_payload()
+        .ok()
+        .flatten()
+        .and_then(|p| serde_json::from_str::<IndexVoucher>(&p).ok());
+    if let Some(v) = voucher
+        && v.format == SEARCH_INDEX_FORMAT
+        && v.reflow2 == env!("CARGO_PKG_VERSION")
+        && v.stamp == schema.fulltext_stamp()
+        && v.store_sequence == mark.sequence
+        && v.store_anchor == mark.anchor
+    {
+        trust.graphs = v.graphs.into_iter().map(|g| (g, v.stamp.clone())).collect();
+        trust.standing = Some((mark.sequence, ti.commits()));
+    }
+    Ok(trust)
+}
+
+#[cfg(feature = "fulltext")]
+impl Drop for StorageEngine {
+    /// A store's engine closing VOUCHES FOR ITS SEARCH INDEX, so the next
+    /// open can reuse it (`vouch_for_search_index`). Best effort: a failure
+    /// is logged, and costs the next open a rebuild. Nothing is vouched for
+    /// while a panic unwinds, when a write may have stopped halfway.
+    fn drop(&mut self) {
+        if std::thread::panicking() {
+            return;
+        }
+        if let Err(e) = self.vouch_for_search_index() {
+            tracing::warn!("the search index could not be vouched for on close: {e}");
+        }
     }
 }

@@ -311,7 +311,48 @@ pub(crate) trait KvBackend: Send + Sync {
     /// in-memory backend can move buffered keys/values into its maps; the
     /// RocksDB backend borrows them into a `WriteBatch`.
     fn commit_batch(&mut self, ops: Vec<BufferedOp>) -> Result<(), DynoError>;
+
+    /// THE STORE'S WRITE SEQUENCE: a number every write to the store moves
+    /// forward, kept with the store's own data, so it reads the same after a
+    /// reopen and differs after any write by anyone. `None` when the backend
+    /// keeps no such number (the in-memory one, which outlives no process).
+    ///
+    /// It is what a derived copy kept beside the store (the search index)
+    /// is checked against on open: a copy that recorded sequence `S` was
+    /// made from the store as it stood at `S`, and a store at any other
+    /// sequence has been written since.
+    #[cfg(feature = "fulltext")]
+    fn write_sequence(&self) -> Option<u64> {
+        None
+    }
+
+    /// The anchor a derived copy was last vouched under, kept IN the store
+    /// (see [`set_index_anchor`](Self::set_index_anchor)). `None` when none
+    /// was ever written, or the backend keeps none.
+    #[cfg(all(feature = "fulltext", feature = "rocksdb"))]
+    fn index_anchor(&self) -> Result<Option<Vec<u8>>, DynoError> {
+        Ok(None)
+    }
+
+    /// Write a fresh anchor into the store. One write, which moves
+    /// [`write_sequence`](Self::write_sequence) like any other. A sequence
+    /// number is unique only within one store's history: two copies of a
+    /// store written apart can reach the same number holding different
+    /// things. A random anchor written when a session that wrote is vouched
+    /// for tells those copies apart.
+    #[cfg(feature = "fulltext")]
+    fn set_index_anchor(&self, _anchor: &[u8]) -> Result<(), DynoError> {
+        Ok(())
+    }
 }
+
+/// Where the RocksDB backend keeps the search index's anchor: a key in the
+/// DEFAULT column family, which every RocksDB store has and nothing else in
+/// reflow2 reads or writes. Not one of [`ALL_CFS`], so no scan, export or
+/// import ever meets it, and a release from before it opens a store holding
+/// it unchanged (it opens the default family implicitly and never reads it).
+#[cfg(all(feature = "rocksdb", feature = "fulltext"))]
+const INDEX_ANCHOR_KEY: &[u8] = b"reflow2/search-index-anchor";
 
 // =============================================================================
 // In-memory backend (testing)
@@ -552,6 +593,25 @@ impl KvBackend for RocksBackend {
         self.db
             .get_cf(&cf_handle, key)
             .map(|opt| opt.map(Arc::<[u8]>::from))
+            .map_err(|e| DynoError::Storage(e.to_string()))
+    }
+
+    #[cfg(feature = "fulltext")]
+    fn write_sequence(&self) -> Option<u64> {
+        Some(self.db.latest_sequence_number())
+    }
+
+    #[cfg(feature = "fulltext")]
+    fn index_anchor(&self) -> Result<Option<Vec<u8>>, DynoError> {
+        self.db
+            .get(INDEX_ANCHOR_KEY)
+            .map_err(|e| DynoError::Storage(e.to_string()))
+    }
+
+    #[cfg(feature = "fulltext")]
+    fn set_index_anchor(&self, anchor: &[u8]) -> Result<(), DynoError> {
+        self.db
+            .put(INDEX_ANCHOR_KEY, anchor)
             .map_err(|e| DynoError::Storage(e.to_string()))
     }
 

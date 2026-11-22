@@ -23,6 +23,7 @@
 
 use std::path::Path;
 use std::sync::Mutex;
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 
 use tantivy::collector::TopDocs;
 use tantivy::query::{BooleanQuery, Occur, Query, TermQuery};
@@ -97,6 +98,22 @@ pub enum TextError {
     },
 }
 
+impl TextError {
+    /// Whether this failure is ANOTHER WRITER holding the index, rather than
+    /// the index itself being unreadable. Only the second is a reason to set
+    /// the index aside and rebuild it: an index someone else is writing is
+    /// theirs, and deleting it would take it from under them.
+    pub fn is_held_by_another_writer(&self) -> bool {
+        matches!(
+            self,
+            TextError::Open {
+                source: tantivy::TantivyError::LockFailure(..),
+                ..
+            } | TextError::Tantivy(tantivy::TantivyError::LockFailure(..))
+        )
+    }
+}
+
 /// The file, inside the index directory, that says what its documents were
 /// built under. Written with `std::fs` rather than through Tantivy's managed
 /// directory, whose garbage collection deletes any managed file a commit no
@@ -157,6 +174,15 @@ pub struct TextIndex {
     /// (`None` for an index in RAM, which lives and dies with its builder).
     built_under: Mutex<BuiltUnder>,
     built_under_file: Option<std::path::PathBuf>,
+    /// Commits made through this handle since it was opened. A commit's
+    /// payload is the index's voucher (see [`commit_with_payload`](Self::commit_with_payload)),
+    /// and every other commit clears it; this count is how a holder knows
+    /// whether the voucher it found at open still stands.
+    commits: AtomicU64,
+    /// Set by any write to the index that failed (an upsert, a delete, a
+    /// commit, a rollback). A failed write can leave the index short of its
+    /// store, so a holder must not vouch for it afterwards.
+    faulted: AtomicBool,
 }
 
 impl TextIndex {
@@ -277,6 +303,8 @@ impl TextIndex {
             path,
             built_under: Mutex::new(BuiltUnder::default()),
             built_under_file: None,
+            commits: AtomicU64::new(0),
+            faulted: AtomicBool::new(false),
         })
     }
 
@@ -301,6 +329,8 @@ impl TextIndex {
             path,
             built_under: Mutex::new(BuiltUnder::default()),
             built_under_file: None,
+            commits: AtomicU64::new(0),
+            faulted: AtomicBool::new(false),
         })
     }
 
@@ -424,7 +454,56 @@ impl TextIndex {
             self.fields.uid,
             &Self::uid(graph_id, node_id),
         ));
-        writer.add_document(doc)?;
+        writer.add_document(doc).map_err(|e| self.fault(e))?;
+        Ok(())
+    }
+
+    /// Note that a write to the index failed, and pass the failure on.
+    fn fault(&self, e: impl Into<TextError>) -> TextError {
+        self.faulted.store(true, Ordering::SeqCst);
+        e.into()
+    }
+
+    /// Whether any write to the index through this handle has failed since
+    /// it was opened. Sticky: a later success does not prove the failed write
+    /// was made good.
+    pub fn faulted(&self) -> bool {
+        self.faulted.load(Ordering::SeqCst)
+    }
+
+    /// Commits made through this handle since it was opened.
+    pub fn commits(&self) -> u64 {
+        self.commits.load(Ordering::SeqCst)
+    }
+
+    /// Documents the index holds across every graph, as of the last commit.
+    pub fn num_docs(&self) -> u64 {
+        self.reader.searcher().num_docs()
+    }
+
+    /// The payload the index's LAST COMMIT carried, read from the index's own
+    /// record of its segments. `None` when that commit carried none.
+    ///
+    /// A payload is written atomically with the commit it rides on, and
+    /// Tantivy carries it over when a background merge rewrites the record
+    /// (a merge changes no document). Every other commit, by this handle or
+    /// any other writer of any version, replaces it with none. So a payload
+    /// read back says something about exactly the documents committed with it.
+    pub fn committed_payload(&self) -> Result<Option<String>, TextError> {
+        Ok(self.index.load_metas()?.payload)
+    }
+
+    /// Commit what is buffered, carrying `payload` in the commit itself (see
+    /// [`committed_payload`](Self::committed_payload)). Reloads the reader
+    /// as [`commit`](Self::commit) does.
+    pub fn commit_with_payload(&self, payload: &str) -> Result<(), TextError> {
+        let mut writer = self.writer("commit")?.lock().unwrap();
+        let mut prepared = writer.prepare_commit().map_err(|e| self.fault(e))?;
+        prepared.set_payload(payload);
+        prepared.commit().map_err(|e| self.fault(e))?;
+        self.commits.fetch_add(1, Ordering::SeqCst);
+        self.reader.reload().map_err(|e| self.fault(e))?;
+        drop(writer);
         Ok(())
     }
 
@@ -457,8 +536,9 @@ impl TextIndex {
     /// place.
     pub fn commit(&self) -> Result<(), TextError> {
         let mut writer = self.writer("commit")?.lock().unwrap();
-        writer.commit()?;
-        self.reader.reload()?;
+        writer.commit().map_err(|e| self.fault(e))?;
+        self.commits.fetch_add(1, Ordering::SeqCst);
+        self.reader.reload().map_err(|e| self.fault(e))?;
         drop(writer);
         Ok(())
     }
@@ -468,7 +548,7 @@ impl TextIndex {
     /// stray full-text entries.
     pub fn rollback(&self) -> Result<(), TextError> {
         let mut writer = self.writer("rollback")?.lock().unwrap();
-        writer.rollback()?;
+        writer.rollback().map_err(|e| self.fault(e))?;
         Ok(())
     }
 

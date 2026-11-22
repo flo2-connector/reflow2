@@ -841,10 +841,11 @@ impl DesignGraph {
         // the feature, an index lost or restored from elsewhere. Every one of
         // those opened cleanly onto an empty index and answered "nothing
         // matched" for words the store held (measured 2026-10-02). So the open
-        // compares the two and rebuilds an index that does not hold what the
-        // store holds — the rebuild the shared server already ran at start, made
-        // a property of every open. A rebuild that fails fails the open, loudly,
-        // the way an index that cannot be opened already does.
+        // reuses the index only when it is PROVEN to match the store, and
+        // rebuilds it otherwise (`StorageEngine::ensure_fulltext_covers`,
+        // `req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
+        // A rebuild that fails fails the open, loudly, the way an index that
+        // cannot be opened already does.
         #[cfg(feature = "fulltext")]
         {
             graph.search_rebuilt_on_open = graph

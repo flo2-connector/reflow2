@@ -25,8 +25,7 @@ fn open(store: &str) -> ReflowService {
 
 async fn add(s: &ReflowService, id: &str, name: &str, statement: &str) {
     s.add_requirement(Parameters(
-        serde_json::from_value(json!({ "id": id, "name": name, "statement": statement }))
-            .unwrap(),
+        serde_json::from_value(json!({ "id": id, "name": name, "statement": statement })).unwrap(),
     ))
     .await
     .expect("requirement");
@@ -111,6 +110,10 @@ async fn a_design_whose_index_is_gone_is_rebuilt_on_open() {
     std::fs::remove_dir_all(std::path::Path::new(&store).join("fulltext")).expect("rm index");
 
     let s = open(&store);
-    assert_eq!(s.search_index_rebuilds().await, 1, "a missing index is rebuilt");
+    assert_eq!(
+        s.search_index_rebuilds().await,
+        1,
+        "a missing index is rebuilt"
+    );
     assert_eq!(found(&s, "zebra").await, vec!["req:stripes".to_string()]);
 }

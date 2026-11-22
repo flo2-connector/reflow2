@@ -8179,11 +8179,14 @@ impl ReflowService {
         crate::opening::refuse_without_on_disk_storage(path)?;
         let (graph, provenance) = DesignGraph::open_rocksdb_with_provenance(path)?;
         say_identity_on_open(&graph);
-        // The full-text index is a derived sidecar; a graph written by a
-        // binary built before the `fulltext` feature has nodes the index never
-        // saw, and a silently-partial search reads as "the design says
-        // nothing about that". One bounded rebuild at open closes that hole.
-        graph.reindex_search()?;
+        // NO REBUILD OF THE SEARCH INDEX HERE. Until 2026-11-22 this rebuilt it
+        // on every open, seconds on a large design, which a hosted server pays
+        // on the request path each time it reopens a design it closed for
+        // idleness (`fact:root-cause-a-hub-wide-read-after-a-quiet-spell-reopens-and-reindexes-every-member-one-at-a-time-2026-11-22`).
+        // The open itself now reuses the index the store kept when it is
+        // PROVEN to match the store, and rebuilds it otherwise
+        // (`StorageEngine::ensure_fulltext_covers`,
+        // `req:a-designs-search-index-is-kept-with-its-store-and-reused-on-open`).
         let mut service = Self::wrap_at(graph, Some(path.to_string()));
         // A binary behind its record is told so at open, and KEEPS knowing:
         // the note above is printed once to a log nobody reads mid-session,
