@@ -497,6 +497,8 @@ async fn search(
         members: &searched,
         unreachable: &[],
         tool: "search_design",
+        not_reached: &[],
+        time_budget: None,
     };
     let mut payload = merged.merged_search_payload(replies);
     let Some(o) = payload.as_object_mut() else {

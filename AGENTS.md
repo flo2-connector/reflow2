@@ -626,12 +626,12 @@ answers alone and `view_note` says why the view was not served. Each call is the
   refused with `other_design`'s own sentence (`service::not_readable`): the id and the key,
   nothing it holds.
 - **Fan-out read.** A tool whose served annotation says `readOnlyHint: true`, naming no member,
-  runs on the hub and then on each readable member IN TURN, and answers
-  `{"view": [...], "by_design": {"<hub>": …, "<member>": …}, "unreachable": [...], "view_note"}`
-  with a text block saying it is a view. A member that fails is `{"error": …}` under its id, never
-  dropped. **`search_design` is the one MERGED reply:** every design's hits ranked together by
-  score, each member's `node_id` prefixed (the hub's own unprefixed), each hit naming its
-  `design`, and `designs_searched` listed.
+  runs on the hub and then on each readable member IN TURN, in one time budget
+  (`time_budget::ViewBudget`), and answers
+  `{"view": [...], "by_design": {"<hub>": …, "<member>": …}, "unreachable": [...], "view_note"}`,
+  plus `not_reached` and `time_budget` when the budget ran out first. A member that fails is
+  `{"error": …}` under its id. **`search_design` is the one MERGED reply:** every design's hits
+  ranked by score, each member's `node_id` prefixed, each hit naming its `design`.
 - **A write naming no member** writes the hub's own design exactly as before.
 - **Not viewed** (`service::view::NOT_VIEWED`, one const with the reason per group): export and
   import, releases and the cut, claims and holds, seats, served text (`get_instructions`,
