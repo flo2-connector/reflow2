@@ -31,6 +31,270 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.103.0] — 2026-11-22
+
+**Minor. A file of records can be checked before anything is written, replies point to one
+ranked next step, a hub-wide read answers in time, and reopening a design no longer rebuilds its
+search.** It contains #824 and #856 to #862. **What to do:** install the new binary on every
+machine that opens the design. Nothing to migrate: the schema does not move. Two things announced
+in 0.102.0 are removed (see Removed): the `record_the_build` tool, and three per-design lists in a
+multi-design `search_design` reply. Each had its replacement in 0.102.0.
+
+**One tool removed, none added; five take new arguments.** Measured against the published 0.102.0
+binary (sha256 `0054e93c…` for its linux-x86_64 archive, checked against `checksums.txt`), over
+stdio on a fresh store: 200 tools on 0.102.0, 199 here.
+- Removed: `record_the_build`.
+- New arguments: `import_graph` (`check_only`, `add_only`, `proposals_only`), and `budget_chars`
+  on `get_node`, `design_regions`, `hierarchy_issues` and `open_questions`. No output schema
+  changes.
+- Four tool descriptions change: `search_design` loses its deprecation lines, `import_graph`
+  names its three options, and `design_identity` and `imposes` are reworded. The tool list,
+  measured the same way on each binary, goes from 573,669 to 569,405 characters.
+- Skills stay at 36; `capture-intent` changes by one sentence (the nearest match is also the
+  reply's `related` cue). The connect-time instructions go from 2,911 to 2,956 characters: the
+  first read they name is now the search, then the report.
+- `toolsnap` on the release build: all 199 match.
+
+- **The schema does not move.** Measured at this cut with the published 0.102.0 binary: it opens
+  a store this release has written, with its "behind" warning, and writes to it; this release
+  then reads that write and finds it by search. It refuses this release's exports, and with
+  `accept_newer: true` imports one whole (8 nodes).
+- No note to the MCP users is owed before a release
+  (`dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, Anthony 2026-11-21).
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets all of this release except the hub-wide time budget. Checked
+through the door (`reflow2 read|write TOOL JSON --graph-path …`) on the 0.103.0 release build
+beside the published 0.102.0 binary, each on a design on disk:
+- **Install the new binary on every machine that opens the design.** The 0.102.0 binary refuses
+  every new argument by name ("`check_only` is not a parameter of this tool"), and still opens
+  the store afterwards with its "behind" warning.
+- **`reflow2 write import_graph '{"path":…,"merge":true,"check_only":true}'`** writes nothing,
+  says so (`checked_only: true`, `written: false`, and one line on stderr that no export was
+  written), and counts what it would write. With `add_only` it lists each record the design
+  already holds; with `proposals_only` it names a record the file would settle ("would move this
+  record's status from proposed to accepted"), and the same import without `check_only` is
+  refused with nothing written. A file of only new, unsettled records is written.
+- **A write's reply carries one `cues` block**: at most three next calls, each with a small
+  budget or its size.
+- **`reflow2 read get_node '{"id":…,"budget_chars":300}'`** fits the budget and says what it
+  withheld; `design_regions`, `hierarchy_issues` and `open_questions` take `budget_chars` too.
+- **`reflow2 write record_the_build …`** is refused: "no tool named `record_the_build` is
+  served", with what to call instead.
+- **A one-design `search_design`** replies with `hits`, `limit`, `searched` and `stale`, as
+  before. The three removed lists belonged to a search over several designs, which runs through
+  a hub's address.
+- **Reopening a design** reads the same at this door. Measured on a copy of reflow2's own design
+  (a 40 MB export): after the first open, each one-shot search or read took about 1.8 s on both
+  binaries, and a search right after a write found it. The time this saves is a server's: one
+  that closes a design after a quiet spell and opens it again, as flo2.io does.
+- **Needs flo2.io:** the hub-wide read's time budget and its `not_reached` list are a hub's, so
+  they arrive when flo2.io serves this release.
+
+### Added
+
+- **Every reply that offers a next step carries one `cues` block.** At the top
+  level of its structured content, `cues` is `{"items": [...], "left_out": n}`:
+  at most three cues, each `{cue, type, call, args?, size_chars?}`, in rank
+  order. `cue` is the id the usage ledger counts it by (`<field>/<call>`, as
+  before); `type` is `next_call` (from `hint`, `next_step`, `nudge`,
+  `carry_it`), `owed` (from `loop_hint` and `loop_status`'s `next`), `lesson`
+  (a lesson this design holds for the step that the reply withheld to fit,
+  read with `get_node`) or `related` (the nearest of a write's
+  `search_first.near_matches`). **The counts choose what goes in:** a cue
+  measured as followed ranks first, the most often followed within five calls
+  first (`mint_seat`'s pointer to `claim_region`, 38 of 38; `add_change_event`'s
+  step to `set_artifact_checksums`, 67 of 118; `loop_status`, 17 of 228; the
+  owner's settling cue, 16 of 320); a cue offered at least 20 times and never
+  followed is left out of the block (`loop_status`'s cues to `repair_report`,
+  0 of 67, `detect_defects`, 0 of 64, the check-health skill, 0 of 51,
+  `answers` and `open_questions`, 0 of 46 each); uncounted cues follow, by
+  type. The counts are `usage_report`'s on flo2.io for reflow2's design and
+  flo2's, 2026-10-31 to 2026-11-21, summed; `carry_it` was not counted there
+  yet, so its figure is the call log's to 2026-10-30. **Every read the block names is asked
+  for with a small budget** (`args.budget_chars` 4,000, or `args.limit` 5 for a
+  search), or says its size (`size_chars`, for a skill, whose body comes
+  whole), or is left out, so following a cue never spends most of a small
+  reading budget. The block is held to 600 characters and never pushes a reply
+  past the reply's own budget (the `budget_chars` you passed, else 30,000); a
+  reply already at its budget, a refusal, and the Markdown report get none.
+  **A list reply gets none either**: a reply that is the bare list envelope,
+  `{count, items}` with nothing beside them but `loop_hint` or
+  `empty_because` (`open_questions`, and any read of that shape), keeps exactly
+  its shape, so a client that unwraps it into the list still does.
+  **Nothing it is drawn from changes:** `loop_hint`, `hint`, `next`,
+  `next_step`, `nudge`, `carry_it`, `lessons` and `search_first` stay exactly
+  as they were, so a client reading them reads what it read before.
+  **What to do:** read `cues` first when you want to know what to call next.
+- **`get_node` takes `budget_chars`.** Omitted, the record comes back whole, as
+  before. Passed, the whole reply is held to it, the record's longest prose
+  withheld first and every id, number and status kept, and its edges (when
+  asked for) get the smaller of their own budget and this one. A single record
+  measured 22.6 KB; a reader with a small budget can now ask for less.
+- **`design_regions`, `hierarchy_issues` and `open_questions` take
+  `budget_chars`** (default 30,000). Measured on a generated design of
+  reflow2's size they answered 44,586, 40,327 and 58,916 characters with no
+  bound, past the size at which a host such as flo2.io refuses a reply. Prose
+  is withheld first, then rows from the end of the list, and `budget` says
+  what was withheld; every count and id survives. An empty answer is unchanged.
+
+- **`import_graph` can CHECK a document and write nothing: `check_only: true`.**
+  The whole import runs exactly as a real one would, with every other option as
+  given and under the caller's own signing policy, and is then discarded
+  whether or not it found faults. The design, its identity and its committed
+  export are left exactly as they were. The reply cannot be read as a write: it
+  carries `checked_only: true`, `written: false` and a `note` saying in
+  plain words that this was a check, with `would_be_refused`, `faults` (every
+  item the same import would be refused for, in the same words the refused
+  import uses) and `would_write: {nodes, edges}`. It carries no `nodes_written`
+  or `edges_written`. A check that finds faults is a normal reply, not an
+  error. On an empty store it names the identity the import would adopt in
+  `would_adopt_identity` and adopts nothing. Through `--call`, a check writes
+  no export and says so in one line on stderr. Nothing to do: the option is off
+  unless asked for.
+- **`import_graph` can be ADD-ONLY: `add_only: true`.** A node whose id the
+  design already holds, under any type, is refused, and so is an edge it
+  already holds (same type, same two ends). Each is listed with every other
+  fault, and nothing is written. New nodes are written, and so is a new edge
+  between nodes the design holds, or between one it holds and a new one.
+  Nothing to do: off unless asked for.
+- **`import_graph` can take PROPOSALS ONLY: `proposals_only: true`.** The
+  document may propose and may not settle. Refused, each listed with every
+  other fault: a node that would arrive settled (an accepted requirement or
+  decision, a rule with `enforced` stated, an increment closed without
+  arriving); a node the design holds whose settling property the document
+  would change at all, back out of a settled value included; an `AUTHORED_BY`
+  edge it would create or change that carries the `approver` role. What counts
+  as settled is read off the one table every settle is judged by, and is
+  judged on what would be stored, after `merge` and the schema's defaults.
+  Nothing to do: off unless asked for.
+
+The three options combine with each other and with `merge`. For a Rust caller,
+`ImportOptions` gains `check_only`, `add_only` and `proposals_only` (all false
+by `Default`), and `ImportReport` gains `checked_only`, `faults`, `would_write`
+and `would_adopt_identity`: **what to do** is build `ImportOptions` with
+`..Default::default()` if you write it as a literal.
+
+### Changed
+
+- **The first read a newcomer is cued to is now the search, then the report,
+  each with what it costs.** The connect-time instructions, `get_instructions`
+  (the loop's step 0a, and the terminal route's first step) and the kit's
+  session-start text now say: `search_design` "current state" (or "status as
+  of") first, about 2 KB for ten hits, and when several state records come back
+  the newest is the one in force; then, if the reading allows, `graph_report`
+  with `format` `markdown`, about 6 KB on a design of a few thousand records,
+  which takes no budget. Measured: on flo2.io (0.95.0) the report half of the
+  cue was followed 0 times in 42 offers and the search 3; in the size sweep the
+  12 KB reader that read the report first spent 6,575 of its 12,000 bytes on it
+  and scored 5.5/25, and the one that searched first scored 16. The handshake's
+  cue ids are offered in the new order, `instructions/search_design` then
+  `instructions/graph_report`.
+- **What the cue count counts** (`usage_report`'s `tally.cues`). `mint_seat`'s
+  `carry_it` is a cue now (`carry_it/claim_region`, the most-followed pointer
+  measured: 38 of 38); `describe_schema`'s per-type `hint` is reference text and
+  no longer counted (105 of 683 offers in the 0.94.0 sample, followed once); a
+  withheld lesson and a near-match are counted (`lessons/get_node`,
+  `near_matches/get_node`). **An id whose call moved to another tool is counted
+  under the survivor's**, and a call to the old tool acts on it:
+  `instructions/graph_report_markdown` is counted as `instructions/graph_report`,
+  and the ids folded are listed in `tally.cues.moved`. **What to do:** when you
+  compare cue counts across this release, compare them under these rules; the note in
+  `tally.cues` states them.
+
+- **Opening a design again reuses the search index kept with its store,
+  instead of rebuilding it every time.** Every open used to rebuild the
+  design's full-text index from the store: seconds on a large design, and on a
+  hosted server, which closes a design after 15 minutes without a request, that
+  cost landed on the request path of every reopen. A whole-hub search after a
+  quiet spell paid it once per member. Now the index is reused when it is
+  proven to match the store: its last commit carries a voucher naming the
+  store's write sequence, an anchor kept in the store, this reflow2 version and
+  the fields this build searches, and the open checks every one. Anything else
+  is rebuilt, as before: an index that is missing, unreadable, written by
+  another reflow2 version, or behind or ahead of its store (a store restored
+  from a backup, or rewritten by a build that keeps no index), even when it
+  holds as many documents as the store holds nodes. A search after a write
+  still finds what the write added. An index that cannot be read is set aside
+  and rebuilt rather than failing the open. **Nothing to do.** The first open
+  of each design under this release rebuilds its index once (an index from an
+  earlier release carries no voucher), and opens after that reuse it. A
+  release from before this one opens these stores unchanged.
+
+- **A known gap in the near-match guard is now pinned by a test, switched off,
+  and nothing about what the guard reports changes yet.** When a new node
+  restates an existing one in other words, the guard can stay silent. Measured
+  on 2026-11-01: a requirement restating a verified capability scored 313.8
+  against its own text, the floor was half of that, and the capability (134.6)
+  and the decision behind it (149.7) both fell under it. Four cuts on today's
+  score were measured against a real design of 7,426 nodes and against copies
+  of it at 1/3, 1/10 and 1/30 of that size. Each cut that caught the pair also
+  raised false alarms at some size, from double to many times today's rate on
+  the smaller copies, so none ships. The cut stays at half the new node's own score.
+  `tests/a_reworded_duplicate_of_a_verified_capability_is_named.rs` pins the
+  pair and is `#[ignore]` with its reason until a signal clears the bar. Its
+  counterweight, an unrelated requirement that must get no warning, runs on
+  every build. `tests/near_match_replay.rs` is the instrument that measured
+  the cuts: run it with `--ignored` against a saved design (its header says
+  how). **What to do:** nothing.
+
+### Removed
+
+These were announced in 0.102.0, with what to do instead, and go in this release.
+
+- **`record_the_build`.** It is no longer listed. For this one release, a call to the old name is
+  refused with what to do instead. **What to do:** call `add_change_event` with `checksums`, which
+  accepts the files' checksums against the change in the same call. Record the check with
+  `add_verification`, and mark the work built with `set_capability_status`.
+- **`search_design`'s `view`, `searched_by_design` and `found_by_design`**, the three per-design
+  lists in a search over several designs (through a hub's address, or with `tracked_designs`). The
+  reply no longer carries them, or a `deprecation_notice` about them. **What to do:** read
+  `designs_searched` in place of `view`, `searched` (the one total) in place of
+  `searched_by_design`, and `found_in` (the designs with hits, with their counts) in place of
+  `found_by_design`.
+
+### Fixed
+
+- **A read through a hub's address that fans out over its designs now answers
+  within a time budget, and names the designs it did not reach.** A search,
+  `loop_status` or any other read over a whole hub ran on the hub and then on
+  each member in turn, and a member closed after a quiet spell was reopened
+  inside its turn. On flo2.io a cold search over 29 designs took a median of
+  13.5 s, and four took past the 30 s the gateway waits, losing the whole answer
+  although most designs had been reached. The view now spends one budget across
+  its designs, 25 s by default. When it runs out, the reply holds what the
+  designs it reached returned, and names each one it did not reach under
+  `not_reached` (with `why: "budget"`, whether its turn had begun, and the call
+  that reaches it alone: the same tool with `member`, or the design's own
+  address). A `time_budget` block, in `loop_status`'s words, says the answer is
+  partial. A merged search's `designs_searched`, `searched` and `found_in` cover
+  only the designs searched. An open the budget stopped waiting for still
+  finishes, so the same call made again reaches that design. A whole answer is
+  unchanged and carries neither field. **What to do:** nothing. An operator
+  behind a door other than 30 s sets `REFLOW2_HUB_VIEW_BUDGET_MS` beside
+  `REFLOW2_LOOP_STATUS_BUDGET_MS`; `loop_status`'s own `time_budget_ms`, passed
+  through a hub, moves the view's budget with it.
+
+- **A read through a hub's address now arrives within the budget it was asked
+  at, whatever its size.** When a member's reply came back over the budget
+  with the hub's prefixes counted, the hub asked again with the budget lowered
+  by the overshoot. A member lists whole rows until the next would pass, so its
+  reply could already sit below that lower budget, and four asks in a row
+  changed nothing: CI saw one arrive 9 characters over. The hub now lowers from
+  what the member answered, and a held reply settles within two re-asks.
+  Nothing to do: the reply is the same shape, and its `view_note` still says
+  the design was asked at a lower budget.
+- **The same search on a design nobody has written to now scores its hits the
+  same every time.** The search index used to reload itself on a thread of its
+  own, after every write and whenever the search engine finished tidying its
+  files in the background, and nothing checked that the reload it kept was the
+  newest. So a search asked twice in a row could score one hit 1.1349 and then
+  1.1407, the score over the design as it stood one write earlier; and the
+  tidying, which drops the old copies a rewrite leaves behind (they count in a
+  hit's score), moved scores with nothing written. The index now changes only
+  when the design is written. Scores can still move after a write, as they
+  always could. Nothing to do.
+
 ## [0.102.0] — 2026-11-21
 
 **Minor. Fewer calls for the steps agents always run together, shorter replies from a search
