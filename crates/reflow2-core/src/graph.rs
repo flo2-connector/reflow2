@@ -138,6 +138,10 @@ pub struct DesignGraph {
     /// `None` is every graph that did not ask, so the default costs one
     /// branch a read and takes no lock. See [`StoreReads`].
     pub(crate) store_reads: Option<std::sync::Mutex<StoreReads>>,
+    /// How long each step of opening this store took
+    /// (`crate::open_timing`). `None` on every in-memory graph, which is
+    /// never opened from disk.
+    pub(crate) opened_in: Option<crate::open_timing::OpenTiming>,
 }
 
 /// How many times a graph read its store, by what was read: whole scans by
@@ -582,6 +586,7 @@ impl DesignGraph {
             search_rebuilt_on_open: None,
             identity_on_open: None,
             store_reads: None,
+            opened_in: None,
         })
     }
 
@@ -627,7 +632,11 @@ impl DesignGraph {
         path: &str,
         policy: crate::provenance::StampPolicy,
     ) -> Result<(Self, crate::provenance::Provenance), DynoError> {
+        // Every step below is timed (`crate::open_timing`): an open that only a
+        // debugger could split is one nobody can budget.
+        let mut clock = crate::open_timing::OpenClock::start();
         let schema = crate::schema::load_schema()?;
+        clock.lap("schema");
         // ⭐ NOTHING IS WRITTEN — in the store or beside it — UNTIL THE IDENTITY
         // IS SETTLED. An open that is going to refuse must leave the folder as
         // it found it. Until 0.79.0 it did not: the read-write open rotated the
@@ -691,7 +700,9 @@ impl DesignGraph {
         // schema than you"). Opening is content-agnostic — no design data is
         // interpreted — so the "knows more" refusal check_and_stamp raises next is
         // unchanged for a real on-disk graph.
+        clock.lap("identity");
         let engine = StorageEngine::new_rocksdb(schema.clone(), path)?;
+        clock.lap("store");
         let (identity, write_identity) = match &settled {
             Settled::Known(found) => (found.identity.clone(), false),
             // The migration: a store that ALREADY holds a design under the old
@@ -728,6 +739,7 @@ impl DesignGraph {
         // propagates scan failures rather than collapsing them to zero, and this
         // closure passes that straight through — a retired type that cannot be
         // counted is exactly the case the conservative refusal is still right for.
+        clock.lap("identity_probe");
         let count_under = if write_identity {
             DEFAULT_GRAPH_ID.to_string()
         } else {
@@ -769,6 +781,7 @@ impl DesignGraph {
                 Ok(stored)
             },
         )?;
+        clock.lap("provenance");
         // The identity is written only now, once nothing is left to refuse: a
         // new one beside the store's real directory, or a COPY there of one found
         // only where an older reflow2 put it — the old file left in place, since
@@ -807,20 +820,31 @@ impl DesignGraph {
             search_rebuilt_on_open: None,
             identity_on_open: identity_note,
             store_reads: None,
+            opened_in: None,
         };
+        clock.lap("identity_write");
         // Stamping starts before anything below writes: a repair on open that
         // changes a node's content is a change this server made, now.
         graph.engine.enable_stamps()?;
+        clock.lap("stamps");
+        // The id-to-type index both migrations below read, built here so its
+        // cost is timed apart from theirs. It is memoised at the store's
+        // generation, so the first migration finds it rather than building it
+        // again, and nothing the open does changes because it is built first.
+        graph.node_type_index()?;
+        clock.lap("type_index");
         // Legacy AUTHORED_BY edges (single `role`) move to the set shape on
         // every open — idempotent, one edge scan, and the only way to make an
         // on-disk store uniform when nothing is stamped on it to key a
         // one-shot migration.
-        graph.migrate_authored_by_roles()?;
+        let moved = graph.migrate_authored_by_roles()?;
+        clock.lap_counting("authored_by_roles", Some(moved));
         // An edge a narrowing gave a single right answer is brought over on
         // open, the same way the import brings it over — today REALIZES onto a
         // Verification, IMPLEMENTS since 2026-09-23 when REALIZES stopped
         // accepting any target (`narrowing::EDGE_REWRITES`).
-        graph.migrate_edge_rewrites()?;
+        let moved = graph.migrate_edge_rewrites()?;
+        clock.lap_counting("edge_rewrites", Some(moved));
         // Relations stored twice are brought into step with their authority
         // on every open, idempotently, and what changed is KEPT for
         // `loop_status` rather than dropped: the two migrations above discard
@@ -834,6 +858,7 @@ impl DesignGraph {
         if let Some(summary) = graph.repaired_on_open.summary() {
             crate::provenance::record_repair_on_open(path, &summary);
         }
+        clock.lap("stored_twins");
         // THE SEARCH INDEX IS A COPY DERIVED FROM THE STORE, and an open is where
         // a store meets an index it may not have been written with: a directory
         // copied without its `fulltext/` subdirectory (what `--call` reads while
@@ -857,6 +882,15 @@ impl DesignGraph {
                     fields_changed: !found.built_over_these_fields,
                 });
         }
+        clock.lap("search_index");
+        let timing = clock.finish();
+        tracing::info!(
+            graph_id = %graph.graph_id,
+            total_ms = timing.total.as_millis() as u64,
+            steps = %timing.summary(),
+            "opened a design"
+        );
+        graph.opened_in = Some(timing);
         Ok((graph, provenance))
     }
 
@@ -1101,6 +1135,14 @@ impl DesignGraph {
     /// rebuilt it; `None` when the index already held what the store holds.
     pub fn search_rebuilt_on_open(&self) -> Option<&crate::search::SearchIndexRebuild> {
         self.search_rebuilt_on_open.as_ref()
+    }
+
+    /// How long each step of opening this store took
+    /// (`cap:an-open-reports-how-long-each-of-its-steps-took`); `None` for an
+    /// in-memory graph. The same timing is written as the `opened a design` log
+    /// line when the open finishes.
+    pub fn opened_in(&self) -> Option<&crate::open_timing::OpenTiming> {
+        self.opened_in.as_ref()
     }
 
     /// Take the open's search-index rebuild out of the record, for a caller
