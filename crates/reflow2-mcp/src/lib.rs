@@ -47,6 +47,7 @@ pub mod receipt;
 pub mod registry;
 pub mod registry_http;
 pub mod reply_budget;
+pub mod request_size;
 pub mod revise_route;
 pub mod runtime;
 pub mod said_once;

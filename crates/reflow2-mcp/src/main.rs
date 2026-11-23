@@ -445,6 +445,26 @@ struct Cli {
     #[arg(long = "http-allow-host", value_name = "HOST")]
     http_allow_host: Vec<String>,
 
+    /// The largest request one HTTP call may carry: a whole number of bytes,
+    /// or one followed by KiB, MiB or GiB (for example `16MiB`). Default 4 MiB,
+    /// the transport library's own; accepted from 64KiB to 512MiB.
+    ///
+    /// ⭐ WHY IT EXISTS (`cap:the-http-door-takes-a-request-size-its-operator-
+    /// chooses`). A request is held whole for the length of the call, so a
+    /// document sent to `import_graph` over HTTP can be no larger than this.
+    /// flo2's file route raises it for records files past 4 MiB (Anthony,
+    /// 2026-11-22). Bounded so a typo cannot let one call take the machine. A
+    /// request over it is answered 413 naming the limit and this flag. stdio
+    /// and the `--call` door take no request bound and ignore it.
+    #[arg(
+        long = "http-max-request-bytes",
+        value_name = "SIZE",
+        env = "REFLOW2_HTTP_MAX_REQUEST_BYTES",
+        default_value = "4MiB",
+        value_parser = reflow2_mcp::request_size::parse
+    )]
+    http_max_request_bytes: usize,
+
     /// Declare that a gateway in front of this server authenticates every
     /// caller and NAMES THE PERSON ON EACH CALL, in the request's
     /// `_meta["reflow2/writes_for"]`. NAME is the gateway's name, said in the
@@ -1884,6 +1904,7 @@ async fn run() -> anyhow::Result<()> {
                 one_design(service.with_caller_rule(caller_rule(&cli, false, bearer.as_deref()))),
                 &addr,
                 &cli.http_allow_host,
+                cli.http_max_request_bytes,
                 HttpSurface::Design,
                 None,
                 false,
@@ -2018,6 +2039,7 @@ async fn run() -> anyhow::Result<()> {
             },
             &addr,
             &cli.http_allow_host,
+            cli.http_max_request_bytes,
             HttpSurface::Design,
             None,
             true,
@@ -2647,6 +2669,7 @@ async fn run() -> anyhow::Result<()> {
             one_design(service.with_caller_rule(caller_rule(&cli, false, bearer.as_deref()))),
             cli.http.as_deref().unwrap_or("127.0.0.1:0"),
             &cli.http_allow_host,
+            cli.http_max_request_bytes,
             HttpSurface::Design,
             Some(SharedServer {
                 graph_path: cli.graph_path.clone(),
@@ -2771,6 +2794,7 @@ async fn run() -> anyhow::Result<()> {
                     one_design(service),
                     &addr,
                     &cli.http_allow_host,
+                    cli.http_max_request_bytes,
                     HttpSurface::Design,
                     None,
                     false,
@@ -2839,6 +2863,7 @@ async fn run() -> anyhow::Result<()> {
                     degraded_design(degraded),
                     &addr,
                     &cli.http_allow_host,
+                    cli.http_max_request_bytes,
                     HttpSurface::Degraded {
                         readiness,
                         recovers: held,
@@ -3115,6 +3140,7 @@ async fn serve_latent(
         latent_design(latent),
         cli.http.as_deref().unwrap_or("127.0.0.1:0"),
         &cli.http_allow_host,
+        cli.http_max_request_bytes,
         HttpSurface::Latent { readiness },
         // A shared server's other duty — stop when nobody uses it, releasing a
         // store it may have opened since — without the rendezvous
@@ -3273,7 +3299,7 @@ fn one_design(
     }
 }
 
-// Eight: the bearer verifier joined the seven. Each is a distinct property of
+// Nine: the request size joined the bearer verifier and the seven. Each is a distinct property of
 // the one place every HTTP surface is served from, which is the point of this
 // function; bundling them would only move the list.
 #[allow(clippy::too_many_arguments)]
@@ -3299,6 +3325,8 @@ async fn serve_http<Svc>(
     ) -> (Svc, reflow2_mcp::drain::Holds),
     addr: &str,
     allow_hosts: &[String],
+    // The largest request one call may carry (`--http-max-request-bytes`).
+    max_request_bytes: usize,
     surface: HttpSurface,
     shared: Option<SharedServer>,
     // True when this server holds MANY designs, so the banner does not claim to
@@ -3342,7 +3370,17 @@ where
     // there is one owner: two copies could disagree, and rmcp's refusal says
     // nothing a person behind a proxy can act on (GitHub issue #616).
     let host_rule = std::sync::Arc::new(reflow2_mcp::host_gate::HostRule::new(allow_hosts));
-    let config = StreamableHttpServerConfig::default().disable_allowed_hosts();
+    let config = StreamableHttpServerConfig::default()
+        .disable_allowed_hosts()
+        .with_max_request_body_bytes(max_request_bytes);
+    if max_request_bytes != reflow2_mcp::request_size::DEFAULT_BYTES {
+        eprintln!(
+            "reflow2: this server takes at most {max_request_bytes} bytes ({}) in one request \
+             ({}; the default is 4 MiB).",
+            reflow2_mcp::request_size::mib(max_request_bytes),
+            reflow2_mcp::request_size::FLAG
+        );
+    }
 
     // Binding a non-loopback address without naming a host is the trap this
     // warning exists for: remote sessions get an opaque 403 and nothing says
@@ -3388,6 +3426,9 @@ where
         )
     });
     let authenticated = bearer.is_some();
+    // The size refusal in reflow2's words, innermost: it rewrites only the
+    // transport's own 413, which no gate in front of it produces.
+    let http = reflow2_mcp::request_size::RequestSizeGate::new(http, max_request_bytes);
     let http = reflow2_mcp::bearer::BearerGate::optional(http, bearer);
     let http = reflow2_mcp::host_gate::HostGate::new(http, host_rule);
     if let Some(note) = tls_note {

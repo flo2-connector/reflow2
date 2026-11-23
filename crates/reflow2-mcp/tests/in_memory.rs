@@ -231,6 +231,7 @@ mod the_fourteen_holes_are_writable;
 mod the_frontier_is_served_and_a_deferral_is_a_recorded_finding;
 mod the_guard_reads_the_request_before_refusing;
 mod the_handshake_fits_the_clients_cap;
+mod the_http_door_takes_a_chosen_request_size;
 mod the_id_prefix_table_covers_every_stated_convention;
 mod the_lens_names_the_person_beside_the_id;
 mod the_mcp_surface_only_grows;
