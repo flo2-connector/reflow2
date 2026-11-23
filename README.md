@@ -193,7 +193,7 @@ conclusion).
 ```
 reflow2/
   crates/
-    reflow2-core/    # the deterministic, LLM-free coherence engine (99 modules)
+    reflow2-core/    # the deterministic, LLM-free coherence engine (100 modules)
     reflow2-mcp/     # the agent-native MCP server, stdio or HTTP (199 tools) — the binary you run
   schema/            # 11 composable schema domains (28 node / 71 edge types)
     core / functional / structure / build / verify / operate
