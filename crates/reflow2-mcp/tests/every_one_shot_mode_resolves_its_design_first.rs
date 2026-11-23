@@ -717,6 +717,9 @@ fn sample(flag: &str, placeholder: &str) -> &'static str {
         _ => match placeholder {
             "N" | "MB" | "MINUTES" => "8",
             "DURATION" => "5s",
+            // --http-max-request-bytes: clap reads it through a size parser, so
+            // "x" would stop at clap and never reach the table.
+            "SIZE" => "16MiB",
             "URL" => "http://127.0.0.1:9/",
             "ADDR" => "127.0.0.1:0",
             "JSON" => "{}",

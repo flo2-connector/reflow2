@@ -306,6 +306,12 @@ than replacing it, so naming a remote machine never locks out the local sessions
 server. And if you bind a reachable address and forget the flag, the server says so at startup and
 names it, rather than leaving every remote session with a bare `403` and no explanation.
 
+One request is held to **4 MiB** by default, the transport library's own limit, which bounds a
+document sent to `import_graph` over HTTP. `--http-max-request-bytes 16MiB` (or
+`REFLOW2_HTTP_MAX_REQUEST_BYTES`) raises or lowers it, from 64 KiB to 512 MiB; the whole request is
+held in memory for the call, so give the machine room for it. A request over the limit is answered
+`413`, naming the limit and the flag.
+
 The reason any of this needs a server rather than one process per session is that reflow2's store is
 single-writer **per process**. Six processes cannot each open the directory; one process holding it,
 with six sessions attached, still has exactly one writer. The constraint is satisfied rather than
@@ -472,6 +478,7 @@ Every failure mode here is a version of one thing: **divergence you allowed to g
 | Every session stalls ~30s and *then* shows `reflow2_unavailable` | Something is holding the store that is not a shared server — an older reflow2 in stdio mode, or a stray process. Sessions wait out the election, then degrade rather than hang | `--stop-shared` if it is a shared server; otherwise stop that process. Flip configs to `--shared` **after** it is gone, or the first impression of a working setup is a 30-second stall |
 | A session opens the WRONG design after you copied a project | The copy carried `<graph>.server.json` with it, naming the original's server | Nothing — reflow2 refuses it and elects a server for the copy. If you see this in a log, it is the guard working |
 | A remote session gets `403 Forbidden` | It dialled a host the server was not told to answer for | Add `--http-allow-host <that exact host>` and restart the server — its startup line says this too |
+| A call is refused `413 Request too large` | The request (most often a document sent to `import_graph`) is past the server's request limit, 4 MiB unless set | Send less at once, or raise it with `--http-max-request-bytes` and restart the server — the refusal names the limit and the flag |
 | A remote session cannot connect at all | The network, not reflow2 — the port is not reachable from there | Check the tunnel, LAN route or tailnet first; `curl http://<host>:8787/` from that machine |
 
 ---

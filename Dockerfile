@@ -200,6 +200,9 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
 #     can write the design, so keep that port private.
 #   · `--http-allow-host` (REFLOW2_ALLOW_HOST) is DNS-rebinding protection, not
 #     authentication.
+#   · `--http-max-request-bytes` (REFLOW2_HTTP_MAX_REQUEST_BYTES) holds one
+#     request to a size, 4 MiB unless set, 64KiB to 512MiB; a request is held
+#     whole in memory for the call.
 #   · reflow2 does not terminate TLS. Put a TLS-terminating proxy in front and
 #     give its https:// address as --http-public-url.
 #
