@@ -90,6 +90,7 @@ pub mod neighbourhood;
 pub mod node_edges;
 pub mod nodes;
 pub mod open_increments;
+pub mod open_timing;
 pub mod operate;
 pub mod owed;
 pub mod prediction_order;
