@@ -13,6 +13,8 @@
   over the limit is answered `413` in words that say what would have worked**:
   the limit in bytes and MiB, the flag and its environment twin, and that
   nothing in it was read. The library's own words named the limit and not the
-  setting. stdio and the `--call` door take no request bound and ignore it.
+  setting. Given on the command line to a one-shot mode (`--call`, `--export`
+  and the rest) it is refused by name, as every serve-time flag is; set in the
+  environment, it is left alone there.
   **What to do:** nothing, unless you serve over HTTP and need larger requests;
   then set it, and give the machine the memory one such call holds.

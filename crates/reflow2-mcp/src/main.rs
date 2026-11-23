@@ -454,8 +454,10 @@ struct Cli {
     /// document sent to `import_graph` over HTTP can be no larger than this.
     /// flo2's file route raises it for records files past 4 MiB (Anthony,
     /// 2026-11-22). Bounded so a typo cannot let one call take the machine. A
-    /// request over it is answered 413 naming the limit and this flag. stdio
-    /// and the `--call` door take no request bound and ignore it.
+    /// request over it is answered 413 naming the limit and this flag. Given on
+    /// the command line to a one-shot mode (`--call`, `--export` ...), it is
+    /// refused by name like every serve-time flag; from the environment it is
+    /// left alone there.
     #[arg(
         long = "http-max-request-bytes",
         value_name = "SIZE",
