@@ -31,6 +31,112 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.104.0] — 2026-11-24
+
+**Minor. A registry server copies every design it serves on a signal without stopping, the HTTP
+door takes a request size its operator chooses, and an open says how long each of its steps
+took.** It contains #864 to #866. **What to do:** nothing, unless you run a server. Then add
+`--checkpoint-dir` to have it answer `SIGUSR1` with a copy, or `--http-max-request-bytes` to take
+requests over 4 MiB. Nothing to migrate: the schema does not move.
+
+**The MCP surface does not move.** Measured against the published 0.103.0 binary (sha256
+`4a30b5c4…` for its linux-x86_64 archive, checked against `checksums.txt`), over stdio on a fresh
+store: the same 199 tools, with every description, input schema and output schema unchanged. The
+36 skills, the schema description and the connect-time instructions (2,956 characters) are
+unchanged too. What is new is in the command line and the log.
+
+- **The schema does not move.** Measured at this cut with the published 0.103.0 binary: it opens a
+  store this release has written, with its "behind" warning, and writes to it; this release then
+  reads that write and finds it by search. It refuses this release's exports, and with
+  `accept_newer: true` imports one whole (4 nodes).
+- No note to the MCP users is owed before a release
+  (`dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, Anthony 2026-11-21).
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets the open timing. The checkpoints and the request size are a
+server's. Checked on the 0.104.0 release build beside the published 0.103.0 binary, each on a
+design on disk:
+- **`reflow2-mcp --graph-path … --call search_design --args '{"query":…}'`** prints one `INFO`
+  line on stderr, `opened a design … total_ms=67 steps=schema=1 identity=0 store=63 …`. The
+  0.103.0 binary prints none. The `read` and `write` verbs stay quiet, as before.
+- **`--http-max-request-bytes` or `--checkpoint-dir` given to `--call`** is refused by name
+  ("`--call` does not read `--http-max-request-bytes`, so this command was REFUSED"), with nothing
+  opened or written. The 0.103.0 binary does not know either flag. Set in the environment,
+  `REFLOW2_HTTP_MAX_REQUEST_BYTES` is left alone by a one-shot call.
+- **On a server you run yourself** (checked on the release build): with
+  `--http-max-request-bytes 64KiB` the banner says the limit, and a 70 KB request is answered
+  `413`, naming the limit, the flag and its environment twin. A registry server started with
+  `--checkpoint-dir` answered `kill -USR1` with one whole set of both its designs in 230 ms, and
+  kept answering `/healthz`.
+- **Needs flo2.io:** its nightly backup still stops the engine for a copy. It can send the signal
+  instead once flo2.io serves this release and its backup script is changed to.
+
+### Added
+
+- **A registry server copies every design it serves on `SIGUSR1`, without
+  stopping.** Start it with `--checkpoint-dir DIR` (or
+  `REFLOW2_CHECKPOINT_DIR`). On the signal it takes a RocksDB checkpoint of
+  each design under its root while it goes on answering calls:
+  - a design it holds open is copied through the store it holds;
+  - one it does not hold is copied from its store on disk, and a request that
+    would open that design meanwhile waits for the copy instead of failing.
+
+  The set lands in `DIR/<UTC stamp>.partial/<design folder>/graph`, each
+  design's identity file beside its copy. `result.json` names every design,
+  whether it was open, how long its copy took, and any design that could not
+  be copied with why. The set is renamed to `DIR/<UTC stamp>` only when it is
+  whole, so a folder without `.partial` is always complete. On the same
+  filesystem as the designs a copy is hard links, and costs almost no disk
+  until the live store compacts. The server never deletes a set.
+
+  A copy does not include the design's kept search index, so a design restored
+  from one rebuilds its index on its first open. A backup that used to stop the
+  server for a consistent copy can send the signal and read the newest whole
+  set instead. **To use it, add `--checkpoint-dir`. Nothing to do otherwise.**
+
+- **Opening a design now logs how long each of its steps took.** Each open of a
+  design on disk writes one `INFO` line, `opened a design`, with the design's
+  id, `total_ms`, and every step in milliseconds:
+  - schema;
+  - identity;
+  - the RocksDB store;
+  - the provenance check;
+  - the type index;
+  - each repair that runs on every open, with how many records it changed;
+  - the search index.
+
+  A `--call` prints the line on stderr. A server writes it to its log, so a
+  hosted reopen can be split without a debugger. Code that opens a design
+  reads the same timing from `DesignGraph::opened_in()`. What an open does,
+  and in what order, is unchanged. The `read` and `write` verbs stay quiet,
+  because they log errors only. **Nothing to do.**
+
+- **The largest request the HTTP door takes is a setting:
+  `--http-max-request-bytes SIZE` (or `REFLOW2_HTTP_MAX_REQUEST_BYTES`).**
+  SIZE is a whole number of bytes, or one followed by `KiB`, `MiB` or `GiB`
+  (`16MiB`), from 64 KiB to 512 MiB. A request is held whole in memory for the
+  length of the call, so a value outside that is refused at startup with the
+  bounds, and the banner says the limit when it is not the default. It reaches
+  every HTTP surface: one design, the shared daemon, a registry of designs and
+  the degraded surface. **Unset, nothing changes:** the limit stays the
+  transport library's 4 MiB, which until now was the only one there was, so a
+  document sent to `import_graph` over HTTP could be no larger. **A request
+  over the limit is answered `413` in words that say what would have worked**:
+  the limit in bytes and MiB, the flag and its environment twin, and that
+  nothing in it was read. The library's own words named the limit and not the
+  setting. Given on the command line to a one-shot mode (`--call`, `--export`
+  and the rest) it is refused by name, as every serve-time flag is; set in the
+  environment, it is left alone there.
+  **What to do:** nothing, unless you serve over HTTP and need larger requests;
+  then set it, and give the machine the memory one such call holds.
+
+### Changed
+
+- **`SIGUSR1` no longer ends a registry server.** Without `--checkpoint-dir` it
+  is logged, saying there is nowhere to put a copy, and the server goes on
+  serving. A single-design server (`--graph-path`) does not answer the signal
+  yet and keeps the old behaviour. **Nothing to do.**
+
 ## [0.103.0] — 2026-11-22
 
 **Minor. A file of records can be checked before anything is written, replies point to one
