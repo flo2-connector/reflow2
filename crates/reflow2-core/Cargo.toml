@@ -90,6 +90,15 @@ path = "tests/in_memory.rs"
 # CI's full job.
 [[test]]
 name = "on_disk"
+path = "tests/on_disk.rs"
+required-features = ["rocksdb"]
+
+# ONE TEST, ALONE IN ITS PROCESS ON PURPOSE: the store memory budget is fixed
+# for the whole process by the first store it opens, so this test must open
+# the first one. It was the `on_disk` root until 2026-11-23, when modules
+# declared beside it opened stores first and it failed on every run.
+[[test]]
+name = "store_memory_budget"
 path = "tests/every_open_store_shares_one_memory_budget.rs"
 required-features = ["rocksdb"]
 

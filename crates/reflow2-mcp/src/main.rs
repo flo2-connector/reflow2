@@ -248,6 +248,22 @@ struct Cli {
     #[arg(long, value_name = "DURATION", default_value = "15m", value_parser = parse_idle)]
     registry_idle: std::time::Duration,
 
+    /// Where `SIGUSR1` puts a checkpoint of every design this server serves
+    /// (used with `--registry-root`).
+    ///
+    /// On the signal, the server copies each design's store as of one moment
+    /// while it goes on serving: into `DIR/<UTC stamp>.partial/<design
+    /// folder>/graph`, with `result.json` beside the copies naming each design
+    /// and any that could not be copied, and the set is renamed to
+    /// `DIR/<UTC stamp>` only when it is whole. On the same filesystem as the
+    /// designs a copy is hard links, and costs almost no disk until the live
+    /// store compacts. The server never deletes a set. A backup sends the
+    /// signal and reads the newest whole set instead of stopping the server
+    /// (`cap:a-server-checkpoints-every-design-it-serves-on-a-signal-without-stopping`).
+    /// Without it, `SIGUSR1` is logged and changes nothing.
+    #[arg(long, value_name = "DIR", env = "REFLOW2_CHECKPOINT_DIR")]
+    checkpoint_dir: Option<std::path::PathBuf>,
+
     /// Memory, in MB, that every design store this process opens shares: block
     /// cache and write buffers together (default 128).
     ///
@@ -2027,6 +2043,7 @@ async fn run() -> anyhow::Result<()> {
         let read_only = cli.read_only;
         let max_open = cli.registry_max_open;
         let rule = caller_rule(&cli, true, bearer.as_deref());
+        let checkpoint_dir = cli.checkpoint_dir.clone();
         serve_http(
             move |cfg| {
                 let router = reflow2_mcp::registry_http::GraphRouter::serving(
@@ -2037,6 +2054,12 @@ async fn run() -> anyhow::Result<()> {
                     cfg,
                     rule.clone(),
                 );
+                // A backup asks for a consistent copy of every design with a
+                // signal, and the server keeps serving (`reflow2_mcp::checkpoint`).
+                #[cfg(unix)]
+                reflow2_mcp::checkpoint::answer_signal(router.clone(), checkpoint_dir);
+                #[cfg(not(unix))]
+                let _ = checkpoint_dir;
                 (router.clone(), reflow2_mcp::drain::Holds::many(router))
             },
             &addr,

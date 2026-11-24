@@ -33,6 +33,12 @@ pub struct StoredEdge {
     pub properties: HashMap<String, Value>,
 }
 
+/// Why a build without on-disk storage cannot take a checkpoint.
+#[cfg(not(feature = "rocksdb"))]
+const NO_ROCKSDB_TO_CHECKPOINT: &str = "a checkpoint copies a RocksDB store, and this build was \
+     compiled without the `rocksdb` feature, so it holds no store on disk to copy. Rebuild with \
+     default features.";
+
 /// The storage engine — schema-validated graph storage.
 pub struct StorageEngine {
     /// `Arc<Schema>` so the schema can be reference-shared without a
@@ -427,6 +433,54 @@ impl StorageEngine {
             text_suspect: Default::default(),
             unsettled_writes: 0,
         })
+    }
+
+    /// A consistent copy of this engine's store at `dest`, taken while the
+    /// store stays open (`KvBackend::checkpoint`). `dest` must not exist.
+    ///
+    /// Refused while a batch is open: its writes are buffered here and not yet
+    /// in the store, so a copy would hold half a call. The served surface
+    /// commits or discards every batch before it lets go of the design, so a
+    /// caller holding the design's lock never meets this.
+    #[cfg(feature = "rocksdb")]
+    pub fn checkpoint_to(&self, dest: &std::path::Path) -> Result<(), DynoError> {
+        if self.write_buffer.is_some() {
+            return Err(DynoError::Storage(
+                "a batch is open on this store and its writes are not in it yet, so a \
+                 checkpoint now would copy half of them; take it after the batch commits"
+                    .to_string(),
+            ));
+        }
+        self.backend.checkpoint(dest)
+    }
+
+    /// A consistent copy at `dest` of the RocksDB store at `path`, which NO
+    /// engine in this process holds: it is opened for the copy and closed
+    /// again. Opening it reads and writes nothing of the design (no schema, no
+    /// identity, no repair, no search index): only RocksDB's own files move,
+    /// as they do on any open. Refused when no store is there, rather than
+    /// creating one.
+    #[cfg(feature = "rocksdb")]
+    pub fn checkpoint_store_at(path: &str, dest: &std::path::Path) -> Result<(), DynoError> {
+        if !std::path::Path::new(path).join("CURRENT").is_file() {
+            return Err(DynoError::Storage(format!(
+                "there is no RocksDB store at {path} to checkpoint"
+            )));
+        }
+        RocksBackend::open(path)?.checkpoint(dest)
+    }
+
+    /// Fail-loud stubs when the crate is built without the `rocksdb` feature,
+    /// like [`Self::new_rocksdb`]'s: a build with no on-disk storage has no
+    /// files to copy, and says so rather than appearing to have copied them.
+    #[cfg(not(feature = "rocksdb"))]
+    pub fn checkpoint_to(&self, _dest: &std::path::Path) -> Result<(), DynoError> {
+        Err(DynoError::Storage(NO_ROCKSDB_TO_CHECKPOINT.to_string()))
+    }
+
+    #[cfg(not(feature = "rocksdb"))]
+    pub fn checkpoint_store_at(_path: &str, _dest: &std::path::Path) -> Result<(), DynoError> {
+        Err(DynoError::Storage(NO_ROCKSDB_TO_CHECKPOINT.to_string()))
     }
 
     /// Fail-loud stub when the crate is built without the `rocksdb` feature.

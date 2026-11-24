@@ -344,6 +344,20 @@ pub(crate) trait KvBackend: Send + Sync {
     fn set_index_anchor(&self, _anchor: &[u8]) -> Result<(), DynoError> {
         Ok(())
     }
+
+    /// A CONSISTENT COPY OF THE STORE AT `dest`, made while it stays open
+    /// (`cap:a-server-checkpoints-every-design-it-serves-on-a-signal-without-stopping`).
+    /// `dest` must not exist yet. On the RocksDB backend this is a RocksDB
+    /// checkpoint: the store's files as of one moment, hard-linked where `dest`
+    /// is on the same filesystem and copied where it is not, opened later as
+    /// an ordinary store. The in-memory backend keeps no files, and says so.
+    #[cfg(feature = "rocksdb")]
+    fn checkpoint(&self, _dest: &Path) -> Result<(), DynoError> {
+        Err(DynoError::Storage(
+            "this store is held in memory and keeps no files, so there is nothing to checkpoint"
+                .to_string(),
+        ))
+    }
 }
 
 /// Where the RocksDB backend keeps the search index's anchor: a key in the
@@ -599,6 +613,17 @@ impl KvBackend for RocksBackend {
     #[cfg(feature = "fulltext")]
     fn write_sequence(&self) -> Option<u64> {
         Some(self.db.latest_sequence_number())
+    }
+
+    fn checkpoint(&self, dest: &Path) -> Result<(), DynoError> {
+        rocksdb::checkpoint::Checkpoint::new(&self.db)
+            .and_then(|c| c.create_checkpoint(dest))
+            .map_err(|e| {
+                DynoError::Storage(format!(
+                    "Failed to checkpoint the RocksDB store into {}: {e}",
+                    dest.display()
+                ))
+            })
     }
 
     #[cfg(feature = "fulltext")]
