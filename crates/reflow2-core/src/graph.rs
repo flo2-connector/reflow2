@@ -1137,6 +1137,30 @@ impl DesignGraph {
         self.search_rebuilt_on_open.as_ref()
     }
 
+    /// A consistent copy of this design's store at `dest`, taken while the
+    /// design stays open and served
+    /// (`cap:a-server-checkpoints-every-design-it-serves-on-a-signal-without-stopping`).
+    /// `dest` must not exist yet. The copy is the store alone: its kept search
+    /// index is not copied, and a design opened from the copy rebuilds it, as
+    /// any open does for an index it cannot match to its store. An in-memory
+    /// design keeps no files and is refused.
+    pub fn checkpoint_to(&self, dest: &std::path::Path) -> Result<(), DynoError> {
+        self.engine.checkpoint_to(dest)
+    }
+
+    /// [`Self::checkpoint_to`] for a design NOT open in this process: the
+    /// store at `store_path` is opened for the copy and closed again, without
+    /// opening the design (no identity, repair or index), so the design on
+    /// disk is left as it was. The caller must make sure nothing opens the
+    /// same store meanwhile: RocksDB refuses a second open of a store this
+    /// process holds.
+    pub fn checkpoint_closed_store(
+        store_path: &str,
+        dest: &std::path::Path,
+    ) -> Result<(), DynoError> {
+        StorageEngine::checkpoint_store_at(store_path, dest)
+    }
+
     /// How long each step of opening this store took
     /// (`cap:an-open-reports-how-long-each-of-its-steps-took`); `None` for an
     /// in-memory graph. The same timing is written as the `opened a design` log

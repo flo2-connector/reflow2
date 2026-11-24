@@ -30,6 +30,7 @@ mod a_read_only_server_with_no_store_serves_the_latent_surface;
 mod a_registry_names_every_store_it_cannot_serve;
 mod a_reopened_design_reuses_its_search_index;
 mod a_reply_through_a_hub_fits_its_budget;
+mod a_server_checkpoints_its_designs_on_a_signal;
 mod a_server_closes_designs_nobody_is_using;
 mod a_server_drains_before_it_stops;
 mod a_signature_is_the_callers_own_through_every_writer;

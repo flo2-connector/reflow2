@@ -251,6 +251,48 @@ impl Drop for InFlight {
     }
 }
 
+/// Copy the identity file beside the store at `store_path` to its place beside
+/// the copy at `dest`.
+fn copy_identity(store_path: &str, dest: &std::path::Path) -> Result<(), String> {
+    let from = reflow2_core::identity::identity_path(store_path);
+    let to = reflow2_core::identity::identity_path(&dest.to_string_lossy());
+    std::fs::copy(&from, &to).map(|_| ()).map_err(|e| {
+        format!(
+            "the store was copied, and its identity file {} could not be copied beside it: {e}",
+            from.display()
+        )
+    })
+}
+
+/// Held while a checkpoint copies a design this router holds: keeps it from
+/// being closed under the copy. Unlike [`InFlight`], it does not mark the
+/// design used, so a nightly copy does not keep an idle design open.
+struct Pinned(Arc<Slot>);
+
+impl Drop for Pinned {
+    fn drop(&mut self) {
+        self.0.in_flight.fetch_sub(1, Ordering::SeqCst);
+    }
+}
+
+/// Held while a checkpoint copies a design this router does NOT hold: an
+/// open of it waits until this lets go (`GraphRouter::open_design`).
+struct Claimed<'a> {
+    router: &'a GraphRouter,
+    graph_id: &'a str,
+}
+
+impl Drop for Claimed<'_> {
+    fn drop(&mut self) {
+        self.router
+            .inner
+            .checkpointing
+            .lock()
+            .expect("the checkpointing set is never poisoned")
+            .remove(self.graph_id);
+    }
+}
+
 fn ms_since(epoch: Instant) -> u64 {
     u64::try_from(epoch.elapsed().as_millis()).unwrap_or(u64::MAX)
 }
@@ -267,6 +309,11 @@ struct Inner {
     open: Mutex<HashMap<String, Arc<Slot>>>,
     /// Designs closed whose previous copy may still hold its store, by id.
     releasing: std::sync::Mutex<HashMap<String, Weak<RwLock<DesignGraph>>>>,
+    /// Designs not open here whose store is being copied for a checkpoint
+    /// right now (`crate::checkpoint`). An open of one waits until its copy is
+    /// made, as it waits for a previous copy to let go: RocksDB refuses a
+    /// second open of a store this process holds, and the copy holds it.
+    checkpointing: std::sync::Mutex<std::collections::HashSet<String>>,
     /// Set once the server has begun to stop: nothing is opened after that.
     stopping: AtomicBool,
     /// How every design this router opens establishes who is calling
@@ -324,6 +371,7 @@ impl GraphRouter {
                 epoch: Instant::now(),
                 open: Mutex::new(HashMap::new()),
                 releasing: std::sync::Mutex::new(HashMap::new()),
+                checkpointing: std::sync::Mutex::new(std::collections::HashSet::new()),
                 stopping: AtomicBool::new(false),
                 caller_rule,
             }),
@@ -616,6 +664,20 @@ impl GraphRouter {
                 .remove(graph_id);
         }
 
+        // AND NEVER WHILE A CHECKPOINT HOLDS ITS STORE (`crate::checkpoint`):
+        // a design not open here is copied from its store on disk, which the
+        // copy opens for the moment it takes. Wait for it rather than fail.
+        let deadline = Instant::now() + RELEASE_WAIT;
+        while self.is_checkpointing(graph_id) {
+            if Instant::now() >= deadline {
+                return Err(Refusal::Busy(format!(
+                    "design '{graph_id}' is being copied for a backup and its copy has not \
+                     finished; it opens as soon as it does. Try again in a few seconds."
+                )));
+            }
+            tokio::time::sleep(Duration::from_millis(25)).await;
+        }
+
         // Resolve id -> path against the root. `attach` is the ONLY way in.
         let binding = self.resolve(graph_id)?;
         let path = binding.graph_path().to_string();
@@ -682,6 +744,176 @@ impl GraphRouter {
             sessions,
             store,
         }))
+    }
+
+    fn is_checkpointing(&self, graph_id: &str) -> bool {
+        self.inner
+            .checkpointing
+            .lock()
+            .expect("the checkpointing set is never poisoned: nothing panics holding it")
+            .contains(graph_id)
+    }
+
+    /// A CONSISTENT COPY OF EVERY DESIGN UNDER THE ROOT, taken while this
+    /// router goes on serving (`crate::checkpoint`): one set under `dir`, whole
+    /// or not at all. A design this router holds open is copied through the
+    /// store it holds, once the request in progress on it lets go of its lock;
+    /// one it does not hold is copied from its store on disk, and a request
+    /// that would open it meanwhile waits for the copy rather than failing.
+    /// A design that cannot be copied is named in the set's result with why,
+    /// and the others are still copied.
+    pub async fn checkpoint_all(
+        &self,
+        dir: &std::path::Path,
+    ) -> Result<(std::path::PathBuf, crate::checkpoint::CheckpointRun), String> {
+        let mut set = crate::checkpoint::Pending::begin(dir)?;
+        let registry = Registry::discover(&self.inner.root);
+        for graph_id in registry.graph_ids() {
+            let started = Instant::now();
+            let store_path = match registry.attach(&graph_id) {
+                Ok(b) => b.graph_path().to_string(),
+                Err(e) => {
+                    set.record(crate::checkpoint::DesignCopied {
+                        folder: graph_id.clone(),
+                        graph_id,
+                        was_open: false,
+                        took_ms: 0,
+                        ok: false,
+                        error: Some(e.to_string()),
+                    });
+                    continue;
+                }
+            };
+            let folder = crate::checkpoint::folder_of(&store_path);
+            let (was_open, outcome) = match set.place_for(&folder) {
+                Ok(dest) => {
+                    let copied = self
+                        .checkpoint_one(&graph_id, &store_path, dest.clone())
+                        .await;
+                    // THE IDENTITY GOES WITH IT, so the copy opens as the same
+                    // design (it is written once, when the design is minted,
+                    // and never changes). The other files beside the store are
+                    // left to the backup, which reads them from the design.
+                    match copied {
+                        (open, Ok(())) => (open, copy_identity(&store_path, &dest)),
+                        other => other,
+                    }
+                }
+                Err(e) => (false, Err(e)),
+            };
+            set.record(crate::checkpoint::DesignCopied {
+                folder,
+                graph_id,
+                was_open,
+                took_ms: crate::checkpoint::ms(started.elapsed()),
+                ok: outcome.is_ok(),
+                error: outcome.err(),
+            });
+        }
+        set.finish()
+    }
+
+    /// Copy one design into `dest`. Returns whether it was open here.
+    async fn checkpoint_one(
+        &self,
+        graph_id: &str,
+        store_path: &str,
+        dest: std::path::PathBuf,
+    ) -> (bool, Result<(), String>) {
+        if self.inner.stopping.load(Ordering::SeqCst) {
+            return (false, Err("this server is stopping".to_string()));
+        }
+        // Under the table's lock, so no open can start between the look and
+        // the claim: either the design has a place here (pin it, so it is not
+        // closed under the copy), or it is claimed for the copy (so an open
+        // waits, `open_design`).
+        let pinned = {
+            let map = self.inner.open.lock().await;
+            match map.get(graph_id) {
+                Some(slot) => {
+                    slot.in_flight.fetch_add(1, Ordering::SeqCst);
+                    Some(Pinned(Arc::clone(slot)))
+                }
+                None => {
+                    self.inner
+                        .checkpointing
+                        .lock()
+                        .expect("the checkpointing set is never poisoned")
+                        .insert(graph_id.to_string());
+                    None
+                }
+            }
+        };
+        match pinned {
+            Some(pin) => {
+                let opened = pin
+                    .0
+                    .cell
+                    .get_or_init(|| self.open_design(graph_id))
+                    .await
+                    .clone();
+                let outcome = match opened {
+                    Ok(open) => match open.store.upgrade() {
+                        Some(graph) => {
+                            // Behind the design's own lock, as a read: no
+                            // write is half-done while the copy is taken.
+                            let held = graph.read_owned().await;
+                            tokio::task::spawn_blocking(move || held.checkpoint_to(&dest))
+                                .await
+                                .map_err(|e| format!("the copy task failed: {e}"))
+                                .and_then(|r| r.map_err(|e| e.to_string()))
+                        }
+                        None => Err("it was closed while it was being copied".to_string()),
+                    },
+                    Err(refusal) => Err(format!("it could not be opened: {}", refusal.reason())),
+                };
+                drop(pin);
+                (true, outcome)
+            }
+            None => {
+                let claim = Claimed {
+                    router: self,
+                    graph_id,
+                };
+                let outcome = self.copy_unheld(graph_id, store_path, dest).await;
+                drop(claim);
+                (false, outcome)
+            }
+        }
+    }
+
+    /// Copy a design this router does not hold, from its store on disk, once
+    /// any copy closed a moment ago has let go of it.
+    async fn copy_unheld(
+        &self,
+        graph_id: &str,
+        store_path: &str,
+        dest: std::path::PathBuf,
+    ) -> Result<(), String> {
+        let previous = self
+            .inner
+            .releasing
+            .lock()
+            .expect("the releasing table is never poisoned: nothing panics holding it")
+            .get(graph_id)
+            .cloned();
+        if let Some(previous) = previous {
+            let deadline = Instant::now() + RELEASE_WAIT;
+            while previous.strong_count() > 0 {
+                if Instant::now() >= deadline {
+                    return Err(
+                        "it was closed a moment ago and a request was still finishing on it"
+                            .to_string(),
+                    );
+                }
+                tokio::time::sleep(Duration::from_millis(25)).await;
+            }
+        }
+        let path = store_path.to_string();
+        tokio::task::spawn_blocking(move || DesignGraph::checkpoint_closed_store(&path, &dest))
+            .await
+            .map_err(|e| format!("the copy task failed: {e}"))?
+            .map_err(|e| e.to_string())
     }
 
     /// The handle a design this router opens carries back to it.
@@ -974,7 +1206,7 @@ mod tests {
     // helpers need on-disk storage (the `rocksdb` feature, on by default).
     use super::GraphRouter;
     #[cfg(feature = "rocksdb")]
-    use super::{Refusal, refused};
+    use super::{Refusal, Registry, refused};
     #[cfg(feature = "rocksdb")]
     use std::path::{Path, PathBuf};
     #[cfg(feature = "rocksdb")]
@@ -1030,6 +1262,129 @@ mod tests {
     #[cfg(feature = "rocksdb")]
     async fn holds(router: &GraphRouter, id: &str) -> bool {
         router.inner.open.lock().await.contains_key(id)
+    }
+
+    /// What a design's copy in a checkpoint set holds, opened as a design.
+    #[cfg(feature = "rocksdb")]
+    fn copy_holds(set: &Path, folder: &str, node: &str) -> bool {
+        let copy = set.join(folder).join("graph");
+        let g = reflow2_core::DesignGraph::open_rocksdb(copy.to_str().unwrap())
+            .expect("a copy opens as a design");
+        g.get_node("Requirement", node).unwrap().is_some()
+    }
+
+    #[cfg(feature = "rocksdb")]
+    async fn write_requirement(r: &GraphRouter, id: &str, req: &str) {
+        let (open, _guard) = r.service_for(id).await.expect("opens");
+        let graph = open.store.upgrade().expect("held");
+        graph
+            .write()
+            .await
+            .add_requirement(req, "Written before the copy", "It is in the copy.")
+            .expect("written");
+    }
+
+    #[cfg(feature = "rocksdb")]
+    #[tokio::test]
+    async fn a_checkpoint_copies_every_design_open_or_not_and_opens_none() {
+        let (root, ids) = root_with(2);
+        let r = router(&root, 8, None);
+        write_requirement(&r, &ids[0], "req:in-the-open-design").await;
+        assert_eq!(r.open_count().await, 1, "only the first design is open");
+        let dir = root.join(".checkpoints");
+
+        let (set, run) = r.checkpoint_all(&dir).await.expect("a whole set");
+
+        assert_eq!((run.copied, run.failed), (2, 0), "{run:?}");
+        assert!(
+            !set.to_string_lossy()
+                .ends_with(crate::checkpoint::PARTIAL_SUFFIX),
+            "a whole set has its whole name"
+        );
+        assert!(set.join(crate::checkpoint::RESULT_FILE).is_file());
+        let by_folder = |f: &str| run.designs.iter().find(|d| d.folder == f).unwrap().clone();
+        assert!(
+            by_folder("design-0").was_open,
+            "copied through the store it holds"
+        );
+        assert!(
+            !by_folder("design-1").was_open,
+            "copied from its store on disk"
+        );
+        assert!(copy_holds(&set, "design-0", "req:in-the-open-design"));
+        assert!(!copy_holds(&set, "design-1", "req:in-the-open-design"));
+        assert_eq!(
+            r.open_count().await,
+            1,
+            "copying a design this server does not hold does not open it"
+        );
+        assert!(
+            r.service_for(&ids[1]).await.is_ok(),
+            "and it opens normally afterwards: the copy let go of its store"
+        );
+        assert!(
+            Registry::discover(root.to_str().unwrap()).graph_ids().len() == 2,
+            "the checkpoint folder under the root is not taken for a design"
+        );
+    }
+
+    #[cfg(feature = "rocksdb")]
+    #[tokio::test]
+    async fn a_write_after_the_copy_is_not_in_it_and_the_design_keeps_serving() {
+        let (root, ids) = root_with(1);
+        let r = router(&root, 8, None);
+        write_requirement(&r, &ids[0], "req:before").await;
+        let (set, _) = r.checkpoint_all(&root.join(".checkpoints")).await.unwrap();
+        write_requirement(&r, &ids[0], "req:after").await;
+        assert!(copy_holds(&set, "design-0", "req:before"));
+        assert!(
+            !copy_holds(&set, "design-0", "req:after"),
+            "the copy is the design as of the moment it was taken"
+        );
+    }
+
+    #[cfg(feature = "rocksdb")]
+    #[tokio::test]
+    async fn an_open_waits_for_a_copy_of_the_store_rather_than_failing() {
+        let (root, ids) = root_with(1);
+        let r = router(&root, 8, None);
+        r.inner.checkpointing.lock().unwrap().insert(ids[0].clone());
+        let waiting = {
+            let r = r.clone();
+            let id = ids[0].clone();
+            tokio::spawn(async move { r.service_for(&id).await.map(|_| ()) })
+        };
+        tokio::time::sleep(Duration::from_millis(300)).await;
+        assert!(
+            !waiting.is_finished(),
+            "an open waits while the copy holds the store"
+        );
+        r.inner.checkpointing.lock().unwrap().remove(&ids[0]);
+        let opened = tokio::time::timeout(Duration::from_secs(20), waiting)
+            .await
+            .expect("it opens once the copy lets go")
+            .unwrap();
+        assert!(opened.is_ok(), "{:?}", opened.err());
+    }
+
+    #[cfg(feature = "rocksdb")]
+    #[tokio::test]
+    async fn a_design_that_cannot_be_copied_is_named_and_the_rest_are_copied() {
+        let (root, ids) = root_with(2);
+        let r = router(&root, 8, None);
+        // design-1's store is held by another copy of it in this process, so
+        // RocksDB refuses to open it for the copy.
+        let held = reflow2_core::DesignGraph::open_rocksdb(
+            root.join("design-1/.reflow2/graph").to_str().unwrap(),
+        )
+        .unwrap();
+        let (_, run) = r.checkpoint_all(&root.join(".checkpoints")).await.unwrap();
+        drop(held);
+        let _ = &ids;
+        assert_eq!((run.copied, run.failed), (1, 1), "{run:?}");
+        let failed = run.designs.iter().find(|d| !d.ok).unwrap();
+        assert_eq!(failed.folder, "design-1");
+        assert!(failed.error.as_deref().is_some_and(|e| !e.is_empty()));
     }
 
     #[cfg(feature = "rocksdb")]

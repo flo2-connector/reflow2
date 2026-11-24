@@ -78,6 +78,21 @@ pub fn today_utc() -> String {
     civil_from_days(days)
 }
 
+/// A moment as `YYYY-MM-DDTHHMMSSZ`, in UTC, from seconds since the Unix
+/// epoch: a name that sorts in time order and holds no colon, so it is safe as
+/// a file or folder name everywhere (flo2's backups are named the same way).
+/// Takes the time rather than reading the clock, like everything here.
+pub fn utc_stamp(secs: i64) -> String {
+    let (days, rem) = (secs.div_euclid(86_400), secs.rem_euclid(86_400));
+    format!(
+        "{}T{:02}{:02}{:02}Z",
+        civil_from_days(days),
+        rem / 3600,
+        rem % 3600 / 60,
+        rem % 60
+    )
+}
+
 /// Inverse of [`days_from_civil`] — day number back to `YYYY-MM-DD`.
 pub(crate) fn civil_from_days(z: i64) -> String {
     let z = z + 719_468;
@@ -178,5 +193,16 @@ pub fn claim_age(
         // Not knowable from properties alone — it lives on an edge. The
         // graph-aware caller fills it in; see `DesignGraph::claim_age_of`.
         superseded_by: None,
+    }
+}
+
+#[cfg(test)]
+mod stamp_tests {
+    #[test]
+    fn a_stamp_names_the_moment_in_utc_and_sorts_in_time_order() {
+        assert_eq!(super::utc_stamp(0), "1970-01-01T000000Z");
+        // 2026-11-24 04:14:18 UTC, the hour flo2.io's backup runs.
+        assert_eq!(super::utc_stamp(1_795_493_658), "2026-11-24T041418Z");
+        assert!(super::utc_stamp(1_795_493_658) < super::utc_stamp(1_795_493_659));
     }
 }
