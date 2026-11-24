@@ -14,11 +14,6 @@
 
 #![cfg(feature = "rocksdb")]
 
-// This file is the root of the `on_disk` test program (Cargo.toml): every
-// other file whose whole body needs `rocksdb` is a module of it.
-mod a_store_is_copied_while_it_stays_open;
-mod an_open_times_its_own_steps;
-
 use reflow2_core::DesignGraph;
 
 fn store(tag: &str) -> String {
