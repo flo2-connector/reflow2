@@ -40,6 +40,7 @@ pub mod nulls;
 pub mod one_shot;
 pub mod opening;
 pub mod pointer;
+pub mod profile;
 pub mod prose_currency;
 pub mod proxy;
 pub mod read_only_client;

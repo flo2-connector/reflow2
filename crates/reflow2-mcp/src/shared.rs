@@ -761,6 +761,11 @@ fn spawn_daemon(
             Some(p) => vec![String::from("--server-log"), p.display().to_string()],
             None => Vec::new(),
         })
+        // NOT the profile: the daemon serves every session on this design, and
+        // each asks for its own in the URL it posts to (`crate::profile`,
+        // `mcp_http::post`). Inherited, a lite client's REFLOW2_PROFILE would
+        // list lite to every later session that asked for nothing.
+        .env_remove(crate::profile::ENV)
         .stdin(std::process::Stdio::null())
         .stdout(std::process::Stdio::null())
         .stderr(std::process::Stdio::from(log));

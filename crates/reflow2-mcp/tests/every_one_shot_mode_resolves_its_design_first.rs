@@ -711,6 +711,8 @@ fn every_flag() -> Vec<(String, Option<String>)> {
 fn sample(flag: &str, placeholder: &str) -> &'static str {
     match flag {
         "--content-policy" => "signpost",
+        // clap refuses a value that is not a profile, so "x" would stop there.
+        "--profile" => "lite",
         "--http-oidc-required-claim" => "groups=x",
         "--http-contributor-id" => "{sub}",
         "--args" => "{}",

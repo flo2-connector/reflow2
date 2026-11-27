@@ -47,6 +47,9 @@ pub(crate) use tracked::{
     NOT_AT_THE_CALL_LAYER as TRACKED_NOT_AT_THE_CALL_LAYER, ON_A_REGISTRY as TRACKED_ON_A_REGISTRY,
 };
 pub(crate) use unit::{CallScope, CallUnit, GraphHold, Settled, SharedGraph};
+/// The hub's `member` argument, for `use_another_tool` to carry it to the tool
+/// it calls (`crate::profile::reach_another_tool`).
+pub(crate) use view::MEMBER_ARGUMENT;
 
 /// Who is actually answering: the crate version this binary was built from,
 /// and when the binary itself was last modified. The stale-server failure
@@ -452,6 +455,16 @@ pub struct ReflowService {
     /// constant only so a test can serve entries the build does not have
     /// ([`ReflowService::with_deprecations_for_test`]).
     pub(crate) deprecations: Arc<[crate::deprecation::Deprecation]>,
+    /// Which tools a session is LISTED when it names no profile of its own
+    /// (`crate::profile`): the operator's `--profile` / `REFLOW2_PROFILE`,
+    /// `full` by default. A property of the SERVER, like `read_only`:
+    /// inherited by every session.
+    profile: crate::profile::Profile,
+    /// The profile THIS session was fixed to at its `initialize` — the
+    /// server's, or the `?profile=` of the URL it connected to over HTTP. Fresh
+    /// per session, like the seat, and set once: a profile is chosen when a
+    /// session connects, never mid-session.
+    session_profile: Arc<std::sync::OnceLock<crate::profile::Profile>>,
 }
 
 /// The served tools that write a FILE at a caller's `path` — annotated
@@ -1336,6 +1349,12 @@ pub(crate) const SCAN_REPLY_RESERVE_CHARS: usize = 2_000;
 /// name the two or three candidates worth looking at, not to re-serve the
 /// surface the search exists to avoid loading.
 pub(crate) const DEFAULT_TOOL_SEARCH_RESULTS: usize = 5;
+
+/// How many characters of input schema one `find_tools` reply carries, best
+/// tool first — two thirds of the shared reply budget, so the ranking, the
+/// summaries and the relations keep the rest. The top tool's schema is carried
+/// whatever its size; the largest served one is about 11,000 characters.
+pub(crate) const FIND_TOOLS_SCHEMA_BUDGET_CHARS: usize = 20_000;
 
 /// The `brief: true` shape — what a node IS, without its prose. `name` and
 /// `status` are the two properties every orientation read actually uses.
@@ -8356,6 +8375,8 @@ impl ReflowService {
             // A single design, until a registry says otherwise (`with_registry`).
             registry: None,
             deprecations: Arc::from(crate::deprecation::REGISTRY),
+            profile: crate::profile::process_profile(),
+            session_profile: Arc::new(std::sync::OnceLock::new()),
         }
     }
 
@@ -8438,6 +8459,28 @@ impl ReflowService {
     pub fn without_tree(mut self) -> Self {
         self.tree_root = None;
         self
+    }
+
+    /// List each session the tools of `profile` unless it names its own
+    /// (`crate::profile`) — the operator's `--profile`. Builder rather than a
+    /// constructor argument, like [`Self::into_read_only`], so every entry
+    /// point keeps its signature and serves the full surface unless told.
+    pub fn with_profile(mut self, profile: crate::profile::Profile) -> Self {
+        self.profile = profile;
+        self
+    }
+
+    /// The profile this session is listed: the one its `initialize` fixed,
+    /// else the one the HTTP request behind `context` names (a sessionless
+    /// request has no `initialize` of its own), else the server's.
+    pub(crate) fn profile_for(
+        &self,
+        context: &rmcp::service::RequestContext<RoleServer>,
+    ) -> Result<crate::profile::Profile, String> {
+        if let Some(p) = self.session_profile.get() {
+            return Ok(*p);
+        }
+        crate::profile::asked_over_http(context).unwrap_or(Ok(self.profile))
     }
 
     /// Test seam: serve THESE deprecations instead of the build's registry,
@@ -8632,6 +8675,10 @@ impl ReflowService {
             registry: self.registry.clone(),
             // A property of the BUILD: every session retires the same things.
             deprecations: Arc::clone(&self.deprecations),
+            // A property of the SERVER, like read-only.
+            profile: self.profile,
+            // Fresh per session: each session's `initialize` fixes its own.
+            session_profile: Arc::new(std::sync::OnceLock::new()),
         }
     }
 
@@ -9683,7 +9730,7 @@ impl ReflowService {
     /// `describe_schema` with `tool` all build it with, so no reader of the
     /// surface can disagree with what a session is offered
     /// (`req:the-cli-describes-any-tool-with-its-full-schema-and-lessons`).
-    fn served_list(
+    pub(crate) fn served_list(
         &self,
         by_step: &std::collections::BTreeMap<String, Vec<crate::lessons::Lesson>>,
     ) -> Vec<rmcp::model::Tool> {
@@ -10229,7 +10276,16 @@ impl ServerHandler for ReflowService {
         if view::lists_a_view(self, &context) {
             view::declare_member(&mut tools);
         }
-        Ok(crate::tool_listing::tools_result(tools, &context))
+        // THE PROFILE FILTERS, LAST (`crate::profile`): a lite session is
+        // listed the tools lite names, each exactly as the full listing above
+        // decorated it. The full profile returns the listing untouched.
+        let profile = self
+            .profile_for(&context)
+            .map_err(|why| McpError::invalid_params(why, None))?;
+        Ok(crate::tool_listing::tools_result(
+            profile.filter(tools),
+            &context,
+        ))
     }
 
     /// The macro's own `call_tool`, plus one sentence on an unknown-field
@@ -10247,6 +10303,19 @@ impl ServerHandler for ReflowService {
         request: rmcp::model::CallToolRequestParams,
         context: rmcp::service::RequestContext<RoleServer>,
     ) -> Result<rmcp::model::CallToolResponse, McpError> {
+        // ⭐ `use_another_tool` IS A DOOR, NOT A SECOND IMPLEMENTATION
+        // (`crate::profile::reach_another_tool`): a call of it becomes a call
+        // of the tool it names, here, before anything below reads the request,
+        // so a hub's view, the usage ledger, the content policy and every
+        // refusal treat it exactly as a direct call. Its `_meta` and the
+        // context are kept as they came.
+        let request = {
+            let schema = self
+                .tool_router
+                .get(crate::profile::USE_ANOTHER_TOOL)
+                .map(crate::receipt::published_input_schema);
+            crate::profile::reach_another_tool(request, schema.as_deref())
+        };
         // THE SHAPE OF `content` IS CHOSEN PER CLIENT, by the name it gave at
         // handshake (`crate::content_policy`): a client measured to hand its
         // model only the text block gets the payload there too.
@@ -10326,6 +10395,13 @@ impl ServerHandler for ReflowService {
         context: rmcp::service::RequestContext<RoleServer>,
     ) -> Result<rmcp::model::InitializeResult, McpError> {
         context.peer.set_peer_info(request.clone());
+        // THE SESSION'S PROFILE IS FIXED HERE, once (`crate::profile`): the
+        // `?profile=` of the URL it connected to over HTTP, else the server's.
+        // A value that is not a profile refuses the handshake, by name.
+        let profile = crate::profile::asked_over_http(&context)
+            .unwrap_or(Ok(self.profile))
+            .map_err(|why| McpError::invalid_params(why, None))?;
+        let _ = self.session_profile.set(profile);
         let mut info = self.get_info();
         let offered = info.protocol_version.clone();
         let supported = ServerHandler::supported_protocol_versions(self);

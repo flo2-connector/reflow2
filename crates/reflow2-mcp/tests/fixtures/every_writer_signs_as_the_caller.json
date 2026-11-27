@@ -1006,6 +1006,16 @@
       "action": "modified"
     },
     "usage_report": {},
+    "use_another_tool": {
+      "tool": "add_requirement",
+      "arguments": {
+        "id": "req:through-another-tool",
+        "name": "A need settled through use_another_tool",
+        "statement": "Logs are rotated.",
+        "status": "accepted",
+        "approver": "who:alice"
+      }
+    },
     "violates_rule": {
       "element_id": "cmp:b",
       "rule_id": "erule:x"

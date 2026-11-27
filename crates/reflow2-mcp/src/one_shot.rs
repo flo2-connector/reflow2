@@ -329,6 +329,10 @@ fn why_not(id: &str, mode: Mode) -> String {
         ("read_only", _) => "this mode writes (a file or a process's state), and --read-only \
              refuses every write."
             .to_string(),
+        ("profile", _) => "--profile chooses which tools a SERVED session is listed; this mode \
+             lists no session's tools, and a one-shot call reaches every served tool by name \
+             whatever the profile."
+            .to_string(),
         ("full", _) => "--full asks --describe or --list-tools for the tools/list entries \
              unaltered; this mode describes no tool."
             .to_string(),

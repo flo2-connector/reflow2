@@ -96,6 +96,11 @@ enum SetupAction {
     Forget,
 }
 
+/// `--profile`'s value, refused by name when it is not a profile.
+fn parse_profile(raw: &str) -> Result<reflow2_mcp::profile::Profile, String> {
+    reflow2_mcp::profile::Profile::parse(raw)
+}
+
 /// The reflow2 agent-native MCP server.
 #[derive(Debug, Parser)]
 #[command(name = "reflow2-mcp", version, about)]
@@ -121,6 +126,23 @@ struct Cli {
         env = "REFLOW2_CONTENT_POLICY"
     )]
     content_policy: Option<String>,
+
+    /// Which tools a session is LISTED: `full` (every tool, the default and
+    /// exactly what was listed before profiles existed) or `lite` (45 tools:
+    /// the 44 most used and `use_another_tool`, which calls any other served
+    /// tool by name — `find_tools` names it and gives its input schema).
+    /// Every tool is served either way; only the listing differs. Chosen when
+    /// a session connects, never mid-session. Over HTTP a session may choose
+    /// its own with the `?profile=lite` parameter of the MCP endpoint URL.
+    /// A `--shared` or `--remote` client asks its server for it in that URL.
+    #[arg(
+        long,
+        value_name = "PROFILE",
+        env = "REFLOW2_PROFILE",
+        default_value = "full",
+        value_parser = parse_profile
+    )]
+    profile: reflow2_mcp::profile::Profile,
 
     /// Keep this file current: write the design export through to it after
     /// every change, debounced, so a forgotten export stops being a class of
@@ -1618,6 +1640,9 @@ async fn run() -> anyhow::Result<()> {
     // guard placed among the branches protects only the branches below it
     // (fact:root-cause-one-shot-modes-return-before-the-pointer-check-and-opening-a-store-creates-it-2026-10-02).
     let mut cli = Cli::from_arg_matches(&matches).unwrap_or_else(|e| e.exit());
+    // Before any service is built: every one this process builds starts from it
+    // (`reflow2_mcp::profile::process_profile`).
+    reflow2_mcp::profile::set_process_profile(cli.profile);
     let one_shot = reflow2_mcp::one_shot::gate(&command, &matches).map_err(anyhow::Error::msg)?;
 
     // ⭐ THE VERBS ARE `--call`, NOT A SECOND DOOR
@@ -1781,6 +1806,9 @@ async fn run() -> anyhow::Result<()> {
                 reflow2_mcp::client_measure::RootSource::TreeRoot,
             )
         });
+        // A lite client asks the server for lite in the URL; full leaves it as
+        // given (`reflow2_mcp::profile::Profile::endpoint`).
+        let url = cli.profile.endpoint(&url);
         return reflow2_mcp::proxy::run_remote(&url, bearer, cli.read_only, root).await;
     }
 
@@ -3693,6 +3721,8 @@ async fn attach_to_named_design(
             )
         }),
     };
+    // A lite session asks the server for lite in the URL, as `--remote` does.
+    let address = cli.profile.endpoint(&address);
     reflow2_mcp::proxy::run_remote_with_notice(&address, bearer, Some(told), cli.read_only, root)
         .await
 }

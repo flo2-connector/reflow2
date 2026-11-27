@@ -147,6 +147,11 @@ pub(crate) async fn post(
     body: String,
     limit: Duration,
 ) -> anyhow::Result<(Vec<String>, Option<String>)> {
+    // THE SESSION'S PROFILE TRAVELS IN THE URL (`crate::profile`): the shared
+    // server serves every session on its design, so a `--shared` client
+    // started with `--profile lite` asks for lite on each request it forwards
+    // — the re-elected server's included. Full leaves the URL as it was.
+    let url = &crate::profile::process_profile().endpoint(url);
     tokio::time::timeout(limit, post_inner(url, session, body, None))
         .await
         .map_err(|_| {
