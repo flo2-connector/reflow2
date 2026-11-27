@@ -2174,229 +2174,200 @@ pub struct ProjectReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct RequirementReq {
-    /// The requirement's id — `req:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.
+    // By convention the prefix names the type wherever the id appears.
+    /// `req:<slug>` by convention. An EXISTING id REVISES it: passed fields
+    /// overwrite, omitted fields keep their stored value.
     pub id: String,
     #[serde(default)]
     pub name: Option<String>,
     /// The requirement statement.
     #[serde(default)]
     pub statement: Option<String>,
-    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
-    /// has already told you something close exists — one of the THREE answers
-    /// to that check: sharpen the existing node (call with ITS id), say this one
-    /// is different (here), or say it takes an older one's place (`replaces`).
-    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
-    /// `distinct_from`, so a later reader can tell a node its writer compared
-    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
-    /// lists exactly what to put here.
+    // The third answer, and why the judgement is kept: the ids are written onto
+    // the node as `distinct_from`, so a later reader can tell a node its writer
+    // compared from one nobody did.
+    // The three answers to a near match: sharpen the existing node (call with
+    // ITS id), say this one is different (here), or take an older one's place
+    // (`replaces`).
+    /// Ids of near matches you read and judged a DIFFERENT thing; stored on the
+    /// node. Omit it on a first attempt: a refusal lists what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
-    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
-    /// the third answer to the near-match check, for a new node that is neither
-    /// a sharper wording of an old one nor a different thing, but its
-    /// successor. For each: the old node's ending is recorded FIRST (a
-    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
-    /// edges), the thread that says what it was FOR moves here (a Capability's
-    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
-    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
-    /// does not move. The reply names what moved, what stayed, and what — if
-    /// anything — still withdraws it. Works on a revise too, so a successor
-    /// already recorded can say so later. An id of another type, one naming
-    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    // Also: for a Capability the SATISFIES edges move to the successor, for a
+    // Component its incoming ALLOCATED_TO; a Requirement, Decision or
+    // DesignRule moves none. Works on a revise so a successor already recorded
+    // can say so later.
+    // The reply names what moved, what stayed, and what, if anything, still
+    // withdraws the old node. Works on a revise too, so a successor already
+    // recorded can say so later.
+    /// Ids of OLDER Requirements this one succeeds (not a rewording, not a
+    /// different thing). Each gets a `deprecation` ChangeEvent with a snapshot,
+    /// then this node OBSOLETES it; the old node keeps its status and no edges
+    /// move. REFUSED, nothing written: an id of another type, one naming
+    /// nothing, or one also in `distinct_from`.
     #[serde(default)]
     pub replaces: Option<Vec<String>>,
-    /// The status to LAND IN when the owner's word is already in hand:
-    /// `proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`.
-    /// A status past `proposed` is REFUSED unless `approver` is named.
+    /// The status to land in when the owner's word is in hand: `proposed`
+    /// (default) / `accepted` / `deferred` / `dropped` / `met`. Past `proposed`
+    /// is REFUSED without `approver`.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_status_opt")]
     pub status: Option<String>,
-    /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
-    /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
-    /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
-    /// REQUIRED when the status settles. It signs only a status this call
-    /// stores past `proposed`: with no `status`, or with `proposed`, it is not
-    /// drawn, and the reply says so under `approver_not_drawn`. An id naming no
-    /// Contributor is REFUSED before anything is written, because a typo would
-    /// otherwise attach the owner's authority to a name nobody can check.
+    // It draws the edge `rule:design-intent-moves-only-on-the-owners-word` is
+    // checked by. An unknown id is refused because a typo would otherwise
+    // attach the owner's authority to a name nobody can check.
+    // The owner's signature, carried in the same call as the status it signs.
+    /// The Contributor whose word this is. Draws `AUTHORED_BY role=approver`.
+    /// REQUIRED when `status` is past `proposed`; otherwise not drawn (the
+    /// reply says so under `approver_not_drawn`). An id naming no Contributor
+    /// is REFUSED, nothing written.
     #[serde(default)]
     pub approver: Option<String>,
     /// When the approver acted, as a plain date. Stored on the approver edge.
     #[serde(default)]
     pub acted_at: Option<String>,
-    /// How much this one matters: `low` / `medium` / `high` / `critical`.
-    ///
-    /// OMITTING IT LEAVES THE SCHEMA DEFAULT (`medium`) AND THAT IS UNCHANGED
-    /// BEHAVIOUR — this parameter adds a way to SAY, it does not add an
-    /// obligation to. Declared 2026-09-07 after the dev_storyflow agent
-    /// reported it missing. The property has always been declared, and the
-    /// default was injected at write, so every requirement carried a priority
-    /// nobody chose and nobody could change through the surface: 193 of 207 on
-    /// this project's own graph sat at the injected value, and the 14 that did
-    /// not were written through the generic escape hatch.
+    // Omitting it is unchanged behaviour: this parameter adds a way to SAY, not
+    // an obligation to. Declared 2026-09-07 after the dev_storyflow agent
+    // reported it missing. The property has always been declared, and the
+    // default was injected at write, so every requirement carried a priority
+    // nobody chose and nobody could change through the surface: 193 of 207 on
+    // this project's own graph sat at the injected value, and the 14 that did
+    // not were written through the generic escape hatch.
+    /// `low` / `medium` / `high` / `critical`. Omitted: the schema default,
+    /// `medium`.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_priority_opt")]
     pub priority: Option<String>,
-    /// The cross-cutting concern this need belongs to. 154 of 207 requirements
-    /// carried one written through the generic escape hatch.
+    // 154 of 207 requirements carried one written through the generic escape
+    // hatch.
+    /// The cross-cutting concern this need belongs to.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_concern_opt")]
     pub concern: Option<String>,
-    /// What KIND of need this is — `functional` / `nonfunctional` / `quality` /
-    /// `business`. Optional: unset means nobody said, and `encoding_undecided`
-    /// reports a design where some requirements say and some do not.
-    ///
-    /// Offered since 2026-09-20 (flo2 F19). It was declared, READ by that
-    /// detector, carried by 154 of 247 requirements written through the generic
-    /// escape hatch, and accepted by no typed tool — so the documented creation
-    /// path could not produce a requirement the detector was satisfied with, and
-    /// a person meeting "5 Requirement(s) and none says what kind of need it is"
-    /// had no way to answer it.
+    // Offered since 2026-09-20 (flo2 F19). It was declared, READ by that
+    // detector, carried by 154 of 247 requirements written through the generic
+    // escape hatch, and accepted by no typed tool - so the documented creation
+    // path could not produce a requirement the detector was satisfied with, and
+    // a person meeting "5 Requirement(s) and none says what kind of need it is"
+    // had no way to answer it.
+    /// What kind of need: `functional` / `nonfunctional` / `quality` /
+    /// `business`. Unset means nobody said; `encoding_undecided` reports a
+    /// design where only some say.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_kind_opt")]
     pub kind: Option<String>,
-    /// WHO OR WHAT STATED THIS NEED — a person, a regulation, a stakeholder,
-    /// or ANOTHER DESIGN that levied it on this one.
-    ///
-    /// ⭐ IT IS THE SECOND HALF OF THE MECHANISM THIS DESIGN ALREADY DOCUMENTS
-    /// FOR A CONSUMER'S ASK. `dec:idea-gap-flows-to-the-dependency` says a
-    /// levied requirement is expressible today as "add_requirement (lands
-    /// proposed) + authored_by <them> role=author + source '<their design>' +
-    /// provenance imported" — and until 2026-09-22 this constructor accepted
-    /// NEITHER of the last two, so the documented path could only be finished
-    /// through the generic escape hatch.
-    ///
-    /// MEASURED the day it was added: of 263 Requirements in this design,
-    /// **one** carried a `source` — the one written by hand that afternoon,
-    /// through `create_node`, while following the design's own instructions.
-    /// The property was declared, the instruction existed, and the tool could
-    /// not write it.
+    // This is the second half of the mechanism
+    // `dec:idea-gap-flows-to-the-dependency` documents for a consumer's ask:
+    // add_requirement (lands proposed) + authored_by <them> role=author +
+    // source '<their design>' + provenance imported. Until 2026-09-22 this
+    // constructor accepted neither of the last two, so the documented path
+    // could only be finished through the generic escape hatch. Measured the day
+    // it was added: of 263 Requirements in this design, one carried a `source`
+    // - the one written by hand that afternoon, through `create_node`.
+    /// Who or what stated this need: a person, a regulation, a stakeholder, or
+    /// another design. For a need another design levied, name it here, pass
+    /// `provenance: imported`, and credit them with the `authored_by` tool
+    /// (role=author).
     #[serde(default)]
     pub source: Option<String>,
-    /// HOW THIS REQUIREMENT GOT HERE — `authored` (somebody wrote it here),
-    /// `imported` (it came from another design), `inferred`, `healed`,
-    /// `planned`, `reconciled`.
-    ///
-    /// The other half of the same mechanism, and the same measurement: 262 of
-    /// 263 Requirements read `authored`, which is the schema default, and the
-    /// single `imported` was written through the escape hatch. Omitting this
-    /// leaves the default exactly as it was — it adds a way to SAY, never an
-    /// obligation to.
+    // The other half of the same mechanism as `source`, and the same
+    // measurement: 262 of 263 Requirements read `authored`, which is the schema
+    // default, and the single `imported` was written through the escape hatch.
+    /// How it got here: `authored` (default) / `imported` (from another design)
+    /// / `inferred` / `healed` / `planned` / `reconciled`.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_provenance_opt")]
     pub provenance: Option<String>,
-    /// CLAIMED BY a named party, not yet verified here: "OpenAI", "Kempe".
-    /// While nothing in the design establishes it and nothing refutes it, it
-    /// — and what rests on it — reads "claimed by OpenAI, unverified", never
-    /// as unproven or open. Put it on the statement, or
-    /// on the premise that is the claimant's argument ("their proof is
-    /// correct"). Omitted: nothing is written.
+    /// A named party that claims it, not verified here ("OpenAI", "Kempe").
+    /// Until the design establishes or refutes it, it and what rests on it read
+    /// "claimed by <party>, unverified", never unproven or open. Put it on the
+    /// statement, or on the premise that is the claimant's argument.
     #[serde(default)]
     pub claimed_by: Option<String>,
-    /// TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and
-    /// does not argue for. It then reads as a stated foundation, never as an
-    /// uncited premise, in reasoning_report, loop_status and detect_gaps.
-    /// Omitted: nothing is written, and the node reads as it always did.
+    /// An axiom or definition the reasoning starts from without argument. It
+    /// reads as a stated foundation, never an uncited premise, in
+    /// reasoning_report, loop_status and detect_gaps.
     #[serde(default)]
     pub taken_as_given: Option<bool>,
-    /// WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,
-    /// `corollary`, `proposition`, `definition`, `axiom`, `conjecture`,
-    /// `hypothesis` or `falsum` — a field of its own, leaving `kind`'s
-    /// software values alone. A definition or axiom reads taken as given; a
-    /// conjecture reads `open`, then `refuted` once an objection that holds
-    /// refutes it; a theorem, lemma, corollary or proposition reads `stated`
-    /// until a step concludes it; a theorem, lemma or corollary taken as given
-    /// reads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a
-    /// supposition, an induction hypothesis, a case) reads `assumed` or
-    /// `discharged`; a falsum (a reductio's contradiction) reads false.
-    /// `evidence` (a report, study or measurement: "the report says X") reads
-    /// `cited_as_evidence` when a pinned source documents it, and what rests
-    /// on it is supported, never proven; `judgement` is an analytic judgement
-    /// drawn from evidence, with its `confidence`.
-    /// `failed_route` is a route that was tried and fails, a record of its own:
-    /// `statement` says what was tried, with `route_to`, `fails_at`,
-    /// `fails_because`, `route_rests_on` and `would_hold_if` below. It reads `failed_route`,
-    /// supports and refutes nothing, and is read back under the claim it was
-    /// a route to.
-    /// Omitted: nothing is written.
+    /// What the statement is in mathematics or analysis (separate from `kind`).
+    /// `definition`, `axiom`: taken as given. `conjecture`: open, then refuted
+    /// once an objection that holds refutes it. `theorem`, `lemma`,
+    /// `corollary`, `proposition`: stated until a step concludes it; a theorem,
+    /// lemma or corollary taken as given reads cited (a pinned source documents
+    /// it) or cited_unverified. `hypothesis` (a supposition, induction
+    /// hypothesis or case): assumed or discharged. `falsum`: a reductio's
+    /// contradiction, reads false. `evidence` (a report, study or measurement):
+    /// cited_as_evidence when a pinned source documents it; what rests on it is
+    /// supported, never proven. `judgement`: an analytic judgement drawn from
+    /// evidence, with `confidence`. `failed_route`: a route tried that fails,
+    /// said in `statement` and the `route_to`, `fails_*`, `route_rests_on` and
+    /// `would_hold_if` fields; it supports and refutes nothing and is read back
+    /// under its claim.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_statement_kind_opt")]
     pub statement_kind: Option<String>,
-    /// EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely
-    /// reliable … `E` unreliable, `F` cannot be judged. Read back; changes no
-    /// truth. Omitted: nothing is written.
+    /// Evidence's source reliability, Admiralty scale: `A` completely reliable
+    /// … `E` unreliable, `F` cannot be judged. Changes no truth.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_source_reliability_opt")]
     pub source_reliability: Option<String>,
-    /// EVIDENCE'S INFORMATION CREDIBILITY, Admiralty scale: `1` confirmed …
-    /// `5` improbable, `6` cannot be judged. Omitted: nothing is written.
+    /// Evidence's information credibility, Admiralty scale: `1` confirmed … `5`
+    /// improbable, `6` cannot be judged.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_information_credibility_opt")]
     pub information_credibility: Option<String>,
-    /// WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the
-    /// report's own date). Omitted: nothing is written.
+    /// When the evidence was reported or observed, as a plain date.
     #[serde(default)]
     pub reported_at: Option<String>,
-    /// A JUDGEMENT'S CONFIDENCE, ICD 203 style: `low`, `moderate` or `high`.
-    /// Read back; changes no truth. Omitted: nothing is written.
+    /// A judgement's confidence, ICD 203 style: `low` / `moderate` / `high`.
+    /// Changes no truth.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::requirement_confidence_opt")]
     pub confidence: Option<String>,
-    /// THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither
-    /// for nor against. Read back on the claim. Overwrites; omitted: nothing
-    /// is written.
+    /// Ids of the cases this principle gives no verdict on, for or against.
+    /// Read back on the claim. Overwrites.
     #[serde(default)]
     pub silent_on: Option<Vec<String>>,
-    /// THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula
-    /// derived under several suppositions (⊥ in each reductio) is one record
-    /// per occurrence, each naming the first; the read-back groups them. It
-    /// changes no truth. Omitted: nothing is written.
+    /// Id of the first occurrence of the same formula (one formula derived
+    /// under several suppositions, as ⊥ in each reductio, is one record per
+    /// occurrence); the read-back groups them. Changes no truth.
     #[serde(default)]
     pub same_formula_as: Option<String>,
-    /// THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as "every
-    /// n ≥ 2 has a prime divisor" mentions n. Shown on a step that
-    /// generalizes over one. Omitted: nothing is written.
+    /// The variables free in it, by name (`n`, `L`). Shown on a step that
+    /// generalizes over one.
     #[serde(default)]
     pub variables: Option<Vec<String>>,
-    /// THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all
-    /// the primes`) or a bare name. A step that generalizes over a variable
-    /// does not hold while anything it rests on fixes it. Omitted: nothing is
-    /// written.
+    /// The variables it binds to one value: `name=value` (`n=40`) or a bare
+    /// name. A step that generalizes over a variable does not hold while
+    /// anything it rests on fixes it.
     #[serde(default)]
     pub fixes: Option<Vec<String>>,
-    /// FOR A FAILED ROUTE (`statement_kind: failed_route`) ONLY, and refused
-    /// on any other statement: THE CLAIM IT WAS A ROUTE TO, by id — the hole
-    /// it tried to close (a step is read under the claim it concludes).
-    /// reasoning_report reads the route under that claim; the claim's own
-    /// reading never moves. Refused unless it names a node of this design.
-    /// Omitted: nothing is written.
+    /// Failed route only (REFUSED on any other `statement_kind`): id of the
+    /// claim it was a route to, the hole it tried to close. REFUSED unless it
+    /// names a node of this design. reasoning_report reads the route under that
+    /// claim; the claim's reading never moves.
     #[serde(default)]
     pub route_to: Option<String>,
-    /// FOR A FAILED ROUTE ONLY: THE STEP AT WHICH IT FAILS, in words.
-    /// Searched. Omitted: nothing is written.
+    /// Failed route only: the step at which it fails, in words. Searched.
     #[serde(default)]
     pub fails_at: Option<String>,
-    /// FOR A FAILED ROUTE ONLY: THE STEP OR STATEMENT OF THIS DESIGN AT WHICH
-    /// IT FAILS, by id, when the design holds it. A reference, never an edge:
-    /// that step's reading never moves. Omitted: nothing is written.
+    /// Failed route only: id of the step or statement of this design where it
+    /// fails. A reference, never an edge: that step's reading never moves.
     #[serde(default)]
     pub fails_at_step: Option<String>,
-    /// FOR A FAILED ROUTE ONLY: WHY IT FAILS THERE, in words — the
-    /// obstruction. Searched. Omitted: nothing is written.
+    /// Failed route only: why it fails there (the obstruction), in words.
+    /// Searched.
     #[serde(default)]
     pub fails_because: Option<String>,
-    /// FOR A FAILED ROUTE ONLY: WHAT IT RESTS ON, by id — the records the
-    /// route built on. Never premises: nothing rests on a failed route, and a
-    /// what-if on one of these never reaches it. Each must name a node of
-    /// this design. Overwrites; omitted: nothing is written.
+    /// Failed route only: ids of the records it built on, each a node of this
+    /// design. Never premises: nothing rests on a failed route, and a what-if
+    /// on one of these never reaches it. Overwrites.
     #[serde(default)]
     pub route_rests_on: Option<Vec<String>>,
-    /// FOR A FAILED ROUTE ONLY: THE NATURAL CONDITION UNDER WHICH IT WOULD GO
-    /// THROUGH, in words with its connective ("if f is Boolean-valued",
-    /// "with exp(d) in place of poly(d)"). Only when the condition is natural,
-    /// never a trivial one. Read back with the route; it moves no reading and
-    /// is neither a hypothesis of the claim nor a result shown. Searched.
-    /// Omitted: nothing is written.
+    /// Failed route only: the natural (never trivial) condition under which it
+    /// would go through, with its connective ("if f is Boolean-valued"). Read
+    /// back with the route; it moves no reading and is neither a hypothesis of
+    /// the claim nor a result shown. Searched.
     #[serde(default)]
     pub would_hold_if: Option<String>,
 }
@@ -4843,57 +4814,54 @@ pub struct ReviewRelationsReq {
 #[serde(deny_unknown_fields)]
 pub struct RelationLinkReq {
     /// `CONTRADICTS` (both cannot hold) / `EVOLVES_INTO` (the older thought,
-    /// grown up) / `DEPENDS_ON` (only worth anything if the other lands first)
+    /// grown up) / `DEPENDS_ON` (worth something only if the other lands first)
     /// / `CAUSES` / `TRIGGERS` (taking one forces the other) / `BLOCKS` /
-    /// `DUPLICATES` (the same thing said twice — link, do not merge; they were
-    /// said for different reasons) / `ANTICIPATES` (the earlier one saw this
-    /// coming) / `OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the
-    /// other answers it) / `MASKS` / `VIOLATES`.
+    /// `DUPLICATES` (the same thing said twice, for different reasons: link, do
+    /// not merge) / `ANTICIPATES` (the earlier one saw this coming) /
+    /// `OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the other answers
+    /// it) / `MASKS` / `VIOLATES`.
     #[schemars(schema_with = "crate::enum_schema::review_relation_req")]
     pub relation: String,
-    /// Optional since 2026-09-06: resolved from the id when omitted (the id
-    /// prefix names the type); an id held by more than one type is REFUSED, never
-    /// guessed — pass it then.
+    // Optional since 2026-09-06.
+    /// The other node's type. Resolved from the id prefix when omitted; an id
+    /// held by more than one type is REFUSED, never guessed, so pass it then.
     #[serde(default)]
     pub other_type: Option<String>,
-    /// The node at the other end of the relation (`req:…`, `dec:…`, any node id).
-    /// The edge runs TO it unless `incoming` turns it round. Its type is resolved
-    /// from the id; `other_type` names it when the id is ambiguous.
+    /// The node at the other end of the relation (`req:…`, `dec:…`, any node
+    /// id). The edge runs TO it unless `incoming` turns it round.
     pub other_id: String,
-    /// WHY this relation is true, in a sentence. Required — a relation with no
-    /// evidence is an assertion the next reader can neither check nor overturn.
+    // A relation with no evidence is an assertion the next reader can neither
+    // check nor overturn.
+    /// WHY this relation is true, in a sentence. Required.
     pub evidence: String,
-    /// Draw the edge FROM the other node instead. Direction is part of the
-    /// claim: every one of these reads as a sentence, *from RELATION to*, and
-    /// backwards the same edge asserts something false with nothing to catch it.
+    // Backwards, the same edge asserts something false with nothing to catch
+    // it.
+    /// Draw the edge FROM the other node instead. Each relation reads *from
+    /// RELATION to*: pass `true` when the true direction is inbound.
     #[serde(default)]
     pub incoming: Option<bool>,
-    /// When the other node lives in ANOTHER DESIGN: that design's id. `other_id`
-    /// is then the node's id THERE, and this design keeps a reference standing
-    /// in for it (`xref:<design>:<node>`), so the link is typed and checkable:
-    /// `upstream_status` reports a link into a design this one does not declare,
-    /// and one whose far design has changed since the link was made. Linking
-    /// again acknowledges it.
+    /// When the other node is in ANOTHER DESIGN: that design's id. `other_id`
+    /// is then its id there, and a reference `xref:<design>:<node>` stands in
+    /// for it. `upstream_status` reports a link into an undeclared design, or
+    /// whose far design changed since; linking again acknowledges it.
     #[serde(default)]
     pub other_design: Option<String>,
     /// With `other_design`: the far node's name as you read it there, so the
     /// reference reads as more than an id.
     #[serde(default)]
     pub other_name: Option<String>,
-    /// CONTRADICTS only. `opposing`: the two conflict — and what an unsaid
-    /// alignment is STORED AS, which `detect_defects` reports as a
-    /// contradiction. `supporting`: they corroborate each other. `conceding`:
-    /// a reply grants an objection against what it attacks (draw it with
-    /// create_edge to name the reading it moves to, `moves_to`). Saying
-    /// "corroboration" in `evidence` does not set it; only this field does.
+    /// CONTRADICTS only. `opposing` (stored when unsaid; `detect_defects`
+    /// reports it as a contradiction): they conflict. `supporting`: they
+    /// corroborate. `conceding`: a reply grants an objection against what it
+    /// attacks (name the reading it moves to with create_edge, `moves_to`).
+    /// Only this field sets it, never words in `evidence`.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::contradicts_alignment_opt")]
     pub alignment: Option<String>,
-    /// CAUSES: how strongly the link is grounded — `observed`,
-    /// `correlational` (stored when unsaid: a co-variation, not a cause),
-    /// `causal` (only with a mechanism) or `spurious`. DUPLICATES: who
-    /// decided the two cover the same ground — `asserted` (a person says so)
-    /// or `suspected` (stored when unsaid; never merged).
+    /// CAUSES: `observed` / `correlational` (stored when unsaid: co-variation,
+    /// not cause) / `causal` (only with a mechanism) / `spurious`. DUPLICATES:
+    /// `asserted` (a person says so) / `suspected` (stored when unsaid; never
+    /// merged).
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::review_link_basis_opt")]
     pub basis: Option<String>,
@@ -5172,7 +5140,10 @@ pub struct RequireResourceReq {
 #[derive(Debug, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct DecisionReq {
-    /// The decision's id — `dec:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives. An exploratory idea is conventionally `dec:idea-…`.
+    // By convention the prefix names the type wherever the id appears.
+    /// `dec:<slug>` by convention; an exploratory idea is `dec:idea-…`. An
+    /// EXISTING id REVISES it: passed fields overwrite, omitted fields keep
+    /// their stored value.
     pub id: String,
     #[serde(default)]
     pub name: Option<String>,
@@ -5182,133 +5153,119 @@ pub struct DecisionReq {
     /// Why — the part worth recording.
     #[serde(default)]
     pub rationale: Option<String>,
-    /// Ids you read and judged a DIFFERENT thing from this one, when reflow2
-    /// has already told you something close exists — one of the THREE answers
-    /// to that check: sharpen the existing node (call with ITS id), say this one
-    /// is different (here), or say it takes an older one's place (`replaces`).
-    /// THE JUDGEMENT IS KEPT: the ids are written onto the node as
-    /// `distinct_from`, so a later reader can tell a node its writer compared
-    /// from one nobody did. Omit it on a first attempt — the refusal, if any,
-    /// lists exactly what to put here.
+    // The third answer, and why the judgement is kept: the ids are written onto
+    // the node as `distinct_from`, so a later reader can tell a node its writer
+    // compared from one nobody did.
+    // The three answers to a near match: sharpen the existing node (call with
+    // ITS id), say this one is different (here), or take an older one's place
+    // (`replaces`).
+    /// Ids of near matches you read and judged a DIFFERENT thing; stored on the
+    /// node. Omit it on a first attempt: a refusal lists what to put here.
     #[serde(default)]
     pub distinct_from: Option<Vec<String>>,
-    /// Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —
-    /// the third answer to the near-match check, for a new node that is neither
-    /// a sharper wording of an old one nor a different thing, but its
-    /// successor. For each: the old node's ending is recorded FIRST (a
-    /// `deprecation` ChangeEvent whose snapshot keeps its final state and
-    /// edges), the thread that says what it was FOR moves here (a Capability's
-    /// SATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision
-    /// or DesignRule moves none), and this node OBSOLETES it. Its stored status
-    /// does not move. The reply names what moved, what stayed, and what — if
-    /// anything — still withdraws it. Works on a revise too, so a successor
-    /// already recorded can say so later. An id of another type, one naming
-    /// nothing, or one also in `distinct_from` is REFUSED and nothing is written.
+    // Also: for a Capability the SATISFIES edges move to the successor, for a
+    // Component its incoming ALLOCATED_TO; a Requirement, Decision or
+    // DesignRule moves none. Works on a revise so a successor already recorded
+    // can say so later.
+    // The reply names what moved, what stayed, and what, if anything, still
+    // withdraws the old node. Works on a revise too, so a successor already
+    // recorded can say so later.
+    /// Ids of OLDER Decisions this one succeeds (not a rewording, not a
+    /// different thing). Each gets a `deprecation` ChangeEvent with a snapshot,
+    /// then this node OBSOLETES it; the old node keeps its status and no edges
+    /// move. REFUSED, nothing written: an id of another type, one naming
+    /// nothing, or one also in `distinct_from`.
     #[serde(default)]
     pub replaces: Option<Vec<String>>,
-    /// WHAT KIND OF THING THIS IS — `exploratory` (an idea being turned over,
-    /// recorded so it is not lost and explicitly NOT claimed as intent) or
-    /// `choice` (a decision somebody actually faced).
-    ///
-    /// OMITTING IT IS A THIRD STATE, not a synonym for `choice`: absent means
-    /// nobody said. There is no default, for the reason `quality_target` gives
-    /// — a default makes an unasked question indistinguishable from an answered
-    /// one.
-    ///
-    /// It is READ, which is the bar a vocabulary distinction has to clear here:
-    /// the brainstorm skill's linking discipline fires on `exploratory` and
-    /// stays off the Requirement/Capability/ChangeEvent capture path. Set it in
-    /// THIS call rather than a follow-up — two order-dependent calls are the
-    /// hazard `fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed`
-    /// records.
+    // There is no default, for the reason `quality_target` gives: a default
+    // makes an unasked question indistinguishable from an answered one. It is
+    // READ, which is the bar a vocabulary distinction has to clear here: the
+    // brainstorm skill's linking discipline fires on `exploratory` and stays
+    // off the Requirement/Capability/ChangeEvent capture path. Setting it in a
+    // follow-up makes two order-dependent calls, the hazard
+    // `fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed`
+    // records.
+    /// `exploratory` (an idea being turned over, NOT claimed as intent) or
+    /// `choice` (a decision somebody actually faced). Omitted means nobody
+    /// said; it is not `choice` and there is no default. `exploratory` turns on
+    /// the near-match check (`related_to`). Set it in this call, not a
+    /// follow-up.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::decision_kind_opt")]
     pub kind: Option<String>,
-    /// The relations you judged REAL among the near-matches this call surfaced.
-    /// Same shape as `review_relations`, drawn in the same call so the
-    /// judgement cannot be lost between two.
-    ///
-    /// Required — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an
-    /// `exploratory` Decision and near-matches were found. An idea nothing
-    /// resembles is captured with no ceremony at all.
-    ///
-    /// DRAWN FOR EVERY KIND, and each edge is named in the reply's
-    /// `edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind
-    /// decision passed the duplicate guard naming these and then drew none of
-    /// them, silently.
+    // Drawn in the same call so the judgement cannot be lost between two. Until
+    // 2026-09-29 a `choice` or no-kind decision passed the duplicate guard
+    // naming these and then drew none of them, silently.
+    // Each edge is named in `edges_drawn` subject first.
+    /// The relations you judged real among the near-matches this call surfaced,
+    /// in `review_relations`' shape. For an `exploratory` decision with
+    /// near-matches, this or `no_relation_note` is REQUIRED. Drawn for every
+    /// kind and listed in the reply's `edges_drawn`.
     #[serde(default)]
     pub related_to: Option<Vec<RelationLinkReq>>,
-    /// THE OTHER HALF, AND IT IS A FULL ANSWER RATHER THAN A WEAKER ONE: what
-    /// you looked at and why nothing was honestly related.
-    ///
-    /// It exists because a missing edge and an unexamined idea are
-    /// indistinguishable without it, and measured 2026-08-30 the note had been
-    /// used twice in 207 ideas — so the design could not tell an idea somebody
-    /// judged from one nobody opened.
-    ///
-    /// 🛑 NEVER INVENT A RELATION TO GET PAST THIS. A false neighbour is worse
-    /// than a missing one: anything that searches by neighbourhood repeats it
-    /// forever. This field is the honest way through.
+    // It exists because a missing edge and an unexamined idea are
+    // indistinguishable without it, and measured 2026-08-30 the note had been
+    // used twice in 207 ideas - so the design could not tell an idea somebody
+    // judged from one nobody opened. A false neighbour is worse than a missing
+    // one: anything that searches by neighbourhood repeats it forever.
+    /// Instead of `related_to`, a full answer: what you looked at and why
+    /// nothing is honestly related. Never invent a relation to get past the
+    /// check.
     #[serde(default)]
     pub no_relation_note: Option<String>,
-    /// The status to LAND IN when the owner's word is already in hand:
-    /// `proposed` (the default) / `accepted` / `deferred` / `contested` / `superseded` /
-    /// `rejected`. `deferred` is set aside and NOT debt — the loop stops counting
-    /// it as owed. `contested` keeps a question open on purpose, both sides on
-    /// the record, and is not debt either.
-    /// The status given is the status stored, on a create and on a revise.
-    /// A status that SETTLES — `accepted`, `deferred`, `contested` — is REFUSED
-    /// unless `approver` is named: one call, with the signature present rather
-    /// than assumed (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
-    /// `rejected` and `superseded` retire an option rather than decide, and
-    /// may be recorded with or without one.
+    // One call, with the signature present rather than assumed
+    // (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).
+    /// The status to land in when the owner's word is in hand: `proposed`
+    /// (default) / `accepted` / `deferred` (set aside, not debt) / `contested`
+    /// (kept open on purpose, both sides on the record, not debt) /
+    /// `superseded` / `rejected`. Stored as given, on create and revise.
+    /// `accepted`, `deferred` and `contested` are REFUSED without `approver`;
+    /// `rejected` and `superseded` retire an option and need none.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::decision_status_opt")]
     pub status: Option<String>,
-    /// The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the
-    /// same call as the status it signs. Draws `AUTHORED_BY role=approver`, the
-    /// edge `rule:design-intent-moves-only-on-the-owners-word` is checked by.
-    /// REQUIRED when the status settles. It signs only a status this call
-    /// stores past `proposed`: with no `status`, or with `proposed`, it is not
-    /// drawn, and the reply says so under `approver_not_drawn`. An id naming no
-    /// Contributor is REFUSED before anything is written, because a typo would
-    /// otherwise attach the owner's authority to a name nobody can check.
+    // It draws the edge `rule:design-intent-moves-only-on-the-owners-word` is
+    // checked by. An unknown id is refused because a typo would otherwise
+    // attach the owner's authority to a name nobody can check.
+    // The owner's signature, carried in the same call as the status it signs.
+    /// The Contributor whose word this is. Draws `AUTHORED_BY role=approver`.
+    /// REQUIRED when `status` is past `proposed`; otherwise not drawn (the
+    /// reply says so under `approver_not_drawn`). An id naming no Contributor
+    /// is REFUSED, nothing written.
     #[serde(default)]
     pub approver: Option<String>,
     /// When the approver acted, as a plain date. Stored on the approver edge.
     #[serde(default)]
     pub acted_at: Option<String>,
-    /// ON A PROOF HOLE'S DECISION POINT: THE STATEMENT THAT MUST BE SHOWN, by
-    /// id — the lemma, conjecture or theorem this decision point is the hole
-    /// for (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-
-    /// it-closes-that-claim). It must name a node of this design, and never
-    /// this decision. reasoning_report's search map (`map: true`) places the
-    /// hole's routes and failed routes under it.
+    // req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-it-closes-that-claim
+    /// Proof hole's decision point: id of the statement that must be shown (the
+    /// lemma, conjecture or theorem). Must name a node of this design, never
+    /// this decision. reasoning_report's search map (`map: true`) places its
+    /// routes and failed routes under it.
     #[serde(default)]
     pub hole: Option<String>,
-    /// ON A PROOF HOLE'S DECISION POINT: THE CLAIM THIS HOLE SERVES, by id —
-    /// the claim above it whose route needs it, or another hole's decision
-    /// point. Leave it out on the target's own hole. It must name a node of
-    /// this design, and never this decision or its `hole`. A property, never
-    /// an edge: serving a claim is not supporting it.
+    /// Proof hole's decision point: id of the claim this hole serves (the claim
+    /// whose route needs it, or another hole's decision point). Omit it on the
+    /// target's own hole. Must name a node of this design, never this decision
+    /// or its `hole`. A property, not an edge: serving a claim is not
+    /// supporting it.
     #[serde(default)]
     pub serves: Option<String>,
-    /// ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE
-    /// CLAIM IT SERVES — `closes` (it is a premise that finishes a route to
-    /// that claim), `narrows` (a special case, or a class ruled out such as a
-    /// counterexample pruning: it cannot close the claim) or `restates` (an
-    /// equivalent form: closing it closes the claim, and it is no smaller a
-    /// step). The search map reads it along the path to the target and says
-    /// whether closing the hole could close the target. Refused without
-    /// `serves`, on this call or stored. NO DEFAULT: left out, it reads
-    /// unsaid, never `closes`.
+    // The search map reads it along the path to the target and says whether
+    // closing the hole could close the target.
+    /// Proof hole's decision point: what closing the hole does to the claim it
+    /// `serves`. `closes`: a premise that finishes a route to it. `narrows`: a
+    /// special case or a class ruled out (such as a counterexample pruning); it
+    /// cannot close the claim. `restates`: an equivalent form; closing it
+    /// closes the claim, and it is no smaller a step. REFUSED without `serves`,
+    /// here or stored. No default: omitted reads unsaid, never `closes`.
     #[serde(default)]
     #[schemars(schema_with = "crate::enum_schema::decision_closing_it_opt")]
     pub closing_it: Option<String>,
-    /// WHOSE WORD THIS IS, beyond the caller's own credit: each entry draws
-    /// AUTHORED_BY in this call, exactly as `authored_by` draws it (on flo2.io
-    /// 45 of 51 authored_by runs came with an add_decision). A signature is
-    /// the caller's own wherever reflow2 is served for others.
+    // On flo2.io 45 of 51 authored_by runs came with an add_decision.
+    /// Whose word this is beyond the caller's own credit: each entry draws
+    /// AUTHORED_BY, as the `authored_by` tool does. Where reflow2 is served for
+    /// others, a signature must be the caller's own.
     #[serde(default)]
     pub authored_by: Option<Vec<NamedAuthorReq>>,
     /// THE ARTIFACTS THAT DOCUMENT IT: each draws DOCUMENTS from the artifact

@@ -2061,17 +2061,17 @@ impl ReflowService {
         )?)
     }
 
+    // Moved out of the served description: omitted fields keep their value so
+    // rewording a requirement never silently un-confirms it (BL-183), and
+    // correcting one field never means re-sending a 2 KB field you did not touch.
     #[tool(
-        description = "Create or revise a Requirement node. A new one lands at `proposed`; only the \
-                       user's word moves it off, through set_requirement_status. CALLING THIS \
-                       AGAIN WITH AN EXISTING ID REVISES that node: what you pass overwrites, \
-                       and every field you do NOT pass keeps its current value instead of \
-                       reverting to a default — so rewording a requirement never silently \
-                       un-confirms it (BL-183). \
-                       CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it \
-                       again with the same id and only what you are changing \u{2014} omitted \
-                       fields keep their stored value, so correcting one never means re-sending \
-                       a 2 KB field you did not touch. \
+        description = "Create or revise a Requirement node. It also holds a mathematical or \
+                       analytic statement (a theorem, lemma, conjecture, definition or evidence): \
+                       set `statement_kind`. A new one lands `proposed` unless `status` and \
+                       `approver` are passed; later, set_requirement_status moves it. Calling it \
+                       again with the same id REVISES it: passed fields overwrite, omitted \
+                       fields keep their stored value, never a default. Content fields are \
+                       required to create, optional to revise. \
                        Ask for this when you want to write down something the system must do or must never do — a need, a shall-statement, a constraint the customer stated — so it is captured as intent.",
         title = "Add a Requirement",
         annotations(read_only_hint = false, destructive_hint = false)
@@ -4137,20 +4137,22 @@ impl ReflowService {
         )
     }
 
+    // Moved out of the served description: landing `proposed` is deliberate. An
+    // accepted Decision is what where-am-i reads back to the user as "what you
+    // decided", so asserting it on their behalf would be the forgery
+    // dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED
+    // 2026-07-25: this used to default to `accepted`. Omitted fields keep their
+    // value so correcting one never means re-sending a 2 KB field you did not touch.
     #[tool(
         description = "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses \
                        between real alternatives — the rationale is what stops the choice being silently \
-                       reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is \
-                       not the same as settling it, so reaching `accepted` is a separate act \
-                       (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is \
-                       deliberate — an accepted Decision is what where-am-i reads back to the user as \"what \
-                       you decided\", so asserting it on their behalf would be the forgery \
-                       dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this \
-                       used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO \
-                       REVISE: call it again with the same id and only what you are changing \u{2014} omitted \
-                       fields keep their stored value, so correcting one never means re-sending a 2 KB field \
-                       you did not touch. Ask for this when you want to write down a decision that was made and \
-                       the reasoning behind it — an architecture decision record.",
+                       reversed later. Link it with `governed_by`. It lands `proposed` unless `status` and \
+                       `approver` are passed: recording a choice is not the same as settling it. Later, \
+                       `set_decision_status` settles it (`collapse_decision` when a fork is chosen). An \
+                       EXISTING id REVISES it: send only what changes; omitted fields keep \
+                       their stored value. Content fields are required to create, optional to revise. Ask for this \
+                       when you want to write down a decision that was made and the reasoning behind it — an \
+                       architecture decision record.",
         title = "Add a Decision",
         annotations(read_only_hint = false, destructive_hint = false)
     )]
