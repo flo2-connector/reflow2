@@ -16,7 +16,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Create or revise a Requirement node. A new one lands at `proposed`; only the user's word moves it off, through set_requirement_status. CALLING THIS AGAIN WITH AN EXISTING ID REVISES that node: what you pass overwrites, and every field you do NOT pass keeps its current value instead of reverting to a default — so rewording a requirement never silently un-confirms it (BL-183). CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down something the system must do or must never do — a need, a shall-statement, a constraint the customer stated — so it is captured as intent.",
+  "description": "Create or revise a Requirement node. It also holds a mathematical or analytic statement (a theorem, lemma, conjecture, definition or evidence): set `statement_kind`. A new one lands `proposed` unless `status` and `approver` are passed; later, set_requirement_status moves it. Calling it again with the same id REVISES it: passed fields overwrite, omitted fields keep their stored value, never a default. Content fields are required to create, optional to revise. Ask for this when you want to write down something the system must do or must never do — a need, a shall-statement, a constraint the customer stated — so it is captured as intent.",
   "inputSchema": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
@@ -31,7 +31,7 @@
       },
       "approver": {
         "default": null,
-        "description": "The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the\nsame call as the status it signs. Draws `AUTHORED_BY role=approver`, the\nedge `rule:design-intent-moves-only-on-the-owners-word` is checked by.\nREQUIRED when the status settles. It signs only a status this call\nstores past `proposed`: with no `status`, or with `proposed`, it is not\ndrawn, and the reply says so under `approver_not_drawn`. An id naming no\nContributor is REFUSED before anything is written, because a typo would\notherwise attach the owner's authority to a name nobody can check.",
+        "description": "The Contributor whose word this is. Draws `AUTHORED_BY role=approver`.\nREQUIRED when `status` is past `proposed`; otherwise not drawn (the\nreply says so under `approver_not_drawn`). An id naming no Contributor\nis REFUSED, nothing written.",
         "type": [
           "string",
           "null"
@@ -39,7 +39,7 @@
       },
       "claimed_by": {
         "default": null,
-        "description": "CLAIMED BY a named party, not yet verified here: \"OpenAI\", \"Kempe\".\nWhile nothing in the design establishes it and nothing refutes it, it\n— and what rests on it — reads \"claimed by OpenAI, unverified\", never\nas unproven or open. Put it on the statement, or\non the premise that is the claimant's argument (\"their proof is\ncorrect\"). Omitted: nothing is written.",
+        "description": "A named party that claims it, not verified here (\"OpenAI\", \"Kempe\").\nUntil the design establishes or refutes it, it and what rests on it read\n\"claimed by <party>, unverified\", never unproven or open. Put it on the\nstatement, or on the premise that is the claimant's argument.",
         "type": [
           "string",
           "null"
@@ -47,7 +47,7 @@
       },
       "concern": {
         "default": null,
-        "description": "The cross-cutting concern this need belongs to. 154 of 207 requirements\ncarried one written through the generic escape hatch.",
+        "description": "The cross-cutting concern this need belongs to.",
         "enum": [
           "core",
           "logistics",
@@ -69,7 +69,7 @@
       },
       "confidence": {
         "default": null,
-        "description": "A JUDGEMENT'S CONFIDENCE, ICD 203 style: `low`, `moderate` or `high`.\nRead back; changes no truth. Omitted: nothing is written.",
+        "description": "A judgement's confidence, ICD 203 style: `low` / `moderate` / `high`.\nChanges no truth.",
         "enum": [
           "low",
           "moderate",
@@ -83,7 +83,7 @@
       },
       "distinct_from": {
         "default": null,
-        "description": "Ids you read and judged a DIFFERENT thing from this one, when reflow2\nhas already told you something close exists — one of the THREE answers\nto that check: sharpen the existing node (call with ITS id), say this one\nis different (here), or say it takes an older one's place (`replaces`).\nTHE JUDGEMENT IS KEPT: the ids are written onto the node as\n`distinct_from`, so a later reader can tell a node its writer compared\nfrom one nobody did. Omit it on a first attempt — the refusal, if any,\nlists exactly what to put here.",
+        "description": "Ids of near matches you read and judged a DIFFERENT thing; stored on the\nnode. Omit it on a first attempt: a refusal lists what to put here.",
         "items": {
           "type": "string"
         },
@@ -103,7 +103,7 @@
       },
       "fails_at": {
         "default": null,
-        "description": "FOR A FAILED ROUTE ONLY: THE STEP AT WHICH IT FAILS, in words.\nSearched. Omitted: nothing is written.",
+        "description": "Failed route only: the step at which it fails, in words. Searched.",
         "type": [
           "string",
           "null"
@@ -111,7 +111,7 @@
       },
       "fails_at_step": {
         "default": null,
-        "description": "FOR A FAILED ROUTE ONLY: THE STEP OR STATEMENT OF THIS DESIGN AT WHICH\nIT FAILS, by id, when the design holds it. A reference, never an edge:\nthat step's reading never moves. Omitted: nothing is written.",
+        "description": "Failed route only: id of the step or statement of this design where it\nfails. A reference, never an edge: that step's reading never moves.",
         "type": [
           "string",
           "null"
@@ -119,7 +119,7 @@
       },
       "fails_because": {
         "default": null,
-        "description": "FOR A FAILED ROUTE ONLY: WHY IT FAILS THERE, in words — the\nobstruction. Searched. Omitted: nothing is written.",
+        "description": "Failed route only: why it fails there (the obstruction), in words.\nSearched.",
         "type": [
           "string",
           "null"
@@ -127,7 +127,7 @@
       },
       "fixes": {
         "default": null,
-        "description": "THE VARIABLES IT BINDS TO ONE VALUE, each `name=value` (`n=40`, `L=all\nthe primes`) or a bare name. A step that generalizes over a variable\ndoes not hold while anything it rests on fixes it. Omitted: nothing is\nwritten.",
+        "description": "The variables it binds to one value: `name=value` (`n=40`) or a bare\nname. A step that generalizes over a variable does not hold while\nanything it rests on fixes it.",
         "items": {
           "type": "string"
         },
@@ -137,12 +137,12 @@
         ]
       },
       "id": {
-        "description": "The requirement's id — `req:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives.",
+        "description": "`req:<slug>` by convention. An EXISTING id REVISES it: passed fields\noverwrite, omitted fields keep their stored value.",
         "type": "string"
       },
       "information_credibility": {
         "default": null,
-        "description": "EVIDENCE'S INFORMATION CREDIBILITY, Admiralty scale: `1` confirmed …\n`5` improbable, `6` cannot be judged. Omitted: nothing is written.",
+        "description": "Evidence's information credibility, Admiralty scale: `1` confirmed … `5`\nimprobable, `6` cannot be judged.",
         "enum": [
           "1",
           "2",
@@ -159,7 +159,7 @@
       },
       "kind": {
         "default": null,
-        "description": "What KIND of need this is — `functional` / `nonfunctional` / `quality` /\n`business`. Optional: unset means nobody said, and `encoding_undecided`\nreports a design where some requirements say and some do not.\n\nOffered since 2026-09-20 (flo2 F19). It was declared, READ by that\ndetector, carried by 154 of 247 requirements written through the generic\nescape hatch, and accepted by no typed tool — so the documented creation\npath could not produce a requirement the detector was satisfied with, and\na person meeting \"5 Requirement(s) and none says what kind of need it is\"\nhad no way to answer it.",
+        "description": "What kind of need: `functional` / `nonfunctional` / `quality` /\n`business`. Unset means nobody said; `encoding_undecided` reports a\ndesign where only some say.",
         "enum": [
           "functional",
           "nonfunctional",
@@ -181,7 +181,7 @@
       },
       "priority": {
         "default": null,
-        "description": "How much this one matters: `low` / `medium` / `high` / `critical`.\n\nOMITTING IT LEAVES THE SCHEMA DEFAULT (`medium`) AND THAT IS UNCHANGED\nBEHAVIOUR — this parameter adds a way to SAY, it does not add an\nobligation to. Declared 2026-09-07 after the dev_storyflow agent\nreported it missing. The property has always been declared, and the\ndefault was injected at write, so every requirement carried a priority\nnobody chose and nobody could change through the surface: 193 of 207 on\nthis project's own graph sat at the injected value, and the 14 that did\nnot were written through the generic escape hatch.",
+        "description": "`low` / `medium` / `high` / `critical`. Omitted: the schema default,\n`medium`.",
         "enum": [
           "low",
           "medium",
@@ -196,7 +196,7 @@
       },
       "provenance": {
         "default": null,
-        "description": "HOW THIS REQUIREMENT GOT HERE — `authored` (somebody wrote it here),\n`imported` (it came from another design), `inferred`, `healed`,\n`planned`, `reconciled`.\n\nThe other half of the same mechanism, and the same measurement: 262 of\n263 Requirements read `authored`, which is the schema default, and the\nsingle `imported` was written through the escape hatch. Omitting this\nleaves the default exactly as it was — it adds a way to SAY, never an\nobligation to.",
+        "description": "How it got here: `authored` (default) / `imported` (from another design)\n/ `inferred` / `healed` / `planned` / `reconciled`.",
         "enum": [
           "authored",
           "planned",
@@ -213,7 +213,7 @@
       },
       "replaces": {
         "default": null,
-        "description": "Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —\nthe third answer to the near-match check, for a new node that is neither\na sharper wording of an old one nor a different thing, but its\nsuccessor. For each: the old node's ending is recorded FIRST (a\n`deprecation` ChangeEvent whose snapshot keeps its final state and\nedges), the thread that says what it was FOR moves here (a Capability's\nSATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision\nor DesignRule moves none), and this node OBSOLETES it. Its stored status\ndoes not move. The reply names what moved, what stayed, and what — if\nanything — still withdraws it. Works on a revise too, so a successor\nalready recorded can say so later. An id of another type, one naming\nnothing, or one also in `distinct_from` is REFUSED and nothing is written.",
+        "description": "Ids of OLDER Requirements this one succeeds (not a rewording, not a\ndifferent thing). Each gets a `deprecation` ChangeEvent with a snapshot,\nthen this node OBSOLETES it; the old node keeps its status and no edges\nmove. REFUSED, nothing written: an id of another type, one naming\nnothing, or one also in `distinct_from`.",
         "items": {
           "type": "string"
         },
@@ -224,7 +224,7 @@
       },
       "reported_at": {
         "default": null,
-        "description": "WHEN THE EVIDENCE WAS REPORTED or observed, as a plain date (the\nreport's own date). Omitted: nothing is written.",
+        "description": "When the evidence was reported or observed, as a plain date.",
         "type": [
           "string",
           "null"
@@ -232,7 +232,7 @@
       },
       "route_rests_on": {
         "default": null,
-        "description": "FOR A FAILED ROUTE ONLY: WHAT IT RESTS ON, by id — the records the\nroute built on. Never premises: nothing rests on a failed route, and a\nwhat-if on one of these never reaches it. Each must name a node of\nthis design. Overwrites; omitted: nothing is written.",
+        "description": "Failed route only: ids of the records it built on, each a node of this\ndesign. Never premises: nothing rests on a failed route, and a what-if\non one of these never reaches it. Overwrites.",
         "items": {
           "type": "string"
         },
@@ -243,7 +243,7 @@
       },
       "route_to": {
         "default": null,
-        "description": "FOR A FAILED ROUTE (`statement_kind: failed_route`) ONLY, and refused\non any other statement: THE CLAIM IT WAS A ROUTE TO, by id — the hole\nit tried to close (a step is read under the claim it concludes).\nreasoning_report reads the route under that claim; the claim's own\nreading never moves. Refused unless it names a node of this design.\nOmitted: nothing is written.",
+        "description": "Failed route only (REFUSED on any other `statement_kind`): id of the\nclaim it was a route to, the hole it tried to close. REFUSED unless it\nnames a node of this design. reasoning_report reads the route under that\nclaim; the claim's reading never moves.",
         "type": [
           "string",
           "null"
@@ -251,7 +251,7 @@
       },
       "same_formula_as": {
         "default": null,
-        "description": "THE FORMULA THIS STATEMENT IS AN OCCURRENCE OF, by id: one formula\nderived under several suppositions (⊥ in each reductio) is one record\nper occurrence, each naming the first; the read-back groups them. It\nchanges no truth. Omitted: nothing is written.",
+        "description": "Id of the first occurrence of the same formula (one formula derived\nunder several suppositions, as ⊥ in each reductio, is one record per\noccurrence); the read-back groups them. Changes no truth.",
         "type": [
           "string",
           "null"
@@ -259,7 +259,7 @@
       },
       "silent_on": {
         "default": null,
-        "description": "THE CASES THIS PRINCIPLE GIVES NO VERDICT ON, by id: silent, neither\nfor nor against. Read back on the claim. Overwrites; omitted: nothing\nis written.",
+        "description": "Ids of the cases this principle gives no verdict on, for or against.\nRead back on the claim. Overwrites.",
         "items": {
           "type": "string"
         },
@@ -270,7 +270,7 @@
       },
       "source": {
         "default": null,
-        "description": "WHO OR WHAT STATED THIS NEED — a person, a regulation, a stakeholder,\nor ANOTHER DESIGN that levied it on this one.\n\n⭐ IT IS THE SECOND HALF OF THE MECHANISM THIS DESIGN ALREADY DOCUMENTS\nFOR A CONSUMER'S ASK. `dec:idea-gap-flows-to-the-dependency` says a\nlevied requirement is expressible today as \"add_requirement (lands\nproposed) + authored_by <them> role=author + source '<their design>' +\nprovenance imported\" — and until 2026-09-22 this constructor accepted\nNEITHER of the last two, so the documented path could only be finished\nthrough the generic escape hatch.\n\nMEASURED the day it was added: of 263 Requirements in this design,\n**one** carried a `source` — the one written by hand that afternoon,\nthrough `create_node`, while following the design's own instructions.\nThe property was declared, the instruction existed, and the tool could\nnot write it.",
+        "description": "Who or what stated this need: a person, a regulation, a stakeholder, or\nanother design. For a need another design levied, name it here, pass\n`provenance: imported`, and credit them with the `authored_by` tool\n(role=author).",
         "type": [
           "string",
           "null"
@@ -278,7 +278,7 @@
       },
       "source_reliability": {
         "default": null,
-        "description": "EVIDENCE'S SOURCE RELIABILITY, Admiralty scale: `A` completely\nreliable … `E` unreliable, `F` cannot be judged. Read back; changes no\ntruth. Omitted: nothing is written.",
+        "description": "Evidence's source reliability, Admiralty scale: `A` completely reliable\n… `E` unreliable, `F` cannot be judged. Changes no truth.",
         "enum": [
           "A",
           "B",
@@ -303,7 +303,7 @@
       },
       "statement_kind": {
         "default": null,
-        "description": "WHAT THIS STATEMENT IS, in mathematics: `theorem`, `lemma`,\n`corollary`, `proposition`, `definition`, `axiom`, `conjecture`,\n`hypothesis` or `falsum` — a field of its own, leaving `kind`'s\nsoftware values alone. A definition or axiom reads taken as given; a\nconjecture reads `open`, then `refuted` once an objection that holds\nrefutes it; a theorem, lemma, corollary or proposition reads `stated`\nuntil a step concludes it; a theorem, lemma or corollary taken as given\nreads `cited` (a pinned source documents it) or `cited_unverified`; a hypothesis (a\nsupposition, an induction hypothesis, a case) reads `assumed` or\n`discharged`; a falsum (a reductio's contradiction) reads false.\n`evidence` (a report, study or measurement: \"the report says X\") reads\n`cited_as_evidence` when a pinned source documents it, and what rests\non it is supported, never proven; `judgement` is an analytic judgement\ndrawn from evidence, with its `confidence`.\n`failed_route` is a route that was tried and fails, a record of its own:\n`statement` says what was tried, with `route_to`, `fails_at`,\n`fails_because`, `route_rests_on` and `would_hold_if` below. It reads `failed_route`,\nsupports and refutes nothing, and is read back under the claim it was\na route to.\nOmitted: nothing is written.",
+        "description": "What the statement is in mathematics or analysis (separate from `kind`).\n`definition`, `axiom`: taken as given. `conjecture`: open, then refuted\nonce an objection that holds refutes it. `theorem`, `lemma`,\n`corollary`, `proposition`: stated until a step concludes it; a theorem,\nlemma or corollary taken as given reads cited (a pinned source documents\nit) or cited_unverified. `hypothesis` (a supposition, induction\nhypothesis or case): assumed or discharged. `falsum`: a reductio's\ncontradiction, reads false. `evidence` (a report, study or measurement):\ncited_as_evidence when a pinned source documents it; what rests on it is\nsupported, never proven. `judgement`: an analytic judgement drawn from\nevidence, with `confidence`. `failed_route`: a route tried that fails,\nsaid in `statement` and the `route_to`, `fails_*`, `route_rests_on` and\n`would_hold_if` fields; it supports and refutes nothing and is read back\nunder its claim.",
         "enum": [
           "theorem",
           "lemma",
@@ -331,7 +331,7 @@
       },
       "status": {
         "default": null,
-        "description": "The status to LAND IN when the owner's word is already in hand:\n`proposed` (the default) / `accepted` / `deferred` / `dropped` / `met`.\nA status past `proposed` is REFUSED unless `approver` is named.",
+        "description": "The status to land in when the owner's word is in hand: `proposed`\n(default) / `accepted` / `deferred` / `dropped` / `met`. Past `proposed`\nis REFUSED without `approver`.",
         "enum": [
           "proposed",
           "accepted",
@@ -347,7 +347,7 @@
       },
       "taken_as_given": {
         "default": null,
-        "description": "TAKEN AS GIVEN: an axiom or a definition stated as a requirement the reasoning starts from and\ndoes not argue for. It then reads as a stated foundation, never as an\nuncited premise, in reasoning_report, loop_status and detect_gaps.\nOmitted: nothing is written, and the node reads as it always did.",
+        "description": "An axiom or definition the reasoning starts from without argument. It\nreads as a stated foundation, never an uncited premise, in\nreasoning_report, loop_status and detect_gaps.",
         "type": [
           "boolean",
           "null"
@@ -355,7 +355,7 @@
       },
       "variables": {
         "default": null,
-        "description": "THE VARIABLES IT MENTIONS, by name (`n`, `L`): free in it, as \"every\nn ≥ 2 has a prime divisor\" mentions n. Shown on a step that\ngeneralizes over one. Omitted: nothing is written.",
+        "description": "The variables free in it, by name (`n`, `L`). Shown on a step that\ngeneralizes over one.",
         "items": {
           "type": "string"
         },
@@ -366,7 +366,7 @@
       },
       "would_hold_if": {
         "default": null,
-        "description": "FOR A FAILED ROUTE ONLY: THE NATURAL CONDITION UNDER WHICH IT WOULD GO\nTHROUGH, in words with its connective (\"if f is Boolean-valued\",\n\"with exp(d) in place of poly(d)\"). Only when the condition is natural,\nnever a trivial one. Read back with the route; it moves no reading and\nis neither a hypothesis of the claim nor a result shown. Searched.\nOmitted: nothing is written.",
+        "description": "Failed route only: the natural (never trivial) condition under which it\nwould go through, with its connective (\"if f is Boolean-valued\"). Read\nback with the route; it moves no reading and is neither a hypothesis of\nthe claim nor a result shown. Searched.",
         "type": [
           "string",
           "null"

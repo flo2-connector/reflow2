@@ -12,7 +12,7 @@
         "properties": {
           "alignment": {
             "default": null,
-            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. `conceding`:\na reply grants an objection against what it attacks (draw it with\ncreate_edge to name the reading it moves to, `moves_to`). Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
+            "description": "CONTRADICTS only. `opposing` (stored when unsaid; `detect_defects`\nreports it as a contradiction): they conflict. `supporting`: they\ncorroborate. `conceding`: a reply grants an objection against what it\nattacks (name the reading it moves to with create_edge, `moves_to`).\nOnly this field sets it, never words in `evidence`.",
             "enum": [
               "opposing",
               "supporting",
@@ -26,7 +26,7 @@
           },
           "basis": {
             "default": null,
-            "description": "CAUSES: how strongly the link is grounded — `observed`,\n`correlational` (stored when unsaid: a co-variation, not a cause),\n`causal` (only with a mechanism) or `spurious`. DUPLICATES: who\ndecided the two cover the same ground — `asserted` (a person says so)\nor `suspected` (stored when unsaid; never merged).",
+            "description": "CAUSES: `observed` / `correlational` (stored when unsaid: co-variation,\nnot cause) / `causal` (only with a mechanism) / `spurious`. DUPLICATES:\n`asserted` (a person says so) / `suspected` (stored when unsaid; never\nmerged).",
             "enum": [
               "observed",
               "correlational",
@@ -42,12 +42,12 @@
             ]
           },
           "evidence": {
-            "description": "WHY this relation is true, in a sentence. Required — a relation with no\nevidence is an assertion the next reader can neither check nor overturn.",
+            "description": "WHY this relation is true, in a sentence. Required.",
             "type": "string"
           },
           "incoming": {
             "default": null,
-            "description": "Draw the edge FROM the other node instead. Direction is part of the\nclaim: every one of these reads as a sentence, *from RELATION to*, and\nbackwards the same edge asserts something false with nothing to catch it.",
+            "description": "Draw the edge FROM the other node instead. Each relation reads *from\nRELATION to*: pass `true` when the true direction is inbound.",
             "type": [
               "boolean",
               "null"
@@ -63,14 +63,14 @@
           },
           "other_design": {
             "default": null,
-            "description": "When the other node lives in ANOTHER DESIGN: that design's id. `other_id`\nis then the node's id THERE, and this design keeps a reference standing\nin for it (`xref:<design>:<node>`), so the link is typed and checkable:\n`upstream_status` reports a link into a design this one does not declare,\nand one whose far design has changed since the link was made. Linking\nagain acknowledges it.",
+            "description": "When the other node is in ANOTHER DESIGN: that design's id. `other_id`\nis then its id there, and a reference `xref:<design>:<node>` stands in\nfor it. `upstream_status` reports a link into an undeclared design, or\nwhose far design changed since; linking again acknowledges it.",
             "type": [
               "string",
               "null"
             ]
           },
           "other_id": {
-            "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node id).\nThe edge runs TO it unless `incoming` turns it round. Its type is resolved\nfrom the id; `other_type` names it when the id is ambiguous.",
+            "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node\nid). The edge runs TO it unless `incoming` turns it round.",
             "type": "string"
           },
           "other_name": {
@@ -83,14 +83,14 @@
           },
           "other_type": {
             "default": null,
-            "description": "Optional since 2026-09-06: resolved from the id when omitted (the id\nprefix names the type); an id held by more than one type is REFUSED, never\nguessed — pass it then.",
+            "description": "The other node's type. Resolved from the id prefix when omitted; an id\nheld by more than one type is REFUSED, never guessed, so pass it then.",
             "type": [
               "string",
               "null"
             ]
           },
           "relation": {
-            "description": "`CONTRADICTS` (both cannot hold) / `EVOLVES_INTO` (the older thought,\ngrown up) / `DEPENDS_ON` (only worth anything if the other lands first)\n/ `CAUSES` / `TRIGGERS` (taking one forces the other) / `BLOCKS` /\n`DUPLICATES` (the same thing said twice — link, do not merge; they were\nsaid for different reasons) / `ANTICIPATES` (the earlier one saw this\ncoming) / `OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the\nother answers it) / `MASKS` / `VIOLATES`.",
+            "description": "`CONTRADICTS` (both cannot hold) / `EVOLVES_INTO` (the older thought,\ngrown up) / `DEPENDS_ON` (worth something only if the other lands first)\n/ `CAUSES` / `TRIGGERS` (taking one forces the other) / `BLOCKS` /\n`DUPLICATES` (the same thing said twice, for different reasons: link, do\nnot merge) / `ANTICIPATES` (the earlier one saw this coming) /\n`OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the other answers\nit) / `MASKS` / `VIOLATES`.",
             "enum": [
               "CONTRADICTS",
               "EVOLVES_INTO",

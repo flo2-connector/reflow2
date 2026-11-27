@@ -18,7 +18,7 @@
     "destructiveHint": false,
     "readOnlyHint": false
   },
-  "description": "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed`: recording a choice is not the same as settling it, so reaching `accepted` is a separate act (`set_decision_status`, or `collapse_decision` when a fork is chosen). That is deliberate — an accepted Decision is what where-am-i reads back to the user as \"what you decided\", so asserting it on their behalf would be the forgery dec:certainty-derived forbids for requirement status. BEHAVIOUR CHANGED 2026-07-25: this used to default to `accepted`. CONTENT FIELDS ARE REQUIRED TO CREATE AND OPTIONAL TO REVISE: call it again with the same id and only what you are changing — omitted fields keep their stored value, so correcting one never means re-sending a 2 KB field you did not touch. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
+  "description": "Create or revise a Decision and why it was made (an ADR). Use this whenever the user chooses between real alternatives — the rationale is what stops the choice being silently reversed later. Link it with `governed_by`. It lands `proposed` unless `status` and `approver` are passed: recording a choice is not the same as settling it. Later, `set_decision_status` settles it (`collapse_decision` when a fork is chosen). An EXISTING id REVISES it: send only what changes; omitted fields keep their stored value. Content fields are required to create, optional to revise. Ask for this when you want to write down a decision that was made and the reasoning behind it — an architecture decision record.",
   "inputSchema": {
     "$defs": {
       "DocumentedByReq": {
@@ -96,7 +96,7 @@
         "properties": {
           "alignment": {
             "default": null,
-            "description": "CONTRADICTS only. `opposing`: the two conflict — and what an unsaid\nalignment is STORED AS, which `detect_defects` reports as a\ncontradiction. `supporting`: they corroborate each other. `conceding`:\na reply grants an objection against what it attacks (draw it with\ncreate_edge to name the reading it moves to, `moves_to`). Saying\n\"corroboration\" in `evidence` does not set it; only this field does.",
+            "description": "CONTRADICTS only. `opposing` (stored when unsaid; `detect_defects`\nreports it as a contradiction): they conflict. `supporting`: they\ncorroborate. `conceding`: a reply grants an objection against what it\nattacks (name the reading it moves to with create_edge, `moves_to`).\nOnly this field sets it, never words in `evidence`.",
             "enum": [
               "opposing",
               "supporting",
@@ -110,7 +110,7 @@
           },
           "basis": {
             "default": null,
-            "description": "CAUSES: how strongly the link is grounded — `observed`,\n`correlational` (stored when unsaid: a co-variation, not a cause),\n`causal` (only with a mechanism) or `spurious`. DUPLICATES: who\ndecided the two cover the same ground — `asserted` (a person says so)\nor `suspected` (stored when unsaid; never merged).",
+            "description": "CAUSES: `observed` / `correlational` (stored when unsaid: co-variation,\nnot cause) / `causal` (only with a mechanism) / `spurious`. DUPLICATES:\n`asserted` (a person says so) / `suspected` (stored when unsaid; never\nmerged).",
             "enum": [
               "observed",
               "correlational",
@@ -126,12 +126,12 @@
             ]
           },
           "evidence": {
-            "description": "WHY this relation is true, in a sentence. Required — a relation with no\nevidence is an assertion the next reader can neither check nor overturn.",
+            "description": "WHY this relation is true, in a sentence. Required.",
             "type": "string"
           },
           "incoming": {
             "default": null,
-            "description": "Draw the edge FROM the other node instead. Direction is part of the\nclaim: every one of these reads as a sentence, *from RELATION to*, and\nbackwards the same edge asserts something false with nothing to catch it.",
+            "description": "Draw the edge FROM the other node instead. Each relation reads *from\nRELATION to*: pass `true` when the true direction is inbound.",
             "type": [
               "boolean",
               "null"
@@ -147,14 +147,14 @@
           },
           "other_design": {
             "default": null,
-            "description": "When the other node lives in ANOTHER DESIGN: that design's id. `other_id`\nis then the node's id THERE, and this design keeps a reference standing\nin for it (`xref:<design>:<node>`), so the link is typed and checkable:\n`upstream_status` reports a link into a design this one does not declare,\nand one whose far design has changed since the link was made. Linking\nagain acknowledges it.",
+            "description": "When the other node is in ANOTHER DESIGN: that design's id. `other_id`\nis then its id there, and a reference `xref:<design>:<node>` stands in\nfor it. `upstream_status` reports a link into an undeclared design, or\nwhose far design changed since; linking again acknowledges it.",
             "type": [
               "string",
               "null"
             ]
           },
           "other_id": {
-            "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node id).\nThe edge runs TO it unless `incoming` turns it round. Its type is resolved\nfrom the id; `other_type` names it when the id is ambiguous.",
+            "description": "The node at the other end of the relation (`req:…`, `dec:…`, any node\nid). The edge runs TO it unless `incoming` turns it round.",
             "type": "string"
           },
           "other_name": {
@@ -167,14 +167,14 @@
           },
           "other_type": {
             "default": null,
-            "description": "Optional since 2026-09-06: resolved from the id when omitted (the id\nprefix names the type); an id held by more than one type is REFUSED, never\nguessed — pass it then.",
+            "description": "The other node's type. Resolved from the id prefix when omitted; an id\nheld by more than one type is REFUSED, never guessed, so pass it then.",
             "type": [
               "string",
               "null"
             ]
           },
           "relation": {
-            "description": "`CONTRADICTS` (both cannot hold) / `EVOLVES_INTO` (the older thought,\ngrown up) / `DEPENDS_ON` (only worth anything if the other lands first)\n/ `CAUSES` / `TRIGGERS` (taking one forces the other) / `BLOCKS` /\n`DUPLICATES` (the same thing said twice — link, do not merge; they were\nsaid for different reasons) / `ANTICIPATES` (the earlier one saw this\ncoming) / `OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the\nother answers it) / `MASKS` / `VIOLATES`.",
+            "description": "`CONTRADICTS` (both cannot hold) / `EVOLVES_INTO` (the older thought,\ngrown up) / `DEPENDS_ON` (worth something only if the other lands first)\n/ `CAUSES` / `TRIGGERS` (taking one forces the other) / `BLOCKS` /\n`DUPLICATES` (the same thing said twice, for different reasons: link, do\nnot merge) / `ANTICIPATES` (the earlier one saw this coming) /\n`OBSOLETES` / `RISKS` / `MITIGATES` (one is a hazard, the other answers\nit) / `MASKS` / `VIOLATES`.",
             "enum": [
               "CONTRADICTS",
               "EVOLVES_INTO",
@@ -243,14 +243,14 @@
       },
       "approver": {
         "default": null,
-        "description": "The Contributor whose word this is — the OWNER'S SIGNATURE, carried in the\nsame call as the status it signs. Draws `AUTHORED_BY role=approver`, the\nedge `rule:design-intent-moves-only-on-the-owners-word` is checked by.\nREQUIRED when the status settles. It signs only a status this call\nstores past `proposed`: with no `status`, or with `proposed`, it is not\ndrawn, and the reply says so under `approver_not_drawn`. An id naming no\nContributor is REFUSED before anything is written, because a typo would\notherwise attach the owner's authority to a name nobody can check.",
+        "description": "The Contributor whose word this is. Draws `AUTHORED_BY role=approver`.\nREQUIRED when `status` is past `proposed`; otherwise not drawn (the\nreply says so under `approver_not_drawn`). An id naming no Contributor\nis REFUSED, nothing written.",
         "type": [
           "string",
           "null"
         ]
       },
       "authored_by": {
-        "description": "WHOSE WORD THIS IS, beyond the caller's own credit: each entry draws\nAUTHORED_BY in this call, exactly as `authored_by` draws it (on flo2.io\n45 of 51 authored_by runs came with an add_decision). A signature is\nthe caller's own wherever reflow2 is served for others.",
+        "description": "Whose word this is beyond the caller's own credit: each entry draws\nAUTHORED_BY, as the `authored_by` tool does. Where reflow2 is served for\nothers, a signature must be the caller's own.",
         "items": {
           "$ref": "#/$defs/NamedAuthorReq"
         },
@@ -261,7 +261,7 @@
       },
       "closing_it": {
         "default": null,
-        "description": "ON A PROOF HOLE'S DECISION POINT: WHAT CLOSING THIS HOLE DOES TO THE\nCLAIM IT SERVES — `closes` (it is a premise that finishes a route to\nthat claim), `narrows` (a special case, or a class ruled out such as a\ncounterexample pruning: it cannot close the claim) or `restates` (an\nequivalent form: closing it closes the claim, and it is no smaller a\nstep). The search map reads it along the path to the target and says\nwhether closing the hole could close the target. Refused without\n`serves`, on this call or stored. NO DEFAULT: left out, it reads\nunsaid, never `closes`.",
+        "description": "Proof hole's decision point: what closing the hole does to the claim it\n`serves`. `closes`: a premise that finishes a route to it. `narrows`: a\nspecial case or a class ruled out (such as a counterexample pruning); it\ncannot close the claim. `restates`: an equivalent form; closing it\ncloses the claim, and it is no smaller a step. REFUSED without `serves`,\nhere or stored. No default: omitted reads unsaid, never `closes`.",
         "enum": [
           "closes",
           "narrows",
@@ -283,7 +283,7 @@
       },
       "distinct_from": {
         "default": null,
-        "description": "Ids you read and judged a DIFFERENT thing from this one, when reflow2\nhas already told you something close exists — one of the THREE answers\nto that check: sharpen the existing node (call with ITS id), say this one\nis different (here), or say it takes an older one's place (`replaces`).\nTHE JUDGEMENT IS KEPT: the ids are written onto the node as\n`distinct_from`, so a later reader can tell a node its writer compared\nfrom one nobody did. Omit it on a first attempt — the refusal, if any,\nlists exactly what to put here.",
+        "description": "Ids of near matches you read and judged a DIFFERENT thing; stored on the\nnode. Omit it on a first attempt: a refusal lists what to put here.",
         "items": {
           "type": "string"
         },
@@ -313,19 +313,19 @@
       },
       "hole": {
         "default": null,
-        "description": "ON A PROOF HOLE'S DECISION POINT: THE STATEMENT THAT MUST BE SHOWN, by\nid — the lemma, conjecture or theorem this decision point is the hole\nfor (req:a-proof-hole-records-the-claim-it-serves-and-whether-closing-\nit-closes-that-claim). It must name a node of this design, and never\nthis decision. reasoning_report's search map (`map: true`) places the\nhole's routes and failed routes under it.",
+        "description": "Proof hole's decision point: id of the statement that must be shown (the\nlemma, conjecture or theorem). Must name a node of this design, never\nthis decision. reasoning_report's search map (`map: true`) places its\nroutes and failed routes under it.",
         "type": [
           "string",
           "null"
         ]
       },
       "id": {
-        "description": "The decision's id — `dec:<slug>` by convention, so the prefix names the type wherever the id appears. Calling again with an EXISTING id REVISES that node: what you pass overwrites, what you omit survives. An exploratory idea is conventionally `dec:idea-…`.",
+        "description": "`dec:<slug>` by convention; an exploratory idea is `dec:idea-…`. An\nEXISTING id REVISES it: passed fields overwrite, omitted fields keep\ntheir stored value.",
         "type": "string"
       },
       "kind": {
         "default": null,
-        "description": "WHAT KIND OF THING THIS IS — `exploratory` (an idea being turned over,\nrecorded so it is not lost and explicitly NOT claimed as intent) or\n`choice` (a decision somebody actually faced).\n\nOMITTING IT IS A THIRD STATE, not a synonym for `choice`: absent means\nnobody said. There is no default, for the reason `quality_target` gives\n— a default makes an unasked question indistinguishable from an answered\none.\n\nIt is READ, which is the bar a vocabulary distinction has to clear here:\nthe brainstorm skill's linking discipline fires on `exploratory` and\nstays off the Requirement/Capability/ChangeEvent capture path. Set it in\nTHIS call rather than a follow-up — two order-dependent calls are the\nhazard `fact:the-parallel-batch-class-recurred-because-only-its-instance-was-fixed`\nrecords.",
+        "description": "`exploratory` (an idea being turned over, NOT claimed as intent) or\n`choice` (a decision somebody actually faced). Omitted means nobody\nsaid; it is not `choice` and there is no default. `exploratory` turns on\nthe near-match check (`related_to`). Set it in this call, not a\nfollow-up.",
         "enum": [
           "exploratory",
           "choice",
@@ -345,7 +345,7 @@
       },
       "no_relation_note": {
         "default": null,
-        "description": "THE OTHER HALF, AND IT IS A FULL ANSWER RATHER THAN A WEAKER ONE: what\nyou looked at and why nothing was honestly related.\n\nIt exists because a missing edge and an unexamined idea are\nindistinguishable without it, and measured 2026-08-30 the note had been\nused twice in 207 ideas — so the design could not tell an idea somebody\njudged from one nobody opened.\n\n🛑 NEVER INVENT A RELATION TO GET PAST THIS. A false neighbour is worse\nthan a missing one: anything that searches by neighbourhood repeats it\nforever. This field is the honest way through.",
+        "description": "Instead of `related_to`, a full answer: what you looked at and why\nnothing is honestly related. Never invent a relation to get past the\ncheck.",
         "type": [
           "string",
           "null"
@@ -360,7 +360,7 @@
         ]
       },
       "related_to": {
-        "description": "The relations you judged REAL among the near-matches this call surfaced.\nSame shape as `review_relations`, drawn in the same call so the\njudgement cannot be lost between two.\n\nRequired — TOGETHER WITH ITS ALTERNATIVE BELOW — only when this is an\n`exploratory` Decision and near-matches were found. An idea nothing\nresembles is captured with no ceremony at all.\n\nDRAWN FOR EVERY KIND, and each edge is named in the reply's\n`edges_drawn`, subject first. Until 2026-09-29 a `choice` or no-kind\ndecision passed the duplicate guard naming these and then drew none of\nthem, silently.",
+        "description": "The relations you judged real among the near-matches this call surfaced,\nin `review_relations`' shape. For an `exploratory` decision with\nnear-matches, this or `no_relation_note` is REQUIRED. Drawn for every\nkind and listed in the reply's `edges_drawn`.",
         "items": {
           "$ref": "#/$defs/RelationLinkReq"
         },
@@ -371,7 +371,7 @@
       },
       "replaces": {
         "default": null,
-        "description": "Ids of OLDER nodes of this same type that this one TAKES THE PLACE OF —\nthe third answer to the near-match check, for a new node that is neither\na sharper wording of an old one nor a different thing, but its\nsuccessor. For each: the old node's ending is recorded FIRST (a\n`deprecation` ChangeEvent whose snapshot keeps its final state and\nedges), the thread that says what it was FOR moves here (a Capability's\nSATISFIES, a Component's incoming ALLOCATED_TO; a Requirement, Decision\nor DesignRule moves none), and this node OBSOLETES it. Its stored status\ndoes not move. The reply names what moved, what stayed, and what — if\nanything — still withdraws it. Works on a revise too, so a successor\nalready recorded can say so later. An id of another type, one naming\nnothing, or one also in `distinct_from` is REFUSED and nothing is written.",
+        "description": "Ids of OLDER Decisions this one succeeds (not a rewording, not a\ndifferent thing). Each gets a `deprecation` ChangeEvent with a snapshot,\nthen this node OBSOLETES it; the old node keeps its status and no edges\nmove. REFUSED, nothing written: an id of another type, one naming\nnothing, or one also in `distinct_from`.",
         "items": {
           "type": "string"
         },
@@ -382,7 +382,7 @@
       },
       "serves": {
         "default": null,
-        "description": "ON A PROOF HOLE'S DECISION POINT: THE CLAIM THIS HOLE SERVES, by id —\nthe claim above it whose route needs it, or another hole's decision\npoint. Leave it out on the target's own hole. It must name a node of\nthis design, and never this decision or its `hole`. A property, never\nan edge: serving a claim is not supporting it.",
+        "description": "Proof hole's decision point: id of the claim this hole serves (the claim\nwhose route needs it, or another hole's decision point). Omit it on the\ntarget's own hole. Must name a node of this design, never this decision\nor its `hole`. A property, not an edge: serving a claim is not\nsupporting it.",
         "type": [
           "string",
           "null"
@@ -390,7 +390,7 @@
       },
       "status": {
         "default": null,
-        "description": "The status to LAND IN when the owner's word is already in hand:\n`proposed` (the default) / `accepted` / `deferred` / `contested` / `superseded` /\n`rejected`. `deferred` is set aside and NOT debt — the loop stops counting\nit as owed. `contested` keeps a question open on purpose, both sides on\nthe record, and is not debt either.\nThe status given is the status stored, on a create and on a revise.\nA status that SETTLES — `accepted`, `deferred`, `contested` — is REFUSED\nunless `approver` is named: one call, with the signature present rather\nthan assumed (dec:idea-should-a-constructor-accept-the-owners-word-in-one-call).\n`rejected` and `superseded` retire an option rather than decide, and\nmay be recorded with or without one.",
+        "description": "The status to land in when the owner's word is in hand: `proposed`\n(default) / `accepted` / `deferred` (set aside, not debt) / `contested`\n(kept open on purpose, both sides on the record, not debt) /\n`superseded` / `rejected`. Stored as given, on create and revise.\n`accepted`, `deferred` and `contested` are REFUSED without `approver`;\n`rejected` and `superseded` retire an option and need none.",
         "enum": [
           "proposed",
           "accepted",
