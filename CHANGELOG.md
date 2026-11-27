@@ -31,6 +31,107 @@ This file is the third view: *what changed, and when*.
 
 ## [Unreleased]
 
+## [0.105.0] — 2026-11-27
+
+**Minor. A session can be listed 45 tools instead of 200 and reach every other one by name,
+`find_tools` gives the input schema of each tool it finds, and reflow2 moves to rmcp 3.12.0.** It
+contains #869 to #871. **What to do:** nothing, unless you want a shorter tool list. Then start the
+server with `--profile lite`, or connect to its HTTP address with `?profile=lite`. A script that
+expects an empty list from `resources/list` or `prompts/list` should accept JSON-RPC `-32601`
+instead. Nothing to migrate: the schema does not move.
+
+**The MCP surface grows by one tool, and a session that asks for nothing is listed what it was,
+plus that tool.** Against the published 0.104.0 binary (sha256 `b9d81b65…` for its linux-x86_64
+archive, checked against `checksums.txt`): 200 tools, the 199 of 0.104.0 and `use_another_tool`.
+No tool was removed or renamed, and no argument was added, removed or retyped. Three descriptions
+are shorter: `add_decision`, `add_requirement` and `review_relations`. `find_tools`'s reply gains
+`input_schema` on each tool it finds, and `schemas_left_out`. `resources/list` and `prompts/list`
+are answered `-32601`, where 0.104.0 gave an empty success. The 36 skills and the connect-time
+instructions are unchanged.
+
+- **The schema does not move.** Nothing under `schema/` or in `reflow2-core` changed since 0.104.0,
+  so 0.104.0 opens and writes a store this release has written, with its "behind" warning. It
+  refuses this release's exports unless given `accept_newer: true`, as an older release refuses
+  any newer one's.
+- No note to the MCP users is owed before a release
+  (`dec:a-release-owes-no-note-to-the-mcp-users-before-it-ships`, Anthony 2026-11-21).
+
+**In your setup.** The `--call` setup (a one-shot call on a design on your own machine, as in VS
+Code where MCP is blocked) gets `find_tools` with schemas and `use_another_tool`. The profile is a
+served session's: a one-shot call already reaches every tool by name.
+- **`reflow2-mcp --graph-path … --call find_tools --args '{"query":…}'`** gives each tool it finds
+  its `input_schema`, so the call that follows needs no `--describe` first.
+- **`--call use_another_tool --args '{"tool":"search_design","arguments":{…}}'`** answers exactly
+  as `--call search_design` does. `reflow2 read use_another_tool` is refused, because the door is
+  marked a write; call the tool itself with `reflow2 read`, which needs no door.
+- **`--profile` given to `--call`** (or to `--list-tools`) is refused by name, with nothing opened:
+  "--profile chooses which tools a SERVED session is listed; this mode lists no session's tools".
+  Set in the environment, `REFLOW2_PROFILE` is left alone by a one-shot call. `--list-tools`
+  lists all 200.
+- **On a server you run yourself**, `--profile lite` lists 45 tools in `tools/list`, and a session
+  that connects with `?profile=full` is listed all 200 whatever the server's `--profile`. A
+  `?profile=` value that is not `full` or `lite` is refused at the handshake.
+- **Needs flo2.io:** a hosted design's address lists every tool until flo2.io serves this release.
+  Once it does, its design addresses will list the lite profile by default, and a session that
+  wants every tool listed connects with `?profile=full` on its address
+  (`https://api.flo2.io/g/<id>/mcp?profile=full`).
+
+### Added
+
+- **A lite tool profile: a session can be listed 45 tools instead of 200.** A
+  host that loads every tool's description paid about 140,000 tokens a session
+  for reflow2's list, while the 40 most-used tools carried 97.4% of 30,439
+  counted calls. A lite session is listed those tools, four more, and
+  `use_another_tool`; every other tool is still served, one call away. **To
+  turn it on:** start the server with `--profile lite`, or set
+  `REFLOW2_PROFILE=lite` (with `--shared` or `--remote` the client asks its
+  server for lite itself). Over HTTP, a session can choose it for itself by
+  connecting to the MCP endpoint URL with `?profile=lite`, such as
+  `http://127.0.0.1:7000/?profile=lite` or `/g/<graph_id>/?profile=lite`. The
+  profile is fixed when a session connects and never changes during it. A
+  value that is not `full` or `lite` is refused at startup, or at the
+  handshake for a URL. **`full` is the default**: a session that asks for
+  nothing is listed every tool, as before, plus `use_another_tool`.
+- **`use_another_tool` calls any reflow2 tool by its name.** Give the tool's
+  name in `tool` and its arguments in `arguments`. The reply is that tool's own
+  reply, and a refusal is that tool's own refusal. This is how a lite session
+  reaches a tool it is not listed. It is served in both profiles, so there is
+  one tool surface. Call `find_tools` first to get the name.
+- **`find_tools` gives each tool it finds its whole input schema**
+  (`input_schema`, exactly as `tools/list` serves it), so a tool found there
+  can be called without a second read. Schemas are added best match first, up
+  to about 20,000 characters. The top match always gets its schema, and any
+  match left without one is named under `schemas_left_out` (`describe_schema`
+  with `tool` reads it). In a lite session it still searches every tool, not
+  only the listed ones.
+
+### Changed
+
+- **`add_decision` and `add_requirement` cost less context to load.** Their
+  argument help and tool descriptions now say only what an agent needs to call
+  them right: what each argument is, its values, its default, and when a call
+  is refused. `add_requirement` now also says it holds a theorem, lemma,
+  conjecture, definition or evidence through `statement_kind`. Dates,
+  measurements and the history of why each field was added moved into source
+  comments. The `add_decision` listing is 4,282 characters shorter (15,184 to
+  10,902) and the `add_requirement` listing 4,988 shorter (14,457 to 9,469);
+  `review_relations`, which shares the relation item, is 576 shorter. No
+  argument was added, removed, renamed or retyped, and nothing behaves
+  differently.
+
+- **reflow2 is built on rmcp 3.12.0, the official Rust MCP SDK's latest
+  release (from 3.6.0).** The tool surface is unchanged: all 199 tool snapshots
+  match. One thing a client can notice on the wire: reflow2 advertises tools
+  only, and a request for a capability it does not advertise is now answered
+  with JSON-RPC error `-32601` (method not found). On 0.104.0 it got an empty
+  success (`{"resources": []}`, `{"prompts": []}`). Measured on both binaries
+  for `resources/list` and `prompts/list`; the SDK does the same for
+  `resources/templates/list` and `completion/complete`. The MCP spec asks for
+  this answer, and clients that probe for prompts or resources treat it as
+  "none". **What to do:** nothing, unless a script of yours expects an empty
+  list from reflow2 for one of these. That script should accept `-32601`
+  instead.
+
 ## [0.104.0] — 2026-11-24
 
 **Minor. A registry server copies every design it serves on a signal without stopping, the HTTP
