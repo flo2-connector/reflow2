@@ -636,7 +636,10 @@ WRITE_OPS = frozenset({
     "set_epoch_status", "set_evidence_scope", "set_interface_designation", "set_interface_spec", "set_project_mode",
     "set_provenance", "set_quality_target", "set_requirement_designation", "set_requirement_lineage", "set_requirement_status",
     "set_verification_kind", "set_verification_status", "set_violation_status", "snapshot_before_change", "usage_report",
-    "violates_rule", "withdraw_defect_acknowledgement", "withdraw_gap_acknowledgement", "withdraw_question"
+    "violates_rule", "withdraw_defect_acknowledgement", "withdraw_gap_acknowledgement", "withdraw_question",
+    # Passes a call on to any served tool, writes included, and the hook sees
+    # only its own name; served as a write, so it is counted as one.
+    "use_another_tool",
 })
 
 
