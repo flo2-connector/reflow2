@@ -12,8 +12,8 @@
   `http://127.0.0.1:7000/?profile=lite` or `/g/<graph_id>/?profile=lite`. The
   profile is fixed when a session connects and never changes during it. A
   value that is not `full` or `lite` is refused at startup, or at the
-  handshake for a URL. **`full` is the default and is unchanged**: a session
-  that asks for nothing is listed every tool, exactly as before.
+  handshake for a URL. **`full` is the default**: a session that asks for
+  nothing is listed every tool, as before, plus `use_another_tool`.
 - **`use_another_tool` calls any reflow2 tool by its name.** Give the tool's
   name in `tool` and its arguments in `arguments`. The reply is that tool's own
   reply, and a refusal is that tool's own refusal. This is how a lite session
