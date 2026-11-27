@@ -296,6 +296,11 @@ EDGE_ONLY = {
     # it cannot be what makes a property reachable, and counting it would make every
     # string property on every type read as writable.
     "replace_text",
+    # `use_another_tool` is a door: the server rewrites a call of it into a call
+    # of the tool it names before anything runs (crate::profile), so whatever
+    # it reaches is reached by that tool's own parameters, counted there. Its
+    # own two (`tool`, `arguments`) are addressing, not properties.
+    "use_another_tool",
 }
 
 # A tool that writes ONE NAMED PROPERTY on a type the CALLER chooses. It reaches

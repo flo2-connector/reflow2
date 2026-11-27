@@ -1411,7 +1411,40 @@ impl ReflowService {
         let matched = scored.len();
         let top_tool = scored.first().map(|(s, _)| *s).unwrap_or(0.0);
         let limit = req.limit.unwrap_or(DEFAULT_TOOL_SEARCH_RESULTS).max(1);
-        let items: Vec<JsonValue> = scored.into_iter().take(limit).map(|(_, v)| v).collect();
+        let mut items: Vec<JsonValue> = scored.into_iter().take(limit).map(|(_, v)| v).collect();
+
+        // EACH FOUND TOOL'S WHOLE INPUT SCHEMA, as tools/list serves it, so a
+        // tool found here can be called — directly, or through
+        // `use_another_tool` by a session that is not listed it
+        // (`crate::profile`) — without a second read. Best first, within
+        // FIND_TOOLS_SCHEMA_BUDGET_CHARS: the top tool always carries its
+        // schema, and one past the budget is named under `schemas_left_out`,
+        // which `describe` says how to read.
+        let schemas: std::collections::HashMap<String, JsonValue> = self
+            .served_list(&Default::default())
+            .into_iter()
+            .map(|t| {
+                (
+                    t.name.to_string(),
+                    JsonValue::Object((*t.input_schema).clone()),
+                )
+            })
+            .collect();
+        let mut schema_chars = 0usize;
+        let mut schemas_left_out: Vec<String> = Vec::new();
+        for (rank, item) in items.iter_mut().enumerate() {
+            let name = item["tool"].as_str().unwrap_or_default().to_string();
+            let Some(schema) = schemas.get(&name) else {
+                continue;
+            };
+            let size = schema.to_string().len();
+            if rank > 0 && schema_chars + size > FIND_TOOLS_SCHEMA_BUDGET_CHARS {
+                schemas_left_out.push(name);
+                continue;
+            }
+            schema_chars += size;
+            item["input_schema"] = schema.clone();
+        }
 
         // THE SCHEMA'S RELATIONS, ranked beside the tools and kept apart from
         // them (`crate::find_relations`): a relation with no typed tool, such
@@ -1449,7 +1482,37 @@ impl ReflowService {
         if !relations.is_empty() {
             reply["relations"] = json!(relations);
         }
+        if !schemas_left_out.is_empty() {
+            reply["schemas_left_out"] = json!(schemas_left_out);
+        }
         ok_json(reply)
+    }
+
+    #[tool(
+        description = "Pass a call through, unchanged, to a reflow2 tool this list leaves \
+                       out. It reaches every reflow2 tool not in this list: put the name in \
+                       `tool` and its own arguments in `arguments`, exactly as they would be \
+                       passed to it directly. Call `find_tools` first, with the job in your own \
+                       words: it gives that name and its full argument rules (each found tool's \
+                       input schema, the same schema tools/list serves). The reply is the other \
+                       tool's own reply, passed back unchanged, refusals included: a name \
+                       nothing serves is refused as calling it directly is refused, and a write \
+                       is checked, signed and recorded exactly as the same write made directly. \
+                       Served in every profile: a lite session is listed 45 tools and reaches \
+                       the rest through this one. It never calls itself.",
+        title = "Use Another Tool",
+        annotations(read_only_hint = false, destructive_hint = true)
+    )]
+    pub async fn use_another_tool(
+        &self,
+        Parameters(req): Parameters<crate::profile::UseAnotherToolReq>,
+    ) -> Result<CallToolResult, McpError> {
+        // Reached only when `call_tool` did not pass the call on
+        // (`crate::profile::reach_another_tool`): for arguments that fit, that
+        // is a call naming this tool itself.
+        Ok(CallToolResult::error(vec![ContentBlock::text(
+            crate::profile::not_passed_on(&req),
+        )]))
     }
 
     #[tool(

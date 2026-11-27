@@ -325,6 +325,17 @@ const ALLOWED: &[(&str, &str, &str)] = &[
          session's own handshake, never stored here.",
     ),
     (
+        "reflow2-mcp/src/profile.rs",
+        "PROCESS_PROFILE",
+        "The operator's `--profile` / REFLOW2_PROFILE, parsed once from how THIS \
+         PROCESS was launched, the way OVERRIDE above is: it is the listing a session \
+         is given when it names no profile of its own, and a second design open in \
+         the same process is served by the same launch, so the value is a fact about \
+         the process, not about a design. What can differ — a session's own \
+         `?profile=` — is read from that session's handshake and kept on that \
+         session's service (`ReflowService::session_profile`), never here.",
+    ),
+    (
         "reflow2-mcp/src/shared.rs",
         "STARTUP_FINGERPRINT",
         "This process's own executable, fingerprinted (size:mtime) at start, so \

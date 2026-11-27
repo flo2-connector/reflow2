@@ -624,6 +624,11 @@ async fn every_served_write_is_classified_by_what_its_reply_carries() {
             "usage_report",
             "the usage window it closes, which is the report it exists to give",
         ),
+        (
+            "use_another_tool",
+            "the reply of the tool it names, unchanged: the call is rewritten into a call of \
+             that tool before anything runs, so the reply is classified here under that tool",
+        ),
     ];
     let c = connect().await;
     let served: std::collections::BTreeSet<String> =

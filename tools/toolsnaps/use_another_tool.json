@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "destructiveHint": true,
+    "readOnlyHint": false
+  },
+  "description": "Pass a call through, unchanged, to a reflow2 tool this list leaves out. It reaches every reflow2 tool not in this list: put the name in `tool` and its own arguments in `arguments`, exactly as they would be passed to it directly. Call `find_tools` first, with the job in your own words: it gives that name and its full argument rules (each found tool's input schema, the same schema tools/list serves). The reply is the other tool's own reply, passed back unchanged, refusals included: a name nothing serves is refused as calling it directly is refused, and a write is checked, signed and recorded exactly as the same write made directly. Served in every profile: a lite session is listed 45 tools and reaches the rest through this one. It never calls itself.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "properties": {
+      "arguments": {
+        "additionalProperties": true,
+        "default": {},
+        "description": "That tool's own arguments, as one object, exactly as you would pass\nthem to it directly. `find_tools` gives each tool's input schema.\nOmitted, the tool is called with no arguments.",
+        "type": "object"
+      },
+      "echo": {
+        "default": "receipt",
+        "description": "What the reply carries. `receipt` (the default) names the node, echoes each stored value of at most 200 characters, gives longer ones by size, and names the snapshot that keeps anything a revise replaced. `node` returns the whole stored node and every prior value.",
+        "enum": [
+          "receipt",
+          "node"
+        ],
+        "type": "string"
+      },
+      "tool": {
+        "description": "The name of the reflow2 tool to call, exactly as `find_tools` gives it\n— \"topic_report\", \"what_next\". Any served tool; not `use_another_tool`.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "tool"
+    ],
+    "type": "object"
+  },
+  "name": "use_another_tool",
+  "title": "Use Another Tool"
+}

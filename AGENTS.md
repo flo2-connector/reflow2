@@ -1148,7 +1148,7 @@ decision or assume the surface doesn't exist — it is the binary a consumer run
   (as-built linking, releases/environments, process flows, provenance, the rollup report,
   BM25 search, schema discovery, portable export/import). Fast dev/test build:
   `cargo test -p reflow2-core --no-default-features`.
-- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs` and `tools/`, 199 tools; `dto.rs`;
+- `crates/reflow2-mcp/` — the agent-native MCP stdio server (`service.rs` and `tools/`, 200 tools; `dto.rs`;
   `main.rs`). Thin: every tool locks the graph, calls one core op, returns. It carries the
   `rocksdb` feature ON BY DEFAULT, so every installed build has on-disk storage, and development
   builds without it (`cargo dev-test`); see its own AGENTS.md.

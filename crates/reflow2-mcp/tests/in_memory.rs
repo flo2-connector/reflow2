@@ -234,6 +234,7 @@ mod the_handshake_fits_the_clients_cap;
 mod the_http_door_takes_a_chosen_request_size;
 mod the_id_prefix_table_covers_every_stated_convention;
 mod the_lens_names_the_person_beside_the_id;
+mod the_lite_profile_lists_45_tools;
 mod the_mcp_surface_only_grows;
 mod the_near_match_report_is_not_cut_at_three;
 mod the_record_moved_and_the_session_is_told;

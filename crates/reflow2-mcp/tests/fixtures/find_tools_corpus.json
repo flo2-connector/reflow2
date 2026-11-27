@@ -177,6 +177,7 @@
     "unclaimed_findings": "did my recent changes make any recorded findings false",
     "upstream_status": "has the design we depend on changed since we last checked it",
     "usage_report": "give me the numbers on how this project has been using reflow2 — which tools got called, which calls it refused — so I can send feedback to the maintainer",
+    "use_another_tool": "pass a call through to something my list leaves out",
     "violates_rule": "record that this part breaks that rule",
     "vocabulary_coverage": "which parts of the modelling vocabulary have we never used",
     "wall_check": "does the decomposition I declared match the coupling the code actually has — walk the imports across the walls I drew",
